@@ -15,6 +15,6 @@ function ayuda( idcomponente, mensaje, titulo ){
 }
 
 function formatoNumeroCelda ( algo ){
-	
+//algo	
 	return algo;
 }
