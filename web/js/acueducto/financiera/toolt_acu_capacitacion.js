@@ -1,0 +1,23 @@
+
+var ayuda_acu_cap_dada_prestador = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_actividad_capacitacion_uso_eficiente_agua = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_actividad_capacitacion_higene_personal = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_actividad_capacitacion_higene_vivienda = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_actividad_capacitacion_higene_sitios_publicos = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_actividad_capacitacion_educacion_ambiental = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_actividad_capacitacion_participacion_comunitaria = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_actividad_capacitacion_veeduria_ciudadana = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_actividad_capacitacion_funcion_sist_abastecimiento = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_actividad_capacitacion_otra = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_actividad_capacitacion_otra_cuales = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_capacitacion_recibida_prest = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_temas_capacitacion_administrativos = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_temas_capacitacion_normativos = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_temas_capacitacion_ambientales = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_temas_capacitacion_operativos = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_temas_capacitacion_sui = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_temas_capacitacion_otra = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_temas_capacitacion_otra_cual = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_instituciones_ofrecieron = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_numero_directiva_hombres = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_numero_directiva_mujeres = 'ayuda             !!!!!!!!';

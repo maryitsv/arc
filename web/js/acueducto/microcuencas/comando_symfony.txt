@@ -1,0 +1,3 @@
+symfony generate:module arc microcuenca
+symfony generate:module arc proteccionfuentessuperficialesagua
+symfony generate:module arc aspectoslegales
