@@ -3,7 +3,7 @@
 require_once 'C:\\xampp\\htdocs\\symfony\\lib/autoload/sfCoreAutoload.class.php';
 //require_once '/usr/share/php/symfony/autoload/sfCoreAutoload.class.php';
 sfCoreAutoload::register();
-
+// Prueba
 class ProjectConfiguration extends sfProjectConfiguration
 {
   public function setup()
