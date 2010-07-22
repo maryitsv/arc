@@ -1,4 +1,0 @@
-jul 17 19:12:45 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /acueducto_analisiscobertura/cargar with parameters array (  'module' => 'acueducto_analisiscobertura',  'action' => 'cargar',)
-jul 17 19:12:45 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
-jul 17 19:12:45 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
-jul 17 19:12:45 symfony [info] {acueducto_analisiscoberturaActions} Call "acueducto_analisiscoberturaActions->executeCargar()"
