@@ -1,32 +1,29 @@
-var tecnicooperativaacueducto_form = new Ext.form.FormPanel({
+var tecnicooperativaacueducto_form = new Ext.Panel({
     id: 'tecnicooperativaacueducto-form',
-    title: 'Información Técnico-Operativa para el servicio de acueducto',
-    header: true,
-    width: '840',
+    layout: 'form',
+    width: 840,
+    height: 380,
+    //    height: '400',
     frame: true,
-    anchor: '100%',
+    //    anchor: '100%',
     buttons: [{
-        text: 'Atrás'
-    }, {
-        text: 'Siguiente'
+        text: 'Siguiente',
+        handler: function(){
+            tecnicooperativa_acueducto_tabpanel.setActiveTab(1);
+        }
     }]
 });
 
 var toa_gravedad_sin_tratamiento = {
-    xtype: "radiogroup",
+    xtype: "checkboxgroup",
     tabIndex: 2,
     id: "toa_gravedad_sin_tratamiento",
     name: "toa_gravedad_sin_tratamiento",
     fieldLabel: "Gravedad sin tratamiento",
     items: [{
-        boxLabel: 'Si',
         name: 'toa_gravedad_sin_tratamiento',
         inputValue: 1
-    }, {
-        boxLabel: 'No',
-        name: 'toa_gravedad_sin_tratamiento',
-        inputValue: 2
-    }, ],
+    }],
     listeners: {
         render: function(){
             new Ext.ToolTip({
@@ -42,20 +39,15 @@ var toa_gravedad_sin_tratamiento = {
 
 
 var toa_bombeo_sin_tratamiento = {
-    xtype: "radiogroup",
+    xtype: "checkboxgroup",
     tabIndex: 3,
     id: "toa_bombeo_sin_tratamiento",
     name: "toa_bombeo_sin_tratamiento",
     fieldLabel: "Bombeo sin tratamiento",
     items: [{
-        boxLabel: 'Si',
         name: 'toa_bombeo_sin_tratamiento',
         inputValue: 1
-    }, {
-        boxLabel: 'No',
-        name: 'toa_bombeo_sin_tratamiento',
-        inputValue: 2
-    }, ],
+    }],
     listeners: {
         render: function(){
             new Ext.ToolTip({
@@ -71,20 +63,15 @@ var toa_bombeo_sin_tratamiento = {
 
 
 var toa_gravedad_con_tratamiento = {
-    xtype: "radiogroup",
+    xtype: "checkboxgroup",
     tabIndex: 4,
     id: "toa_gravedad_con_tratamiento",
     name: "toa_gravedad_con_tratamiento",
     fieldLabel: "Gravedad con tratamiento",
     items: [{
-        boxLabel: 'Si',
         name: 'toa_gravedad_con_tratamiento',
         inputValue: 1
-    }, {
-        boxLabel: 'No',
-        name: 'toa_gravedad_con_tratamiento',
-        inputValue: 2
-    }, ],
+    }],
     listeners: {
         render: function(){
             new Ext.ToolTip({
@@ -100,20 +87,15 @@ var toa_gravedad_con_tratamiento = {
 
 
 var toa_bombeo_con_tratamiento = {
-    xtype: "radiogroup",
+    xtype: "checkboxgroup",
     tabIndex: 5,
     id: "toa_bombeo_con_tratamiento",
     name: "toa_bombeo_con_tratamiento",
     fieldLabel: "Bombeo con tratamiento",
     items: [{
-        boxLabel: 'Si',
         name: 'toa_bombeo_con_tratamiento',
         inputValue: 1
-    }, {
-        boxLabel: 'No',
-        name: 'toa_bombeo_con_tratamiento',
-        inputValue: 2
-    }, ],
+    }],
     listeners: {
         render: function(){
             new Ext.ToolTip({
@@ -129,20 +111,15 @@ var toa_bombeo_con_tratamiento = {
 
 
 var toa_gravedad_bombeo_sin_tratamiento = {
-    xtype: "radiogroup",
+    xtype: "checkboxgroup",
     tabIndex: 6,
     id: "toa_gravedad_bombeo_sin_tratamiento",
     name: "toa_gravedad_bombeo_sin_tratamiento",
     fieldLabel: "Gravedad y bombeo sin tratamiento",
     items: [{
-        boxLabel: 'Si',
         name: 'toa_gravedad_bombeo_sin_tratamiento',
         inputValue: 1
-    }, {
-        boxLabel: 'No',
-        name: 'toa_gravedad_bombeo_sin_tratamiento',
-        inputValue: 2
-    }, ],
+    }],
     listeners: {
         render: function(){
             new Ext.ToolTip({
@@ -157,20 +134,15 @@ var toa_gravedad_bombeo_sin_tratamiento = {
 }
 
 var toa_gravedad_bombeo_con_tratamiento = {
-    xtype: "radiogroup",
+    xtype: "checkboxgroup",
     tabIndex: 7,
     id: "toa_gravedad_bombeo_con_tratamiento",
     name: "toa_gravedad_bombeo_con_tratamiento",
     fieldLabel: "Gravedad y bombeo con tratamiento",
     items: [{
-        boxLabel: 'Si',
         name: 'toa_gravedad_bombeo_con_tratamiento',
         inputValue: 1
-    }, {
-        boxLabel: 'No',
-        name: 'toa_gravedad_bombeo_con_tratamiento',
-        inputValue: 2
-    }, ],
+    }],
     listeners: {
         render: function(){
             new Ext.ToolTip({
@@ -185,20 +157,15 @@ var toa_gravedad_bombeo_con_tratamiento = {
 }
 
 var toa_gravedad_sin_tratamiento_bombeo_con_tratamiento = {
-    xtype: "radiogroup",
+    xtype: "checkboxgroup",
     tabIndex: 8,
     id: "toa_gravedad_sin_tratamiento_bombeo_con_tratamiento",
     name: "toa_gravedad_sin_tratamiento_bombeo_con_tratamiento",
     fieldLabel: "Gravedad sin tratamiento y bombeo con tratamiento",
     items: [{
-        boxLabel: 'Si',
         name: 'toa_gravedad_sin_tratamiento_bombeo_con_tratamiento',
         inputValue: 1
-    }, {
-        boxLabel: 'No',
-        name: 'toa_gravedad_sin_tratamiento_bombeo_con_tratamiento',
-        inputValue: 2
-    }, ],
+    }],
     listeners: {
         render: function(){
             new Ext.ToolTip({
@@ -213,20 +180,15 @@ var toa_gravedad_sin_tratamiento_bombeo_con_tratamiento = {
 }
 
 var toa_gravedad_con_tratamiento_bombeo_sin_tratamiento = {
-    xtype: "radiogroup",
+    xtype: "checkboxgroup",
     tabIndex: 9,
     id: "toa_gravedad_con_tratamiento_bombeo_sin_tratamiento",
     name: "toa_gravedad_con_tratamiento_bombeo_sin_tratamiento",
     fieldLabel: "Gravedad con tratamiento y bombeo sin tratamiento",
     items: [{
-        boxLabel: 'Si',
         name: 'toa_gravedad_con_tratamiento_bombeo_sin_tratamiento',
         inputValue: 1
-    }, {
-        boxLabel: 'No',
-        name: 'toa_gravedad_con_tratamiento_bombeo_sin_tratamiento',
-        inputValue: 2
-    }, ],
+    }],
     listeners: {
         render: function(){
             new Ext.ToolTip({
@@ -245,7 +207,7 @@ var toa_cantidad_agua_distribuida_por_ano = {
     tabIndex: 10,
     id: "toa_cantidad_agua_distribuida_por_ano",
     name: "toa_cantidad_agua_distribuida_por_ano",
-    fieldLabel: "Cantidad de agua distribuida por año",
+    fieldLabel: "Cantidad de agua distribuida por año(M<sup>3</sup>)",
     allowBlank: false,
     listeners: {
         render: function(){
@@ -261,27 +223,22 @@ var toa_cantidad_agua_distribuida_por_ano = {
 }
 
 var toa_solucion_acarreo = {
-    xtype: "radiogroup",
+    xtype: "checkboxgroup",
     tabIndex: 12,
     id: "toa_solucion_acarreo",
     name: "toa_solucion_acarreo",
     fieldLabel: "Acarreo",
     items: [{
-        boxLabel: 'Si',
         name: 'toa_solucion_acarreo',
         inputValue: 1,
         listeners: {
             check: function(radio, checked){
-              var textfield = Ext.getCmp('toa_solucion_acarreo_viviendas');
-              textfield.setDisabled(!checked);
-              textfield.focus();
+                var textfield = Ext.getCmp('toa_solucion_acarreo_viviendas');
+                textfield.setDisabled(!checked);
+                textfield.focus();
             }
         }
-    }, {
-        boxLabel: 'No',
-        name: 'toa_solucion_acarreo',
-        inputValue: 2
-    }, ],
+    }],
     listeners: {
         render: function(){
             new Ext.ToolTip({
@@ -318,20 +275,15 @@ var toa_solucion_acarreo_viviendas = {
 }
 
 var toa_solucion_nacimiento = {
-    xtype: "radiogroup",
+    xtype: "checkboxgroup",
     tabIndex: 14,
     id: "toa_solucion_nacimiento",
     name: "toa_solucion_nacimiento",
     fieldLabel: "Nacimiento",
     items: [{
-        boxLabel: 'Si',
         name: 'toa_solucion_nacimiento',
         inputValue: 1
-    }, {
-        boxLabel: 'No',
-        name: 'toa_solucion_nacimiento',
-        inputValue: 2
-    }, ],
+    }],
     listeners: {
         render: function(){
             new Ext.ToolTip({
@@ -366,20 +318,15 @@ var toa_solucion_nacimiento_viviendas = {
 }
 
 var toa_toa_solucion_aljibe = {
-    xtype: "radiogroup",
+    xtype: "checkboxgroup",
     tabIndex: 16,
     id: "toa_toa_solucion_aljibe",
     name: "toa_toa_solucion_aljibe",
     fieldLabel: "Aljibe",
     items: [{
-        boxLabel: 'Si',
         name: 'toa_toa_solucion_aljibe',
         inputValue: 1
-    }, {
-        boxLabel: 'No',
-        name: 'toa_toa_solucion_aljibe',
-        inputValue: 2
-    }, ],
+    }],
     listeners: {
         render: function(){
             new Ext.ToolTip({
@@ -414,20 +361,15 @@ var toa_solucion_aljibe_viviendas = {
 }
 
 var toa_solucion_agua_lluvia = {
-    xtype: "radiogroup",
+    xtype: "checkboxgroup",
     tabIndex: 18,
     id: "toa_solucion_agua_lluvia",
     name: "toa_solucion_agua_lluvia",
     fieldLabel: "Agua lluvia",
     items: [{
-        boxLabel: 'Si',
         name: 'toa_solucion_agua_lluvia',
         inputValue: 1
-    }, {
-        boxLabel: 'No',
-        name: 'toa_solucion_agua_lluvia',
-        inputValue: 2
-    }, ],
+    }],
     listeners: {
         render: function(){
             new Ext.ToolTip({
@@ -462,20 +404,15 @@ var toa_solucion_agua_lluvia_viviendas = {
 }
 
 var toa_solucion_otro = {
-    xtype: "radiogroup",
+    xtype: "checkboxgroup",
     tabIndex: 20,
     id: "toa_solucion_otro",
     name: "toa_solucion_otro",
     fieldLabel: "Otra",
     items: [{
-        boxLabel: 'Si',
         name: 'toa_solucion_otro',
         inputValue: 1
-    }, {
-        boxLabel: 'No',
-        name: 'toa_solucion_otro',
-        inputValue: 2
-    }, ],
+    }],
     listeners: {
         render: function(){
             new Ext.ToolTip({
@@ -535,9 +472,10 @@ tecnicooperativaacueducto_form.add({
     items: [{
         bodyStyle: 'padding-right:5px;',
         items: {
+            height: 320,
             xtype: 'fieldset',
             title: 'Tipos de sistemas de abastecimiento',
-            autoHeight: true,
+            //            autoHeight: true,
             layout: 'form',
             labelWidth: 300,
             items: [toa_gravedad_sin_tratamiento, toa_bombeo_sin_tratamiento, toa_gravedad_con_tratamiento, toa_bombeo_con_tratamiento, toa_gravedad_bombeo_sin_tratamiento, toa_gravedad_bombeo_con_tratamiento, toa_gravedad_sin_tratamiento_bombeo_con_tratamiento, toa_gravedad_con_tratamiento_bombeo_sin_tratamiento, toa_cantidad_agua_distribuida_por_ano]
@@ -547,7 +485,7 @@ tecnicooperativaacueducto_form.add({
         items: {
             xtype: 'fieldset',
             title: 'Soluciones de la población no atendida por el acueducto',
-            autoHeight: true,
+            //            autoHeight: true,
             layout: 'form',
             labelWidth: 200,
             items: [toa_solucion_acarreo, toa_solucion_acarreo_viviendas, toa_solucion_nacimiento, toa_solucion_nacimiento_viviendas, toa_toa_solucion_aljibe, toa_solucion_aljibe_viviendas, toa_solucion_agua_lluvia, toa_solucion_agua_lluvia_viviendas, toa_solucion_otro, toa_solucion_otro_cual, toa_solucion_otro_viviendas]
@@ -555,3 +493,4 @@ tecnicooperativaacueducto_form.add({
     }]
 });
 
+tecnicooperativaacueducto_form.render('div_form_acu_tecnicooperativa');

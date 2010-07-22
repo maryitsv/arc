@@ -18,3 +18,7 @@ function formatoNumeroCelda ( algo ){
 //algo	
 	return algo;
 }
+
+function getAbsoluteUrl (module, action) {
+  return urlPrefix+module+'/'+action;
+}

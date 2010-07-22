@@ -1,7 +1,8 @@
-<?php echo javascript_include_tag('acueducto/tecnicooperativa/form_acu_tecnicooperativa.js'); ?>
+<?php echo javascript_include_tag('acueducto/tecnicooperativa/tabpanel_tecnicooperativa.js'); ?>
 <script>
             Ext.onReady(function(){
-              tecnicooperativaacueducto_form.render(Ext.get("div_tecnicooperativaacueducto"));
+            	tecnicooperativa_acueducto_tabpanel.render(Ext.get("div_tecnicooperativaacueducto"));
             });
 </script>
-<div id="div_tecnicooperativaacueducto"></div>
+<div
+	id="div_tecnicooperativaacueducto"></div>

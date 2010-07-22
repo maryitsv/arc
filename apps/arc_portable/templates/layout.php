@@ -7,6 +7,9 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
+    <script>
+    urlPrefix = <?php echo url_for('default/index'); ?>
+    </script>
   </head>
   <body>
     <?php echo $sf_content ?>
