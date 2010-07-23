@@ -5,7 +5,7 @@ propel:
   actividadesresiduossolidosaseo:
     _attributes: { phpName: Actividadesresiduossolidosaseo }
     ars_id: { phpName: ArsId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    ars_top_id: { phpName: ArsTopId, type: INTEGER, required: false, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    ars_top_id: { phpName: ArsTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
     ars_recole_trans_residuos_no_peligrosos: { phpName: ArsRecoleTransResiduosNoPeligrosos, type: BOOLEAN, required: false }
     ars_tratamiento_residuos_no_peligrosos: { phpName: ArsTratamientoResiduosNoPeligrosos, type: BOOLEAN, required: false }
     ars_aprovechamiento_residuos: { phpName: ArsAprovechamientoResiduos, type: BOOLEAN, required: false }
@@ -16,9 +16,9 @@ propel:
   administrativafinanciera:
     _attributes: { phpName: Administrativafinanciera }
     iaf_id: { phpName: IafId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    iaf_pps_pre_id: { phpName: IafPpsPreId, type: INTEGER, required: false, foreignTable: periodoporprestadorservicio, foreignReference: pps_pre_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    iaf_pps_anio: { phpName: IafPpsAnio, type: INTEGER, required: false }
-    iaf_pps_ser_id: { phpName: IafPpsSerId, type: INTEGER, required: false }
+    iaf_pps_pre_id: { phpName: IafPpsPreId, type: INTEGER, required: true, foreignTable: periodoporprestadorservicio, foreignReference: pps_pre_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    iaf_pps_anio: { phpName: IafPpsAnio, type: INTEGER, required: true }
+    iaf_pps_ser_id: { phpName: IafPpsSerId, type: INTEGER, required: true }
     iaf_nombre_diligenciador: { phpName: IafNombreDiligenciador, type: VARCHAR, size: '200', required: false }
     iaf_apellido_diligenciador: { phpName: IafApellidoDiligenciador, type: VARCHAR, size: '200', required: false }
     iaf_cedula_diligenciador: { phpName: IafCedulaDiligenciador, type: VARCHAR, size: '15', required: false }
@@ -26,7 +26,7 @@ propel:
   analisiscobertura:
     _attributes: { phpName: Analisiscobertura }
     aco_id: { phpName: AcoId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    aco_com_id: { phpName: AcoComId, type: INTEGER, required: false, foreignTable: cormecial, foreignReference: com_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    aco_com_id: { phpName: AcoComId, type: INTEGER, required: true, foreignTable: comercial, foreignReference: com_id, onDelete: RESTRICT, onUpdate: CASCADE }
     aco_catastro_usuarios: { phpName: AcoCatastroUsuarios, type: BOOLEAN, required: false }
     aco_anio_ela_impl_catastro_usu: { phpName: AcoAnioElaImplCatastroUsu, type: INTEGER, required: false }
     aco_num_predios_area: { phpName: AcoNumPrediosArea, type: INTEGER, required: false }
@@ -35,10 +35,10 @@ propel:
     aco_estra_soceco_adop_mpio_jus: { phpName: AcoEstraSocecoAdopMpioJus, type: CHAR, size: '50', required: false }
     aco_num_sus_servicio_oficial: { phpName: AcoNumSusServicioOficial, type: INTEGER, required: false }
     aco_tarif_estr_servicio_oficial: { phpName: AcoTarifEstrServicioOficial, type: VARCHAR, required: false }
-  aspectos_legales:
-    _attributes: { phpName: AspectosLegales }
+  aspectoslegales:
+    _attributes: { phpName: Aspectoslegales }
     ale_id: { phpName: AleId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    ale_mic_id: { phpName: AleMicId, type: INTEGER, required: false, foreignTable: microcuencas, foreignReference: mic_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    ale_fue_id: { phpName: AleFueId, type: INTEGER, required: true, foreignTable: fuentes, foreignReference: fue_id, onDelete: RESTRICT, onUpdate: CASCADE }
     ale_cumple_perisos: { phpName: AleCumplePerisos, type: BOOLEAN, required: false }
     ale_entidad_exidio_concesion: { phpName: AleEntidadExidioConcesion, type: VARCHAR, size: '100', required: false }
     ale_fecha_expedicion_concesion: { phpName: AleFechaExpedicionConcesion, type: DATE, required: false }
@@ -47,13 +47,14 @@ propel:
   autoridadambiental:
     _attributes: { phpName: Autoridadambiental }
     aua_id: { phpName: AuaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    aua_nombre: { phpName: AuaNombre, type: VARCHAR, size: '300', required: false }
+    aua_nombre: { phpName: AuaNombre, type: VARCHAR, size: '300', required: true }
+    _uniques: { autoridadambiental_aua_nombre_ke: [aua_nombre] }
   calidad:
     _attributes: { phpName: Calidad }
     cal_id: { phpName: CalId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    cal_pps_pre_id: { phpName: CalPpsPreId, type: INTEGER, required: false, foreignTable: periodoporprestadorservicio, foreignReference: pps_pre_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    cal_pps_anio: { phpName: CalPpsAnio, type: INTEGER, required: false }
-    cal_pps_ser_id: { phpName: CalPpsSerId, type: INTEGER, required: false }
+    cal_pps_pre_id: { phpName: CalPpsPreId, type: INTEGER, required: true, foreignTable: periodoporprestadorservicio, foreignReference: pps_pre_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    cal_pps_anio: { phpName: CalPpsAnio, type: INTEGER, required: true }
+    cal_pps_ser_id: { phpName: CalPpsSerId, type: INTEGER, required: true }
     cal_nombre_diligenciador: { phpName: CalNombreDiligenciador, type: VARCHAR, size: '200', required: false }
     cal_apellido_diligenciador: { phpName: CalApellidoDiligenciador, type: VARCHAR, size: '200', required: false }
     cal_cedula_diligenciador: { phpName: CalCedulaDiligenciador, type: VARCHAR, size: '15', required: false }
@@ -61,7 +62,7 @@ propel:
   calidadagua:
     _attributes: { phpName: Calidadagua }
     cag_id: { phpName: CagId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    cag_cal_id: { phpName: CagCalId, type: INTEGER, required: false, foreignTable: calidad, foreignReference: cal_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    cag_cal_id: { phpName: CagCalId, type: INTEGER, required: true, foreignTable: calidad, foreignReference: cal_id, onDelete: RESTRICT, onUpdate: CASCADE }
     cag_control_ca_fuente: { phpName: CagControlCaFuente, type: BOOLEAN, required: false }
     cag_mapa_riesgo: { phpName: CagMapaRiesgo, type: BOOLEAN, required: false }
     cag_db05_valor: { phpName: CagDb05Valor, type: VARCHAR, required: false }
@@ -89,7 +90,7 @@ propel:
   calidadcantidadagua:
     _attributes: { phpName: Calidadcantidadagua }
     cca_id: { phpName: CcaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    cca_mic_id: { phpName: CcaMicId, type: INTEGER, required: false, foreignTable: microcuencas, foreignReference: mic_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    cca_mic_id: { phpName: CcaMicId, type: INTEGER, required: true, foreignTable: microcuencas, foreignReference: mic_id, onDelete: RESTRICT, onUpdate: CASCADE }
     cca_actividades_agricola_cultivos_permanentes: { phpName: CcaActividadesAgricolaCultivosPermanentes, type: BOOLEAN, required: false }
     cca_actividades_agricola_cultivos_semipermanentes: { phpName: CcaActividadesAgricolaCultivosSemipermanentes, type: BOOLEAN, required: false }
     cca_actividades_agricola_temporales: { phpName: CcaActividadesAgricolaTemporales, type: BOOLEAN, required: false }
@@ -124,11 +125,52 @@ propel:
     cca_descarga_actividad_productiva_minera: { phpName: CcaDescargaActividadProductivaMinera, type: BOOLEAN, required: false }
     cca_descarga_actividad_productiva_industrial: { phpName: CcaDescargaActividadProductivaIndustrial, type: BOOLEAN, required: false }
     cca_descarga_actividad_productiva_otra: { phpName: CcaDescargaActividadProductivaOtra, type: BOOLEAN, required: false }
+    cca_actividades_agricola_mayor_area: { phpName: CcaActividadesAgricolaMayorArea, type: VARCHAR, size: '50', required: false }
+    cca_actividades_agricola_cultivos_permanentes_tendencia: { phpName: CcaActividadesAgricolaCultivosPermanentesTendencia, type: VARCHAR, size: '50', required: false }
+    cca_actividades_agricola_cultivos_semipermanentes_tendencia: { phpName: CcaActividadesAgricolaCultivosSemipermanentesTendencia, type: VARCHAR, size: '50', required: false }
+    cca_actividades_agricola_temporales_tendencia: { phpName: CcaActividadesAgricolaTemporalesTendencia, type: VARCHAR, size: '50', required: false }
+    cca_actividad_pecuaria_mayor_area: { phpName: CcaActividadPecuariaMayorArea, type: VARCHAR, size: '50', required: false }
+    cca_actividad_pecuaria_ganaderia_bobina_tendencia: { phpName: CcaActividadPecuariaGanaderiaBobinaTendencia, type: VARCHAR, size: '50', required: false }
+    cca_actividad_pecuaria_ganaderia_equina_tendencia: { phpName: CcaActividadPecuariaGanaderiaEquinaTendencia, type: VARCHAR, size: '50', required: false }
+    cca_actividad_pecuaria_porcicultura_tendencia: { phpName: CcaActividadPecuariaPorciculturaTendencia, type: VARCHAR, size: '50', required: false }
+    cca_actividad_pecuaria_capricultura_ovinos_tendencia: { phpName: CcaActividadPecuariaCapriculturaOvinosTendencia, type: VARCHAR, size: '50', required: false }
+    cca_actividad_pecuaria_avicultura_tendencia: { phpName: CcaActividadPecuariaAviculturaTendencia, type: VARCHAR, size: '50', required: false }
+    cca_actividad_pecuaria_piscicultura_tendencia: { phpName: CcaActividadPecuariaPisciculturaTendencia, type: VARCHAR, size: '50', required: false }
+    cca_actividad_pecuaria_otros_cual_tendencia: { phpName: CcaActividadPecuariaOtrosCualTendencia, type: VARCHAR, size: '50', required: false }
+    cca_control_plagas_enfermedades_mas_usado: { phpName: CcaControlPlagasEnfermedadesMasUsado, type: VARCHAR, size: '50', required: false }
+    cca_control_plagas_enfermedades_quimico_tendencia: { phpName: CcaControlPlagasEnfermedadesQuimicoTendencia, type: VARCHAR, size: '50', required: false }
+    cca_control_plagas_enfermedades_organico_tendencia: { phpName: CcaControlPlagasEnfermedadesOrganicoTendencia, type: VARCHAR, size: '50', required: false }
+    cca_control_plagas_enfermedades_biologico_tendencia: { phpName: CcaControlPlagasEnfermedadesBiologicoTendencia, type: VARCHAR, size: '50', required: false }
+    cca_control_plagas_enfermedades_ninguno_tendencia: { phpName: CcaControlPlagasEnfermedadesNingunoTendencia, type: VARCHAR, size: '50', required: false }
+    cca_fertilizacion_cultivos_mas_usado: { phpName: CcaFertilizacionCultivosMasUsado, type: VARCHAR, size: '50', required: false }
+    cca_fertilizacion_cultivos_quimico_tendencia: { phpName: CcaFertilizacionCultivosQuimicoTendencia, type: VARCHAR, size: '50', required: false }
+    cca_fertilizacion_cultivos_organico_tendencia: { phpName: CcaFertilizacionCultivosOrganicoTendencia, type: VARCHAR, size: '50', required: false }
+    cca_fertilizacion_cultivos_ninguno_tendencia: { phpName: CcaFertilizacionCultivosNingunoTendencia, type: VARCHAR, size: '50', required: false }
+    cca_control_malezas_mas_usado: { phpName: CcaControlMalezasMasUsado, type: VARCHAR, size: '50', required: false }
+    cca_control_malezas_quimico_tendencia: { phpName: CcaControlMalezasQuimicoTendencia, type: VARCHAR, size: '50', required: false }
+    cca_control_malezas_meca_manu_tendencia: { phpName: CcaControlMalezasMecaManuTendencia, type: VARCHAR, size: '50', required: false }
+    cca_control_malezas_organico_tendencia: { phpName: CcaControlMalezasOrganicoTendencia, type: VARCHAR, size: '50', required: false }
+    cca_control_malezas_ninguno_tendencia: { phpName: CcaControlMalezasNingunoTendencia, type: VARCHAR, size: '50', required: false }
+    cca_mineria_tendencia: { phpName: CcaMineriaTendencia, type: VARCHAR, size: '50', required: false }
+    cca_erosion_tendencia: { phpName: CcaErosionTendencia, type: VARCHAR, size: '50', required: false }
+    cca_modificaciones_paisaje_construcion_vias_tendencia: { phpName: CcaModificacionesPaisajeConstrucionViasTendencia, type: VARCHAR, size: '50', required: false }
+    cca_modificaciones_paisaje_construcion_vivienda_tendencia: { phpName: CcaModificacionesPaisajeConstrucionViviendaTendencia, type: VARCHAR, size: '50', required: false }
+    cca_modificaciones_paisaje_construcion_otro_tendencia: { phpName: CcaModificacionesPaisajeConstrucionOtroTendencia, type: VARCHAR, size: '50', required: false }
+    cca_descarga_actividad_productiva_agricola_tendencia: { phpName: CcaDescargaActividadProductivaAgricolaTendencia, type: VARCHAR, size: '50', required: false }
+    cca_descarga_actividad_productiva_pecuaria_tendencia: { phpName: CcaDescargaActividadProductivaPecuariaTendencia, type: VARCHAR, size: '50', required: false }
+    cca_descarga_actividad_productiva_minera_tendencia: { phpName: CcaDescargaActividadProductivaMineraTendencia, type: VARCHAR, size: '50', required: false }
+    cca_descarga_actividad_productiva_industrial_tendencia: { phpName: CcaDescargaActividadProductivaIndustrialTendencia, type: VARCHAR, size: '50', required: false }
+    cca_descarga_actividad_productiva_otra_tendencia: { phpName: CcaDescargaActividadProductivaOtraTendencia, type: VARCHAR, size: '50', required: false }
+    cca_descarga_actividad_productiva_agricola_espe: { phpName: CcaDescargaActividadProductivaAgricolaEspe, type: VARCHAR, size: '50', required: false }
+    cca_descarga_actividad_productiva_pecuaria_espe: { phpName: CcaDescargaActividadProductivaPecuariaEspe, type: VARCHAR, size: '50', required: false }
+    cca_descarga_actividad_productiva_minera_espe: { phpName: CcaDescargaActividadProductivaMineraEspe, type: VARCHAR, size: '50', required: false }
+    cca_descarga_actividad_productiva_industrial_espe: { phpName: CcaDescargaActividadProductivaIndustrialEspe, type: VARCHAR, size: '50', required: false }
+    cca_descarga_actividad_productiva_otra_espe: { phpName: CcaDescargaActividadProductivaOtraEspe, type: VARCHAR, size: '50', required: false }
   cantidadaguafuentessuperficiales:
     _attributes: { phpName: Cantidadaguafuentessuperficiales }
     caf_id: { phpName: CafId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    caf_fue_id: { phpName: CafFueId, type: INTEGER, required: false, foreignTable: fuentes, foreignReference: fue_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    caf_nombre_fuente: { phpName: CafNombreFuente, type: VARCHAR, size: '100', required: false }
+    caf_fue_id: { phpName: CafFueId, type: INTEGER, required: true, foreignTable: fuentes, foreignReference: fue_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    caf_nombre_fuente: { phpName: CafNombreFuente, type: VARCHAR, size: '100', required: true }
     caf_epoca_lluvia_caudal_total: { phpName: CafEpocaLluviaCaudalTotal, type: VARCHAR, required: false }
     caf_epoca_lluvia_caudal_captado: { phpName: CafEpocaLluviaCaudalCaptado, type: VARCHAR, required: false }
     caf_epoca_seca_caudal_total: { phpName: CafEpocaSecaCaudalTotal, type: VARCHAR, required: false }
@@ -136,8 +178,8 @@ propel:
   capacitacion:
     _attributes: { phpName: Capacitacion }
     cap_id: { phpName: CapId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    cap_iaf_id: { phpName: CapIafId, type: INTEGER, required: false, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    cap_dada_prestador: { phpName: CapDadaPrestador, type: BOOLEAN, required: false }
+    cap_iaf_id: { phpName: CapIafId, type: INTEGER, required: true, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    cap_dada_prestador: { phpName: CapDadaPrestador, type: BOOLEAN, required: true }
     cap_actividad_capacitacion_uso_eficiente_agua: { phpName: CapActividadCapacitacionUsoEficienteAgua, type: BOOLEAN, required: false }
     cap_actividad_capacitacion_higene_personal: { phpName: CapActividadCapacitacionHigenePersonal, type: BOOLEAN, required: false }
     cap_actividad_capacitacion_higene_vivienda: { phpName: CapActividadCapacitacionHigeneVivienda, type: BOOLEAN, required: false }
@@ -165,43 +207,44 @@ propel:
     capt_tipo_lecho_filtrante: { phpName: CaptTipoLechoFiltrante, type: BOOLEAN, required: false }
     capt_tipo_lecho_represa: { phpName: CaptTipoLechoRepresa, type: BOOLEAN, required: false }
     capt_estado_estructura_id: { phpName: CaptEstadoEstructuraId, type: INTEGER, required: false, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    capt_estado_pozo_id: { phpName: CaptEstadoPozoId, type: INTEGER, required: false, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    capt_estado_bomba_id: { phpName: CaptEstadoBombaId, type: INTEGER, required: false, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    capt_fuente_energia_id: { phpName: CaptFuenteEnergiaId, type: INTEGER, required: false, foreignTable: fuenteenergia, foreignReference: fen_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    capt_estado_pozo_id: { phpName: CaptEstadoPozoId, type: INTEGER, required: true, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    capt_estado_bomba_id: { phpName: CaptEstadoBombaId, type: INTEGER, required: true, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    capt_fuente_energia_id: { phpName: CaptFuenteEnergiaId, type: INTEGER, required: true, foreignTable: fuenteenergia, foreignReference: fen_id, onDelete: RESTRICT, onUpdate: CASCADE }
+  comercial:
+    _attributes: { phpName: Comercial }
+    com_id: { phpName: ComId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    com_pps_pre_id: { phpName: ComPpsPreId, type: INTEGER, required: true, foreignTable: periodoporprestadorservicio, foreignReference: pps_pre_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    com_pps_anio: { phpName: ComPpsAnio, type: INTEGER, required: true }
+    com_pps_ser_id: { phpName: ComPpsSerId, type: INTEGER, required: true }
+    com_nombre_diligenciador: { phpName: ComNombreDiligenciador, type: VARCHAR, size: '200', required: true }
+    com_apellido_diligenciador: { phpName: ComApellidoDiligenciador, type: VARCHAR, size: '200', required: true }
+    com_cedula_diligenciador: { phpName: ComCedulaDiligenciador, type: VARCHAR, size: '15', required: true }
+    com_telefono_diligenciador: { phpName: ComTelefonoDiligenciador, type: VARCHAR, size: '15', required: false }
   comunidadserviciorecoleccion:
     _attributes: { phpName: Comunidadserviciorecoleccion }
     csr_id: { phpName: CsrId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     csr_srsf_id: { phpName: CsrSrsfId, type: INTEGER, required: true, foreignTable: separacionresiduossolidosfuentesaseo, foreignReference: srsf_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    csr_nombre_comunidad: { phpName: CsrNombreComunidad, type: VARCHAR, size: '200', required: false }
+    csr_nombre_comunidad: { phpName: CsrNombreComunidad, type: VARCHAR, size: '200', required: true }
     csr_numero_viviendas_totales: { phpName: CsrNumeroViviendasTotales, type: INTEGER, required: false }
     csr_numero_viviendas_con_servicio: { phpName: CsrNumeroViviendasConServicio, type: INTEGER, required: false }
     csr_numero_suscriptores: { phpName: CsrNumeroSuscriptores, type: INTEGER, required: false }
     csr_cantidad_prom_residuos_mes: { phpName: CsrCantidadPromResiduosMes, type: VARCHAR, required: false }
     csr_fecha_pesaje: { phpName: CsrFechaPesaje, type: DATE, required: false }
-  cormecial:
-    _attributes: { phpName: Cormecial }
-    com_id: { phpName: ComId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    com_pps_pre_id: { phpName: ComPpsPreId, type: INTEGER, required: false, foreignTable: periodoporprestadorservicio, foreignReference: pps_pre_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    com_pps_anio: { phpName: ComPpsAnio, type: INTEGER, required: false }
-    com_pps_ser_id: { phpName: ComPpsSerId, type: INTEGER, required: false }
-    com_nombre_diligenciador: { phpName: ComNombreDiligenciador, type: VARCHAR, size: '200', required: false }
-    com_apellido_diligenciador: { phpName: ComApellidoDiligenciador, type: VARCHAR, size: '200', required: false }
-    com_cedula_diligenciador: { phpName: ComCedulaDiligenciador, type: VARCHAR, size: '15', required: false }
-    com_telefono_diligenciador: { phpName: ComTelefonoDiligenciador, type: VARCHAR, size: '15', required: false }
   departamento:
     _attributes: { phpName: Departamento }
     dep_id: { phpName: DepId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    dep_nombre: { phpName: DepNombre, type: VARCHAR, size: '100', required: false }
+    dep_nombre: { phpName: DepNombre, type: VARCHAR, size: '100', required: true }
     dep_region: { phpName: DepRegion, type: VARCHAR, size: '100', required: false }
     dep_zona: { phpName: DepZona, type: VARCHAR, size: '100', required: false }
+    _uniques: { departamento_dep_nombre_key: [dep_nombre] }
   disposicionfinalresiduosaseo:
     _attributes: { phpName: Disposicionfinalresiduosaseo }
     dfr_id: { phpName: DfrId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    dfr_autoridad_autonoma_id: { phpName: DfrAutoridadAutonomaId, type: INTEGER, required: false, foreignTable: autoridadambiental, foreignReference: aua_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    dfr_estado_via_acceso_sitio_id: { phpName: DfrEstadoViaAccesoSitioId, type: INTEGER, required: false, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    dfr_departamento_dispocision_id: { phpName: DfrDepartamentoDispocisionId, type: INTEGER, required: false, foreignTable: departamento, foreignReference: dep_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    dfr_municipio_disposicion_id: { phpName: DfrMunicipioDisposicionId, type: INTEGER, required: false, foreignTable: municipio, foreignReference: mun_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    dfr_top_id: { phpName: DfrTopId, type: INTEGER, required: false, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    dfr_autoridad_autonoma_id: { phpName: DfrAutoridadAutonomaId, type: INTEGER, required: true, foreignTable: autoridadambiental, foreignReference: aua_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    dfr_estado_via_acceso_sitio_id: { phpName: DfrEstadoViaAccesoSitioId, type: INTEGER, required: true, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    dfr_departamento_dispocision_id: { phpName: DfrDepartamentoDispocisionId, type: INTEGER, required: true, foreignTable: departamento, foreignReference: dep_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    dfr_municipio_disposicion_id: { phpName: DfrMunicipioDisposicionId, type: INTEGER, required: true, foreignTable: municipio, foreignReference: mun_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    dfr_top_id: { phpName: DfrTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
     dfr_contrata_disposicion_final: { phpName: DfrContrataDisposicionFinal, type: BOOLEAN, required: false }
     dfr_nombre_entidad_prestadora_servicio_disposicion: { phpName: DfrNombreEntidadPrestadoraServicioDisposicion, type: VARCHAR, size: '200', required: false }
     dfr_corregimiento_disposicion: { phpName: DfrCorregimientoDisposicion, type: VARCHAR, size: '200', required: false }
@@ -244,29 +287,31 @@ propel:
   estadogeneral:
     _attributes: { phpName: Estadogeneral }
     esg_id: { phpName: EsgId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    esg_nombre: { phpName: EsgNombre, type: VARCHAR, size: '50', required: false }
+    esg_nombre: { phpName: EsgNombre, type: VARCHAR, size: '50', required: true }
+    _uniques: { estadogeneral_esg_nombre_key: [esg_nombre] }
   estrato:
     _attributes: { phpName: Estrato }
     est_id: { phpName: EstId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    est_nombre: { phpName: EstNombre, type: VARCHAR, size: '50', required: false }
+    est_nombre: { phpName: EstNombre, type: VARCHAR, size: '50', required: true }
     est_residencial: { phpName: EstResidencial, type: BOOLEAN, required: false }
+    _uniques: { estrato_est_nombre_key: [est_nombre] }
   facturacionyrecaudo:
     _attributes: { phpName: Facturacionyrecaudo }
     fac_id: { phpName: FacId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    fac_com_id: { phpName: FacComId, type: INTEGER, required: false, foreignTable: cormecial, foreignReference: com_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    fac_com_id: { phpName: FacComId, type: INTEGER, required: true, foreignTable: comercial, foreignReference: com_id, onDelete: RESTRICT, onUpdate: CASCADE }
     fac_frecuencia_del_servicio: { phpName: FacFrecuenciaDelServicio, type: BOOLEAN, required: false }
-    fac_frecuenc_facturacion: { phpName: FacFrecuencFacturacion, type: VARCHAR, required: false }
-    fac_frecuenc_fac_justificacion: { phpName: FacFrecuencFacJustificacion, type: CHAR, size: '30', required: false }
+    fac_frecuenc_facturacion: { phpName: FacFrecuencFacturacion, type: VARCHAR, size: '30', required: false }
+    fac_frecuenc_fac_justificacion: { phpName: FacFrecuencFacJustificacion, type: VARCHAR, size: '30', required: false }
     fac_num_fac_exp_ultimo_periodo: { phpName: FacNumFacExpUltimoPeriodo, type: INTEGER, required: false }
     fac_sist_fac_utilizado: { phpName: FacSistFacUtilizado, type: BOOLEAN, required: false }
-    fac_frecuencia_fac_justifica: { phpName: FacFrecuenciaFacJustifica, type: CHAR, size: '30', required: false }
+    fac_frecuencia_fac_justifica: { phpName: FacFrecuenciaFacJustifica, type: VARCHAR, size: '30', required: false }
     fac_morosidad_promedio: { phpName: FacMorosidadPromedio, type: VARCHAR, required: false }
     fac_vol_agua_fac_en_el_anio_acu: { phpName: FacVolAguaFacEnElAnioAcu, type: VARCHAR, required: false }
     fac_vol_agua_suministrado_anio_acu: { phpName: FacVolAguaSuministradoAnioAcu, type: VARCHAR, required: false }
   fondosolidaridadredistribucioningresos:
     _attributes: { phpName: Fondosolidaridadredistribucioningresos }
     fsi_id: { phpName: FsiId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    fsi_com_id: { phpName: FsiComId, type: INTEGER, required: false, foreignTable: cormecial, foreignReference: com_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    fsi_com_id: { phpName: FsiComId, type: INTEGER, required: true, foreignTable: comercial, foreignReference: com_id, onDelete: RESTRICT, onUpdate: CASCADE }
     fsi_sol_tranferencia_recursos: { phpName: FsiSolTranferenciaRecursos, type: BOOLEAN, required: false }
     fsi_recibo_recursos: { phpName: FsiReciboRecursos, type: BOOLEAN, required: false }
     fsi_recibo_recursos_valor_recib: { phpName: FsiReciboRecursosValorRecib, type: VARCHAR, required: false }
@@ -275,11 +320,12 @@ propel:
   fuenteenergia:
     _attributes: { phpName: Fuenteenergia }
     fen_id: { phpName: FenId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    fen_nombre: { phpName: FenNombre, type: VARCHAR, size: '100', required: false }
+    fen_nombre: { phpName: FenNombre, type: VARCHAR, size: '100', required: true }
+    _uniques: { fuenteenergia_fen_nombre_key: [fen_nombre] }
   fuentes:
     _attributes: { phpName: Fuentes }
     fue_id: { phpName: FueId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    fue_mic_id: { phpName: FueMicId, type: INTEGER, required: false, foreignTable: microcuencas, foreignReference: mic_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    fue_mic_id: { phpName: FueMicId, type: INTEGER, required: true, foreignTable: microcuencas, foreignReference: mic_id, onDelete: RESTRICT, onUpdate: CASCADE }
     fue_numero_fuentes: { phpName: FueNumeroFuentes, type: INTEGER, required: false }
     fue_numero_fuentes_subterraneas: { phpName: FueNumeroFuentesSubterraneas, type: INTEGER, required: false }
     fue_compra_agua_bloque: { phpName: FueCompraAguaBloque, type: BOOLEAN, required: false }
@@ -287,20 +333,20 @@ propel:
     fue_metodo_aforo_micromolinete: { phpName: FueMetodoAforoMicromolinete, type: BOOLEAN, required: false }
     fue_metodo_aforo_velocidad: { phpName: FueMetodoAforoVelocidad, type: BOOLEAN, required: false }
     fue_metodo_aforo_otro_cual: { phpName: FueMetodoAforoOtroCual, type: VARCHAR, size: '100', required: false }
-  fuentesdubterraneas:
-    _attributes: { phpName: Fuentesdubterraneas }
+  fuentessubterraneas:
+    _attributes: { phpName: Fuentessubterraneas }
     fsu_id: { phpName: FsuId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    fsu_fue_id: { phpName: FsuFueId, type: INTEGER, required: false, foreignTable: fuentes, foreignReference: fue_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    fsu_nombre: { phpName: FsuNombre, type: VARCHAR, size: '100', required: false }
+    fsu_fue_id: { phpName: FsuFueId, type: INTEGER, required: true, foreignTable: fuentes, foreignReference: fue_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    fsu_nombre: { phpName: FsuNombre, type: VARCHAR, size: '100', required: true }
     fsu_promedio_captacion: { phpName: FsuPromedioCaptacion, type: VARCHAR, required: false }
   gestionresultado:
     _attributes: { phpName: Gestionresultado }
     gre_id: { phpName: GreId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    gre_iaf_id: { phpName: GreIafId, type: INTEGER, required: false, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    gre_iaf_id: { phpName: GreIafId, type: INTEGER, required: true, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     gre_plan_gestion_resultados: { phpName: GrePlanGestionResultados, type: BOOLEAN, required: false }
     gre_micromedidores_funcionando: { phpName: GreMicromedidoresFuncionando, type: INTEGER, required: false }
     gre_total_suscriptores_micromed: { phpName: GreTotalSuscriptoresMicromed, type: INTEGER, required: false }
-    gre_valor_micomedicion: { phpName: GreValorMicomedicion, type: VARCHAR, required: false }
+    gre_valor_micromedicion: { phpName: GreValorMicromedicion, type: VARCHAR, required: false }
     gre_macromedidores_funcionando: { phpName: GreMacromedidoresFuncionando, type: INTEGER, required: false }
     gre_macromedidores_proyectados: { phpName: GreMacromedidoresProyectados, type: INTEGER, required: false }
     gre_valor_macromedicion: { phpName: GreValorMacromedicion, type: VARCHAR, required: false }
@@ -313,7 +359,7 @@ propel:
   informacioncontable:
     _attributes: { phpName: Informacioncontable }
     ico_id: { phpName: IcoId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    ico_iaf_id: { phpName: IcoIafId, type: INTEGER, required: false, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    ico_iaf_id: { phpName: IcoIafId, type: INTEGER, required: true, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     ico_balance_general: { phpName: IcoBalanceGeneral, type: DATE, required: false }
     ico_activos: { phpName: IcoActivos, type: VARCHAR, required: false }
     ico_activos_corrientes: { phpName: IcoActivosCorrientes, type: VARCHAR, required: false }
@@ -342,35 +388,37 @@ propel:
   informaciongeneralmicrocuencas:
     _attributes: { phpName: Informaciongeneralmicrocuencas }
     imi_id: { phpName: ImiId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    imi_mic_id: { phpName: ImiMicId, type: INTEGER, required: false, foreignTable: microcuencas, foreignReference: mic_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    imi_dep_id: { phpName: ImiDepId, type: INTEGER, required: false, foreignTable: departamento, foreignReference: dep_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    imi_mun_id: { phpName: ImiMunId, type: INTEGER, required: false, foreignTable: municipio, foreignReference: mun_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    imi_localidad: { phpName: ImiLocalidad, type: VARCHAR, size: '100', required: false }
+    imi_mic_id: { phpName: ImiMicId, type: INTEGER, required: true, foreignTable: microcuencas, foreignReference: mic_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    imi_dep_id: { phpName: ImiDepId, type: INTEGER, required: true, foreignTable: departamento, foreignReference: dep_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    imi_mun_id: { phpName: ImiMunId, type: INTEGER, required: true, foreignTable: municipio, foreignReference: mun_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    imi_localidad: { phpName: ImiLocalidad, type: VARCHAR, size: '100', required: true }
     imi_microcuenta: { phpName: ImiMicrocuenta, type: VARCHAR, size: '100', required: false }
     imi_codigo_cuenca: { phpName: ImiCodigoCuenca, type: VARCHAR, size: '100', required: false }
     imi_fecha: { phpName: ImiFecha, type: DATE, required: false }
   informacionvisual:
     _attributes: { phpName: Informacionvisual }
     iv_id: { phpName: IvId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    iv_pre_id: { phpName: IvPreId, type: INTEGER, required: false, foreignTable: prestador, foreignReference: pre_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    iv_nombre: { phpName: IvNombre, type: VARCHAR, size: '100', required: false }
+    iv_pre_id: { phpName: IvPreId, type: INTEGER, required: true, foreignTable: prestador, foreignReference: pre_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    iv_nombre: { phpName: IvNombre, type: VARCHAR, size: '100', required: true }
     iv_url: { phpName: IvUrl, type: VARCHAR, size: '200', required: false }
     iv_descripcion: { phpName: IvDescripcion, type: VARCHAR, size: '200', required: false }
     iv_tipo: { phpName: IvTipo, type: VARCHAR, size: '50', required: false }
   materialcanal:
     _attributes: { phpName: Materialcanal }
     mca_id: { phpName: McaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    mca_nombre: { phpName: McaNombre, type: VARCHAR, size: '100', required: false }
+    mca_nombre: { phpName: McaNombre, type: VARCHAR, size: '100', required: true }
+    _uniques: { materialcanal_mca_nombre_key: [mca_nombre] }
   materialreddistribucion:
     _attributes: { phpName: Materialreddistribucion }
     mrd_id: { phpName: MrdId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    mrd_nombre: { phpName: MrdNombre, type: VARCHAR, size: '100', required: false }
+    mrd_nombre: { phpName: MrdNombre, type: VARCHAR, size: '100', required: true }
+    _uniques: { materialreddistribucion_mrd_nomb: [mrd_nombre] }
   microcuencas:
     _attributes: { phpName: Microcuencas }
     mic_id: { phpName: MicId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    mic_pps_pre_id: { phpName: MicPpsPreId, type: INTEGER, required: false, foreignTable: periodoporprestadorservicio, foreignReference: pps_pre_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    mic_pps_anio: { phpName: MicPpsAnio, type: INTEGER, required: false }
-    mic_pps_ser_id: { phpName: MicPpsSerId, type: INTEGER, required: false }
+    mic_pps_pre_id: { phpName: MicPpsPreId, type: INTEGER, required: true, foreignTable: periodoporprestadorservicio, foreignReference: pps_pre_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    mic_pps_anio: { phpName: MicPpsAnio, type: INTEGER, required: true }
+    mic_pps_ser_id: { phpName: MicPpsSerId, type: INTEGER, required: true }
     mic_nombre_diligenciador: { phpName: MicNombreDiligenciador, type: VARCHAR, size: '200', required: false }
     mic_apellido_diligenciador: { phpName: MicApellidoDiligenciador, type: VARCHAR, size: '200', required: false }
     mic_cedula_diligenciador: { phpName: MicCedulaDiligenciador, type: VARCHAR, size: '15', required: false }
@@ -378,24 +426,25 @@ propel:
   municipio:
     _attributes: { phpName: Municipio }
     mun_id: { phpName: MunId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    mun_dep_id: { phpName: MunDepId, type: INTEGER, required: false, foreignTable: departamento, foreignReference: dep_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    mun_nombre: { phpName: MunNombre, type: VARCHAR, size: '200', required: false }
+    mun_dep_id: { phpName: MunDepId, type: INTEGER, required: true, foreignTable: departamento, foreignReference: dep_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    mun_nombre: { phpName: MunNombre, type: VARCHAR, size: '200', required: true }
     mun_zona: { phpName: MunZona, type: VARCHAR, size: '50', required: false }
   parametrospuntosred:
     _attributes: { phpName: Parametrospuntosred }
     ppr_id: { phpName: PprId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    ppr_nombre_paramentro: { phpName: PprNombreParamentro, type: VARCHAR, size: '100', required: false }
+    ppr_nombre_paramentro: { phpName: PprNombreParamentro, type: VARCHAR, size: '100', required: true }
+    _uniques: { parametrospuntosred_ppr_nombre_p: [ppr_nombre_paramentro] }
   parametroxfrecuencia:
     _attributes: { phpName: Parametroxfrecuencia }
     pfe_id: { phpName: PfeId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    pfe_ppr_id_paramentro: { phpName: PfePprIdParamentro, type: INTEGER, required: false, foreignTable: parametrospuntosred, foreignReference: ppr_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    pfe_cag_id: { phpName: PfeCagId, type: INTEGER, required: false, foreignTable: calidadagua, foreignReference: cag_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    pfe_frecuanecia_minima: { phpName: PfeFrecuaneciaMinima, type: VARCHAR, size: '100', required: false }
-    pfe_frecuanecia_real: { phpName: PfeFrecuaneciaReal, type: VARCHAR, required: false }
+    pfe_ppr_id_paramentro: { phpName: PfePprIdParamentro, type: INTEGER, required: true, foreignTable: parametrospuntosred, foreignReference: ppr_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    pfe_cag_id: { phpName: PfeCagId, type: INTEGER, required: true, foreignTable: calidadagua, foreignReference: cag_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    pfe_frecuencia_minima: { phpName: PfeFrecuenciaMinima, type: VARCHAR, size: '100', required: false }
+    pfe_frecuencia_real: { phpName: PfeFrecuenciaReal, type: VARCHAR, required: false }
   participacionciudadana:
     _attributes: { phpName: Participacionciudadana }
     par_id: { phpName: ParId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    par_iaf_id: { phpName: ParIafId, type: INTEGER, required: false, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    par_iaf_id: { phpName: ParIafId, type: INTEGER, required: true, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     par_participacion_ciudadana_directa: { phpName: ParParticipacionCiudadanaDirecta, type: BOOLEAN, required: false }
     par_participacion_ciudadana_asamblea_repre_dele: { phpName: ParParticipacionCiudadanaAsambleaRepreDele, type: BOOLEAN, required: false }
     par_participacion_ciudadana_comite_desarr_control_social: { phpName: ParParticipacionCiudadanaComiteDesarrControlSocial, type: BOOLEAN, required: false }
@@ -405,7 +454,8 @@ propel:
   perfil:
     _attributes: { phpName: Perfil }
     per_id: { phpName: PerId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    per_nombre: { phpName: PerNombre, type: VARCHAR, size: '50', required: false }
+    per_nombre: { phpName: PerNombre, type: VARCHAR, size: '50', required: true }
+    _uniques: { perfil_per_nombre_key: [per_nombre] }
   periodoporprestadorservicio:
     _attributes: { phpName: Periodoporprestadorservicio }
     pps_pre_id: { phpName: PpsPreId, type: INTEGER, primaryKey: true, required: true, foreignTable: prestador, foreignReference: pre_id, onDelete: RESTRICT, onUpdate: RESTRICT }
@@ -416,12 +466,12 @@ propel:
   peticionesquejasrecursos:
     _attributes: { phpName: Peticionesquejasrecursos }
     pqr_id: { phpName: PqrId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    pqr_com_id: { phpName: PqrComId, type: INTEGER, required: false, foreignTable: cormecial, foreignReference: com_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    pqr_com_id: { phpName: PqrComId, type: INTEGER, required: true, foreignTable: comercial, foreignReference: com_id, onDelete: RESTRICT, onUpdate: CASCADE }
     pqr_registro_pqr: { phpName: PqrRegistroPqr, type: BOOLEAN, required: false }
     pqr_cantidad_anual_pqr: { phpName: PqrCantidadAnualPqr, type: INTEGER, required: false }
     pqr_cantidad_pqr_facturacion: { phpName: PqrCantidadPqrFacturacion, type: INTEGER, required: false }
     pqr_cantidad_pqr_instalacion: { phpName: PqrCantidadPqrInstalacion, type: INTEGER, required: false }
-    pqr_cantida_pqr_prest_servicio: { phpName: PqrCantidaPqrPrestServicio, type: INTEGER, required: false }
+    pqr_cantidad_pqr_prest_servicio: { phpName: PqrCantidadPqrPrestServicio, type: INTEGER, required: false }
     pqr_cantidad_pqr_otro: { phpName: PqrCantidadPqrOtro, type: INTEGER, required: false }
     pqr_cantidad_pqr_explica_otros: { phpName: PqrCantidadPqrExplicaOtros, type: CHAR, size: '50', required: false }
     pqr_inf_causa_suspension_corte: { phpName: PqrInfCausaSuspensionCorte, type: BOOLEAN, required: false }
@@ -429,11 +479,11 @@ propel:
   prestador:
     _attributes: { phpName: Prestador }
     pre_id: { phpName: PreId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    pre_ran_id: { phpName: PreRanId, type: INTEGER, required: false, foreignTable: rango, foreignReference: ran_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    pre_usu_id: { phpName: PreUsuId, type: INTEGER, required: false, foreignTable: usuario, foreignReference: usu_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    pre_identificacion_prestador: { phpName: PreIdentificacionPrestador, type: VARCHAR, size: '50', required: false }
-    pre_tipo_identificacion_prestad: { phpName: PreTipoIdentificacionPrestad, type: VARCHAR, size: '50', required: false }
-    pre_nombre_prestador: { phpName: PreNombrePrestador, type: VARCHAR, size: '200', required: false }
+    pre_ran_id: { phpName: PreRanId, type: INTEGER, required: true, foreignTable: rango, foreignReference: ran_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    pre_usu_id: { phpName: PreUsuId, type: INTEGER, required: true, foreignTable: usuario, foreignReference: usu_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    pre_identificacion_prestador: { phpName: PreIdentificacionPrestador, type: VARCHAR, size: '50', required: true }
+    pre_tipo_identificacion_prestad: { phpName: PreTipoIdentificacionPrestad, type: VARCHAR, size: '50', required: true }
+    pre_nombre_prestador: { phpName: PreNombrePrestador, type: VARCHAR, size: '200', required: true }
     pre_estatutos: { phpName: PreEstatutos, type: BOOLEAN, required: false }
     pre_numero_empleados_con_competencias: { phpName: PreNumeroEmpleadosConCompetencias, type: VARCHAR, required: false }
     pre_numero_empleados_sin_competencias: { phpName: PreNumeroEmpleadosSinCompetencias, type: VARCHAR, required: false }
@@ -442,7 +492,7 @@ propel:
   proteccionfuentessuperficialesagua:
     _attributes: { phpName: Proteccionfuentessuperficialesagua }
     pfu_id: { phpName: PfuId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    pfu_mic_id: { phpName: PfuMicId, type: INTEGER, required: false, foreignTable: microcuencas, foreignReference: mic_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    pfu_mic_id: { phpName: PfuMicId, type: INTEGER, required: true, foreignTable: microcuencas, foreignReference: mic_id, onDelete: RESTRICT, onUpdate: CASCADE }
     pfu_programas_aislamiento: { phpName: PfuProgramasAislamiento, type: BOOLEAN, required: false }
     pfu_programas_reforestacion: { phpName: PfuProgramasReforestacion, type: BOOLEAN, required: false }
     pfu_programas_mejoramiento_uso_suelo: { phpName: PfuProgramasMejoramientoUsoSuelo, type: BOOLEAN, required: false }
@@ -456,17 +506,24 @@ propel:
     pfu_cobertura_forestal_bosque_protector_productor: { phpName: PfuCoberturaForestalBosqueProtectorProductor, type: BOOLEAN, required: false }
     pfu_cobertura_forestal_productor: { phpName: PfuCoberturaForestalProductor, type: BOOLEAN, required: false }
     pfu_cobertura_forestal_regeneracion_natural: { phpName: PfuCoberturaForestalRegeneracionNatural, type: BOOLEAN, required: false }
-    pfu_cobertura_forestal_area_protectora_cauce: { phpName: PfuCoberturaForestalAreaProtectoraCauce, type: BOOLEAN, required: false }
+    pfu_cobertura_forestal_bosque_natural_tendencia: { phpName: PfuCoberturaForestalBosqueNaturalTendencia, type: VARCHAR, size: '50', required: false }
+    pfu_cobertura_forestal_bosque_protector_tendencia: { phpName: PfuCoberturaForestalBosqueProtectorTendencia, type: VARCHAR, size: '50', required: false }
+    pfu_cobertura_forestal_bosque_protector_productor_tendencia: { phpName: PfuCoberturaForestalBosqueProtectorProductorTendencia, type: VARCHAR, size: '50', required: false }
+    pfu_cobertura_forestal_productor_tendencia: { phpName: PfuCoberturaForestalProductorTendencia, type: VARCHAR, size: '50', required: false }
+    pfu_cobertura_forestal_regeneracion_natural_tendencia: { phpName: PfuCoberturaForestalRegeneracionNaturalTendencia, type: VARCHAR, size: '50', required: false }
     pfu_aislamiento_franja_amarilla_microcuenca: { phpName: PfuAislamientoFranjaAmarillaMicrocuenca, type: BOOLEAN, required: false }
+    pfu_cobertura_forestal_area_protectora_cauce: { phpName: PfuCoberturaForestalAreaProtectoraCauce, type: BOOLEAN, required: false }
     pfu_area_microcuenca_propiedad_acueducto: { phpName: PfuAreaMicrocuencaPropiedadAcueducto, type: BOOLEAN, required: false }
+    pfu_cobertura_forestal_mas_usada: { phpName: PfuCoberturaForestalMasUsada, type: VARCHAR, size: '100', required: false }
   rango:
     _attributes: { phpName: Rango }
     ran_id: { phpName: RanId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    ran_tipo: { phpName: RanTipo, type: VARCHAR, size: '50', required: false }
+    ran_tipo: { phpName: RanTipo, type: VARCHAR, size: '50', required: true }
+    _uniques: { rango_ran_tipo_key: [ran_tipo] }
   recolecciontrasnporteaseo:
     _attributes: { phpName: Recolecciontrasnporteaseo }
     rtr_id: { phpName: RtrId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    rtr_top_id: { phpName: RtrTopId, type: INTEGER, required: false, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    rtr_top_id: { phpName: RtrTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
     rtr_tipo_recoleccion_selectiva: { phpName: RtrTipoRecoleccionSelectiva, type: BOOLEAN, required: false }
     rtr_tipo_recoleccion_conjuntiva: { phpName: RtrTipoRecoleccionConjuntiva, type: BOOLEAN, required: false }
     rtr_distancia_recorrida_sitio_final: { phpName: RtrDistanciaRecorridaSitioFinal, type: VARCHAR, size: '50', required: false }
@@ -475,18 +532,19 @@ propel:
   reddistribucion:
     _attributes: { phpName: Reddistribucion }
     rdist_id: { phpName: RdistId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    rdist_nombre: { phpName: RdistNombre, type: VARCHAR, size: '100', required: false }
+    rdist_nombre: { phpName: RdistNombre, type: VARCHAR, size: '100', required: true }
+    _uniques: { reddistribucion_rdist_nombre_key: [rdist_nombre] }
   resultadosxpunto:
     _attributes: { phpName: Resultadosxpunto }
     rep_id: { phpName: RepId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    rep_ppr_id_paramentro: { phpName: RepPprIdParamentro, type: INTEGER, required: false, foreignTable: parametrospuntosred, foreignReference: ppr_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    rep_cag_id: { phpName: RepCagId, type: INTEGER, required: false, foreignTable: calidadagua, foreignReference: cag_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    rep_ppr_id_paramentro: { phpName: RepPprIdParamentro, type: INTEGER, required: true, foreignTable: parametrospuntosred, foreignReference: ppr_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    rep_cag_id: { phpName: RepCagId, type: INTEGER, required: true, foreignTable: calidadagua, foreignReference: cag_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     rep_punto: { phpName: RepPunto, type: INTEGER, required: false }
     rep_resultado: { phpName: RepResultado, type: VARCHAR, required: false }
   separacionresiduossolidosfuentesaseo:
     _attributes: { phpName: Separacionresiduossolidosfuentesaseo }
     srsf_id: { phpName: SrsfId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    srsf_top_id: { phpName: SrsfTopId, type: INTEGER, required: false, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    srsf_top_id: { phpName: SrsfTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
     srsf_programa_separacion_residuos_solidos: { phpName: SrsfProgramaSeparacionResiduosSolidos, type: BOOLEAN, required: false }
     srsf_materiales_separados_organico: { phpName: SrsfMaterialesSeparadosOrganico, type: BOOLEAN, required: false }
     srsf_materiales_separados_otros_vidrio: { phpName: SrsfMaterialesSeparadosOtrosVidrio, type: BOOLEAN, required: false }
@@ -495,19 +553,20 @@ propel:
     srsf_materiales_separados_otros_metales: { phpName: SrsfMaterialesSeparadosOtrosMetales, type: BOOLEAN, required: false }
     srsf_materiales_separados_otros_otros: { phpName: SrsfMaterialesSeparadosOtrosOtros, type: BOOLEAN, required: false }
     srsf_materiales_separados_higenicos: { phpName: SrsfMaterialesSeparadosHigenicos, type: BOOLEAN, required: false }
-    srsf_numero_suscriptores_que__separan: { phpName: SrsfNumeroSuscriptoresQueSeparan, type: INTEGER, required: false }
+    srsf_numero_suscriptores_que_separan: { phpName: SrsfNumeroSuscriptoresQueSeparan, type: INTEGER, required: false }
     srsf_existe_separacion_sitio_final: { phpName: SrsfExisteSeparacionSitioFinal, type: BOOLEAN, required: false }
     srsf_toneladas_residuos_anio: { phpName: SrsfToneladasResiduosAnio, type: VARCHAR, required: false }
   servicio:
     _attributes: { phpName: Servicio }
     ser_id: { phpName: SerId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    ser_nombre: { phpName: SerNombre, type: VARCHAR, size: '50', required: false }
+    ser_nombre: { phpName: SerNombre, type: VARCHAR, size: '50', required: true }
+    _uniques: { servicio_ser_nombre_key: [ser_nombre] }
   suscriptoresservicioacueducto:
     _attributes: { phpName: Suscriptoresservicioacueducto }
     ssacu_id: { phpName: SsacuId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    ssacu_aco_id: { phpName: SsacuAcoId, type: INTEGER, required: false, foreignTable: analisiscobertura, foreignReference: aco_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    ssacu_est_id: { phpName: SsacuEstId, type: INTEGER, required: false, foreignTable: estrato, foreignReference: est_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    ssacu_numero_suscriptores: { phpName: SsacuNumeroSuscriptores, type: INTEGER, required: false }
+    ssacu_aco_id: { phpName: SsacuAcoId, type: INTEGER, required: true, foreignTable: analisiscobertura, foreignReference: aco_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    ssacu_est_id: { phpName: SsacuEstId, type: INTEGER, required: true, foreignTable: estrato, foreignReference: est_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    ssacu_numero_suscriptores: { phpName: SsacuNumeroSuscriptores, type: INTEGER, required: true }
     ssacu_tarifa_sin_medicion: { phpName: SsacuTarifaSinMedicion, type: VARCHAR, required: false }
     ssacu_cargo_fijo: { phpName: SsacuCargoFijo, type: VARCHAR, required: false }
     ssacu_tarifa_consumo_basico: { phpName: SsacuTarifaConsumoBasico, type: VARCHAR, required: false }
@@ -516,14 +575,14 @@ propel:
   suscriptoresservicioaseo:
     _attributes: { phpName: Suscriptoresservicioaseo }
     ssase_id: { phpName: SsaseId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    ssase_aco_id: { phpName: SsaseAcoId, type: INTEGER, required: false, foreignTable: analisiscobertura, foreignReference: aco_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    ssase_est_id: { phpName: SsaseEstId, type: INTEGER, required: false, foreignTable: estrato, foreignReference: est_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    ssase_aco_id: { phpName: SsaseAcoId, type: INTEGER, required: true, foreignTable: analisiscobertura, foreignReference: aco_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    ssase_est_id: { phpName: SsaseEstId, type: INTEGER, required: true, foreignTable: estrato, foreignReference: est_id, onDelete: RESTRICT, onUpdate: CASCADE }
     ssase_tarifa: { phpName: SsaseTarifa, type: VARCHAR, required: false }
     ssase_numero_suscriptores: { phpName: SsaseNumeroSuscriptores, type: INTEGER, required: false }
   tanque:
     _attributes: { phpName: Tanque }
     tan_id: { phpName: TanId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    tan_estado_id: { phpName: TanEstadoId, type: INTEGER, required: false, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    tan_estado_id: { phpName: TanEstadoId, type: INTEGER, required: true, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
     tan_bypass_directo_red: { phpName: TanBypassDirectoRed, type: BOOLEAN, required: false }
     tan_presencia_valvula_control: { phpName: TanPresenciaValvulaControl, type: BOOLEAN, required: false }
     tan_proteccion_tapa: { phpName: TanProteccionTapa, type: BOOLEAN, required: false }
@@ -533,8 +592,7 @@ propel:
   tecnicooperativaacueducto:
     _attributes: { phpName: Tecnicooperativaacueducto }
     toa_id: { phpName: ToaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    toa_top_id: { phpName: ToaTopId, type: INTEGER, required: false, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    toa_tipos_sistema_abastecimiento: { phpName: ToaTiposSistemaAbastecimiento, type: VARCHAR, size: '100', required: false }
+    toa_top_id: { phpName: ToaTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
     toa_gravedad_sin_tratamiento: { phpName: ToaGravedadSinTratamiento, type: BOOLEAN, required: false }
     toa_bombeo_sin_tratamiento: { phpName: ToaBombeoSinTratamiento, type: BOOLEAN, required: false }
     toa_gravedad_con_tratamiento: { phpName: ToaGravedadConTratamiento, type: BOOLEAN, required: false }
@@ -544,12 +602,11 @@ propel:
     toa_gravedad_sin_tratamiento_bombeo_con_tratamiento: { phpName: ToaGravedadSinTratamientoBombeoConTratamiento, type: BOOLEAN, required: false }
     toa_gravedad_con_tratamiento_bombeo_sin_tratamiento: { phpName: ToaGravedadConTratamientoBombeoSinTratamiento, type: BOOLEAN, required: false }
     toa_cantidad_agua_distribuida_por_ano: { phpName: ToaCantidadAguaDistribuidaPorAno, type: VARCHAR, required: false }
-    toa_soluciones_poblacion_no_atendido_por_acueducto: { phpName: ToaSolucionesPoblacionNoAtendidoPorAcueducto, type: VARCHAR, size: '100', required: false }
     toa_solucion_acarreo: { phpName: ToaSolucionAcarreo, type: BOOLEAN, required: false }
     toa_solucion_acarreo_viviendas: { phpName: ToaSolucionAcarreoViviendas, type: INTEGER, required: false }
     toa_solucion_nacimiento: { phpName: ToaSolucionNacimiento, type: BOOLEAN, required: false }
     toa_solucion_nacimiento_viviendas: { phpName: ToaSolucionNacimientoViviendas, type: INTEGER, required: false }
-    toa_toa_solucion_aljibe: { phpName: ToaToaSolucionAljibe, type: BOOLEAN, required: false }
+    toa_solucion_aljibe: { phpName: ToaSolucionAljibe, type: BOOLEAN, required: false }
     toa_solucion_aljibe_viviendas: { phpName: ToaSolucionAljibeViviendas, type: INTEGER, required: false }
     toa_solucion_agua_lluvia: { phpName: ToaSolucionAguaLluvia, type: BOOLEAN, required: false }
     toa_solucion_agua_lluvia_viviendas: { phpName: ToaSolucionAguaLluviaViviendas, type: INTEGER, required: false }
@@ -559,27 +616,29 @@ propel:
   tecnicooperativaaduccionimpulsionacueducto:
     _attributes: { phpName: Tecnicooperativaaduccionimpulsionacueducto }
     toai_id: { phpName: ToaiId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    toai_top_id: { phpName: ToaiTopId, type: INTEGER, required: false, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    toai_material_canal_id: { phpName: ToaiMaterialCanalId, type: INTEGER, required: false, foreignTable: materialcanal, foreignReference: mca_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    toai_tipo_canal_id: { phpName: ToaiTipoCanalId, type: INTEGER, required: false, foreignTable: tipocanal, foreignReference: tca_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    toai_top_id: { phpName: ToaiTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    toai_material_canal_id: { phpName: ToaiMaterialCanalId, type: INTEGER, required: true, foreignTable: materialcanal, foreignReference: mca_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    toai_tipo_canal_id: { phpName: ToaiTipoCanalId, type: INTEGER, required: true, foreignTable: tipocanal, foreignReference: tca_id, onDelete: RESTRICT, onUpdate: CASCADE }
     toai_longitud: { phpName: ToaiLongitud, type: VARCHAR, required: false }
     toai_diametro: { phpName: ToaiDiametro, type: VARCHAR, required: false }
     toai_edad: { phpName: ToaiEdad, type: INTEGER, required: false }
   tecnicooperativaalmacenamientoacueducto:
     _attributes: { phpName: Tecnicooperativaalmacenamientoacueducto }
     toaa_id: { phpName: ToaaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    toaa_top_id: { phpName: ToaaTopId, type: INTEGER, primaryKey: true, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    toaa_tan_id: { phpName: ToaaTanId, type: INTEGER, primaryKey: true, required: true, foreignTable: tanque, foreignReference: tan_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    toaa_top_id: { phpName: ToaaTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    toaa_tan_id: { phpName: ToaaTanId, type: INTEGER, required: true, foreignTable: tanque, foreignReference: tan_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    _uniques: { tecnicooperativaalmacenamientoac: [toaa_top_id, toaa_tan_id] }
   tecnicooperativacaptacionacueducto:
     _attributes: { phpName: Tecnicooperativacaptacionacueducto }
     toca_id: { phpName: TocaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    toca_top_id: { phpName: TocaTopId, type: INTEGER, primaryKey: true, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    toca_capt_id: { phpName: TocaCaptId, type: INTEGER, primaryKey: true, required: true, foreignTable: captacion, foreignReference: capt_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    toca_top_id: { phpName: TocaTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    toca_capt_id: { phpName: TocaCaptId, type: INTEGER, required: true, foreignTable: captacion, foreignReference: capt_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    _uniques: { tecnicooperativacaptacionacueduc: [toca_top_id, toca_capt_id] }
   tecnicooperativacomponentessistema:
     _attributes: { phpName: Tecnicooperativacomponentessistema }
     tocs_id: { phpName: TocsId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    tocs_top_id: { phpName: TocsTopId, type: INTEGER, required: false, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    tocs_componentes: { phpName: TocsComponentes, type: VARCHAR, size: '100', required: false }
+    tocs_top_id: { phpName: TocsTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    tocs_componentes: { phpName: TocsComponentes, type: VARCHAR, size: '100', required: true }
     tocs_captacion: { phpName: TocsCaptacion, type: BOOLEAN, required: false }
     tocs_captacion_cantidad: { phpName: TocsCaptacionCantidad, type: INTEGER, required: false }
     tocs_aduccion: { phpName: TocsAduccion, type: BOOLEAN, required: false }
@@ -601,15 +660,15 @@ propel:
   tecnicooperativadesarenadoracueducto:
     _attributes: { phpName: Tecnicooperativadesarenadoracueducto }
     todes_id: { phpName: TodesId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    todes_top_id: { phpName: TodesTopId, type: INTEGER, required: false, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    todes_desarenador: { phpName: TodesDesarenador, type: VARCHAR, size: '100', required: false }
+    todes_top_id: { phpName: TodesTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    todes_desarenador: { phpName: TodesDesarenador, type: VARCHAR, size: '100', required: true }
     todes_bypass: { phpName: TodesBypass, type: BOOLEAN, required: false }
     todes_valvula: { phpName: TodesValvula, type: BOOLEAN, required: false }
     todes_aguas_erosion: { phpName: TodesAguasErosion, type: BOOLEAN, required: false }
   tecnicooperativadesinfeccionacueducto:
     _attributes: { phpName: Tecnicooperativadesinfeccionacueducto }
     toda_id: { phpName: TodaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    toda_top_id: { phpName: TodaTopId, type: INTEGER, required: false, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    toda_top_id: { phpName: TodaTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
     toda_desinfeccion: { phpName: TodaDesinfeccion, type: BOOLEAN, required: false }
     toda_tipo_desinfeccion: { phpName: TodaTipoDesinfeccion, type: VARCHAR, size: '100', required: false }
     toda_desinfeccion_cloro: { phpName: TodaDesinfeccionCloro, type: BOOLEAN, required: false }
@@ -621,17 +680,17 @@ propel:
   tecnicooperativalineaconduccionaguacrudaacueducto:
     _attributes: { phpName: Tecnicooperativalineaconduccionaguacrudaacueducto }
     tolc_id: { phpName: TolcId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    tolc_top_id: { phpName: TolcTopId, type: INTEGER, required: false, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    tolc_tipo_canal_id: { phpName: TolcTipoCanalId, type: INTEGER, required: false, foreignTable: tipocanal, foreignReference: tca_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    tolc_material_canal_id: { phpName: TolcMaterialCanalId, type: INTEGER, required: false, foreignTable: materialcanal, foreignReference: mca_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    tolc_top_id: { phpName: TolcTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    tolc_tipo_canal_id: { phpName: TolcTipoCanalId, type: INTEGER, required: true, foreignTable: tipocanal, foreignReference: tca_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    tolc_material_canal_id: { phpName: TolcMaterialCanalId, type: INTEGER, required: true, foreignTable: materialcanal, foreignReference: mca_id, onDelete: RESTRICT, onUpdate: CASCADE }
     tolc_longitud: { phpName: TolcLongitud, type: VARCHAR, required: false }
     tolc_diametro: { phpName: TolcDiametro, type: VARCHAR, required: false }
     tolc_edad: { phpName: TolcEdad, type: INTEGER, required: false }
   tecnicooperativaplantaaguapotableacueducto:
     _attributes: { phpName: Tecnicooperativaplantaaguapotableacueducto }
     topla_id: { phpName: ToplaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    topla_top_id: { phpName: ToplaTopId, type: INTEGER, required: false, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    topla_tecnologia_utilizada: { phpName: ToplaTecnologiaUtilizada, type: VARCHAR, size: '100', required: false }
+    topla_top_id: { phpName: ToplaTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    topla_tecnologia_utilizada: { phpName: ToplaTecnologiaUtilizada, type: VARCHAR, size: '100', required: true }
     topla_tecnologia_utilizada_cc: { phpName: ToplaTecnologiaUtilizadaCc, type: BOOLEAN, required: false }
     topla_tecnologia_utilizada_fd: { phpName: ToplaTecnologiaUtilizadaFd, type: BOOLEAN, required: false }
     topla_tecnologia_utilizada_pc: { phpName: ToplaTecnologiaUtilizadaPc, type: BOOLEAN, required: false }
@@ -666,38 +725,39 @@ propel:
   tecnicooperativareddistribucionacueducto:
     _attributes: { phpName: Tecnicooperativareddistribucionacueducto }
     tord_id: { phpName: TordId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    tord_top_id: { phpName: TordTopId, type: INTEGER, required: false, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    tord_red_distribucion_id: { phpName: TordRedDistribucionId, type: INTEGER, required: false, foreignTable: reddistribucion, foreignReference: rdist_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    tord_material_distribucion_id: { phpName: TordMaterialDistribucionId, type: INTEGER, required: false, foreignTable: materialreddistribucion, foreignReference: mrd_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    tord_top_id: { phpName: TordTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    tord_red_distribucion_id: { phpName: TordRedDistribucionId, type: INTEGER, required: true, foreignTable: reddistribucion, foreignReference: rdist_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    tord_material_distribucion_id: { phpName: TordMaterialDistribucionId, type: INTEGER, required: true, foreignTable: materialreddistribucion, foreignReference: mrd_id, onDelete: RESTRICT, onUpdate: CASCADE }
     tord_material_diametro: { phpName: TordMaterialDiametro, type: VARCHAR, required: false }
     tord_material_edad: { phpName: TordMaterialEdad, type: INTEGER, required: false }
   tecnicooperativo:
     _attributes: { phpName: Tecnicooperativo }
     top_id: { phpName: TopId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    top_pps_pre_id: { phpName: TopPpsPreId, type: INTEGER, required: false, foreignTable: periodoporprestadorservicio, foreignReference: pps_pre_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    top_pps_anio: { phpName: TopPpsAnio, type: INTEGER, required: false }
-    top_pps_ser_id: { phpName: TopPpsSerId, type: INTEGER, required: false }
-    top_nombre_diligenciador: { phpName: TopNombreDiligenciador, type: VARCHAR, size: '200', required: false }
-    top_apellido_diligenciador: { phpName: TopApellidoDiligenciador, type: VARCHAR, size: '200', required: false }
-    top_cedula_diligenciador: { phpName: TopCedulaDiligenciador, type: VARCHAR, size: '15', required: false }
+    top_pps_pre_id: { phpName: TopPpsPreId, type: INTEGER, required: true, foreignTable: periodoporprestadorservicio, foreignReference: pps_pre_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    top_pps_anio: { phpName: TopPpsAnio, type: INTEGER, required: true }
+    top_pps_ser_id: { phpName: TopPpsSerId, type: INTEGER, required: true }
+    top_nombre_diligenciador: { phpName: TopNombreDiligenciador, type: VARCHAR, size: '200', required: true }
+    top_apellido_diligenciador: { phpName: TopApellidoDiligenciador, type: VARCHAR, size: '200', required: true }
+    top_cedula_diligenciador: { phpName: TopCedulaDiligenciador, type: VARCHAR, size: '15', required: true }
     top_telefono_diligenciador: { phpName: TopTelefonoDiligenciador, type: VARCHAR, size: '15', required: false }
   tipocanal:
     _attributes: { phpName: Tipocanal }
     tca_id: { phpName: TcaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    tca_nombre: { phpName: TcaNombre, type: VARCHAR, size: '100', required: false }
+    tca_nombre: { phpName: TcaNombre, type: VARCHAR, size: '100', required: true }
+    _uniques: { tipocanal_tca_nombre_key: [tca_nombre] }
   tipofuentesuperficial:
     _attributes: { phpName: Tipofuentesuperficial }
     tfu_id: { phpName: TfuId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    tfu_fue_id: { phpName: TfuFueId, type: INTEGER, required: false, foreignTable: fuentes, foreignReference: fue_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    tfu_nacimiento: { phpName: TfuNacimiento, type: VARCHAR, size: '100', required: false }
+    tfu_fue_id: { phpName: TfuFueId, type: INTEGER, required: true, foreignTable: fuentes, foreignReference: fue_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    tfu_nacimiento: { phpName: TfuNacimiento, type: VARCHAR, size: '100', required: true }
     tfu_quebrada_rio: { phpName: TfuQuebradaRio, type: VARCHAR, size: '100', required: false }
     tfu_reservorio: { phpName: TfuReservorio, type: VARCHAR, size: '100', required: false }
     tfu_mar: { phpName: TfuMar, type: VARCHAR, size: '100', required: false }
   trabajadoresyvinculacion:
     _attributes: { phpName: Trabajadoresyvinculacion }
     tra_id: { phpName: TraId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    tra_iaf_id: { phpName: TraIafId, type: INTEGER, required: false, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    tra_area_administrativa: { phpName: TraAreaAdministrativa, type: INTEGER, required: false }
+    tra_iaf_id: { phpName: TraIafId, type: INTEGER, required: true, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    tra_area_administrativa: { phpName: TraAreaAdministrativa, type: INTEGER, required: true }
     tra_cargo_administrativo: { phpName: TraCargoAdministrativo, type: VARCHAR, size: '50', required: false }
     tra_tipo_vincula_admin_termino_indefinido: { phpName: TraTipoVinculaAdminTerminoIndefinido, type: BOOLEAN, required: false }
     tra_tipo_vincula_admin_termino_fijo: { phpName: TraTipoVinculaAdminTerminoFijo, type: BOOLEAN, required: false }
@@ -718,7 +778,7 @@ propel:
   tratamientoaprovechamientoresiduossolidosaseo:
     _attributes: { phpName: Tratamientoaprovechamientoresiduossolidosaseo }
     tap_id: { phpName: TapId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    tap_top_id: { phpName: TapTopId, type: INTEGER, required: false, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    tap_top_id: { phpName: TapTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
     tap_peso_residuos_comida_jardin: { phpName: TapPesoResiduosComidaJardin, type: VARCHAR, required: false }
     tap_peso_papel_carton: { phpName: TapPesoPapelCarton, type: VARCHAR, required: false }
     tap_peso_plasticos: { phpName: TapPesoPlasticos, type: VARCHAR, required: false }
@@ -782,13 +842,14 @@ propel:
   usuario:
     _attributes: { phpName: Usuario }
     usu_id: { phpName: UsuId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    usu_per_id: { phpName: UsuPerId, type: INTEGER, required: false, foreignTable: perfil, foreignReference: per_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    usu_login: { phpName: UsuLogin, type: VARCHAR, size: '30', required: false }
-    usu_clave: { phpName: UsuClave, type: VARCHAR, size: '30', required: false }
+    usu_per_id: { phpName: UsuPerId, type: INTEGER, required: true, foreignTable: perfil, foreignReference: per_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    usu_login: { phpName: UsuLogin, type: VARCHAR, size: '30', required: true }
+    usu_clave: { phpName: UsuClave, type: VARCHAR, size: '32', required: true }
+    usu_estado: { phpName: UsuEstado, type: VARCHAR, size: '20', required: true }
   vehiculorecoleccion:
     _attributes: { phpName: Vehiculorecoleccion }
     ver_id: { phpName: VerId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    ver_rtr_id: { phpName: VerRtrId, type: INTEGER, required: false, foreignTable: recolecciontrasnporteaseo, foreignReference: rtr_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    ver_rtr_id: { phpName: VerRtrId, type: INTEGER, required: true, foreignTable: recolecciontrasnporteaseo, foreignReference: rtr_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     ver_tipo_vehiculo: { phpName: VerTipoVehiculo, type: VARCHAR, size: '50', required: false }
     ver_tipo_traccion: { phpName: VerTipoTraccion, type: VARCHAR, size: '50', required: false }
     ver_capacidad: { phpName: VerCapacidad, type: VARCHAR, size: '50', required: false }
@@ -796,5 +857,5 @@ propel:
   vinculacionalservicio:
     _attributes: { phpName: Vinculacionalservicio }
     vas_id: { phpName: VasId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    vas_com_id: { phpName: VasComId, type: INTEGER, required: false, foreignTable: cormecial, foreignReference: com_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    vas_com_id: { phpName: VasComId, type: INTEGER, required: true, foreignTable: comercial, foreignReference: com_id, onDelete: RESTRICT, onUpdate: CASCADE }
     vas_suscripcion_contrato: { phpName: VasSuscripcionContrato, type: BOOLEAN, required: false }
