@@ -1,4 +1,4 @@
-var tecnicooperativaacueducto_form = new Ext.Panel({
+var tecnicooperativaacueducto_form = new Ext.form.FormPanel({
     id: 'tecnicooperativaacueducto-form',
     layout: 'form',
     width: 840,
