@@ -22,5 +22,17 @@ var tecnicooperativa_acueducto_tabpanel = new Ext.TabPanel({
             url: getAbsoluteUrl('acueducto_captacion', 'index'),
             scripts: true
         }
+    }, {
+        title: 'Paso 4',
+        autoLoad: {
+            url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'index'),
+            scripts: true
+        }
+    }, {
+        title: 'Paso 5',
+        autoLoad: {
+            url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'index2'),
+            scripts: true
+        }
     }]
 });
