@@ -372,11 +372,14 @@ if(true){
 
 var form_acu_gestionresultado = new Ext.Panel({
 	border: false,
+	layout: 'form',
 	renderTo: 'div_form_acu_gestionresultado',
 	autoWidth: true,
 	items: [acu_gestionresultado_actividad12_formpanel, acu_gestionresultado_actividad34_formpanel]
 });
 
 function acu_gestionresultado_subirdatos() {
-	Ext.example.msg('Aviso', 'Subir datos!!!');
+
+	subirDatos(form_acu_gestionresultado, 'acueducto_gestionresultado/actualizarGestionResultado');
+
 }

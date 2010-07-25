@@ -163,34 +163,34 @@ var acu_cap_actividad_capacitacion_otra_cuales = new Ext.form.TextField( {
 } );
 
 var acu_cap_capacitacion_recibida_prest = new Ext.form.RadioGroup( {
-	id: 'acu_cap_capacitacion_recibida_prest',
+	id: 'acu_cap_capacitacion_recibida_prestador',
     fieldLabel: '<html>&iquest;Recibi&oacute; capacitaci&oacute;n durante este a&ntilde;o?</html>',
     itemCls: 'x-check-group-alt',
     labelWidth: 300,
 	columns: 1,
-    name: 'acu_cap_capacitacion_recibida_prest',
+    name: 'acu_cap_capacitacion_recibida_prestador',
     items:
     [
        {
           boxLabel: 'Si',
 		  id: 'acu_cap_capacitacion_recibida_prest_si',
-          name: 'acu_cap_capacitacion_recibida_prest', 
+          name: 'acu_cap_capacitacion_recibida_prestador', 
           checked: true,
           listeners:
           {
                 'render': function(){
-					ayuda('acu_cap_dada_prestador_si', ayuda_acu_cap_capacitacion_recibida_prest);
+					ayuda('acu_cap_dada_prestador_si', ayuda_acu_cap_capacitacion_recibida_prestador);
 				}
           }
        },
        { 
     	  boxLabel: 'No',
 		  id: 'acu_cap_capacitacion_recibida_prest_no',
-    	  name: 'acu_cap_capacitacion_recibida_prest',
+    	  name: 'acu_cap_capacitacion_recibida_prestador',
 		  listeners:
           {
 				'render': function(){
-					ayuda('acu_cap_capacitacion_recibida_prest_no', ayuda_acu_cap_capacitacion_recibida_prest);
+					ayuda('acu_cap_capacitacion_recibida_prest_no', ayuda_acu_cap_capacitacion_recibida_prestador);
 				}
           }
        }
@@ -365,7 +365,7 @@ var form_acu_capacitacion = new Ext.form.FormPanel({
 			labelWidth: 150,
 			defaults: {labelStyle: 'font-size:1.0em;'},
 			bodyStyle: Ext.isIE ? 'padding:5 5 5px 15px;' : 'padding: 10px 10px;',
-			items: [acu_cap_capacitacion_recibida_prest, acu_cap_temas_capacitacion_checkboxgroup, acu_cap_temas_capacitacion_otra_cual, acu_cap_instituciones_ofrecieron, acu_cap_numero_directiva_hombres, acu_cap_numero_directiva_mujeres]
+			items: [ acu_cap_capacitacion_recibida_prest, acu_cap_temas_capacitacion_checkboxgroup, acu_cap_temas_capacitacion_otra_cual, {xtype: 'label', html: '<br/><br/>'}, acu_cap_instituciones_ofrecieron, acu_cap_numero_directiva_hombres, acu_cap_numero_directiva_mujeres]
 	   }
 	],
 	buttons:[
@@ -389,5 +389,7 @@ var form_acu_capacitacion = new Ext.form.FormPanel({
 
 
 function acu_capacitacion_subirdatos() {
-	Ext.example.msg('Aviso', 'Subir datos!!!');
+
+	subirDatos(form_acu_capacitacion, 'acueducto_capacitacion/actualizarCapacitacion');
+	
 }

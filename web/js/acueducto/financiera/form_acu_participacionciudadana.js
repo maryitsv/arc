@@ -50,30 +50,30 @@ var acu_par_tipoparticiacion_checkboxgroup = new Ext.form.CheckboxGroup({
 		},
 	    {
 			boxLabel: 'Otra', 
-			name: 'acu_par_participacion_ciudadana_otra_cual',
-			id: 'acu_par_participacion_ciudadana_otra_cual',
+			name: 'acu_par_participacion_ciudadana_otra',
+			id: 'acu_par_participacion_ciudadana_otra',
 			listeners:
 	        {
 	                'render': function(){ 
-						ayuda( 'acu_par_participacion_ciudadana_otra_cual', ayuda_acu_par_participacion_ciudadana_otra_cual );
+						ayuda( 'acu_par_participacion_ciudadana_otra', ayuda_acu_par_participacion_ciudadana_otra );
 	     			}                   
 	        }
 		}
 	]
 });
 
-var acu_par_otra_cual = new Ext.form.TextField({
+var acu_par_participacion_ciudadana_otra_cual = new Ext.form.TextField({
     enableKeyEvents: true,
     width: 310,
     labelStyle: 'width:310px; text-align:right;',
-    name: 'acu_par_otra_cual',
-    id: 'acu_par_otra_cual',
+    name: 'acu_par_participacion_ciudadana_otra_cual',
+    id: 'acu_par_participacion_ciudadana_otra_cual',
     fieldLabel: '&iquest; Cu&aacute;l ?',
     disabled : false,
     listeners:
     {
 	   	'render': function(){ 
-				ayuda( 'acu_par_otra_cual', ayuda_acu_par_otra_cual );
+			ayuda( 'acu_par_participacion_ciudadana_otra_cual', ayuda_acu_par_participacion_ciudadana_otra_cual );
   		}               
     }              
 });
@@ -88,7 +88,7 @@ var acu_par_propuestas_vocales = new Ext.form.RadioGroup({
 	listeners:
     {
 	   	'render': function(){ 
-					ayuda( 'acu_par_propuestas_vocales', ayuda_acu_par_propuestas_vocales );
+			ayuda( 'acu_par_propuestas_vocales', ayuda_acu_par_propuestas_vocales );
   		}               
     },
     items:
@@ -123,7 +123,7 @@ var form_acu_participacionciudadana = new Ext.form.FormPanel({
 			bodyStyle: Ext.isIE ? 'padding:5 5 5px 15px;' : 'padding: 10px 10px;',
 			items: [
 		           acu_par_tipoparticiacion_checkboxgroup,  
-		           acu_par_otra_cual,
+		           acu_par_participacion_ciudadana_otra_cual,
 		           acu_par_propuestas_vocales  
 		    ]
 	   }
@@ -149,7 +149,7 @@ var form_acu_participacionciudadana = new Ext.form.FormPanel({
 
 
 function acu_participacionciudadana_subirdatos() {
-	Ext.example.msg('Aviso', 'Subir datos!!!');
+
+	subirDatos(form_acu_participacionciudadana, 'acueducto_participacionciudadana/actualizarParticipacionCiudadana');
 }
 
-//Ext.getCmp("acueducto_financiera").add(form_acu_participacionciudadana);

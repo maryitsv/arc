@@ -17,8 +17,9 @@ var acu_ico_balance_general = new Ext.form.TextField( {
 var acu_ico_activos = new Ext.form.TextField( {
 	fieldLabel: 'Activos ($)', 
 	emptyText: 'ingrese los activos', 
-	id: 'acu_ico_activos', 
-	name: 'acu_ico_activos', 
+	id: 'acu_ico_activos',
+	disabled: true,
+	name: 'acu_ico_activos',
 	anchor: '100%', 
 	allowBlank: false,
 	listeners: {
@@ -38,7 +39,8 @@ var acu_ico_activos_corrientes = new Ext.form.TextField( {
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_activos_corrientes', ayuda_acu_ico_activos_corrientes );
-     	}
+     	},
+		'change' : function(){ formatoNumeroCampo(this); } 
 	}
 } );
 
@@ -453,6 +455,7 @@ var acu_financieracontable_totales_formpanel = new Ext.form.FormPanel({
 	    	iconCls: 'crear16', 
 	    	handler: function(){
 							Ext.getCmp('tabp_acu_administrativafinanciera').setActiveTab(1);
+							acu_informacioncontable_subirdatos();
 			}
 	    }
 	]
@@ -467,14 +470,15 @@ if(true){
 
 var form_acu_informacioncontable = new Ext.Panel({
 	border: false,
+	layout: 'form',
 	renderTo: 'div_form_acu_informacioncontable',
 	autoWidth: true,
 	items: [acu_financieracontable_activos_pasivos_formpanel, acu_financieracontable_totales_formpanel]
 });
 
-	
-
 function acu_informacioncontable_subirdatos() {
-	//Ext.example.msg('Aviso', 'Subir datos!!!');
+
+	subirDatos(form_acu_informacioncontable, 'acueducto_informacioncontable/actualizarInformacionContable');
+	
 }
 

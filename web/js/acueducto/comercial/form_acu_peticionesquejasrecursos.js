@@ -235,6 +235,13 @@ Desarrollado maryit sanchez
 			 text: 'Continuar',
 			 handler: function()
 			 { 
+				acu_peticionesquejasyrecursos_cargardatostemporal();
+				var accion=acu_peticionesquejasyrecursos_verfiricaraccion();
+				
+				if(accion=='crear' || accion=='actualizar')
+				{
+					acu_peticionesquejasyrecursos_subirdatos(accion);
+				}
 
 				 (Ext.getCmp('panel_servicios')).setActiveGroup(2);
 			 }
@@ -243,3 +250,108 @@ Desarrollado maryit sanchez
 	   renderTo:'div_form_acu_peticionesquejasrecursos'
 	});
 
+
+
+	var acu_peticionesquejasyrecursos_panel_datanuevo;
+	var acu_peticionesquejasyrecursos_panel_dataviejo=new Array();
+/*
+acu_pqr_registro_pqr
+acu_pqr_inf_causa_suspension_corte
+acu_pqr_inf_causa_susp_corte_explic
+acu_pqr_cantidad_pqr_facturacion
+acu_pqr_cantidad_pqr_instalacion
+acu_pqr_cantidad_pqr_prest_servicio
+acu_pqr_cantidad_pqr_otro
+acu_pqr_cantidad_pqr_explica_otros
+acu_pqr_cantidad_anual_pqr
+*/
+	function acu_peticionesquejasyrecursos_cargardatostemporal(){
+	
+		if(acu_peticionesquejasyrecursos_panel_datanuevo)
+		{
+			acu_peticionesquejasyrecursos_panel_dataviejo=acu_peticionesquejasyrecursos_panel_datanuevo;
+		}
+		acu_peticionesquejasyrecursos_panel_datanuevo=new Array();
+		acu_peticionesquejasyrecursos_panel_datanuevo['acu_pqr_registro_pqr'] = Ext.getCmp('acu_pqr_registro_pqr').getValue().getGroupValue();
+		
+		acu_peticionesquejasyrecursos_panel_datanuevo['acu_pqr_inf_causa_suspension_corte'] =Ext.getCmp('acu_pqr_inf_causa_suspension_corte').getValue().getGroupValue();
+		acu_peticionesquejasyrecursos_panel_datanuevo['acu_pqr_inf_causa_susp_corte_explic'] = Ext.getCmp('acu_pqr_inf_causa_susp_corte_explic').getValue();
+		acu_peticionesquejasyrecursos_panel_datanuevo['acu_pqr_cantidad_pqr_facturacion'] = Ext.getCmp('acu_pqr_cantidad_pqr_facturacion').getValue();
+		acu_peticionesquejasyrecursos_panel_datanuevo['acu_pqr_cantidad_pqr_instalacion'] = Ext.getCmp('acu_pqr_cantidad_pqr_instalacion').getValue();
+		acu_peticionesquejasyrecursos_panel_datanuevo['acu_pqr_cantidad_pqr_prest_servicio'] = Ext.getCmp('acu_pqr_cantidad_pqr_prest_servicio').getValue();
+		acu_peticionesquejasyrecursos_panel_datanuevo['acu_pqr_cantidad_pqr_otro'] = Ext.getCmp('acu_pqr_cantidad_pqr_otro').getValue();
+		acu_peticionesquejasyrecursos_panel_datanuevo['acu_pqr_cantidad_pqr_explica_otros'] = Ext.getCmp('acu_pqr_cantidad_pqr_explica_otros').getValue();
+		acu_peticionesquejasyrecursos_panel_datanuevo['acu_pqr_cantidad_anual_pqr'] = Ext.getCmp('acu_pqr_cantidad_anual_pqr').getValue();
+		
+	}
+	
+	
+	
+	function acu_peticionesquejasyrecursos_verfiricaraccion()
+	{//compara dos arraglos si son diferentes actualiza sino solo pasa al siguiente form
+		var accion='ninguna';
+	
+		if(acu_peticionesquejasyrecursos_panel_dataviejo) // si existe el viejo, compare
+		{
+			if(acu_peticionesquejasyrecursos_panel_datanuevo['acu_pqr_registro_pqr'] != acu_peticionesquejasyrecursos_panel_dataviejo['acu_pqr_registro_pqr'])
+			{accion='actualizar';}
+			
+			if(acu_peticionesquejasyrecursos_panel_datanuevo['acu_pqr_inf_causa_suspension_corte'] != acu_peticionesquejasyrecursos_panel_dataviejo['acu_pqr_inf_causa_suspension_corte'])
+			{accion='actualizar';}
+			
+			if(acu_peticionesquejasyrecursos_panel_datanuevo['acu_pqr_inf_causa_susp_corte_explic'] != acu_peticionesquejasyrecursos_panel_dataviejo['acu_pqr_inf_causa_susp_corte_explic'])
+			{accion='actualizar';}
+			
+			if(acu_peticionesquejasyrecursos_panel_datanuevo['acu_pqr_cantidad_pqr_facturacion'] != acu_peticionesquejasyrecursos_panel_dataviejo['acu_pqr_cantidad_pqr_facturacion'])
+			{accion='actualizar';}
+			
+			if(acu_peticionesquejasyrecursos_panel_datanuevo['acu_pqr_cantidad_pqr_instalacion'] != acu_peticionesquejasyrecursos_panel_dataviejo['acu_pqr_cantidad_pqr_instalacion'])
+			{accion='actualizar';}
+			
+			if(acu_peticionesquejasyrecursos_panel_datanuevo['acu_pqr_cantidad_pqr_prest_servicio'] != acu_peticionesquejasyrecursos_panel_dataviejo['acu_pqr_cantidad_pqr_prest_servicio'])
+			{accion='actualizar';}
+			
+			if(acu_peticionesquejasyrecursos_panel_datanuevo['acu_pqr_cantidad_pqr_otro'] != acu_peticionesquejasyrecursos_panel_dataviejo['acu_pqr_cantidad_pqr_otro'])
+			{accion='actualizar';}
+			
+			if(acu_peticionesquejasyrecursos_panel_datanuevo['acu_pqr_cantidad_pqr_explica_otros'] != acu_peticionesquejasyrecursos_panel_dataviejo['acu_pqr_cantidad_pqr_explica_otros'])
+			{accion='actualizar';}
+			
+			if(acu_peticionesquejasyrecursos_panel_datanuevo['acu_pqr_cantidad_anual_pqr'] != acu_peticionesquejasyrecursos_panel_dataviejo['acu_pqr_cantidad_anual_pqr'])
+			{accion='actualizar';}
+			
+		}
+		else
+		{
+			accion='crear';
+		}
+			
+		return accion;
+	}
+	
+	function acu_peticionesquejasyrecursos_subirdatos(accion_realizar){
+	
+		acu_peticionesquejasrecursos_panel.getForm().submit({
+			method: 'POST',
+			url:'acueducto_peticionesquejasrecursos/actualizarPeticionesquejasrecursos',
+			params: {
+				servicio:'acueducto'
+			},
+			waitTitle: 'Enviando',
+			waitMsg: 'Enviando datos...',
+			success: function(response, action)
+			{
+				obj = Ext.util.JSON.decode(action.response.responseText);
+			    mostrarMensajeRapido('Aviso',obj.mensaje);
+
+			},
+			failure: function(form, action, response)
+			{
+				if(action.failureType == 'server'){
+					obj = Ext.util.JSON.decode(action.response.responseText); 
+					mostrarMensajeConfirmacion('Error',obj.errors.reason);
+				}
+			}
+		});
+
+	}

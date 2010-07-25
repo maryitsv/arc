@@ -39,3 +39,15 @@ body .x-panel {
 	border:1px solid #99bbe8;
 	border-top:0 none;
 }
+
+/*gestion de usuarios*/
+.usuario_nuevo_icono{ background-image:url(../images/iconos/usuario/add_usu.png) !important;}
+.usuario_borrar_icono{ background-image:url(../images/iconos/usuario/eli_usu.png) !important;}
+.usuario_actualizar_icono{ background-image:url(../images/iconos/usuario/edit_usu.png) !important;}
+.usuario_todos_icono{ background-image:url(../images/iconos/usuario/usuarios.png) !important;} 
+.usuario_deshabilitados_icono{ background-image:url(../images/iconos/usuario/deshabilitado.png) !important;} 
+.usuario_habilitados_icono{ background-image:url(../images/iconos/usuario/habilitado.png) !important;} 
+
+/*botones generales*/
+.siguiente {}
+.atras {}

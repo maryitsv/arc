@@ -5,7 +5,7 @@ Desarrollado maryit sanchez
 */
 
 
-	var acu_fondosolidaridadredistribucioningresos_panel = new Ext.Panel({
+	var acu_fondosolidaridadredistribucioningresos_panel = new Ext.FormPanel({
 	  frame: true,
 	  autoWidth: true,
 	  height: largo_panel-40,
@@ -188,6 +188,14 @@ Desarrollado maryit sanchez
 			 text: 'Continuar',
 			 handler: function()
 			 {
+				acu_fondosolidaridadredistribucioningresos_cargardatostemporal();
+				var accion=acu_fondosolidaridadredistribucioningresos_verfiricaraccion();
+				
+				if(accion=='crear' || accion=='actualizar')
+				{
+					acu_fondosolidaridadredistribucioningresos_subirdatos(accion);
+				}
+
 			  (Ext.getCmp('acu_comercial_tabpanel')).setActiveTab(3);
 			 }
 		  }      
@@ -195,3 +203,97 @@ Desarrollado maryit sanchez
 	   renderTo:'div_form_acu_fondosolidaridadredistribucioningresos'
 	});
 
+
+
+	var acu_fsri_panel_datanuevo;
+	var acu_fsri_panel_dataviejo=new Array();
+/*
+ acu_fsi_sol_tranferencia_recursos 
+ acu_fsi_recibo_recursos 
+ acu_fsi_recibo_recursos_valor_recib 
+ acu_fsi_aporte_recursos 
+ acu_fsi_aporte_recursos_valor_apor 
+ acu_vas_suscripcion_contrato 
+
+*/
+	function acu_fondosolidaridadredistribucioningresos_cargardatostemporal(){
+	
+		if(acu_fsri_panel_datanuevo)
+		{
+			acu_fsri_panel_dataviejo=acu_fsri_panel_datanuevo;
+		}
+		acu_fsri_panel_datanuevo=new Array();
+		acu_fsri_panel_datanuevo['acu_fsi_sol_tranferencia_recursos'] = Ext.getCmp('acu_fsi_sol_tranferencia_recursos').getValue().getGroupValue();
+		
+		acu_fsri_panel_datanuevo['acu_fsi_recibo_recursos'] =Ext.getCmp('acu_fsi_recibo_recursos').getValue().getGroupValue();
+		acu_fsri_panel_datanuevo['acu_fsi_recibo_recursos_valor_recib'] = Ext.getCmp('acu_fsi_recibo_recursos_valor_recib').getValue();
+		acu_fsri_panel_datanuevo['acu_fsi_aporte_recursos'] = Ext.getCmp('acu_fsi_aporte_recursos').getValue().getGroupValue();
+		acu_fsri_panel_datanuevo['acu_fsi_aporte_recursos_valor_apor'] = Ext.getCmp('acu_fsi_aporte_recursos_valor_apor').getValue();
+		acu_fsri_panel_datanuevo['acu_vas_suscripcion_contrato'] = Ext.getCmp('acu_vas_suscripcion_contrato').getValue().getGroupValue();
+		
+		
+	}
+	
+	
+	
+	function acu_fondosolidaridadredistribucioningresos_verfiricaraccion()
+	{//compara dos arraglos si son diferentes actualiza sino solo pasa al siguiente form
+		var accion='ninguna';
+	
+		if(acu_fsri_panel_dataviejo) // si existe el viejo, compare
+		{
+			if(acu_fsri_panel_datanuevo['acu_fsi_sol_tranferencia_recursos'] != acu_fsri_panel_dataviejo['acu_fsi_sol_tranferencia_recursos'])
+			{accion='actualizar';}
+			
+			if(acu_fsri_panel_datanuevo['acu_fsi_recibo_recursos'] != acu_fsri_panel_dataviejo['acu_fsi_recibo_recursos'])
+			{accion='actualizar';}
+			
+			if(acu_fsri_panel_datanuevo['acu_fsi_recibo_recursos_valor_recib'] != acu_fsri_panel_dataviejo['acu_fsi_recibo_recursos_valor_recib'])
+			{accion='actualizar';}
+			
+			if(acu_fsri_panel_datanuevo['acu_fsi_aporte_recursos'] != acu_fsri_panel_dataviejo['acu_fsi_aporte_recursos'])
+			{accion='actualizar';}
+			
+			if(acu_fsri_panel_datanuevo['acu_fsi_aporte_recursos_valor_apor'] != acu_fsri_panel_dataviejo['acu_fsi_aporte_recursos_valor_apor'])
+			{accion='actualizar';}
+			
+			if(acu_fsri_panel_datanuevo['acu_vas_suscripcion_contrato'] != acu_fsri_panel_dataviejo['acu_vas_suscripcion_contrato'])
+			{accion='actualizar';}
+			
+		}
+		else
+		{
+			accion='crear';
+		}
+			
+		return accion;
+	}
+	
+	function acu_fondosolidaridadredistribucioningresos_subirdatos(accion_realizar){
+	
+		acu_fondosolidaridadredistribucioningresos_panel.getForm().submit({
+			method: 'POST',
+			url:'acueducto_fondosolidaridadredistribucioningresos/actualizarFondosolidaridadredistribucioningresos',
+			params: {
+				servicio:'acueducto'
+			},
+			waitTitle: 'Enviando',
+			waitMsg: 'Enviando datos...',
+			success: function(response, action)
+			{
+			  obj = Ext.util.JSON.decode(action.response.responseText);
+			   mostrarMensajeRapido('Aviso',obj.mensaje);
+			},
+			failure: function(form, action, response)
+			{
+				if(action.failureType == 'server'){
+					obj = Ext.util.JSON.decode(action.response.responseText); 
+					mostrarMensajeConfirmacion('Error',obj.errors.reason);
+				}
+			}
+		});
+
+	}
+
+
+				

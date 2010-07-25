@@ -1,4 +1,4 @@
-var url_arc = 'http://localhost/index.php/';
+var url_arc = 'http://localhost/arc/web/index.php/';
 
 var ancho_panel=630;
 
