@@ -23,10 +23,6 @@ propel:
     iaf_pps_pre_id: { phpName: IafPpsPreId, type: INTEGER, required: true, foreignTable: periodoporprestadorservicio, foreignReference: pps_pre_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     iaf_pps_anio: { phpName: IafPpsAnio, type: INTEGER, required: true }
     iaf_pps_ser_id: { phpName: IafPpsSerId, type: INTEGER, required: true }
-    iaf_nombre_diligenciador: { phpName: IafNombreDiligenciador, type: VARCHAR, size: '200', required: false }
-    iaf_apellido_diligenciador: { phpName: IafApellidoDiligenciador, type: VARCHAR, size: '200', required: false }
-    iaf_cedula_diligenciador: { phpName: IafCedulaDiligenciador, type: VARCHAR, size: '15', required: false }
-    iaf_telefono_diligenciador: { phpName: IafTelefonoDiligenciador, type: VARCHAR, size: '15', required: false }
     _uniques: { administrativafinanciera_idx: [iaf_pps_pre_id, iaf_pps_anio, iaf_pps_ser_id] }
   analisiscobertura:
     _attributes: { phpName: Analisiscobertura }
@@ -49,10 +45,6 @@ propel:
     cal_pps_pre_id: { phpName: CalPpsPreId, type: INTEGER, required: true, foreignTable: periodoporprestadorservicio, foreignReference: pps_pre_id, onDelete: RESTRICT, onUpdate: CASCADE }
     cal_pps_anio: { phpName: CalPpsAnio, type: INTEGER, required: true }
     cal_pps_ser_id: { phpName: CalPpsSerId, type: INTEGER, required: true }
-    cal_nombre_diligenciador: { phpName: CalNombreDiligenciador, type: VARCHAR, size: '200', required: false }
-    cal_apellido_diligenciador: { phpName: CalApellidoDiligenciador, type: VARCHAR, size: '200', required: false }
-    cal_cedula_diligenciador: { phpName: CalCedulaDiligenciador, type: VARCHAR, size: '15', required: false }
-    cal_telefono_diligenciador: { phpName: CalTelefonoDiligenciador, type: VARCHAR, size: '15', required: false }
     _uniques: { calidad_idx: [cal_pps_pre_id, cal_pps_anio, cal_pps_ser_id] }
   calidadagua:
     _attributes: { phpName: Calidadagua }
@@ -207,10 +199,6 @@ propel:
     com_pps_pre_id: { phpName: ComPpsPreId, type: INTEGER, required: true, foreignTable: periodoporprestadorservicio, foreignReference: pps_pre_id, onDelete: RESTRICT, onUpdate: CASCADE }
     com_pps_anio: { phpName: ComPpsAnio, type: INTEGER, required: true }
     com_pps_ser_id: { phpName: ComPpsSerId, type: INTEGER, required: true }
-    com_nombre_diligenciador: { phpName: ComNombreDiligenciador, type: VARCHAR, size: '200', required: true }
-    com_apellido_diligenciador: { phpName: ComApellidoDiligenciador, type: VARCHAR, size: '200', required: true }
-    com_cedula_diligenciador: { phpName: ComCedulaDiligenciador, type: VARCHAR, size: '15', required: true }
-    com_telefono_diligenciador: { phpName: ComTelefonoDiligenciador, type: VARCHAR, size: '15', required: false }
     _uniques: { comercial_idx: [com_pps_pre_id, com_pps_anio, com_pps_ser_id] }
   comunidadserviciorecoleccion:
     _attributes: { phpName: Comunidadserviciorecoleccion }
@@ -430,10 +418,6 @@ propel:
     mic_pps_pre_id: { phpName: MicPpsPreId, type: INTEGER, required: true, foreignTable: periodoporprestadorservicio, foreignReference: pps_pre_id, onDelete: RESTRICT, onUpdate: CASCADE }
     mic_pps_anio: { phpName: MicPpsAnio, type: INTEGER, required: true }
     mic_pps_ser_id: { phpName: MicPpsSerId, type: INTEGER, required: true }
-    mic_nombre_diligenciador: { phpName: MicNombreDiligenciador, type: VARCHAR, size: '200', required: false }
-    mic_apellido_diligenciador: { phpName: MicApellidoDiligenciador, type: VARCHAR, size: '200', required: false }
-    mic_cedula_diligenciador: { phpName: MicCedulaDiligenciador, type: VARCHAR, size: '15', required: false }
-    mic_telefono_diligenciador: { phpName: MicTelefonoDiligenciador, type: VARCHAR, size: '15', required: false }
     _uniques: { microcuencas_idx: [mic_pps_pre_id, mic_pps_anio, mic_pps_ser_id] }
   municipio:
     _attributes: { phpName: Municipio }
@@ -470,11 +454,19 @@ propel:
     _uniques: { perfil_per_nombre_key: [per_nombre] }
   periodoporprestadorservicio:
     _attributes: { phpName: Periodoporprestadorservicio }
-    pps_pre_id: { phpName: PpsPreId, type: INTEGER, primaryKey: true, required: true, foreignTable: prestador, foreignReference: pre_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    pps_ser_id: { phpName: PpsSerId, type: INTEGER, primaryKey: true, required: true, foreignTable: servicio, foreignReference: ser_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    pps_pre_id: { phpName: PpsPreId, type: INTEGER, primaryKey: true, required: true, foreignTable: prestadorporservicio, foreignReference: ppsg_pre_id, onUpdate: CASCADE }
+    pps_ser_id: { phpName: PpsSerId, type: INTEGER, primaryKey: true, required: true }
     pps_anio: { phpName: PpsAnio, type: INTEGER, primaryKey: true, required: true }
     pps_presupuesto_aprobado: { phpName: PpsPresupuestoAprobado, type: BOOLEAN, required: false }
     pps_suscriptores_pendientes_de_pago: { phpName: PpsSuscriptoresPendientesDePago, type: VARCHAR, required: false }
+    pps_estatutos: { phpName: PpsEstatutos, type: BOOLEAN, required: false }
+    pre_numero_empleados_con_competencias: { phpName: PreNumeroEmpleadosConCompetencias, type: VARCHAR, required: false }
+    pre_numero_empleados_sin_competencias: { phpName: PreNumeroEmpleadosSinCompetencias, type: VARCHAR, required: false }
+    pre_numero_empleados_proceso_competencias: { phpName: PreNumeroEmpleadosProcesoCompetencias, type: VARCHAR, required: false }
+    pps_nombre_diligenciador: { phpName: PpsNombreDiligenciador, type: VARCHAR, size: '200', required: true }
+    pps_apellido_diligenciador: { phpName: PpsApellidoDiligenciador, type: VARCHAR, size: '200', required: true }
+    pps_cedula_diligenciador: { phpName: PpsCedulaDiligenciador, type: VARCHAR, size: '15', required: true }
+    pps_telefono_diligenciador: { phpName: PpsTelefonoDiligenciador, type: VARCHAR, size: '15', required: false }
   personaladministrativo:
     _attributes: { phpName: Personaladministrativo }
     pad_id: { phpName: PadId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -514,13 +506,14 @@ propel:
     pre_ran_id: { phpName: PreRanId, type: INTEGER, required: true, foreignTable: rango, foreignReference: ran_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     pre_usu_id: { phpName: PreUsuId, type: INTEGER, required: true, foreignTable: usuario, foreignReference: usu_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     pre_identificacion_prestador: { phpName: PreIdentificacionPrestador, type: VARCHAR, size: '50', required: true }
-    pre_tipo_identificacion_prestad: { phpName: PreTipoIdentificacionPrestad, type: VARCHAR, size: '50', required: true }
+    pre_tipo_identificacion_prestador: { phpName: PreTipoIdentificacionPrestador, type: VARCHAR, size: '50', required: true }
     pre_nombre_prestador: { phpName: PreNombrePrestador, type: VARCHAR, size: '200', required: true }
-    pre_estatutos: { phpName: PreEstatutos, type: BOOLEAN, required: false }
-    pre_numero_empleados_con_competencias: { phpName: PreNumeroEmpleadosConCompetencias, type: VARCHAR, required: false }
-    pre_numero_empleados_sin_competencias: { phpName: PreNumeroEmpleadosSinCompetencias, type: VARCHAR, required: false }
-    pre_numero_empleados_proceso_competencias: { phpName: PreNumeroEmpleadosProcesoCompetencias, type: VARCHAR, required: false }
     _uniques: { pre_identificacion_prestador_idx: [pre_identificacion_prestador] }
+  prestadorporservicio:
+    _attributes: { phpName: Prestadorporservicio }
+    ppsg_pre_id: { phpName: PpsgPreId, type: INTEGER, primaryKey: true, required: true, foreignTable: prestador, foreignReference: pre_id, onUpdate: CASCADE }
+    ppsg_ser_id: { phpName: PpsgSerId, type: INTEGER, primaryKey: true, required: true, foreignTable: servicio, foreignReference: ser_id, onUpdate: CASCADE }
+    ppsg_observacion: { phpName: PpsgObservacion, type: LONGVARCHAR, required: false }
   proteccionfuentessuperficialesagua:
     _attributes: { phpName: Proteccionfuentessuperficialesagua }
     pfu_id: { phpName: PfuId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -693,7 +686,6 @@ propel:
     _attributes: { phpName: Tecnicooperativadesarenadoracueducto }
     todes_id: { phpName: TodesId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     todes_top_id: { phpName: TodesTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    todes_desarenador: { phpName: TodesDesarenador, type: VARCHAR, size: '100', required: true }
     todes_bypass: { phpName: TodesBypass, type: BOOLEAN, required: false }
     todes_valvula: { phpName: TodesValvula, type: BOOLEAN, required: false }
     todes_aguas_erosion: { phpName: TodesAguasErosion, type: BOOLEAN, required: false }
@@ -702,7 +694,6 @@ propel:
     toda_id: { phpName: TodaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     toda_top_id: { phpName: TodaTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
     toda_desinfeccion: { phpName: TodaDesinfeccion, type: BOOLEAN, required: false }
-    toda_tipo_desinfeccion: { phpName: TodaTipoDesinfeccion, type: VARCHAR, size: '100', required: false }
     toda_desinfeccion_cloro: { phpName: TodaDesinfeccionCloro, type: BOOLEAN, required: false }
     toda_desinfeccion_hipoclorito_sodio: { phpName: TodaDesinfeccionHipocloritoSodio, type: BOOLEAN, required: false }
     toda_desinfeccion_hipoclorito_calcio: { phpName: TodaDesinfeccionHipocloritoCalcio, type: BOOLEAN, required: false }
@@ -818,10 +809,6 @@ propel:
     top_pps_pre_id: { phpName: TopPpsPreId, type: INTEGER, required: true, foreignTable: periodoporprestadorservicio, foreignReference: pps_pre_id, onDelete: RESTRICT, onUpdate: CASCADE }
     top_pps_anio: { phpName: TopPpsAnio, type: INTEGER, required: true }
     top_pps_ser_id: { phpName: TopPpsSerId, type: INTEGER, required: true }
-    top_nombre_diligenciador: { phpName: TopNombreDiligenciador, type: VARCHAR, size: '200', required: true }
-    top_apellido_diligenciador: { phpName: TopApellidoDiligenciador, type: VARCHAR, size: '200', required: true }
-    top_cedula_diligenciador: { phpName: TopCedulaDiligenciador, type: VARCHAR, size: '15', required: true }
-    top_telefono_diligenciador: { phpName: TopTelefonoDiligenciador, type: VARCHAR, size: '15', required: false }
     _uniques: { tecnicooperativo_idx: [top_pps_pre_id, top_pps_anio, top_pps_ser_id] }
   tipocanal:
     _attributes: { phpName: Tipocanal }

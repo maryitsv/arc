@@ -178,12 +178,19 @@ var form_prestador = new Ext.form.FormPanel({
 	    	id: 'prestador_boton_continuar', 
 	    	iconCls: 'crear16', 
 	    	handler: function(){
-				Ext.getCmp('panel_servicios').setActiveGroup(1);
-				Ext.getCmp('acueducto').setActiveTab(0);
+				prestador_subirdatos();
+				//Ext.getCmp('panel_servicios').setActiveGroup(1);
+				//Ext.getCmp('acueducto').setActiveTab(0);
 			}
 	    }
 	]
 });
+	
+function prestador_subirdatos() {
+
+	subirDatos(form_prestador, 'prestador/actualizarPrestador');
+	
+}
 
 //Ext.getCmp("datos_prestador").add(form_prestador);
 prestador_datastore.load({
