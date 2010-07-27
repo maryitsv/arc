@@ -8,7 +8,7 @@
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
     <script>
-    urlPrefix = <?php echo url_for('default/index'); ?>
+    urlPrefix = '<?php echo url_for('default/index'); ?>';
     </script>
   </head>
   <body>

@@ -1,3 +1,7 @@
+function getAbsoluteUrl (module, action) {
+  return urlPrefix+module+'/'+action;
+}
+
 function ayuda( idcomponente, mensaje, titulo ){
 	if( titulo == null ){
 		titulo= 'Ayuda rapida';
