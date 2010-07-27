@@ -107,5 +107,43 @@ acu_vas_suscripcion_contrato
 	return $this->renderText($salida);
   }
 
+ public function executeObtenerDatosFondosolidaridadredistribucioningresos(sfWebRequest $request)
+  { 
+	$salida='({"total":"0", "results":""})';
+	$fila=0;
+	$datos;
+	
+		try{
+			$com_id=$this->obtenerComId();
+			
+			$conexion = new Criteria();
+			$conexion->add(FondosolidaridadredistribucioningresosPeer::FSI_COM_ID, $com_id);
+			$fsri = FondosolidaridadredistribucioningresosPeer::doSelectOne($conexion);
+
+			$conexionv = new Criteria();
+			$conexionv->add(VinculacionalservicioPeer::VAS_COM_ID, $com_id);
+			$vinculacion = VinculacionalservicioPeer::doSelectOne($conexionv);
+		
+			if($fsri && $vinculacion)
+			{
+				$datos[$fila]['acu_fsi_sol_tranferencia_recursos'] = $fsri->getFsiSolTranferenciaRecursos();
+				$datos[$fila]['acu_fsi_recibo_recursos'] = $fsri->getFsiReciboRecursos();
+				$datos[$fila]['acu_fsi_recibo_recursos_valor_recib'] = $fsri->getFsiReciboRecursosValorRecib();
+				$datos[$fila]['acu_fsi_aporte_recursos'] = $fsri->getFsiAporteRecursos();
+				$datos[$fila]['acu_fsi_aporte_recursos_valor_apor'] = $fsri->getFsiAporteRecursosValorApor();
+				$datos[$fila]['acu_vas_suscripcion_contrato'] = $vinculacion->getVasSuscripcionContrato();
+
+				$jsonresult = json_encode($datos);
+				$salida= '({"total":"'.$fila.'","results":'.$jsonresult.'})';
+			}
+		}
+		catch (Exception $excepcion)
+		{
+			$salida = "({success: false, errors: { reason: 'Hubo una excepcion'}})";
+		}
+		
+	return $this->renderText($salida);
+  }
+
   
 }

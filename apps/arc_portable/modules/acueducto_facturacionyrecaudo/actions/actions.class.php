@@ -108,4 +108,43 @@ class acueducto_facturacionyrecaudoActions extends sfActions
 		
 	return $this->renderText($salida);
   }
+
+ public function executeObtenerDatosFacturacionyrecaudo(sfWebRequest $request)
+  {  
+	$salida='({"total":"0", "results":""})';
+	$fila=0;
+	$datos;
+		
+	
+		try{
+
+			$com_id = $this->obtenerComId();
+			$conexion = new Criteria();
+			$conexion->add(FacturacionyrecaudoPeer::FAC_COM_ID, $com_id);
+			$facturacionyrecaudo = FacturacionyrecaudoPeer::doSelectOne($conexion);
+			
+			if($facturacionyrecaudo)
+			{
+				$datos[$fila]['acu_fac_frecuencia_del_servicio'] = $facturacionyrecaudo->getFacFrecuenciaDelServicio();
+				$datos[$fila]['acu_fac_frecuenc_facturacion'] = $facturacionyrecaudo->getFacFrecuencFacturacion();
+				$datos[$fila]['acu_fac_frecuenc_fac_justificacion'] = $facturacionyrecaudo->getFacFrecuencFacJustificacion();
+				$datos[$fila]['acu_fac_num_fac_exp_ultimo_periodo'] = $facturacionyrecaudo->getFacNumFacExpUltimoPeriodo();
+				$datos[$fila]['acu_fac_sist_fac_utilizado'] = $facturacionyrecaudo->getFacSistFacUtilizado();
+				$datos[$fila]['acu_fac_frecuencia_fac_justifica'] = $facturacionyrecaudo->getFacFrecuenciaFacJustifica();
+				$datos[$fila]['acu_fac_morosidad_promedio'] = $facturacionyrecaudo->getFacMorosidadPromedio();
+				$datos[$fila]['acu_fac_vol_agua_fac_en_el_anio_acu'] = $facturacionyrecaudo->getFacVolAguaFacEnElAnioAcu();
+				$datos[$fila]['acu_fac_vol_agua_suministrado_anio_acu'] = $facturacionyrecaudo->getFacVolAguaSuministradoAnioAcu();
+				
+				$jsonresult = json_encode($datos);
+				$salida= '({"total":"'.$fila.'","results":'.$jsonresult.'})';
+			} 
+		
+		}
+		catch (Exception $excepcion)
+		{
+			return "({success: false, errors: { reason: 'Hubo una excepcion en facturacion y recaudo'}})";
+		}
+		
+	return $this->renderText($salida);
+  }
 }

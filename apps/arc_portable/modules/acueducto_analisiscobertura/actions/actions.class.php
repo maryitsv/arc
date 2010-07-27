@@ -170,4 +170,38 @@ class acueducto_analisiscoberturaActions extends sfActions
 	return $this->renderText($salida);*/
   }
 
+ public function executeObtenerDatosAnalisiscobertura(sfWebRequest $request)
+  {
+		$salida='({"total":"0", "results":""})';
+		$fila=0;
+		$datos;
+		
+        try{
+			$com_id=$this->obtenerComId();
+			
+			$conexion = new Criteria();
+			$conexion->add(AnalisiscoberturaPeer::ACO_COM_ID, $com_id);
+			$analisisCobertura = AnalisiscoberturaPeer::doSelectOne($conexion);
+
+			if($analisisCobertura)
+			{
+				$datos[$fila]['acu_aco_catastro_usuarios'] = $analisisCobertura->getAcoCatastroUsuarios();
+				$datos[$fila]['acu_aco_anio_ela_impl_catastro_usu'] = $analisisCobertura->getAcoAnioElaImplCatastroUsu();
+				$datos[$fila]['acu_aco_num_predios_area'] = $analisisCobertura->getAcoNumPrediosArea();
+				$datos[$fila]['acu_aco_num_predios_conec_sistema'] = $analisisCobertura->getAcoNumPrediosConecSistema();
+				$datos[$fila]['acu_aco_estrat_soceco_adop_mpio'] = $analisisCobertura->getAcoEstratSocecoAdopMpio();
+				$datos[$fila]['acu_aco_estra_soceco_adop_mpio_jus'] = $analisisCobertura->getAcoEstraSocecoAdopMpioJus();
+				
+				$jsonresult = json_encode($datos);
+				$salida= '({"total":"'.$fila.'","results":'.$jsonresult.'})';
+			}
+
+		}catch (Exception $excepcion)
+		{
+			//return $salida;
+		}		
+
+		return $this->renderText($salida);
+  }
+
 }

@@ -25,6 +25,24 @@ Desarrollado maryit sanchez
 	acu_informaciongeneralmicrocuencas_departamento_datastore.load();
 
 
+    var acu_informaciongeneralmicrocuencas_municipio_datastore= new Ext.data.Store({
+		id: 'acu_informaciongeneralmicrocuencas_municipio_datastore',
+		proxy: new Ext.data.HttpProxy({
+			url: 'acueducto_informaciongeneralmicrocuencas/listarMunicipios', 
+			method: 'POST'
+			}),
+		baseParams:{}, 
+		reader: new Ext.data.JsonReader({
+			root: 'results',
+			totalProperty: 'total',
+			id: 'id'
+			},
+			[{name: 'mun_id'},{name: 'mun_nombre'}]),
+		sortInfo:{field: 'mun_nombre', direction: "ASC"}
+    });
+
+	acu_informaciongeneralmicrocuencas_municipio_datastore.load();
+	
 	var acu_informaciongeneralmicrocuencas_panel = new Ext.FormPanel({
 	  id:'acu_informaciongeneralmicrocuencas_panel',
 	  frame: true,
@@ -64,9 +82,40 @@ Desarrollado maryit sanchez
 		   {
 				'render': function() {
 						ayuda('acu_imi_dep_id', ayuda_acu_imi_dep_id);
+						},
+				'select':function() {
+						Ext.getCmp('acu_imi_mun_id').clearValue();
+						acu_informaciongeneralmicrocuencas_municipio_datastore.removeAll();
+			
+						acu_informaciongeneralmicrocuencas_municipio_datastore.baseParams = {
+								dep_id: Ext.getCmp('acu_imi_dep_id').getValue()
+								};
+						
+						acu_informaciongeneralmicrocuencas_municipio_datastore.reload();
+						
 						}
 			}
 		}),
+		new Ext.form.ComboBox({
+			xtype: 'combobox',
+			labelStyle: 'width:100px; text-align:right;'+letra,
+			id:'acu_imi_mun_id',
+			name:'acu_imi_mun_id',
+			fieldLabel:'Municipio',
+			store:acu_informaciongeneralmicrocuencas_municipio_datastore,
+			mode:'local',
+			emptyText:'Selecione ...',
+			displayField:'mun_nombre',
+			valueField:'mun_id',
+			triggerAction:'all',
+			forceSelection:true,
+			listeners:
+		   {
+				'render': function() {
+						ayuda('acu_imi_mun_id', ayuda_acu_imi_mun_id);
+						}
+			}
+		}),/*
 		{
 		   xtype: 'textfield',
 		   labelStyle: 'width:100px; text-align:right;'+letra,
@@ -79,7 +128,7 @@ Desarrollado maryit sanchez
 						ayuda('acu_imi_mun_id', ayuda_acu_imi_mun_id);
 						}
 			}
-		},
+		},*/
 		{
 		   xtype: 'textfield',
 		   labelStyle: 'width:100px; text-align:right;'+letra,
@@ -212,5 +261,5 @@ var ayuda_ acu_imi_fecha='Escriba la fecha de la ???';
 	}
 	
 	function acu_informaciongeneralmicrocuencas_subirdatos(accion_realizar){
-		subirdatos(acu_informaciongeneralmicrocuencas_panel,'acueducto_informaciongeneralmicrocuencas/actualizarInformaciongeneralmicrocuencas');	
+		subirDatos(acu_informaciongeneralmicrocuencas_panel,'acueducto_informaciongeneralmicrocuencas/actualizarInformaciongeneralmicrocuencas');	
 	}
