@@ -55,7 +55,7 @@ class acueducto_participacionciudadanaActions extends sfActions
 			{
 				$acu_participacionciudadana->setParParticipacionCiudadanaDirecta($this->getRequestParameter('acu_par_participacion_ciudadana_directa'));
 				$acu_participacionciudadana->setParParticipacionCiudadanaAsamblea($this->getRequestParameter('acu_par_participacion_ciudadana_asamblea'));
-			//	$acu_participacionciudadana->setParParticipacionCiudadanaComiteDesarrolloSocial($this->getRequestParameter('acu_par_participacion_ciudadana_comite_desarrollo_social'));
+				$acu_participacionciudadana->setParParticipacionCiudadanaComiteDesarrolloControlSocial($this->getRequestParameter('acu_par_participacion_ciudadana_comite_desarrollo_control_social'));
 				$acu_participacionciudadana->setParParticipacionCiudadanaVeedurias($this->getRequestParameter('acu_par_participacion_ciudadana_veedurias'));
 				$acu_participacionciudadana->setParParticipacionCiudadanaOtraCual($this->getRequestParameter('acu_par_participacion_ciudadana_otra_cual'));
 				$acu_participacionciudadana->setParPropuestasVocales($this->getRequestParameter('acu_par_propuestas_vocales'));
@@ -78,8 +78,7 @@ class acueducto_participacionciudadanaActions extends sfActions
 				$acu_participacionciudadana->setParIafId($iaf_id);
 				$acu_participacionciudadana->setParParticipacionCiudadanaDirecta($this->getRequestParameter('acu_par_participacion_ciudadana_directa'));
 				$acu_participacionciudadana->setParParticipacionCiudadanaAsamblea($this->getRequestParameter('acu_par_participacion_ciudadana_asamblea'));
-			//	$acu_participacionciudadana->setParParticipacionCiudadanaComiteDesarrolloSocial($this->getRequestParameter('acu_par_participacion_ciudadana_comite_desarrollo_social'));
-			//  par_participacion_ciudadana_comite_desarr_control_social en la bd
+				$acu_participacionciudadana->setParParticipacionCiudadanaComiteDesarrolloControlSocial($this->getRequestParameter('acu_par_participacion_ciudadana_comite_desarrollo_social'));
 				$acu_participacionciudadana->setParParticipacionCiudadanaVeedurias($this->getRequestParameter('acu_par_participacion_ciudadana_veedurias'));
 				$acu_participacionciudadana->setParParticipacionCiudadanaOtraCual($this->getRequestParameter('acu_par_participacion_ciudadana_otra_cual'));
 				$acu_participacionciudadana->setParPropuestasVocales($this->getRequestParameter('acu_par_propuestas_vocales'));
@@ -101,4 +100,52 @@ class acueducto_participacionciudadanaActions extends sfActions
 	
 	return $this->renderText($salida);
   }
+  
+  public function executeObtenerDatosAcuParticipacionCiudadana(sfWebRequest $request)
+  {
+	$salida = "";
+	
+	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
+	$pps_ser_id = $this->obtenerServicioId('acueducto');
+	
+	$conexion = new Criteria();
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PRE_ID, $pps_pre_id);
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_ANIO, $pps_anio);
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_SER_ID, $pps_ser_id);
+	$acu_administrativafinanciera = AdministrativafinancieraPeer::doSelectOne($conexion);
+
+	if($acu_administrativafinanciera)
+	{
+	
+		$conexion = new Criteria();
+		$conexion->add(ParticipacionciudadanaPeer::PAR_IAF_ID, $acu_administrativafinanciera->getIafId());
+		$acu_participacionciudadana = ParticipacionciudadanaPeer::doSelectOne($conexion);
+		
+		$datos;
+		$pos=0;
+		
+		if($acu_participacionciudadana)
+		{
+			$datos[$pos]['acu_par_participacion_ciudadana_directa']=$acu_participacionciudadana->getParParticipacionCiudadanaDirecta();
+			$datos[$pos]['acu_par_participacion_ciudadana_asamblea']=$acu_participacionciudadana->getParParticipacionCiudadanaAsamblea();
+			$datos[$pos]['acu_par_participacion_ciudadana_comite_desarrollo_social']=$acu_participacionciudadana->getParParticipacionCiudadanaComiteDesarrolloControlSocial();
+			$datos[$pos]['acu_par_participacion_ciudadana_veedurias']=$acu_participacionciudadana->getParParticipacionCiudadanaVeedurias();
+			$datos[$pos]['acu_par_participacion_ciudadana_otra_cual']=$acu_participacionciudadana->getParParticipacionCiudadanaOtraCual();
+			$datos[$pos]['acu_par_propuestas_vocales']=$acu_participacionciudadana->getParPropuestasVocales();
+			
+			$jsonresult = json_encode($datos);
+			$salida = '({"total":'.$pos.',"results":'.$jsonresult.'})';
+		}
+		else
+		{
+			$salida = '({"total":"0", "results":""})';
+		}
+	}
+	else {
+		$salida = '({"total":"0", "results":""})';
+	}
+	return 	$this->renderText($salida);
+  }
+  
 }

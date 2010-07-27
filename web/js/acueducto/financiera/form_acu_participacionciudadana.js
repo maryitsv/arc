@@ -1,3 +1,25 @@
+var acu_participacionciudadana_datastore = new Ext.data.Store({
+	id: 'acu_participacionciudadana_datastore',
+	proxy: new Ext.data.HttpProxy({
+			url: 'acueducto_participacionciudadana/obtenerDatosAcuParticipacionCiudadana', 
+			method: 'POST'
+	}),
+	baseParams:{}, 
+	reader: new Ext.data.JsonReader({
+			root: 'results',
+			totalProperty: 'total',
+			id: 'id'
+			},[
+			
+			  {name: 'acu_par_participacion_ciudadana_directa', type: 'bool'}, 
+			  {name: 'acu_par_participacion_ciudadana_asamblea', type: 'bool'}, 
+			  {name: 'acu_par_participacion_ciudadana_comite_desarrollo_social', type: 'bool'}, 
+			  {name: 'acu_par_participacion_ciudadana_veedurias', type: 'bool'}, 
+			  {name: 'acu_par_participacion_ciudadana_otra_cual', type: 'string'}, 
+			  {name: 'acu_par_propuestas_vocales', type: 'boolean'} 
+	])
+});
+
 var acu_par_tipoparticiacion_checkboxgroup = new Ext.form.CheckboxGroup({
 	fieldLabel: 'Indique las formas de participaci&oacute;n ciudadana',
 	labelStyle: 'width:310px;',
@@ -28,12 +50,12 @@ var acu_par_tipoparticiacion_checkboxgroup = new Ext.form.CheckboxGroup({
 		},
 	    {
 			boxLabel: 'Comit&eacute; de Desarrollo y Control Social', 
-			name: 'acu_par_participacion_ciudadana_comite_desarrollo_social',
-			id: 'acu_par_participacion_ciudadana_comite_desarrollo_social',
+			name: 'acu_par_participacion_ciudadana_comite_desarrollo_control_social',
+			id: 'acu_par_participacion_ciudadana_comite_desarrollo_control_social',
 			listeners:
 	        {
 	                'render': function(){ 
-						ayuda( 'acu_par_participacion_ciudadana_comite_desarrollo_social', ayuda_acu_par_participacion_ciudadana_comite_desarrollo_social );
+						ayuda( 'acu_par_participacion_ciudadana_comite_desarrollo_control_social', ayuda_acu_par_participacion_ciudadana_comite_desarrollo_control_social );
 					}                 
 	        }
 		},
@@ -96,17 +118,19 @@ var acu_par_propuestas_vocales = new Ext.form.RadioGroup({
        {
 		  	boxLabel: 'Si',
 			name: 'acu_par_propuestas_vocales', 
-			checked: true
+			checked: true,
+			inputValue: true
        },
        { 
 		  	boxLabel: 'No', 
-			name: 'acu_par_propuestas_vocales' 
+			name: 'acu_par_propuestas_vocales' ,
+			inputValue: false
        }
     ]                
 } );
 
 
-var form_acu_participacionciudadana = new Ext.form.FormPanel({
+var form_acu_participacionciudadana = new Ext.FormPanel({
 	autoWidth: true,
 	border: false,
 	layout: 'column',
@@ -133,20 +157,26 @@ var form_acu_participacionciudadana = new Ext.form.FormPanel({
 			text: 'Atras', 
 			iconCls: 'crear16', 
 			handler: function(){
-							Ext.getCmp('tabp_acu_administrativafinanciera').setActiveTab(0);
+							//Ext.getCmp('tabp_acu_administrativafinanciera').setActiveTab(0);
 			}
 		},
 	    {
 	    	text: 'Continuar', 
 	    	iconCls: 'crear16', 
 	    	handler: function(){
-							Ext.getCmp('tabp_acu_administrativafinanciera').setActiveTab(2);
+							//Ext.getCmp('tabp_acu_administrativafinanciera').setActiveTab(2);
 							acu_participacionciudadana_subirdatos();
 			}
 	    }
 	]
 });
 
+acu_participacionciudadana_datastore.load({
+  callback: function() {
+	var record = acu_participacionciudadana_datastore.getAt(0);
+	form_acu_participacionciudadana.getForm().loadRecord(record);
+  }
+});
 
 function acu_participacionciudadana_subirdatos() {
 

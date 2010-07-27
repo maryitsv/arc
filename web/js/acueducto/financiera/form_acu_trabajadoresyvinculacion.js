@@ -393,7 +393,7 @@ var acu_trabajadoresyvinculacion_presonaloperativo_formpanel = new Ext.form.Form
 
 var form_acu_trabajadoresyvinculacion = new Ext.Panel({
 	border: false,
-	layout: 'form',
+	//layout: 'form',
 	renderTo: 'div_form_acu_trabajadoresyvinculacion',
 	autoWidth: true,
 	items: [acu_trabajadoresyvinculacion_presonaladministrativo_formpanel, acu_trabajadoresyvinculacion_presonaloperativo_formpanel]

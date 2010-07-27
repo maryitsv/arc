@@ -1,3 +1,53 @@
+var acu_informacioncontable_datastore = new Ext.data.Store({
+	id: 'acu_informacioncontable_datastore',
+	proxy: new Ext.data.HttpProxy({
+			url: 'acueducto_informacioncontable/obtenerDatosAcuInformacionContable', 
+			method: 'POST'
+	}),
+	baseParams:{}, 
+	reader: new Ext.data.JsonReader({
+			root: 'results',
+			totalProperty: 'total',
+			id: 'id'
+			},[
+			  {name: 'acu_ico_balance_general', type: 'int'},
+			  {name: 'acu_ico_activos', type: 'float'},
+			  {name: 'acu_ico_activos_corrientes', type: 'float'},
+			  {name: 'acu_ico_efectivo', type: 'float'},
+			  {name: 'acu_ico_deudores', type: 'float'},
+			  {name: 'acu_ico_inventario', type: 'float'},
+			  {name: 'acu_ico_activos_fijos', type: 'float'},
+			  {name: 'acu_ico_propiedad_planta_equipos', type: 'float'},
+			  {name: 'acu_ico_otros_activos', type: 'float'},
+			  {name: 'acu_ico_pasivos', type: 'float'},
+			  {name: 'acu_ico_pasivos_corrientes', type: 'float'},
+			  {name: 'acu_ico_obligaciones_financieras', type: 'float'},
+			  {name: 'acu_ico_otras_cuentas_por_pagar', type: 'float'},
+			  {name: 'acu_ico_obligaciones_laborales', type: 'float'},
+			  {name: 'acu_ico_otros_pasivos', type: 'float'},
+			  {name: 'acu_ico_patrimonio', type: 'float'},
+			  {name: 'acu_ico_estado_de_resultados', type: 'int'},
+			  {name: 'acu_ico_total_ingresos', type: 'float'},
+			  {name: 'acu_ico_ingresos_operacionales', type: 'float'},
+			  {name: 'acu_ico_ingresos_no_operacionales', type: 'float'},
+			  {name: 'acu_ico_total_egresos', type: 'float'},
+			  {name: 'acu_ico_gastos_administrativos', type: 'float'},
+			  {name: 'acu_ico_costo_operacion_mantenimiento', type: 'float'}, 
+			  {name: 'acu_ico_costo_inversion', type: 'float'},
+			  {name: 'acu_ico_resultados_ejecicio', type: 'float'}
+	])
+});
+
+Ext.form.VTypes['acu_informacioncontable_sumaractivos_vtype'] = function(val, field)
+{
+   var suma = Ext.getCmp('acu_ico_activos_corrientes').getValue() + 
+				Ext.getCmp('acu_ico_deudores').getValue();
+   Ext.getCmp('acu_ico_activos').setValue(suma);
+   //var total = Ext.getCmp('nmsActivosAc').getValue() - Ext.getCmp('nmsActivosE').getValue();
+   //Ext.getCmp('totales').setValue(total);
+   return true;
+}
+
 
 var acu_ico_balance_general = new Ext.form.TextField( {
 	fieldLabel: 'Balance general a diciembre 30 de', 
@@ -6,7 +56,7 @@ var acu_ico_balance_general = new Ext.form.TextField( {
 	id: 'acu_ico_balance_general', 
 	name: 'acu_ico_balance_general', 
 	width: 300, 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_balance_general', ayuda_acu_ico_balance_general );
@@ -20,27 +70,35 @@ var acu_ico_activos = new Ext.form.TextField( {
 	id: 'acu_ico_activos',
 	disabled: true,
 	name: 'acu_ico_activos',
+	enableKeyEvents: true,
 	anchor: '100%', 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_activos', ayuda_acu_ico_activos );
-     	}
+     	},
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 
 var acu_ico_activos_corrientes = new Ext.form.TextField( {
 	fieldLabel: 'Activos corrientes ($)', 
 	emptyText: 'ingrese los activos corrientes', 
-	id: 'acu_ico_activos_corrientes', 
+	id: 'acu_ico_activos_corrientes',
+	enableKeyEvents: true,
+	vtype:'acu_informacioncontable_sumaractivos_vtype',
 	name: 'acu_ico_activos_corrientes', 
 	anchor: '100%', 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_activos_corrientes', ayuda_acu_ico_activos_corrientes );
      	},
-		'change' : function(){ formatoNumeroCampo(this); } 
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 
@@ -48,13 +106,19 @@ var acu_ico_efectivo = new Ext.form.TextField( {
 	fieldLabel: 'Efectivo (caja m&aacute;s bancos) ($)', 
 	emptyText: 'ingrese la cantidad de efectivo', 
 	id: 'acu_ico_efectivo', 
-	name: 'acu_ico_efectivo', 
+	name: 'acu_ico_efectivo',
+	enableKeyEvents: true,
+	vtype:'acu_informacioncontable_sumaractivos_vtype',
+	enableKeyEvents: true,
 	anchor: '100%', 
-	allowBlank:false,
+	//allowBlank:false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_efectivo', ayuda_acu_ico_efectivo );
-     	}
+     	},
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 
@@ -62,13 +126,18 @@ var acu_ico_deudores = new Ext.form.TextField( {
 	fieldLabel: 'Deudores (cuentas por cobrar) ($)', 
 	emptyText: 'ingrese la cantidad de deudores', 
 	id: 'acu_ico_deudores', 
-	name: 'acu_ico_deudores', 
+	name: 'acu_ico_deudores',
+	enableKeyEvents: true,
+	vtype:'acu_informacioncontable_sumaractivos_vtype',
 	anchor: '100%', 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_deudores', ayuda_acu_ico_deudores );
-     	}
+     	},
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 
@@ -78,11 +147,14 @@ var acu_ico_inventario = new Ext.form.TextField( {
 	id: 'acu_ico_inventario', 
 	name: 'acu_ico_inventario', 
 	anchor: '100%', 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_inventario', ayuda_acu_ico_inventario );
-     	}
+     	},
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 
@@ -92,11 +164,14 @@ var acu_ico_activos_fijos = new Ext.form.TextField( {
 	id: 'acu_ico_activos_fijos', 
 	name: 'acu_ico_activos_fijos', 
 	anchor: '100%', 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_activos_fijos', ayuda_acu_ico_activos_fijos );
-     	}
+     	},
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 
@@ -106,11 +181,14 @@ var acu_ico_propiedad_planta_equipos = new Ext.form.TextField( {
 	id: 'acu_ico_propiedad_planta_equipos', 
 	name: 'acu_ico_propiedad_planta_equipos', 
 	anchor: '100%', 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_propiedad_planta_equipos', ayuda_acu_ico_propiedad_planta_equipos );
-     	}
+     	},
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 
@@ -120,11 +198,14 @@ var acu_ico_otros_activos = new Ext.form.TextField( {
 	id: 'acu_ico_otros_activos', 
 	name: 'acu_ico_otros_activos', 
 	anchor: '100%', 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_otros_activos', ayuda_acu_ico_otros_activos );
-     	}
+     	},
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 
@@ -134,11 +215,14 @@ var acu_ico_pasivos = new Ext.form.TextField( {
 	id: 'acu_ico_pasivos', 
 	name: 'acu_ico_pasivos', 
 	anchor: '100%', 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_pasivos', ayuda_acu_ico_pasivos );
-     	}
+     	},
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 
@@ -148,11 +232,14 @@ var acu_ico_pasivos_corrientes = new Ext.form.TextField( {
 	id: 'acu_ico_pasivos_corrientes', 
 	name: 'acu_ico_pasivos_corrientes', 
 	anchor: '100%', 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_pasivos_corrientes', ayuda_acu_ico_pasivos_corrientes );
-     	}
+     	},
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 
@@ -162,11 +249,14 @@ var acu_ico_obligaciones_financieras = new Ext.form.TextField( {
 	id: 'acu_ico_obligaciones_financieras', 
 	name: 'acu_ico_obligaciones_financieras', 
 	anchor: '100%', 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_obligaciones_financieras', ayuda_acu_ico_obligaciones_financieras );
-     	}
+     	},
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 
@@ -176,11 +266,14 @@ var acu_ico_otras_cuentas_por_pagar = new Ext.form.TextField( {
 	id: 'acu_ico_otras_cuentas_por_pagar', 
 	name: 'acu_ico_otras_cuentas_por_pagar', 
 	anchor: '100%', 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_otras_cuentas_por_pagar', ayuda_acu_ico_otras_cuentas_por_pagar );
-     	}
+     	},
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 
@@ -190,11 +283,14 @@ var acu_ico_obligaciones_laborales = new Ext.form.TextField( {
 	id: 'acu_ico_obligaciones_laborales', 
 	name: 'acu_ico_obligaciones_laborales', 
 	anchor: '100%', 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_obligaciones_laborales', ayuda_acu_ico_obligaciones_laborales );
-     	}
+     	},
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 	
@@ -204,11 +300,14 @@ var acu_ico_otros_pasivos = new Ext.form.TextField( {
 	id: 'acu_ico_otros_pasivos', 
 	name: 'acu_ico_otros_pasivos', 
 	anchor: '100%', 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_otros_pasivos', ayuda_acu_ico_otros_pasivos );
-     	}
+     	},
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 
@@ -218,11 +317,14 @@ var acu_ico_patrimonio = new Ext.form.TextField( {
 	id: 'acu_ico_patrimonio', 
 	name: 'acu_ico_patrimonio', 
 	anchor: '100%', 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_patrimonio', ayuda_acu_ico_patrimonio );
-     	}
+     	},
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 
@@ -249,7 +351,7 @@ var acu_financieracontable_activos_pasivos_formpanel = new Ext.form.FormPanel({
 			columnWidth: '.495',
 			height: 300,
 			title: 'Activos',
-			defaultType: 'textfield',
+			defaultType: 'numberfield',
 			labelWidth: 150,
 			defaults: {labelStyle: 'font-size:1.0em;'},
 			padding: 8,
@@ -262,7 +364,7 @@ var acu_financieracontable_activos_pasivos_formpanel = new Ext.form.FormPanel({
 			title: 'Pasivos',
 			columnWidth: '.495',
 			height: 300,
-			defaultType: 'textfield',
+			defaultType: 'numberfield',
 			labelWidth: 150,
 			defaults: {labelStyle: 'font-size:1.0em;'},
 			bodyStyle: Ext.isIE ? 'padding:5 5 5px 15px;' : 'padding: 10px 10px;'
@@ -271,14 +373,14 @@ var acu_financieracontable_activos_pasivos_formpanel = new Ext.form.FormPanel({
 	buttons:[
 		{
 			text: 'Atras', 
-			iconCls: 'crear16', 
+			//iconCls: 'crear16', 
 			handler: function(){
 							Ext.getCmp('acueducto').setActiveTab(0);
 			}
 		},
 	    {
 	    	text: 'Continuar', 
-	    	iconCls: 'crear16', 
+	    	//iconCls: 'crear16', 
 	    	handler: function(){
 							acu_financieracontable_activos_pasivos_formpanel.hide();
 							acu_financieracontable_totales_formpanel.show();
@@ -294,7 +396,7 @@ var acu_ico_estado_de_resultados = new Ext.form.TextField( {
 	id: 'acu_ico_estado_de_resultados', 
 	name: 'acu_ico_estado_de_resultados', 
 	width: 300, 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_estado_de_resultados', ayuda_acu_ico_estado_de_resultados );
@@ -309,11 +411,14 @@ var acu_ico_total_ingresos = new Ext.form.TextField( {
 	id: 'acu_ico_total_ingresos', 
 	name: 'acu_ico_total_ingresos', 
 	width: 300, 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_total_ingresos', ayuda_acu_ico_total_ingresos );
-     	}
+     	},
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 
@@ -324,11 +429,14 @@ var acu_ico_ingresos_operacionales = new Ext.form.TextField( {
 	id: 'acu_ico_ingresos_operacionales', 
 	name: 'acu_ico_ingresos_operacionales', 
 	width: 300, 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_ingresos_operacionales', ayuda_acu_ico_ingresos_operacionales );
-     	}
+     	},
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 
@@ -339,11 +447,14 @@ var acu_ico_ingresos_no_operacionales = new Ext.form.TextField( {
 	id: 'acu_ico_ingresos_no_operacionales', 
 	name: 'acu_ico_ingresos_no_operacionales', 
 	width: 300, 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_ingresos_no_operacionales', ayuda_acu_ico_ingresos_no_operacionales );
-     	}
+     	},
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 
@@ -354,11 +465,14 @@ var acu_ico_total_egresos = new Ext.form.TextField( {
 	id: 'acu_ico_total_egresos', 
 	name: 'acu_ico_total_egresos', 
 	width: 300, 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_total_egresos', ayuda_acu_ico_total_egresos );
-     	}
+     	},
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 
@@ -369,11 +483,14 @@ var acu_ico_gastos_administrativos = new Ext.form.TextField( {
 	id: 'acu_ico_gastos_administrativos', 
 	name: 'acu_ico_gastos_administrativos', 
 	width: 300, 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_gastos_administrativos', ayuda_acu_ico_gastos_administrativos );
-     	}
+     	},
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 
@@ -384,11 +501,14 @@ var acu_ico_costo_operacion_mantenimiento = new Ext.form.TextField( {
 	id: 'acu_ico_costo_operacion_mantenimiento', 
 	name: 'acu_ico_costo_operacion_mantenimiento', 
 	width: 300, 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_costo_operacion_mantenimiento', ayuda_acu_ico_costo_operacion_mantenimiento );
-     	}
+     	},
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 
@@ -399,11 +519,14 @@ var acu_ico_costo_inversion = new Ext.form.TextField( {
 	id: 'acu_ico_costo_inversion', 
 	name: 'acu_ico_costo_inversion', 
 	width: 300, 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_costo_inversion', ayuda_acu_ico_costo_inversion );
-     	}
+     	},
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 
@@ -414,11 +537,14 @@ var acu_ico_resultados_ejecicio = new Ext.form.TextField( {
 	id: 'acu_ico_resultados_ejecicio', 
 	name: 'acu_ico_resultados_ejecicio', 
 	width: 300, 
-	allowBlank: false,
+	//allowBlank: false,
 	listeners: {
         'render': function(){ 
 					ayuda( 'acu_ico_resultados_ejecicio', ayuda_acu_ico_resultados_ejecicio );
-     	}
+     	},
+		'keyup' : function(){ 
+					formatoNumeroCampo(this); 
+		} 
 	}
 } );
 
@@ -444,7 +570,7 @@ var acu_financieracontable_totales_formpanel = new Ext.form.FormPanel({
 	buttons:[
 		{
 			text: 'Atras', 
-			iconCls: 'crear16', 
+			//iconCls: 'crear16', 
 			handler: function(){
 							acu_financieracontable_totales_formpanel.hide();
 							acu_financieracontable_activos_pasivos_formpanel.show();
@@ -452,9 +578,9 @@ var acu_financieracontable_totales_formpanel = new Ext.form.FormPanel({
 		},
 	    {
 	    	text: 'Continuar', 
-	    	iconCls: 'crear16', 
+	    	//iconCls: 'crear16', 
 	    	handler: function(){
-							Ext.getCmp('tabp_acu_administrativafinanciera').setActiveTab(1);
+							//Ext.getCmp('tabp_acu_administrativafinanciera').setActiveTab(1);
 							acu_informacioncontable_subirdatos();
 			}
 	    }
@@ -470,15 +596,38 @@ if(true){
 
 var form_acu_informacioncontable = new Ext.Panel({
 	border: false,
-	layout: 'form',
+	//layout: 'form',
 	renderTo: 'div_form_acu_informacioncontable',
 	autoWidth: true,
 	items: [acu_financieracontable_activos_pasivos_formpanel, acu_financieracontable_totales_formpanel]
 });
 
+acu_informacioncontable_datastore.load({
+  callback: function() {
+	var record = acu_informacioncontable_datastore.getAt(0);
+	acu_financieracontable_activos_pasivos_formpanel.getForm().loadRecord(record);
+	acu_financieracontable_totales_formpanel.getForm().loadRecord(record);
+  }
+});
+
 function acu_informacioncontable_subirdatos() {
 
-	subirDatos(form_acu_informacioncontable, 'acueducto_informacioncontable/actualizarInformacionContable');
+	subirDatos(
+		acu_financieracontable_activos_pasivos_formpanel, 
+		'acueducto_informacioncontable/actualizarInformacionContable',
+		{ 
+			form: 'activosPasivos', 
+			acu_ico_activos: Ext.getCmp('acu_ico_activos').getValue()
+		}
+	);
+	
+	subirDatos(
+		acu_financieracontable_totales_formpanel, 
+		'acueducto_informacioncontable/actualizarInformacionContable',
+		{ 
+			form: 'totales'
+		}
+	);
 	
 }
 
