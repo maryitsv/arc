@@ -28,12 +28,12 @@ propel:
     _attributes: { phpName: Analisiscobertura }
     aco_id: { phpName: AcoId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     aco_com_id: { phpName: AcoComId, type: INTEGER, required: true, foreignTable: comercial, foreignReference: com_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    aco_catastro_usuarios: { phpName: AcoCatastroUsuarios, type: BOOLEAN, required: false }
     aco_anio_ela_impl_catastro_usu: { phpName: AcoAnioElaImplCatastroUsu, type: INTEGER, required: false }
     aco_num_predios_area: { phpName: AcoNumPrediosArea, type: INTEGER, required: false }
     aco_num_predios_conec_sistema: { phpName: AcoNumPrediosConecSistema, type: INTEGER, required: false }
     aco_estrat_soceco_adop_mpio: { phpName: AcoEstratSocecoAdopMpio, type: BOOLEAN, required: false }
     aco_estra_soceco_adop_mpio_jus: { phpName: AcoEstraSocecoAdopMpioJus, type: CHAR, size: '50', required: false }
+    aco_catastro_usuarios: { phpName: AcoCatastroUsuarios, type: INTEGER, required: false }
   autoridadambiental:
     _attributes: { phpName: Autoridadambiental }
     aua_id: { phpName: AuaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
