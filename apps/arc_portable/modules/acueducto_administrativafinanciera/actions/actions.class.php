@@ -19,4 +19,74 @@ class acueducto_administrativafinancieraActions extends sfActions
   {
     //$this->forward('default', 'module');
   }
+  
+  protected function obtenerServicioId($ser_nombre)
+  {
+	$conexion = new Criteria();			
+	$conexion->add(ServicioPeer::SER_NOMBRE, $ser_nombre);
+	$servicio = ServicioPeer::doSelectOne($conexion);
+	$ser_id = $servicio->getSerId();
+	return  $ser_id;
+  }
+  
+  public function executeActualizarAcuAdministrativaFinanciera(sfWebRequest $request)
+  {
+	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
+	$pps_ser_id = $this->obtenerServicioId('acueducto');
+	
+	$conexion = new Criteria();
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PRE_ID, $pps_pre_id);
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_ANIO, $pps_anio);
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_SER_ID, $pps_ser_id);
+	$acu_administrativafinanciera = AdministrativafinancieraPeer::doSelectOne($conexion);
+	
+	if($acu_administrativafinanciera)
+	{
+		try
+		{
+			$acu_administrativafinanciera->setIafNombreDiligenciador($this->getRequestParameter('acu_iaf_nombre_diligenciador'));
+			$acu_administrativafinanciera->setIafApellidoDiligenciador($this->getRequestParameter('acu_iaf_nombre_diligenciador'));
+			$acu_administrativafinanciera->setIafIdentificacionDiligenciador($this->getRequestParameter('acu_iaf_identificacion_diligenciador'));
+			$acu_administrativafinanciera->setIafTipoIdentificacionDiligenciador($this->getRequestParameter('acu_iaf_tipo_identificacion_diligenciador'));
+			$acu_administrativafinanciera->setIafTelefonoDiligenciador($this->getRequestParameter('acu_iaf_telefono_diligenciador'));
+			
+			$acu_administrativafinanciera->save();
+			
+			$salida = "({success: true, mensaje:'La informacion administrativa financiera fue actualizada exitosamente'})";
+		}
+		catch(Exception $exception)
+		{
+			return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en administracion financiera'}})");
+		}
+	}
+	else
+	{
+		try
+		{
+			$acu_administrativafinanciera = new Administrativafinanciera();
+			
+			$acu_administrativafinanciera->setIafPpsPreId($pps_pre_id);
+			$acu_administrativafinanciera->setIafPpsAnio($pps_anio);
+			$acu_administrativafinanciera->setIafPpsSerId($pps_ser_id);
+			
+			$acu_administrativafinanciera->setIafNombreDiligenciador($this->getRequestParameter('acu_iaf_nombre_diligenciador'));
+			$acu_administrativafinanciera->setIafApellidoDiligenciador($this->getRequestParameter('acu_iaf_nombre_diligenciador'));
+			$acu_administrativafinanciera->setIafIdentificacionDiligenciador($this->getRequestParameter('acu_iaf_identificacion_diligenciador'));
+			$acu_administrativafinanciera->setIafTipoIdentificacionDiligenciador($this->getRequestParameter('acu_iaf_tipo_identificacion_diligenciador'));
+			$acu_administrativafinanciera->setIafTelefonoDiligenciador($this->getRequestParameter('acu_iaf_telefono_diligenciador'));
+			
+			$acu_administrativafinanciera->save();
+			
+			$salida = "({success: true, mensaje:'La informacion administrativa financiera fue actualizada exitosamente'})";
+		}
+		catch(Exception $exception)
+		{
+			return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en administracion financiera'}})");
+		}
+	}
+	
+	return $this->renderText($salida);
+  }
+  
 }

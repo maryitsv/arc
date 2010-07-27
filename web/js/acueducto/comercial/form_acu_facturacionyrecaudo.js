@@ -62,7 +62,7 @@ Desarrollado maryit sanchez
 			   columns: 1,
 			   items:
 			   [
-				  { boxLabel: 'Mensual', name: 'acu_fac_frecuenc_facturacion',id: 'acu_fac_frecuenc_facturacion_mensual',inputValue:'Mensual'},
+				  { boxLabel: 'Mensual', name: 'acu_fac_frecuenc_facturacion',id: 'acu_fac_frecuenc_facturacion_mensual',inputValue:'Mensual',checked:true},
 				  { boxLabel: 'Bimensual', name: 'acu_fac_frecuenc_facturacion',id: 'acu_fac_frecuenc_facturacion_bimensual',inputValue:'Bimensual' },
 				  { boxLabel: 'Anual', name: 'acu_fac_frecuenc_facturacion',id: 'acu_fac_frecuenc_facturacion_anual',inputValue: 'Anual'},
 				  { 
@@ -252,6 +252,13 @@ Desarrollado maryit sanchez
 			 text: 'Continuar',
 			 handler: function()
 			 {
+				acu_facturacionyrecaudo_cargardatostemporal();
+				var accion=acu_facturacionyrecaudo_verfiricaraccion();
+				
+				if(accion=='crear' || accion=='actualizar')
+				{
+					acu_facturacionyrecaudo_subirdatos(accion);
+				}
 			     acu_comercial_tabpanel.setActiveTab(2);
 			 }
 		  }      
@@ -259,3 +266,107 @@ Desarrollado maryit sanchez
 	   renderTo:'div_form_acu_facturacionyrecaudo'
 	});
 
+
+    var acu_facturacionyrecaudo_panel_datanuevo;
+	var acu_facturacionyrecaudo_panel_dataviejo=new Array();
+/*
+var ayuda_ acu_fac_frecuencia_del_servicio='Factura el servicio?, seleccion si o no';
+var ayuda_ acu_fac_frecuenc_facturacion='Con que frecuencia factura el servicio, escoja entre las opciones, si no esta escoja otra y escriba cual';
+var ayuda_ acu_fac_frecuenc_fac_justificacion='Escriba con que frecuencia factura';
+var ayuda_ acu_fac_num_fac_exp_ultimo_periodo='Escriba el n&uacute;mero de facturas expedidas en el &uacute;ltimo periodo de facturaci&oacute;n';
+var ayuda_ acu_fac_sist_fac_utilizado='Como es el sistema de facturaci&oacute;n que utiliza, escoja entre las opciones';
+var ayuda_ acu_fac_frecuencia_fac_justifica='Escriba que sistema de facturacion utiliza';
+var ayuda_ acu_fac_morosidad_promedio='Morosidad promedio de los ultimos 3 periodos de pago, en porcentaje';
+var ayuda_ acu_fac_vol_agua_fac_en_el_anio_acu='Volumen de agua facturado en el a&ntilde;o, escriba un n&uacute;mero';
+var ayuda_ acu_fac_vol_agua_suministrado_anio_acu='Volumen de agua suministrado en el a&ntilde;o, escriba un n&uacute;mero';
+
+*/
+	function acu_facturacionyrecaudo_cargardatostemporal(){
+	
+		if(acu_facturacionyrecaudo_panel_datanuevo)
+		{
+			acu_facturacionyrecaudo_panel_dataviejo=acu_facturacionyrecaudo_panel_datanuevo;
+		}
+		acu_facturacionyrecaudo_panel_datanuevo=new Array();
+		acu_facturacionyrecaudo_panel_datanuevo['acu_fac_frecuencia_del_servicio'] = Ext.getCmp('acu_fac_frecuencia_del_servicio').getValue().getGroupValue();
+		
+		acu_facturacionyrecaudo_panel_datanuevo['acu_fac_frecuenc_facturacion'] =Ext.getCmp('acu_fac_frecuenc_facturacion').getValue().getGroupValue();
+		acu_facturacionyrecaudo_panel_datanuevo['acu_fac_frecuenc_fac_justificacion'] = Ext.getCmp('acu_fac_frecuenc_fac_justificacion').getValue();
+		acu_facturacionyrecaudo_panel_datanuevo['acu_fac_num_fac_exp_ultimo_periodo'] = Ext.getCmp('acu_fac_num_fac_exp_ultimo_periodo').getValue();
+		acu_facturacionyrecaudo_panel_datanuevo['acu_fac_sist_fac_utilizado'] = Ext.getCmp('acu_fac_sist_fac_utilizado').getValue().getGroupValue();
+		acu_facturacionyrecaudo_panel_datanuevo['acu_fac_frecuencia_fac_justifica'] = Ext.getCmp('acu_fac_frecuencia_fac_justifica').getValue();
+		acu_facturacionyrecaudo_panel_datanuevo['acu_fac_morosidad_promedio'] = Ext.getCmp('acu_fac_morosidad_promedio').getValue();
+		acu_facturacionyrecaudo_panel_datanuevo['acu_fac_vol_agua_fac_en_el_anio_acu'] = Ext.getCmp('acu_fac_vol_agua_fac_en_el_anio_acu').getValue();
+		acu_facturacionyrecaudo_panel_datanuevo['acu_fac_vol_agua_suministrado_anio_acu'] = Ext.getCmp('acu_fac_vol_agua_suministrado_anio_acu').getValue();
+		
+	}
+	
+	
+	
+	function acu_facturacionyrecaudo_verfiricaraccion()
+	{//compara dos arraglos si son diferentes actualiza sino solo pasa al siguiente form
+		var accion='ninguna';
+	
+		if(acu_facturacionyrecaudo_panel_dataviejo) // si existe el viejo, compare
+		{
+			if(acu_facturacionyrecaudo_panel_datanuevo['acu_fac_frecuencia_del_servicio'] != acu_facturacionyrecaudo_panel_dataviejo['acu_fac_frecuencia_del_servicio'])
+			{accion='actualizar';}
+			
+			if(acu_facturacionyrecaudo_panel_datanuevo['acu_fac_frecuenc_facturacion'] != acu_facturacionyrecaudo_panel_dataviejo['acu_fac_frecuenc_facturacion'])
+			{accion='actualizar';}
+			
+			if(acu_facturacionyrecaudo_panel_datanuevo['acu_fac_frecuenc_fac_justificacion'] != acu_facturacionyrecaudo_panel_dataviejo['acu_fac_frecuenc_fac_justificacion'])
+			{accion='actualizar';}
+			
+			if(acu_facturacionyrecaudo_panel_datanuevo['acu_fac_num_fac_exp_ultimo_periodo'] != acu_facturacionyrecaudo_panel_dataviejo['acu_fac_num_fac_exp_ultimo_periodo'])
+			{accion='actualizar';}
+			
+			if(acu_facturacionyrecaudo_panel_datanuevo['acu_fac_sist_fac_utilizado'] != acu_facturacionyrecaudo_panel_dataviejo['acu_fac_sist_fac_utilizado'])
+			{accion='actualizar';}
+			
+			if(acu_facturacionyrecaudo_panel_datanuevo['acu_fac_frecuencia_fac_justifica'] != acu_facturacionyrecaudo_panel_dataviejo['acu_fac_frecuencia_fac_justifica'])
+			{accion='actualizar';}
+			
+			if(acu_facturacionyrecaudo_panel_datanuevo['acu_fac_morosidad_promedio'] != acu_facturacionyrecaudo_panel_dataviejo['acu_fac_morosidad_promedio'])
+			{accion='actualizar';}
+			
+			if(acu_facturacionyrecaudo_panel_datanuevo['acu_fac_vol_agua_fac_en_el_anio_acu'] != acu_facturacionyrecaudo_panel_dataviejo['acu_fac_vol_agua_fac_en_el_anio_acu'])
+			{accion='actualizar';}
+			
+			if(acu_facturacionyrecaudo_panel_datanuevo['acu_fac_vol_agua_suministrado_anio_acu'] != acu_facturacionyrecaudo_panel_dataviejo['acu_fac_vol_agua_suministrado_anio_acu'])
+			{accion='actualizar';}
+			
+		}
+		else
+		{
+			accion='crear';
+		}
+			
+		return accion;
+	}
+	
+	function acu_facturacionyrecaudo_subirdatos(accion_realizar){
+	
+		acu_facturacionyrecaudo_panel.getForm().submit({
+			method: 'POST',
+			url:'acueducto_facturacionyrecaudo/actualizarFacturacionyRecaudo',
+			params: {
+				servicio:'acueducto'
+			},
+			waitTitle: 'Enviando',
+			waitMsg: 'Enviando datos...',
+			success: function(response, action)
+			{
+			  obj = Ext.util.JSON.decode(action.response.responseText);
+			  mostrarMensajeRapido('Aviso',obj.mensaje);
+			},
+			failure: function(form, action, response)
+			{
+				if(action.failureType == 'server'){
+					obj = Ext.util.JSON.decode(action.response.responseText); 
+					mostrarMensajeConfirmacion('Error',obj.errors.reason);
+				}
+			}
+		});
+
+	}

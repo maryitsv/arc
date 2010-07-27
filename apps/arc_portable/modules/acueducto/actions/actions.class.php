@@ -15,6 +15,16 @@ class acueductoActions extends sfActions
   *
   * @param sfRequest $request A request object
   */
+
+  protected function obtenerServicioId($ser_nombre)
+  {
+	$conexion = new Criteria();			
+	$conexion->add(ServicioPeer::SER_NOMBRE, $ser_nombre);
+	$servicio = ServicioPeer::doSelectOne($conexion);
+	$ser_id = $servicio->getSerId();
+	return  $ser_id;
+  }
+
   public function executeIndex(sfWebRequest $request)
   {
     //$this->forward('default', 'module');

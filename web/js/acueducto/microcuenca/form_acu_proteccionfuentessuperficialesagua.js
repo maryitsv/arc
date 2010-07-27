@@ -1,9 +1,9 @@
-var proteccionFuentesProgramas = function ( servicio, rango ) {
 
 	
-	var proteccionFuentesProgramasPanel = new Ext.FormPanel({
+	var proteccionFuentesProgramasPanel = new Ext.Panel({
       frame: true,
-	  hidden: true,
+	 // hidden: true,
+	  renderTo: 'div_form_acu_proteccionfuentessuperficialesagua',
 	  title: '<html>Protecci&oacute;n de las Fuentes superficiales de Agua</html>',
 	  autoWidth: true,
 	  height: largo_panel,
@@ -12,6 +12,7 @@ var proteccionFuentesProgramas = function ( servicio, rango ) {
 	  [{		
 	    bodyStyle: 'padding-right:5px;',
 		columnWidth: '.5',
+		layout:'form',
         items:       
 	     {
 	        xtype:'fieldset',
@@ -46,6 +47,7 @@ var proteccionFuentesProgramas = function ( servicio, rango ) {
 		},
 	  },
       { 
+	   layout:'form',
  	   bodyStyle: 'padding-left:5px;',
 	   columnWidth: '.5',
 	   items:
@@ -112,13 +114,8 @@ var proteccionFuentesProgramas = function ( servicio, rango ) {
 					  listeners:
 					  {
 							'render':function(){
-								   new Ext.ToolTip({
-										target: (Ext.getCmp('eszonaprotegida')).getEl(),
-										title: 'Ayuda rapida',
-										anchor: 'top',
-										html: 'Es aquella protegida por iniciativa de los propietarios, comunidad o por autoridades locales',
-										trackMouse:true
-									});
+									ayuda('eszonaprotegida','Es aquella protegida por iniciativa de los propietarios, comunidad o por autoridades locales');
+	
 								}
 					  }
 				}
@@ -279,9 +276,9 @@ var proteccionFuentesProgramas = function ( servicio, rango ) {
 		 defaults:{layout:'form'},
 		 items:[
 			{  
-				width:280,
+				width:250,
 				bodyStyle: 'padding-top:27px;',
-				 
+				//columnWidth: '.40', 
 				defaults:{labelStyle: 'width:220px;'+letra},
 				items:[
 						{xtype: 'label', text: 'Existencia de este tipo de bosque?', cls:'x-form-check-group-label'},
@@ -292,9 +289,9 @@ var proteccionFuentesProgramas = function ( servicio, rango ) {
 						{xtype: 'checkbox', fieldLabel: '<html>Regeneraci&oacute;n natural</html>',itemCls: 'x-check-group-alt'}				
 			   ]
 			},{
-				//columnWidth: '.4',
-				width: 100,
-				bodyStyle: 'padding-top:12px;padding-rigth:5px;padding-left:5px;',
+				//columnWidth: '.30',
+				width: 70,
+				bodyStyle: 'padding-top:12px;',
 				defaults:{hideLabel: true},
 				items:
 				[ 	
@@ -321,7 +318,8 @@ var proteccionFuentesProgramas = function ( servicio, rango ) {
 					}
 				]
 			},{
-				columnWidth: '.4',
+				//columnWidth: '.34',
+				width: 220,
 				title: '<center>Tendencia</center>',    
 				defaults:{hideLabel: true},
 				items:
@@ -339,14 +337,14 @@ var proteccionFuentesProgramas = function ( servicio, rango ) {
 								},{
 									columnWidth: '.33',
 									items: [
-										{ xtype: 'label', text: 'Disminucion', cls:'x-form-check-group-label'},
-										{ name: 'tendencia1', inputValue: 'disminucion',itemCls: 'x-check-group-alt'}
+										{ xtype: 'label', text: 'Estable', cls:'x-form-check-group-label'},
+										{ name: 'tendencia1', inputValue: 'estable',itemCls: 'x-check-group-alt'}
 										]
 								},{
 									columnWidth: '.33',
 									items: [
-										{ xtype: 'label', text: 'Estable', cls:'x-form-check-group-label'},
-										{ name: 'tendencia1', inputValue: 'estable',itemCls: 'x-check-group-alt'}
+										{ xtype: 'label', text: 'Disminucion', cls:'x-form-check-group-label'},
+										{ name: 'tendencia1', inputValue: 'disminucion',itemCls: 'x-check-group-alt'}
 										]
 								}]
 					},
@@ -354,32 +352,32 @@ var proteccionFuentesProgramas = function ( servicio, rango ) {
 						xtype: 'radiogroup',
 						items: [
 							{ name: 'tendencia2', inputValue: 'incremento'},
-							{ name: 'tendencia2', inputValue: 'disminucion', checked: true},
-							{ name: 'tendencia2', inputValue: 'estable'},
+							{ name: 'tendencia2', inputValue: 'estable', checked: true},
+							{ name: 'tendencia2', inputValue: 'disminucion'}
 						]
 					},
 					{
 						xtype: 'radiogroup',
 						items: [
 							{ name: 'tendencia3', inputValue: 'incremento',itemCls: 'x-check-group-alt'},
-							{ name: 'tendencia3',  inputValue: 'disminucion', checked: true,itemCls: 'x-check-group-alt'},
-							{ name: 'tendencia3',  inputValue: 'estable',itemCls: 'x-check-group-alt'},
+							{ name: 'tendencia3',  inputValue: 'estable', checked: true,itemCls: 'x-check-group-alt'},
+							{ name: 'tendencia3',  inputValue: 'disminucion', itemCls: 'x-check-group-alt'},
 						]
 					},
 					{
 						xtype: 'radiogroup',
 						items: [
 							{ name: 'tendencia4', inputValue: 'incremento'},
-							{ name: 'tendencia4',  inputValue: 'disminucion', checked: true},
-							{ name: 'tendencia4',  inputValue: 'estable'},
+							{ name: 'tendencia4',  inputValue: 'estable', checked: true},
+							{ name: 'tendencia4',  inputValue: 'disminucion'},
 						]
 					},
 					{
 						xtype: 'radiogroup',
 						items: [
 							{ name: 'tendencia5', inputValue: 'incremento',itemCls: 'x-check-group-alt'},
-							{ name: 'tendencia5',  inputValue: 'disminucion', checked: true,itemCls: 'x-check-group-alt'},
-							{ name: 'tendencia5',  inputValue: 'estable',itemCls: 'x-check-group-alt'},
+							{ name: 'tendencia5',  inputValue: 'estable',checked: true,itemCls: 'x-check-group-alt'},
+							{ name: 'tendencia5',  inputValue: 'disminucion', itemCls: 'x-check-group-alt'},
 						]
 					}
 				]
@@ -387,6 +385,7 @@ var proteccionFuentesProgramas = function ( servicio, rango ) {
 			]
 		}
 		],
+	  renderTo:'div_form_acu_proteccionfuentessuperficialesagua',
 	  buttons: [
 		{
 			text: '<html>Atr&aacute;s<html>',
@@ -405,7 +404,7 @@ var proteccionFuentesProgramas = function ( servicio, rango ) {
 	 var SUI_Microcuenca_V10 = new Ext.FormPanel({
       frame: true,
       title: 'Cobertura Forestal',
-	  hidden: true,
+	//  hidden: true,
 	  autoWidth: true,
 	  height: largo_panel,
 	  defaults:{width:100, labelStyle: 'width: 360px;',},
@@ -418,13 +417,13 @@ var proteccionFuentesProgramas = function ( servicio, rango ) {
 				  [{
 					  boxLabel:   'Si',
 					  name:       'cobertura',
-					  inputValue: '01'
+					  inputValue: true
 					  //checked:    true
 				  },
 				  {
 					  boxLabel:   'No',
 					  name:       'cobertura',
-					  inputValue: '02',
+					  inputValue: false
 					  
 				  }]
 				},{
@@ -434,13 +433,13 @@ var proteccionFuentesProgramas = function ( servicio, rango ) {
 				  [{
 					  boxLabel:   'Si',
 					  name:       'existe',
-					  inputValue: '01',
+					  inputValue: true
 					  //checked:    true
 				  },
 				  {
 					  boxLabel:   'No',
 					  name:       'existe',
-					  inputValue: '02',
+					  inputValue: false
 				  }]
 				},
 				{
@@ -450,13 +449,13 @@ var proteccionFuentesProgramas = function ( servicio, rango ) {
 				  [{
 					  boxLabel:   'Si',
 					  name:       'existeA',
-					  inputValue: '01',
+					  inputValue: true,
 					  //checked:    true
 				  },
 				  {
 					  boxLabel:   'No',
 					  name:       'existeA',
-					  inputValue: '02',
+					  inputValue: false,
 				  }
 				  ]
 				},
@@ -474,6 +473,7 @@ var proteccionFuentesProgramas = function ( servicio, rango ) {
 				}
 			
 	  ],
+	  renderTo:'div_form_acu_proteccionfuentessuperficialesagua',
 	  buttons: 
 	  [
 		{
@@ -489,10 +489,4 @@ var proteccionFuentesProgramas = function ( servicio, rango ) {
 		}
 	  ]
 	});
-	
-	
-//return proteccionFuentesProgramasPanel;
-return SUI_Microcuenca_V10;
-}
-
 

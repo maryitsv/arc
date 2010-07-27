@@ -1,5 +1,5 @@
 
-
+/*
 var acu_tra_area_administrativa = new Ext.form.TextField( {
 	labelStyle: 'width:280px;',
 	anchor: '90%',
@@ -28,7 +28,7 @@ var acu_tra_area_operativa = new Ext.form.TextField( {
 					ayuda( 'acu_tra_area_operativa', ayuda_acu_tra_area_operativa );
      	}
 	}              
-} );
+} );*/
 
 var acu_tra_personaladministrativo_data = [
    ['Cargo', 'Contrato a t&eacute;rmino indefinido', 0],
@@ -109,7 +109,7 @@ var acu_tra_personaladministrativo_gridpanel = new Ext.grid.EditorGridPanel({
 		}                        
    ],
    autoWidth: true,
-   height: 266,
+   height: 276,
    //hidden: true,
    wrap: true,
    stripeRows: true,
@@ -170,12 +170,12 @@ var acu_tra_personaloperativo_gridpanel = new Ext.grid.EditorGridPanel({
 		}                        
    ],
    autoWidth: true,
-   height: 250,
+   height: 276,
    //hidden: true,
    wrap: true,
    stripeRows: true,
    clicksToEdit: 1,
-   //title: 'Trabajadores y su vinculaci&oacute;n: personal operativo'
+   title: 'Trabajadores y su vinculaci&oacute;n: personal operativo'
 });
 
 
@@ -245,7 +245,7 @@ var acu_tra_manual_funciones = new Ext.form.RadioGroup( {
 	]                
 } );
 
-var form_acu_trabajadoresyvinculacion = new Ext.form.FormPanel({
+var acu_trabajadoresyvinculacion_presonaladministrativo_formpanel = new Ext.form.FormPanel({
 	autoWidth: true,
 	border: false,
 	layout: 'column',
@@ -255,56 +255,88 @@ var form_acu_trabajadoresyvinculacion = new Ext.form.FormPanel({
 	items: [
 	   {
 			xtype: 'fieldset',
-			id: 'acu_trabajadoresyvinculacion_numeropersonal_fieldset',
-			layout: 'column',
-			border: false,
-			height: 45,
-		    columnWidth: '1',
-			defaultType: 'textfield',
-			items: [
-				{
-					xtype: 'panel',
-					layout: 'form',
-					border: false,
-					columnWidth: '.5',
-					labelWidth: 290,
-					defaultType: 'textfield',
-					items: [acu_tra_area_administrativa]
-				}, 
-				{
-					xtype: 'panel',
-					layout: 'form',
-					border: false,
-					columnWidth: '.5',
-					labelWidth: 290,
-					defaultType: 'textfield',
-					items: [acu_tra_area_operativa]
-				}
-			]
-	   },
-	   {
-			xtype: 'fieldset',
 			//title: 'Personal administrativo',
 			border: false,
 			id: 'acu_trabajadoresyvinculacion_personaladministrativo_fieldset',
-			height: 290,
+			height: 310,
 		    columnWidth: '.495',
 			defaultType: 'textfield',
 			labelWidth: 170,
 			defaults: {labelStyle: 'font-size:1.0em;'},
 			bodyStyle: Ext.isIE ? 'padding:5 5 5px 15px;' : 'padding: 3px 3px;',
 			items: [ acu_tra_personaladministrativo_gridpanel ]
-	   },
-	   { xtype: 'panel', columnWidth: '.01'},
+	   }
+	],
+	buttons:[
+		{
+			text: 'Atras', 
+			iconCls: 'crear16', 
+			handler: function(){
+							Ext.getCmp('tabp_acu_administrativafinanciera').setActiveTab(3);
+			}
+		},
+	    {
+	    	text: 'Continuar', 
+	    	iconCls: 'crear16', 
+	    	handler: function(){
+							acu_trabajadoresyvinculacion_presonaladministrativo_formpanel.hide();
+							acu_trabajadoresyvinculacion_presonaloperativo_formpanel.show();
+			}
+	    }
+	]
+});
+
+var acu_tra_manual_funciones = new Ext.form.RadioGroup( {
+	itemCls: 'x-check-group-alt',
+	labelStyle: 'width:230px;',
+	columns: 1,
+	fieldLabel: '&iquest;Cuenta con un Manual de Funciones?',
+	items:
+	[
+		{
+			boxLabel: 'Si',
+			id: 'acu_tra_manual_funciones_si',
+			name: 'acu_tra_manual_funciones', 
+			checked: true,
+			listeners:
+			{
+				'render': function(){ 
+					ayuda( 'acu_tra_manual_funciones_si', ayuda_acu_tra_manual_funciones );
+				}
+			}
+		},
+		{ 
+			boxLabel: 'No',
+			id: 'acu_tra_manual_funciones_no',
+			name: 'acu_tra_manual_funciones' ,
+			listeners:
+			{
+				'render': function(){ 
+					ayuda( 'acu_tra_manual_funciones_no', ayuda_acu_tra_manual_funciones );
+				}
+			}
+		}
+	]                
+} );
+
+var acu_trabajadoresyvinculacion_presonaloperativo_formpanel = new Ext.form.FormPanel({
+	autoWidth: true,
+	border: false,
+	hidden: true,
+	layout: 'column',
+	renderTo: 'div_form_acu_trabajadoresyvinculacion',
+	height: largo_panel-15,
+	style: {"margin-right": Ext.isIE6 ? (Ext.isStrict ? "-10px" : "-13px") : "0" },
+	items: [
 	   {
 			xtype: 'fieldset',
-			title: 'Personal operativo',
+			//title: 'Personal operativo',
 			border: false,
 			id: 'acu_trabajadoresyvinculacion_personaloperativo_fieldset',
-			height: 290,
+			height: 310,
 		    columnWidth: '.495',
 			defaultType: 'textfield',
-			labelWidth: 150,
+			labelWidth: 170,
 			defaults: {labelStyle: 'font-size:1.0em;'},
 			bodyStyle: Ext.isIE ? 'padding:5 5 5px 15px;' : 'padding: 3px 3px;',
 			items: [ acu_tra_personaloperativo_gridpanel ]
@@ -344,7 +376,8 @@ var form_acu_trabajadoresyvinculacion = new Ext.form.FormPanel({
 			text: 'Atras', 
 			iconCls: 'crear16', 
 			handler: function(){
-							Ext.getCmp('tabp_acu_administrativafinanciera').setActiveTab(3);
+							acu_trabajadoresyvinculacion_presonaloperativo_formpanel.hide();
+							acu_trabajadoresyvinculacion_presonaladministrativo_formpanel.show();
 			}
 		},
 	    {
@@ -358,8 +391,16 @@ var form_acu_trabajadoresyvinculacion = new Ext.form.FormPanel({
 	]
 });
 
+var form_acu_trabajadoresyvinculacion = new Ext.Panel({
+	border: false,
+	layout: 'form',
+	renderTo: 'div_form_acu_trabajadoresyvinculacion',
+	autoWidth: true,
+	items: [acu_trabajadoresyvinculacion_presonaladministrativo_formpanel, acu_trabajadoresyvinculacion_presonaloperativo_formpanel]
+});
+
 function acu_trabajadoresyvinculacion_subirdatos() {
-	Ext.example.msg('Aviso', 'Subir datos!!!');
+	//subirDatos(form_acu_trabajadoresyvinculacion, 'acueducto_trabajadoresyvinculacion/actualizarTrabajadoresyVinculacion'); //action no implementado
 }
 
 

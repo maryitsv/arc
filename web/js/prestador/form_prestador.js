@@ -1,4 +1,30 @@
 
+var prestador_datastore = new Ext.data.Store({
+        id: 'prestador_datastore',
+        proxy: new Ext.data.HttpProxy({
+                url: 'prestador/obtenerDatosPrestador', 
+                method: 'POST'
+        }),
+        baseParams:{}, 
+        reader: new Ext.data.JsonReader({
+                root: 'results',
+                totalProperty: 'total',
+                id: 'id'
+                },[ 
+                  {name: 'pre_id', type: 'int'},	    
+                  {name: 'pre_nombre', type: 'string'},
+				  {name: 'pre_ran_id', type: 'int'},
+				  {name: 'pre_usu_id', type: 'int'},
+				  {name: 'pre_identificacion_prestador', type: 'string'},
+				  {name: 'pre_tipo_identificacion_prestador', type: 'string'},
+				  {name: 'pre_nombre_prestador', type: 'string'},
+				  {name: 'pre_estatutos', type: 'bool'},
+				  {name: 'pre_numero_empleados_con_competencias', type: 'int'},
+				  {name: 'pre_numero_empleados_sin_competencias', type: 'int'},
+				  {name: 'pre_numero_empleados_proceso_competencias', type: 'int'}
+        ])
+    });
+	
 var pre_nombre_prestador = new Ext.form.TextField( {
 	fieldLabel: 'Nombre del prestador (RUPS)', 
 	emptyText: 'ingrese el nombre del prestador',
@@ -164,4 +190,11 @@ function subirDatos() {
 }
 
 //Ext.getCmp("datos_prestador").add(form_prestador);
+prestador_datastore.load({
+  callback: function() {
+	var record = prestador_datastore.getAt(0);
+	form_prestador.getForm().loadRecord(record);
+  }
+});
+
 

@@ -26,27 +26,9 @@ class acueducto_analisiscoberturaActions extends sfActions
   *Este metodo controla las peticiones que le hacen a el modulo, y dependiendo de lo que se solicite se llama a la funcion adecuada
   */
     public function executeCargar(){
-  	    
-		$task = '';
+  	   
 		
-		$salida	='';
-		$task = $this->getRequestParameter('task');
-
-		switch($task){
-			case "LISTARESTRATOS":
-				$salida = $this->listarEstratos();
-				break;
-
-			case "CREARANALISISCOBERTURA":
-			    $servicio=$this->getRequestParameter('servicio');
-				$salida = $this->crearAnalisisCoberturaAcueductoAlcantarillado($servicio);
-				break;
-	
-			default:
-				$salida =  "({failure:true})";
-				break;
-		}
-		return $this->renderText($salida);
+		
     }
 
   /**
@@ -54,13 +36,14 @@ class acueducto_analisiscoberturaActions extends sfActions
   *@date:13 de julio de 2010
   *Este metodo retorna un listado de los estratos socioeconomicos
   */	
-	protected function listarEstratos()
+	public function executeListarEstratos()
 	{
 		$salida='({"total":"0", "results":""})';
 		$fila=0;
 		$datos;
 		
         try{
+
 			$conexion = new Criteria();
 			$estratos = EstratoPeer::doSelect($conexion);
 			
@@ -68,8 +51,9 @@ class acueducto_analisiscoberturaActions extends sfActions
 			{
 			  $datos[$fila]['est_id'] = $estrato->getEstId();
 			  $datos[$fila]['est_nombre'] = $estrato->getEstNombre();
-			  $datos[$fila]['est_residencial'] = $estrato->getEstResidencial();
-			  
+			  if($estrato->getEstResidencial())
+			  {$datos[$fila]['est_residencial'] = 'Residencial';}
+			  else{$datos[$fila]['est_residencial'] = 'No Residencial';}
 			  $fila++;
 			}
 
@@ -79,39 +63,111 @@ class acueducto_analisiscoberturaActions extends sfActions
 			}
 		}catch (Exception $excepcion)
 		{
-			return $salida;
+			//return $salida;
 		}		
-		
-		return $salida;
+
+		return $this->renderText($salida);
 	}  
 
-	protected function crearAnalisisCoberturaAcueductoAlcantarillado($servicio)
+	  
+  protected function obtenerServicioId($ser_nombre)
 	{
-		$com_id=1;//'obtener de la sesion';
-		$salida	='';		
+		$conexion = new Criteria();			
+		$conexion->add(ServicioPeer::SER_NOMBRE, $ser_nombre);
+		$servicio = ServicioPeer::doSelectOne($conexion);
+		$ser_id = $servicio->getSerId();
+		return  $ser_id;
+	}
+	
+    public function obtenerComId()
+  { 
+	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
+	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_ser_id = $this->obtenerServicioId('acueducto');
+	
+	$conexion = new Criteria();
+	$conexion->add(ComercialPeer::COM_PPS_PRE_ID, $pps_pre_id);
+	$conexion->add(ComercialPeer::COM_PPS_ANIO, $pps_anio);
+	$conexion->add(ComercialPeer::COM_PPS_SER_ID, $pps_ser_id);
+	
+	$comercialfila = ComercialPeer::doSelectOne($conexion);
+	
+	return $comercialfila->getComId();
+  }
+  
+  /*
+  */
+  public function executeActualizarAnalisisCobertura(sfWebRequest $request)
+  {
+  $salida = '';
+	
+		try{
+			$com_id=$this->obtenerComId();
+			
+			$conexion = new Criteria();
+			$conexion->add(AnalisiscoberturaPeer::ACO_COM_ID, $com_id);
+			$analisisCobertura = AnalisiscoberturaPeer::doSelectOne($conexion);
 
-		try
-		{/*
-		$analisisCobertura = new Analisiscoberturaacueductoalcantarillado();			  
-		$analisisCobertura->setAcoCatastroUsuarios($this->getRequestParameter($servicio+'aco_catastro_usuarios'));
-		$analisisCobertura->setAcoAnioElaImplCatastro($this->getRequestParameter($servicio+'aco_anio_ela_impl_catastro_usu'));
-		$analisisCobertura->setAcoNumPrediosArea($this->getRequestParameter($servicio+'aco_num_predios_area'));
-		$analisisCobertura->setAcoNumPrediosConecSistema($this->getRequestParameter($servicio+'aco_num_predios_conec_sistema'));
-		$analisisCobertura->setAcoEstraSocecoAdopMpio($this->getRequestParameter($servicio+'aco_estrat_soceco_adop_mpio'));
-		$analisisCobertura->setAcoEstraSocecoAdopMpioJus($this->getRequestParameter($servicio+'aco_estra_soceco_adop_mpio_jus'));
-		$analisisCobertura->setAcoNumSusServicioOficial($this->getRequestParameter($servicio+'aco_num_sus_servicio_oficial'));
-		$analisisCobertura->setAcoTarifEstrServicioOficial($this->getRequestParameter($servicio+'aco_tarif_estr_servicio_oficial'));
-
-	//	$analisisCobertura->save();*/
-		$salida = "({success: true, mensaje:'El Modulo fue creado exitosamente'})";
+			if($analisisCobertura)
+			{
+				$analisisCobertura->setAcoCatastroUsuarios($this->getRequestParameter('acu_aco_catastro_usuarios'));
+				$analisisCobertura->setAcoAnioElaImplCatastroUsu($this->getRequestParameter('acu_aco_anio_ela_impl_catastro_usu'));
+				$analisisCobertura->setAcoNumPrediosArea($this->getRequestParameter('acu_aco_num_predios_area'));
+				$analisisCobertura->setAcoNumPrediosConecSistema($this->getRequestParameter('acu_aco_num_predios_conec_sistema'));
+				$analisisCobertura->setAcoEstratSocecoAdopMpio($this->getRequestParameter('acu_aco_estrat_soceco_adop_mpio'));
+				$analisisCobertura->setAcoEstraSocecoAdopMpioJus($this->getRequestParameter('acu_aco_estra_soceco_adop_mpio_jus'));
+				$analisisCobertura->save();
+		
+				$salida = "({success: true, mensaje:'Fue actualizado exitosamente'})";
+			} else {
+			
+				$analisisCobertura=new Analisiscobertura();
+				$analisisCobertura->setAcoComId($com_id);
+				$analisisCobertura->setAcoCatastroUsuarios($this->getRequestParameter('acu_aco_catastro_usuarios'));
+				$analisisCobertura->setAcoAnioElaImplCatastroUsu($this->getRequestParameter('acu_aco_anio_ela_impl_catastro_usu'));
+				$analisisCobertura->setAcoNumPrediosArea($this->getRequestParameter('acu_aco_num_predios_area'));
+				$analisisCobertura->setAcoNumPrediosConecSistema($this->getRequestParameter('acu_aco_num_predios_conec_sistema'));
+				$analisisCobertura->setAcoEstratSocecoAdopMpio($this->getRequestParameter('acu_aco_estrat_soceco_adop_mpio'));
+				$analisisCobertura->setAcoEstraSocecoAdopMpioJus($this->getRequestParameter('acu_aco_estra_soceco_adop_mpio_jus'));
+				$analisisCobertura->save();
+		
+				$salida = "({success: true, mensaje:'Fue actualizado exitosamente'})";
+			}
 		}
 		catch (Exception $excepcion)
 		{
-		 $salida = "({success: false, errors: { reason: 'Hubo un problema creando en analisis de cobertura'}})";
-		 return $salida;
+			$salida = "({success: false, errors: { reason: 'Hubo una excepcion en analisis cobertura".$excepcion."'}})";
 		}
 		
-		return $salida;
-	}
+	return $this->renderText($salida);
+  }
   
+    public function executeActualizarSuscriptoresServicioAcueducto(sfWebRequest $request)
+  {
+/*  $salida = '';
+	
+		try{
+			$com_id=$this->obtenerComId();
+			
+			$conexion = new Criteria();
+			$conexion->add(AnalisisCoberturaPeer::ACO_COM_ID, $com_id);
+			$analisisCobertura = AnalisisCoberturaPeer::doSelectOne($conexion);
+
+			if($analisisCobertura)
+			{
+				$analisisCobertura->save();
+		
+				$salida = "({success: true, mensaje:'Fue actualizado exitosamente'})";
+			} else {
+				$salida = "({success: false, errors: { reason: 'No se a actualizado Peticiones , quejas y recursos'}})";
+			}
+		}
+		catch (Exception $excepcion)
+		{
+			return "({success: false, errors: { reason: 'Hubo una excepcion'}})";
+		}
+		
+	return $this->renderText($salida);*/
+  }
+
 }

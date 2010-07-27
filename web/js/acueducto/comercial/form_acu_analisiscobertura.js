@@ -161,6 +161,13 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 			 text: 'Continuar',
 			 handler: function()
 			 {  
+				acu_analisiscobertura_cargardatostemporal();
+				var accion=acu_analisiscobertura_verfiricaraccion();
+				if(accion=='crear' || accion=='actualizar')
+				{
+					acu_analisiscobertura_subirdatos(accion);
+				}
+
 				acu_analisiscobertura_estratos_gridpanel.show();
 				acu_analisiscobertura_panel.hide();						
 			 }
@@ -171,7 +178,7 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 
 	var acu_analisiscobertura_estratos_datastore=new Ext.data.GroupingStore({
 	        proxy: new Ext.data.HttpProxy({
-		      url: 'acueducto_analisiscobertura/cargar',	
+		      url: 'acueducto_analisiscobertura/listarEstratos',	
 			  method: 'POST'
 	        }),
 	        baseParams:{task: 'LISTARESTRATOS'},
@@ -183,7 +190,13 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 			  [
 			   {name:'est_id'},
 			   {name:'est_nombre'},
-			   {name:'est_residencial'}
+			   {name:'est_residencial'},
+			   {name:'ssacu_numero_suscriptores'},
+			   {name:'ssacu_tarifa_sin_medicion'},
+			   {name:'ssacu_cargo_fijo'},
+			   {name:'ssacu_tarifa_consumo_basico'},
+			   {name:'ssacu_tarifa_consumo_complementario'},
+			   {name:'ssacu_tarifa_consumo_suntuario'}
 			  ]
 			 ),
 			sortInfo:{field: 'est_nombre', direction: 'ASC'},	
@@ -196,32 +209,32 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 	  columns:[
 		{header: "<html>Clasificaci&oacute;n</html>", width: 80,  sortable: true, dataIndex: 'est_nombre'},
 		{header: "<html>Clasificaci&oacute;n</html>", width: 80,  sortable: true,hidden:true, dataIndex: 'est_residencial'},
-        {header: "<html>N&uacute;mero de <br/>suscriptores</html>", width: 120, dataIndex: 'numeroSuscriptores', renderer: formatoNumeroCelda,
+        {header: "<html>N&uacute;mero de <br/>suscriptores</html>", width: 120, dataIndex: 'ssacu_numero_suscriptores', renderer: formatoNumeroCelda,
          editor: new Ext.form.NumberField({ maxValue: 10000})},
-        {header: "<html>Tarifa sin medici&oacute;n <br/>($/Suscr/mes)</html>", width: 100, dataIndex: 'tarifaSinMedicion', renderer: formatoNumeroCelda,
+        {header: "<html>Tarifa sin medici&oacute;n <br/>($/Suscr/mes)</html>", width: 100, dataIndex: 'ssacu_tarifa_sin_medicion', renderer: formatoNumeroCelda,
          editor: new Ext.form.NumberField({  maxValue: 100000})},
-        {header: "Cargo fijo <br/>($/Suscr/mes)", width: 80, dataIndex: 'cargoFijo', renderer: formatoNumeroCelda,
+        {header: "Cargo fijo <br/>($/Suscr/mes)", width: 80, dataIndex: 'ssacu_cargo_fijo', renderer: formatoNumeroCelda,
          editor: new Ext.form.NumberField({  maxValue: 1000000})},
-        {header: "<html>Tarifa consumo <br/>b&aacute;sico</html> ($/m3)", width: 120, dataIndex: 'tarifaConsumoBasico', renderer: formatoNumeroCelda, 
+        {header: "<html>Tarifa consumo <br/>b&aacute;sico</html> ($/m3)", width: 120, dataIndex: 'ssacu_tarifa_consumo_basico', renderer: formatoNumeroCelda, 
            editor: new Ext.form.NumberField({  maxValue: 1000000})},
-        {header: "Tarifa consumo <br/>complementario ($/m3)", width: 120, dataIndex: 'tarifaConsumoComplementario', renderer: formatoNumeroCelda,
+        {header: "Tarifa consumo <br/>complementario ($/m3)", width: 120, dataIndex: 'ssacu_tarifa_consumo_complementario', renderer: formatoNumeroCelda,
          editor: new Ext.form.NumberField({ maxValue: 1000000})},
-        {header: "Tarifa consumo <br/>suntuario ($/m3)", width: 120, dataIndex: 'tarifaConsumoSuntuario', renderer: formatoNumeroCelda,
+        {header: "Tarifa consumo <br/>suntuario ($/m3)", width: 120, dataIndex: 'ssacu_tarifa_consumo_suntuario', renderer: formatoNumeroCelda,
          editor: new Ext.form.NumberField({ maxValue: 1000000})}                  
 		]
 	});
 
    	acu_analisiscobertura_estratos_datastore.load();
 	
-	//grilla con lo modulos
+	//grilla con lo modulos 
 	var acu_analisiscobertura_estratos_gridpanel = new Ext.grid.EditorGridPanel({
-		id: 'acu_analisisCoberturaAcueductoAlcantarillado2',	
+		id: 'acu_analisiscobertura_estratos_gridpanel',	
         hidden: true,
 		columnLines : true,
 		stripeRows:true,
 		store: acu_analisiscobertura_estratos_datastore,
 		cm: acu_analisiscobertura_estratos_colmodel,
-		height: largo_panel-40,
+		height: largo_panel-15,
 		border: true,
 		enableColLock:false,
 		autoWidth: true,
@@ -253,6 +266,7 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 	
    var acu_analisiscobertura_contenedor=new Ext.Panel({
     height:largo_panel-20,
+	border:false,
 	//frame:true,
 	//title: 'An&aacute;lisis de cobertura',
 	layout:'fit',
@@ -261,32 +275,81 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
    });
 
 //***************Funciones************///
-	function acu_analisiscobertura_subirdatos(){
+	//***************Funciones************///
+    var acu_analisiscobertura_panel_datanuevo;
+	var acu_analisiscobertura_panel_dataviejo=new Array();
+
+	function acu_analisiscobertura_cargardatostemporal(){
 	
-		/*
+		if(acu_analisiscobertura_panel_datanuevo)
+		{
+			acu_analisiscobertura_panel_dataviejo=acu_analisiscobertura_panel_datanuevo;
+		}
+		acu_analisiscobertura_panel_datanuevo=new Array();
+		acu_analisiscobertura_panel_datanuevo['acu_aco_catastro_usuarios'] = Ext.getCmp('acu_aco_catastro_usuarios').getValue().getGroupValue();
+		acu_analisiscobertura_panel_datanuevo['acu_aco_anio_ela_impl_catastro_usu'] = Ext.getCmp('acu_aco_anio_ela_impl_catastro_usu').getValue();
+		acu_analisiscobertura_panel_datanuevo['acu_aco_num_predios_area'] = Ext.getCmp('acu_aco_num_predios_area').getValue();
+		acu_analisiscobertura_panel_datanuevo['acu_aco_num_predios_conec_sistema'] = Ext.getCmp('acu_aco_num_predios_conec_sistema').getValue();
+		acu_analisiscobertura_panel_datanuevo['acu_aco_estrat_soceco_adop_mpio'] = Ext.getCmp('acu_aco_estrat_soceco_adop_mpio').getValue().getGroupValue();
+		acu_analisiscobertura_panel_datanuevo['acu_aco_estra_soceco_adop_mpio_jus'] = Ext.getCmp('acu_aco_estra_soceco_adop_mpio_jus').getValue();
+	}
+	
+	
+	
+	function acu_analisiscobertura_verfiricaraccion()
+	{//compara dos arraglos si son diferentes actualiza sino solo pasa al siguiente form
+		var accion='ninguna';
+	
+		if(acu_analisiscobertura_panel_dataviejo) // si existe el viejo, compare
+		{
+			if(acu_analisiscobertura_panel_datanuevo['acu_aco_catastro_usuarios'] != acu_analisiscobertura_panel_dataviejo['acu_aco_catastro_usuarios'])
+			{accion='actualizar';}
+			
+			if(acu_analisiscobertura_panel_datanuevo['acu_aco_anio_ela_impl_catastro_usu'] != acu_analisiscobertura_panel_dataviejo['acu_aco_anio_ela_impl_catastro_usu'])
+			{accion='actualizar';}
+			
+			if(acu_analisiscobertura_panel_datanuevo['acu_aco_num_predios_area'] != acu_analisiscobertura_panel_dataviejo['acu_aco_num_predios_area'])
+			{accion='actualizar';}
+			
+			if(acu_analisiscobertura_panel_datanuevo['acu_aco_num_predios_conec_sistema'] != acu_analisiscobertura_panel_dataviejo['acu_aco_num_predios_conec_sistema'])
+			{accion='actualizar';}
+			
+			if(acu_analisiscobertura_panel_datanuevo['acu_aco_estrat_soceco_adop_mpio'] != acu_analisiscobertura_panel_dataviejo['acu_aco_estrat_soceco_adop_mpio'])
+			{accion='actualizar';}
+			
+			if(acu_analisiscobertura_panel_datanuevo['acu_aco_estra_soceco_adop_mpio_jus'] != acu_analisiscobertura_panel_dataviejo['acu_aco_estra_soceco_adop_mpio_jus'])
+			{accion='actualizar';}
+		}
+		else
+		{
+			accion='crear';
+		}
+		return accion;
+	}
+	
+	function acu_analisiscobertura_subirdatos(accion_realizar){
+	
 		acu_analisiscobertura_panel.getForm().submit({
 			method: 'POST',
-			url:'analisisCobertura/cargar',
+			url:'acueducto_analisiscobertura/actualizarAnalisisCobertura',
 			params: {
-				task: 'CREARANALISISCOBERTURA',
-				servicio:servicio
+				servicio:'acueducto'
 			},
 			waitTitle: 'Enviando',
 			waitMsg: 'Enviando datos...',
 			success: function(response, action)
 			{
 			  obj = Ext.util.JSON.decode(action.response.responseText);
-			  alert(obj.mensaje);
+			   mostrarMensajeRapido('Aviso',obj.mensaje);
 			},
 			failure: function(form, action, response)
 			{
 				if(action.failureType == 'server'){
 					obj = Ext.util.JSON.decode(action.response.responseText); 
-					alert(obj.errors.reason);
+					mostrarMensajeConfirmacion('Error',obj.errors.reason);
 				}
 			}
-		});*/
+		});
 
 	}
-	
 	
