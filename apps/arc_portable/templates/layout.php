@@ -9,6 +9,7 @@
     <?php include_javascripts() ?>
     <script>
     urlPrefix = '<?php echo url_for('default/index'); ?>';
+    var url_arc = '<?php echo url_for('default/index', true); ?>';
     </script>
   </head>
   <body>

@@ -1,9 +1,11 @@
 var tecnicooperativa_acueducto_tabpanel = new Ext.TabPanel({
+    id: 'tecnicooperativa_acueducto_tabpanel',
     width: 840,
     height: 405,
     activeTab: 0,
     frame: true,
     anchor: '100%',
+    renderTo: 'div_tecnicooperativaacueducto',
     items: [{
         title: 'Paso 1',
         autoLoad: {

@@ -184,10 +184,6 @@ var form_prestador = new Ext.form.FormPanel({
 	    }
 	]
 });
-	
-function subirDatos() {
-	Ext.example.msg('Aviso', 'Subir datos!!!');
-}
 
 //Ext.getCmp("datos_prestador").add(form_prestador);
 prestador_datastore.load({

@@ -46,7 +46,7 @@ init: function () {
 											items:[
 												{
 													frame: true,
-													autoLoad: { url: 'http://localhost/arc/web/index.php/prestador', scripts: true, scope: this }
+													autoLoad: { url: url_arc+'prestador', scripts: true, scope: this }
 												}
 											]                
 										}

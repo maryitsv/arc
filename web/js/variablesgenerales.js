@@ -1,4 +1,6 @@
-var url_arc = 'http://localhost/arc/web/index.php/';
+//var url_arc = 'http://localhost/arc/web/index.php/';
+
+//var url_arc = '<?php echo url_for('default/index', true); ?>';
 
 var ancho_panel=630;
 

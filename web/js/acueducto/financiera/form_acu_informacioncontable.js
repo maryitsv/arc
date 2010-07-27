@@ -612,6 +612,8 @@ acu_informacioncontable_datastore.load({
 
 function acu_informacioncontable_subirdatos() {
 
+	mostrarMensajeRapido('prueba','prueba subir datos');
+	
 	subirDatos(
 		acu_financieracontable_activos_pasivos_formpanel, 
 		'acueducto_informacioncontable/actualizarInformacionContable',
