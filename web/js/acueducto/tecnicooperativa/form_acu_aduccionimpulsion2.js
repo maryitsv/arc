@@ -518,6 +518,7 @@ form_acu_aduccionimpulsion2.add({
             }]
         }, {
             layout: 'form',
+            bodyStyle: 'padding-left: 50px;',
             items: [{
                 xtype: 'label',
                 fieldLabel: '<b>Longitud(metros)</b>',

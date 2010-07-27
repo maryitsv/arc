@@ -2,6 +2,10 @@ propel:
   _attributes:
     package: lib.model
     defaultIdMethod: native
+  actividadesaejecutarporprestadoralcantarillado:
+    _attributes: { phpName: Actividadesaejecutarporprestadoralcantarillado }
+    aaep_id: { phpName: AaepId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    aaep_nombre: { phpName: AaepNombre, type: VARCHAR, size: '80', required: true }
   actividadesresiduossolidosaseo:
     _attributes: { phpName: Actividadesresiduossolidosaseo }
     ars_id: { phpName: ArsId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -23,6 +27,7 @@ propel:
     iaf_apellido_diligenciador: { phpName: IafApellidoDiligenciador, type: VARCHAR, size: '200', required: false }
     iaf_cedula_diligenciador: { phpName: IafCedulaDiligenciador, type: VARCHAR, size: '15', required: false }
     iaf_telefono_diligenciador: { phpName: IafTelefonoDiligenciador, type: VARCHAR, size: '15', required: false }
+    _uniques: { administrativafinanciera_idx: [iaf_pps_pre_id, iaf_pps_anio, iaf_pps_ser_id] }
   analisiscobertura:
     _attributes: { phpName: Analisiscobertura }
     aco_id: { phpName: AcoId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -33,17 +38,6 @@ propel:
     aco_num_predios_conec_sistema: { phpName: AcoNumPrediosConecSistema, type: INTEGER, required: false }
     aco_estrat_soceco_adop_mpio: { phpName: AcoEstratSocecoAdopMpio, type: BOOLEAN, required: false }
     aco_estra_soceco_adop_mpio_jus: { phpName: AcoEstraSocecoAdopMpioJus, type: CHAR, size: '50', required: false }
-    aco_num_sus_servicio_oficial: { phpName: AcoNumSusServicioOficial, type: INTEGER, required: false }
-    aco_tarif_estr_servicio_oficial: { phpName: AcoTarifEstrServicioOficial, type: VARCHAR, required: false }
-  aspectoslegales:
-    _attributes: { phpName: Aspectoslegales }
-    ale_id: { phpName: AleId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    ale_fue_id: { phpName: AleFueId, type: INTEGER, required: true, foreignTable: fuentes, foreignReference: fue_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    ale_cumple_perisos: { phpName: AleCumplePerisos, type: BOOLEAN, required: false }
-    ale_entidad_exidio_concesion: { phpName: AleEntidadExidioConcesion, type: VARCHAR, size: '100', required: false }
-    ale_fecha_expedicion_concesion: { phpName: AleFechaExpedicionConcesion, type: DATE, required: false }
-    ale_fecha_vencimiento_concesion: { phpName: AleFechaVencimientoConcesion, type: DATE, required: false }
-    ale_caudal_adjudicado_concesion: { phpName: AleCaudalAdjudicadoConcesion, type: INTEGER, required: false }
   autoridadambiental:
     _attributes: { phpName: Autoridadambiental }
     aua_id: { phpName: AuaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -59,6 +53,7 @@ propel:
     cal_apellido_diligenciador: { phpName: CalApellidoDiligenciador, type: VARCHAR, size: '200', required: false }
     cal_cedula_diligenciador: { phpName: CalCedulaDiligenciador, type: VARCHAR, size: '15', required: false }
     cal_telefono_diligenciador: { phpName: CalTelefonoDiligenciador, type: VARCHAR, size: '15', required: false }
+    _uniques: { calidad_idx: [cal_pps_pre_id, cal_pps_anio, cal_pps_ser_id] }
   calidadagua:
     _attributes: { phpName: Calidadagua }
     cag_id: { phpName: CagId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -166,30 +161,21 @@ propel:
     cca_descarga_actividad_productiva_minera_espe: { phpName: CcaDescargaActividadProductivaMineraEspe, type: VARCHAR, size: '50', required: false }
     cca_descarga_actividad_productiva_industrial_espe: { phpName: CcaDescargaActividadProductivaIndustrialEspe, type: VARCHAR, size: '50', required: false }
     cca_descarga_actividad_productiva_otra_espe: { phpName: CcaDescargaActividadProductivaOtraEspe, type: VARCHAR, size: '50', required: false }
-  cantidadaguafuentessuperficiales:
-    _attributes: { phpName: Cantidadaguafuentessuperficiales }
-    caf_id: { phpName: CafId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    caf_fue_id: { phpName: CafFueId, type: INTEGER, required: true, foreignTable: fuentes, foreignReference: fue_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    caf_nombre_fuente: { phpName: CafNombreFuente, type: VARCHAR, size: '100', required: true }
-    caf_epoca_lluvia_caudal_total: { phpName: CafEpocaLluviaCaudalTotal, type: VARCHAR, required: false }
-    caf_epoca_lluvia_caudal_captado: { phpName: CafEpocaLluviaCaudalCaptado, type: VARCHAR, required: false }
-    caf_epoca_seca_caudal_total: { phpName: CafEpocaSecaCaudalTotal, type: VARCHAR, required: false }
-    caf_epoca_seca_caudal_captado: { phpName: CafEpocaSecaCaudalCaptado, type: VARCHAR, required: false }
   capacitacion:
     _attributes: { phpName: Capacitacion }
     cap_id: { phpName: CapId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     cap_iaf_id: { phpName: CapIafId, type: INTEGER, required: true, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     cap_dada_prestador: { phpName: CapDadaPrestador, type: BOOLEAN, required: true }
     cap_actividad_capacitacion_uso_eficiente_agua: { phpName: CapActividadCapacitacionUsoEficienteAgua, type: BOOLEAN, required: false }
-    cap_actividad_capacitacion_higene_personal: { phpName: CapActividadCapacitacionHigenePersonal, type: BOOLEAN, required: false }
-    cap_actividad_capacitacion_higene_vivienda: { phpName: CapActividadCapacitacionHigeneVivienda, type: BOOLEAN, required: false }
-    cap_actividad_capacitacion_higene_sitios_publicos: { phpName: CapActividadCapacitacionHigeneSitiosPublicos, type: BOOLEAN, required: false }
+    acu_cap_actividad_capacitacion_higiene_personal: { phpName: AcuCapActividadCapacitacionHigienePersonal, type: BOOLEAN, required: false }
+    acu_cap_actividad_capacitacion_higiene_vivienda: { phpName: AcuCapActividadCapacitacionHigieneVivienda, type: BOOLEAN, required: false }
+    acu_cap_actividad_capacitacion_higiene_sitios_publicos: { phpName: AcuCapActividadCapacitacionHigieneSitiosPublicos, type: BOOLEAN, required: false }
     cap_actividad_capacitacion_educacion_ambiental: { phpName: CapActividadCapacitacionEducacionAmbiental, type: BOOLEAN, required: false }
     cap_actividad_capacitacion_participacion_comunitaria: { phpName: CapActividadCapacitacionParticipacionComunitaria, type: BOOLEAN, required: false }
     cap_actividad_capacitacion_veeduria_ciudadana: { phpName: CapActividadCapacitacionVeeduriaCiudadana, type: BOOLEAN, required: false }
     cap_actividad_capacitacion_funcion_sist_abastecimiento: { phpName: CapActividadCapacitacionFuncionSistAbastecimiento, type: BOOLEAN, required: false }
     cap_actividad_capacitacion_otra_cuales: { phpName: CapActividadCapacitacionOtraCuales, type: VARCHAR, size: '100', required: false }
-    cap_capacitacion_recibida_prest: { phpName: CapCapacitacionRecibidaPrest, type: BOOLEAN, required: false }
+    acu_cap_capacitacion_recibida_prestador: { phpName: AcuCapCapacitacionRecibidaPrestador, type: BOOLEAN, required: false }
     cap_temas_capacitacion_administrativos: { phpName: CapTemasCapacitacionAdministrativos, type: BOOLEAN, required: false }
     cap_temas_capacitacion_normativos: { phpName: CapTemasCapacitacionNormativos, type: BOOLEAN, required: false }
     cap_temas_capacitacion_ambientales: { phpName: CapTemasCapacitacionAmbientales, type: BOOLEAN, required: false }
@@ -205,11 +191,16 @@ propel:
     capt_tipo_de_fondo: { phpName: CaptTipoDeFondo, type: BOOLEAN, required: false }
     capt_tipo_lateral: { phpName: CaptTipoLateral, type: BOOLEAN, required: false }
     capt_tipo_lecho_filtrante: { phpName: CaptTipoLechoFiltrante, type: BOOLEAN, required: false }
-    capt_tipo_lecho_represa: { phpName: CaptTipoLechoRepresa, type: BOOLEAN, required: false }
+    capt_tipo_trincho_represa: { phpName: CaptTipoTrinchoRepresa, type: BOOLEAN, required: false }
     capt_estado_estructura_id: { phpName: CaptEstadoEstructuraId, type: INTEGER, required: false, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
     capt_estado_pozo_id: { phpName: CaptEstadoPozoId, type: INTEGER, required: true, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
     capt_estado_bomba_id: { phpName: CaptEstadoBombaId, type: INTEGER, required: true, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
     capt_fuente_energia_id: { phpName: CaptFuenteEnergiaId, type: INTEGER, required: true, foreignTable: fuenteenergia, foreignReference: fen_id, onDelete: RESTRICT, onUpdate: CASCADE }
+  categoriadetipodesolucionindividualalcantarillado:
+    _attributes: { phpName: Categoriadetipodesolucionindividualalcantarillado }
+    ctdsia_id: { phpName: CtdsiaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    ctdsia_nombre: { phpName: CtdsiaNombre, type: VARCHAR, size: '80', required: true }
+    ctdsia_tdsia_id: { phpName: CtdsiaTdsiaId, type: INTEGER, required: false, foreignTable: tipodesolucionindividualalcantarillado, foreignReference: tdsia_id, onUpdate: CASCADE }
   comercial:
     _attributes: { phpName: Comercial }
     com_id: { phpName: ComId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -220,6 +211,7 @@ propel:
     com_apellido_diligenciador: { phpName: ComApellidoDiligenciador, type: VARCHAR, size: '200', required: true }
     com_cedula_diligenciador: { phpName: ComCedulaDiligenciador, type: VARCHAR, size: '15', required: true }
     com_telefono_diligenciador: { phpName: ComTelefonoDiligenciador, type: VARCHAR, size: '15', required: false }
+    _uniques: { comercial_idx: [com_pps_pre_id, com_pps_anio, com_pps_ser_id] }
   comunidadserviciorecoleccion:
     _attributes: { phpName: Comunidadserviciorecoleccion }
     csr_id: { phpName: CsrId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -333,19 +325,38 @@ propel:
     fue_metodo_aforo_micromolinete: { phpName: FueMetodoAforoMicromolinete, type: BOOLEAN, required: false }
     fue_metodo_aforo_velocidad: { phpName: FueMetodoAforoVelocidad, type: BOOLEAN, required: false }
     fue_metodo_aforo_otro_cual: { phpName: FueMetodoAforoOtroCual, type: VARCHAR, size: '100', required: false }
+    fue_cumple_permisos: { phpName: FueCumplePermisos, type: BOOLEAN, required: false }
   fuentessubterraneas:
     _attributes: { phpName: Fuentessubterraneas }
     fsu_id: { phpName: FsuId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     fsu_fue_id: { phpName: FsuFueId, type: INTEGER, required: true, foreignTable: fuentes, foreignReference: fue_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     fsu_nombre: { phpName: FsuNombre, type: VARCHAR, size: '100', required: true }
     fsu_promedio_captacion: { phpName: FsuPromedioCaptacion, type: VARCHAR, required: false }
+    fsu_entidad_expidio_concesion: { phpName: FsuEntidadExpidioConcesion, type: VARCHAR, size: '200', required: false }
+    fsu_fecha_expedicion_concesion: { phpName: FsuFechaExpedicionConcesion, type: DATE, required: false }
+    fsu_fecha_vencimiento_concesion: { phpName: FsuFechaVencimientoConcesion, type: DATE, required: false }
+    fsu_caudal_adjudicado_concesion: { phpName: FsuCaudalAdjudicadoConcesion, type: VARCHAR, required: false }
+  fuentessuperficiales:
+    _attributes: { phpName: Fuentessuperficiales }
+    fsp_id: { phpName: FspId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    fsp_fue_id: { phpName: FspFueId, type: INTEGER, required: true, foreignTable: fuentes, foreignReference: fue_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    fsp_nombre_fuente: { phpName: FspNombreFuente, type: VARCHAR, size: '100', required: true }
+    fsp_epoca_lluvia_caudal_total: { phpName: FspEpocaLluviaCaudalTotal, type: VARCHAR, required: false }
+    fsp_epoca_lluvia_caudal_captado: { phpName: FspEpocaLluviaCaudalCaptado, type: VARCHAR, required: false }
+    fsp_epoca_seca_caudal_total: { phpName: FspEpocaSecaCaudalTotal, type: VARCHAR, required: false }
+    fsp_epoca_seca_caudal_captado: { phpName: FspEpocaSecaCaudalCaptado, type: VARCHAR, required: false }
+    caf_entidad_expidio_concesion: { phpName: CafEntidadExpidioConcesion, type: VARCHAR, size: '200', required: false }
+    caf_fecha_expedicion_concesion: { phpName: CafFechaExpedicionConcesion, type: DATE, required: false }
+    caf_fecha_vencimiento_concesion: { phpName: CafFechaVencimientoConcesion, type: DATE, required: false }
+    caf_caudal_adjudicado_concesion: { phpName: CafCaudalAdjudicadoConcesion, type: VARCHAR, required: false }
+    caf_tipo_fuente: { phpName: CafTipoFuente, type: VARCHAR, size: '30', required: false }
   gestionresultado:
     _attributes: { phpName: Gestionresultado }
     gre_id: { phpName: GreId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     gre_iaf_id: { phpName: GreIafId, type: INTEGER, required: true, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     gre_plan_gestion_resultados: { phpName: GrePlanGestionResultados, type: BOOLEAN, required: false }
     gre_micromedidores_funcionando: { phpName: GreMicromedidoresFuncionando, type: INTEGER, required: false }
-    gre_total_suscriptores_micromed: { phpName: GreTotalSuscriptoresMicromed, type: INTEGER, required: false }
+    gre_total_suscriptores_micromedicion: { phpName: GreTotalSuscriptoresMicromedicion, type: INTEGER, required: false }
     gre_valor_micromedicion: { phpName: GreValorMicromedicion, type: VARCHAR, required: false }
     gre_macromedidores_funcionando: { phpName: GreMacromedidoresFuncionando, type: INTEGER, required: false }
     gre_macromedidores_proyectados: { phpName: GreMacromedidoresProyectados, type: INTEGER, required: false }
@@ -353,7 +364,7 @@ propel:
     gre_muestras_tomadas: { phpName: GreMuestrasTomadas, type: INTEGER, required: false }
     gre_muestras_aptas: { phpName: GreMuestrasAptas, type: INTEGER, required: false }
     gre_valor_calidad_agua: { phpName: GreValorCalidadAgua, type: VARCHAR, required: false }
-    gre_total_suscriptores_facturac: { phpName: GreTotalSuscriptoresFacturac, type: INTEGER, required: false }
+    gre_total_suscriptores_facturacion: { phpName: GreTotalSuscriptoresFacturacion, type: INTEGER, required: false }
     gre_total_facturas_diciembre: { phpName: GreTotalFacturasDiciembre, type: INTEGER, required: false }
     gre_valor_facturacion: { phpName: GreValorFacturacion, type: VARCHAR, required: false }
   informacioncontable:
@@ -369,7 +380,7 @@ propel:
     ico_activos_fijos: { phpName: IcoActivosFijos, type: VARCHAR, required: false }
     ico_propiedad_planta_equipos: { phpName: IcoPropiedadPlantaEquipos, type: VARCHAR, required: false }
     ico_otros_activos: { phpName: IcoOtrosActivos, type: VARCHAR, required: false }
-    ico_pasivo: { phpName: IcoPasivo, type: VARCHAR, required: false }
+    ico_pasivos: { phpName: IcoPasivos, type: VARCHAR, required: false }
     ico_pasivos_corrientes: { phpName: IcoPasivosCorrientes, type: VARCHAR, required: false }
     ico_obligaciones_financieras: { phpName: IcoObligacionesFinancieras, type: VARCHAR, required: false }
     ico_otras_cuentas_por_pagar: { phpName: IcoOtrasCuentasPorPagar, type: VARCHAR, required: false }
@@ -382,7 +393,7 @@ propel:
     ico_ingresos_no_operacionales: { phpName: IcoIngresosNoOperacionales, type: VARCHAR, required: false }
     ico_total_egresos: { phpName: IcoTotalEgresos, type: VARCHAR, required: false }
     ico_gastos_administrativos: { phpName: IcoGastosAdministrativos, type: VARCHAR, required: false }
-    ico_costo_operacion_mantenimien: { phpName: IcoCostoOperacionMantenimien, type: VARCHAR, required: false }
+    ico_costo_operacion_mantenimiento: { phpName: IcoCostoOperacionMantenimiento, type: VARCHAR, required: false }
     ico_costo_inversion: { phpName: IcoCostoInversion, type: VARCHAR, required: false }
     ico_resultados_ejercicio: { phpName: IcoResultadosEjercicio, type: VARCHAR, required: false }
   informaciongeneralmicrocuencas:
@@ -392,7 +403,7 @@ propel:
     imi_dep_id: { phpName: ImiDepId, type: INTEGER, required: true, foreignTable: departamento, foreignReference: dep_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     imi_mun_id: { phpName: ImiMunId, type: INTEGER, required: true, foreignTable: municipio, foreignReference: mun_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     imi_localidad: { phpName: ImiLocalidad, type: VARCHAR, size: '100', required: true }
-    imi_microcuenta: { phpName: ImiMicrocuenta, type: VARCHAR, size: '100', required: false }
+    imi_microcuenca: { phpName: ImiMicrocuenca, type: VARCHAR, size: '100', required: false }
     imi_codigo_cuenca: { phpName: ImiCodigoCuenca, type: VARCHAR, size: '100', required: false }
     imi_fecha: { phpName: ImiFecha, type: DATE, required: false }
   informacionvisual:
@@ -423,6 +434,7 @@ propel:
     mic_apellido_diligenciador: { phpName: MicApellidoDiligenciador, type: VARCHAR, size: '200', required: false }
     mic_cedula_diligenciador: { phpName: MicCedulaDiligenciador, type: VARCHAR, size: '15', required: false }
     mic_telefono_diligenciador: { phpName: MicTelefonoDiligenciador, type: VARCHAR, size: '15', required: false }
+    _uniques: { microcuencas_idx: [mic_pps_pre_id, mic_pps_anio, mic_pps_ser_id] }
   municipio:
     _attributes: { phpName: Municipio }
     mun_id: { phpName: MunId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -446,8 +458,8 @@ propel:
     par_id: { phpName: ParId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     par_iaf_id: { phpName: ParIafId, type: INTEGER, required: true, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     par_participacion_ciudadana_directa: { phpName: ParParticipacionCiudadanaDirecta, type: BOOLEAN, required: false }
-    par_participacion_ciudadana_asamblea_repre_dele: { phpName: ParParticipacionCiudadanaAsambleaRepreDele, type: BOOLEAN, required: false }
-    par_participacion_ciudadana_comite_desarr_control_social: { phpName: ParParticipacionCiudadanaComiteDesarrControlSocial, type: BOOLEAN, required: false }
+    par_participacion_ciudadana_asamblea: { phpName: ParParticipacionCiudadanaAsamblea, type: BOOLEAN, required: false }
+    par_participacion_ciudadana_comite_desarrollo_control_social: { phpName: ParParticipacionCiudadanaComiteDesarrolloControlSocial, type: BOOLEAN, required: false }
     par_participacion_ciudadana_veedurias: { phpName: ParParticipacionCiudadanaVeedurias, type: BOOLEAN, required: false }
     par_participacion_ciudadana_otra_cual: { phpName: ParParticipacionCiudadanaOtraCual, type: VARCHAR, size: '100', required: false }
     par_propuestas_vocales: { phpName: ParPropuestasVocales, type: BOOLEAN, required: false }
@@ -463,6 +475,26 @@ propel:
     pps_anio: { phpName: PpsAnio, type: INTEGER, primaryKey: true, required: true }
     pps_presupuesto_aprobado: { phpName: PpsPresupuestoAprobado, type: BOOLEAN, required: false }
     pps_suscriptores_pendientes_de_pago: { phpName: PpsSuscriptoresPendientesDePago, type: VARCHAR, required: false }
+  personaladministrativo:
+    _attributes: { phpName: Personaladministrativo }
+    pad_id: { phpName: PadId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    pad_tra_id: { phpName: PadTraId, type: INTEGER, required: false, foreignTable: trabajadoresyvinculacion, foreignReference: tra_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    pad_cargo: { phpName: PadCargo, type: VARCHAR, size: '100', required: false }
+    pad_contrato_termino_indefinido: { phpName: PadContratoTerminoIndefinido, type: BOOLEAN, required: false }
+    pad_contrato_termino_fijo: { phpName: PadContratoTerminoFijo, type: BOOLEAN, required: false }
+    pad_orden_pestacion_servicios: { phpName: PadOrdenPestacionServicios, type: BOOLEAN, required: false }
+    pad_sin_contrato_con_bonificacion: { phpName: PadSinContratoConBonificacion, type: BOOLEAN, required: false }
+    pad_remuneracion_mensual: { phpName: PadRemuneracionMensual, type: VARCHAR, required: false }
+  personaloperativo:
+    _attributes: { phpName: Personaloperativo }
+    pop_id: { phpName: PopId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    pop_tra_id: { phpName: PopTraId, type: INTEGER, required: false, foreignTable: trabajadoresyvinculacion, foreignReference: tra_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    pop_cargo: { phpName: PopCargo, type: VARCHAR, size: '100', required: false }
+    pop_contrato_termino_indefinido: { phpName: PopContratoTerminoIndefinido, type: BOOLEAN, required: false }
+    pop_contrato_termino_fijo: { phpName: PopContratoTerminoFijo, type: BOOLEAN, required: false }
+    pop_orden_prestacion_servicios: { phpName: PopOrdenPrestacionServicios, type: BOOLEAN, required: false }
+    pop_sin_contrato_con_bonificacion: { phpName: PopSinContratoConBonificacion, type: BOOLEAN, required: false }
+    pop_remuneracion_mensual: { phpName: PopRemuneracionMensual, type: VARCHAR, required: false }
   peticionesquejasrecursos:
     _attributes: { phpName: Peticionesquejasrecursos }
     pqr_id: { phpName: PqrId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -690,31 +722,26 @@ propel:
     _attributes: { phpName: Tecnicooperativaplantaaguapotableacueducto }
     topla_id: { phpName: ToplaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     topla_top_id: { phpName: ToplaTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    topla_tecnologia_utilizada: { phpName: ToplaTecnologiaUtilizada, type: VARCHAR, size: '100', required: true }
     topla_tecnologia_utilizada_cc: { phpName: ToplaTecnologiaUtilizadaCc, type: BOOLEAN, required: false }
     topla_tecnologia_utilizada_fd: { phpName: ToplaTecnologiaUtilizadaFd, type: BOOLEAN, required: false }
     topla_tecnologia_utilizada_pc: { phpName: ToplaTecnologiaUtilizadaPc, type: BOOLEAN, required: false }
     topla_tecnologia_utilizada_fime: { phpName: ToplaTecnologiaUtilizadaFime, type: BOOLEAN, required: false }
     topla_tecnologia_utilizada_ct: { phpName: ToplaTecnologiaUtilizadaCt, type: BOOLEAN, required: false }
     topla_tecnologia_utilizada_rhm: { phpName: ToplaTecnologiaUtilizadaRhm, type: BOOLEAN, required: false }
-    topla_ciclo_completo: { phpName: ToplaCicloCompleto, type: VARCHAR, size: '100', required: false }
     topla_ciclo_completo_mr: { phpName: ToplaCicloCompletoMr, type: BOOLEAN, required: false }
     topla_ciclo_completo_flh: { phpName: ToplaCicloCompletoFlh, type: BOOLEAN, required: false }
     topla_ciclo_completo_flm: { phpName: ToplaCicloCompletoFlm, type: BOOLEAN, required: false }
     topla_ciclo_completo_sd: { phpName: ToplaCicloCompletoSd, type: BOOLEAN, required: false }
     topla_ciclo_completo_fr: { phpName: ToplaCicloCompletoFr, type: BOOLEAN, required: false }
-    topla_filtracion_directa: { phpName: ToplaFiltracionDirecta, type: VARCHAR, size: '100', required: false }
     topla_filtracion_directa_mr: { phpName: ToplaFiltracionDirectaMr, type: BOOLEAN, required: false }
     topla_filtracion_directa_flh: { phpName: ToplaFiltracionDirectaFlh, type: BOOLEAN, required: false }
     topla_filtracion_directa_flm: { phpName: ToplaFiltracionDirectaFlm, type: BOOLEAN, required: false }
     topla_filtracion_directa_fr: { phpName: ToplaFiltracionDirectaFr, type: BOOLEAN, required: false }
-    topla_filtracion_multiples_etapas: { phpName: ToplaFiltracionMultiplesEtapas, type: VARCHAR, size: '100', required: false }
     topla_fime_fgd: { phpName: ToplaFimeFgd, type: BOOLEAN, required: false }
     topla_fime_fgac: { phpName: ToplaFimeFgac, type: BOOLEAN, required: false }
     topla_fime_fgas2: { phpName: ToplaFimeFgas2, type: BOOLEAN, required: false }
     topla_fime_fgas3: { phpName: ToplaFimeFgas3, type: BOOLEAN, required: false }
     topla_fime_fla: { phpName: ToplaFimeFla, type: BOOLEAN, required: false }
-    topla_remocion_hierro_manganeso: { phpName: ToplaRemocionHierroManganeso, type: VARCHAR, size: '100', required: false }
     topla_rhm_bandejas_cascadas: { phpName: ToplaRhmBandejasCascadas, type: BOOLEAN, required: false }
     topla_rhm_aspersores: { phpName: ToplaRhmAspersores, type: BOOLEAN, required: false }
     topla_rhm_sd: { phpName: ToplaRhmSd, type: BOOLEAN, required: false }
@@ -722,6 +749,9 @@ propel:
     topla_rhm_fime: { phpName: ToplaRhmFime, type: BOOLEAN, required: false }
     topla_planta_ttmto_funciona: { phpName: ToplaPlantaTtmtoFunciona, type: BOOLEAN, required: false }
     topla_estructuras_medicion_cau: { phpName: ToplaEstructurasMedicionCau, type: BOOLEAN, required: false }
+    topla_menor_caudal_operacion_diseno: { phpName: ToplaMenorCaudalOperacionDiseno, type: BOOLEAN, required: false }
+    topla_planta_compacta: { phpName: ToplaPlantaCompacta, type: BOOLEAN, required: false }
+    topla_combinacion_tecnologias: { phpName: ToplaCombinacionTecnologias, type: BOOLEAN, required: false }
   tecnicooperativareddistribucionacueducto:
     _attributes: { phpName: Tecnicooperativareddistribucionacueducto }
     tord_id: { phpName: TordId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -730,6 +760,58 @@ propel:
     tord_material_distribucion_id: { phpName: TordMaterialDistribucionId, type: INTEGER, required: true, foreignTable: materialreddistribucion, foreignReference: mrd_id, onDelete: RESTRICT, onUpdate: CASCADE }
     tord_material_diametro: { phpName: TordMaterialDiametro, type: VARCHAR, required: false }
     tord_material_edad: { phpName: TordMaterialEdad, type: INTEGER, required: false }
+  tecnicooperativasolucioncolectivaalcantarillado:
+    _attributes: { phpName: Tecnicooperativasolucioncolectivaalcantarillado }
+    tosca_id: { phpName: ToscaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    tosca_posee_alcantarillado_colectivo: { phpName: ToscaPoseeAlcantarilladoColectivo, type: BOOLEAN, required: false }
+    tosca_sanitario_funciona: { phpName: ToscaSanitarioFunciona, type: BOOLEAN, required: false }
+    tosca_sanitario_numero_suscriptores: { phpName: ToscaSanitarioNumeroSuscriptores, type: INTEGER, required: false }
+    tosca_sanitario_se_usa: { phpName: ToscaSanitarioSeUsa, type: BOOLEAN, required: false }
+    tosca_sanitario_estado: { phpName: ToscaSanitarioEstado, type: INTEGER, required: false, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    tosca_pluvial_funciona: { phpName: ToscaPluvialFunciona, type: BOOLEAN, required: false }
+    tosca_pluvial_numero_suscriptores: { phpName: ToscaPluvialNumeroSuscriptores, type: INTEGER, required: false }
+    tosca_pluvial_se_usa: { phpName: ToscaPluvialSeUsa, type: BOOLEAN, required: false }
+    tosca_pluvial_estado: { phpName: ToscaPluvialEstado, type: INTEGER, required: false, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    tosca_combi_convencional_funciona: { phpName: ToscaCombiConvencionalFunciona, type: BOOLEAN, required: false }
+    tosca_combi_convencional_numero_suscriptores: { phpName: ToscaCombiConvencionalNumeroSuscriptores, type: INTEGER, required: false }
+    tosca_combi_convencional_se_usa: { phpName: ToscaCombiConvencionalSeUsa, type: BOOLEAN, required: false }
+    tosca_combi_convencional_estado: { phpName: ToscaCombiConvencionalEstado, type: INTEGER, required: false, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    tosca_combi_no_convencional_funciona: { phpName: ToscaCombiNoConvencionalFunciona, type: BOOLEAN, required: false }
+    tosca_combi_no_convencional_numero_suscriptores: { phpName: ToscaCombiNoConvencionalNumeroSuscriptores, type: INTEGER, required: false }
+    tosca_combi_no_convencional_se_usa: { phpName: ToscaCombiNoConvencionalSeUsa, type: BOOLEAN, required: false }
+    tosca_combi_no_convencional_estado: { phpName: ToscaCombiNoConvencionalEstado, type: INTEGER, required: false, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    tosca_simplificado_funciona: { phpName: ToscaSimplificadoFunciona, type: BOOLEAN, required: false }
+    tosca_simplificado_numero_suscriptores: { phpName: ToscaSimplificadoNumeroSuscriptores, type: INTEGER, required: false }
+    tosca_simplificado_se_usa: { phpName: ToscaSimplificadoSeUsa, type: BOOLEAN, required: false }
+    tosca_simplificado_estado: { phpName: ToscaSimplificadoEstado, type: INTEGER, required: false, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    tosca_sin_arrastre_solidos_funciona: { phpName: ToscaSinArrastreSolidosFunciona, type: BOOLEAN, required: false }
+    tosca_sin_arrastre_solidos_numero_suscriptores: { phpName: ToscaSinArrastreSolidosNumeroSuscriptores, type: INTEGER, required: false }
+    tosca_sin_arrastre_solidos_se_usa: { phpName: ToscaSinArrastreSolidosSeUsa, type: BOOLEAN, required: false }
+    tosca_sin_arrastre_solidos_estado: { phpName: ToscaSinArrastreSolidosEstado, type: INTEGER, required: false, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    tosca_otro_cual: { phpName: ToscaOtroCual, type: VARCHAR, size: '80', required: false }
+    tosca_otro_funciona: { phpName: ToscaOtroFunciona, type: BOOLEAN, required: false }
+    tosca_otro_numero_suscriptores: { phpName: ToscaOtroNumeroSuscriptores, type: INTEGER, required: false }
+    tosca_otro_se_usa: { phpName: ToscaOtroSeUsa, type: BOOLEAN, required: false }
+    tosca_otro_estado: { phpName: ToscaOtroEstado, type: INTEGER, required: false, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    tosca_actividades_a_ejecutar: { phpName: ToscaActividadesAEjecutar, type: INTEGER, required: false, foreignTable: actividadesaejecutarporprestadoralcantarillado, foreignReference: aaep_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    tosca_top_id: { phpName: ToscaTopId, type: INTEGER, required: false, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
+  tecnicooperativasolucionindividualalcantarillado:
+    _attributes: { phpName: Tecnicooperativasolucionindividualalcantarillado }
+    tosia_id: { phpName: TosiaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    tosia_opcion1_ctdsia_id: { phpName: TosiaOpcion1CtdsiaId, type: INTEGER, required: false, foreignTable: categoriadetipodesolucionindividualalcantarillado, foreignReference: ctdsia_id, onUpdate: CASCADE }
+    tosia_opcion2_ctdsia_id: { phpName: TosiaOpcion2CtdsiaId, type: INTEGER, required: false, foreignTable: categoriadetipodesolucionindividualalcantarillado, foreignReference: ctdsia_id, onUpdate: CASCADE }
+    tosia_opcion3_ctdsia_id: { phpName: TosiaOpcion3CtdsiaId, type: INTEGER, required: false, foreignTable: categoriadetipodesolucionindividualalcantarillado, foreignReference: ctdsia_id, onUpdate: CASCADE }
+    tosia_opcion4_ctdsia_id: { phpName: TosiaOpcion4CtdsiaId, type: INTEGER, required: false, foreignTable: categoriadetipodesolucionindividualalcantarillado, foreignReference: ctdsia_id, onUpdate: CASCADE }
+    tosia_opcion5_ctdsia_id: { phpName: TosiaOpcion5CtdsiaId, type: INTEGER, required: false, foreignTable: categoriadetipodesolucionindividualalcantarillado, foreignReference: ctdsia_id, onUpdate: CASCADE }
+    tosia_opcion6_ctdsia_id: { phpName: TosiaOpcion6CtdsiaId, type: INTEGER, required: false, foreignTable: categoriadetipodesolucionindividualalcantarillado, foreignReference: ctdsia_id, onUpdate: CASCADE }
+    tosia_ctdsia_otro: { phpName: TosiaCtdsiaOtro, type: VARCHAR, size: '80', required: false }
+    tosia_opcion1_numero_viviendas: { phpName: TosiaOpcion1NumeroViviendas, type: VARCHAR, required: false }
+    tosia_opcion2_numero_viviendas: { phpName: TosiaOpcion2NumeroViviendas, type: VARCHAR, required: false }
+    tosia_opcion3_numero_viviendas: { phpName: TosiaOpcion3NumeroViviendas, type: VARCHAR, required: false }
+    tosia_opcion4_numero_viviendas: { phpName: TosiaOpcion4NumeroViviendas, type: VARCHAR, required: false }
+    tosia_opcion5_numero_viviendas: { phpName: TosiaOpcion5NumeroViviendas, type: VARCHAR, required: false }
+    tosia_opcion6_numero_viviendas: { phpName: TosiaOpcion6NumeroViviendas, type: VARCHAR, required: false }
+    tosia_top_id: { phpName: TosiaTopId, type: INTEGER, required: false, foreignTable: tecnicooperativo, foreignReference: top_id, onUpdate: CASCADE }
   tecnicooperativo:
     _attributes: { phpName: Tecnicooperativo }
     top_id: { phpName: TopId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -740,11 +822,16 @@ propel:
     top_apellido_diligenciador: { phpName: TopApellidoDiligenciador, type: VARCHAR, size: '200', required: true }
     top_cedula_diligenciador: { phpName: TopCedulaDiligenciador, type: VARCHAR, size: '15', required: true }
     top_telefono_diligenciador: { phpName: TopTelefonoDiligenciador, type: VARCHAR, size: '15', required: false }
+    _uniques: { tecnicooperativo_idx: [top_pps_pre_id, top_pps_anio, top_pps_ser_id] }
   tipocanal:
     _attributes: { phpName: Tipocanal }
     tca_id: { phpName: TcaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     tca_nombre: { phpName: TcaNombre, type: VARCHAR, size: '100', required: true }
     _uniques: { tipocanal_tca_nombre_key: [tca_nombre] }
+  tipodesolucionindividualalcantarillado:
+    _attributes: { phpName: Tipodesolucionindividualalcantarillado }
+    tdsia_id: { phpName: TdsiaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    tdsia_nombre: { phpName: TdsiaNombre, type: VARCHAR, size: '80', required: true }
   tipofuentesuperficial:
     _attributes: { phpName: Tipofuentesuperficial }
     tfu_id: { phpName: TfuId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -756,23 +843,7 @@ propel:
   trabajadoresyvinculacion:
     _attributes: { phpName: Trabajadoresyvinculacion }
     tra_id: { phpName: TraId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    tra_iaf_id: { phpName: TraIafId, type: INTEGER, required: true, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    tra_area_administrativa: { phpName: TraAreaAdministrativa, type: INTEGER, required: true }
-    tra_cargo_administrativo: { phpName: TraCargoAdministrativo, type: VARCHAR, size: '50', required: false }
-    tra_tipo_vincula_admin_termino_indefinido: { phpName: TraTipoVinculaAdminTerminoIndefinido, type: BOOLEAN, required: false }
-    tra_tipo_vincula_admin_termino_fijo: { phpName: TraTipoVinculaAdminTerminoFijo, type: BOOLEAN, required: false }
-    tra_tipo_vincula_admin_prestacion_servicios: { phpName: TraTipoVinculaAdminPrestacionServicios, type: BOOLEAN, required: false }
-    tra_tipo_vincula_admin_sin_contrato_con_bonificacion: { phpName: TraTipoVinculaAdminSinContratoConBonificacion, type: BOOLEAN, required: false }
-    tra_tipo_vincula_admin_remuneracion_mensual: { phpName: TraTipoVinculaAdminRemuneracionMensual, type: BOOLEAN, required: false }
-    tra_valor_remuneracion_admin: { phpName: TraValorRemuneracionAdmin, type: VARCHAR, required: false }
-    tra_area_operativa: { phpName: TraAreaOperativa, type: INTEGER, required: false }
-    tra_cargo_operativo: { phpName: TraCargoOperativo, type: VARCHAR, size: '50', required: false }
-    tra_tipo_vincula_ope_termino_indefinido: { phpName: TraTipoVinculaOpeTerminoIndefinido, type: BOOLEAN, required: false }
-    tra_tipo_vincula_ope_termino_fijo: { phpName: TraTipoVinculaOpeTerminoFijo, type: BOOLEAN, required: false }
-    tra_tipo_vincula_ope_prestacion_servicios: { phpName: TraTipoVinculaOpePrestacionServicios, type: BOOLEAN, required: false }
-    tra_tipo_vincula_ope_sin_contrato_con_bonificacion: { phpName: TraTipoVinculaOpeSinContratoConBonificacion, type: BOOLEAN, required: false }
-    tra_tipo_vincula_ope_remuneracion_mensual: { phpName: TraTipoVinculaOpeRemuneracionMensual, type: BOOLEAN, required: false }
-    tra_valor_remuneracion_ope: { phpName: TraValorRemuneracionOpe, type: VARCHAR, required: false }
+    tra_iaf_id: { phpName: TraIafId, type: INTEGER, required: false, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: CASCADE }
     tra_manual_procedimiento: { phpName: TraManualProcedimiento, type: BOOLEAN, required: false }
     tra_manual_funciones: { phpName: TraManualFunciones, type: BOOLEAN, required: false }
   tratamientoaprovechamientoresiduossolidosaseo:
