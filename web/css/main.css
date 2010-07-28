@@ -50,4 +50,9 @@ body .x-panel {
 
 /*botones generales*/
 .siguiente {}
+
 .atras {}
+
+.panelpps {
+	text-align: left;
+}

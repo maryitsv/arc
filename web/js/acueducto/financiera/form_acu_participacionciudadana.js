@@ -119,12 +119,12 @@ var acu_par_propuestas_vocales = new Ext.form.RadioGroup({
 		  	boxLabel: 'Si',
 			name: 'acu_par_propuestas_vocales', 
 			checked: true,
-			inputValue: true
+			inputValue: 1
        },
        { 
 		  	boxLabel: 'No', 
 			name: 'acu_par_propuestas_vocales' ,
-			inputValue: false
+			inputValue: 0
        }
     ]                
 } );

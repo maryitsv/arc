@@ -85,7 +85,7 @@ function login_autenticar(){
 		if (obj.success)
 		{
 			//ocultamos todo y mostramos un mensaje de confirmacion pidiendo el anio
-			window.location = 'menuentradadatos';
+			window.location = 'periodoprestadorservicio';
 		}	
 		else if (obj.success == false)
 		{

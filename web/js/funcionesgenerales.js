@@ -59,11 +59,13 @@ function subirDatos(panel, url_Action, extraParams){
 		waitMsg: 'Enviando datos...',
 		success: function(response, action)
 		{
-		  obj = Ext.util.JSON.decode(action.response.responseText);
-		   mostrarMensajeRapido('Aviso',obj.mensaje);
+			salida = true;
+			obj = Ext.util.JSON.decode(action.response.responseText);
+			mostrarMensajeRapido('Aviso',obj.mensaje);
 		},
 		failure: function(form, action, response)
 		{
+			salida = false;
 			if(action.failureType == 'server'){
 				obj = Ext.util.JSON.decode(action.response.responseText); 
 				mostrarMensajeConfirmacion('Error',obj.errors.reason);

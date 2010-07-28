@@ -250,9 +250,9 @@ init: function () {
 													width: 250,
 													scale: 'large',
 													handler: function(){  
-														Ext.Ajax.request({  
+														/*Ext.Ajax.request({  
 														waitMsg: 'Espere por favor',
-														url: 'VENTANAPRINCIPAL/desautenticar', 
+														url: 'login/desautenticar', 
 														success: function(response, action){	  
 															obj = Ext.util.JSON.decode(response.responseText);
 															if (obj.success)
@@ -269,7 +269,8 @@ init: function () {
 															var result=response.responseText;
 															Ext.example.msg('Error', 'no se pudo conectar a la base de datos intente mas tarde'); 
 														}
-														});
+														});*/
+														window.location = 'login';
 													}
 												  }
 											]            
