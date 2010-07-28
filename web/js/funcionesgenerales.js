@@ -46,30 +46,28 @@ function mostrarMensajeConfirmacion(titulo, contenido)
 	});
 }
 
-function subirDatos(panel, url_Action, extraParams){
-
+function subirDatos(panel, url_Action, extraParams, funcionSuccess, funcionFailure){
+	
 	panel.getForm().submit({
 		method: 'POST',
 		url: url_Action,
 		params: extraParams,
-		/*params: {
-			servicio:'acueducto'
-		},*/
 		waitTitle: 'Enviando',
 		waitMsg: 'Enviando datos...',
 		success: function(response, action)
 		{
-			salida = true;
 			obj = Ext.util.JSON.decode(action.response.responseText);
+			salida = true;
+			funcionSuccess();
 			mostrarMensajeRapido('Aviso',obj.mensaje);
 		},
 		failure: function(form, action, response)
 		{
-			salida = false;
 			if(action.failureType == 'server'){
 				obj = Ext.util.JSON.decode(action.response.responseText); 
 				mostrarMensajeConfirmacion('Error',obj.errors.reason);
 			}
+			funcionFailure();
 		}
 	});
 }

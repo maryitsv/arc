@@ -48,6 +48,7 @@ Ext.form.VTypes['acu_informacioncontable_sumaractivos_vtype'] = function(val, fi
    return true;
 }
 
+//////**** pasivos **********************************
 
 var acu_ico_balance_general = new Ext.form.TextField( {
 	fieldLabel: 'Balance general a diciembre 30 de', 
@@ -209,6 +210,8 @@ var acu_ico_otros_activos = new Ext.form.TextField( {
 	}
 } );
 
+//////**** pasivos **********************************
+
 var acu_ico_pasivos = new Ext.form.TextField( {
 	fieldLabel: 'Pasivos ($)', 
 	emptyText: 'ingrese los pasivos', 
@@ -328,66 +331,7 @@ var acu_ico_patrimonio = new Ext.form.TextField( {
 	}
 } );
 
-var acu_financieracontable_activos_pasivos_formpanel = new Ext.form.FormPanel({
-	autoWidth: true,
-	border: false,
-	height: largo_panel-15,
-	layout: 'column',
-	style: {"margin-right": Ext.isIE6 ? (Ext.isStrict ? "-10px" : "-13px") : "0" },
-	items: [
-	   {
-			xtype: 'fieldset',
-			border: false,
-		    columnWidth: '1',
-			id: 'acu_informacioncontable_balance_general_fieldset',
-			defaultType: 'textfield',
-			labelWidth: 210,
-			defaults: {labelStyle: 'font-size:1.0em;'},
-			bodyStyle: Ext.isIE ? 'padding:5 5 5px 15px;' : 'padding: 10px 10px;'
-	   },
-	   {
-			xtype: 'fieldset',
-			id: 'acu_informacioncontable_activos_fieldset',
-			columnWidth: '.495',
-			height: 300,
-			title: 'Activos',
-			defaultType: 'numberfield',
-			labelWidth: 150,
-			defaults: {labelStyle: 'font-size:1.0em;'},
-			padding: 8,
-			bodyStyle: Ext.isIE ? 'padding:5 5 5px 15px;' : 'padding: 10px 10px 10px 10px;'
-		},
-		{xtype: 'panel', columnWidth: '.01' },
-	    {
-			xtype: 'fieldset',
-			id: 'acu_informacioncontable_pasivos_fieldset',
-			title: 'Pasivos',
-			columnWidth: '.495',
-			height: 300,
-			defaultType: 'numberfield',
-			labelWidth: 150,
-			defaults: {labelStyle: 'font-size:1.0em;'},
-			bodyStyle: Ext.isIE ? 'padding:5 5 5px 15px;' : 'padding: 10px 10px;'
-		}
-	],
-	buttons:[
-		{
-			text: 'Atras', 
-			//iconCls: 'crear16', 
-			handler: function(){
-							Ext.getCmp('acueducto').setActiveTab(0);
-			}
-		},
-	    {
-	    	text: 'Continuar', 
-	    	//iconCls: 'crear16', 
-	    	handler: function(){
-							acu_financieracontable_activos_pasivos_formpanel.hide();
-							acu_financieracontable_totales_formpanel.show();
-			}
-	    }
-	]
-});
+//////**** totales **********************************
 
 var acu_ico_estado_de_resultados = new Ext.form.TextField( { 
 	fieldLabel: 'Estado de resultados entre enero 1 y diciembre 31 de', 
@@ -548,6 +492,66 @@ var acu_ico_resultados_ejecicio = new Ext.form.TextField( {
 	}
 } );
 
+var acu_financieracontable_activos_pasivos_formpanel = new Ext.form.FormPanel({
+	autoWidth: true,
+	border: false,
+	height: largo_panel-15,
+	layout: 'column',
+	style: {"margin-right": Ext.isIE6 ? (Ext.isStrict ? "-10px" : "-13px") : "0" },
+	items: [
+	   {
+			xtype: 'fieldset',
+			border: false,
+		    columnWidth: '1',
+			id: 'acu_informacioncontable_balance_general_fieldset',
+			defaultType: 'textfield',
+			labelWidth: 210,
+			defaults: {labelStyle: 'font-size:1.0em;'},
+			bodyStyle: Ext.isIE ? 'padding:5 5 5px 15px;' : 'padding: 10px 10px;'
+	   },
+	   {
+			xtype: 'fieldset',
+			id: 'acu_informacioncontable_activos_fieldset',
+			columnWidth: '.495',
+			height: 300,
+			title: 'Activos',
+			defaultType: 'numberfield',
+			labelWidth: 150,
+			defaults: {labelStyle: 'font-size:1.0em;'},
+			padding: 8,
+			bodyStyle: Ext.isIE ? 'padding:5 5 5px 15px;' : 'padding: 10px 10px 10px 10px;'
+		},
+		{xtype: 'panel', columnWidth: '.01' },
+	    {
+			xtype: 'fieldset',
+			id: 'acu_informacioncontable_pasivos_fieldset',
+			title: 'Pasivos',
+			columnWidth: '.495',
+			height: 300,
+			defaultType: 'numberfield',
+			labelWidth: 150,
+			defaults: {labelStyle: 'font-size:1.0em;'},
+			bodyStyle: Ext.isIE ? 'padding:5 5 5px 15px;' : 'padding: 10px 10px;'
+		}
+	],
+	buttons:[
+		{
+			text: 'Atras', 
+			//iconCls: 'crear16', 
+			handler: function(){
+							Ext.getCmp('acueducto').setActiveTab(0);
+			}
+		},
+	    {
+	    	text: 'Continuar', 
+	    	//iconCls: 'crear16', 
+	    	handler: function(){
+							acu_informacioncontable_activos_pasivos_subirdatos();
+			}
+	    }
+	]
+});
+
 var acu_financieracontable_totales_formpanel = new Ext.form.FormPanel({
 	hidden: true,
 	autoWidth: true,
@@ -580,8 +584,7 @@ var acu_financieracontable_totales_formpanel = new Ext.form.FormPanel({
 	    	text: 'Continuar', 
 	    	//iconCls: 'crear16', 
 	    	handler: function(){
-							//Ext.getCmp('tabp_acu_administrativafinanciera').setActiveTab(1);
-							acu_informacioncontable_subirdatos();
+							acu_informacioncontable_totales_subirdatos();
 			}
 	    }
 	]
@@ -610,9 +613,7 @@ acu_informacioncontable_datastore.load({
   }
 });
 
-function acu_informacioncontable_subirdatos() {
-
-	mostrarMensajeRapido('prueba','prueba subir datos');
+function acu_informacioncontable_activos_pasivos_subirdatos() {
 	
 	subirDatos(
 		acu_financieracontable_activos_pasivos_formpanel, 
@@ -620,16 +621,26 @@ function acu_informacioncontable_subirdatos() {
 		{ 
 			form: 'activosPasivos', 
 			acu_ico_activos: Ext.getCmp('acu_ico_activos').getValue()
+		},
+		function(){
+			acu_financieracontable_activos_pasivos_formpanel.hide();
+			acu_financieracontable_totales_formpanel.show();
 		}
 	);
+	
+}
+
+function acu_informacioncontable_totales_subirdatos() {
 	
 	subirDatos(
 		acu_financieracontable_totales_formpanel, 
 		'acueducto_informacioncontable/actualizarInformacionContable',
 		{ 
 			form: 'totales'
+		},
+		function(){
+			Ext.getCmp('tabp_acu_administrativafinanciera').setActiveTab(1);
 		}
 	);
-	
 }
 

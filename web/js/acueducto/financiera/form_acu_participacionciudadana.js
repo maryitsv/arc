@@ -11,77 +11,90 @@ var acu_participacionciudadana_datastore = new Ext.data.Store({
 			id: 'id'
 			},[
 			
-			  {name: 'acu_par_participacion_ciudadana_directa', type: 'bool'}, 
-			  {name: 'acu_par_participacion_ciudadana_asamblea', type: 'bool'}, 
-			  {name: 'acu_par_participacion_ciudadana_comite_desarrollo_social', type: 'bool'}, 
-			  {name: 'acu_par_participacion_ciudadana_veedurias', type: 'bool'}, 
+			  {name: 'acu_par_participacion_ciudadana_directa', type: 'int'}, 
+			  {name: 'acu_par_participacion_ciudadana_asamblea', type: 'int'}, 
+			  {name: 'acu_par_participacion_ciudadana_comite_desarrollo_control_social', type: 'int'}, 
+			  {name: 'acu_par_participacion_ciudadana_veedurias', type: 'int'}, 
 			  {name: 'acu_par_participacion_ciudadana_otra_cual', type: 'string'}, 
-			  {name: 'acu_par_propuestas_vocales', type: 'boolean'} 
+			  {name: 'acu_par_propuestas_vocales', type: 'int'} 
 	])
 });
 
-var acu_par_tipoparticiacion_checkboxgroup = new Ext.form.CheckboxGroup({
-	fieldLabel: 'Indique las formas de participaci&oacute;n ciudadana',
-	labelStyle: 'width:310px;',
-	itemCls: 'x-check-group-alt',
-	columns: 1,
-	items: [
-	    {
-	       boxLabel: 'Participaci&oacute;n directa',
-		   name: 'acu_par_participacion_ciudadana_directa',
-		   id: 'acu_par_participacion_ciudadana_directa',
-	       listeners:
-	       {
-	                'render': function(){ 
-						ayuda( 'acu_par_participacion_ciudadana_directa', ayuda_acu_par_participacion_ciudadana_directa );
-					}             
-	       }
-	    },
-	    {
-			boxLabel: 'Asamblea de Representantes o Delegados', 
-			name: 'acu_par_participacion_ciudadana_asamblea',
-			id: 'acu_par_participacion_ciudadana_asamblea',
-			listeners:
-	        {
-	                'render': function(){ 
-						ayuda( 'acu_par_participacion_ciudadana_asamblea', ayuda_acu_par_participacion_ciudadana_asamblea );
-					}                 
-	        }
+var acu_par_tipoparticiacion_label = new Ext.form.Label({
+	fieldLabel: 'Indique las formas de participaci&oacute;n ciudadana'
+});
+
+var acu_par_participacion_ciudadana_directa = new Ext.form.Checkbox({
+	boxLabel: 'Participaci&oacute;n directa',
+	name: 'acu_par_participacion_ciudadana_directa',
+	id: 'acu_par_participacion_ciudadana_directa',
+	inputValue: 1,
+	listeners:
+	{
+			'render': function(){ 
+				ayuda( 'acu_par_participacion_ciudadana_directa', ayuda_acu_par_participacion_ciudadana_directa );
+			}             
+	}
+});
+
+var acu_par_participacion_ciudadana_asamblea = new Ext.form.Checkbox({
+	boxLabel: 'Asamblea de Representantes o Delegados', 
+	name: 'acu_par_participacion_ciudadana_asamblea',
+	id: 'acu_par_participacion_ciudadana_asamblea',
+	inputValue: 1,
+	listeners:
+	{
+			'render': function(){ 
+				ayuda( 'acu_par_participacion_ciudadana_asamblea', ayuda_acu_par_participacion_ciudadana_asamblea );
+			}                 
+	}
+});
+
+var acu_par_participacion_ciudadana_comite_desarrollo_control_social = new Ext.form.Checkbox({
+	boxLabel: 'Comit&eacute; de Desarrollo y Control Social', 
+	name: 'acu_par_participacion_ciudadana_comite_desarrollo_control_social',
+	id: 'acu_par_participacion_ciudadana_comite_desarrollo_control_social',
+	inputValue: 1,
+	listeners:
+	{
+			'render': function(){ 
+				ayuda( 'acu_par_participacion_ciudadana_comite_desarrollo_control_social', ayuda_acu_par_participacion_ciudadana_comite_desarrollo_control_social );
+			}                 
+	}
+});
+
+var acu_par_participacion_ciudadana_veedurias = new Ext.form.Checkbox({
+	boxLabel: 'Veedur&iacute;as', 
+	name: 'acu_par_participacion_ciudadana_veedurias',
+	id: 'acu_par_participacion_ciudadana_veedurias',
+	inputValue: 1,
+	listeners:
+	{
+			'render': function(){ 
+				ayuda( 'acu_par_participacion_ciudadana_veedurias', ayuda_acu_par_participacion_ciudadana_veedurias );
+			}                
+	}
+});
+
+var acu_par_participacion_ciudadana_otra = new Ext.form.Checkbox({
+	boxLabel: 'Otra', 
+	name: 'acu_par_participacion_ciudadana_otra',
+	id: 'acu_par_participacion_ciudadana_otra',
+	inputValue: 1,
+	listeners:
+	{
+		'render': function(){ 
+			ayuda( 'acu_par_participacion_ciudadana_otra', ayuda_acu_par_participacion_ciudadana_otra );
 		},
-	    {
-			boxLabel: 'Comit&eacute; de Desarrollo y Control Social', 
-			name: 'acu_par_participacion_ciudadana_comite_desarrollo_control_social',
-			id: 'acu_par_participacion_ciudadana_comite_desarrollo_control_social',
-			listeners:
-	        {
-	                'render': function(){ 
-						ayuda( 'acu_par_participacion_ciudadana_comite_desarrollo_control_social', ayuda_acu_par_participacion_ciudadana_comite_desarrollo_control_social );
-					}                 
-	        }
-		},
-	    {
-			boxLabel: 'Veedur&iacute;as', 
-			name: 'acu_par_participacion_ciudadana_veedurias',
-			id: 'acu_par_participacion_ciudadana_veedurias',
-			listeners:
-	        {
-	                'render': function(){ 
-						ayuda( 'acu_par_participacion_ciudadana_veedurias', ayuda_acu_par_participacion_ciudadana_veedurias );
-					}                
-	        }
-		},
-	    {
-			boxLabel: 'Otra', 
-			name: 'acu_par_participacion_ciudadana_otra',
-			id: 'acu_par_participacion_ciudadana_otra',
-			listeners:
-	        {
-	                'render': function(){ 
-						ayuda( 'acu_par_participacion_ciudadana_otra', ayuda_acu_par_participacion_ciudadana_otra );
-	     			}                   
-	        }
-		}
-	]
+		'check' :
+		{
+		   fn: function(radio, valor) 
+		   { 
+			  if (valor) Ext.getCmp('acu_par_participacion_ciudadana_otra_cual').enable();
+			  else Ext.getCmp('acu_par_participacion_ciudadana_otra_cual').disable();
+		   }
+		}   
+	}
 });
 
 var acu_par_participacion_ciudadana_otra_cual = new Ext.form.TextField({
@@ -146,9 +159,14 @@ var form_acu_participacionciudadana = new Ext.FormPanel({
 			defaults: {labelStyle: 'font-size:1.0em;'},
 			bodyStyle: Ext.isIE ? 'padding:5 5 5px 15px;' : 'padding: 10px 10px;',
 			items: [
-		           acu_par_tipoparticiacion_checkboxgroup,  
-		           acu_par_participacion_ciudadana_otra_cual,
-		           acu_par_propuestas_vocales  
+					acu_par_tipoparticiacion_label, 
+					acu_par_participacion_ciudadana_directa, 
+					acu_par_participacion_ciudadana_asamblea, 
+					acu_par_participacion_ciudadana_comite_desarrollo_control_social,
+					acu_par_participacion_ciudadana_veedurias, 
+					acu_par_participacion_ciudadana_otra,
+					acu_par_participacion_ciudadana_otra_cual,
+					acu_par_propuestas_vocales
 		    ]
 	   }
 	],
@@ -175,6 +193,9 @@ acu_participacionciudadana_datastore.load({
   callback: function() {
 	var record = acu_participacionciudadana_datastore.getAt(0);
 	form_acu_participacionciudadana.getForm().loadRecord(record);
+	if(record.get('acu_par_participacion_ciudadana_otra_cual') != ''){
+		Ext.getCmp('acu_par_participacion_ciudadana_otra').setValue(1);
+	}
   }
 });
 

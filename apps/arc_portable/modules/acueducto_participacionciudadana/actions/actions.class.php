@@ -74,11 +74,11 @@ class acueducto_participacionciudadanaActions extends sfActions
 			try
 			{
 				$acu_participacionciudadana = new Participacionciudadana();
-		
+
 				$acu_participacionciudadana->setParIafId($iaf_id);
 				$acu_participacionciudadana->setParParticipacionCiudadanaDirecta($this->getRequestParameter('acu_par_participacion_ciudadana_directa'));
 				$acu_participacionciudadana->setParParticipacionCiudadanaAsamblea($this->getRequestParameter('acu_par_participacion_ciudadana_asamblea'));
-				$acu_participacionciudadana->setParParticipacionCiudadanaComiteDesarrolloControlSocial($this->getRequestParameter('acu_par_participacion_ciudadana_comite_desarrollo_social'));
+				$acu_participacionciudadana->setParParticipacionCiudadanaComiteDesarrolloControlSocial($this->getRequestParameter('acu_par_participacion_ciudadana_comite_desarrollo_control_social'));
 				$acu_participacionciudadana->setParParticipacionCiudadanaVeedurias($this->getRequestParameter('acu_par_participacion_ciudadana_veedurias'));
 				$acu_participacionciudadana->setParParticipacionCiudadanaOtraCual($this->getRequestParameter('acu_par_participacion_ciudadana_otra_cual'));
 				$acu_participacionciudadana->setParPropuestasVocales($this->getRequestParameter('acu_par_propuestas_vocales'));
@@ -129,7 +129,7 @@ class acueducto_participacionciudadanaActions extends sfActions
 		{
 			$datos[$pos]['acu_par_participacion_ciudadana_directa']=$acu_participacionciudadana->getParParticipacionCiudadanaDirecta();
 			$datos[$pos]['acu_par_participacion_ciudadana_asamblea']=$acu_participacionciudadana->getParParticipacionCiudadanaAsamblea();
-			$datos[$pos]['acu_par_participacion_ciudadana_comite_desarrollo_social']=$acu_participacionciudadana->getParParticipacionCiudadanaComiteDesarrolloControlSocial();
+			$datos[$pos]['acu_par_participacion_ciudadana_comite_desarrollo_control_social']=$acu_participacionciudadana->getParParticipacionCiudadanaComiteDesarrolloControlSocial();
 			$datos[$pos]['acu_par_participacion_ciudadana_veedurias']=$acu_participacionciudadana->getParParticipacionCiudadanaVeedurias();
 			$datos[$pos]['acu_par_participacion_ciudadana_otra_cual']=$acu_participacionciudadana->getParParticipacionCiudadanaOtraCual();
 			$datos[$pos]['acu_par_propuestas_vocales']=$acu_participacionciudadana->getParPropuestasVocales();

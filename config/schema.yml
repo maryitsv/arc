@@ -460,13 +460,15 @@ propel:
     pps_presupuesto_aprobado: { phpName: PpsPresupuestoAprobado, type: VARCHAR, required: false }
     pps_suscriptores_pendientes_de_pago: { phpName: PpsSuscriptoresPendientesDePago, type: VARCHAR, required: false }
     pps_estatutos: { phpName: PpsEstatutos, type: VARCHAR, required: false }
-    pre_numero_empleados_con_competencias: { phpName: PreNumeroEmpleadosConCompetencias, type: VARCHAR, required: false }
-    pre_numero_empleados_sin_competencias: { phpName: PreNumeroEmpleadosSinCompetencias, type: VARCHAR, required: false }
-    pre_numero_empleados_proceso_competencias: { phpName: PreNumeroEmpleadosProcesoCompetencias, type: VARCHAR, required: false }
-    pps_nombre_diligenciador: { phpName: PpsNombreDiligenciador, type: VARCHAR, size: '200', required: true }
-    pps_apellido_diligenciador: { phpName: PpsApellidoDiligenciador, type: VARCHAR, size: '200', required: true }
-    pps_cedula_diligenciador: { phpName: PpsCedulaDiligenciador, type: VARCHAR, size: '15', required: true }
+    pps_numero_empleados_con_competencias: { phpName: PpsNumeroEmpleadosConCompetencias, type: VARCHAR, required: false }
+    pps_numero_empleados_sin_competencias: { phpName: PpsNumeroEmpleadosSinCompetencias, type: VARCHAR, required: false }
+    pps_numero_empleados_proceso_competencias: { phpName: PpsNumeroEmpleadosProcesoCompetencias, type: VARCHAR, required: false }
+    pps_nombre_diligenciador: { phpName: PpsNombreDiligenciador, type: VARCHAR, size: '200', required: false }
+    pps_apellido_diligenciador: { phpName: PpsApellidoDiligenciador, type: VARCHAR, size: '200', required: false }
     pps_telefono_diligenciador: { phpName: PpsTelefonoDiligenciador, type: VARCHAR, size: '15', required: false }
+    pps_identificacion_diligenciador: { phpName: PpsIdentificacionDiligenciador, type: VARCHAR, size: '30', required: false }
+    pps_tipo_identificacion_diligenciador: { phpName: PpsTipoIdentificacionDiligenciador, type: VARCHAR, size: '20', required: false }
+    pps_numero_suscriptores: { phpName: PpsNumeroSuscriptores, type: INTEGER, required: false }
   personaladministrativo:
     _attributes: { phpName: Personaladministrativo }
     pad_id: { phpName: PadId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }

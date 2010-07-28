@@ -33,11 +33,6 @@ class prestadorActions extends sfActions
 			$prestador->setPreIdentificacionPrestador($this->getRequestParameter('pre_identificacion_prestador'));
 			$prestador->setPreTipoIdentificacionPrestador($this->getRequestParameter('pre_tipo_identificacion_prestador'));
 			$prestador->setPreNombrePrestador($this->getRequestParameter('pre_nombre_prestador'));
-			/*$prestador->setPreEstatutos($this->getRequestParameter('pre_estatutos'));
-			$prestador->setPreNumeroEmpleadosConCompetencias($this->getRequestParameter('pre_numero_empleados_con_competencias'));
-			$prestador->setPreNumeroEmpleadosSinCompetencias($this->getRequestParameter('pre_numero_empleados_sin_competencias'));
-			$prestador->setPreNumeroEmpleadosProcesoCompetencias($this->getRequestParameter('pre_numero_empleados_proceso_competencias'));*/
-			//$prestador->setPreSuscriptores($this->getRequestParameter('pre_suscriptores'));
 			
 			$prestador->save();
 			
@@ -56,11 +51,6 @@ class prestadorActions extends sfActions
 			$prestador->setPreIdentificacionPrestador($this->getRequestParameter('pre_identificacion_prestador'));
 			$prestador->setPreTipoIdentificacionPrestador($this->getRequestParameter('pre_tipo_identificacion_prestador'));
 			$prestador->setPreNombrePrestador($this->getRequestParameter('pre_nombre_prestador'));
-			/*$prestador->setPreEstatutos($this->getRequestParameter('pre_estatutos'));
-			$prestador->setPreNumeroEmpleadosConCompetencias($this->getRequestParameter('pre_numero_empleados_con_competencias'));
-			$prestador->setPreNumeroEmpleadosSinCompetencias($this->getRequestParameter('pre_numero_empleados_sin_competencias'));
-			$prestador->setPreNumeroEmpleadosProcesoCompetencias($this->getRequestParameter('pre_numero_empleados_proceso_competencias'));
-			$prestador->setPreSuscriptores($this->getRequestParameter('pre_suscriptores'));   *///***  ????????????????????????
 			
 			$prestador->save();
 			
@@ -92,13 +82,7 @@ class prestadorActions extends sfActions
 
 			$datos[$pos]['pre_identificacion_prestador']=$prestador->getPreIdentificacionPrestador();
 			$datos[$pos]['pre_tipo_identificacion_prestador']=$prestador->getPreTipoIdentificacionPrestador();
-			$datos[$pos]['pre_nombre_prestador']=$prestador->getPreNombrePrestador();
-			/*$datos[$pos]['pre_estatutos']=$prestador->getPreEstatutos();		
-			$datos[$pos]['pre_numero_empleados_con_competencias']=$prestador->getPreNumeroEmpleadosConCompetencias();		
-			$datos[$pos]['pre_numero_empleados_sin_competencias']=$prestador->getPreNumeroEmpleadosSinCompetencias();		
-			$datos[$pos]['pre_numero_empleados_proceso_competencias']=$prestador->getPreNumeroEmpleadosProcesoCompetencias();*/	
-			//$datos[$pos]['pre_suscriptores']=$prestador->getPreSuscriptores();		
-			
+			$datos[$pos]['pre_nombre_prestador']=$prestador->getPreNombrePrestador();		
 			
 			$jsonresult = json_encode($datos);
 			$salida = '({"total":'.$pos.',"results":'.$jsonresult.'})';
