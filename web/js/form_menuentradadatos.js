@@ -53,7 +53,7 @@ init: function () {
 										]
 								},
 								{
-									expanded: false,
+									expanded: true,
 									border: false,
 									id: 'acueducto',
 									items: [{

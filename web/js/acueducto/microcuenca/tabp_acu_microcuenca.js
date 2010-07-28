@@ -7,11 +7,9 @@
 	    autoWidth: true,
 		height: largo_panel+20,
 		monitorResize : true,
-	    border:false,
-	    auroScroll: true,
-		renderTo: 'div_tabp_acueducto_microcuenca',
-		defaults:{autoScroll:true},
-	    items: [	  
+	   // border:false,
+	    renderTo: 'div_tabp_acueducto_microcuenca',
+		items: [	  
                  {
 				frame: true,
 				title: 'Informacion general',

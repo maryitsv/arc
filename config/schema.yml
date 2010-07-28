@@ -283,7 +283,7 @@ propel:
     fac_frecuenc_facturacion: { phpName: FacFrecuencFacturacion, type: VARCHAR, size: '30', required: false }
     fac_frecuenc_fac_justificacion: { phpName: FacFrecuencFacJustificacion, type: VARCHAR, size: '30', required: false }
     fac_num_fac_exp_ultimo_periodo: { phpName: FacNumFacExpUltimoPeriodo, type: INTEGER, required: false }
-    fac_sist_fac_utilizado: { phpName: FacSistFacUtilizado, type: VARCHAR, required: false }
+    fac_sist_fac_utilizado: { phpName: FacSistFacUtilizado, type: VARCHAR, size: '30', required: false }
     fac_frecuencia_fac_justifica: { phpName: FacFrecuenciaFacJustifica, type: VARCHAR, size: '30', required: false }
     fac_morosidad_promedio: { phpName: FacMorosidadPromedio, type: VARCHAR, required: false }
     fac_vol_agua_fac_en_el_anio_acu: { phpName: FacVolAguaFacEnElAnioAcu, type: VARCHAR, required: false }

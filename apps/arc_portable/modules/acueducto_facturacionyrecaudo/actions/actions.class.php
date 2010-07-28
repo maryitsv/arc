@@ -55,7 +55,7 @@ class acueducto_facturacionyrecaudoActions extends sfActions
  acu_fac_morosidad_promedio
  acu_fac_vol_agua_fac_en_el_anio_acu
  acu_fac_vol_agua_suministrado_anio_acu */
-  public function executeActualizarFacturacionyRecaudo(sfWebRequest $request)
+  public function executeActualizarFacturacionyrecaudo(sfWebRequest $request)
   {  
 	$salida = '';
 	
@@ -103,7 +103,7 @@ class acueducto_facturacionyrecaudoActions extends sfActions
 		}
 		catch (Exception $excepcion)
 		{
-			return "({success: false, errors: { reason: 'Hubo una excepcion en facturacion y recaudo'}})";
+			return "({success: false, errors: { reason: 'Hubo una excepcion en facturacion y recaudo ".$excepcion."'}})";
 		}
 		
 	return $this->renderText($salida);

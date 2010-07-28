@@ -5,6 +5,34 @@ Desarrollado maryit sanchez
 2010
 */
 
+  /*
+  var ayuda_ acu_imi_localidad='Escriba la localidad de la microcuenca';
+var ayuda_ acu_imi_dep_id='Escoja el departamento en que se ubica la microcuenca';
+var ayuda_ acu_imi_mun_id='Escoja el departamento, y luego escoja el municipio en que se ubica la microcuenca';
+var ayuda_ acu_imi_microcuenca='Escriba el nombre de la microcuenca';
+var ayuda_ acu_imi_codigo_cuenca='Escriba el codigo de la cuenca';
+var ayuda_ acu_imi_fecha='Escriba la fecha de la ???';
+  */
+	var acu_informaciongeneralmicrocuencas_datos_datastore = new Ext.data.Store({
+        id: 'acu_informaciongeneralmicrocuencas_datos_datastore',
+        proxy: new Ext.data.HttpProxy({
+                url: 'acueducto_informaciongeneralmicrocuencas/obtenerDatosInformaciongeneralmicrocuencas', 
+                method: 'POST'
+        }),
+        baseParams:{}, 
+        reader: new Ext.data.JsonReader({
+                root: 'results',
+                totalProperty: 'total',
+                id: 'id'
+                },[ 
+                  {name: 'acu_imi_localidad', type: 'string'},	    
+                  {name: 'acu_imi_dep_id', type: 'int'},
+				  {name: 'acu_imi_mun_id', type: 'int'},
+				  {name: 'acu_imi_microcuenca', type: 'string'},
+				  {name: 'acu_imi_codigo_cuenca', type: 'string'},
+				  {name: 'acu_imi_fecha', type: 'date'}
+		])
+    });
 
     var acu_informaciongeneralmicrocuencas_departamento_datastore= new Ext.data.Store({
 		id: 'acu_informaciongeneralmicrocuencas_departamento_datastore',
@@ -45,11 +73,13 @@ Desarrollado maryit sanchez
 	
 	var acu_informaciongeneralmicrocuencas_panel = new Ext.FormPanel({
 	  id:'acu_informaciongeneralmicrocuencas_panel',
-	  frame: true,
+	  frame: false,
+	  border:false,
 	  autoWidth: true,
-	  height: largo_panel-40,
+	  height: largo_panel-15,
 	  layout:'form',
-	  defaults:{ bodyStyle: 'padding:0 10px 0;', anchor:'98%'},
+	  bodyStyle: 'padding:15px;',
+	  defaults:{  anchor:'98%'},
 	  items:
 	  [    
 		{
@@ -68,7 +98,8 @@ Desarrollado maryit sanchez
 		new Ext.form.ComboBox({
 			xtype: 'combobox',
 			labelStyle: 'width:100px; text-align:right;'+letra,
-			id:'acu_imi_dep_id',
+			id:'acu_imi_dep_nombre',
+			hiddenName:'acu_imi_dep_id',
 			name:'acu_imi_dep_id',
 			fieldLabel:'Departamento',
 			store:acu_informaciongeneralmicrocuencas_departamento_datastore,
@@ -81,14 +112,14 @@ Desarrollado maryit sanchez
 			listeners:
 		   {
 				'render': function() {
-						ayuda('acu_imi_dep_id', ayuda_acu_imi_dep_id);
+						ayuda('acu_imi_dep_nombre', ayuda_acu_imi_dep_id);
 						},
 				'select':function() {
-						Ext.getCmp('acu_imi_mun_id').clearValue();
+						Ext.getCmp('acu_imi_mun_nombre').clearValue();
 						acu_informaciongeneralmicrocuencas_municipio_datastore.removeAll();
 			
 						acu_informaciongeneralmicrocuencas_municipio_datastore.baseParams = {
-								dep_id: Ext.getCmp('acu_imi_dep_id').getValue()
+								dep_id: Ext.getCmp('acu_imi_dep_nombre').getValue()
 								};
 						
 						acu_informaciongeneralmicrocuencas_municipio_datastore.reload();
@@ -99,7 +130,8 @@ Desarrollado maryit sanchez
 		new Ext.form.ComboBox({
 			xtype: 'combobox',
 			labelStyle: 'width:100px; text-align:right;'+letra,
-			id:'acu_imi_mun_id',
+			id:'acu_imi_mun_nombre',
+			hiddenName: 'acu_imi_mun_id',
 			name:'acu_imi_mun_id',
 			fieldLabel:'Municipio',
 			store:acu_informaciongeneralmicrocuencas_municipio_datastore,
@@ -112,23 +144,10 @@ Desarrollado maryit sanchez
 			listeners:
 		   {
 				'render': function() {
-						ayuda('acu_imi_mun_id', ayuda_acu_imi_mun_id);
+						ayuda('acu_imi_mun_nombre', ayuda_acu_imi_mun_id);
 						}
 			}
-		}),/*
-		{
-		   xtype: 'textfield',
-		   labelStyle: 'width:100px; text-align:right;'+letra,
-		   name: 'acu_imi_mun_id',
-		   id: 'acu_imi_mun_id',
-		   fieldLabel: '<html>Municipio</html>',
-		   listeners:
-		   {
-				'render': function() {
-						ayuda('acu_imi_mun_id', ayuda_acu_imi_mun_id);
-						}
-			}
-		},*/
+		}),
 		{
 		   xtype: 'textfield',
 		   labelStyle: 'width:100px; text-align:right;'+letra,
@@ -199,7 +218,7 @@ Desarrollado maryit sanchez
 
 /*
 var ayuda_ acu_imi_localidad='Escriba la localidad de la microcuenca';
-var ayuda_ acu_imi_dep_id='Escoja el departamento en que se ubica la microcuenca';
+var ayuda_ acu_imi_dep_nombre='Escoja el departamento en que se ubica la microcuenca';
 var ayuda_ acu_imi_mun_id='Escoja el departamento, y luego escoja el municipio en que se ubica la microcuenca';
 var ayuda_ acu_imi_microcuenca='Escriba el nombre de la microcuenca';
 var ayuda_ acu_imi_codigo_cuenca='Escriba el codigo de la cuenca';
@@ -217,8 +236,8 @@ var ayuda_ acu_imi_fecha='Escriba la fecha de la ???';
 		}
 		acu_informaciongeneralmicrocuencas_panel_datanuevo=new Array();
 		acu_informaciongeneralmicrocuencas_panel_datanuevo['acu_imi_localidad'] = Ext.getCmp('acu_imi_localidad').getValue();
-		acu_informaciongeneralmicrocuencas_panel_datanuevo['acu_imi_dep_id'] =Ext.getCmp('acu_imi_dep_id').getValue();
-		acu_informaciongeneralmicrocuencas_panel_datanuevo['acu_imi_mun_id'] = Ext.getCmp('acu_imi_mun_id').getValue();
+		acu_informaciongeneralmicrocuencas_panel_datanuevo['acu_imi_dep_nombre'] =Ext.getCmp('acu_imi_dep_nombre').getValue();
+		acu_informaciongeneralmicrocuencas_panel_datanuevo['acu_imi_mun_nombre'] = Ext.getCmp('acu_imi_mun_nombre').getValue();
 		acu_informaciongeneralmicrocuencas_panel_datanuevo['acu_imi_microcuenca'] = Ext.getCmp('acu_imi_microcuenca').getValue();
 		acu_informaciongeneralmicrocuencas_panel_datanuevo['acu_imi_codigo_cuenca'] = Ext.getCmp('acu_imi_codigo_cuenca').getValue();
 		acu_informaciongeneralmicrocuencas_panel_datanuevo['acu_imi_fecha'] = Ext.getCmp('acu_imi_fecha').getValue();
@@ -236,10 +255,10 @@ var ayuda_ acu_imi_fecha='Escriba la fecha de la ???';
 			if(acu_informaciongeneralmicrocuencas_panel_datanuevo['acu_imi_localidad'] != acu_informaciongeneralmicrocuencas_panel_dataviejo['acu_imi_localidad'])
 			{accion='actualizar';}
 			
-			if(acu_informaciongeneralmicrocuencas_panel_datanuevo['acu_imi_dep_id'] != acu_informaciongeneralmicrocuencas_panel_dataviejo['acu_imi_dep_id'])
+			if(acu_informaciongeneralmicrocuencas_panel_datanuevo['acu_imi_dep_nombre'] != acu_informaciongeneralmicrocuencas_panel_dataviejo['acu_imi_dep_nombre'])
 			{accion='actualizar';}
 			
-			if(acu_informaciongeneralmicrocuencas_panel_datanuevo['acu_imi_mun_id'] != acu_informaciongeneralmicrocuencas_panel_dataviejo['acu_imi_mun_id'])
+			if(acu_informaciongeneralmicrocuencas_panel_datanuevo['acu_imi_mun_nombre'] != acu_informaciongeneralmicrocuencas_panel_dataviejo['acu_imi_mun_nombre'])
 			{accion='actualizar';}
 			
 			if(acu_informaciongeneralmicrocuencas_panel_datanuevo['acu_imi_microcuenca'] != acu_informaciongeneralmicrocuencas_panel_dataviejo['acu_imi_microcuenca'])
@@ -261,5 +280,12 @@ var ayuda_ acu_imi_fecha='Escriba la fecha de la ???';
 	}
 	
 	function acu_informaciongeneralmicrocuencas_subirdatos(accion_realizar){
-		subirDatos(acu_informaciongeneralmicrocuencas_panel,'acueducto_informaciongeneralmicrocuencas/actualizarInformaciongeneralmicrocuencas');	
+		subirDatos(acu_informaciongeneralmicrocuencas_panel,'acueducto_informaciongeneralmicrocuencas/actualizarInformaciongeneralmicrocuencas',{});	
 	}
+
+acu_informaciongeneralmicrocuencas_datos_datastore.load({
+  callback: function() {
+	var record = acu_informaciongeneralmicrocuencas_datos_datastore.getAt(0);
+	acu_informaciongeneralmicrocuencas_panel.getForm().loadRecord(record);	
+  }
+});

@@ -1,4 +1,4 @@
-
+   
 	var acu_comercial_tabpanel = new Ext.TabPanel( {
 	    id:'acu_comercial_tabpanel',
 	    activeTab: 0,
@@ -6,7 +6,7 @@
 	    autoWidth: true,
 		height: largo_panel+20,
 		monitorResize : true,
-	    border:false,
+	    border:true,
 	    auroScroll: true,
 		renderTo: 'div_tabp_acueducto_comercial',
 	    items: [	  

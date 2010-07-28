@@ -5,7 +5,7 @@ desarrollado por maryit sanchez
 */
 
 
-var acu_analisiscobertura_datos_datastore = new Ext.data.Store({
+	var acu_analisiscobertura_datos_datastore = new Ext.data.Store({
         id: 'acu_analisiscobertura_datos_datastore',
         proxy: new Ext.data.HttpProxy({
                 url: 'acueducto_analisiscobertura/obtenerDatosAnalisiscobertura', 
@@ -27,13 +27,14 @@ var acu_analisiscobertura_datos_datastore = new Ext.data.Store({
     });
 	
 
-	var acu_analisiscobertura_formpanel = new Ext.FormPanel({
-		id: 'acu_analisiscobertura_formpanel',
-		frame: true,
+	var acu_analisiscobertura_panel = new Ext.FormPanel({
+		id: 'acu_analisiscobertura_panel',
+	//	frame: true,
 		hidden: false,
 		autoWidth:true,
-		height: largo_panel-40,
+		height: largo_panel-15,
 		layout:'form',
+		bodyStyle: 'padding:10px;',
 		items:
 		[
 			{
@@ -44,6 +45,7 @@ var acu_analisiscobertura_datos_datastore = new Ext.data.Store({
 			   fieldLabel: '<html>&iquest;Se ha elaborado e implementado un catastro de usuarios?</html>',
 			   id: 'acu_aco_catastro_usuarios',
 			   columns: 1,
+			   width:80,
 			   items:
 			   [
 				  {
@@ -72,6 +74,10 @@ var acu_analisiscobertura_datos_datastore = new Ext.data.Store({
 							ayuda('acu_aco_anio_ela_impl_catastro_usu', ayuda_acu_aco_anio_ela_impl_catastro_usu);
 						}
 			   }
+			},
+			{
+				xtype:'label',
+				html:'<br/>'
 			},
 			{
 			   xtype: 'textfield',
@@ -117,6 +123,7 @@ var acu_analisiscobertura_datos_datastore = new Ext.data.Store({
 			   columns: 1,
 			   labelStyle: 'width: '+'370px;'+letra,//+'px;'+letra
 			   fieldLabel: '<html>&iquest;Aplica la estratificaci&oacute;n socioecon&oacute;mica aplicada por el municipio de acuerdo con la metodolog&iacute;a del Departamento Nacional de Planeaci&oacute;n?</html>',
+			   width:80,
 			   items:
 			   [
 				  {
@@ -187,7 +194,7 @@ var acu_analisiscobertura_datos_datastore = new Ext.data.Store({
 				}
 
 				acu_analisiscobertura_estratos_gridpanel.show();
-				acu_analisiscobertura_formpanel.hide();						
+				acu_analisiscobertura_panel.hide();						
 			 }
 		  }      
 	   ]
@@ -268,7 +275,7 @@ var acu_analisiscobertura_datos_datastore = new Ext.data.Store({
 			 handler: function()
 			 {
 			 acu_analisiscobertura_estratos_gridpanel.hide();
-			 acu_analisiscobertura_formpanel.show();
+			 acu_analisiscobertura_panel.show();
 			 }
 		  },
 		  {
@@ -288,28 +295,27 @@ var acu_analisiscobertura_datos_datastore = new Ext.data.Store({
 	//frame:true,
 	//title: 'An&aacute;lisis de cobertura',
 	layout:'fit',
-    items:[acu_analisiscobertura_formpanel,acu_analisiscobertura_estratos_gridpanel],
+    items:[acu_analisiscobertura_panel,acu_analisiscobertura_estratos_gridpanel],
 	renderTo:'div_form_acu_analisiscobertura'
    });
 
-//***************Funciones************///
 	//***************Funciones************///
-    var acu_analisiscobertura_formpanel_datanuevo;
-	var acu_analisiscobertura_formpanel_dataviejo=new Array();
+    var acu_analisiscobertura_panel_datanuevo;
+	var acu_analisiscobertura_panel_dataviejo=new Array();
 
 	function acu_analisiscobertura_cargardatostemporal(){
 	
-		if(acu_analisiscobertura_formpanel_datanuevo)
+		if(acu_analisiscobertura_panel_datanuevo)
 		{
-			acu_analisiscobertura_formpanel_dataviejo=acu_analisiscobertura_formpanel_datanuevo;
+			acu_analisiscobertura_panel_dataviejo=acu_analisiscobertura_panel_datanuevo;
 		}
-		acu_analisiscobertura_formpanel_datanuevo=new Array();
-		acu_analisiscobertura_formpanel_datanuevo['acu_aco_catastro_usuarios'] = Ext.getCmp('acu_aco_catastro_usuarios').getValue().getGroupValue();
-		acu_analisiscobertura_formpanel_datanuevo['acu_aco_anio_ela_impl_catastro_usu'] = Ext.getCmp('acu_aco_anio_ela_impl_catastro_usu').getValue();
-		acu_analisiscobertura_formpanel_datanuevo['acu_aco_num_predios_area'] = Ext.getCmp('acu_aco_num_predios_area').getValue();
-		acu_analisiscobertura_formpanel_datanuevo['acu_aco_num_predios_conec_sistema'] = Ext.getCmp('acu_aco_num_predios_conec_sistema').getValue();
-		acu_analisiscobertura_formpanel_datanuevo['acu_aco_estrat_soceco_adop_mpio'] = Ext.getCmp('acu_aco_estrat_soceco_adop_mpio').getValue().getGroupValue();
-		acu_analisiscobertura_formpanel_datanuevo['acu_aco_estra_soceco_adop_mpio_jus'] = Ext.getCmp('acu_aco_estra_soceco_adop_mpio_jus').getValue();
+		acu_analisiscobertura_panel_datanuevo=new Array();
+		acu_analisiscobertura_panel_datanuevo['acu_aco_catastro_usuarios'] = Ext.getCmp('acu_aco_catastro_usuarios').getValue().getGroupValue();
+		acu_analisiscobertura_panel_datanuevo['acu_aco_anio_ela_impl_catastro_usu'] = Ext.getCmp('acu_aco_anio_ela_impl_catastro_usu').getValue();
+		acu_analisiscobertura_panel_datanuevo['acu_aco_num_predios_area'] = Ext.getCmp('acu_aco_num_predios_area').getValue();
+		acu_analisiscobertura_panel_datanuevo['acu_aco_num_predios_conec_sistema'] = Ext.getCmp('acu_aco_num_predios_conec_sistema').getValue();
+		acu_analisiscobertura_panel_datanuevo['acu_aco_estrat_soceco_adop_mpio'] = Ext.getCmp('acu_aco_estrat_soceco_adop_mpio').getValue().getGroupValue();
+		acu_analisiscobertura_panel_datanuevo['acu_aco_estra_soceco_adop_mpio_jus'] = Ext.getCmp('acu_aco_estra_soceco_adop_mpio_jus').getValue();
 	}
 	
 	
@@ -318,24 +324,24 @@ var acu_analisiscobertura_datos_datastore = new Ext.data.Store({
 	{//compara dos arraglos si son diferentes actualiza sino solo pasa al siguiente form
 		var accion='ninguna';
 	
-		if(acu_analisiscobertura_formpanel_dataviejo) // si existe el viejo, compare
+		if(acu_analisiscobertura_panel_dataviejo) // si existe el viejo, compare
 		{
-			if(acu_analisiscobertura_formpanel_datanuevo['acu_aco_catastro_usuarios'] != acu_analisiscobertura_formpanel_dataviejo['acu_aco_catastro_usuarios'])
+			if(acu_analisiscobertura_panel_datanuevo['acu_aco_catastro_usuarios'] != acu_analisiscobertura_panel_dataviejo['acu_aco_catastro_usuarios'])
 			{accion='actualizar';}
 			
-			if(acu_analisiscobertura_formpanel_datanuevo['acu_aco_anio_ela_impl_catastro_usu'] != acu_analisiscobertura_formpanel_dataviejo['acu_aco_anio_ela_impl_catastro_usu'])
+			if(acu_analisiscobertura_panel_datanuevo['acu_aco_anio_ela_impl_catastro_usu'] != acu_analisiscobertura_panel_dataviejo['acu_aco_anio_ela_impl_catastro_usu'])
 			{accion='actualizar';}
 			
-			if(acu_analisiscobertura_formpanel_datanuevo['acu_aco_num_predios_area'] != acu_analisiscobertura_formpanel_dataviejo['acu_aco_num_predios_area'])
+			if(acu_analisiscobertura_panel_datanuevo['acu_aco_num_predios_area'] != acu_analisiscobertura_panel_dataviejo['acu_aco_num_predios_area'])
 			{accion='actualizar';}
 			
-			if(acu_analisiscobertura_formpanel_datanuevo['acu_aco_num_predios_conec_sistema'] != acu_analisiscobertura_formpanel_dataviejo['acu_aco_num_predios_conec_sistema'])
+			if(acu_analisiscobertura_panel_datanuevo['acu_aco_num_predios_conec_sistema'] != acu_analisiscobertura_panel_dataviejo['acu_aco_num_predios_conec_sistema'])
 			{accion='actualizar';}
 			
-			if(acu_analisiscobertura_formpanel_datanuevo['acu_aco_estrat_soceco_adop_mpio'] != acu_analisiscobertura_formpanel_dataviejo['acu_aco_estrat_soceco_adop_mpio'])
+			if(acu_analisiscobertura_panel_datanuevo['acu_aco_estrat_soceco_adop_mpio'] != acu_analisiscobertura_panel_dataviejo['acu_aco_estrat_soceco_adop_mpio'])
 			{accion='actualizar';}
 			
-			if(acu_analisiscobertura_formpanel_datanuevo['acu_aco_estra_soceco_adop_mpio_jus'] != acu_analisiscobertura_formpanel_dataviejo['acu_aco_estra_soceco_adop_mpio_jus'])
+			if(acu_analisiscobertura_panel_datanuevo['acu_aco_estra_soceco_adop_mpio_jus'] != acu_analisiscobertura_panel_dataviejo['acu_aco_estra_soceco_adop_mpio_jus'])
 			{accion='actualizar';}
 		}
 		else
@@ -347,7 +353,7 @@ var acu_analisiscobertura_datos_datastore = new Ext.data.Store({
 	
 	function acu_analisiscobertura_subirdatos(accion_realizar){
 	
-		acu_analisiscobertura_formpanel.getForm().submit({
+		acu_analisiscobertura_panel.getForm().submit({
 			method: 'POST',
 			url:'acueducto_analisiscobertura/actualizarAnalisisCobertura',
 			params: {
@@ -374,6 +380,6 @@ var acu_analisiscobertura_datos_datastore = new Ext.data.Store({
 acu_analisiscobertura_datos_datastore.load({
   callback: function() {
 	var record = acu_analisiscobertura_datos_datastore.getAt(0);
-	acu_analisiscobertura_formpanel.getForm().loadRecord(record);	
+	acu_analisiscobertura_panel.getForm().loadRecord(record);	
   }
 });

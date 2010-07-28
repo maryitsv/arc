@@ -3,10 +3,45 @@ ARC
 Desarrollado maryit sanchez
 2010
 */
+/*
+var ayuda_ acu_fac_frecuencia_del_servicio='Factura el servicio?, seleccion si o no';
+var ayuda_ acu_fac_frecuenc_facturacion='Con que frecuencia factura el servicio, escoja entre las opciones, si no esta escoja otra y escriba cual';
+var ayuda_ acu_fac_frecuenc_fac_justificacion='Escriba con que frecuencia factura';
+var ayuda_ acu_fac_num_fac_exp_ultimo_periodo='Escriba el n&uacute;mero de facturas expedidas en el &uacute;ltimo periodo de facturaci&oacute;n';
+var ayuda_ acu_fac_sist_fac_utilizado='Como es el sistema de facturaci&oacute;n que utiliza, escoja entre las opciones';
+var ayuda_ acu_fac_frecuencia_fac_justifica='Escriba que sistema de facturacion utiliza';
+var ayuda_ acu_fac_morosidad_promedio='Morosidad promedio de los ultimos 3 periodos de pago, en porcentaje';
+var ayuda_ acu_fac_vol_agua_fac_en_el_anio_acu='Volumen de agua facturado en el a&ntilde;o, escriba un n&uacute;mero';
+var ayuda_ acu_fac_vol_agua_suministrado_anio_acu='Volumen de agua suministrado en el a&ntilde;o, escriba un n&uacute;mero';
+
+*/
+	var acu_facturacionyrecaudo_datos_datastore = new Ext.data.Store({
+        id: 'acu_facturacionyrecaudo_datos_datastore',
+        proxy: new Ext.data.HttpProxy({
+                url: 'acueducto_facturacionyrecaudo/obtenerDatosFacturacionyrecaudo', 
+                method: 'POST'
+        }),
+        baseParams:{}, 
+        reader: new Ext.data.JsonReader({
+                root: 'results',
+                totalProperty: 'total',
+                id: 'id'
+                },[ 
+                  {name: 'acu_fac_frecuencia_del_servicio', type: 'int'},	    
+                  {name: 'acu_fac_frecuenc_facturacion', type: 'string'},
+				  {name: 'acu_fac_frecuenc_fac_justificacion', type: 'string'},
+				  {name: 'acu_fac_num_fac_exp_ultimo_periodo', type: 'int'},
+				  {name: 'acu_fac_sist_fac_utilizado', type: 'string'},
+				  {name: 'acu_fac_frecuencia_fac_justifica', type: 'string'},
+				  {name: 'acu_fac_morosidad_promedio', type: 'float'},
+				  {name: 'acu_fac_vol_agua_fac_en_el_anio_acu', type: 'float'},
+				  {name: 'acu_fac_vol_agua_suministrado_anio_acu', type: 'float'},
+		])
+    });
 
 	var acu_facturacionyrecaudo_panel = new Ext.FormPanel({
 	  id:'acu_facturacionyrecaudo_panel',
-	  frame: true,
+	  //frame: true,
 	  autoWidth: true,
 	  height: largo_panel-40,
 	 // title: '<html>Facturaci&oacute;n y recaudo</html>',
@@ -32,11 +67,11 @@ Desarrollado maryit sanchez
 				   [
 					  {
 						 boxLabel: 'Si', name: 'acu_fac_frecuencia_del_servicio',id:'acu_fac_frecuencia_del_servicio_si', 
-						 checked: true, inputValue:true,
+						 checked: true, inputValue:1,
 					  },
 					  { 
 						boxLabel: 'No', name: 'acu_fac_frecuencia_del_servicio',id:'acu_fac_frecuencia_del_servicio_no',
-						inputValue:false 
+						inputValue:0 
 					  }
 				   ],
 				   listeners:
@@ -101,7 +136,11 @@ Desarrollado maryit sanchez
 							ayuda('acu_fac_frecuenc_fac_justificacion', ayuda_acu_fac_frecuenc_fac_justificacion);
 							}
 				}
-		   },
+		   },		   
+			{
+				xtype:'label',
+				html:'<br/><br/>'
+			},
 		   {
 			   xtype: 'textfield',
 			   enableKeyEvents: true,
@@ -346,27 +385,14 @@ var ayuda_ acu_fac_vol_agua_suministrado_anio_acu='Volumen de agua suministrado 
 	}
 	
 	function acu_facturacionyrecaudo_subirdatos(accion_realizar){
-	
-		acu_facturacionyrecaudo_panel.getForm().submit({
-			method: 'POST',
-			url:'acueducto_facturacionyrecaudo/actualizarFacturacionyRecaudo',
-			params: {
-				servicio:'acueducto'
-			},
-			waitTitle: 'Enviando',
-			waitMsg: 'Enviando datos...',
-			success: function(response, action)
-			{
-			  obj = Ext.util.JSON.decode(action.response.responseText);
-			  mostrarMensajeRapido('Aviso',obj.mensaje);
-			},
-			failure: function(form, action, response)
-			{
-				if(action.failureType == 'server'){
-					obj = Ext.util.JSON.decode(action.response.responseText); 
-					mostrarMensajeConfirmacion('Error',obj.errors.reason);
-				}
-			}
-		});
-
+		subirDatos(acu_facturacionyrecaudo_panel,'acueducto_facturacionyrecaudo/actualizarFacturacionyrecaudo',{});
+		
 	}
+	
+	
+acu_facturacionyrecaudo_datos_datastore.load({
+  callback: function() {
+	var record = acu_facturacionyrecaudo_datos_datastore.getAt(0);
+	acu_facturacionyrecaudo_panel.getForm().loadRecord(record);	
+  }
+});
