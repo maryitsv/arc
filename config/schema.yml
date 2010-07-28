@@ -10,13 +10,13 @@ propel:
     _attributes: { phpName: Actividadesresiduossolidosaseo }
     ars_id: { phpName: ArsId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     ars_top_id: { phpName: ArsTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    ars_recole_trans_residuos_no_peligrosos: { phpName: ArsRecoleTransResiduosNoPeligrosos, type: BOOLEAN, required: false }
-    ars_tratamiento_residuos_no_peligrosos: { phpName: ArsTratamientoResiduosNoPeligrosos, type: BOOLEAN, required: false }
-    ars_aprovechamiento_residuos: { phpName: ArsAprovechamientoResiduos, type: BOOLEAN, required: false }
-    ars_disposicion_final: { phpName: ArsDisposicionFinal, type: BOOLEAN, required: false }
-    ars_barrido_limpieza_area_publica: { phpName: ArsBarridoLimpiezaAreaPublica, type: BOOLEAN, required: false }
-    ars_recole_trasn_residuos_hospitalarios_no_peligrosos: { phpName: ArsRecoleTrasnResiduosHospitalariosNoPeligrosos, type: BOOLEAN, required: false }
-    ars_recole_trasn_residuos_hospitalarios_peligrosos: { phpName: ArsRecoleTrasnResiduosHospitalariosPeligrosos, type: BOOLEAN, required: false }
+    ars_recole_trans_residuos_no_peligrosos: { phpName: ArsRecoleTransResiduosNoPeligrosos, type: VARCHAR, required: false }
+    ars_tratamiento_residuos_no_peligrosos: { phpName: ArsTratamientoResiduosNoPeligrosos, type: VARCHAR, required: false }
+    ars_aprovechamiento_residuos: { phpName: ArsAprovechamientoResiduos, type: VARCHAR, required: false }
+    ars_disposicion_final: { phpName: ArsDisposicionFinal, type: VARCHAR, required: false }
+    ars_barrido_limpieza_area_publica: { phpName: ArsBarridoLimpiezaAreaPublica, type: VARCHAR, required: false }
+    ars_recole_trasn_residuos_hospitalarios_no_peligrosos: { phpName: ArsRecoleTrasnResiduosHospitalariosNoPeligrosos, type: VARCHAR, required: false }
+    ars_recole_trasn_residuos_hospitalarios_peligrosos: { phpName: ArsRecoleTrasnResiduosHospitalariosPeligrosos, type: VARCHAR, required: false }
   administrativafinanciera:
     _attributes: { phpName: Administrativafinanciera }
     iaf_id: { phpName: IafId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -28,12 +28,12 @@ propel:
     _attributes: { phpName: Analisiscobertura }
     aco_id: { phpName: AcoId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     aco_com_id: { phpName: AcoComId, type: INTEGER, required: true, foreignTable: comercial, foreignReference: com_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    aco_catastro_usuarios: { phpName: AcoCatastroUsuarios, type: VARCHAR, required: false }
     aco_anio_ela_impl_catastro_usu: { phpName: AcoAnioElaImplCatastroUsu, type: INTEGER, required: false }
     aco_num_predios_area: { phpName: AcoNumPrediosArea, type: INTEGER, required: false }
     aco_num_predios_conec_sistema: { phpName: AcoNumPrediosConecSistema, type: INTEGER, required: false }
-    aco_estrat_soceco_adop_mpio: { phpName: AcoEstratSocecoAdopMpio, type: BOOLEAN, required: false }
+    aco_estrat_soceco_adop_mpio: { phpName: AcoEstratSocecoAdopMpio, type: VARCHAR, required: false }
     aco_estra_soceco_adop_mpio_jus: { phpName: AcoEstraSocecoAdopMpioJus, type: CHAR, size: '50', required: false }
-    aco_catastro_usuarios: { phpName: AcoCatastroUsuarios, type: INTEGER, required: false }
   autoridadambiental:
     _attributes: { phpName: Autoridadambiental }
     aua_id: { phpName: AuaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -50,8 +50,8 @@ propel:
     _attributes: { phpName: Calidadagua }
     cag_id: { phpName: CagId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     cag_cal_id: { phpName: CagCalId, type: INTEGER, required: true, foreignTable: calidad, foreignReference: cal_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    cag_control_ca_fuente: { phpName: CagControlCaFuente, type: BOOLEAN, required: false }
-    cag_mapa_riesgo: { phpName: CagMapaRiesgo, type: BOOLEAN, required: false }
+    cag_control_ca_fuente: { phpName: CagControlCaFuente, type: VARCHAR, required: false }
+    cag_mapa_riesgo: { phpName: CagMapaRiesgo, type: VARCHAR, required: false }
     cag_db05_valor: { phpName: CagDb05Valor, type: VARCHAR, required: false }
     cag_db05_frecuencia: { phpName: CagDb05Frecuencia, type: VARCHAR, required: false }
     cag_coliformes_valor: { phpName: CagColiformesValor, type: VARCHAR, required: false }
@@ -70,48 +70,48 @@ propel:
     cag_cloruros_frecuencia: { phpName: CagClorurosFrecuencia, type: VARCHAR, required: false }
     cag_fluoruros_valor: { phpName: CagFluorurosValor, type: VARCHAR, required: false }
     cag_fluoruros_frecuencia: { phpName: CagFluorurosFrecuencia, type: VARCHAR, required: false }
-    cag_laboratorio_propio: { phpName: CagLaboratorioPropio, type: BOOLEAN, required: false }
-    cag_control_ca_distribuida: { phpName: CagControlCaDistribuida, type: BOOLEAN, required: false }
+    cag_laboratorio_propio: { phpName: CagLaboratorioPropio, type: VARCHAR, required: false }
+    cag_control_ca_distribuida: { phpName: CagControlCaDistribuida, type: VARCHAR, required: false }
     cag_puntos_red_analizados: { phpName: CagPuntosRedAnalizados, type: INTEGER, required: false }
-    cag_visita_sspd: { phpName: CagVisitaSspd, type: BOOLEAN, required: false }
+    cag_visita_sspd: { phpName: CagVisitaSspd, type: VARCHAR, required: false }
   calidadcantidadagua:
     _attributes: { phpName: Calidadcantidadagua }
     cca_id: { phpName: CcaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     cca_mic_id: { phpName: CcaMicId, type: INTEGER, required: true, foreignTable: microcuencas, foreignReference: mic_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    cca_actividades_agricola_cultivos_permanentes: { phpName: CcaActividadesAgricolaCultivosPermanentes, type: BOOLEAN, required: false }
-    cca_actividades_agricola_cultivos_semipermanentes: { phpName: CcaActividadesAgricolaCultivosSemipermanentes, type: BOOLEAN, required: false }
-    cca_actividades_agricola_temporales: { phpName: CcaActividadesAgricolaTemporales, type: BOOLEAN, required: false }
-    cca_actividad_pecuaria_ganaderia_bobina: { phpName: CcaActividadPecuariaGanaderiaBobina, type: BOOLEAN, required: false }
-    cca_actividad_pecuaria_ganaderia_equina: { phpName: CcaActividadPecuariaGanaderiaEquina, type: BOOLEAN, required: false }
-    cca_actividad_pecuaria_porcicultura: { phpName: CcaActividadPecuariaPorcicultura, type: BOOLEAN, required: false }
-    cca_actividad_pecuaria_capricultura_ovinos: { phpName: CcaActividadPecuariaCapriculturaOvinos, type: BOOLEAN, required: false }
-    cca_actividad_pecuaria_avicultura: { phpName: CcaActividadPecuariaAvicultura, type: BOOLEAN, required: false }
-    cca_actividad_pecuaria_piscicultura: { phpName: CcaActividadPecuariaPiscicultura, type: BOOLEAN, required: false }
-    cca_actividad_pecuaria_otros_cual: { phpName: CcaActividadPecuariaOtrosCual, type: BOOLEAN, required: false }
-    cca_control_plagas_enfermedades_quimico: { phpName: CcaControlPlagasEnfermedadesQuimico, type: BOOLEAN, required: false }
-    cca_control_plagas_enfermedades_organico: { phpName: CcaControlPlagasEnfermedadesOrganico, type: BOOLEAN, required: false }
-    cca_control_plagas_enfermedades_biologico: { phpName: CcaControlPlagasEnfermedadesBiologico, type: BOOLEAN, required: false }
-    cca_control_plagas_enfermedades_ninguno: { phpName: CcaControlPlagasEnfermedadesNinguno, type: BOOLEAN, required: false }
-    cca_fertilizacion_cultivos_quimico: { phpName: CcaFertilizacionCultivosQuimico, type: BOOLEAN, required: false }
-    cca_fertilizacion_cultivos_organico: { phpName: CcaFertilizacionCultivosOrganico, type: BOOLEAN, required: false }
-    cca_fertilizacion_cultivos_ninguno: { phpName: CcaFertilizacionCultivosNinguno, type: BOOLEAN, required: false }
-    cca_capacitacion_dada_prestador: { phpName: CcaCapacitacionDadaPrestador, type: BOOLEAN, required: false }
-    cca_control_malezas_quimico: { phpName: CcaControlMalezasQuimico, type: BOOLEAN, required: false }
-    cca_control_malezas_meca_manu: { phpName: CcaControlMalezasMecaManu, type: BOOLEAN, required: false }
-    cca_control_malezas_organico: { phpName: CcaControlMalezasOrganico, type: BOOLEAN, required: false }
-    cca_control_malezas_ninguno: { phpName: CcaControlMalezasNinguno, type: BOOLEAN, required: false }
-    cca_mineria: { phpName: CcaMineria, type: BOOLEAN, required: false }
-    cca_erosion: { phpName: CcaErosion, type: BOOLEAN, required: false }
-    cca_modificaciones_paisaje_construcion_vias: { phpName: CcaModificacionesPaisajeConstrucionVias, type: BOOLEAN, required: false }
-    cca_modificaciones_paisaje_construcion_vivienda: { phpName: CcaModificacionesPaisajeConstrucionVivienda, type: BOOLEAN, required: false }
-    cca_modificaciones_paisaje_construcion_otro: { phpName: CcaModificacionesPaisajeConstrucionOtro, type: BOOLEAN, required: false }
-    cca_descargas_vivienda_liquido: { phpName: CcaDescargasViviendaLiquido, type: BOOLEAN, required: false }
-    cca_descargas_vivienda_solido: { phpName: CcaDescargasViviendaSolido, type: BOOLEAN, required: false }
-    cca_descarga_actividad_productiva_agricola: { phpName: CcaDescargaActividadProductivaAgricola, type: BOOLEAN, required: false }
-    cca_descarga_actividad_productiva_pecuaria: { phpName: CcaDescargaActividadProductivaPecuaria, type: BOOLEAN, required: false }
-    cca_descarga_actividad_productiva_minera: { phpName: CcaDescargaActividadProductivaMinera, type: BOOLEAN, required: false }
-    cca_descarga_actividad_productiva_industrial: { phpName: CcaDescargaActividadProductivaIndustrial, type: BOOLEAN, required: false }
-    cca_descarga_actividad_productiva_otra: { phpName: CcaDescargaActividadProductivaOtra, type: BOOLEAN, required: false }
+    cca_actividades_agricola_cultivos_permanentes: { phpName: CcaActividadesAgricolaCultivosPermanentes, type: VARCHAR, required: false }
+    cca_actividades_agricola_cultivos_semipermanentes: { phpName: CcaActividadesAgricolaCultivosSemipermanentes, type: VARCHAR, required: false }
+    cca_actividades_agricola_temporales: { phpName: CcaActividadesAgricolaTemporales, type: VARCHAR, required: false }
+    cca_actividad_pecuaria_ganaderia_bobina: { phpName: CcaActividadPecuariaGanaderiaBobina, type: VARCHAR, required: false }
+    cca_actividad_pecuaria_ganaderia_equina: { phpName: CcaActividadPecuariaGanaderiaEquina, type: VARCHAR, required: false }
+    cca_actividad_pecuaria_porcicultura: { phpName: CcaActividadPecuariaPorcicultura, type: VARCHAR, required: false }
+    cca_actividad_pecuaria_capricultura_ovinos: { phpName: CcaActividadPecuariaCapriculturaOvinos, type: VARCHAR, required: false }
+    cca_actividad_pecuaria_avicultura: { phpName: CcaActividadPecuariaAvicultura, type: VARCHAR, required: false }
+    cca_actividad_pecuaria_piscicultura: { phpName: CcaActividadPecuariaPiscicultura, type: VARCHAR, required: false }
+    cca_actividad_pecuaria_otros_cual: { phpName: CcaActividadPecuariaOtrosCual, type: VARCHAR, required: false }
+    cca_control_plagas_enfermedades_quimico: { phpName: CcaControlPlagasEnfermedadesQuimico, type: VARCHAR, required: false }
+    cca_control_plagas_enfermedades_organico: { phpName: CcaControlPlagasEnfermedadesOrganico, type: VARCHAR, required: false }
+    cca_control_plagas_enfermedades_biologico: { phpName: CcaControlPlagasEnfermedadesBiologico, type: VARCHAR, required: false }
+    cca_control_plagas_enfermedades_ninguno: { phpName: CcaControlPlagasEnfermedadesNinguno, type: VARCHAR, required: false }
+    cca_fertilizacion_cultivos_quimico: { phpName: CcaFertilizacionCultivosQuimico, type: VARCHAR, required: false }
+    cca_fertilizacion_cultivos_organico: { phpName: CcaFertilizacionCultivosOrganico, type: VARCHAR, required: false }
+    cca_fertilizacion_cultivos_ninguno: { phpName: CcaFertilizacionCultivosNinguno, type: VARCHAR, required: false }
+    cca_capacitacion_dada_prestador: { phpName: CcaCapacitacionDadaPrestador, type: VARCHAR, required: false }
+    cca_control_malezas_quimico: { phpName: CcaControlMalezasQuimico, type: VARCHAR, required: false }
+    cca_control_malezas_meca_manu: { phpName: CcaControlMalezasMecaManu, type: VARCHAR, required: false }
+    cca_control_malezas_organico: { phpName: CcaControlMalezasOrganico, type: VARCHAR, required: false }
+    cca_control_malezas_ninguno: { phpName: CcaControlMalezasNinguno, type: VARCHAR, required: false }
+    cca_mineria: { phpName: CcaMineria, type: VARCHAR, required: false }
+    cca_erosion: { phpName: CcaErosion, type: VARCHAR, required: false }
+    cca_modificaciones_paisaje_construcion_vias: { phpName: CcaModificacionesPaisajeConstrucionVias, type: VARCHAR, required: false }
+    cca_modificaciones_paisaje_construcion_vivienda: { phpName: CcaModificacionesPaisajeConstrucionVivienda, type: VARCHAR, required: false }
+    cca_modificaciones_paisaje_construcion_otro: { phpName: CcaModificacionesPaisajeConstrucionOtro, type: VARCHAR, required: false }
+    cca_descargas_vivienda_liquido: { phpName: CcaDescargasViviendaLiquido, type: VARCHAR, required: false }
+    cca_descargas_vivienda_solido: { phpName: CcaDescargasViviendaSolido, type: VARCHAR, required: false }
+    cca_descarga_actividad_productiva_agricola: { phpName: CcaDescargaActividadProductivaAgricola, type: VARCHAR, required: false }
+    cca_descarga_actividad_productiva_pecuaria: { phpName: CcaDescargaActividadProductivaPecuaria, type: VARCHAR, required: false }
+    cca_descarga_actividad_productiva_minera: { phpName: CcaDescargaActividadProductivaMinera, type: VARCHAR, required: false }
+    cca_descarga_actividad_productiva_industrial: { phpName: CcaDescargaActividadProductivaIndustrial, type: VARCHAR, required: false }
+    cca_descarga_actividad_productiva_otra: { phpName: CcaDescargaActividadProductivaOtra, type: VARCHAR, required: false }
     cca_actividades_agricola_mayor_area: { phpName: CcaActividadesAgricolaMayorArea, type: VARCHAR, size: '50', required: false }
     cca_actividades_agricola_cultivos_permanentes_tendencia: { phpName: CcaActividadesAgricolaCultivosPermanentesTendencia, type: VARCHAR, size: '50', required: false }
     cca_actividades_agricola_cultivos_semipermanentes_tendencia: { phpName: CcaActividadesAgricolaCultivosSemipermanentesTendencia, type: VARCHAR, size: '50', required: false }
@@ -157,22 +157,22 @@ propel:
     _attributes: { phpName: Capacitacion }
     cap_id: { phpName: CapId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     cap_iaf_id: { phpName: CapIafId, type: INTEGER, required: true, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    cap_dada_prestador: { phpName: CapDadaPrestador, type: BOOLEAN, required: true }
-    cap_actividad_capacitacion_uso_eficiente_agua: { phpName: CapActividadCapacitacionUsoEficienteAgua, type: BOOLEAN, required: false }
-    acu_cap_actividad_capacitacion_higiene_personal: { phpName: AcuCapActividadCapacitacionHigienePersonal, type: BOOLEAN, required: false }
-    acu_cap_actividad_capacitacion_higiene_vivienda: { phpName: AcuCapActividadCapacitacionHigieneVivienda, type: BOOLEAN, required: false }
-    acu_cap_actividad_capacitacion_higiene_sitios_publicos: { phpName: AcuCapActividadCapacitacionHigieneSitiosPublicos, type: BOOLEAN, required: false }
-    cap_actividad_capacitacion_educacion_ambiental: { phpName: CapActividadCapacitacionEducacionAmbiental, type: BOOLEAN, required: false }
-    cap_actividad_capacitacion_participacion_comunitaria: { phpName: CapActividadCapacitacionParticipacionComunitaria, type: BOOLEAN, required: false }
-    cap_actividad_capacitacion_veeduria_ciudadana: { phpName: CapActividadCapacitacionVeeduriaCiudadana, type: BOOLEAN, required: false }
-    cap_actividad_capacitacion_funcion_sist_abastecimiento: { phpName: CapActividadCapacitacionFuncionSistAbastecimiento, type: BOOLEAN, required: false }
+    cap_dada_prestador: { phpName: CapDadaPrestador, type: VARCHAR, required: true }
+    cap_actividad_capacitacion_uso_eficiente_agua: { phpName: CapActividadCapacitacionUsoEficienteAgua, type: VARCHAR, required: false }
+    acu_cap_actividad_capacitacion_higiene_personal: { phpName: AcuCapActividadCapacitacionHigienePersonal, type: VARCHAR, required: false }
+    acu_cap_actividad_capacitacion_higiene_vivienda: { phpName: AcuCapActividadCapacitacionHigieneVivienda, type: VARCHAR, required: false }
+    acu_cap_actividad_capacitacion_higiene_sitios_publicos: { phpName: AcuCapActividadCapacitacionHigieneSitiosPublicos, type: VARCHAR, required: false }
+    cap_actividad_capacitacion_educacion_ambiental: { phpName: CapActividadCapacitacionEducacionAmbiental, type: VARCHAR, required: false }
+    cap_actividad_capacitacion_participacion_comunitaria: { phpName: CapActividadCapacitacionParticipacionComunitaria, type: VARCHAR, required: false }
+    cap_actividad_capacitacion_veeduria_ciudadana: { phpName: CapActividadCapacitacionVeeduriaCiudadana, type: VARCHAR, required: false }
+    cap_actividad_capacitacion_funcion_sist_abastecimiento: { phpName: CapActividadCapacitacionFuncionSistAbastecimiento, type: VARCHAR, required: false }
     cap_actividad_capacitacion_otra_cuales: { phpName: CapActividadCapacitacionOtraCuales, type: VARCHAR, size: '100', required: false }
-    acu_cap_capacitacion_recibida_prestador: { phpName: AcuCapCapacitacionRecibidaPrestador, type: BOOLEAN, required: false }
-    cap_temas_capacitacion_administrativos: { phpName: CapTemasCapacitacionAdministrativos, type: BOOLEAN, required: false }
-    cap_temas_capacitacion_normativos: { phpName: CapTemasCapacitacionNormativos, type: BOOLEAN, required: false }
-    cap_temas_capacitacion_ambientales: { phpName: CapTemasCapacitacionAmbientales, type: BOOLEAN, required: false }
-    cap_temas_capacitacion_operativos: { phpName: CapTemasCapacitacionOperativos, type: BOOLEAN, required: false }
-    cap_temas_capacitacion_sui: { phpName: CapTemasCapacitacionSui, type: BOOLEAN, required: false }
+    acu_cap_capacitacion_recibida_prestador: { phpName: AcuCapCapacitacionRecibidaPrestador, type: VARCHAR, required: false }
+    cap_temas_capacitacion_administrativos: { phpName: CapTemasCapacitacionAdministrativos, type: VARCHAR, required: false }
+    cap_temas_capacitacion_normativos: { phpName: CapTemasCapacitacionNormativos, type: VARCHAR, required: false }
+    cap_temas_capacitacion_ambientales: { phpName: CapTemasCapacitacionAmbientales, type: VARCHAR, required: false }
+    cap_temas_capacitacion_operativos: { phpName: CapTemasCapacitacionOperativos, type: VARCHAR, required: false }
+    cap_temas_capacitacion_sui: { phpName: CapTemasCapacitacionSui, type: VARCHAR, required: false }
     cap_temas_capacitacion_otra_cual: { phpName: CapTemasCapacitacionOtraCual, type: VARCHAR, size: '100', required: false }
     cap_instituciones_ofrecieron: { phpName: CapInstitucionesOfrecieron, type: VARCHAR, size: '100', required: false }
     cap_numero_directiva_hombres: { phpName: CapNumeroDirectivaHombres, type: VARCHAR, required: false }
@@ -180,10 +180,10 @@ propel:
   captacion:
     _attributes: { phpName: Captacion }
     capt_id: { phpName: CaptId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    capt_tipo_de_fondo: { phpName: CaptTipoDeFondo, type: BOOLEAN, required: false }
-    capt_tipo_lateral: { phpName: CaptTipoLateral, type: BOOLEAN, required: false }
-    capt_tipo_lecho_filtrante: { phpName: CaptTipoLechoFiltrante, type: BOOLEAN, required: false }
-    capt_tipo_trincho_represa: { phpName: CaptTipoTrinchoRepresa, type: BOOLEAN, required: false }
+    capt_tipo_de_fondo: { phpName: CaptTipoDeFondo, type: VARCHAR, required: false }
+    capt_tipo_lateral: { phpName: CaptTipoLateral, type: VARCHAR, required: false }
+    capt_tipo_lecho_filtrante: { phpName: CaptTipoLechoFiltrante, type: VARCHAR, required: false }
+    capt_tipo_trincho_represa: { phpName: CaptTipoTrinchoRepresa, type: VARCHAR, required: false }
     capt_estado_estructura_id: { phpName: CaptEstadoEstructuraId, type: INTEGER, required: false, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
     capt_estado_pozo_id: { phpName: CaptEstadoPozoId, type: INTEGER, required: true, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
     capt_estado_bomba_id: { phpName: CaptEstadoBombaId, type: INTEGER, required: true, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
@@ -225,11 +225,11 @@ propel:
     dfr_departamento_dispocision_id: { phpName: DfrDepartamentoDispocisionId, type: INTEGER, required: true, foreignTable: departamento, foreignReference: dep_id, onDelete: RESTRICT, onUpdate: CASCADE }
     dfr_municipio_disposicion_id: { phpName: DfrMunicipioDisposicionId, type: INTEGER, required: true, foreignTable: municipio, foreignReference: mun_id, onDelete: RESTRICT, onUpdate: CASCADE }
     dfr_top_id: { phpName: DfrTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    dfr_contrata_disposicion_final: { phpName: DfrContrataDisposicionFinal, type: BOOLEAN, required: false }
+    dfr_contrata_disposicion_final: { phpName: DfrContrataDisposicionFinal, type: VARCHAR, required: false }
     dfr_nombre_entidad_prestadora_servicio_disposicion: { phpName: DfrNombreEntidadPrestadoraServicioDisposicion, type: VARCHAR, size: '200', required: false }
     dfr_corregimiento_disposicion: { phpName: DfrCorregimientoDisposicion, type: VARCHAR, size: '200', required: false }
     dfr_vereda_disposicion: { phpName: DfrVeredaDisposicion, type: VARCHAR, size: '200', required: false }
-    dfr_cuenta_autorizacion_ambiental_disposicion: { phpName: DfrCuentaAutorizacionAmbientalDisposicion, type: BOOLEAN, required: false }
+    dfr_cuenta_autorizacion_ambiental_disposicion: { phpName: DfrCuentaAutorizacionAmbientalDisposicion, type: VARCHAR, required: false }
     dfr_tipo_autorizacion_ambiental: { phpName: DfrTipoAutorizacionAmbiental, type: VARCHAR, size: '100', required: false }
     dfr_resolucion_autoriza_disposicion: { phpName: DfrResolucionAutorizaDisposicion, type: VARCHAR, size: '100', required: false }
     dfr_fecha_resolucion: { phpName: DfrFechaResolucion, type: DATE, required: false }
@@ -241,10 +241,10 @@ propel:
     dfr_dist_cuerpo_agua_mas_cercano_sitio: { phpName: DfrDistCuerpoAguaMasCercanoSitio, type: VARCHAR, size: '100', required: false }
     drf_anios_utilizacion_sitio: { phpName: DrfAniosUtilizacionSitio, type: INTEGER, required: false }
     dfr_area_destinada_para_disposicion_sitio: { phpName: DfrAreaDestinadaParaDisposicionSitio, type: VARCHAR, required: false }
-    dfr_si_relleno_tipo_relleno: { phpName: DfrSiRellenoTipoRelleno, type: BOOLEAN, required: false }
-    dfr_presencia_recicladores_sitio: { phpName: DfrPresenciaRecicladoresSitio, type: BOOLEAN, required: false }
+    dfr_si_relleno_tipo_relleno: { phpName: DfrSiRellenoTipoRelleno, type: VARCHAR, required: false }
+    dfr_presencia_recicladores_sitio: { phpName: DfrPresenciaRecicladoresSitio, type: VARCHAR, required: false }
     dfr_cantidad_personas_sitio: { phpName: DfrCantidadPersonasSitio, type: INTEGER, required: false }
-    dfr_tratamiento_lixiviados_sitio: { phpName: DfrTratamientoLixiviadosSitio, type: BOOLEAN, required: false }
+    dfr_tratamiento_lixiviados_sitio: { phpName: DfrTratamientoLixiviadosSitio, type: VARCHAR, required: false }
     dfr_tipo_tratamiento_lixiviados_sitio: { phpName: DfrTipoTratamientoLixiviadosSitio, type: VARCHAR, size: '200', required: false }
     dfr_lixi_entrada_fecha: { phpName: DfrLixiEntradaFecha, type: DATE, required: false }
     dfr_lixi_entrada_caudal: { phpName: DfrLixiEntradaCaudal, type: VARCHAR, required: false }
@@ -254,16 +254,16 @@ propel:
     dfr_lixi_salida_caudal2: { phpName: DfrLixiSalidaCaudal2, type: VARCHAR, required: false }
     dfr_lixi_salida_dbo6: { phpName: DfrLixiSalidaDbo6, type: VARCHAR, required: false }
     dfr_lixi_salida_sst2: { phpName: DfrLixiSalidaSst2, type: VARCHAR, required: false }
-    dfr_descarga_lixi_rio: { phpName: DfrDescargaLixiRio, type: BOOLEAN, required: false }
-    dfr_descarga_lixi_lago: { phpName: DfrDescargaLixiLago, type: BOOLEAN, required: false }
-    dfr_descarga_lixi_mar: { phpName: DfrDescargaLixiMar, type: BOOLEAN, required: false }
-    dfr_descarga_lixi_suelo: { phpName: DfrDescargaLixiSuelo, type: BOOLEAN, required: false }
+    dfr_descarga_lixi_rio: { phpName: DfrDescargaLixiRio, type: VARCHAR, required: false }
+    dfr_descarga_lixi_lago: { phpName: DfrDescargaLixiLago, type: VARCHAR, required: false }
+    dfr_descarga_lixi_mar: { phpName: DfrDescargaLixiMar, type: VARCHAR, required: false }
+    dfr_descarga_lixi_suelo: { phpName: DfrDescargaLixiSuelo, type: VARCHAR, required: false }
     dfr_descarga_lixi_rio_nombre: { phpName: DfrDescargaLixiRioNombre, type: VARCHAR, size: '100', required: false }
     dfr_descarga_lixi_lago_nombre: { phpName: DfrDescargaLixiLagoNombre, type: VARCHAR, size: '100', required: false }
     dfr_descarga_lixi_mar_nombre: { phpName: DfrDescargaLixiMarNombre, type: VARCHAR, size: '100', required: false }
     dfr_descarga_lixi_suelo_nombre: { phpName: DfrDescargaLixiSueloNombre, type: VARCHAR, size: '100', required: false }
-    dfr_programa_control_vectores: { phpName: DfrProgramaControlVectores, type: BOOLEAN, required: false }
-    dfr_programa_control_gases: { phpName: DfrProgramaControlGases, type: BOOLEAN, required: false }
+    dfr_programa_control_vectores: { phpName: DfrProgramaControlVectores, type: VARCHAR, required: false }
+    dfr_programa_control_gases: { phpName: DfrProgramaControlGases, type: VARCHAR, required: false }
   estadogeneral:
     _attributes: { phpName: Estadogeneral }
     esg_id: { phpName: EsgId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -273,17 +273,17 @@ propel:
     _attributes: { phpName: Estrato }
     est_id: { phpName: EstId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     est_nombre: { phpName: EstNombre, type: VARCHAR, size: '50', required: true }
-    est_residencial: { phpName: EstResidencial, type: BOOLEAN, required: false }
+    est_residencial: { phpName: EstResidencial, type: VARCHAR, required: false }
     _uniques: { estrato_est_nombre_key: [est_nombre] }
   facturacionyrecaudo:
     _attributes: { phpName: Facturacionyrecaudo }
     fac_id: { phpName: FacId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     fac_com_id: { phpName: FacComId, type: INTEGER, required: true, foreignTable: comercial, foreignReference: com_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    fac_frecuencia_del_servicio: { phpName: FacFrecuenciaDelServicio, type: BOOLEAN, required: false }
+    fac_frecuencia_del_servicio: { phpName: FacFrecuenciaDelServicio, type: VARCHAR, required: false }
     fac_frecuenc_facturacion: { phpName: FacFrecuencFacturacion, type: VARCHAR, size: '30', required: false }
     fac_frecuenc_fac_justificacion: { phpName: FacFrecuencFacJustificacion, type: VARCHAR, size: '30', required: false }
     fac_num_fac_exp_ultimo_periodo: { phpName: FacNumFacExpUltimoPeriodo, type: INTEGER, required: false }
-    fac_sist_fac_utilizado: { phpName: FacSistFacUtilizado, type: BOOLEAN, required: false }
+    fac_sist_fac_utilizado: { phpName: FacSistFacUtilizado, type: VARCHAR, required: false }
     fac_frecuencia_fac_justifica: { phpName: FacFrecuenciaFacJustifica, type: VARCHAR, size: '30', required: false }
     fac_morosidad_promedio: { phpName: FacMorosidadPromedio, type: VARCHAR, required: false }
     fac_vol_agua_fac_en_el_anio_acu: { phpName: FacVolAguaFacEnElAnioAcu, type: VARCHAR, required: false }
@@ -292,10 +292,10 @@ propel:
     _attributes: { phpName: Fondosolidaridadredistribucioningresos }
     fsi_id: { phpName: FsiId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     fsi_com_id: { phpName: FsiComId, type: INTEGER, required: true, foreignTable: comercial, foreignReference: com_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    fsi_sol_tranferencia_recursos: { phpName: FsiSolTranferenciaRecursos, type: BOOLEAN, required: false }
-    fsi_recibo_recursos: { phpName: FsiReciboRecursos, type: BOOLEAN, required: false }
+    fsi_sol_tranferencia_recursos: { phpName: FsiSolTranferenciaRecursos, type: VARCHAR, required: false }
+    fsi_recibo_recursos: { phpName: FsiReciboRecursos, type: VARCHAR, required: false }
     fsi_recibo_recursos_valor_recib: { phpName: FsiReciboRecursosValorRecib, type: VARCHAR, required: false }
-    fsi_aporte_recursos: { phpName: FsiAporteRecursos, type: BOOLEAN, required: false }
+    fsi_aporte_recursos: { phpName: FsiAporteRecursos, type: VARCHAR, required: false }
     fsi_aporte_recursos_valor_apor: { phpName: FsiAporteRecursosValorApor, type: VARCHAR, required: false }
   fuenteenergia:
     _attributes: { phpName: Fuenteenergia }
@@ -308,12 +308,12 @@ propel:
     fue_mic_id: { phpName: FueMicId, type: INTEGER, required: true, foreignTable: microcuencas, foreignReference: mic_id, onDelete: RESTRICT, onUpdate: CASCADE }
     fue_numero_fuentes: { phpName: FueNumeroFuentes, type: INTEGER, required: false }
     fue_numero_fuentes_subterraneas: { phpName: FueNumeroFuentesSubterraneas, type: INTEGER, required: false }
-    fue_compra_agua_bloque: { phpName: FueCompraAguaBloque, type: BOOLEAN, required: false }
-    fue_metodo_aforo_volumetrico: { phpName: FueMetodoAforoVolumetrico, type: BOOLEAN, required: false }
-    fue_metodo_aforo_micromolinete: { phpName: FueMetodoAforoMicromolinete, type: BOOLEAN, required: false }
-    fue_metodo_aforo_velocidad: { phpName: FueMetodoAforoVelocidad, type: BOOLEAN, required: false }
+    fue_compra_agua_bloque: { phpName: FueCompraAguaBloque, type: VARCHAR, required: false }
+    fue_metodo_aforo_volumetrico: { phpName: FueMetodoAforoVolumetrico, type: VARCHAR, required: false }
+    fue_metodo_aforo_micromolinete: { phpName: FueMetodoAforoMicromolinete, type: VARCHAR, required: false }
+    fue_metodo_aforo_velocidad: { phpName: FueMetodoAforoVelocidad, type: VARCHAR, required: false }
     fue_metodo_aforo_otro_cual: { phpName: FueMetodoAforoOtroCual, type: VARCHAR, size: '100', required: false }
-    fue_cumple_permisos: { phpName: FueCumplePermisos, type: BOOLEAN, required: false }
+    fue_cumple_permisos: { phpName: FueCumplePermisos, type: VARCHAR, required: false }
   fuentessubterraneas:
     _attributes: { phpName: Fuentessubterraneas }
     fsu_id: { phpName: FsuId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -342,7 +342,7 @@ propel:
     _attributes: { phpName: Gestionresultado }
     gre_id: { phpName: GreId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     gre_iaf_id: { phpName: GreIafId, type: INTEGER, required: true, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    gre_plan_gestion_resultados: { phpName: GrePlanGestionResultados, type: BOOLEAN, required: false }
+    gre_plan_gestion_resultados: { phpName: GrePlanGestionResultados, type: VARCHAR, required: false }
     gre_micromedidores_funcionando: { phpName: GreMicromedidoresFuncionando, type: INTEGER, required: false }
     gre_total_suscriptores_micromedicion: { phpName: GreTotalSuscriptoresMicromedicion, type: INTEGER, required: false }
     gre_valor_micromedicion: { phpName: GreValorMicromedicion, type: VARCHAR, required: false }
@@ -441,12 +441,12 @@ propel:
     _attributes: { phpName: Participacionciudadana }
     par_id: { phpName: ParId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     par_iaf_id: { phpName: ParIafId, type: INTEGER, required: true, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    par_participacion_ciudadana_directa: { phpName: ParParticipacionCiudadanaDirecta, type: BOOLEAN, required: false }
-    par_participacion_ciudadana_asamblea: { phpName: ParParticipacionCiudadanaAsamblea, type: BOOLEAN, required: false }
-    par_participacion_ciudadana_comite_desarrollo_control_social: { phpName: ParParticipacionCiudadanaComiteDesarrolloControlSocial, type: BOOLEAN, required: false }
-    par_participacion_ciudadana_veedurias: { phpName: ParParticipacionCiudadanaVeedurias, type: BOOLEAN, required: false }
+    par_participacion_ciudadana_directa: { phpName: ParParticipacionCiudadanaDirecta, type: VARCHAR, required: false }
+    par_participacion_ciudadana_asamblea: { phpName: ParParticipacionCiudadanaAsamblea, type: VARCHAR, required: false }
+    par_participacion_ciudadana_comite_desarrollo_control_social: { phpName: ParParticipacionCiudadanaComiteDesarrolloControlSocial, type: VARCHAR, required: false }
+    par_participacion_ciudadana_veedurias: { phpName: ParParticipacionCiudadanaVeedurias, type: VARCHAR, required: false }
     par_participacion_ciudadana_otra_cual: { phpName: ParParticipacionCiudadanaOtraCual, type: VARCHAR, size: '100', required: false }
-    par_propuestas_vocales: { phpName: ParPropuestasVocales, type: BOOLEAN, required: false }
+    par_propuestas_vocales: { phpName: ParPropuestasVocales, type: VARCHAR, required: false }
   perfil:
     _attributes: { phpName: Perfil }
     per_id: { phpName: PerId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -457,9 +457,9 @@ propel:
     pps_pre_id: { phpName: PpsPreId, type: INTEGER, primaryKey: true, required: true, foreignTable: prestadorporservicio, foreignReference: ppsg_pre_id, onUpdate: CASCADE }
     pps_ser_id: { phpName: PpsSerId, type: INTEGER, primaryKey: true, required: true }
     pps_anio: { phpName: PpsAnio, type: INTEGER, primaryKey: true, required: true }
-    pps_presupuesto_aprobado: { phpName: PpsPresupuestoAprobado, type: BOOLEAN, required: false }
+    pps_presupuesto_aprobado: { phpName: PpsPresupuestoAprobado, type: VARCHAR, required: false }
     pps_suscriptores_pendientes_de_pago: { phpName: PpsSuscriptoresPendientesDePago, type: VARCHAR, required: false }
-    pps_estatutos: { phpName: PpsEstatutos, type: BOOLEAN, required: false }
+    pps_estatutos: { phpName: PpsEstatutos, type: VARCHAR, required: false }
     pre_numero_empleados_con_competencias: { phpName: PreNumeroEmpleadosConCompetencias, type: VARCHAR, required: false }
     pre_numero_empleados_sin_competencias: { phpName: PreNumeroEmpleadosSinCompetencias, type: VARCHAR, required: false }
     pre_numero_empleados_proceso_competencias: { phpName: PreNumeroEmpleadosProcesoCompetencias, type: VARCHAR, required: false }
@@ -472,33 +472,33 @@ propel:
     pad_id: { phpName: PadId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     pad_tra_id: { phpName: PadTraId, type: INTEGER, required: false, foreignTable: trabajadoresyvinculacion, foreignReference: tra_id, onDelete: RESTRICT, onUpdate: CASCADE }
     pad_cargo: { phpName: PadCargo, type: VARCHAR, size: '100', required: false }
-    pad_contrato_termino_indefinido: { phpName: PadContratoTerminoIndefinido, type: BOOLEAN, required: false }
-    pad_contrato_termino_fijo: { phpName: PadContratoTerminoFijo, type: BOOLEAN, required: false }
-    pad_orden_pestacion_servicios: { phpName: PadOrdenPestacionServicios, type: BOOLEAN, required: false }
-    pad_sin_contrato_con_bonificacion: { phpName: PadSinContratoConBonificacion, type: BOOLEAN, required: false }
+    pad_contrato_termino_indefinido: { phpName: PadContratoTerminoIndefinido, type: VARCHAR, required: false }
+    pad_contrato_termino_fijo: { phpName: PadContratoTerminoFijo, type: VARCHAR, required: false }
+    pad_orden_pestacion_servicios: { phpName: PadOrdenPestacionServicios, type: VARCHAR, required: false }
+    pad_sin_contrato_con_bonificacion: { phpName: PadSinContratoConBonificacion, type: VARCHAR, required: false }
     pad_remuneracion_mensual: { phpName: PadRemuneracionMensual, type: VARCHAR, required: false }
   personaloperativo:
     _attributes: { phpName: Personaloperativo }
     pop_id: { phpName: PopId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     pop_tra_id: { phpName: PopTraId, type: INTEGER, required: false, foreignTable: trabajadoresyvinculacion, foreignReference: tra_id, onDelete: RESTRICT, onUpdate: CASCADE }
     pop_cargo: { phpName: PopCargo, type: VARCHAR, size: '100', required: false }
-    pop_contrato_termino_indefinido: { phpName: PopContratoTerminoIndefinido, type: BOOLEAN, required: false }
-    pop_contrato_termino_fijo: { phpName: PopContratoTerminoFijo, type: BOOLEAN, required: false }
-    pop_orden_prestacion_servicios: { phpName: PopOrdenPrestacionServicios, type: BOOLEAN, required: false }
-    pop_sin_contrato_con_bonificacion: { phpName: PopSinContratoConBonificacion, type: BOOLEAN, required: false }
+    pop_contrato_termino_indefinido: { phpName: PopContratoTerminoIndefinido, type: VARCHAR, required: false }
+    pop_contrato_termino_fijo: { phpName: PopContratoTerminoFijo, type: VARCHAR, required: false }
+    pop_orden_prestacion_servicios: { phpName: PopOrdenPrestacionServicios, type: VARCHAR, required: false }
+    pop_sin_contrato_con_bonificacion: { phpName: PopSinContratoConBonificacion, type: VARCHAR, required: false }
     pop_remuneracion_mensual: { phpName: PopRemuneracionMensual, type: VARCHAR, required: false }
   peticionesquejasrecursos:
     _attributes: { phpName: Peticionesquejasrecursos }
     pqr_id: { phpName: PqrId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     pqr_com_id: { phpName: PqrComId, type: INTEGER, required: true, foreignTable: comercial, foreignReference: com_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    pqr_registro_pqr: { phpName: PqrRegistroPqr, type: BOOLEAN, required: false }
+    pqr_registro_pqr: { phpName: PqrRegistroPqr, type: VARCHAR, required: false }
     pqr_cantidad_anual_pqr: { phpName: PqrCantidadAnualPqr, type: INTEGER, required: false }
     pqr_cantidad_pqr_facturacion: { phpName: PqrCantidadPqrFacturacion, type: INTEGER, required: false }
     pqr_cantidad_pqr_instalacion: { phpName: PqrCantidadPqrInstalacion, type: INTEGER, required: false }
     pqr_cantidad_pqr_prest_servicio: { phpName: PqrCantidadPqrPrestServicio, type: INTEGER, required: false }
     pqr_cantidad_pqr_otro: { phpName: PqrCantidadPqrOtro, type: INTEGER, required: false }
     pqr_cantidad_pqr_explica_otros: { phpName: PqrCantidadPqrExplicaOtros, type: CHAR, size: '50', required: false }
-    pqr_inf_causa_suspension_corte: { phpName: PqrInfCausaSuspensionCorte, type: BOOLEAN, required: false }
+    pqr_inf_causa_suspension_corte: { phpName: PqrInfCausaSuspensionCorte, type: VARCHAR, required: false }
     pqr_inf_causa_susp_corte_explic: { phpName: PqrInfCausaSuspCorteExplic, type: CHAR, size: '50', required: false }
   prestador:
     _attributes: { phpName: Prestador }
@@ -518,27 +518,27 @@ propel:
     _attributes: { phpName: Proteccionfuentessuperficialesagua }
     pfu_id: { phpName: PfuId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     pfu_mic_id: { phpName: PfuMicId, type: INTEGER, required: true, foreignTable: microcuencas, foreignReference: mic_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    pfu_programas_aislamiento: { phpName: PfuProgramasAislamiento, type: BOOLEAN, required: false }
-    pfu_programas_reforestacion: { phpName: PfuProgramasReforestacion, type: BOOLEAN, required: false }
-    pfu_programas_mejoramiento_uso_suelo: { phpName: PfuProgramasMejoramientoUsoSuelo, type: BOOLEAN, required: false }
-    pfu_programas_adquisicion_tierra: { phpName: PfuProgramasAdquisicionTierra, type: BOOLEAN, required: false }
-    pfu_programas_educacion_ambiental: { phpName: PfuProgramasEducacionAmbiental, type: BOOLEAN, required: false }
-    pfu_programas_reduccion_uso_agroquimicos: { phpName: PfuProgramasReduccionUsoAgroquimicos, type: BOOLEAN, required: false }
-    pfu_situacion_arriba_captacion_reserva: { phpName: PfuSituacionArribaCaptacionReserva, type: BOOLEAN, required: false }
-    pfu_situacion_arriba_captacion_protegida: { phpName: PfuSituacionArribaCaptacionProtegida, type: BOOLEAN, required: false }
-    pfu_cobertura_forestal_bosque_natural: { phpName: PfuCoberturaForestalBosqueNatural, type: BOOLEAN, required: false }
-    pfu_cobertura_forestal_bosque_protector: { phpName: PfuCoberturaForestalBosqueProtector, type: BOOLEAN, required: false }
-    pfu_cobertura_forestal_bosque_protector_productor: { phpName: PfuCoberturaForestalBosqueProtectorProductor, type: BOOLEAN, required: false }
-    pfu_cobertura_forestal_productor: { phpName: PfuCoberturaForestalProductor, type: BOOLEAN, required: false }
-    pfu_cobertura_forestal_regeneracion_natural: { phpName: PfuCoberturaForestalRegeneracionNatural, type: BOOLEAN, required: false }
+    pfu_programas_aislamiento: { phpName: PfuProgramasAislamiento, type: VARCHAR, required: false }
+    pfu_programas_reforestacion: { phpName: PfuProgramasReforestacion, type: VARCHAR, required: false }
+    pfu_programas_mejoramiento_uso_suelo: { phpName: PfuProgramasMejoramientoUsoSuelo, type: VARCHAR, required: false }
+    pfu_programas_adquisicion_tierra: { phpName: PfuProgramasAdquisicionTierra, type: VARCHAR, required: false }
+    pfu_programas_educacion_ambiental: { phpName: PfuProgramasEducacionAmbiental, type: VARCHAR, required: false }
+    pfu_programas_reduccion_uso_agroquimicos: { phpName: PfuProgramasReduccionUsoAgroquimicos, type: VARCHAR, required: false }
+    pfu_situacion_arriba_captacion_reserva: { phpName: PfuSituacionArribaCaptacionReserva, type: VARCHAR, required: false }
+    pfu_situacion_arriba_captacion_protegida: { phpName: PfuSituacionArribaCaptacionProtegida, type: VARCHAR, required: false }
+    pfu_cobertura_forestal_bosque_natural: { phpName: PfuCoberturaForestalBosqueNatural, type: VARCHAR, required: false }
+    pfu_cobertura_forestal_bosque_protector: { phpName: PfuCoberturaForestalBosqueProtector, type: VARCHAR, required: false }
+    pfu_cobertura_forestal_bosque_protector_productor: { phpName: PfuCoberturaForestalBosqueProtectorProductor, type: VARCHAR, required: false }
+    pfu_cobertura_forestal_productor: { phpName: PfuCoberturaForestalProductor, type: VARCHAR, required: false }
+    pfu_cobertura_forestal_regeneracion_natural: { phpName: PfuCoberturaForestalRegeneracionNatural, type: VARCHAR, required: false }
     pfu_cobertura_forestal_bosque_natural_tendencia: { phpName: PfuCoberturaForestalBosqueNaturalTendencia, type: VARCHAR, size: '50', required: false }
     pfu_cobertura_forestal_bosque_protector_tendencia: { phpName: PfuCoberturaForestalBosqueProtectorTendencia, type: VARCHAR, size: '50', required: false }
     pfu_cobertura_forestal_bosque_protector_productor_tendencia: { phpName: PfuCoberturaForestalBosqueProtectorProductorTendencia, type: VARCHAR, size: '50', required: false }
     pfu_cobertura_forestal_productor_tendencia: { phpName: PfuCoberturaForestalProductorTendencia, type: VARCHAR, size: '50', required: false }
     pfu_cobertura_forestal_regeneracion_natural_tendencia: { phpName: PfuCoberturaForestalRegeneracionNaturalTendencia, type: VARCHAR, size: '50', required: false }
-    pfu_aislamiento_franja_amarilla_microcuenca: { phpName: PfuAislamientoFranjaAmarillaMicrocuenca, type: BOOLEAN, required: false }
-    pfu_cobertura_forestal_area_protectora_cauce: { phpName: PfuCoberturaForestalAreaProtectoraCauce, type: BOOLEAN, required: false }
-    pfu_area_microcuenca_propiedad_acueducto: { phpName: PfuAreaMicrocuencaPropiedadAcueducto, type: BOOLEAN, required: false }
+    pfu_aislamiento_franja_amarilla_microcuenca: { phpName: PfuAislamientoFranjaAmarillaMicrocuenca, type: VARCHAR, required: false }
+    pfu_cobertura_forestal_area_protectora_cauce: { phpName: PfuCoberturaForestalAreaProtectoraCauce, type: VARCHAR, required: false }
+    pfu_area_microcuenca_propiedad_acueducto: { phpName: PfuAreaMicrocuencaPropiedadAcueducto, type: VARCHAR, required: false }
     pfu_cobertura_forestal_mas_usada: { phpName: PfuCoberturaForestalMasUsada, type: VARCHAR, size: '100', required: false }
   rango:
     _attributes: { phpName: Rango }
@@ -549,8 +549,8 @@ propel:
     _attributes: { phpName: Recolecciontrasnporteaseo }
     rtr_id: { phpName: RtrId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     rtr_top_id: { phpName: RtrTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    rtr_tipo_recoleccion_selectiva: { phpName: RtrTipoRecoleccionSelectiva, type: BOOLEAN, required: false }
-    rtr_tipo_recoleccion_conjuntiva: { phpName: RtrTipoRecoleccionConjuntiva, type: BOOLEAN, required: false }
+    rtr_tipo_recoleccion_selectiva: { phpName: RtrTipoRecoleccionSelectiva, type: VARCHAR, required: false }
+    rtr_tipo_recoleccion_conjuntiva: { phpName: RtrTipoRecoleccionConjuntiva, type: VARCHAR, required: false }
     rtr_distancia_recorrida_sitio_final: { phpName: RtrDistanciaRecorridaSitioFinal, type: VARCHAR, size: '50', required: false }
     rtr_frecuencia_servicio_barrido: { phpName: RtrFrecuenciaServicioBarrido, type: VARCHAR, size: '100', required: false }
     rtr_frecuencia_servicio_recoleccion: { phpName: RtrFrecuenciaServicioRecoleccion, type: VARCHAR, size: '100', required: false }
@@ -570,16 +570,16 @@ propel:
     _attributes: { phpName: Separacionresiduossolidosfuentesaseo }
     srsf_id: { phpName: SrsfId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     srsf_top_id: { phpName: SrsfTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    srsf_programa_separacion_residuos_solidos: { phpName: SrsfProgramaSeparacionResiduosSolidos, type: BOOLEAN, required: false }
-    srsf_materiales_separados_organico: { phpName: SrsfMaterialesSeparadosOrganico, type: BOOLEAN, required: false }
-    srsf_materiales_separados_otros_vidrio: { phpName: SrsfMaterialesSeparadosOtrosVidrio, type: BOOLEAN, required: false }
-    srsf_materiales_separados_otros_papel: { phpName: SrsfMaterialesSeparadosOtrosPapel, type: BOOLEAN, required: false }
-    srsf_materiales_separados_otros_plastico: { phpName: SrsfMaterialesSeparadosOtrosPlastico, type: BOOLEAN, required: false }
-    srsf_materiales_separados_otros_metales: { phpName: SrsfMaterialesSeparadosOtrosMetales, type: BOOLEAN, required: false }
-    srsf_materiales_separados_otros_otros: { phpName: SrsfMaterialesSeparadosOtrosOtros, type: BOOLEAN, required: false }
-    srsf_materiales_separados_higenicos: { phpName: SrsfMaterialesSeparadosHigenicos, type: BOOLEAN, required: false }
+    srsf_programa_separacion_residuos_solidos: { phpName: SrsfProgramaSeparacionResiduosSolidos, type: VARCHAR, required: false }
+    srsf_materiales_separados_organico: { phpName: SrsfMaterialesSeparadosOrganico, type: VARCHAR, required: false }
+    srsf_materiales_separados_otros_vidrio: { phpName: SrsfMaterialesSeparadosOtrosVidrio, type: VARCHAR, required: false }
+    srsf_materiales_separados_otros_papel: { phpName: SrsfMaterialesSeparadosOtrosPapel, type: VARCHAR, required: false }
+    srsf_materiales_separados_otros_plastico: { phpName: SrsfMaterialesSeparadosOtrosPlastico, type: VARCHAR, required: false }
+    srsf_materiales_separados_otros_metales: { phpName: SrsfMaterialesSeparadosOtrosMetales, type: VARCHAR, required: false }
+    srsf_materiales_separados_otros_otros: { phpName: SrsfMaterialesSeparadosOtrosOtros, type: VARCHAR, required: false }
+    srsf_materiales_separados_higenicos: { phpName: SrsfMaterialesSeparadosHigenicos, type: VARCHAR, required: false }
     srsf_numero_suscriptores_que_separan: { phpName: SrsfNumeroSuscriptoresQueSeparan, type: INTEGER, required: false }
-    srsf_existe_separacion_sitio_final: { phpName: SrsfExisteSeparacionSitioFinal, type: BOOLEAN, required: false }
+    srsf_existe_separacion_sitio_final: { phpName: SrsfExisteSeparacionSitioFinal, type: VARCHAR, required: false }
     srsf_toneladas_residuos_anio: { phpName: SrsfToneladasResiduosAnio, type: VARCHAR, required: false }
   servicio:
     _attributes: { phpName: Servicio }
@@ -608,34 +608,35 @@ propel:
     _attributes: { phpName: Tanque }
     tan_id: { phpName: TanId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     tan_estado_id: { phpName: TanEstadoId, type: INTEGER, required: true, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    tan_bypass_directo_red: { phpName: TanBypassDirectoRed, type: BOOLEAN, required: false }
-    tan_presencia_valvula_control: { phpName: TanPresenciaValvulaControl, type: BOOLEAN, required: false }
-    tan_proteccion_tapa: { phpName: TanProteccionTapa, type: BOOLEAN, required: false }
-    tan_cerramiento_lote: { phpName: TanCerramientoLote, type: BOOLEAN, required: false }
-    tan_ventosa_salida: { phpName: TanVentosaSalida, type: BOOLEAN, required: false }
-    tan_macro_medidor: { phpName: TanMacroMedidor, type: BOOLEAN, required: false }
+    tan_bypass_directo_red: { phpName: TanBypassDirectoRed, type: VARCHAR, required: false }
+    tan_presencia_valvula_control: { phpName: TanPresenciaValvulaControl, type: VARCHAR, required: false }
+    tan_proteccion_tapa: { phpName: TanProteccionTapa, type: VARCHAR, required: false }
+    tan_cerramiento_lote: { phpName: TanCerramientoLote, type: VARCHAR, required: false }
+    tan_ventosa_salida: { phpName: TanVentosaSalida, type: VARCHAR, required: false }
+    tan_macro_medidor: { phpName: TanMacroMedidor, type: VARCHAR, required: false }
+    tan_volumen: { phpName: TanVolumen, type: VARCHAR, required: false }
   tecnicooperativaacueducto:
     _attributes: { phpName: Tecnicooperativaacueducto }
     toa_id: { phpName: ToaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     toa_top_id: { phpName: ToaTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    toa_gravedad_sin_tratamiento: { phpName: ToaGravedadSinTratamiento, type: BOOLEAN, required: false }
-    toa_bombeo_sin_tratamiento: { phpName: ToaBombeoSinTratamiento, type: BOOLEAN, required: false }
-    toa_gravedad_con_tratamiento: { phpName: ToaGravedadConTratamiento, type: BOOLEAN, required: false }
-    toa_bombeo_con_tratamiento: { phpName: ToaBombeoConTratamiento, type: BOOLEAN, required: false }
-    toa_gravedad_bombeo_sin_tratamiento: { phpName: ToaGravedadBombeoSinTratamiento, type: BOOLEAN, required: false }
-    toa_gravedad_bombeo_con_tratamiento: { phpName: ToaGravedadBombeoConTratamiento, type: BOOLEAN, required: false }
-    toa_gravedad_sin_tratamiento_bombeo_con_tratamiento: { phpName: ToaGravedadSinTratamientoBombeoConTratamiento, type: BOOLEAN, required: false }
-    toa_gravedad_con_tratamiento_bombeo_sin_tratamiento: { phpName: ToaGravedadConTratamientoBombeoSinTratamiento, type: BOOLEAN, required: false }
+    toa_gravedad_sin_tratamiento: { phpName: ToaGravedadSinTratamiento, type: VARCHAR, required: false }
+    toa_bombeo_sin_tratamiento: { phpName: ToaBombeoSinTratamiento, type: VARCHAR, required: false }
+    toa_gravedad_con_tratamiento: { phpName: ToaGravedadConTratamiento, type: VARCHAR, required: false }
+    toa_bombeo_con_tratamiento: { phpName: ToaBombeoConTratamiento, type: VARCHAR, required: false }
+    toa_gravedad_bombeo_sin_tratamiento: { phpName: ToaGravedadBombeoSinTratamiento, type: VARCHAR, required: false }
+    toa_gravedad_bombeo_con_tratamiento: { phpName: ToaGravedadBombeoConTratamiento, type: VARCHAR, required: false }
+    toa_gravedad_sin_tratamiento_bombeo_con_tratamiento: { phpName: ToaGravedadSinTratamientoBombeoConTratamiento, type: VARCHAR, required: false }
+    toa_gravedad_con_tratamiento_bombeo_sin_tratamiento: { phpName: ToaGravedadConTratamientoBombeoSinTratamiento, type: VARCHAR, required: false }
     toa_cantidad_agua_distribuida_por_ano: { phpName: ToaCantidadAguaDistribuidaPorAno, type: VARCHAR, required: false }
-    toa_solucion_acarreo: { phpName: ToaSolucionAcarreo, type: BOOLEAN, required: false }
+    toa_solucion_acarreo: { phpName: ToaSolucionAcarreo, type: VARCHAR, required: false }
     toa_solucion_acarreo_viviendas: { phpName: ToaSolucionAcarreoViviendas, type: INTEGER, required: false }
-    toa_solucion_nacimiento: { phpName: ToaSolucionNacimiento, type: BOOLEAN, required: false }
+    toa_solucion_nacimiento: { phpName: ToaSolucionNacimiento, type: VARCHAR, required: false }
     toa_solucion_nacimiento_viviendas: { phpName: ToaSolucionNacimientoViviendas, type: INTEGER, required: false }
-    toa_solucion_aljibe: { phpName: ToaSolucionAljibe, type: BOOLEAN, required: false }
+    toa_solucion_aljibe: { phpName: ToaSolucionAljibe, type: VARCHAR, required: false }
     toa_solucion_aljibe_viviendas: { phpName: ToaSolucionAljibeViviendas, type: INTEGER, required: false }
-    toa_solucion_agua_lluvia: { phpName: ToaSolucionAguaLluvia, type: BOOLEAN, required: false }
+    toa_solucion_agua_lluvia: { phpName: ToaSolucionAguaLluvia, type: VARCHAR, required: false }
     toa_solucion_agua_lluvia_viviendas: { phpName: ToaSolucionAguaLluviaViviendas, type: INTEGER, required: false }
-    toa_solucion_otro: { phpName: ToaSolucionOtro, type: BOOLEAN, required: false }
+    toa_solucion_otro: { phpName: ToaSolucionOtro, type: VARCHAR, required: false }
     toa_solucion_otro_cual: { phpName: ToaSolucionOtroCual, type: VARCHAR, size: '100', required: false }
     toa_solucion_otro_viviendas: { phpName: ToaSolucionOtroViviendas, type: INTEGER, required: false }
   tecnicooperativaaduccionimpulsionacueducto:
@@ -664,42 +665,42 @@ propel:
     tocs_id: { phpName: TocsId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     tocs_top_id: { phpName: TocsTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
     tocs_componentes: { phpName: TocsComponentes, type: VARCHAR, size: '100', required: true }
-    tocs_captacion: { phpName: TocsCaptacion, type: BOOLEAN, required: false }
+    tocs_captacion: { phpName: TocsCaptacion, type: VARCHAR, required: false }
     tocs_captacion_cantidad: { phpName: TocsCaptacionCantidad, type: INTEGER, required: false }
-    tocs_aduccion: { phpName: TocsAduccion, type: BOOLEAN, required: false }
+    tocs_aduccion: { phpName: TocsAduccion, type: VARCHAR, required: false }
     tocs_aduccion_cantidad: { phpName: TocsAduccionCantidad, type: INTEGER, required: false }
-    tocs_desarenador: { phpName: TocsDesarenador, type: BOOLEAN, required: false }
+    tocs_desarenador: { phpName: TocsDesarenador, type: VARCHAR, required: false }
     tocs_desarenador_cantidad: { phpName: TocsDesarenadorCantidad, type: INTEGER, required: false }
-    tocs_conduccion_agua_cruda: { phpName: TocsConduccionAguaCruda, type: BOOLEAN, required: false }
+    tocs_conduccion_agua_cruda: { phpName: TocsConduccionAguaCruda, type: VARCHAR, required: false }
     tocs_conduccion_agua_cruda_cantidad: { phpName: TocsConduccionAguaCrudaCantidad, type: INTEGER, required: false }
-    tocs_planta_tratamiento: { phpName: TocsPlantaTratamiento, type: BOOLEAN, required: false }
+    tocs_planta_tratamiento: { phpName: TocsPlantaTratamiento, type: VARCHAR, required: false }
     tocs_planta_tratamiento_cantidad: { phpName: TocsPlantaTratamientoCantidad, type: INTEGER, required: false }
-    tocs_desinfeccion: { phpName: TocsDesinfeccion, type: BOOLEAN, required: false }
+    tocs_desinfeccion: { phpName: TocsDesinfeccion, type: VARCHAR, required: false }
     tocs_desinfeccion_cantidad: { phpName: TocsDesinfeccionCantidad, type: INTEGER, required: false }
-    tocs_tanque_almacenamiento: { phpName: TocsTanqueAlmacenamiento, type: BOOLEAN, required: false }
+    tocs_tanque_almacenamiento: { phpName: TocsTanqueAlmacenamiento, type: VARCHAR, required: false }
     tocs_tanque_almacenamiento_cantidad: { phpName: TocsTanqueAlmacenamientoCantidad, type: INTEGER, required: false }
-    tocs_conduccion_agua_tratada: { phpName: TocsConduccionAguaTratada, type: BOOLEAN, required: false }
+    tocs_conduccion_agua_tratada: { phpName: TocsConduccionAguaTratada, type: VARCHAR, required: false }
     tocs_conduccion_agua_tratada_cantidad: { phpName: TocsConduccionAguaTratadaCantidad, type: INTEGER, required: false }
-    tocs_red_distribucion: { phpName: TocsRedDistribucion, type: BOOLEAN, required: false }
+    tocs_red_distribucion: { phpName: TocsRedDistribucion, type: VARCHAR, required: false }
     tocs_red_distribucion_cantidad: { phpName: TocsRedDistribucionCantidad, type: INTEGER, required: false }
   tecnicooperativadesarenadoracueducto:
     _attributes: { phpName: Tecnicooperativadesarenadoracueducto }
     todes_id: { phpName: TodesId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     todes_top_id: { phpName: TodesTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    todes_bypass: { phpName: TodesBypass, type: BOOLEAN, required: false }
-    todes_valvula: { phpName: TodesValvula, type: BOOLEAN, required: false }
-    todes_aguas_erosion: { phpName: TodesAguasErosion, type: BOOLEAN, required: false }
+    todes_bypass: { phpName: TodesBypass, type: VARCHAR, required: false }
+    todes_valvula: { phpName: TodesValvula, type: VARCHAR, required: false }
+    todes_aguas_erosion: { phpName: TodesAguasErosion, type: VARCHAR, required: false }
   tecnicooperativadesinfeccionacueducto:
     _attributes: { phpName: Tecnicooperativadesinfeccionacueducto }
     toda_id: { phpName: TodaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     toda_top_id: { phpName: TodaTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    toda_desinfeccion: { phpName: TodaDesinfeccion, type: BOOLEAN, required: false }
-    toda_desinfeccion_cloro: { phpName: TodaDesinfeccionCloro, type: BOOLEAN, required: false }
-    toda_desinfeccion_hipoclorito_sodio: { phpName: TodaDesinfeccionHipocloritoSodio, type: BOOLEAN, required: false }
-    toda_desinfeccion_hipoclorito_calcio: { phpName: TodaDesinfeccionHipocloritoCalcio, type: BOOLEAN, required: false }
-    toda_desinfeccion_ozonacion: { phpName: TodaDesinfeccionOzonacion, type: BOOLEAN, required: false }
-    toda_desinfeccion_rayos_ultravioleta: { phpName: TodaDesinfeccionRayosUltravioleta, type: BOOLEAN, required: false }
-    toda_desinfeccion_dioxido_cloro: { phpName: TodaDesinfeccionDioxidoCloro, type: BOOLEAN, required: false }
+    toda_desinfeccion: { phpName: TodaDesinfeccion, type: VARCHAR, required: false }
+    toda_desinfeccion_cloro: { phpName: TodaDesinfeccionCloro, type: VARCHAR, required: false }
+    toda_desinfeccion_hipoclorito_sodio: { phpName: TodaDesinfeccionHipocloritoSodio, type: VARCHAR, required: false }
+    toda_desinfeccion_hipoclorito_calcio: { phpName: TodaDesinfeccionHipocloritoCalcio, type: VARCHAR, required: false }
+    toda_desinfeccion_ozonacion: { phpName: TodaDesinfeccionOzonacion, type: VARCHAR, required: false }
+    toda_desinfeccion_rayos_ultravioleta: { phpName: TodaDesinfeccionRayosUltravioleta, type: VARCHAR, required: false }
+    toda_desinfeccion_dioxido_cloro: { phpName: TodaDesinfeccionDioxidoCloro, type: VARCHAR, required: false }
   tecnicooperativalineaconduccionaguacrudaacueducto:
     _attributes: { phpName: Tecnicooperativalineaconduccionaguacrudaacueducto }
     tolc_id: { phpName: TolcId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -713,36 +714,36 @@ propel:
     _attributes: { phpName: Tecnicooperativaplantaaguapotableacueducto }
     topla_id: { phpName: ToplaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     topla_top_id: { phpName: ToplaTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    topla_tecnologia_utilizada_cc: { phpName: ToplaTecnologiaUtilizadaCc, type: BOOLEAN, required: false }
-    topla_tecnologia_utilizada_fd: { phpName: ToplaTecnologiaUtilizadaFd, type: BOOLEAN, required: false }
-    topla_tecnologia_utilizada_pc: { phpName: ToplaTecnologiaUtilizadaPc, type: BOOLEAN, required: false }
-    topla_tecnologia_utilizada_fime: { phpName: ToplaTecnologiaUtilizadaFime, type: BOOLEAN, required: false }
-    topla_tecnologia_utilizada_ct: { phpName: ToplaTecnologiaUtilizadaCt, type: BOOLEAN, required: false }
-    topla_tecnologia_utilizada_rhm: { phpName: ToplaTecnologiaUtilizadaRhm, type: BOOLEAN, required: false }
-    topla_ciclo_completo_mr: { phpName: ToplaCicloCompletoMr, type: BOOLEAN, required: false }
-    topla_ciclo_completo_flh: { phpName: ToplaCicloCompletoFlh, type: BOOLEAN, required: false }
-    topla_ciclo_completo_flm: { phpName: ToplaCicloCompletoFlm, type: BOOLEAN, required: false }
-    topla_ciclo_completo_sd: { phpName: ToplaCicloCompletoSd, type: BOOLEAN, required: false }
-    topla_ciclo_completo_fr: { phpName: ToplaCicloCompletoFr, type: BOOLEAN, required: false }
-    topla_filtracion_directa_mr: { phpName: ToplaFiltracionDirectaMr, type: BOOLEAN, required: false }
-    topla_filtracion_directa_flh: { phpName: ToplaFiltracionDirectaFlh, type: BOOLEAN, required: false }
-    topla_filtracion_directa_flm: { phpName: ToplaFiltracionDirectaFlm, type: BOOLEAN, required: false }
-    topla_filtracion_directa_fr: { phpName: ToplaFiltracionDirectaFr, type: BOOLEAN, required: false }
-    topla_fime_fgd: { phpName: ToplaFimeFgd, type: BOOLEAN, required: false }
-    topla_fime_fgac: { phpName: ToplaFimeFgac, type: BOOLEAN, required: false }
-    topla_fime_fgas2: { phpName: ToplaFimeFgas2, type: BOOLEAN, required: false }
-    topla_fime_fgas3: { phpName: ToplaFimeFgas3, type: BOOLEAN, required: false }
-    topla_fime_fla: { phpName: ToplaFimeFla, type: BOOLEAN, required: false }
-    topla_rhm_bandejas_cascadas: { phpName: ToplaRhmBandejasCascadas, type: BOOLEAN, required: false }
-    topla_rhm_aspersores: { phpName: ToplaRhmAspersores, type: BOOLEAN, required: false }
-    topla_rhm_sd: { phpName: ToplaRhmSd, type: BOOLEAN, required: false }
-    topla_rhm_fr: { phpName: ToplaRhmFr, type: BOOLEAN, required: false }
-    topla_rhm_fime: { phpName: ToplaRhmFime, type: BOOLEAN, required: false }
-    topla_planta_ttmto_funciona: { phpName: ToplaPlantaTtmtoFunciona, type: BOOLEAN, required: false }
-    topla_estructuras_medicion_cau: { phpName: ToplaEstructurasMedicionCau, type: BOOLEAN, required: false }
-    topla_menor_caudal_operacion_diseno: { phpName: ToplaMenorCaudalOperacionDiseno, type: BOOLEAN, required: false }
-    topla_planta_compacta: { phpName: ToplaPlantaCompacta, type: BOOLEAN, required: false }
-    topla_combinacion_tecnologias: { phpName: ToplaCombinacionTecnologias, type: BOOLEAN, required: false }
+    topla_tecnologia_utilizada_cc: { phpName: ToplaTecnologiaUtilizadaCc, type: VARCHAR, required: false }
+    topla_tecnologia_utilizada_fd: { phpName: ToplaTecnologiaUtilizadaFd, type: VARCHAR, required: false }
+    topla_tecnologia_utilizada_pc: { phpName: ToplaTecnologiaUtilizadaPc, type: VARCHAR, required: false }
+    topla_tecnologia_utilizada_fime: { phpName: ToplaTecnologiaUtilizadaFime, type: VARCHAR, required: false }
+    topla_tecnologia_utilizada_ct: { phpName: ToplaTecnologiaUtilizadaCt, type: VARCHAR, required: false }
+    topla_tecnologia_utilizada_rhm: { phpName: ToplaTecnologiaUtilizadaRhm, type: VARCHAR, required: false }
+    topla_ciclo_completo_mr: { phpName: ToplaCicloCompletoMr, type: VARCHAR, required: false }
+    topla_ciclo_completo_flh: { phpName: ToplaCicloCompletoFlh, type: VARCHAR, required: false }
+    topla_ciclo_completo_flm: { phpName: ToplaCicloCompletoFlm, type: VARCHAR, required: false }
+    topla_ciclo_completo_sd: { phpName: ToplaCicloCompletoSd, type: VARCHAR, required: false }
+    topla_ciclo_completo_fr: { phpName: ToplaCicloCompletoFr, type: VARCHAR, required: false }
+    topla_filtracion_directa_mr: { phpName: ToplaFiltracionDirectaMr, type: VARCHAR, required: false }
+    topla_filtracion_directa_flh: { phpName: ToplaFiltracionDirectaFlh, type: VARCHAR, required: false }
+    topla_filtracion_directa_flm: { phpName: ToplaFiltracionDirectaFlm, type: VARCHAR, required: false }
+    topla_filtracion_directa_fr: { phpName: ToplaFiltracionDirectaFr, type: VARCHAR, required: false }
+    topla_fime_fgd: { phpName: ToplaFimeFgd, type: VARCHAR, required: false }
+    topla_fime_fgac: { phpName: ToplaFimeFgac, type: VARCHAR, required: false }
+    topla_fime_fgas2: { phpName: ToplaFimeFgas2, type: VARCHAR, required: false }
+    topla_fime_fgas3: { phpName: ToplaFimeFgas3, type: VARCHAR, required: false }
+    topla_fime_fla: { phpName: ToplaFimeFla, type: VARCHAR, required: false }
+    topla_rhm_bandejas_cascadas: { phpName: ToplaRhmBandejasCascadas, type: VARCHAR, required: false }
+    topla_rhm_aspersores: { phpName: ToplaRhmAspersores, type: VARCHAR, required: false }
+    topla_rhm_sd: { phpName: ToplaRhmSd, type: VARCHAR, required: false }
+    topla_rhm_fr: { phpName: ToplaRhmFr, type: VARCHAR, required: false }
+    topla_rhm_fime: { phpName: ToplaRhmFime, type: VARCHAR, required: false }
+    topla_planta_ttmto_funciona: { phpName: ToplaPlantaTtmtoFunciona, type: VARCHAR, required: false }
+    topla_estructuras_medicion_cau: { phpName: ToplaEstructurasMedicionCau, type: VARCHAR, required: false }
+    topla_menor_caudal_operacion_diseno: { phpName: ToplaMenorCaudalOperacionDiseno, type: VARCHAR, required: false }
+    topla_planta_compacta: { phpName: ToplaPlantaCompacta, type: VARCHAR, required: false }
+    topla_combinacion_tecnologias: { phpName: ToplaCombinacionTecnologias, type: VARCHAR, required: false }
   tecnicooperativareddistribucionacueducto:
     _attributes: { phpName: Tecnicooperativareddistribucionacueducto }
     tord_id: { phpName: TordId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -754,35 +755,35 @@ propel:
   tecnicooperativasolucioncolectivaalcantarillado:
     _attributes: { phpName: Tecnicooperativasolucioncolectivaalcantarillado }
     tosca_id: { phpName: ToscaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    tosca_posee_alcantarillado_colectivo: { phpName: ToscaPoseeAlcantarilladoColectivo, type: BOOLEAN, required: false }
-    tosca_sanitario_funciona: { phpName: ToscaSanitarioFunciona, type: BOOLEAN, required: false }
+    tosca_posee_alcantarillado_colectivo: { phpName: ToscaPoseeAlcantarilladoColectivo, type: VARCHAR, required: false }
+    tosca_sanitario_funciona: { phpName: ToscaSanitarioFunciona, type: VARCHAR, required: false }
     tosca_sanitario_numero_suscriptores: { phpName: ToscaSanitarioNumeroSuscriptores, type: INTEGER, required: false }
-    tosca_sanitario_se_usa: { phpName: ToscaSanitarioSeUsa, type: BOOLEAN, required: false }
+    tosca_sanitario_se_usa: { phpName: ToscaSanitarioSeUsa, type: VARCHAR, required: false }
     tosca_sanitario_estado: { phpName: ToscaSanitarioEstado, type: INTEGER, required: false, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    tosca_pluvial_funciona: { phpName: ToscaPluvialFunciona, type: BOOLEAN, required: false }
+    tosca_pluvial_funciona: { phpName: ToscaPluvialFunciona, type: VARCHAR, required: false }
     tosca_pluvial_numero_suscriptores: { phpName: ToscaPluvialNumeroSuscriptores, type: INTEGER, required: false }
-    tosca_pluvial_se_usa: { phpName: ToscaPluvialSeUsa, type: BOOLEAN, required: false }
+    tosca_pluvial_se_usa: { phpName: ToscaPluvialSeUsa, type: VARCHAR, required: false }
     tosca_pluvial_estado: { phpName: ToscaPluvialEstado, type: INTEGER, required: false, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    tosca_combi_convencional_funciona: { phpName: ToscaCombiConvencionalFunciona, type: BOOLEAN, required: false }
+    tosca_combi_convencional_funciona: { phpName: ToscaCombiConvencionalFunciona, type: VARCHAR, required: false }
     tosca_combi_convencional_numero_suscriptores: { phpName: ToscaCombiConvencionalNumeroSuscriptores, type: INTEGER, required: false }
-    tosca_combi_convencional_se_usa: { phpName: ToscaCombiConvencionalSeUsa, type: BOOLEAN, required: false }
+    tosca_combi_convencional_se_usa: { phpName: ToscaCombiConvencionalSeUsa, type: VARCHAR, required: false }
     tosca_combi_convencional_estado: { phpName: ToscaCombiConvencionalEstado, type: INTEGER, required: false, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    tosca_combi_no_convencional_funciona: { phpName: ToscaCombiNoConvencionalFunciona, type: BOOLEAN, required: false }
+    tosca_combi_no_convencional_funciona: { phpName: ToscaCombiNoConvencionalFunciona, type: VARCHAR, required: false }
     tosca_combi_no_convencional_numero_suscriptores: { phpName: ToscaCombiNoConvencionalNumeroSuscriptores, type: INTEGER, required: false }
-    tosca_combi_no_convencional_se_usa: { phpName: ToscaCombiNoConvencionalSeUsa, type: BOOLEAN, required: false }
+    tosca_combi_no_convencional_se_usa: { phpName: ToscaCombiNoConvencionalSeUsa, type: VARCHAR, required: false }
     tosca_combi_no_convencional_estado: { phpName: ToscaCombiNoConvencionalEstado, type: INTEGER, required: false, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    tosca_simplificado_funciona: { phpName: ToscaSimplificadoFunciona, type: BOOLEAN, required: false }
+    tosca_simplificado_funciona: { phpName: ToscaSimplificadoFunciona, type: VARCHAR, required: false }
     tosca_simplificado_numero_suscriptores: { phpName: ToscaSimplificadoNumeroSuscriptores, type: INTEGER, required: false }
-    tosca_simplificado_se_usa: { phpName: ToscaSimplificadoSeUsa, type: BOOLEAN, required: false }
+    tosca_simplificado_se_usa: { phpName: ToscaSimplificadoSeUsa, type: VARCHAR, required: false }
     tosca_simplificado_estado: { phpName: ToscaSimplificadoEstado, type: INTEGER, required: false, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    tosca_sin_arrastre_solidos_funciona: { phpName: ToscaSinArrastreSolidosFunciona, type: BOOLEAN, required: false }
+    tosca_sin_arrastre_solidos_funciona: { phpName: ToscaSinArrastreSolidosFunciona, type: VARCHAR, required: false }
     tosca_sin_arrastre_solidos_numero_suscriptores: { phpName: ToscaSinArrastreSolidosNumeroSuscriptores, type: INTEGER, required: false }
-    tosca_sin_arrastre_solidos_se_usa: { phpName: ToscaSinArrastreSolidosSeUsa, type: BOOLEAN, required: false }
+    tosca_sin_arrastre_solidos_se_usa: { phpName: ToscaSinArrastreSolidosSeUsa, type: VARCHAR, required: false }
     tosca_sin_arrastre_solidos_estado: { phpName: ToscaSinArrastreSolidosEstado, type: INTEGER, required: false, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
     tosca_otro_cual: { phpName: ToscaOtroCual, type: VARCHAR, size: '80', required: false }
-    tosca_otro_funciona: { phpName: ToscaOtroFunciona, type: BOOLEAN, required: false }
+    tosca_otro_funciona: { phpName: ToscaOtroFunciona, type: VARCHAR, required: false }
     tosca_otro_numero_suscriptores: { phpName: ToscaOtroNumeroSuscriptores, type: INTEGER, required: false }
-    tosca_otro_se_usa: { phpName: ToscaOtroSeUsa, type: BOOLEAN, required: false }
+    tosca_otro_se_usa: { phpName: ToscaOtroSeUsa, type: VARCHAR, required: false }
     tosca_otro_estado: { phpName: ToscaOtroEstado, type: INTEGER, required: false, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
     tosca_actividades_a_ejecutar: { phpName: ToscaActividadesAEjecutar, type: INTEGER, required: false, foreignTable: actividadesaejecutarporprestadoralcantarillado, foreignReference: aaep_id, onDelete: RESTRICT, onUpdate: CASCADE }
     tosca_top_id: { phpName: ToscaTopId, type: INTEGER, required: false, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
@@ -831,8 +832,8 @@ propel:
     _attributes: { phpName: Trabajadoresyvinculacion }
     tra_id: { phpName: TraId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     tra_iaf_id: { phpName: TraIafId, type: INTEGER, required: false, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    tra_manual_procedimiento: { phpName: TraManualProcedimiento, type: BOOLEAN, required: false }
-    tra_manual_funciones: { phpName: TraManualFunciones, type: BOOLEAN, required: false }
+    tra_manual_procedimiento: { phpName: TraManualProcedimiento, type: VARCHAR, required: false }
+    tra_manual_funciones: { phpName: TraManualFunciones, type: VARCHAR, required: false }
   tratamientoaprovechamientoresiduossolidosaseo:
     _attributes: { phpName: Tratamientoaprovechamientoresiduossolidosaseo }
     tap_id: { phpName: TapId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -850,48 +851,48 @@ propel:
     tap_peso_residuos_higenicos: { phpName: TapPesoResiduosHigenicos, type: VARCHAR, required: false }
     tap_peso_otros_residuos: { phpName: TapPesoOtrosResiduos, type: VARCHAR, required: false }
     tap_desti_rs_sepa_organi_ton_mes: { phpName: TapDestiRsSepaOrganiTonMes, type: VARCHAR, required: false }
-    tap_desti_rs_sepa_organi_dis_cie_abie: { phpName: TapDestiRsSepaOrganiDisCieAbie, type: BOOLEAN, required: false }
-    tap_desti_rs_sepa_organi_dis_rell_sani: { phpName: TapDestiRsSepaOrganiDisRellSani, type: BOOLEAN, required: false }
-    tap_desti_rs_sepa_organi_arroja_agua: { phpName: TapDestiRsSepaOrganiArrojaAgua, type: BOOLEAN, required: false }
+    tap_desti_rs_sepa_organi_dis_cie_abie: { phpName: TapDestiRsSepaOrganiDisCieAbie, type: VARCHAR, required: false }
+    tap_desti_rs_sepa_organi_dis_rell_sani: { phpName: TapDestiRsSepaOrganiDisRellSani, type: VARCHAR, required: false }
+    tap_desti_rs_sepa_organi_arroja_agua: { phpName: TapDestiRsSepaOrganiArrojaAgua, type: VARCHAR, required: false }
     tap_desti_rs_sepa_organi_arroja_agua_cant: { phpName: TapDestiRsSepaOrganiArrojaAguaCant, type: VARCHAR, required: false }
-    tap_desti_rs_sepa_organi_aprovecha: { phpName: TapDestiRsSepaOrganiAprovecha, type: BOOLEAN, required: false }
+    tap_desti_rs_sepa_organi_aprovecha: { phpName: TapDestiRsSepaOrganiAprovecha, type: VARCHAR, required: false }
     tap_desti_rs_sepa_organi_aprov_total_proce: { phpName: TapDestiRsSepaOrganiAprovTotalProce, type: VARCHAR, required: false }
     tap_desti_rs_sepa_organi_aprov_total_termi: { phpName: TapDestiRsSepaOrganiAprovTotalTermi, type: VARCHAR, required: false }
     tap_desti_rs_sepa_organi_otro_cual: { phpName: TapDestiRsSepaOrganiOtroCual, type: VARCHAR, size: '100', required: false }
     tap_desti_rs_sepa_resicla_ton_mes: { phpName: TapDestiRsSepaResiclaTonMes, type: VARCHAR, required: false }
-    tap_desti_rs_sepa_resicla_queman: { phpName: TapDestiRsSepaResiclaQueman, type: BOOLEAN, required: false }
-    tap_desti_rs_sepa_resicla_dis_cie_abie: { phpName: TapDestiRsSepaResiclaDisCieAbie, type: BOOLEAN, required: false }
-    tap_desti_rs_sepa_resicla_dis_rell_sani: { phpName: TapDestiRsSepaResiclaDisRellSani, type: BOOLEAN, required: false }
-    tap_desti_rs_sepa_resicla_arroja_agua: { phpName: TapDestiRsSepaResiclaArrojaAgua, type: BOOLEAN, required: false }
+    tap_desti_rs_sepa_resicla_queman: { phpName: TapDestiRsSepaResiclaQueman, type: VARCHAR, required: false }
+    tap_desti_rs_sepa_resicla_dis_cie_abie: { phpName: TapDestiRsSepaResiclaDisCieAbie, type: VARCHAR, required: false }
+    tap_desti_rs_sepa_resicla_dis_rell_sani: { phpName: TapDestiRsSepaResiclaDisRellSani, type: VARCHAR, required: false }
+    tap_desti_rs_sepa_resicla_arroja_agua: { phpName: TapDestiRsSepaResiclaArrojaAgua, type: VARCHAR, required: false }
     tap_desti_rs_sepa_resicla_arroja_agua_cant: { phpName: TapDestiRsSepaResiclaArrojaAguaCant, type: VARCHAR, required: false }
-    tap_desti_rs_sepa_resicla_regalan: { phpName: TapDestiRsSepaResiclaRegalan, type: BOOLEAN, required: false }
-    tap_desti_rs_sepa_resicla_venden: { phpName: TapDestiRsSepaResiclaVenden, type: BOOLEAN, required: false }
-    tap_desti_rs_sepa_resicla_ven_vidrio: { phpName: TapDestiRsSepaResiclaVenVidrio, type: BOOLEAN, required: false }
-    tap_desti_rs_sepa_resicla_ven_papel: { phpName: TapDestiRsSepaResiclaVenPapel, type: BOOLEAN, required: false }
-    tap_desti_rs_sepa_resicla_ven_plasti: { phpName: TapDestiRsSepaResiclaVenPlasti, type: BOOLEAN, required: false }
-    tap_desti_rs_sepa_resicla_ven_metal: { phpName: TapDestiRsSepaResiclaVenMetal, type: BOOLEAN, required: false }
+    tap_desti_rs_sepa_resicla_regalan: { phpName: TapDestiRsSepaResiclaRegalan, type: VARCHAR, required: false }
+    tap_desti_rs_sepa_resicla_venden: { phpName: TapDestiRsSepaResiclaVenden, type: VARCHAR, required: false }
+    tap_desti_rs_sepa_resicla_ven_vidrio: { phpName: TapDestiRsSepaResiclaVenVidrio, type: VARCHAR, required: false }
+    tap_desti_rs_sepa_resicla_ven_papel: { phpName: TapDestiRsSepaResiclaVenPapel, type: VARCHAR, required: false }
+    tap_desti_rs_sepa_resicla_ven_plasti: { phpName: TapDestiRsSepaResiclaVenPlasti, type: VARCHAR, required: false }
+    tap_desti_rs_sepa_resicla_ven_metal: { phpName: TapDestiRsSepaResiclaVenMetal, type: VARCHAR, required: false }
     tap_desti_rs_sepa_resicla_ven_vidrio_cant: { phpName: TapDestiRsSepaResiclaVenVidrioCant, type: VARCHAR, required: false }
     tap_desti_rs_sepa_resicla_ven_papel_cant: { phpName: TapDestiRsSepaResiclaVenPapelCant, type: VARCHAR, required: false }
     tap_desti_rs_sepa_resicla_ven_plasti_cant: { phpName: TapDestiRsSepaResiclaVenPlastiCant, type: VARCHAR, required: false }
     tap_desti_rs_sepa_resicla_ven_metal_cant: { phpName: TapDestiRsSepaResiclaVenMetalCant, type: VARCHAR, required: false }
-    tap_desti_rs_sepa_higen_queman: { phpName: TapDestiRsSepaHigenQueman, type: BOOLEAN, required: false }
-    tap_desti_rs_sepa_higen_dis_cie_abie: { phpName: TapDestiRsSepaHigenDisCieAbie, type: BOOLEAN, required: false }
-    tap_desti_rs_sepa_higen_dis_rell_sani: { phpName: TapDestiRsSepaHigenDisRellSani, type: BOOLEAN, required: false }
-    tap_desti_rs_sepa_higen_arroja_agua: { phpName: TapDestiRsSepaHigenArrojaAgua, type: BOOLEAN, required: false }
+    tap_desti_rs_sepa_higen_queman: { phpName: TapDestiRsSepaHigenQueman, type: VARCHAR, required: false }
+    tap_desti_rs_sepa_higen_dis_cie_abie: { phpName: TapDestiRsSepaHigenDisCieAbie, type: VARCHAR, required: false }
+    tap_desti_rs_sepa_higen_dis_rell_sani: { phpName: TapDestiRsSepaHigenDisRellSani, type: VARCHAR, required: false }
+    tap_desti_rs_sepa_higen_arroja_agua: { phpName: TapDestiRsSepaHigenArrojaAgua, type: VARCHAR, required: false }
     tap_desti_rs_sepa_higen_arroja_agua_cant: { phpName: TapDestiRsSepaHigenArrojaAguaCant, type: VARCHAR, required: false }
     tap_desti_rs_sepa_higen_otro_cual: { phpName: TapDestiRsSepaHigenOtroCual, type: VARCHAR, size: '100', required: false }
-    tap_desti_rs_nosepa_recole_queman: { phpName: TapDestiRsNosepaRecoleQueman, type: BOOLEAN, required: false }
-    tap_desti_rs_nosepa_recole_dis_cie_abie: { phpName: TapDestiRsNosepaRecoleDisCieAbie, type: BOOLEAN, required: false }
-    tap_desti_rs_nosepa_recole_dis_rell_sani: { phpName: TapDestiRsNosepaRecoleDisRellSani, type: BOOLEAN, required: false }
-    tap_desti_rs_nosepa_recole_arroja_agua: { phpName: TapDestiRsNosepaRecoleArrojaAgua, type: BOOLEAN, required: false }
+    tap_desti_rs_nosepa_recole_queman: { phpName: TapDestiRsNosepaRecoleQueman, type: VARCHAR, required: false }
+    tap_desti_rs_nosepa_recole_dis_cie_abie: { phpName: TapDestiRsNosepaRecoleDisCieAbie, type: VARCHAR, required: false }
+    tap_desti_rs_nosepa_recole_dis_rell_sani: { phpName: TapDestiRsNosepaRecoleDisRellSani, type: VARCHAR, required: false }
+    tap_desti_rs_nosepa_recole_arroja_agua: { phpName: TapDestiRsNosepaRecoleArrojaAgua, type: VARCHAR, required: false }
     tap_desti_rs_nosepa_recole_arroja_agua_cant: { phpName: TapDestiRsNosepaRecoleArrojaAguaCant, type: VARCHAR, required: false }
-    tap_desti_rs_nosepa_recole_sepa_sit_disp: { phpName: TapDestiRsNosepaRecoleSepaSitDisp, type: BOOLEAN, required: false }
-    tap_desti_rs_nosepa_recole_sepa_sit_disp_nocomer: { phpName: TapDestiRsNosepaRecoleSepaSitDispNocomer, type: BOOLEAN, required: false }
-    tap_desti_rs_nosepa_recole_sepa_sit_disp_comer: { phpName: TapDestiRsNosepaRecoleSepaSitDispComer, type: BOOLEAN, required: false }
-    tap_desti_rs_nosepa_recole_sepa_sit_disp_comer_vidrio: { phpName: TapDestiRsNosepaRecoleSepaSitDispComerVidrio, type: BOOLEAN, required: false }
-    tap_desti_rs_nosepa_recole_sepa_sit_disp_comer_papel: { phpName: TapDestiRsNosepaRecoleSepaSitDispComerPapel, type: BOOLEAN, required: false }
-    tap_desti_rs_nosepa_recole_sepa_sit_disp_comer_plasti: { phpName: TapDestiRsNosepaRecoleSepaSitDispComerPlasti, type: BOOLEAN, required: false }
-    tap_desti_rs_nosepa_recole_sepa_sit_disp_comer_metal: { phpName: TapDestiRsNosepaRecoleSepaSitDispComerMetal, type: BOOLEAN, required: false }
+    tap_desti_rs_nosepa_recole_sepa_sit_disp: { phpName: TapDestiRsNosepaRecoleSepaSitDisp, type: VARCHAR, required: false }
+    tap_desti_rs_nosepa_recole_sepa_sit_disp_nocomer: { phpName: TapDestiRsNosepaRecoleSepaSitDispNocomer, type: VARCHAR, required: false }
+    tap_desti_rs_nosepa_recole_sepa_sit_disp_comer: { phpName: TapDestiRsNosepaRecoleSepaSitDispComer, type: VARCHAR, required: false }
+    tap_desti_rs_nosepa_recole_sepa_sit_disp_comer_vidrio: { phpName: TapDestiRsNosepaRecoleSepaSitDispComerVidrio, type: VARCHAR, required: false }
+    tap_desti_rs_nosepa_recole_sepa_sit_disp_comer_papel: { phpName: TapDestiRsNosepaRecoleSepaSitDispComerPapel, type: VARCHAR, required: false }
+    tap_desti_rs_nosepa_recole_sepa_sit_disp_comer_plasti: { phpName: TapDestiRsNosepaRecoleSepaSitDispComerPlasti, type: VARCHAR, required: false }
+    tap_desti_rs_nosepa_recole_sepa_sit_disp_comer_metal: { phpName: TapDestiRsNosepaRecoleSepaSitDispComerMetal, type: VARCHAR, required: false }
     tap_desti_rs_nosepa_recole_sepa_sit_disp_comer_vidrio_cant: { phpName: TapDestiRsNosepaRecoleSepaSitDispComerVidrioCant, type: VARCHAR, required: false }
     tap_desti_rs_nosepa_recole_sepa_sit_disp_comer_papel_cant: { phpName: TapDestiRsNosepaRecoleSepaSitDispComerPapelCant, type: VARCHAR, required: false }
     tap_desti_rs_nosepa_recole_sepa_sit_disp_comer_plasti_cant: { phpName: TapDestiRsNosepaRecoleSepaSitDispComerPlastiCant, type: VARCHAR, required: false }
@@ -916,4 +917,4 @@ propel:
     _attributes: { phpName: Vinculacionalservicio }
     vas_id: { phpName: VasId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     vas_com_id: { phpName: VasComId, type: INTEGER, required: true, foreignTable: comercial, foreignReference: com_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    vas_suscripcion_contrato: { phpName: VasSuscripcionContrato, type: BOOLEAN, required: false }
+    vas_suscripcion_contrato: { phpName: VasSuscripcionContrato, type: VARCHAR, required: false }
