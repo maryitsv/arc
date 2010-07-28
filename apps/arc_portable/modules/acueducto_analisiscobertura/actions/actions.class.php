@@ -95,7 +95,7 @@ class acueducto_analisiscoberturaActions extends sfActions
 	return $comercialfila->getComId();
   }
   
-  /*
+  /*esta funcion crea o actualiza un registro de analissi de cobertura en la bd
   */
   public function executeActualizarAnalisisCobertura(sfWebRequest $request)
   {
@@ -169,7 +169,8 @@ class acueducto_analisiscoberturaActions extends sfActions
 		
 	return $this->renderText($salida);*/
   }
-
+  
+/*esta funcion devuelve un registro con la informacion de analisis de cobertura para un periodo un prestador y un servicio especifico*/
  public function executeObtenerDatosAnalisiscobertura(sfWebRequest $request)
   {
 		$salida='({"total":"0", "results":""})';

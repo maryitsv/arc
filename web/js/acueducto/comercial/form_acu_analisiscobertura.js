@@ -4,13 +4,31 @@ desarrollado por maryit sanchez
 2010
 */
 
-/* Que paso con estas variables no las encuentro
-aco_num_sus_servicio_oficial	ACO_NUM_SUS_SERVICIO_OFICIAL	
-aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
-*/
 
-	var acu_analisiscobertura_panel = new Ext.FormPanel({
-		id: 'acu_analisiscobertura_panel',
+var acu_analisiscobertura_datos_datastore = new Ext.data.Store({
+        id: 'acu_analisiscobertura_datos_datastore',
+        proxy: new Ext.data.HttpProxy({
+                url: 'acueducto_analisiscobertura/obtenerDatosAnalisiscobertura', 
+                method: 'POST'
+        }),
+        baseParams:{}, 
+        reader: new Ext.data.JsonReader({
+                root: 'results',
+                totalProperty: 'total',
+                id: 'id'
+                },[ 
+                  {name: 'acu_aco_catastro_usuarios', type: 'int'},	    
+                  {name: 'acu_aco_anio_ela_impl_catastro_usu', type: 'string'},
+				  {name: 'acu_aco_num_predios_conec_sistema', type: 'string'},
+				  {name: 'acu_aco_estrat_soceco_adop_mpio', type: 'int'},
+				  {name: 'acu_aco_estra_soceco_adop_mpio_jus', type: 'string'},
+				  {name: 'acu_aco_num_predios_area', type: 'string'},
+		])
+    });
+	
+
+	var acu_analisiscobertura_formpanel = new Ext.FormPanel({
+		id: 'acu_analisiscobertura_formpanel',
 		frame: true,
 		hidden: false,
 		autoWidth:true,
@@ -30,11 +48,11 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 			   [
 				  {
 					 boxLabel: 'Si', name: 'acu_aco_catastro_usuarios', id:'acu_aco_catastro_usuarios_si',
-					 inputValue: true, checked: true
+					 inputValue: 1, checked: true
 				  },
 				  { 
 					boxLabel: 'No', name: 'acu_aco_catastro_usuarios', id:'acu_aco_catastro_usuarios_no',
-					inputValue: false 
+					inputValue: 0 
 				  }
 			   ],
 			   listeners:{
@@ -105,7 +123,7 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 					 boxLabel: 'Si', 
 					 name: 'acu_aco_estrat_soceco_adop_mpio',
 					 id:'acu_aco_estrat_soceco_adop_mpio_si',
-					 inputValue: true,
+					 inputValue: 1,
 					 checked: true,
 					 listeners:
 					 {
@@ -119,7 +137,7 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 				  { 
 					 boxLabel: 'No', 
 					 name: 'acu_aco_estrat_soceco_adop_mpio',
-					 inputValue: false,
+					 inputValue: 0,
 					 id: 'acu_aco_estrat_soceco_adop_mpio_no' 
 				  }
 			   ],
@@ -169,7 +187,7 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 				}
 
 				acu_analisiscobertura_estratos_gridpanel.show();
-				acu_analisiscobertura_panel.hide();						
+				acu_analisiscobertura_formpanel.hide();						
 			 }
 		  }      
 	   ]
@@ -250,7 +268,7 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 			 handler: function()
 			 {
 			 acu_analisiscobertura_estratos_gridpanel.hide();
-			 acu_analisiscobertura_panel.show();
+			 acu_analisiscobertura_formpanel.show();
 			 }
 		  },
 		  {
@@ -270,28 +288,28 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 	//frame:true,
 	//title: 'An&aacute;lisis de cobertura',
 	layout:'fit',
-    items:[acu_analisiscobertura_panel,acu_analisiscobertura_estratos_gridpanel],
+    items:[acu_analisiscobertura_formpanel,acu_analisiscobertura_estratos_gridpanel],
 	renderTo:'div_form_acu_analisiscobertura'
    });
 
 //***************Funciones************///
 	//***************Funciones************///
-    var acu_analisiscobertura_panel_datanuevo;
-	var acu_analisiscobertura_panel_dataviejo=new Array();
+    var acu_analisiscobertura_formpanel_datanuevo;
+	var acu_analisiscobertura_formpanel_dataviejo=new Array();
 
 	function acu_analisiscobertura_cargardatostemporal(){
 	
-		if(acu_analisiscobertura_panel_datanuevo)
+		if(acu_analisiscobertura_formpanel_datanuevo)
 		{
-			acu_analisiscobertura_panel_dataviejo=acu_analisiscobertura_panel_datanuevo;
+			acu_analisiscobertura_formpanel_dataviejo=acu_analisiscobertura_formpanel_datanuevo;
 		}
-		acu_analisiscobertura_panel_datanuevo=new Array();
-		acu_analisiscobertura_panel_datanuevo['acu_aco_catastro_usuarios'] = Ext.getCmp('acu_aco_catastro_usuarios').getValue().getGroupValue();
-		acu_analisiscobertura_panel_datanuevo['acu_aco_anio_ela_impl_catastro_usu'] = Ext.getCmp('acu_aco_anio_ela_impl_catastro_usu').getValue();
-		acu_analisiscobertura_panel_datanuevo['acu_aco_num_predios_area'] = Ext.getCmp('acu_aco_num_predios_area').getValue();
-		acu_analisiscobertura_panel_datanuevo['acu_aco_num_predios_conec_sistema'] = Ext.getCmp('acu_aco_num_predios_conec_sistema').getValue();
-		acu_analisiscobertura_panel_datanuevo['acu_aco_estrat_soceco_adop_mpio'] = Ext.getCmp('acu_aco_estrat_soceco_adop_mpio').getValue().getGroupValue();
-		acu_analisiscobertura_panel_datanuevo['acu_aco_estra_soceco_adop_mpio_jus'] = Ext.getCmp('acu_aco_estra_soceco_adop_mpio_jus').getValue();
+		acu_analisiscobertura_formpanel_datanuevo=new Array();
+		acu_analisiscobertura_formpanel_datanuevo['acu_aco_catastro_usuarios'] = Ext.getCmp('acu_aco_catastro_usuarios').getValue().getGroupValue();
+		acu_analisiscobertura_formpanel_datanuevo['acu_aco_anio_ela_impl_catastro_usu'] = Ext.getCmp('acu_aco_anio_ela_impl_catastro_usu').getValue();
+		acu_analisiscobertura_formpanel_datanuevo['acu_aco_num_predios_area'] = Ext.getCmp('acu_aco_num_predios_area').getValue();
+		acu_analisiscobertura_formpanel_datanuevo['acu_aco_num_predios_conec_sistema'] = Ext.getCmp('acu_aco_num_predios_conec_sistema').getValue();
+		acu_analisiscobertura_formpanel_datanuevo['acu_aco_estrat_soceco_adop_mpio'] = Ext.getCmp('acu_aco_estrat_soceco_adop_mpio').getValue().getGroupValue();
+		acu_analisiscobertura_formpanel_datanuevo['acu_aco_estra_soceco_adop_mpio_jus'] = Ext.getCmp('acu_aco_estra_soceco_adop_mpio_jus').getValue();
 	}
 	
 	
@@ -300,24 +318,24 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 	{//compara dos arraglos si son diferentes actualiza sino solo pasa al siguiente form
 		var accion='ninguna';
 	
-		if(acu_analisiscobertura_panel_dataviejo) // si existe el viejo, compare
+		if(acu_analisiscobertura_formpanel_dataviejo) // si existe el viejo, compare
 		{
-			if(acu_analisiscobertura_panel_datanuevo['acu_aco_catastro_usuarios'] != acu_analisiscobertura_panel_dataviejo['acu_aco_catastro_usuarios'])
+			if(acu_analisiscobertura_formpanel_datanuevo['acu_aco_catastro_usuarios'] != acu_analisiscobertura_formpanel_dataviejo['acu_aco_catastro_usuarios'])
 			{accion='actualizar';}
 			
-			if(acu_analisiscobertura_panel_datanuevo['acu_aco_anio_ela_impl_catastro_usu'] != acu_analisiscobertura_panel_dataviejo['acu_aco_anio_ela_impl_catastro_usu'])
+			if(acu_analisiscobertura_formpanel_datanuevo['acu_aco_anio_ela_impl_catastro_usu'] != acu_analisiscobertura_formpanel_dataviejo['acu_aco_anio_ela_impl_catastro_usu'])
 			{accion='actualizar';}
 			
-			if(acu_analisiscobertura_panel_datanuevo['acu_aco_num_predios_area'] != acu_analisiscobertura_panel_dataviejo['acu_aco_num_predios_area'])
+			if(acu_analisiscobertura_formpanel_datanuevo['acu_aco_num_predios_area'] != acu_analisiscobertura_formpanel_dataviejo['acu_aco_num_predios_area'])
 			{accion='actualizar';}
 			
-			if(acu_analisiscobertura_panel_datanuevo['acu_aco_num_predios_conec_sistema'] != acu_analisiscobertura_panel_dataviejo['acu_aco_num_predios_conec_sistema'])
+			if(acu_analisiscobertura_formpanel_datanuevo['acu_aco_num_predios_conec_sistema'] != acu_analisiscobertura_formpanel_dataviejo['acu_aco_num_predios_conec_sistema'])
 			{accion='actualizar';}
 			
-			if(acu_analisiscobertura_panel_datanuevo['acu_aco_estrat_soceco_adop_mpio'] != acu_analisiscobertura_panel_dataviejo['acu_aco_estrat_soceco_adop_mpio'])
+			if(acu_analisiscobertura_formpanel_datanuevo['acu_aco_estrat_soceco_adop_mpio'] != acu_analisiscobertura_formpanel_dataviejo['acu_aco_estrat_soceco_adop_mpio'])
 			{accion='actualizar';}
 			
-			if(acu_analisiscobertura_panel_datanuevo['acu_aco_estra_soceco_adop_mpio_jus'] != acu_analisiscobertura_panel_dataviejo['acu_aco_estra_soceco_adop_mpio_jus'])
+			if(acu_analisiscobertura_formpanel_datanuevo['acu_aco_estra_soceco_adop_mpio_jus'] != acu_analisiscobertura_formpanel_dataviejo['acu_aco_estra_soceco_adop_mpio_jus'])
 			{accion='actualizar';}
 		}
 		else
@@ -329,7 +347,7 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 	
 	function acu_analisiscobertura_subirdatos(accion_realizar){
 	
-		acu_analisiscobertura_panel.getForm().submit({
+		acu_analisiscobertura_formpanel.getForm().submit({
 			method: 'POST',
 			url:'acueducto_analisiscobertura/actualizarAnalisisCobertura',
 			params: {
@@ -353,3 +371,9 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 
 	}
 	
+acu_analisiscobertura_datos_datastore.load({
+  callback: function() {
+	var record = acu_analisiscobertura_datos_datastore.getAt(0);
+	acu_analisiscobertura_formpanel.getForm().loadRecord(record);	
+  }
+});
