@@ -67,7 +67,7 @@ class periodoprestadorservicioActions extends sfActions
 			{
 				try
 				{
-					$periodoprestadorservicio_acu = new Periodoporprestadorporservicio();
+					$periodoprestadorservicio_acu = new Periodoporprestadorservicio();
 					$periodoprestadorservicio_acu->setPpsPreId($pps_pre_id);
 					$periodoprestadorservicio_acu->setPpsSerId($pps_ser_id_acu);
 					$periodoprestadorservicio_acu->setPpsAnio($pps_anio);
@@ -77,7 +77,7 @@ class periodoprestadorservicioActions extends sfActions
 				}
 				catch(Exception $exception)
 				{
-					return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en acueducto'}})");
+					return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en acueducto".$exception."'}})");
 				}
 			}
 		}
@@ -110,7 +110,7 @@ class periodoprestadorservicioActions extends sfActions
 			{
 				try
 				{
-					$periodoprestadorservicio_alc = new Periodoporprestadorporservicio();
+					$periodoprestadorservicio_alc = new Periodoporprestadorservicio();
 					$periodoprestadorservicio_alc->setPpsPreId($pps_pre_id);
 					$periodoprestadorservicio_alc->setPpsSerId($pps_ser_id_alc);
 					$periodoprestadorservicio_alc->setPpsAnio($pps_anio);
@@ -153,7 +153,7 @@ class periodoprestadorservicioActions extends sfActions
 			{
 				try
 				{
-					$periodoprestadorservicio_ase = new Periodoporprestadorporservicio();
+					$periodoprestadorservicio_ase = new Periodoporprestadorservicio();
 					$periodoprestadorservicio_ase->setPpsPreId($pps_pre_id);
 					$periodoprestadorservicio_ase->setPpsSerId($pps_ser_id_ase);
 					$periodoprestadorservicio_ase->setPpsAnio($pps_anio);

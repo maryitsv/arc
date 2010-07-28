@@ -29,4 +29,123 @@ class acueductoActions extends sfActions
   {
     //$this->forward('default', 'module');
   }
+  
+  public function executeActualizarAcueducto(sfWebRequest $request)
+  {
+	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
+	$pps_ser_id = $this->obtenerServicioId('acueducto');
+	
+	$conexion = new Criteria();
+	$conexion->add(PeriodoporprestadorservicioPeer::PPS_PRE_ID, $pps_pre_id);
+	$conexion->add(PeriodoporprestadorservicioPeer::PPS_ANIO, $pps_anio);
+	$conexion->add(PeriodoporprestadorservicioPeer::PPS_SER_ID, $pps_ser_id);
+	$acueducto = PeriodoporprestadorservicioPeer::doSelectOne($conexion);
+	
+	if($acueducto)
+	{
+		try
+		{
+			$acueducto->setPpsNombreDiligenciador($this->getRequestParameter('acu_pps_nombre_diligenciador'));
+			$acueducto->setPpsApellidoDiligenciador($this->getRequestParameter('acu_pps_apellido_diligenciador'));
+			$acueducto->setPpsIdentificacionDiligenciador($this->getRequestParameter('acu_pps_identificacion_diligenciador'));
+			$acueducto->setPpsTipoIdentificacionDiligenciador($this->getRequestParameter('acu_pps_tipo_identificacion_diligenciador'));
+			$acueducto->setPpsTelefonoDiligenciador($this->getRequestParameter('acu_pps_telefono_diligenciador'));
+			
+			$acueducto->setPpsPresupuestoAprobado($this->getRequestParameter('acu_pps_presupuesto_aprobado'));
+			$acueducto->setPpsSuscriptoresPendientesDePago($this->getRequestParameter('acu_pps_suscriptores_pendientes_de_pago'));
+			$acueducto->setPpsEstatutos($this->getRequestParameter('acu_pps_estatutos'));
+			$acueducto->setPpsNumeroEmpleadosConCompetencias($this->getRequestParameter('acu_pps_numero_empleados_con_competencias'));
+			$acueducto->setPpsNumeroEmpleadosSinCompetencias($this->getRequestParameter('acu_pps_numero_empleados_sin_competencias'));
+			$acueducto->setPpsNumeroEmpleadosProcesoCompetencias($this->getRequestParameter('acu_pps_numero_empleados_proceso_competencias'));
+			$acueducto->setPpsNumeroSuscriptores($this->getRequestParameter('acu_pps_numero_suscriptores'));
+			
+			$acueducto->save();
+			
+			$salida = "({success: true, mensaje:'La informacion administrativa financiera fue actualizada exitosamente'})";
+		}
+		catch(Exception $exception)
+		{
+			return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en acueducto'}})");
+		}
+	}
+	else
+	{
+		try
+		{
+			$acueducto = new Periodoporprestadorservicio();
+			
+			$acueducto->setPpsPpsPreId($pps_pre_id);
+			$acueducto->setPpsPpsAnio($pps_anio);
+			$acueducto->setPpsPpsSerId($pps_ser_id);
+			
+			$acueducto->setPpsNombreDiligenciador($this->getRequestParameter('acu_pps_nombre_diligenciador'));
+			$acueducto->setPpsApellidoDiligenciador($this->getRequestParameter('acu_pps_apellido_diligenciador'));
+			$acueducto->setPpsIdentificacionDiligenciador($this->getRequestParameter('acu_pps_identificacion_diligenciador'));
+			$acueducto->setPpsTipoIdentificacionDiligenciador($this->getRequestParameter('acu_pps_tipo_identificacion_diligenciador'));
+			$acueducto->setPpsTelefonoDiligenciador($this->getRequestParameter('acu_pps_telefono_diligenciador'));
+			
+			$acueducto->setPpsPresupuestoAprobado($this->getRequestParameter('acu_pps_presupuesto_aprobado'));
+			$acueducto->setPpsSuscriptoresPendientesDePago($this->getRequestParameter('acu_pps_suscriptores_pendientes_de_pago'));
+			$acueducto->setPpsEstatutos($this->getRequestParameter('acu_pps_estatutos'));
+			$acueducto->setPpsNumeroEmpleadosConCompetencias($this->getRequestParameter('acu_pps_numero_empleados_con_competencias'));
+			$acueducto->setPpsNumeroEmpleadosSinCompetencias($this->getRequestParameter('acu_pps_numero_empleados_sin_competencias'));
+			$acueducto->setPpsNumeroEmpleadosProcesoCompetencias($this->getRequestParameter('acu_pps_numero_empleados_proceso_competencias'));
+			$acueducto->setPpsNumeroSuscriptores($this->getRequestParameter('acu_pps_numero_suscriptores'));
+			
+			$acueducto->save();
+			
+			$salida = "({success: true, mensaje:'La informacion administrativa financiera fue actualizada exitosamente'})";
+		}
+		catch(Exception $exception)
+		{
+			return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en acueducto'}})");
+		}
+	}
+	return $this->renderText($salida);
+  }
+  
+  public function executeObtenerDatosAcueducto()
+  {
+	$salida = "";
+	
+	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
+	$pps_ser_id = $this->obtenerServicioId('acueducto');
+	
+	$conexion = new Criteria();
+	$conexion->add(PeriodoporprestadorservicioPeer::PPS_PRE_ID, $pps_pre_id);
+	$conexion->add(PeriodoporprestadorservicioPeer::PPS_ANIO, $pps_anio);
+	$conexion->add(PeriodoporprestadorservicioPeer::PPS_SER_ID, $pps_ser_id);
+	$acueducto = PeriodoporprestadorservicioPeer::doSelectOne($conexion);
+	
+	$datos;
+	$pos=0;
+
+	if($acueducto)
+	{
+		$datos[$pos]['acu_pps_pre_id']=$acueducto->getPpsPreId();
+		$datos[$pos]['acu_pps_ser_id']=$acueducto->getPpsSerId();
+		$datos[$pos]['acu_pps_anio']=$acueducto->getPpsAnio();
+		$datos[$pos]['acu_pps_presupuesto_aprobado']=$acueducto->getPpsPresupuestoAprobado();
+		$datos[$pos]['acu_pps_suscriptores_pendientes_de_pago']=$acueducto->getPpsSuscriptoresPendientesDePago();
+		$datos[$pos]['acu_pps_estatutos']=$acueducto->getPpsEstatutos();
+		$datos[$pos]['acu_pps_numero_empleados_con_competencias']=$acueducto->getPpsNumeroEmpleadosConCompetencias();
+		$datos[$pos]['acu_pps_numero_empleados_sin_competencias']=$acueducto->getPpsNumeroEmpleadosSinCompetencias();
+		$datos[$pos]['acu_pps_numero_empleados_proceso_competencias']=$acueducto->getPpsNumeroEmpleadosProcesoCompetencias();
+		$datos[$pos]['acu_pps_nombre_diligenciador']=$acueducto->getPpsNombreDiligenciador();
+		$datos[$pos]['acu_pps_apellido_diligenciador']=$acueducto->getPpsApellidoDiligenciador();
+		$datos[$pos]['acu_pps_telefono_diligenciador']=$acueducto->getPpsTelefonoDiligenciador();
+		$datos[$pos]['acu_pps_identificacion_diligenciador']=$acueducto->getPpsIdentificacionDiligenciador();
+		$datos[$pos]['acu_pps_tipo_identificacion_diligenciador']=$acueducto->getPpsTipoIdentificacionDiligenciador();
+		$datos[$pos]['acu_pps_numero_suscriptores']=$acueducto->getPpsNumeroSuscriptores();
+		
+		$jsonresult = json_encode($datos);
+		$salida = '({"total":'.$pos.',"results":'.$jsonresult.'})';
+	}
+	else {
+		$salida = '({"total":"0", "results":""})';
+	}
+	return 	$this->renderText($salida);
+   }
 }
