@@ -1,19 +1,24 @@
 	/*
-	
-   FUE_TIENE_FUENTES_SUPERFICIALES int2,
-   FUE_TIENE_FUENTES_SUBTERRANEAS int2,
+create table FUENTES
+(
+   FUE_ID               SERIAL NOT NULL,
+   FUE_MIC_ID           INT NOT NULL,
+   
+   FUE_TIENE_FUENTES_SUPERFICIALES int2, --nuevo
+   FUE_TIENE_FUENTES_SUBTERRANEAS int2, --nuevo
    FUE_COMPRA_AGUA_BLOQUE int2,
-
-   FUE_NUMERO_FUENTES_TOTAL   INT,
+   
+ -- cambiar este FUE_NUMERO_FUENTES  por el siguiente 
    FUE_NUMERO_FUENTES_SUPERFICIALES INT,
    FUE_NUMERO_FUENTES_SUBTERRANEAS INT,
-   
    FUE_METODO_AFORO_VOLUMETRICO int2,
    FUE_METODO_AFORO_MICROMOLINETE int2,
    FUE_METODO_AFORO_VELOCIDAD int2,
    FUE_METODO_AFORO_OTRO_CUAL VARCHAR(100),
-   
    FUE_CUMPLE_PERMISOS int2,
+   PRIMARY KEY (FUE_ID)
+);
+
 	*/
 	var acu_fuentes_abastecenelsistema_panel = new Ext.FormPanel({
 	//	renderTo:'div_form_acu_fuentes',
@@ -32,12 +37,12 @@
 				title:'Fuentes que abastecen el sistema',
 				layout:'column',
 				columnWidth:'.58',
+				bodyStyle: 'padding:10px;',
 				defaults:{layout:'form',border:false},
 				items:
 				[
 					{
 						width:220,
-						bodyStyle: 'padding:5px;',
 						defaults:{labelStyle: 'width:160px;'+letra},
 						items:
 						[	{xtype: 'label', html: '<html>Existencia de este tipo de fuente?</html>', cls:'x-form-check-group-label'},
@@ -83,7 +88,6 @@
 						]
 					},{
 						width:110,
-						bodyStyle: 'padding-top:5px;',
 						defaults:{width:100,hideLabel:true},
 						items:
 						[	
@@ -122,7 +126,6 @@
 				xtype:'fieldset',
 				title:'Metodo de aforo',
 				layout:'column',
-				
 				columnWidth:'.4',
 				defaults:{layout:'form',border:false},
 				items:
@@ -187,6 +190,51 @@
 						]
 					}
 				]
+			},
+			{
+				bodyStyle: 'padding-top:10px;',
+				items:[
+				{
+					xtype:'fieldset',
+					bodyStyle: 'padding-top:5px;',
+					title:'Aspectos legales',
+					border:false,
+					layout:'form',
+					columnWidth:'1',
+					defaults:{layout:'form',border:false},
+					items:
+					[
+						{
+							xtipe:'label',
+							labelStyle: 'width:150px;'+letra,
+							html: '<html>Cumple con los permisos de acuerdo con el Art&iacute;culo 25 de la Ley 142 de 1994?</html>'
+						},
+						{
+							xtype: 'radiogroup',
+							id:'acu_fue_cumple_permisos',
+							width:100,
+							hideLabel:true,
+							columns: 2,
+							items:
+							[
+								{
+								 boxLabel: 'Si', name: 'acu_fue_cumple_permisos',id:'acu_fue_cumple_permisos_si', 
+								 checked: true, inputValue:1,
+								},
+								{ 
+								boxLabel: 'No', name: 'acu_fue_cumple_permisos',id:'acu_fue_cumple_permisos_no',
+								inputValue:0 
+								}
+							],
+							listeners:
+							{
+							'render': function() {
+									ayuda('acu_fue_cumple_permisos', ayuda_acu_fue_cumple_permisos);
+									}
+							}
+						}
+					]
+				}]
 			}
 		],
 		buttons:

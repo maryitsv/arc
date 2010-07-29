@@ -7,4 +7,5 @@ var ayuda_acu_fue_metodo_aforo_micromolinete = 'Si usted utiliza este metodo de 
 var ayuda_acu_fue_metodo_aforo_volumetrico = 'Si usted utiliza este metodo volumetrico, seleccione esta casilla';
 var ayuda_acu_fue_metodo_aforo_velocidad = 'Si usted utiliza este metodo de aforo, seleccione esta casilla';
 var ayuda_acu_fue_metodo_aforo_otro_cual = 'Escriba que otro metodo de aforo utiliza';
+var ayuda_acu_fue_cumple_permisos='Si cumple con los permisos de esta ley selecione si , sino selecione no';
 
