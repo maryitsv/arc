@@ -10,4 +10,15 @@ var ayuda_acu_pfu_area_microcuenca_propiedad_acueducto  = 'Existe area de las mi
 var ayuda_acu_pfu_extension_has  = 'Escriba el numero de ext has';
 var ayuda_acu_pfu_situacion_arriba_captacion_reserva  = 'Es aquella protegida porque la ley asi lo indica';
 var ayuda_acu_pfu_situacion_arriba_captacion_protegida='Es aquella protegida por iniciativa de los propietarios, comunidad o por autoridades locales';  
-  					
+  		
+var ayuda_acu_pfu_cobertura_forestal_natural  = 'Si existe el tipo de bosque natural, seleccione esta casilla';
+var ayuda_acu_pfu_cobertura_forestal_protector  = 'Si existe el tipo de bosque protector, seleccione esta casilla';
+var ayuda_acu_pfu_cobertura_forestal_protector_productor  = 'Si existe el tipo de bosque protector productor, seleccione esta casilla';
+var ayuda_acu_pfu_cobertura_forestal_productor  = 'Si existe el tipo de bosque productor, seleccione esta casilla';
+var ayuda_acu_pfu_cobertura_forestal_regeneracion_natural  = 'Si existe el tipo de bosque regeneracion, seleccione esta casilla';
+var ayuda_acu_pfu_cobertura_forestal_natural_tendencia  = 'Cual es la tendencia de la cobertura forestal de bosque natural, escoja la que mas se aproxime';
+var ayuda_acu_pfu_cobertura_forestal_protector_tendencia  = 'Cual es la tendencia de la cobertura forestal de bosque protector, escoja la que mas se aproxime';
+var ayuda_acu_pfu_cobertura_forestal_protector_productor_tendencia  = 'Cual es la tendencia de la cobertura forestal de bosque protector productor, escoja la que mas se aproxime';
+var ayuda_acu_pfu_cobertura_forestal_productor_tendencia  = 'Cual es la tendencia de la cobertura forestal de bosque productor, escoja la que mas se aproxime';
+var ayuda_acu_pfu_cobertura_forestal_regeneracion_natural_tendencia  = 'Cual es la tendencia de la cobertura forestal de regeneracion natural, escoja la que mas se aproxime';
+var ayuda_acu_pfu_cobertura_forestal_mas_usada  = 'Seleccione la cobertura mas usada';

@@ -5,7 +5,7 @@
  *
  * @package    arc
  * @subpackage acueducto_facturacionyrecaudo
- * @author     Your name here
+ * @author     maryit sanchez
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class acueducto_facturacionyrecaudoActions extends sfActions
@@ -19,7 +19,11 @@ class acueducto_facturacionyrecaudoActions extends sfActions
   {
    // $this->forward('default', 'module');
   }
-    
+ /**
+  *@author:maryit sanchez
+  *@date:13 de julio de 2010
+  *Este metodo retorna el id de un servicio especifico
+  */  
   protected function obtenerServicioId($ser_nombre)
 	{
 		$conexion = new Criteria();			
@@ -29,6 +33,11 @@ class acueducto_facturacionyrecaudoActions extends sfActions
 		return  $ser_id;
 	}
 	
+	/**
+  *@author:maryit sanchez
+  *@date:13 de julio de 2010
+  *Este metodo retorna el id de la tabla comercial, dada la informacion del periodo y del prestador
+  */  
     public function obtenerComId()
   { 
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
@@ -54,16 +63,11 @@ class acueducto_facturacionyrecaudoActions extends sfActions
 	return $comercialfila->getComId();
   }
   
-  
-  /* acu_fac_frecuencia_del_servicio
- acu_fac_frecuenc_facturacion
- acu_fac_frecuenc_fac_justificacion
- acu_fac_num_fac_exp_ultimo_periodo
- acu_fac_sist_fac_utilizado
- acu_fac_frecuencia_fac_justifica
- acu_fac_morosidad_promedio
- acu_fac_vol_agua_fac_en_el_anio_acu
- acu_fac_vol_agua_suministrado_anio_acu */
+     /*
+  *@author:maryit sanchez
+  *@date:21 de julio de 2010
+  *Esta funcion actualiza la informacion de facturacion y recaudo
+  */
   public function executeActualizarFacturacionyrecaudo(sfWebRequest $request)
   {  
 	$salida = '';
@@ -75,38 +79,27 @@ class acueducto_facturacionyrecaudoActions extends sfActions
 			$conexion->add(FacturacionyrecaudoPeer::FAC_COM_ID, $com_id);
 			$facturacionyrecaudo = FacturacionyrecaudoPeer::doSelectOne($conexion);
 			
+			if(!$facturacionyrecaudo)
+			{
+				$facturacionyrecaudo =new Facturacionyrecaudo();
+				$facturacionyrecaudo->setFacComId($com_id);
+			}
+			
 			if($facturacionyrecaudo)
 			{
-					$facturacionyrecaudo->setFacFrecuenciaDelServicio($this->getRequestParameter('acu_fac_frecuencia_del_servicio'));
-					$facturacionyrecaudo->setFacFrecuencFacturacion($this->getRequestParameter('acu_fac_frecuenc_facturacion'));
-					$facturacionyrecaudo->setFacFrecuencFacJustificacion($this->getRequestParameter('acu_fac_frecuenc_fac_justificacion'));
-					$facturacionyrecaudo->setFacNumFacExpUltimoPeriodo($this->getRequestParameter('acu_fac_num_fac_exp_ultimo_periodo'));
-					$facturacionyrecaudo->setFacSistFacUtilizado($this->getRequestParameter('acu_fac_sist_fac_utilizado'));
-					$facturacionyrecaudo->setFacFrecuenciaFacJustifica($this->getRequestParameter('acu_fac_frecuencia_fac_justifica'));
-					$facturacionyrecaudo->setFacMorosidadPromedio($this->getRequestParameter('acu_fac_morosidad_promedio'));
-					$facturacionyrecaudo->setFacVolAguaFacEnElAnioAcu($this->getRequestParameter('acu_fac_vol_agua_fac_en_el_anio_acu'));
-					$facturacionyrecaudo->setFacVolAguaSuministradoAnioAcu($this->getRequestParameter('acu_fac_vol_agua_suministrado_anio_acu'));
-					
-					$facturacionyrecaudo->save();
-					
-					$salida = "({success: true, mensaje:'La facturacion y recaudo fue actualizado exitosamente'})";
-			} else {
-					$facturacionyrecaudo =new Facturacionyrecaudo();
-					$facturacionyrecaudo->setFacComId($com_id);
-					$facturacionyrecaudo->setFacFrecuenciaDelServicio($this->getRequestParameter('acu_fac_frecuencia_del_servicio'));
-					$facturacionyrecaudo->setFacFrecuencFacturacion($this->getRequestParameter('acu_fac_frecuenc_facturacion'));
-					$facturacionyrecaudo->setFacFrecuencFacJustificacion($this->getRequestParameter('acu_fac_frecuenc_fac_justificacion'));
-					$facturacionyrecaudo->setFacNumFacExpUltimoPeriodo($this->getRequestParameter('acu_fac_num_fac_exp_ultimo_periodo'));
-					$facturacionyrecaudo->setFacSistFacUtilizado($this->getRequestParameter('acu_fac_sist_fac_utilizado'));
-					$facturacionyrecaudo->setFacFrecuenciaFacJustifica($this->getRequestParameter('acu_fac_frecuencia_fac_justifica'));
-					$facturacionyrecaudo->setFacMorosidadPromedio($this->getRequestParameter('acu_fac_morosidad_promedio'));
-					$facturacionyrecaudo->setFacVolAguaFacEnElAnioAcu($this->getRequestParameter('acu_fac_vol_agua_fac_en_el_anio_acu'));
-					$facturacionyrecaudo->setFacVolAguaSuministradoAnioAcu($this->getRequestParameter('acu_fac_vol_agua_suministrado_anio_acu'));
-					
-					$facturacionyrecaudo->save();
-					
-					$salida = "({success: true, mensaje:'La facturacion y recaudo fue actualizado exitosamente'})";
-
+				$facturacionyrecaudo->setFacFrecuenciaDelServicio($this->getRequestParameter('acu_fac_frecuencia_del_servicio'));
+				$facturacionyrecaudo->setFacFrecuencFacturacion($this->getRequestParameter('acu_fac_frecuenc_facturacion'));
+				$facturacionyrecaudo->setFacFrecuencFacJustificacion($this->getRequestParameter('acu_fac_frecuenc_fac_justificacion'));
+				$facturacionyrecaudo->setFacNumFacExpUltimoPeriodo($this->getRequestParameter('acu_fac_num_fac_exp_ultimo_periodo'));
+				$facturacionyrecaudo->setFacSistFacUtilizado($this->getRequestParameter('acu_fac_sist_fac_utilizado'));
+				$facturacionyrecaudo->setFacFrecuenciaFacJustifica($this->getRequestParameter('acu_fac_frecuencia_fac_justifica'));
+				$facturacionyrecaudo->setFacMorosidadPromedio($this->getRequestParameter('acu_fac_morosidad_promedio'));
+				$facturacionyrecaudo->setFacVolAguaFacEnElAnioAcu($this->getRequestParameter('acu_fac_vol_agua_fac_en_el_anio_acu'));
+				$facturacionyrecaudo->setFacVolAguaSuministradoAnioAcu($this->getRequestParameter('acu_fac_vol_agua_suministrado_anio_acu'));
+				
+				$facturacionyrecaudo->save();
+				
+				$salida = "({success: true, mensaje:'La facturacion y recaudo fue actualizado exitosamente'})";
 			}
 		
 		}
@@ -117,7 +110,12 @@ class acueducto_facturacionyrecaudoActions extends sfActions
 		
 	return $this->renderText($salida);
   }
-
+  /*
+  *@author:maryit sanchez
+  *@date:28 de julio de 2010
+  *Esta funcion devuelve un registro con la informacion de facturacion y recaudo para
+  *un periodo un prestador y un servicio especifico
+  */
  public function executeObtenerDatosFacturacionyrecaudo(sfWebRequest $request)
   {  
 	$salida='({"total":"0", "results":""})';
