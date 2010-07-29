@@ -175,14 +175,13 @@ var form_acu_participacionciudadana = new Ext.FormPanel({
 			text: 'Atras', 
 			iconCls: 'crear16', 
 			handler: function(){
-							//Ext.getCmp('tabp_acu_administrativafinanciera').setActiveTab(0);
+							Ext.getCmp('tabp_acu_administrativafinanciera').setActiveTab(0);
 			}
 		},
 	    {
 	    	text: 'Continuar', 
 	    	iconCls: 'crear16', 
 	    	handler: function(){
-							//Ext.getCmp('tabp_acu_administrativafinanciera').setActiveTab(2);
 							acu_participacionciudadana_subirdatos();
 			}
 	    }
@@ -201,6 +200,13 @@ acu_participacionciudadana_datastore.load({
 
 function acu_participacionciudadana_subirdatos() {
 
-	subirDatos(form_acu_participacionciudadana, 'acueducto_participacionciudadana/actualizarParticipacionCiudadana');
+	subirDatos(
+		form_acu_participacionciudadana, 
+		'acueducto_participacionciudadana/actualizarParticipacionCiudadana',
+		{},
+		function(){
+			Ext.getCmp('tabp_acu_administrativafinanciera').setActiveTab(2);
+		}
+	);
 }
 
