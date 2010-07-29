@@ -257,6 +257,7 @@ Desarrollado maryit sanchez
 	   [
 		  {
 			 text: '<html>Atr&aacute;s</html>',
+			 iconCls:'atras',
 			 handler: function()
 			 {
 				acu_comercial_tabpanel.setActiveTab(2);
@@ -264,6 +265,7 @@ Desarrollado maryit sanchez
 		  },
 		  {
 			 text: 'Continuar',
+			 iconCls:'continuar',
 			 handler: function()
 			 { 
 				acu_peticionesquejasrecursos_cargardatostemporal();

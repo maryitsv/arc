@@ -175,6 +175,7 @@ desarrollado por maryit sanchez
 	   [
 		  {
 			 text: '<html>Atr&aacute;s</html>',
+			 iconCls:'atras',
 			 disabled: false,
 			 handler: function()
 			 {
@@ -184,6 +185,7 @@ desarrollado por maryit sanchez
 		  },   
 		  {
 			 text: 'Continuar',
+			 iconCls:'continuar',
 			 handler: function()
 			 {  
 				acu_analisiscobertura_cargardatostemporal();
@@ -272,6 +274,7 @@ desarrollado por maryit sanchez
 		  {
 			 text: '<html>Atr&aacute;s</html>',
 			 disabled: false,
+			 iconCls:'atras',
 			 handler: function()
 			 {
 			 acu_analisiscobertura_estratos_gridpanel.hide();
@@ -280,6 +283,7 @@ desarrollado por maryit sanchez
 		  },
 		  {
 			 text: 'Continuar',
+			 iconCls:'continuar',
 			 handler: function()
 			 {
 			 acu_comercial_tabpanel.setActiveTab(1);

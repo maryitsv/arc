@@ -5,14 +5,7 @@ Desarrollado maryit sanchez
 2010
 */
 
-  /*
-  var ayuda_ acu_imi_localidad='Escriba la localidad de la microcuenca';
-var ayuda_ acu_imi_dep_id='Escoja el departamento en que se ubica la microcuenca';
-var ayuda_ acu_imi_mun_id='Escoja el departamento, y luego escoja el municipio en que se ubica la microcuenca';
-var ayuda_ acu_imi_microcuenca='Escriba el nombre de la microcuenca';
-var ayuda_ acu_imi_codigo_cuenca='Escriba el codigo de la cuenca';
-var ayuda_ acu_imi_fecha='Escriba la fecha de la ???';
-  */
+ 
 	var acu_informaciongeneralmicrocuencas_datos_datastore = new Ext.data.Store({
         id: 'acu_informaciongeneralmicrocuencas_datos_datastore',
         proxy: new Ext.data.HttpProxy({
@@ -193,6 +186,7 @@ var ayuda_ acu_imi_fecha='Escriba la fecha de la ???';
 	  [
 		  {
 			 text: '<html>Atr&aacute;s</html>',
+			 iconCls:'atras',
 			 handler: function()
 			 {
 				Ext.getCmp('acueducto').setActiveTab(3);
@@ -202,6 +196,7 @@ var ayuda_ acu_imi_fecha='Escriba la fecha de la ???';
 		  },
 		  {
 			 text: 'Continuar',
+			 iconCls:'continuar',
 			 handler: function()
 			 {
 				acu_informaciongeneralmicrocuencas_cargardatostemporal();
@@ -219,15 +214,7 @@ var ayuda_ acu_imi_fecha='Escriba la fecha de la ???';
 	   renderTo:'div_form_acu_informaciongeneralmicrocuencas'
 	});
 
-/*
-var ayuda_ acu_imi_localidad='Escriba la localidad de la microcuenca';
-var ayuda_ acu_imi_dep_nombre='Escoja el departamento en que se ubica la microcuenca';
-var ayuda_ acu_imi_mun_id='Escoja el departamento, y luego escoja el municipio en que se ubica la microcuenca';
-var ayuda_ acu_imi_microcuenca='Escriba el nombre de la microcuenca';
-var ayuda_ acu_imi_codigo_cuenca='Escriba el codigo de la cuenca';
-var ayuda_ acu_imi_fecha='Escriba la fecha de la ???';
 
-*/
     var acu_informaciongeneralmicrocuencas_panel_datanuevo;
 	var acu_informaciongeneralmicrocuencas_panel_dataviejo=new Array();
 

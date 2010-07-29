@@ -3,18 +3,7 @@ ARC
 Desarrollado maryit sanchez
 2010
 */
-/*
-var ayuda_ acu_fac_frecuencia_del_servicio='Factura el servicio?, seleccion si o no';
-var ayuda_ acu_fac_frecuenc_facturacion='Con que frecuencia factura el servicio, escoja entre las opciones, si no esta escoja otra y escriba cual';
-var ayuda_ acu_fac_frecuenc_fac_justificacion='Escriba con que frecuencia factura';
-var ayuda_ acu_fac_num_fac_exp_ultimo_periodo='Escriba el n&uacute;mero de facturas expedidas en el &uacute;ltimo periodo de facturaci&oacute;n';
-var ayuda_ acu_fac_sist_fac_utilizado='Como es el sistema de facturaci&oacute;n que utiliza, escoja entre las opciones';
-var ayuda_ acu_fac_frecuencia_fac_justifica='Escriba que sistema de facturacion utiliza';
-var ayuda_ acu_fac_morosidad_promedio='Morosidad promedio de los ultimos 3 periodos de pago, en porcentaje';
-var ayuda_ acu_fac_vol_agua_fac_en_el_anio_acu='Volumen de agua facturado en el a&ntilde;o, escriba un n&uacute;mero';
-var ayuda_ acu_fac_vol_agua_suministrado_anio_acu='Volumen de agua suministrado en el a&ntilde;o, escriba un n&uacute;mero';
 
-*/
 	var acu_facturacionyrecaudo_datos_datastore = new Ext.data.Store({
         id: 'acu_facturacionyrecaudo_datos_datastore',
         proxy: new Ext.data.HttpProxy({
@@ -281,6 +270,7 @@ var ayuda_ acu_fac_vol_agua_suministrado_anio_acu='Volumen de agua suministrado 
 	   [
 		  {
 			 text: '<html>Atr&aacute;s</html>',
+			 iconCls:'atras',
 			 handler: function()
 			 {
 			     acu_comercial_tabpanel.setActiveTab(0);			 
@@ -289,6 +279,7 @@ var ayuda_ acu_fac_vol_agua_suministrado_anio_acu='Volumen de agua suministrado 
 		  },
 		  {
 			 text: 'Continuar',
+			 iconCls:'continuar',
 			 handler: function()
 			 {
 				acu_facturacionyrecaudo_cargardatostemporal();
@@ -308,18 +299,7 @@ var ayuda_ acu_fac_vol_agua_suministrado_anio_acu='Volumen de agua suministrado 
 
     var acu_facturacionyrecaudo_panel_datanuevo;
 	var acu_facturacionyrecaudo_panel_dataviejo=new Array();
-/*
-var ayuda_ acu_fac_frecuencia_del_servicio='Factura el servicio?, seleccion si o no';
-var ayuda_ acu_fac_frecuenc_facturacion='Con que frecuencia factura el servicio, escoja entre las opciones, si no esta escoja otra y escriba cual';
-var ayuda_ acu_fac_frecuenc_fac_justificacion='Escriba con que frecuencia factura';
-var ayuda_ acu_fac_num_fac_exp_ultimo_periodo='Escriba el n&uacute;mero de facturas expedidas en el &uacute;ltimo periodo de facturaci&oacute;n';
-var ayuda_ acu_fac_sist_fac_utilizado='Como es el sistema de facturaci&oacute;n que utiliza, escoja entre las opciones';
-var ayuda_ acu_fac_frecuencia_fac_justifica='Escriba que sistema de facturacion utiliza';
-var ayuda_ acu_fac_morosidad_promedio='Morosidad promedio de los ultimos 3 periodos de pago, en porcentaje';
-var ayuda_ acu_fac_vol_agua_fac_en_el_anio_acu='Volumen de agua facturado en el a&ntilde;o, escriba un n&uacute;mero';
-var ayuda_ acu_fac_vol_agua_suministrado_anio_acu='Volumen de agua suministrado en el a&ntilde;o, escriba un n&uacute;mero';
 
-*/
 	function acu_facturacionyrecaudo_cargardatostemporal(){
 	
 		if(acu_facturacionyrecaudo_panel_datanuevo)

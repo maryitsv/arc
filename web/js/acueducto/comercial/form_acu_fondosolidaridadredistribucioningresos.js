@@ -205,6 +205,7 @@ Desarrollado maryit sanchez
 	   [
 		  {
 			 text: '<html>Atr&aacute;s</html>',
+			 iconCls:'atras',
 			 handler: function()
 			 {
 			  (Ext.getCmp('acu_comercial_tabpanel')).setActiveTab(1);
@@ -212,6 +213,7 @@ Desarrollado maryit sanchez
 		  },
 		  {
 			 text: 'Continuar',
+			 iconCls:'continuar',
 			 handler: function()
 			 {
 				acu_fondosolidaridadredistribucioningresos_cargardatostemporal();

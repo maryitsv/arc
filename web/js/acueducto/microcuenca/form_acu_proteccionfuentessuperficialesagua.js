@@ -323,6 +323,7 @@
 	[
 		{
 			text: '<html>Atr&aacute;s<html>',
+			iconCls:'atras',
 			handler:function(){
 			acu_microcuenca_tabpanel.setActiveTab(1);
 			
@@ -330,6 +331,7 @@
 		},
 		{
 			text: 'Continuar',
+			iconCls:'continuar',
 			handler:function(){
 				acu_proteccionfuentessuperficialesagua_programas_subirdatos();
 				acu_proteccionfuentessuperficialesagua_programas_panel.hide();
@@ -617,13 +619,14 @@
 			{
 				text: '<html>Atr&aacute;s<html>',
 				handler:function(){
-				
+				iconCls:'atras',
 				acu_proteccionfuentessuperficialesagua_coberturaforestal_panel.hide();
 				acu_proteccionfuentessuperficialesagua_programas_panel.show();
 				}
 			},
 			{
 				text: 'Continuar',
+				iconCls:'continuar',
 				handler:function(){
 				acu_proteccionfuentessuperficialesagua_coberturaforestal_subirdatos();
 				
