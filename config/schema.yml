@@ -159,15 +159,15 @@ propel:
     cap_iaf_id: { phpName: CapIafId, type: INTEGER, required: true, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     cap_dada_prestador: { phpName: CapDadaPrestador, type: VARCHAR, required: true }
     cap_actividad_capacitacion_uso_eficiente_agua: { phpName: CapActividadCapacitacionUsoEficienteAgua, type: VARCHAR, required: false }
-    acu_cap_actividad_capacitacion_higiene_personal: { phpName: AcuCapActividadCapacitacionHigienePersonal, type: VARCHAR, required: false }
-    acu_cap_actividad_capacitacion_higiene_vivienda: { phpName: AcuCapActividadCapacitacionHigieneVivienda, type: VARCHAR, required: false }
-    acu_cap_actividad_capacitacion_higiene_sitios_publicos: { phpName: AcuCapActividadCapacitacionHigieneSitiosPublicos, type: VARCHAR, required: false }
+    cap_actividad_capacitacion_higiene_personal: { phpName: CapActividadCapacitacionHigienePersonal, type: VARCHAR, required: false }
+    cap_actividad_capacitacion_higiene_vivienda: { phpName: CapActividadCapacitacionHigieneVivienda, type: VARCHAR, required: false }
+    cap_actividad_capacitacion_higiene_sitios_publicos: { phpName: CapActividadCapacitacionHigieneSitiosPublicos, type: VARCHAR, required: false }
     cap_actividad_capacitacion_educacion_ambiental: { phpName: CapActividadCapacitacionEducacionAmbiental, type: VARCHAR, required: false }
     cap_actividad_capacitacion_participacion_comunitaria: { phpName: CapActividadCapacitacionParticipacionComunitaria, type: VARCHAR, required: false }
     cap_actividad_capacitacion_veeduria_ciudadana: { phpName: CapActividadCapacitacionVeeduriaCiudadana, type: VARCHAR, required: false }
     cap_actividad_capacitacion_funcion_sist_abastecimiento: { phpName: CapActividadCapacitacionFuncionSistAbastecimiento, type: VARCHAR, required: false }
     cap_actividad_capacitacion_otra_cuales: { phpName: CapActividadCapacitacionOtraCuales, type: VARCHAR, size: '100', required: false }
-    acu_cap_capacitacion_recibida_prestador: { phpName: AcuCapCapacitacionRecibidaPrestador, type: VARCHAR, required: false }
+    cap_capacitacion_recibida_prestador: { phpName: CapCapacitacionRecibidaPrestador, type: VARCHAR, required: false }
     cap_temas_capacitacion_administrativos: { phpName: CapTemasCapacitacionAdministrativos, type: VARCHAR, required: false }
     cap_temas_capacitacion_normativos: { phpName: CapTemasCapacitacionNormativos, type: VARCHAR, required: false }
     cap_temas_capacitacion_ambientales: { phpName: CapTemasCapacitacionAmbientales, type: VARCHAR, required: false }
@@ -283,7 +283,7 @@ propel:
     fac_frecuenc_facturacion: { phpName: FacFrecuencFacturacion, type: VARCHAR, size: '30', required: false }
     fac_frecuenc_fac_justificacion: { phpName: FacFrecuencFacJustificacion, type: VARCHAR, size: '30', required: false }
     fac_num_fac_exp_ultimo_periodo: { phpName: FacNumFacExpUltimoPeriodo, type: INTEGER, required: false }
-    fac_sist_fac_utilizado: { phpName: FacSistFacUtilizado, type: VARCHAR, size: '30', required: false }
+    fac_sist_fac_utilizado: { phpName: FacSistFacUtilizado, type: VARCHAR, required: false }
     fac_frecuencia_fac_justifica: { phpName: FacFrecuenciaFacJustifica, type: VARCHAR, size: '30', required: false }
     fac_morosidad_promedio: { phpName: FacMorosidadPromedio, type: VARCHAR, required: false }
     fac_vol_agua_fac_en_el_anio_acu: { phpName: FacVolAguaFacEnElAnioAcu, type: VARCHAR, required: false }

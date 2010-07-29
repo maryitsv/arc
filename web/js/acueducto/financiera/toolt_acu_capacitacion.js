@@ -1,9 +1,9 @@
 
 var ayuda_acu_cap_dada_prestador = 'ayuda             !!!!!!!!';
 var ayuda_acu_cap_actividad_capacitacion_uso_eficiente_agua = 'ayuda             !!!!!!!!';
-var ayuda_acu_cap_actividad_capacitacion_higene_personal = 'ayuda             !!!!!!!!';
-var ayuda_acu_cap_actividad_capacitacion_higene_vivienda = 'ayuda             !!!!!!!!';
-var ayuda_acu_cap_actividad_capacitacion_higene_sitios_publicos = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_actividad_capacitacion_higiene_personal = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_actividad_capacitacion_higiene_vivienda = 'ayuda             !!!!!!!!';
+var ayuda_acu_cap_actividad_capacitacion_higiene_sitios_publicos = 'ayuda             !!!!!!!!';
 var ayuda_acu_cap_actividad_capacitacion_educacion_ambiental = 'ayuda             !!!!!!!!';
 var ayuda_acu_cap_actividad_capacitacion_participacion_comunitaria = 'ayuda             !!!!!!!!';
 var ayuda_acu_cap_actividad_capacitacion_veeduria_ciudadana = 'ayuda             !!!!!!!!';

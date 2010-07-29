@@ -61,7 +61,7 @@ class periodoprestadorservicioActions extends sfActions
 			if($periodoprestadorservicio_acu)
 			{
 				$this->getUser()->setAttribute('pps_ser_id_acu', $pps_ser_id_acu);
-				$salida = "({success: true, mensaje:' No se que poner aqui!!! acueducto'})";
+				$salida = "({success: true, mensaje:'success'})";
 			}
 			else
 			{
@@ -73,7 +73,7 @@ class periodoprestadorservicioActions extends sfActions
 					$periodoprestadorservicio_acu->setPpsAnio($pps_anio);
 					$periodoprestadorservicio_acu->save();
 					$this->getUser()->setAttribute('pps_ser_id_acu', $pps_ser_id_acu);
-					$salida = "({success: true, mensaje:' No se que poner aqui!!! acueducto'})";
+					$salida = "({success: true, mensaje:'success'})";
 				}
 				catch(Exception $exception)
 				{
@@ -104,7 +104,7 @@ class periodoprestadorservicioActions extends sfActions
 			if($periodoprestadorservicio_alc)
 			{
 				$this->getUser()->setAttribute('pps_ser_id_alc', $pps_ser_id_alc);
-				$salida = "({success: true, mensaje:' No se que poner aqui!!! alcantarillado'})";
+				$salida = "({success: true, mensaje:'success'})";
 			}
 			else
 			{
@@ -116,7 +116,7 @@ class periodoprestadorservicioActions extends sfActions
 					$periodoprestadorservicio_alc->setPpsAnio($pps_anio);
 					$periodoprestadorservicio_alc->save();
 					$this->getUser()->setAttribute('pps_ser_id_alc', $pps_ser_id_alc);
-					$salida = "({success: true, mensaje:' No se que poner aqui!!! alcantarillado'})";
+					$salida = "({success: true, mensaje:'success'})";
 				}
 				catch(Exception $exception)
 				{
@@ -147,7 +147,7 @@ class periodoprestadorservicioActions extends sfActions
 			if($periodoprestadorservicio_ase)
 			{
 				$this->getUser()->setAttribute('usu_ser_id_ase', $pps_ser_id_ase);
-				$salida = "({success: true, mensaje:' No se que poner aqui!!! aseo'})";
+				$salida = "({success: true, mensaje:'success'})";
 			}
 			else
 			{
@@ -159,7 +159,7 @@ class periodoprestadorservicioActions extends sfActions
 					$periodoprestadorservicio_ase->setPpsAnio($pps_anio);
 					$periodoprestadorservicio_ase->save();
 					$this->getUser()->setAttribute('usu_ser_id_ase', $pps_ser_id_ase);
-					$salida = "({success: true, mensaje:' No se que poner aqui!!! aseo'})";
+					$salida = "({success: true, mensaje:'success'})";
 				}
 				catch(Exception $exception)
 				{
