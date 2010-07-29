@@ -30,7 +30,7 @@ var ayuda_ acu_imi_fecha='Escriba la fecha de la ???';
 				  {name: 'acu_imi_mun_id', type: 'int'},
 				  {name: 'acu_imi_microcuenca', type: 'string'},
 				  {name: 'acu_imi_codigo_cuenca', type: 'string'},
-				  {name: 'acu_imi_fecha', type: 'date'}
+				  {name: 'acu_imi_fecha', type: 'string'}
 		])
     });
 
@@ -179,6 +179,7 @@ var ayuda_ acu_imi_fecha='Escriba la fecha de la ???';
 		   labelStyle: 'width:100px; text-align:right;'+letra,
 		   name: 'acu_imi_fecha',
 		   id: 'acu_imi_fecha',
+		   format:'d-m-Y',
 		   fieldLabel: '<html>Fecha</html>',
 		   listeners:
 		   {
@@ -194,7 +195,7 @@ var ayuda_ acu_imi_fecha='Escriba la fecha de la ???';
 			 text: '<html>Atr&aacute;s</html>',
 			 handler: function()
 			 {
-			     acu_comercial_tabpanel.setActiveTab(0);			 
+			    // acu_comercial_tabpanel.setActiveTab(0);			 
               //  (Ext.getCmp('comercialTabPanel')).setActiveTab(0);
 			 }
 		  },
@@ -209,7 +210,8 @@ var ayuda_ acu_imi_fecha='Escriba la fecha de la ???';
 				{
 					acu_informaciongeneralmicrocuencas_subirdatos(accion);
 				}
-			     acu_comercial_tabpanel.setActiveTab(2);
+				
+			     acu_microcuenca_tabpanel.setActiveTab(1);
 			 }
 		  }      
 	   ],

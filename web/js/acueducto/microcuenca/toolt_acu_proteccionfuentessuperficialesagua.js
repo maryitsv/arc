@@ -10,6 +10,6 @@ var ayuda_acu_pfu_aislamiento_franja_amarilla_microcuenca  = '';
 var ayuda_acu_pfu_aislamiento_franja_amarilla_microcuenca  = '';
 var ayuda_acu_pfu_area_microcuenca_propiedad_acueducto  = '';
 var ayuda_acu_pfu_extension_has  = 'escriba el numero de ext has';
-var ayuda_acu_pfu_situacion_arriba_capatacion_reserva  = '';
-var ayuda_acu_pfu_situacion_arriba_capatacion_protegida='Es aquella protegida por iniciativa de los propietarios, comunidad o por autoridades locales';  
+var ayuda_acu_pfu_situacion_arriba_captacion_reserva  = '';
+var ayuda_acu_pfu_situacion_arriba_captacion_protegida='Es aquella protegida por iniciativa de los propietarios, comunidad o por autoridades locales';  
   					

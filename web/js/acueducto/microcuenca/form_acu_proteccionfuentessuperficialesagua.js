@@ -34,6 +34,7 @@
 								id: 'acu_pfu_programas_aislamiento', 
 								name:'acu_pfu_programas_aislamiento',
 								boxLabel:'Aislamiento',
+								inputValue: 1,
 								listeners:
 								{
 									'render':function(){
@@ -45,6 +46,7 @@
 								id: 'acu_pfu_programas_reforestacion',
 								name: 'acu_pfu_programas_reforestacion',
 								boxLabel:'Reforestaci&oacute;n',
+								inputValue: 1,
 								listeners:
 								{
 									'render':function(){
@@ -56,6 +58,7 @@
 								id: 'acu_pfu_programas_mejoramiento_uso_suelo', 
 								name: 'acu_pfu_programas_mejoramiento_uso_suelo', 
 								boxLabel:'Mejoramiento en el Uso del Suelo',
+								inputValue: 1,
 								listeners:
 								{
 									'render':function(){
@@ -67,6 +70,7 @@
 								id: 'acu_pfu_programas_adquisicion_tierra', 
 								name: 'acu_pfu_programas_adquisicion_tierra', 
 								boxLabel:'Adquisici&oacute;n de tierras',
+								inputValue: 1,
 								listeners:
 								{
 									'render':function(){
@@ -78,6 +82,7 @@
 								id: 'acu_pfu_programas_educacion_ambiental', 
 								name: 'acu_pfu_programas_educacion_ambiental', 
 								boxLabel:'Educaci&oacute;n ambiental',
+								inputValue: 1,
 								listeners:
 								{
 									'render':function(){
@@ -89,6 +94,7 @@
 								id: 'acu_pfu_programas_reduccion_uso_agroquimicos', 
 								name: 'acu_pfu_programas_reduccion_uso_agroquimicos', 
 								boxLabel:'Reducci&oacute;n uso de agroquimicos',
+								inputValue: 1,
 								listeners:
 								{
 									'render':function(){
@@ -225,57 +231,57 @@
 					{
 						xtype:      'radiogroup',
 						labelStyle: letra+'width: 170px;',
-						id:'acu_pfu_situacion_arriba_capatacion_reserva',
+						id:'acu_pfu_situacion_arriba_captacion_reserva',
 						fieldLabel: '<html>&iquest;Es una zona de reserva?</html>',
 						items: 
 						[ 
 							{
 							  boxLabel:   'Si',
-							  name:       'acu_pfu_situacion_arriba_capatacion_reserva',
-							  id:		  'acu_pfu_situacion_arriba_capatacion_reserva_si',
+							  name:       'acu_pfu_situacion_arriba_captacion_reserva',
+							  id:		  'acu_pfu_situacion_arriba_captacion_reserva_si',
 							  inputValue: 1, 
 							  checked:    true
 							  
 							},
 							{
 							  boxLabel:   'No',
-							  name:       'acu_pfu_situacion_arriba_capatacion_reserva',
-							  id: 		'acu_pfu_situacion_arriba_capatacion_reserva_no',
+							  name:       'acu_pfu_situacion_arriba_captacion_reserva',
+							  id: 		'acu_pfu_situacion_arriba_captacion_reserva_no',
 							  inputValue: 0
 							}
 						],
 						listeners:
 						{
 							'render':function(){
-								 ayuda('acu_pfu_situacion_arriba_capatacion_reserva',ayuda_acu_pfu_situacion_arriba_capatacion_reserva); 
+								 ayuda('acu_pfu_situacion_arriba_captacion_reserva',ayuda_acu_pfu_situacion_arriba_captacion_reserva); 
 								}
 						}
 					},
 					{
 						xtype:      'radiogroup',
 						labelStyle: letra+'width: 170px;',
-						id:'acu_pfu_situacion_arriba_capatacion_protegida',
+						id:'acu_pfu_situacion_arriba_captacion_protegida',
 						fieldLabel: '<html>&iquest;Es una zona protegida?</html>',
 						items: 
 						[
 							{
 							  boxLabel:   'Si',
-							  name:       'acu_pfu_situacion_arriba_capatacion_protegida',
-							  id:         'acu_pfu_situacion_arriba_capatacion_protegida_si',
+							  name:       'acu_pfu_situacion_arriba_captacion_protegida',
+							  id:         'acu_pfu_situacion_arriba_captacion_protegida_si',
 							  inputValue: 1,
 							  checked:    true
 							},
 							{
 							  boxLabel:   'No',
-							  name:       'acu_pfu_situacion_arriba_capatacion_protegida',
-							  id:         'acu_pfu_situacion_arriba_capatacion_protegida_no',
+							  name:       'acu_pfu_situacion_arriba_captacion_protegida',
+							  id:         'acu_pfu_situacion_arriba_captacion_protegida_no',
 							  inputValue: 0
 							}
 						],
 						listeners:
 						{
 							'render':function(){
-								ayuda('acu_pfu_situacion_arriba_capatacion_protegida',ayuda_acu_pfu_situacion_arriba_capatacion_protegida);
+								ayuda('acu_pfu_situacion_arriba_captacion_protegida',ayuda_acu_pfu_situacion_arriba_captacion_protegida);
 							}
 						}
 					}
@@ -288,16 +294,27 @@
 		{
 			text: '<html>Atr&aacute;s<html>',
 			handler:function(){
+			acu_microcuenca_tabpanel.setActiveTab(1);
 			}
 		},
 		{
 			text: 'Continuar',
 			handler:function(){
+				//acu_proteccionfuentessuperficialesagua_programas_panel
+			
+				acu_proteccionfuentessuperficialesagua_programas_subirdatos();
+				
+			    // acu_microcuencas_tabpanel.setActiveTab(2);
 			}
 		}
 	]
 	});
 	
+	
+function acu_proteccionfuentessuperficialesagua_programas_subirdatos()
+{
+	subirDatos(acu_proteccionfuentessuperficialesagua_programas_panel,'acueducto_proteccionfuentessuperficialesagua/actualizarProteccionfuentessuperficialesagua',{});
+}
 	/*
 PROTECCIONFUENTESSUPERFICIALESAGUA
    PFU_ID               serial not null ,

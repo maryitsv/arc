@@ -92,6 +92,15 @@ class acueducto_analisiscoberturaActions extends sfActions
 	
 	$comercialfila = ComercialPeer::doSelectOne($conexion);
 	
+	if(!$comercialfila)
+	{
+	$comercialfila = new Comercial();
+	$comercialfila->setComPpsPreId($pps_pre_id);
+	$comercialfila->setComPpsSerId($pps_ser_id);
+	$comercialfila->setComPpsAnio($pps_anio);
+	$comercialfila->save();
+	}
+	
 	return $comercialfila->getComId();
   }
   

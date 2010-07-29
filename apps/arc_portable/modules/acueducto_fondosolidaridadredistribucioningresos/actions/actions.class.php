@@ -41,7 +41,16 @@ class acueducto_fondosolidaridadredistribucioningresosActions extends sfActions
 	$conexion->add(ComercialPeer::COM_PPS_SER_ID, $pps_ser_id);
 	
 	$comercialfila = ComercialPeer::doSelectOne($conexion);
-				
+	
+	if(!$comercialfila)
+	{
+	$comercialfila = new Comercial();
+	$comercialfila->setComPpsPreId($pps_pre_id);
+	$comercialfila->setComPpsSerId($pps_ser_id);
+	$comercialfila->setComPpsAnio($pps_anio);
+	$comercialfila->save();
+	}
+	
 	return $comercialfila->getComId();
   }
   
