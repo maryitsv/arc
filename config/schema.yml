@@ -283,7 +283,7 @@ propel:
     fac_frecuenc_facturacion: { phpName: FacFrecuencFacturacion, type: VARCHAR, size: '30', required: false }
     fac_frecuenc_fac_justificacion: { phpName: FacFrecuencFacJustificacion, type: VARCHAR, size: '30', required: false }
     fac_num_fac_exp_ultimo_periodo: { phpName: FacNumFacExpUltimoPeriodo, type: INTEGER, required: false }
-    fac_sist_fac_utilizado: { phpName: FacSistFacUtilizado, type: VARCHAR, required: false }
+    fac_sist_fac_utilizado: { phpName: FacSistFacUtilizado, type: VARCHAR, size: '30', required: false }
     fac_frecuencia_fac_justifica: { phpName: FacFrecuenciaFacJustifica, type: VARCHAR, size: '30', required: false }
     fac_morosidad_promedio: { phpName: FacMorosidadPromedio, type: VARCHAR, required: false }
     fac_vol_agua_fac_en_el_anio_acu: { phpName: FacVolAguaFacEnElAnioAcu, type: VARCHAR, required: false }
@@ -425,6 +425,12 @@ propel:
     mun_dep_id: { phpName: MunDepId, type: INTEGER, required: true, foreignTable: departamento, foreignReference: dep_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     mun_nombre: { phpName: MunNombre, type: VARCHAR, size: '200', required: true }
     mun_zona: { phpName: MunZona, type: VARCHAR, size: '50', required: false }
+  municipiotem:
+    _attributes: { phpName: Municipiotem }
+    mun_id: { phpName: MunId, type: INTEGER, autoIncrement: true, required: true }
+    mun_dep_id: { phpName: MunDepId, type: INTEGER, required: false }
+    mun_nombre: { phpName: MunNombre, type: VARCHAR, size: '200', required: false }
+    dep_temp: { phpName: DepTemp, type: VARCHAR, size: '50', required: false }
   parametrospuntosred:
     _attributes: { phpName: Parametrospuntosred }
     ppr_id: { phpName: PprId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -519,7 +525,7 @@ propel:
   proteccionfuentessuperficialesagua:
     _attributes: { phpName: Proteccionfuentessuperficialesagua }
     pfu_id: { phpName: PfuId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    pfu_mic_id: { phpName: PfuMicId, type: INTEGER, required: true, foreignTable: microcuencas, foreignReference: mic_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    pfu_mic_id: { phpName: PfuMicId, type: INTEGER, required: true }
     pfu_programas_aislamiento: { phpName: PfuProgramasAislamiento, type: VARCHAR, required: false }
     pfu_programas_reforestacion: { phpName: PfuProgramasReforestacion, type: VARCHAR, required: false }
     pfu_programas_mejoramiento_uso_suelo: { phpName: PfuProgramasMejoramientoUsoSuelo, type: VARCHAR, required: false }
@@ -528,16 +534,17 @@ propel:
     pfu_programas_reduccion_uso_agroquimicos: { phpName: PfuProgramasReduccionUsoAgroquimicos, type: VARCHAR, required: false }
     pfu_situacion_arriba_captacion_reserva: { phpName: PfuSituacionArribaCaptacionReserva, type: VARCHAR, required: false }
     pfu_situacion_arriba_captacion_protegida: { phpName: PfuSituacionArribaCaptacionProtegida, type: VARCHAR, required: false }
-    pfu_cobertura_forestal_bosque_natural: { phpName: PfuCoberturaForestalBosqueNatural, type: VARCHAR, required: false }
-    pfu_cobertura_forestal_bosque_protector: { phpName: PfuCoberturaForestalBosqueProtector, type: VARCHAR, required: false }
-    pfu_cobertura_forestal_bosque_protector_productor: { phpName: PfuCoberturaForestalBosqueProtectorProductor, type: VARCHAR, required: false }
+    pfu_cobertura_forestal_natural: { phpName: PfuCoberturaForestalNatural, type: VARCHAR, required: false }
+    pfu_cobertura_forestal_protector: { phpName: PfuCoberturaForestalProtector, type: VARCHAR, required: false }
+    pfu_cobertura_forestal_protector_productor: { phpName: PfuCoberturaForestalProtectorProductor, type: VARCHAR, required: false }
     pfu_cobertura_forestal_productor: { phpName: PfuCoberturaForestalProductor, type: VARCHAR, required: false }
     pfu_cobertura_forestal_regeneracion_natural: { phpName: PfuCoberturaForestalRegeneracionNatural, type: VARCHAR, required: false }
-    pfu_cobertura_forestal_bosque_natural_tendencia: { phpName: PfuCoberturaForestalBosqueNaturalTendencia, type: VARCHAR, size: '50', required: false }
-    pfu_cobertura_forestal_bosque_protector_tendencia: { phpName: PfuCoberturaForestalBosqueProtectorTendencia, type: VARCHAR, size: '50', required: false }
-    pfu_cobertura_forestal_bosque_protector_productor_tendencia: { phpName: PfuCoberturaForestalBosqueProtectorProductorTendencia, type: VARCHAR, size: '50', required: false }
+    pfu_cobertura_forestal_natural_tendencia: { phpName: PfuCoberturaForestalNaturalTendencia, type: VARCHAR, size: '50', required: false }
+    pfu_cobertura_forestal_protector_tendencia: { phpName: PfuCoberturaForestalProtectorTendencia, type: VARCHAR, size: '50', required: false }
+    pfu_cobertura_forestal_protector_productor_tendencia: { phpName: PfuCoberturaForestalProtectorProductorTendencia, type: VARCHAR, size: '50', required: false }
     pfu_cobertura_forestal_productor_tendencia: { phpName: PfuCoberturaForestalProductorTendencia, type: VARCHAR, size: '50', required: false }
     pfu_cobertura_forestal_regeneracion_natural_tendencia: { phpName: PfuCoberturaForestalRegeneracionNaturalTendencia, type: VARCHAR, size: '50', required: false }
+    pfu_extension_has: { phpName: PfuExtensionHas, type: INTEGER, required: false }
     pfu_aislamiento_franja_amarilla_microcuenca: { phpName: PfuAislamientoFranjaAmarillaMicrocuenca, type: VARCHAR, required: false }
     pfu_cobertura_forestal_area_protectora_cauce: { phpName: PfuCoberturaForestalAreaProtectoraCauce, type: VARCHAR, required: false }
     pfu_area_microcuenca_propiedad_acueducto: { phpName: PfuAreaMicrocuencaPropiedadAcueducto, type: VARCHAR, required: false }
