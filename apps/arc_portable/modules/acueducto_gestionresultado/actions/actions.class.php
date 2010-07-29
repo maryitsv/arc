@@ -53,19 +53,25 @@ class acueducto_gestionresultadoActions extends sfActions
 		{
 			try
 			{
-				$acu_gestionresultado->setGrePlanGestionResultados($this->getRequestParameter('acu_gre_plan_gestion_resultados'));
-				$acu_gestionresultado->setGreMicromedidoresFuncionando($this->getRequestParameter('acu_gre_micromedidores_funcionando'));
-				$acu_gestionresultado->setGreTotalSuscriptoresMicromedicion($this->getRequestParameter('acu_gre_total_suscriptores_micromedicion')); 
-				$acu_gestionresultado->setGreValorMicromedicion($this->getRequestParameter('acu_gre_valor_micromedicion'));  
-				$acu_gestionresultado->setGreMacromedidoresFuncionando($this->getRequestParameter('acu_gre_micromedidores_funcionando'));
-				$acu_gestionresultado->setGreMacromedicionProyectados($this->getRequestParameter('acu_gre_macromedidores_proyectados'));
-				$acu_gestionresultado->setGreValorMacromedicion($this->getRequestParameter('acu_gre_valor_macromedicion'));
-				$acu_gestionresultado->setGreMuestrasTomadas($this->getRequestParameter('acu_gre_muestras_tomadas'));
-				$acu_gestionresultado->setGreMuestrasAptas($this->getRequestParameter('acu_gre_muestras_aptas'));
-				$acu_gestionresultado->setGreValorCalidadAgua($this->getRequestParameter('acu_gre_valor_calidad_agua'));
-				$acu_gestionresultado->setGreTotalSuscriptoresFacturacion($this->getRequestParameter('acu_gre_total_suscriptores_facturacion')); 
-				$acu_gestionresultado->setGreTotalFacturasDiciembre($this->getRequestParameter('acu_gre_total_facturas_diciembre'));
-				$acu_gestionresultado->setGreValorFacturacion($this->getRequestParameter('acu_gre_valor_facturacion'));
+				if($this->getRequestParameter('form') == 'actividad12'){
+					$acu_gestionresultado->setGreIafId($iaf_id);
+					$acu_gestionresultado->setGrePlanGestionResultados($this->getRequestParameter('acu_gre_plan_gestion_resultados'));
+					$acu_gestionresultado->setGreMicromedidoresFuncionando($this->getRequestParameter('acu_gre_micromedidores_funcionando'));
+					$acu_gestionresultado->setGreTotalSuscriptoresMicromedicion($this->getRequestParameter('acu_gre_total_suscriptores_micromedicion')); 
+					$acu_gestionresultado->setGreValorMicromedicion($this->getRequestParameter('acu_gre_valor_micromedicion'));  
+					$acu_gestionresultado->setGreMacromedidoresFuncionando($this->getRequestParameter('acu_gre_macromedidores_funcionando'));
+					$acu_gestionresultado->setGreMacromedidoresProyectados($this->getRequestParameter('acu_gre_macromedidores_proyectados'));
+					$acu_gestionresultado->setGreValorMacromedicion($this->getRequestParameter('acu_gre_valor_macromedicion'));
+				}
+				
+				if($this->getRequestParameter('form') == 'actividad34'){
+					$acu_gestionresultado->setGreMuestrasTomadas($this->getRequestParameter('acu_gre_muestras_tomadas'));
+					$acu_gestionresultado->setGreMuestrasAptas($this->getRequestParameter('acu_gre_muestras_aptas'));
+					$acu_gestionresultado->setGreValorCalidadAgua($this->getRequestParameter('acu_gre_valor_calidad_agua'));
+					$acu_gestionresultado->setGreTotalSuscriptoresFacturacion($this->getRequestParameter('acu_gre_total_suscriptores_facturacion')); 
+					$acu_gestionresultado->setGreTotalFacturasDiciembre($this->getRequestParameter('acu_gre_total_facturas_diciembre'));
+					$acu_gestionresultado->setGreValorFacturacion($this->getRequestParameter('acu_gre_valor_facturacion'));
+				}
 				
 				$acu_gestionresultado->save();
 			
@@ -73,7 +79,7 @@ class acueducto_gestionresultadoActions extends sfActions
 			}
 			catch(Exception $exception)
 			{
-				return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en gestion resultado'}})");
+				return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en gestion resultado: ".$exception."'}})");
 			}
 		}
 		else
@@ -82,28 +88,33 @@ class acueducto_gestionresultadoActions extends sfActions
 			{
 				$acu_gestionresultado = new Gestionresultado();
 				
-				$acu_gestionresultado->setGreIafId($iaf_id);
-				$acu_gestionresultado->setGrePlanGestionResultados($this->getRequestParameter('acu_gre_plan_gestion_resultados'));
-				$acu_gestionresultado->setGreMicromedidoresFuncionando($this->getRequestParameter('acu_gre_micromedidores_funcionando'));
-				$acu_gestionresultado->setGreTotalSuscriptoresMicromedicion($this->getRequestParameter('acu_gre_total_suscriptores_micromedicion')); ///????????????????????
-				$acu_gestionresultado->setGreValorMicromedicion($this->getRequestParameter('acu_gre_valor_micromedicion'));  
-				$acu_gestionresultado->setGreMacromedidoresFuncionando($this->getRequestParameter('acu_gre_micromedidores_funcionando'));
-				$acu_gestionresultado->setGreMacromedicionProyectados($this->getRequestParameter('acu_gre_macromedidores_proyectados'));
-				$acu_gestionresultado->setGreValorMacromedicion($this->getRequestParameter('acu_gre_valor_macromedicion'));
-				$acu_gestionresultado->setGreMuestrasTomadas($this->getRequestParameter('acu_gre_muestras_tomadas'));
-				$acu_gestionresultado->setGreMuestrasAptas($this->getRequestParameter('acu_gre_muestras_aptas'));
-				$acu_gestionresultado->setGreValorCalidadAgua($this->getRequestParameter('acu_gre_valor_calidad_agua'));
-				$acu_gestionresultado->setGreTotalSuscriptoresFacturacion($this->getRequestParameter('acu_gre_total_suscriptores_facturacion')); ///?????????????????????????
-				$acu_gestionresultado->setGreTotalFacturasDiciembre($this->getRequestParameter('acu_gre_total_facturas_diciembre'));
-				$acu_gestionresultado->setGreValorFacturacion($this->getRequestParameter('acu_gre_valor_facturacion'));
+				if($this->getRequestParameter('form') == 'actividad12'){
+					$acu_gestionresultado->setGreIafId($iaf_id);
+					$acu_gestionresultado->setGrePlanGestionResultados($this->getRequestParameter('acu_gre_plan_gestion_resultados'));
+					$acu_gestionresultado->setGreMicromedidoresFuncionando($this->getRequestParameter('acu_gre_micromedidores_funcionando'));
+					$acu_gestionresultado->setGreTotalSuscriptoresMicromedicion($this->getRequestParameter('acu_gre_total_suscriptores_micromedicion')); 
+					$acu_gestionresultado->setGreValorMicromedicion($this->getRequestParameter('acu_gre_valor_micromedicion'));  
+					$acu_gestionresultado->setGreMacromedidoresFuncionando($this->getRequestParameter('acu_gre_macromedidores_funcionando'));
+					$acu_gestionresultado->setGreMacromedidoresProyectados($this->getRequestParameter('acu_gre_macromedidores_proyectados'));
+					$acu_gestionresultado->setGreValorMacromedicion($this->getRequestParameter('acu_gre_valor_macromedicion'));
+				}
+				
+				if($this->getRequestParameter('form') == 'actividad34'){
+					$acu_gestionresultado->setGreMuestrasTomadas($this->getRequestParameter('acu_gre_muestras_tomadas'));
+					$acu_gestionresultado->setGreMuestrasAptas($this->getRequestParameter('acu_gre_muestras_aptas'));
+					$acu_gestionresultado->setGreValorCalidadAgua($this->getRequestParameter('acu_gre_valor_calidad_agua'));
+					$acu_gestionresultado->setGreTotalSuscriptoresFacturacion($this->getRequestParameter('acu_gre_total_suscriptores_facturacion')); 
+					$acu_gestionresultado->setGreTotalFacturasDiciembre($this->getRequestParameter('acu_gre_total_facturas_diciembre'));
+					$acu_gestionresultado->setGreValorFacturacion($this->getRequestParameter('acu_gre_valor_facturacion'));
+				}
 				
 				$acu_gestionresultado->save();
 				
-				$salida = "({success: true, mensaje:'La informacion de gestion de resultados fue actualizada exitosamente'})";
+				$salida = "({success: true, mensaje:'La informacion de gestion de resultados fue actualizada exitosamente: ".$this->getRequestParameter('acu_gre_valor_micromedicion')."'})";
 			}
 			catch(Exception $exception)
 			{
-				return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en gestion resultado'}})");
+				return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en gestion resultado: ".$exception."'}})");
 			}
 		}
 	}
@@ -113,6 +124,61 @@ class acueducto_gestionresultadoActions extends sfActions
 	}
 	
 	return $this->renderText($salida);
+  }
+  
+  public function executeObtenerDatosAcuGestionResultado(sfWebRequest $request)
+  {
+	$salida = "";
+	
+	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
+	$pps_ser_id = $this->obtenerServicioId('acueducto');
+	
+	$conexion = new Criteria();
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PRE_ID, $pps_pre_id);
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_ANIO, $pps_anio);
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_SER_ID, $pps_ser_id);
+	$acu_administrativafinanciera = AdministrativafinancieraPeer::doSelectOne($conexion);
+
+	if($acu_administrativafinanciera)
+	{
+	
+		$conexion = new Criteria();
+		$conexion->add(GestionresultadoPeer::GRE_IAF_ID, $acu_administrativafinanciera->getIafId());
+		$acu_gestionresultado = GestionresultadoPeer::doSelectOne($conexion);
+		
+		$datos;
+		$pos=0;
+		
+		if($acu_gestionresultado)
+		{
+			$datos[$pos]['acu_gre_plan_gestion_resultados']=$acu_gestionresultado->getGrePlanGestionResultados();
+			$datos[$pos]['acu_gre_micromedidores_funcionando']=$acu_gestionresultado->getGreMicromedidoresFuncionando();
+			$datos[$pos]['acu_gre_total_suscriptores_micromedicion']=$acu_gestionresultado->getGreTotalSuscriptoresMicromedicion(); 
+			$datos[$pos]['acu_gre_valor_micromedicion']=$acu_gestionresultado->getGreValorMicromedicion();  
+			$datos[$pos]['acu_gre_macromedidores_funcionando']=$acu_gestionresultado->getGreMacromedidoresFuncionando();
+			$datos[$pos]['acu_gre_macromedidores_proyectados']=$acu_gestionresultado->getGreMacromedidoresProyectados();
+			$datos[$pos]['acu_gre_valor_macromedicion']=$acu_gestionresultado->getGreValorMacromedicion();
+			
+			$datos[$pos]['acu_gre_muestras_tomadas']=$acu_gestionresultado->getGreMuestrasTomadas();
+			$datos[$pos]['acu_gre_muestras_aptas']=$acu_gestionresultado->getGreMuestrasAptas();
+			$datos[$pos]['acu_gre_valor_calidad_agua']=$acu_gestionresultado->getGreValorCalidadAgua();
+			$datos[$pos]['acu_gre_total_suscriptores_facturacion']=$acu_gestionresultado->getGreTotalSuscriptoresFacturacion(); 
+			$datos[$pos]['acu_gre_total_facturas_diciembre']=$acu_gestionresultado->getGreTotalFacturasDiciembre();
+			$datos[$pos]['acu_gre_valor_facturacion']=$acu_gestionresultado->getGreValorFacturacion();
+
+			$jsonresult = json_encode($datos);
+			$salida = '({"total":'.$pos.',"results":'.$jsonresult.'})';
+		}
+		else
+		{
+			$salida = '({"total":"0", "results":""})';
+		}
+	}
+	else {
+		$salida = '({"total":"0", "results":""})';
+	}
+	return 	$this->renderText($salida);
   }
   
   
