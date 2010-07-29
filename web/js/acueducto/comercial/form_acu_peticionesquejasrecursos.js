@@ -274,7 +274,8 @@ Desarrollado maryit sanchez
 					acu_peticionesquejasrecursos_subirdatos(accion);
 				}
 
-				 (Ext.getCmp('panel_servicios')).setActiveGroup(2);
+				 
+				 Ext.getCmp('acueducto').setActiveTab(3);
 			 }
 		  }      
 	   ],
@@ -285,17 +286,7 @@ Desarrollado maryit sanchez
 
 	var acu_peticionesquejasrecursos_panel_datanuevo;
 	var acu_peticionesquejasrecursos_panel_dataviejo=new Array();
-/*
-acu_pqr_registro_pqr
-acu_pqr_inf_causa_suspension_corte
-acu_pqr_inf_causa_susp_corte_explic
-acu_pqr_cantidad_pqr_facturacion
-acu_pqr_cantidad_pqr_instalacion
-acu_pqr_cantidad_pqr_prest_servicio
-acu_pqr_cantidad_pqr_otro
-acu_pqr_cantidad_pqr_explica_otros
-acu_pqr_cantidad_anual_pqr
-*/
+
 	function acu_peticionesquejasrecursos_cargardatostemporal(){
 	
 		if(acu_peticionesquejasrecursos_panel_datanuevo)

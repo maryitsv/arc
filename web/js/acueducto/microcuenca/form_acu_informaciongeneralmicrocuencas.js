@@ -195,6 +195,7 @@ var ayuda_ acu_imi_fecha='Escriba la fecha de la ???';
 			 text: '<html>Atr&aacute;s</html>',
 			 handler: function()
 			 {
+				Ext.getCmp('acueducto').setActiveTab(3);
 			    // acu_comercial_tabpanel.setActiveTab(0);			 
               //  (Ext.getCmp('comercialTabPanel')).setActiveTab(0);
 			 }

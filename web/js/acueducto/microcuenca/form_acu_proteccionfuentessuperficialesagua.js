@@ -32,7 +32,7 @@
 
 	var acu_proteccionfuentessuperficialesagua_programas_panel = new Ext.FormPanel({
 		id:'acu_proteccionfuentessuperficialesagua_programas_panel',
-		renderTo: 'div_form_acu_proteccionfuentessuperficialesagua',
+		//renderTo: 'div_form_acu_proteccionfuentessuperficialesagua',
 		tabtip: '<html>Protecci&oacute;n de las Fuentes superficiales de Agua</html>',
 		autoWidth: true,
 		height: largo_panel-15,
@@ -325,16 +325,15 @@
 			text: '<html>Atr&aacute;s<html>',
 			handler:function(){
 			acu_microcuenca_tabpanel.setActiveTab(1);
+			
 			}
 		},
 		{
 			text: 'Continuar',
 			handler:function(){
-				//acu_proteccionfuentessuperficialesagua_programas_panel
-			
 				acu_proteccionfuentessuperficialesagua_programas_subirdatos();
-				
-			    // acu_microcuencas_tabpanel.setActiveTab(2);
+				acu_proteccionfuentessuperficialesagua_programas_panel.hide();
+				acu_proteccionfuentessuperficialesagua_coberturaforestal_panel.show();
 			}
 		}
 	]
@@ -393,12 +392,13 @@
 	var acu_proteccionfuentessuperficialesagua_coberturaforestal_panel = new Ext.FormPanel({
 		autoWidth: true,
 		height: largo_panel-15,
+		hidden:true,
 		defaults: { xtype:'panel' ,layout:'form'},
 		items:
 		[   
 			{
 				xtype:'fieldset',
-				title:'Cobertura forestal',
+				title:'Cobertura forestal y tendencias',
 				layout:'column',
 				defaults:{layout:'form',border:false},
 				items:
@@ -406,6 +406,7 @@
 					{
 					width:260,
 					bodyStyle: 'padding-top:23px;',
+					//border:true,
 					defaults:{labelStyle: 'width:220px;'+letra},
 					items:
 					[
@@ -416,7 +417,6 @@
 							id:   'acu_pfu_cobertura_forestal_natural',
 							inputValue: 1,
 							fieldLabel: 'Bosque natural',
-							itemCls: 'x-check-group-alt',
 							listeners:
 							{
 								'render':function(){
@@ -430,6 +430,7 @@
 							id:   'acu_pfu_cobertura_forestal_protector',
 							inputValue: 1,
 							fieldLabel: 'Bosque plantado protector',
+							itemCls: 'x-check-group-alt',
 							listeners:
 							{
 								'render':function(){
@@ -443,7 +444,6 @@
 							id:   'acu_pfu_cobertura_forestal_protector_productor',
 							inputValue: 1,
 							fieldLabel: 'Bosque plantado protector productor',
-							itemCls: 'x-check-group-alt',
 							listeners:
 							{
 								'render':function(){
@@ -457,6 +457,7 @@
 							id:   'acu_pfu_cobertura_forestal_productor',
 							inputValue: 1,
 							fieldLabel: 'Bosque plantado productor',
+							itemCls: 'x-check-group-alt',
 							listeners:
 							{
 								'render':function(){
@@ -470,7 +471,6 @@
 							id:   'acu_pfu_cobertura_forestal_regeneracion_natural',
 							inputValue: 1,
 							fieldLabel: '<html>Regeneraci&oacute;n natural</html>',
-							itemCls: 'x-check-group-alt',
 							listeners:
 							{
 								'render':function(){
@@ -480,10 +480,9 @@
 						}			
 					   //end checks
 					]},
-
 					{
-						//columnWidth: '.30',
-						width: 77,
+						width: 78,
+						//border:true,
 						id:'acu_pfu_cobertura_forestal_mas_usada',
 						bodyStyle: 'padding-top:8px;padding-right:5px;',
 						defaults:{labelStyle: 'width:1px;text-align:center;',hideLabel:true},
@@ -493,20 +492,14 @@
 							{
 								xtype: 'radiogroup',
 								columns: 1,
-								items: 	[{ name: 'acu_pfu_cobertura_forestal_mas_usada', inputValue: 'bosque natural',itemCls: 'x-check-group-alt'}]
-							},
-							{
-								xtype: 'radiogroup',
-								items: [{ name: 'acu_pfu_cobertura_forestal_mas_usada', inputValue: 'bosque protector'}]
-							},{
-								xtype: 'radiogroup',
-								items: [{ name: 'acu_pfu_cobertura_forestal_mas_usada', inputValue: 'bosque protector productor',itemCls: 'x-check-group-alt'}]
-							},{
-								xtype: 'radiogroup',
-								items: [{ name: 'acu_pfu_cobertura_forestal_mas_usada', inputValue: 'bosque productor'}]
-							},{
-								xtype: 'radiogroup',
-								items: [{ name: 'acu_pfu_cobertura_forestal_mas_usada', inputValue: 'regeneracion natural',itemCls: 'x-check-group-alt'}]
+								defaults:{height:22 },
+								name: 'acu_pfu_cobertura_forestal_mas_usada',
+								items: 	[{ name: 'acu_pfu_cobertura_forestal_mas_usada', inputValue: 'bosque natural'},
+								{ name: 'acu_pfu_cobertura_forestal_mas_usada', inputValue: 'bosque protector',itemCls: 'x-check-group-alt'},
+								{ name: 'acu_pfu_cobertura_forestal_mas_usada', inputValue: 'bosque protector productor'},
+								{ name: 'acu_pfu_cobertura_forestal_mas_usada', inputValue: 'bosque productor',itemCls: 'x-check-group-alt'},
+								{ name: 'acu_pfu_cobertura_forestal_mas_usada', inputValue: 'regeneracion natural'}
+								]
 							}
 						],
 						listeners:
@@ -517,34 +510,35 @@
 						}
 					},{
 						width: 220,
-						title: '<center>Tendencia</center>',    
-						defaults:{hideLabel: true},
+						title: '<center>Tendencia</center>',  
+						defaults:{hideLabel: true,columns:[ 73, 73, 73]},
 						items:
 						[ 	
 							{
 								xtype: 'radiogroup',
-								anchor: '100%',
-								layout:'column',
-								id:'acu_pfu_cobertura_forestal_natural_tendencia',
-								items: [{
-											columnWidth: '.33',
+								columns:[ 73, 73, 73],
+								id :'acu_pfu_cobertura_forestal_natural_tendencia',
+								items: [
+										{
+											width: 73,
 											items: [
 												{ xtype: 'label', text: 'Incremento', cls:'x-form-check-group-label'},
-												{ name: 'acu_pfu_cobertura_forestal_natural_tendencia', inputValue: 'incremento',itemCls: 'x-check-group-alt'},
+												{ name: 'acu_pfu_cobertura_forestal_natural_tendencia', inputValue: 'incremento'},
 												]
 										},{
-											columnWidth: '.33',
+											width: 73,
 											items: [
 												{ xtype: 'label', text: 'Estable', cls:'x-form-check-group-label'},
-												{ name: 'acu_pfu_cobertura_forestal_natural_tendencia', inputValue: 'estable',checked:true,itemCls: 'x-check-group-alt'}
+												{ name: 'acu_pfu_cobertura_forestal_natural_tendencia', inputValue: 'estable',checked:true}
 												]
 										},{
-											columnWidth: '.33',
+											width: 73,
 											items: [
 												{ xtype: 'label', text: 'Disminucion', cls:'x-form-check-group-label'},
-												{ name: 'acu_pfu_cobertura_forestal_natural_tendencia', inputValue: 'disminucion',itemCls: 'x-check-group-alt'}
+												{ name: 'acu_pfu_cobertura_forestal_natural_tendencia', inputValue: 'disminucion'}
 												]
-										}],
+										}
+								],
 								listeners:
 								{
 									'render':function(){
@@ -556,9 +550,9 @@
 								xtype: 'radiogroup',
 								id: 'acu_pfu_cobertura_forestal_protector_tendencia',
 								items: [
-									{ name: 'acu_pfu_cobertura_forestal_protector_tendencia', inputValue: 'incremento'},
-									{ name: 'acu_pfu_cobertura_forestal_protector_tendencia', inputValue: 'estable', checked: true},
-									{ name: 'acu_pfu_cobertura_forestal_protector_tendencia', inputValue: 'disminucion'}
+									{ name: 'acu_pfu_cobertura_forestal_protector_tendencia', inputValue: 'incremento',itemCls: 'x-check-group-alt'},
+									{ name: 'acu_pfu_cobertura_forestal_protector_tendencia', inputValue: 'estable', checked: true,itemCls: 'x-check-group-alt'},
+									{ name: 'acu_pfu_cobertura_forestal_protector_tendencia', inputValue: 'disminucion',itemCls: 'x-check-group-alt'}
 								],
 								listeners:
 								{
@@ -571,9 +565,9 @@
 								xtype: 'radiogroup',
 								id:'acu_pfu_cobertura_forestal_protector_productor_tendencia',
 								items: [
-									{ name: 'acu_pfu_cobertura_forestal_protector_productor_tendencia', inputValue: 'incremento',itemCls: 'x-check-group-alt'},
-									{ name: 'acu_pfu_cobertura_forestal_protector_productor_tendencia',  inputValue: 'estable', checked: true,itemCls: 'x-check-group-alt'},
-									{ name: 'acu_pfu_cobertura_forestal_protector_productor_tendencia',  inputValue: 'disminucion', itemCls: 'x-check-group-alt'},
+									{ name: 'acu_pfu_cobertura_forestal_protector_productor_tendencia', inputValue: 'incremento'},
+									{ name: 'acu_pfu_cobertura_forestal_protector_productor_tendencia',  inputValue: 'estable', checked: true},
+									{ name: 'acu_pfu_cobertura_forestal_protector_productor_tendencia',  inputValue: 'disminucion'},
 								],
 								listeners:
 								{
@@ -586,9 +580,9 @@
 								xtype: 'radiogroup',
 								id: 'acu_pfu_cobertura_forestal_productor_tendencia',
 								items: [
-									{ name: 'acu_pfu_cobertura_forestal_productor_tendencia', inputValue: 'incremento'},
-									{ name: 'acu_pfu_cobertura_forestal_productor_tendencia',  inputValue: 'estable', checked: true},
-									{ name: 'acu_pfu_cobertura_forestal_productor_tendencia',  inputValue: 'disminucion'},
+									{ name: 'acu_pfu_cobertura_forestal_productor_tendencia', inputValue: 'incremento',itemCls: 'x-check-group-alt'},
+									{ name: 'acu_pfu_cobertura_forestal_productor_tendencia',  inputValue: 'estable', checked: true,itemCls: 'x-check-group-alt'},
+									{ name: 'acu_pfu_cobertura_forestal_productor_tendencia',  inputValue: 'disminucion',itemCls: 'x-check-group-alt'},
 								],
 								listeners:
 								{
@@ -601,9 +595,9 @@
 								xtype: 'radiogroup',
 								id:'acu_pfu_cobertura_forestal_regeneracion_natural_tendencia',
 								items: [
-									{ name: 'acu_pfu_cobertura_forestal_regeneracion_natural_tendencia', inputValue: 'incremento',itemCls: 'x-check-group-alt'},
-									{ name: 'acu_pfu_cobertura_forestal_regeneracion_natural_tendencia',  inputValue: 'estable',checked: true,itemCls: 'x-check-group-alt'},
-									{ name: 'acu_pfu_cobertura_forestal_regeneracion_natural_tendencia',  inputValue: 'disminucion', itemCls: 'x-check-group-alt'},
+									{ name: 'acu_pfu_cobertura_forestal_regeneracion_natural_tendencia', inputValue: 'incremento'},
+									{ name: 'acu_pfu_cobertura_forestal_regeneracion_natural_tendencia',  inputValue: 'estable',checked: true},
+									{ name: 'acu_pfu_cobertura_forestal_regeneracion_natural_tendencia',  inputValue: 'disminucion'},
 								],
 								listeners:
 								{
@@ -617,18 +611,23 @@
 				]
 			}
 		],
-		renderTo:'div_form_acu_proteccionfuentessuperficialesagua',
+		//renderTo:'div_form_acu_proteccionfuentessuperficialesagua',
 		buttons: 
 		[
 			{
 				text: '<html>Atr&aacute;s<html>',
 				handler:function(){
+				
+				acu_proteccionfuentessuperficialesagua_coberturaforestal_panel.hide();
+				acu_proteccionfuentessuperficialesagua_programas_panel.show();
 				}
 			},
 			{
 				text: 'Continuar',
 				handler:function(){
 				acu_proteccionfuentessuperficialesagua_coberturaforestal_subirdatos();
+				
+			     acu_microcuenca_tabpanel.setActiveTab(3);
 				}
 			}
 		]
@@ -648,3 +647,17 @@
 		acu_proteccionfuentessuperficialesagua_coberturaforestal_panel.getForm().loadRecord(record);	
 	  }
 	});
+
+	/*****************Contenedor de panels*********************/
+	
+   var acu_proteccionfuentessuperficialesagua_contenedor=new Ext.Panel({
+    height:largo_panel-15,
+	border:false,
+	layout:'fit',
+    items:
+	[
+			acu_proteccionfuentessuperficialesagua_programas_panel,
+			acu_proteccionfuentessuperficialesagua_coberturaforestal_panel
+	],
+	renderTo:'div_form_acu_proteccionfuentessuperficialesagua'
+   });

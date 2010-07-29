@@ -178,8 +178,8 @@ desarrollado por maryit sanchez
 			 disabled: false,
 			 handler: function()
 			 {
-				 (Ext.getCmp('panel_servicios')).setActiveGroup(0);
-
+				// (Ext.getCmp('panel_servicios')).setActiveGroup(0);
+				 Ext.getCmp('acueducto').setActiveTab(1);
 			 }
 		  },   
 		  {
