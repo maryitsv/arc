@@ -111,7 +111,7 @@ class acueducto_informaciongeneralmicrocuencasActions extends sfActions
 	$microcuencafila->setMicPpsPreId($pps_pre_id);
 	$microcuencafila->setMicPpsAnio($pps_anio);
 	$microcuencafila->setMicPpsSerId($pps_ser_id);
-	
+	$microcuencafila->save();
 	}
 				
 	return $microcuencafila->getMicId();
