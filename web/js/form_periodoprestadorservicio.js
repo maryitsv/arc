@@ -123,8 +123,8 @@ function periodoprestadorservicio_subirDatos(){
 		{
 			salida = true;
 			obj = Ext.util.JSON.decode(action.response.responseText);
-			mostrarMensajeRapido('Aviso',obj.mensaje);
 			window.location = 'menuentradadatos';
+			mostrarMensajeRapido('Aviso',obj.mensaje);
 		},
 		failure: function(form, action, response)
 		{
