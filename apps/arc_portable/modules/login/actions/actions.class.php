@@ -40,15 +40,19 @@ class loginActions extends sfActions
 			$this->getUser()->setAttribute('usu_login', $usuario->getUsuLogin());
 			$this->getUser()->setAttribute('usu_per_id', $usuario->getUsuPerId());
 			//eto no va aqui		
-			$this->getUser()->setAttribute('pps_anio','2010');
+			//$this->getUser()->setAttribute('pps_anio','2010');
 		//	$this->getUser()->setAttribute('pps_pre_id','5');
-			$this->getUser()->setAttribute('pps_pre_id', 1);
+			//$this->getUser()->setAttribute('pps_pre_id', 1);
 			
 			$this->getUser()->setAuthenticated(true);
+			
 					
-			return $this->renderText("{success:true,mensaje:'autenticado con exito'}");
+			return $this->renderText("{success:true,mensaje:'".$usuario->getPerfil()->getPerNombre()."'}");
 		}
 
   }
+
+
+  
   
 }

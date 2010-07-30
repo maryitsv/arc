@@ -165,13 +165,13 @@ Desarrollado maryit sanchez
 			   {
 				   xtype: 'radiogroup',
 				   labelStyle: 'width:200px;'+letra,
-				   width:100,
+				   width: 110,
 				   id:'acu_fac_sist_fac_utilizado',
 				   fieldLabel: '<html>&iquest;Qu&eacute; sistema de facturaci&oacute;n del servicio utiliza?</html>',
 				   columns: 1,
 				   items:
 				   [
-					  { boxLabel: 'Sistemaztizado', name: 'acu_fac_sist_fac_utilizado', id:'acu_fac_sist_fac_utilizado_sistematizado', checked: true,inputValue:'Sistemaztizado'},
+					  { boxLabel: 'Sistemaztizado', name: 'acu_fac_sist_fac_utilizado', id:'acu_fac_sist_fac_utilizado_sistematizado', checked: true, inputValue:'Sistemaztizado'},
 					  { boxLabel: 'Manual', name: 'acu_fac_sist_fac_utilizado', id:'acu_fac_sist_fac_utilizado_manual',inputValue:'Manual' },
 					  { 
 					     boxLabel: 'Otro', name: 'acu_fac_sist_fac_utilizado',id:'acu_fac_sist_fac_utilizado_otro',inputValue:'Otro',

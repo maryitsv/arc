@@ -92,7 +92,7 @@ class acueducto_gestionresultadoActions extends sfActions
 		}
 		catch(Exception $exception)
 		{
-			return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en gestion resultado: ".$exception."'}})");
+			return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en gestion resultado'}})");
 		}
 	}
 	else
@@ -123,11 +123,11 @@ class acueducto_gestionresultadoActions extends sfActions
 			
 			$acu_gestionresultado->save();
 			
-			$salida = "({success: true, mensaje:'La informacion de gestion de resultados fue actualizada exitosamente: ".$this->getRequestParameter('acu_gre_valor_micromedicion')."'})";
+			$salida = "({success: true, mensaje:'La informacion de gestion de resultados fue actualizada exitosamente'})";
 		}
 		catch(Exception $exception)
 		{
-			return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en gestion resultado: ".$exception."'}})");
+			return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en gestion resultado'}})");
 		}
 	}
 	
