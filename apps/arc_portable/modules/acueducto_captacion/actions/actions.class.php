@@ -35,12 +35,11 @@ class acueducto_captacionActions extends sfActions
 
 		if($tecnicoOperativo) {
 			$criteria = new Criteria();
-			$criteria->add(TecnicooperativacaptacionacueductoPeer::TOCA_TOP_ID, $tecnicoOperativo->getTopId());
-			$tecnicoOperativaCaptaciones = TecnicooperativacaptacionacueductoPeer::doSelect($criteria);
+			$criteria->add(CaptacionPeer::CAPT_TOP_ID, $tecnicoOperativo->getTopId());
+			$captaciones = CaptacionPeer::doSelect($criteria);
 
-			foreach($tecnicoOperativaCaptaciones as $tecnicoOperativaCaptacion) {
-				$captacion = CaptacionPeer::retrieveByPK($tecnicoOperativaCaptacion->getTocaCaptId());
-				if($captacion->getCaptTipoDeFondo()!=null) {
+			foreach($captaciones as $captacion) {
+				if($captacion->getCaptFuenteSuperficial()==1) {
 					$campos = array();
 					$campos['capt_id'] = $captacion->getCaptId();
 					$campos['capt_tipo_de_fondo'] = $captacion->getCaptTipoDeFondo();

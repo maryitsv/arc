@@ -7,67 +7,67 @@ var tecnicooperativa_acueducto_tabpanel = new Ext.TabPanel({
     anchor: '100%',
     renderTo: 'div_tecnicooperativaacueducto',
     items: [{
-        title: 'Paso 1',
+        title: 'Abastecimiento.',
         autoLoad: {
             url: getAbsoluteUrl('acueducto_sistemasabastecimiento', 'index'),
             scripts: true
         }
     }, {
-        title: 'Paso 2',
+        title: 'Componentes.',
         autoLoad: {
             url: getAbsoluteUrl('acueducto_componentessistema', 'index'),
             scripts: true
         }
     }, {
-        title: 'Paso 3',
+        title: 'Captación',
         autoLoad: {
             url: getAbsoluteUrl('acueducto_captacion', 'index'),
             scripts: true
         }
     }, {
-        title: 'Paso 4',
+        title: 'Aducción e impulsión.',
         autoLoad: {
             url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'index'),
             scripts: true
         }
     }, {
-        title: 'Paso 5',
+        title: 'Aducción e impulsión.',
         autoLoad: {
             url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'index2'),
             scripts: true
         }
     }, {
-        title: 'Paso 6',
+        title: 'Desarenador',
         autoLoad: {
             url: getAbsoluteUrl('acueducto_desarenador', 'index'),
             scripts: true
         }
     }, {
-        title: 'Paso 7',
+        title: 'Planta tratamiento',
         autoLoad: {
             url: getAbsoluteUrl('acueducto_plantatratamiento_aguapotable', 'index'),
             scripts: true
         }
     }, {
-        title: 'Paso 8',
+        title: 'Planta tratamiento',
         autoLoad: {
             url: getAbsoluteUrl('acueducto_plantatratamiento_aguapotable', 'index2'),
             scripts: true
         }
     }, {
-        title: 'Paso 9',
+        title: 'Planta tratamiento',
         autoLoad: {
             url: getAbsoluteUrl('acueducto_plantatratamiento_aguapotable', 'index3'),
             scripts: true
         }
     }, {
-        title: 'Paso 10',
+        title: 'Desinfección',
         autoLoad: {
             url: getAbsoluteUrl('acueducto_desinfeccion', 'index'),
             scripts: true
         }
     }, {
-        title: 'Paso 11',
+        title: 'Almacenamiento',
         autoLoad: {
             url: getAbsoluteUrl('acueducto_tanque_almacenamiento', 'index'),
             scripts: true
