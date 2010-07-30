@@ -7,6 +7,14 @@ Ext.onReady(form_menuentradadatos.init, form_menuentradadatos);
 	    background-color: #4E79B2 !important;
 	}
 </style>
+
+<div id="titulo" >
+	<font face="arial" size=6 color=#4E79B2>ARC Peque&ntilde;os Prestadores</font> 
+	<div style="float: right; width:300px;">
+		<font face="arial" size=6 color="#4E79B2"> Periodo: <?php echo($sf_user->getAttribute('pps_anio')); ?> </font>
+	</div>
+</div>
+
 <div id="bienvenida">
 	<center>
 		<font face="arial" size=8 color="#4E79B2" >Bienvenido a ARC Pequenos Prestadores</font>

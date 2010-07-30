@@ -93,7 +93,7 @@ class acueducto_capacitacionActions extends sfActions
 		}
 		catch(Exception $exception)
 		{
-			return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en capacitacion:".$exception."'}})");
+			return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en capacitacion'}})");
 		}
 	}
 	else
@@ -131,7 +131,7 @@ class acueducto_capacitacionActions extends sfActions
 		}
 		catch(Exception $exception)
 		{
-			return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en capacitacion:".$exception."'}})");
+			return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en capacitacion'}})");
 		}
 	}
 	

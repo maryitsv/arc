@@ -110,7 +110,16 @@ function login_autenticar(){
 		if (obj.success)
 		{
 			//ocultamos todo y mostramos un mensaje de confirmacion pidiendo el anio
-			window.location = 'periodoprestadorservicio';
+		//	window.location = 'periodoprestadorservicio';
+			if(obj.mensaje=='prestador')
+			{
+				window.location = 'periodoprestadorservicio';
+			}
+			if(obj.mensaje=='administrador')
+			{
+				window.location = 'menuadministrador';
+			}
+						
 		}	
 		else if (obj.success == false)
 		{

@@ -18,19 +18,19 @@
 				},
 				{
 					frame: true,
-					title: 'Facturacion y recaudo',
+					title: 'Facturacion y recaudo.',
 					id: 'acueducto_facturacionyrecaudo',
 					autoLoad: { url: url_arc+'acueducto_facturacionyrecaudo', scripts: true, scope: this }
 				},
 				{
 					frame: true,
-					title: 'Fondo de solidaridad',
+					title: 'Fondo de solidaridad.',
 					id: 'acueducto_fondosolidaridadredistribucioningresos',
 					autoLoad: { url: url_arc+'acueducto_fondosolidaridadredistribucioningresos', scripts: true, scope: this }
 				},
 				{
 					frame: true,
-					title: 'Peticiones, quejas y recursos',
+					title: 'Peticiones, quejas y recursos.',
 					id: 'acueducto_peticionesquejasrecursos',
 					autoLoad: { url: url_arc+'acueducto_peticionesquejasrecursos', scripts: true, scope: this }
 				}

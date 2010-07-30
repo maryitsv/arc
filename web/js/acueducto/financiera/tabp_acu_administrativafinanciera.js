@@ -9,22 +9,22 @@ var tabp_acu_administrativafinanciera = new Ext.TabPanel( {
     items: [
             {
 				frame: true,
-				title: 'Informaci&oacute;n Contable',
+				title: 'Informaci&oacute;n Contable.',
 				autoLoad: { url: url_arc+'acueducto_informacioncontable', scripts: true, scope: this }
 			},
 			{
 				frame: true,
-				title: 'Participaci&oacute;n Ciudadana',
+				title: 'Participaci&oacute;n Ciudadana.',
 				autoLoad: { url: url_arc+'acueducto_participacionciudadana', scripts: true, scope: this }
 			},
 			{
 				frame: true,
-				title: 'Capacitaci&oacute;n',
+				title: 'Capacitaci&oacute;n.',
 				autoLoad: { url: url_arc+'acueducto_capacitacion', scripts: true, scope: this }
 			},
 			{
 				frame: true,
-				title: 'Plan de Gestion y resultados',
+				title: 'Plan de Gestion y resultados.',
 				autoLoad: { url: url_arc+'acueducto_gestionresultado', scripts: true, scope: this }
 			},
 			{

@@ -156,7 +156,7 @@ class acueducto_informacioncontableActions extends sfActions
 		}
 		catch(Exception $exception)
 		{
-			return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en informacion contable: ".$exception."'}})");
+			return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en informacion contable'}})");
 		}
 	}
 	

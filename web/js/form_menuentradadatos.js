@@ -14,7 +14,9 @@ init: function () {
 						layout: 'fit',
 						padding: 8,
 						margins: '10 10 0 10',
-						html: '<font face="arial" size=6 color=#4E79B2>ARC Peque&ntilde;os Prestadores</font>'// <img src="../images/p-derecha.png" align="right" />'
+						contentEl: 'titulo',
+						height: 70
+						//html: '<font face="arial" size=6 color=#4E79B2>ARC Peque&ntilde;os Prestadores</font> <font face="arial" size=8 color="#4E79B2" align="right"> Periodo: <?php $this->getUser()->getAttribute("pps_anio");?> </font>'// <img src="../images/p-derecha.png" align="right" />'
 					},
 					{
 						region: 'center',

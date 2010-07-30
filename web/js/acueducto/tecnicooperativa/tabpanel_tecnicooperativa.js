@@ -1,6 +1,7 @@
 var tecnicooperativa_acueducto_tabpanel = new Ext.TabPanel({
     id: 'tecnicooperativa_acueducto_tabpanel',
-    width: 840,
+    //width: 840,
+    autoWidth: true,
     height: 405,
     activeTab: 0,
     frame: true,

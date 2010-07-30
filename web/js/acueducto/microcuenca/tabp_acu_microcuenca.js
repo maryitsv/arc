@@ -12,7 +12,7 @@
 		items: [	  
                  {
 				frame: true,
-				title: 'Informacion general',
+				title: 'Informacion general.',
 				id: 'acueducto_informaciongeneralmicrocuencas',
 				autoLoad: { url: url_arc+'acueducto_informaciongeneralmicrocuencas', scripts: true, scope: this }
 				},
@@ -30,7 +30,7 @@
 				},
 				{
 					frame: true,
-					title: 'Proteccion de la fuentes',
+					title: 'Proteccion de la fuentes.',
 					id: 'acueducto_proteccionfuentessuperficialesagua',
 					autoLoad: { url: url_arc+'acueducto_proteccionfuentessuperficialesagua', scripts: true, scope: this }
 				},

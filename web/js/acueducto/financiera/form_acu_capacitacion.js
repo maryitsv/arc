@@ -359,6 +359,7 @@ var acu_cap_instituciones_ofrecieron = new Ext.form.TextField( {
 var acu_cap_numero_directiva_hombres = new Ext.form.NumberField( {
 	anchor: '100%',
 	labelStyle: 'width:300px; text-align:right;',
+	emptyText: '0',
 	name: 'acu_cap_numero_directiva_hombres',
 	id: 'acu_cap_numero_directiva_hombres',
 	fieldLabel: 'N&uacute;mero de hombres integrantes de la directiva',
@@ -374,6 +375,7 @@ var acu_cap_numero_directiva_hombres = new Ext.form.NumberField( {
 var acu_cap_numero_directiva_mujeres = new Ext.form.NumberField( {
 	anchor: '100%',
 	labelStyle: 'width:300px; text-align:right;',
+	emptyText: '0',
 	name: 'acu_cap_numero_directiva_mujeres',
 	id: 'acu_cap_numero_directiva_mujeres',
 	fieldLabel: 'N&uacute;mero de mujeres integrantes de la directiva',
