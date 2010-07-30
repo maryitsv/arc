@@ -5,7 +5,7 @@
  *
  * @package    arc
  * @subpackage acueducto_fondosolidaridadredistribucioningresos
- * @author     Your name here
+ * @author     maryit sanchez
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class acueducto_fondosolidaridadredistribucioningresosActions extends sfActions
@@ -19,7 +19,11 @@ class acueducto_fondosolidaridadredistribucioningresosActions extends sfActions
   {
   //  $this->forward('default', 'module');
   }
-  
+  /**
+  *@author:maryit sanchez
+  *@date:13 de julio de 2010
+  *Este metodo retorna el id de un servicio especifico
+  */  
   protected function obtenerServicioId($ser_nombre)
 	{
 		$conexion = new Criteria();			
@@ -28,7 +32,11 @@ class acueducto_fondosolidaridadredistribucioningresosActions extends sfActions
 		$ser_id = $servicio->getSerId();
 		return  $ser_id;
 	}
-	
+	/**
+  *@author:maryit sanchez
+  *@date:13 de julio de 2010
+  *Este metodo retorna el id de la tabla comercial, dada la informacion del periodo y del prestador
+  */  
     public function obtenerComId()
   { 
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
@@ -41,17 +49,23 @@ class acueducto_fondosolidaridadredistribucioningresosActions extends sfActions
 	$conexion->add(ComercialPeer::COM_PPS_SER_ID, $pps_ser_id);
 	
 	$comercialfila = ComercialPeer::doSelectOne($conexion);
-				
+	
+	if(!$comercialfila)
+	{
+	$comercialfila = new Comercial();
+	$comercialfila->setComPpsPreId($pps_pre_id);
+	$comercialfila->setComPpsSerId($pps_ser_id);
+	$comercialfila->setComPpsAnio($pps_anio);
+	$comercialfila->save();
+	}
+	
 	return $comercialfila->getComId();
   }
   
-  /*
-  acu_fsi_sol_tranferencia_recursos 
-acu_fsi_recibo_recursos 
-acu_fsi_recibo_recursos_valor_recib 
-acu_fsi_aporte_recursos 
-acu_fsi_aporte_recursos_valor_apor 
-acu_vas_suscripcion_contrato 
+   /*
+  *@author:maryit sanchez
+  *@date:21 de julio de 2010
+  *Esta funcion actualiza la informacion de fondo de solidaridad
   */
     public function executeActualizarFondosolidaridadredistribucioningresos(sfWebRequest $request)
   { 
@@ -106,7 +120,12 @@ acu_vas_suscripcion_contrato
 		
 	return $this->renderText($salida);
   }
-
+  /*
+  *@author:maryit sanchez
+  *@date:28 de julio de 2010
+  *Esta funcion devuelve un registro con la informacion de fondo de solidaridad para
+  *un periodo un prestador y un servicio especifico
+  */
  public function executeObtenerDatosFondosolidaridadredistribucioningresos(sfWebRequest $request)
   { 
 	$salida='({"total":"0", "results":""})';

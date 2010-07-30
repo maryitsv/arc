@@ -5,7 +5,7 @@
  *
  * @package    arc
  * @subpackage acueducto_analisiscobertura
- * @author     Your name here
+ * @author     maryit sanchez
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class acueducto_analisiscoberturaActions extends sfActions
@@ -69,7 +69,11 @@ class acueducto_analisiscoberturaActions extends sfActions
 		return $this->renderText($salida);
 	}  
 
-	  
+	/**
+  *@author:maryit sanchez
+  *@date:13 de julio de 2010
+  *Este metodo retorna el id de un servicio especifico
+  */  
   protected function obtenerServicioId($ser_nombre)
 	{
 		$conexion = new Criteria();			
@@ -79,6 +83,11 @@ class acueducto_analisiscoberturaActions extends sfActions
 		return  $ser_id;
 	}
 	
+	/**
+  *@author:maryit sanchez
+  *@date:13 de julio de 2010
+  *Este metodo retorna el id de la tabla comercial, dada la informacion del periodo y del prestador
+  */  
     public function obtenerComId()
   { 
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
@@ -92,10 +101,22 @@ class acueducto_analisiscoberturaActions extends sfActions
 	
 	$comercialfila = ComercialPeer::doSelectOne($conexion);
 	
+	if(!$comercialfila)
+	{
+	$comercialfila = new Comercial();
+	$comercialfila->setComPpsPreId($pps_pre_id);
+	$comercialfila->setComPpsSerId($pps_ser_id);
+	$comercialfila->setComPpsAnio($pps_anio);
+	$comercialfila->save();
+	}
+	
 	return $comercialfila->getComId();
   }
   
   /*
+  *@author:maryit sanchez
+  *@date:21 de julio de 2010
+  *Esta funcion crea o actualiza un registro de analisis de cobertura en la bd
   */
   public function executeActualizarAnalisisCobertura(sfWebRequest $request)
   {
@@ -108,21 +129,14 @@ class acueducto_analisiscoberturaActions extends sfActions
 			$conexion->add(AnalisiscoberturaPeer::ACO_COM_ID, $com_id);
 			$analisisCobertura = AnalisiscoberturaPeer::doSelectOne($conexion);
 
-			if($analisisCobertura)
+			if(!$analisisCobertura)
 			{
-				$analisisCobertura->setAcoCatastroUsuarios($this->getRequestParameter('acu_aco_catastro_usuarios'));
-				$analisisCobertura->setAcoAnioElaImplCatastroUsu($this->getRequestParameter('acu_aco_anio_ela_impl_catastro_usu'));
-				$analisisCobertura->setAcoNumPrediosArea($this->getRequestParameter('acu_aco_num_predios_area'));
-				$analisisCobertura->setAcoNumPrediosConecSistema($this->getRequestParameter('acu_aco_num_predios_conec_sistema'));
-				$analisisCobertura->setAcoEstratSocecoAdopMpio($this->getRequestParameter('acu_aco_estrat_soceco_adop_mpio'));
-				$analisisCobertura->setAcoEstraSocecoAdopMpioJus($this->getRequestParameter('acu_aco_estra_soceco_adop_mpio_jus'));
-				$analisisCobertura->save();
-		
-				$salida = "({success: true, mensaje:'Fue actualizado exitosamente'})";
-			} else {
-			
 				$analisisCobertura=new Analisiscobertura();
 				$analisisCobertura->setAcoComId($com_id);
+			}
+			
+			if($analisisCobertura)
+			{
 				$analisisCobertura->setAcoCatastroUsuarios($this->getRequestParameter('acu_aco_catastro_usuarios'));
 				$analisisCobertura->setAcoAnioElaImplCatastroUsu($this->getRequestParameter('acu_aco_anio_ela_impl_catastro_usu'));
 				$analisisCobertura->setAcoNumPrediosArea($this->getRequestParameter('acu_aco_num_predios_area'));
@@ -169,7 +183,12 @@ class acueducto_analisiscoberturaActions extends sfActions
 		
 	return $this->renderText($salida);*/
   }
-
+   /*
+  *@author:maryit sanchez
+  *@date:28 de julio de 2010
+  *Esta funcion devuelve un registro con la informacion de analisis de cobertura para
+  *un periodo un prestador y un servicio especifico
+  */
  public function executeObtenerDatosAnalisiscobertura(sfWebRequest $request)
   {
 		$salida='({"total":"0", "results":""})';

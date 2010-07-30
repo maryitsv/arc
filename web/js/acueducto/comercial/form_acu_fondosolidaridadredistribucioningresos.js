@@ -4,11 +4,31 @@ Desarrollado maryit sanchez
 2010
 */
 
-
+	var acu_fondosolidaridadredistribucioningresos_datos_datastore = new Ext.data.Store({
+        id: 'acu_fondosolidaridadredistribucioningresos_datos_datastore',
+        proxy: new Ext.data.HttpProxy({
+                url: 'acueducto_fondosolidaridadredistribucioningresos/obtenerDatosFondosolidaridadredistribucioningresos', 
+                method: 'POST'
+        }),
+        baseParams:{}, 
+        reader: new Ext.data.JsonReader({
+                root: 'results',
+                totalProperty: 'total',
+                id: 'id'
+                },[ 
+                  {name: 'acu_fsi_sol_tranferencia_recursos', type: 'int'},	    
+                  {name: 'acu_fsi_recibo_recursos', type: 'int'},
+				  {name: 'acu_fsi_recibo_recursos_valor_recib', type: 'string'},
+				  {name: 'acu_fsi_aporte_recursos', type: 'int'},
+				  {name: 'acu_fsi_aporte_recursos_valor_apor', type: 'string'},
+				  {name: 'acu_vas_suscripcion_contrato', type: 'int'},
+		])
+    });
+	
 	var acu_fondosolidaridadredistribucioningresos_panel = new Ext.FormPanel({
-	  frame: true,
+	 // frame: true,
 	  autoWidth: true,
-	  height: largo_panel-40,
+	  height: largo_panel-15,
 	  layout:'form',
 	  defaults:{ labelStyle: 'width:120px;'},   
 	  items:
@@ -26,10 +46,11 @@ Desarrollado maryit sanchez
 				id:'acu_fsi_sol_tranferencia_recursos',
 				fieldLabel: '<html>&iquest;Ha solicitado, ante el municipio, la transferencia de recursos para la distribuci&oacute;n de subsidios?</html>',
 				columns: 1,
+				width:80,
 				items:
 				[
-				  { boxLabel: 'Si', name: 'acu_fsi_sol_tranferencia_recursos',id:'acu_fsi_sol_tranferencia_recursos_si', checked: true, inputValue:true },
-				  { boxLabel: 'No', name: 'acu_fsi_sol_tranferencia_recursos',id:'acu_fsi_sol_tranferencia_recursos_no', inputValue:false }
+				  { boxLabel: 'Si', name: 'acu_fsi_sol_tranferencia_recursos',id:'acu_fsi_sol_tranferencia_recursos_si', checked: true, inputValue:1 },
+				  { boxLabel: 'No', name: 'acu_fsi_sol_tranferencia_recursos',id:'acu_fsi_sol_tranferencia_recursos_no', inputValue:0 }
 				],
 				listeners:
 				{
@@ -45,10 +66,11 @@ Desarrollado maryit sanchez
 				id:'acu_fsi_recibo_recursos',
 				fieldLabel: '<html>&iquest;Recibi&oacute; recursos del municipio para subsidios durante el a&ntilde;o?</html>',
 				columns: 1,
+				width:80,
 				items:
 				[
 				  {
-					 boxLabel: 'Si', name: 'acu_fsi_recibo_recursos', id:'acu_fsi_recibo_recursos_si',checked: true, inputValue:true,
+					 boxLabel: 'Si', name: 'acu_fsi_recibo_recursos', id:'acu_fsi_recibo_recursos_si',checked: true, inputValue:1,
 					 listeners:
 					 {
 						'check' :
@@ -62,7 +84,7 @@ Desarrollado maryit sanchez
 					 }
 				  },
 				  {
-					 boxLabel: 'No', name: 'acu_fsi_recibo_recursos', id:'acu_fsi_recibo_recursos_no',inputValue:false
+					 boxLabel: 'No', name: 'acu_fsi_recibo_recursos', id:'acu_fsi_recibo_recursos_no',inputValue:0
 				  }
 				],
 				listeners:
@@ -91,6 +113,10 @@ Desarrollado maryit sanchez
 			   }              
 		   },
 		   {
+				xtype:'label',
+				html:'<br/>'
+		   },
+		   {
 			   xtype: 'radiogroup',
 			   labelStyle: 'width:360px;',
 			   id:'acu_fsi_aporte_recursos',
@@ -99,7 +125,7 @@ Desarrollado maryit sanchez
 			   items:
 			   [
 				  {
-					 boxLabel: 'Si', name: 'acu_fsi_aporte_recursos', id:'acu_fsi_aporte_recursos_si',checked: true, inputValue:true,
+					 boxLabel: 'Si', name: 'acu_fsi_aporte_recursos', id:'acu_fsi_aporte_recursos_si',checked: true, inputValue:1,
 					 listeners:
 					 {
 						'check' :
@@ -113,7 +139,7 @@ Desarrollado maryit sanchez
 					 }
 				  },
 				  {
-					 boxLabel: 'No', name: 'acu_fsi_aporte_recursos',id:'acu_fsi_aporte_recursos_no',inputValue:false
+					 boxLabel: 'No', name: 'acu_fsi_aporte_recursos',id:'acu_fsi_aporte_recursos_no',inputValue:0
 				  }
 			   ],
 			    listeners:
@@ -148,7 +174,6 @@ Desarrollado maryit sanchez
 			title: '<html>Vinculaci&oacute;n al servicio</html>',
 			autoWidth: true,
 			autoHeigth:true,
-		    defaults:{width:100},
 			items :
 			[
 			   {
@@ -158,12 +183,13 @@ Desarrollado maryit sanchez
 				   id:'acu_vas_suscripcion_contrato',
 				   fieldLabel: '<html>&iquest;Suscribe un contrato de condiciones uniformes con los usuarios?</html>',
 				   columns: 1,
+				   width:80,
 				   items:
 				   [
 					  {
-						 boxLabel: 'Si', name: 'acu_vas_suscripcion_contrato',id:'acu_vas_suscripcion_contrato_si', checked: true
+						 boxLabel: 'Si', name: 'acu_vas_suscripcion_contrato',id:'acu_vas_suscripcion_contrato_si', checked: true,inputValue:1
 					  },
-					  { boxLabel: 'No', name: 'acu_vas_suscripcion_contrato',id:'acu_vas_suscripcion_contrato_no' }
+					  { boxLabel: 'No', name: 'acu_vas_suscripcion_contrato',id:'acu_vas_suscripcion_contrato_no' ,inputValue:0}
 				   ],
 				   listeners:
 					{
@@ -179,6 +205,7 @@ Desarrollado maryit sanchez
 	   [
 		  {
 			 text: '<html>Atr&aacute;s</html>',
+			 iconCls:'atras',
 			 handler: function()
 			 {
 			  (Ext.getCmp('acu_comercial_tabpanel')).setActiveTab(1);
@@ -186,6 +213,7 @@ Desarrollado maryit sanchez
 		  },
 		  {
 			 text: 'Continuar',
+			 iconCls:'continuar',
 			 handler: function()
 			 {
 				acu_fondosolidaridadredistribucioningresos_cargardatostemporal();
@@ -295,5 +323,12 @@ Desarrollado maryit sanchez
 
 	}
 
+
+acu_fondosolidaridadredistribucioningresos_datos_datastore.load({
+  callback: function() {
+	var record = acu_fondosolidaridadredistribucioningresos_datos_datastore.getAt(0);
+	acu_fondosolidaridadredistribucioningresos_panel.getForm().loadRecord(record);	
+  }
+});
 
 				

@@ -1,29 +1,24 @@
 
 var prestador_datastore = new Ext.data.Store({
-        id: 'prestador_datastore',
-        proxy: new Ext.data.HttpProxy({
-                url: 'prestador/obtenerDatosPrestador', 
-                method: 'POST'
-        }),
-        baseParams:{}, 
-        reader: new Ext.data.JsonReader({
-                root: 'results',
-                totalProperty: 'total',
-                id: 'id'
-                },[ 
-                  {name: 'pre_id', type: 'int'},	    
-                  {name: 'pre_nombre', type: 'string'},
-				  {name: 'pre_ran_id', type: 'int'},
-				  {name: 'pre_usu_id', type: 'int'},
-				  {name: 'pre_identificacion_prestador', type: 'string'},
-				  {name: 'pre_tipo_identificacion_prestador', type: 'string'},
-				  {name: 'pre_nombre_prestador', type: 'string'},
-				  {name: 'pre_estatutos', type: 'bool'},
-				  {name: 'pre_numero_empleados_con_competencias', type: 'int'},
-				  {name: 'pre_numero_empleados_sin_competencias', type: 'int'},
-				  {name: 'pre_numero_empleados_proceso_competencias', type: 'int'}
-        ])
-    });
+	id: 'prestador_datastore',
+	proxy: new Ext.data.HttpProxy({
+			url: 'prestador/obtenerDatosPrestador', 
+			method: 'POST'
+	}),
+	baseParams:{}, 
+	reader: new Ext.data.JsonReader({
+			root: 'results',
+			totalProperty: 'total',
+			id: 'id'
+			},[ 
+			  {name: 'pre_id', type: 'int'},	    
+			  {name: 'pre_ran_id', type: 'int'},
+			  {name: 'pre_usu_id', type: 'int'},
+			  {name: 'pre_identificacion_prestador', type: 'string'},
+			  {name: 'pre_tipo_identificacion_prestador', type: 'string'},
+			  {name: 'pre_nombre_prestador', type: 'string'}
+	])
+});
 	
 var pre_nombre_prestador = new Ext.form.TextField( {
 	fieldLabel: 'Nombre del prestador (RUPS)', 
@@ -80,86 +75,6 @@ var pre_tipo_identificacion_prestador = new Ext.form.ComboBox({
 	}
 });
 
-var pre_estatutos = new Ext.form.RadioGroup( { 
-	id: 'pre_estatutos',
-	fieldLabel: '&iquest; Cuenta el prestador con estatutos ?',
-	listeners:
-  	{
-		'render': function(){ 	
-					ayuda( 'pre_estatutos', ayuda_pre_estatutos );
-			}             
-	},
-	items: 
-	[{
-	    items:[
-			{
-				boxLabel: 'Si',
-			  	name: 'pre_estatutos',
-			  	inputValue: true
-		  },
-		  {
-			  	boxLabel: 'No',
-			  	name: 'pre_estatutos',
-			  	inputValue: false
-		  }]
-	}]} );
-
-var pre_numero_empleados_con_competencias = new Ext.form.TextField( {
-	fieldLabel: 'Cuantos empleados cuentan con certificacion basada en competencias rurales', 
-	emptyText: 'numero de empleados que cuentan con certificacion basada en competencias', 
-	id: 'pre_numero_empleados_con_competencias', 
-	name: 'pre_numero_empleados_con_competencias', 
-	anchor: '100%', 
-	allowBlank:false,
-	listeners: {
-        'render': function(){ 
-					ayuda( 'pre_numero_empleados_con_competencias', ayuda_pre_numero_empleados_con_competencias );
-     	}
-	}
-} );
-
-var pre_numero_empleados_sin_competencias = new Ext.form.TextField( {
-	fieldLabel: 'Cuantos empleados no cuentan con certificacion basada en competencias rurales', 
-	emptyText: 'numero de empleados que no cuentan con certificacion basada en competencias', 
-	id: 'pre_numero_empleados_sin_competencias', 
-	name: 'pre_numero_empleados_sin_competencias', 
-	anchor: '100%', 
-	allowBlank:false,
-	listeners: {
-        'render': function(){ 
-					ayuda( 'pre_numero_empleados_sin_competencias', ayuda_pre_numero_empleados_sin_competencias );
-     	}
-	}
-} );
-
-var pre_numero_empleados_proceso_competencias = new Ext.form.TextField( { 
-	fieldLabel: 'Cuantos empleados estan en proceso de certificacion basada en competencias rurales', 
-	emptyText: 'numero de empleados que estan en proceso de certificacion basada en competencias', 
-	id: 'pre_numero_empleados_proceso_competencias', 
-	name: 'pre_numero_empleados_proceso_competencias', 
-	anchor: '100%', 
-	allowBlank:false,
-	listeners: {
-        'render': function(){ 
-					ayuda( 'pre_numero_empleados_proceso_competencias', ayuda_pre_numero_empleados_proceso_competencias );
-     	}
-	}
-} );
-
-var pre_numero_suscriptores = new Ext.form.TextField( {
-	fieldLabel: 'Numero de suscriptores', 
-	emptyText: 'ingrese el numero de suscriptores', 
-	id: 'pre_numero_suscriptores', 
-	name: 'pre_numero_suscriptores', 
-	anchor: '100%', 
-	allowBlank: false,
-	listeners: {
-        'render': function(){ 
-					ayuda( 'pre_numero_suscriptores', ayuda_pre_numero_suscriptores );
-     	}
-	}
-} );
-
 var form_prestador = new Ext.form.FormPanel({
 	autoWidth: true,
 	title: 'Datos del Prestador',
@@ -171,7 +86,7 @@ var form_prestador = new Ext.form.FormPanel({
 	labelWidth: 310,
 	height: largo_panel,
 	style: {"margin-right": Ext.isIE6 ? (Ext.isStrict ? "-10px" : "-13px") : "0" },
-	items: [ pre_nombre_prestador, pre_identificacion_prestador, pre_tipo_identificacion_prestador, pre_estatutos, pre_numero_empleados_con_competencias, pre_numero_empleados_sin_competencias, pre_numero_empleados_proceso_competencias, pre_numero_suscriptores ],
+	items: [ pre_nombre_prestador, pre_identificacion_prestador, pre_tipo_identificacion_prestador ],
 	buttons: [
 	    {
 	    	text: 'Continuar', 
@@ -179,20 +94,23 @@ var form_prestador = new Ext.form.FormPanel({
 	    	iconCls: 'crear16', 
 	    	handler: function(){
 				prestador_subirdatos();
-				//Ext.getCmp('panel_servicios').setActiveGroup(1);
-				//Ext.getCmp('acueducto').setActiveTab(0);
 			}
 	    }
 	]
 });
 	
 function prestador_subirdatos() {
-
-	subirDatos(form_prestador, 'prestador/actualizarPrestador');
-	
+	subirDatos(
+		form_prestador, 
+		'prestador/actualizarPrestador',
+		{},
+		function(){
+			Ext.getCmp('panel_servicios').setActiveGroup(1);
+			Ext.getCmp('acueducto').setActiveTab(0);
+		}
+	);
 }
 
-//Ext.getCmp("datos_prestador").add(form_prestador);
 prestador_datastore.load({
   callback: function() {
 	var record = prestador_datastore.getAt(0);

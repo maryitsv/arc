@@ -49,5 +49,14 @@ body .x-panel {
 .usuario_habilitados_icono{ background-image:url(../images/iconos/usuario/habilitado.png) !important;} 
 
 /*botones generales*/
-.siguiente {}
-.atras {}
+.continuar {
+background-image:url(../images/iconos/next.png) !important;
+}
+
+.atras {
+background-image:url(../images/iconos/previous.png) !important;
+}
+
+.panelpps {
+	text-align: left;
+}

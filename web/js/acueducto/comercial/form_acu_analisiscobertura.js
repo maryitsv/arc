@@ -4,18 +4,37 @@ desarrollado por maryit sanchez
 2010
 */
 
-/* Que paso con estas variables no las encuentro
-aco_num_sus_servicio_oficial	ACO_NUM_SUS_SERVICIO_OFICIAL	
-aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
-*/
+
+	var acu_analisiscobertura_datos_datastore = new Ext.data.Store({
+        id: 'acu_analisiscobertura_datos_datastore',
+        proxy: new Ext.data.HttpProxy({
+                url: 'acueducto_analisiscobertura/obtenerDatosAnalisiscobertura', 
+                method: 'POST'
+        }),
+        baseParams:{}, 
+        reader: new Ext.data.JsonReader({
+                root: 'results',
+                totalProperty: 'total',
+                id: 'id'
+                },[ 
+                  {name: 'acu_aco_catastro_usuarios', type: 'int'},	    
+                  {name: 'acu_aco_anio_ela_impl_catastro_usu', type: 'string'},
+				  {name: 'acu_aco_num_predios_conec_sistema', type: 'string'},
+				  {name: 'acu_aco_estrat_soceco_adop_mpio', type: 'int'},
+				  {name: 'acu_aco_estra_soceco_adop_mpio_jus', type: 'string'},
+				  {name: 'acu_aco_num_predios_area', type: 'string'},
+		])
+    });
+	
 
 	var acu_analisiscobertura_panel = new Ext.FormPanel({
 		id: 'acu_analisiscobertura_panel',
-		frame: true,
+	//	frame: true,
 		hidden: false,
 		autoWidth:true,
-		height: largo_panel-40,
+		height: largo_panel-15,
 		layout:'form',
+		bodyStyle: 'padding:10px;',
 		items:
 		[
 			{
@@ -26,15 +45,16 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 			   fieldLabel: '<html>&iquest;Se ha elaborado e implementado un catastro de usuarios?</html>',
 			   id: 'acu_aco_catastro_usuarios',
 			   columns: 1,
+			   width:80,
 			   items:
 			   [
 				  {
 					 boxLabel: 'Si', name: 'acu_aco_catastro_usuarios', id:'acu_aco_catastro_usuarios_si',
-					 inputValue: true, checked: true
+					 inputValue: 1, checked: true
 				  },
 				  { 
 					boxLabel: 'No', name: 'acu_aco_catastro_usuarios', id:'acu_aco_catastro_usuarios_no',
-					inputValue: false 
+					inputValue: 0 
 				  }
 			   ],
 			   listeners:{
@@ -54,6 +74,10 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 							ayuda('acu_aco_anio_ela_impl_catastro_usu', ayuda_acu_aco_anio_ela_impl_catastro_usu);
 						}
 			   }
+			},
+			{
+				xtype:'label',
+				html:'<br/>'
 			},
 			{
 			   xtype: 'textfield',
@@ -99,13 +123,14 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 			   columns: 1,
 			   labelStyle: 'width: '+'370px;'+letra,//+'px;'+letra
 			   fieldLabel: '<html>&iquest;Aplica la estratificaci&oacute;n socioecon&oacute;mica aplicada por el municipio de acuerdo con la metodolog&iacute;a del Departamento Nacional de Planeaci&oacute;n?</html>',
+			   width:80,
 			   items:
 			   [
 				  {
 					 boxLabel: 'Si', 
 					 name: 'acu_aco_estrat_soceco_adop_mpio',
 					 id:'acu_aco_estrat_soceco_adop_mpio_si',
-					 inputValue: true,
+					 inputValue: 1,
 					 checked: true,
 					 listeners:
 					 {
@@ -119,7 +144,7 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 				  { 
 					 boxLabel: 'No', 
 					 name: 'acu_aco_estrat_soceco_adop_mpio',
-					 inputValue: false,
+					 inputValue: 0,
 					 id: 'acu_aco_estrat_soceco_adop_mpio_no' 
 				  }
 			   ],
@@ -150,15 +175,17 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 	   [
 		  {
 			 text: '<html>Atr&aacute;s</html>',
+			 iconCls:'atras',
 			 disabled: false,
 			 handler: function()
 			 {
-				 (Ext.getCmp('panel_servicios')).setActiveGroup(0);
-
+				// (Ext.getCmp('panel_servicios')).setActiveGroup(0);
+				 Ext.getCmp('acueducto').setActiveTab(1);
 			 }
 		  },   
 		  {
 			 text: 'Continuar',
+			 iconCls:'continuar',
 			 handler: function()
 			 {  
 				acu_analisiscobertura_cargardatostemporal();
@@ -247,6 +274,7 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 		  {
 			 text: '<html>Atr&aacute;s</html>',
 			 disabled: false,
+			 iconCls:'atras',
 			 handler: function()
 			 {
 			 acu_analisiscobertura_estratos_gridpanel.hide();
@@ -255,6 +283,7 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 		  },
 		  {
 			 text: 'Continuar',
+			 iconCls:'continuar',
 			 handler: function()
 			 {
 			 acu_comercial_tabpanel.setActiveTab(1);
@@ -274,7 +303,6 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 	renderTo:'div_form_acu_analisiscobertura'
    });
 
-//***************Funciones************///
 	//***************Funciones************///
     var acu_analisiscobertura_panel_datanuevo;
 	var acu_analisiscobertura_panel_dataviejo=new Array();
@@ -353,3 +381,9 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 
 	}
 	
+acu_analisiscobertura_datos_datastore.load({
+  callback: function() {
+	var record = acu_analisiscobertura_datos_datastore.getAt(0);
+	acu_analisiscobertura_panel.getForm().loadRecord(record);	
+  }
+});

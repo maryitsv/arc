@@ -1,35 +1,4 @@
 
-/*
-var acu_tra_area_administrativa = new Ext.form.TextField( {
-	labelStyle: 'width:280px;',
-	anchor: '90%',
-	name: 'acu_tra_area_administrativa',
-	id: 'acu_tra_area_administrativa',
-	fieldLabel: '<html>N&uacute;mero de trabajadores en el &aacute;rea administrativa</html>',
-	disabled : false,
-	listeners:
-	{
-		'render': function(){ 
-					ayuda( 'acu_tra_area_administrativa', ayuda_acu_tra_area_administrativa );
-     	}
-	}              
-} );
-
-var acu_tra_area_operativa = new Ext.form.TextField( {
-	labelStyle: 'width:280px;',
-	anchor: '90%',
-	name: 'acu_tra_area_operativa',
-	id: 'acu_tra_area_operativa',
-	fieldLabel: '<html>N&uacute;mero de trabajadores en el &aacute;rea operativa</html>',
-	disabled : false,
-	listeners:
-	{
-		'render': function(){ 
-					ayuda( 'acu_tra_area_operativa', ayuda_acu_tra_area_operativa );
-     	}
-	}              
-} );*/
-
 var acu_tra_personaladministrativo_data = [
    ['Cargo', 'Contrato a t&eacute;rmino indefinido', 0],
    ['Cargo', 'Contrato a t&eacute;rmino indefinido', 0],
@@ -79,13 +48,21 @@ var acu_tra_tipoVinculacion_operativo_combobox = new Ext.form.ComboBox({
     selectOnFocus: true
 });
 
+var acu_tra_personaladministrativo_roweditor = new Ext.ux.grid.RowEditor({
+	saveText: 'Guardar',
+	cancelText: 'Cancelar'
+});
 
-var acu_tra_personaladministrativo_gridpanel = new Ext.grid.EditorGridPanel({
-   store: acu_tra_personaladministrativo_datastore,
-   frame: true,
-   border: false,
-   columns:
-   [
+var acu_tra_personaladministrativo_gridpanel = new Ext.grid.GridPanel({
+	store: acu_tra_personaladministrativo_datastore,
+	title: 'Personal administrativo',
+	frame: true,
+	stripeRows: true,
+	plugins: [acu_tra_personaladministrativo_roweditor],
+	autoWidth: true,
+	height: 276,
+	columns:
+	[
 		{
 			id:'cargo', 
 			header: "Cargo", 
@@ -97,7 +74,7 @@ var acu_tra_personaladministrativo_gridpanel = new Ext.grid.EditorGridPanel({
 		{
 			header: 'Tipo de vinculaci&oacute;n', 
 			width: 170, 
-			dataIndex: 'vinculacion', 
+			dataIndex: 'vinculacion',
 			editor: acu_tra_tipoVinculacion_operativo_combobox 
 		},
 		{
@@ -107,25 +84,26 @@ var acu_tra_personaladministrativo_gridpanel = new Ext.grid.EditorGridPanel({
 			renderer: 'usMoney',
 			editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false, maxValue: 1000000})
 		}                        
-   ],
-   autoWidth: true,
-   height: 276,
-   //hidden: true,
-   wrap: true,
-   stripeRows: true,
-   clicksToEdit: 1,
-   title: 'Trabajadores y su vinculaci&oacute;n: personal administrativo'
+	],
+	tbar: [
+		{
+			text: 'Agregar',
+			//iconCls: 'agregar',
+			handler: acu_trabajadoresyvinculacion_agregarpersonaladministrativo 
+		}, '-', 
+		{
+			text: 'Borrar',
+			//iconCls: 'eliminar',
+			handler: acu_trabajadoresyvinculacion_eliminarpersonaladministrativo
+		}, '-'
+	],
+	viewConfig: {
+			forceFit: true
+	}
 });
 
 
 var acu_tra_personaloperativo_data = [
-   ['Cargo', 'Contrato a t&eacute;rmino indefinido', 0],
-   ['Cargo', 'Contrato a t&eacute;rmino indefinido', 0],
-   ['Cargo', 'Contrato a t&eacute;rmino indefinido', 0],
-   ['Cargo', 'Contrato a t&eacute;rmino indefinido', 0],
-   ['Cargo', 'Contrato a t&eacute;rmino indefinido', 0],
-   ['Cargo', 'Contrato a t&eacute;rmino indefinido', 0],
-   ['Cargo', 'Contrato a t&eacute;rmino indefinido', 0],
    ['Cargo', 'Contrato a t&eacute;rmino indefinido', 0],
    ['Cargo', 'Contrato a t&eacute;rmino indefinido', 0],
    ['Cargo', 'Contrato a t&eacute;rmino indefinido', 0]
@@ -142,11 +120,21 @@ var acu_tra_personaloperativo_datastore = new Ext.data.SimpleStore({
 
 acu_tra_personaloperativo_datastore.loadData(acu_tra_personaloperativo_data);
 
-var acu_tra_personaloperativo_gridpanel = new Ext.grid.EditorGridPanel({
-   store: acu_tra_personaloperativo_datastore,
-   frame: true,
-   columns:
-   [
+var acu_tra_personaloperativo_roweditor = new Ext.ux.grid.RowEditor({
+	saveText: 'Guardar',
+	cancelText: 'Cancelar'
+});
+
+var acu_tra_personaloperativo_gridpanel = new Ext.grid.GridPanel({
+	store: acu_tra_personaloperativo_datastore,
+	title: 'Personal operativo',
+	plugins: [acu_tra_personaloperativo_roweditor],
+	stripeRows: true,
+	frame: true,
+	autoWidth: true,
+	height: 276,
+	columns:
+	[
 		{
 			id:'cargo', 
 			header: "Cargo", 
@@ -168,14 +156,22 @@ var acu_tra_personaloperativo_gridpanel = new Ext.grid.EditorGridPanel({
 			renderer: 'usMoney',
 			editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false, maxValue: 1000000})
 		}                        
-   ],
-   autoWidth: true,
-   height: 276,
-   //hidden: true,
-   wrap: true,
-   stripeRows: true,
-   clicksToEdit: 1,
-   title: 'Trabajadores y su vinculaci&oacute;n: personal operativo'
+	],
+	tbar: [
+		{
+			text: 'Agregar',
+			//iconCls: 'agregar',
+			handler: acu_trabajadoresyvinculacion_agregarpersonaloperativo
+		}, '-', 
+		{
+			text: 'Borrar',
+			//iconCls: 'eliminar',
+			handler: acu_trabajadoresyvinculacion_eliminarpersonaloperativo
+		}, '-'
+	],
+	viewConfig: {
+			forceFit: true
+	}
 });
 
 
@@ -245,47 +241,6 @@ var acu_tra_manual_funciones = new Ext.form.RadioGroup( {
 	]                
 } );
 
-var acu_trabajadoresyvinculacion_presonaladministrativo_formpanel = new Ext.form.FormPanel({
-	autoWidth: true,
-	border: false,
-	layout: 'column',
-	renderTo: 'div_form_acu_trabajadoresyvinculacion',
-	height: largo_panel-15,
-	style: {"margin-right": Ext.isIE6 ? (Ext.isStrict ? "-10px" : "-13px") : "0" },
-	items: [
-	   {
-			xtype: 'fieldset',
-			//title: 'Personal administrativo',
-			border: false,
-			id: 'acu_trabajadoresyvinculacion_personaladministrativo_fieldset',
-			height: 310,
-		    columnWidth: '.495',
-			defaultType: 'textfield',
-			labelWidth: 170,
-			defaults: {labelStyle: 'font-size:1.0em;'},
-			bodyStyle: Ext.isIE ? 'padding:5 5 5px 15px;' : 'padding: 3px 3px;',
-			items: [ acu_tra_personaladministrativo_gridpanel ]
-	   }
-	],
-	buttons:[
-		{
-			text: 'Atras', 
-			iconCls: 'crear16', 
-			handler: function(){
-							Ext.getCmp('tabp_acu_administrativafinanciera').setActiveTab(3);
-			}
-		},
-	    {
-	    	text: 'Continuar', 
-	    	iconCls: 'crear16', 
-	    	handler: function(){
-							acu_trabajadoresyvinculacion_presonaladministrativo_formpanel.hide();
-							acu_trabajadoresyvinculacion_presonaloperativo_formpanel.show();
-			}
-	    }
-	]
-});
-
 var acu_tra_manual_funciones = new Ext.form.RadioGroup( {
 	itemCls: 'x-check-group-alt',
 	labelStyle: 'width:230px;',
@@ -319,22 +274,33 @@ var acu_tra_manual_funciones = new Ext.form.RadioGroup( {
 	]                
 } );
 
-var acu_trabajadoresyvinculacion_presonaloperativo_formpanel = new Ext.form.FormPanel({
+var form_acu_trabajadoresyvinculacion = new Ext.form.FormPanel({
 	autoWidth: true,
 	border: false,
-	hidden: true,
+	//hidden: true,
 	layout: 'column',
 	renderTo: 'div_form_acu_trabajadoresyvinculacion',
 	height: largo_panel-15,
 	style: {"margin-right": Ext.isIE6 ? (Ext.isStrict ? "-10px" : "-13px") : "0" },
 	items: [
+		{
+			xtype: 'fieldset',
+			border: false,
+			id: 'acu_trabajadoresyvinculacion_personaladministrativo_fieldset',
+			height: 310,
+		    columnWidth: '.5',
+			defaultType: 'textfield',
+			labelWidth: 170,
+			defaults: {labelStyle: 'font-size:1.0em;'},
+			bodyStyle: Ext.isIE ? 'padding:5 5 5px 15px;' : 'padding: 3px 3px;',
+			items: [ acu_tra_personaladministrativo_gridpanel ]
+	   },
 	   {
 			xtype: 'fieldset',
-			//title: 'Personal operativo',
 			border: false,
 			id: 'acu_trabajadoresyvinculacion_personaloperativo_fieldset',
 			height: 310,
-		    columnWidth: '.495',
+		    columnWidth: '.5',
 			defaultType: 'textfield',
 			labelWidth: 170,
 			defaults: {labelStyle: 'font-size:1.0em;'},
@@ -376,8 +342,7 @@ var acu_trabajadoresyvinculacion_presonaloperativo_formpanel = new Ext.form.Form
 			text: 'Atras', 
 			iconCls: 'crear16', 
 			handler: function(){
-							acu_trabajadoresyvinculacion_presonaloperativo_formpanel.hide();
-							acu_trabajadoresyvinculacion_presonaladministrativo_formpanel.show();
+							Ext.getCmp('tabp_acu_administrativafinanciera').setActiveTab(3);
 			}
 		},
 	    {
@@ -391,17 +356,44 @@ var acu_trabajadoresyvinculacion_presonaloperativo_formpanel = new Ext.form.Form
 	]
 });
 
-var form_acu_trabajadoresyvinculacion = new Ext.Panel({
-	border: false,
-	//layout: 'form',
-	renderTo: 'div_form_acu_trabajadoresyvinculacion',
-	autoWidth: true,
-	items: [acu_trabajadoresyvinculacion_presonaladministrativo_formpanel, acu_trabajadoresyvinculacion_presonaloperativo_formpanel]
-});
-
 function acu_trabajadoresyvinculacion_subirdatos() {
 	//subirDatos(form_acu_trabajadoresyvinculacion, 'acueducto_trabajadoresyvinculacion/actualizarTrabajadoresyVinculacion'); //action no implementado
 }
 
+function acu_trabajadoresyvinculacion_agregarpersonaladministrativo(btn, ev) {
+	var row = new acu_tra_personaladministrativo_gridpanel.store.recordType({
+		cargo : 'Cargo',
+		vinculacion: 'Contrato a t&eacute;rmino indefinido',
+		remuneracion : 0
+	});
+	acu_tra_personaladministrativo_roweditor.stopEditing();
+	acu_tra_personaladministrativo_gridpanel.store.insert(0, row);
+	acu_tra_personaladministrativo_roweditor.startEditing(0);
+}
 
+function acu_trabajadoresyvinculacion_eliminarpersonaladministrativo() {
+	var rec = acu_tra_personaladministrativo_gridpanel.getSelectionModel().getSelected();
+	if (!rec) {
+		return false;
+	}
+	acu_tra_personaladministrativo_gridpanel.store.remove(rec);
+}
 
+function acu_trabajadoresyvinculacion_agregarpersonaloperativo(btn, ev) {
+	var row = new acu_tra_personaloperativo_gridpanel.store.recordType({
+		cargo : 'Cargo',
+		vinculacion: 'Contrato a t&eacute;rmino indefinido',
+		remuneracion : 0
+	});
+	acu_tra_personaloperativo_roweditor.stopEditing();
+	acu_tra_personaloperativo_gridpanel.store.insert(0, row);
+	acu_tra_personaloperativo_roweditor.startEditing(0);
+}
+
+function acu_trabajadoresyvinculacion_eliminarpersonaloperativo() {
+	var rec = acu_tra_personaloperativo_gridpanel.getSelectionModel().getSelected();
+	if (!rec) {
+		return false;
+	}
+	acu_tra_personaloperativo_gridpanel.store.remove(rec);
+}

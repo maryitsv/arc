@@ -306,11 +306,9 @@ propel:
     _attributes: { phpName: Fuentes }
     fue_id: { phpName: FueId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     fue_mic_id: { phpName: FueMicId, type: INTEGER, required: true, foreignTable: microcuencas, foreignReference: mic_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    fue_tiene_fuentes_superficiales: { phpName: FueTieneFuentesSuperficiales, type: VARCHAR, required: false }
-    fue_tiene_fuentes_subterraneas: { phpName: FueTieneFuentesSubterraneas, type: VARCHAR, required: false }
-    fue_compra_agua_bloque: { phpName: FueCompraAguaBloque, type: VARCHAR, required: false }
-    fue_numero_fuentes_superficiales: { phpName: FueNumeroFuentesSuperficiales, type: INTEGER, required: false }
+    fue_numero_fuentes: { phpName: FueNumeroFuentes, type: INTEGER, required: false }
     fue_numero_fuentes_subterraneas: { phpName: FueNumeroFuentesSubterraneas, type: INTEGER, required: false }
+    fue_compra_agua_bloque: { phpName: FueCompraAguaBloque, type: VARCHAR, required: false }
     fue_metodo_aforo_volumetrico: { phpName: FueMetodoAforoVolumetrico, type: VARCHAR, required: false }
     fue_metodo_aforo_micromolinete: { phpName: FueMetodoAforoMicromolinete, type: VARCHAR, required: false }
     fue_metodo_aforo_velocidad: { phpName: FueMetodoAforoVelocidad, type: VARCHAR, required: false }
@@ -319,7 +317,7 @@ propel:
   fuentessubterraneas:
     _attributes: { phpName: Fuentessubterraneas }
     fsu_id: { phpName: FsuId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    fsu_fue_id: { phpName: FsuFueId, type: INTEGER, required: true }
+    fsu_fue_id: { phpName: FsuFueId, type: INTEGER, required: true, foreignTable: fuentes, foreignReference: fue_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     fsu_nombre: { phpName: FsuNombre, type: VARCHAR, size: '100', required: true }
     fsu_promedio_captacion: { phpName: FsuPromedioCaptacion, type: VARCHAR, required: false }
     fsu_entidad_expidio_concesion: { phpName: FsuEntidadExpidioConcesion, type: VARCHAR, size: '200', required: false }
@@ -329,7 +327,7 @@ propel:
   fuentessuperficiales:
     _attributes: { phpName: Fuentessuperficiales }
     fsp_id: { phpName: FspId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    fsp_fue_id: { phpName: FspFueId, type: INTEGER, required: true }
+    fsp_fue_id: { phpName: FspFueId, type: INTEGER, required: true, foreignTable: fuentes, foreignReference: fue_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     fsp_nombre_fuente: { phpName: FspNombreFuente, type: VARCHAR, size: '100', required: true }
     fsp_epoca_lluvia_caudal_total: { phpName: FspEpocaLluviaCaudalTotal, type: VARCHAR, required: false }
     fsp_epoca_lluvia_caudal_captado: { phpName: FspEpocaLluviaCaudalCaptado, type: VARCHAR, required: false }
@@ -459,7 +457,7 @@ propel:
     pps_pre_id: { phpName: PpsPreId, type: INTEGER, primaryKey: true, required: true, foreignTable: prestadorporservicio, foreignReference: ppsg_pre_id, onUpdate: CASCADE }
     pps_ser_id: { phpName: PpsSerId, type: INTEGER, primaryKey: true, required: true }
     pps_anio: { phpName: PpsAnio, type: INTEGER, primaryKey: true, required: true }
-    pps_numero_suscriptores: { phpName: PpsNumeroSuscriptores, type: VARCHAR, required: false }
+    pps_numero_suscriptores: { phpName: PpsNumeroSuscriptores, type: VARCHAR, required: true }
     pps_presupuesto_aprobado: { phpName: PpsPresupuestoAprobado, type: VARCHAR, required: false }
     pps_suscriptores_pendientes_de_pago: { phpName: PpsSuscriptoresPendientesDePago, type: VARCHAR, required: false }
     pps_estatutos: { phpName: PpsEstatutos, type: VARCHAR, required: false }
@@ -468,8 +466,8 @@ propel:
     pps_numero_empleados_proceso_competencias: { phpName: PpsNumeroEmpleadosProcesoCompetencias, type: VARCHAR, required: false }
     pps_nombre_diligenciador: { phpName: PpsNombreDiligenciador, type: VARCHAR, size: '200', required: false }
     pps_apellido_diligenciador: { phpName: PpsApellidoDiligenciador, type: VARCHAR, size: '200', required: false }
-    pps_tipo_identificacion_diligenciador: { phpName: PpsTipoIdentificacionDiligenciador, type: VARCHAR, size: '50', required: false }
-    pps_identificacion_diligenciador: { phpName: PpsIdentificacionDiligenciador, type: VARCHAR, size: '15', required: false }
+    pps_tipo_identificacion_diligenciador: { phpName: PpsTipoIdentificacionDiligenciador, type: VARCHAR, size: '50', required: true }
+    pps_identificacion_diligenciador: { phpName: PpsIdentificacionDiligenciador, type: VARCHAR, size: '15', required: true }
     pps_telefono_diligenciador: { phpName: PpsTelefonoDiligenciador, type: VARCHAR, size: '15', required: false }
   personaladministrativo:
     _attributes: { phpName: Personaladministrativo }
@@ -530,17 +528,16 @@ propel:
     pfu_programas_reduccion_uso_agroquimicos: { phpName: PfuProgramasReduccionUsoAgroquimicos, type: VARCHAR, required: false }
     pfu_situacion_arriba_captacion_reserva: { phpName: PfuSituacionArribaCaptacionReserva, type: VARCHAR, required: false }
     pfu_situacion_arriba_captacion_protegida: { phpName: PfuSituacionArribaCaptacionProtegida, type: VARCHAR, required: false }
-    pfu_cobertura_forestal_natural: { phpName: PfuCoberturaForestalNatural, type: VARCHAR, required: false }
-    pfu_cobertura_forestal_protector: { phpName: PfuCoberturaForestalProtector, type: VARCHAR, required: false }
-    pfu_cobertura_forestal_protector_productor: { phpName: PfuCoberturaForestalProtectorProductor, type: VARCHAR, required: false }
+    pfu_cobertura_forestal_bosque_natural: { phpName: PfuCoberturaForestalBosqueNatural, type: VARCHAR, required: false }
+    pfu_cobertura_forestal_bosque_protector: { phpName: PfuCoberturaForestalBosqueProtector, type: VARCHAR, required: false }
+    pfu_cobertura_forestal_bosque_protector_productor: { phpName: PfuCoberturaForestalBosqueProtectorProductor, type: VARCHAR, required: false }
     pfu_cobertura_forestal_productor: { phpName: PfuCoberturaForestalProductor, type: VARCHAR, required: false }
     pfu_cobertura_forestal_regeneracion_natural: { phpName: PfuCoberturaForestalRegeneracionNatural, type: VARCHAR, required: false }
-    pfu_cobertura_forestal_natural_tendencia: { phpName: PfuCoberturaForestalNaturalTendencia, type: VARCHAR, size: '50', required: false }
-    pfu_cobertura_forestal_protector_tendencia: { phpName: PfuCoberturaForestalProtectorTendencia, type: VARCHAR, size: '50', required: false }
-    pfu_cobertura_forestal_protector_productor_tendencia: { phpName: PfuCoberturaForestalProtectorProductorTendencia, type: VARCHAR, size: '50', required: false }
+    pfu_cobertura_forestal_bosque_natural_tendencia: { phpName: PfuCoberturaForestalBosqueNaturalTendencia, type: VARCHAR, size: '50', required: false }
+    pfu_cobertura_forestal_bosque_protector_tendencia: { phpName: PfuCoberturaForestalBosqueProtectorTendencia, type: VARCHAR, size: '50', required: false }
+    pfu_cobertura_forestal_bosque_protector_productor_tendencia: { phpName: PfuCoberturaForestalBosqueProtectorProductorTendencia, type: VARCHAR, size: '50', required: false }
     pfu_cobertura_forestal_productor_tendencia: { phpName: PfuCoberturaForestalProductorTendencia, type: VARCHAR, size: '50', required: false }
     pfu_cobertura_forestal_regeneracion_natural_tendencia: { phpName: PfuCoberturaForestalRegeneracionNaturalTendencia, type: VARCHAR, size: '50', required: false }
-    pfu_extension_has: { phpName: PfuExtensionHas, type: INTEGER, required: false }
     pfu_aislamiento_franja_amarilla_microcuenca: { phpName: PfuAislamientoFranjaAmarillaMicrocuenca, type: VARCHAR, required: false }
     pfu_cobertura_forestal_area_protectora_cauce: { phpName: PfuCoberturaForestalAreaProtectoraCauce, type: VARCHAR, required: false }
     pfu_area_microcuenca_propiedad_acueducto: { phpName: PfuAreaMicrocuencaPropiedadAcueducto, type: VARCHAR, required: false }
@@ -828,7 +825,7 @@ propel:
   tipofuentesuperficial:
     _attributes: { phpName: Tipofuentesuperficial }
     tfu_id: { phpName: TfuId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    tfu_fue_id: { phpName: TfuFueId, type: INTEGER, required: true }
+    tfu_fue_id: { phpName: TfuFueId, type: INTEGER, required: true, foreignTable: fuentes, foreignReference: fue_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     tfu_nacimiento: { phpName: TfuNacimiento, type: VARCHAR, size: '100', required: true }
     tfu_quebrada_rio: { phpName: TfuQuebradaRio, type: VARCHAR, size: '100', required: false }
     tfu_reservorio: { phpName: TfuReservorio, type: VARCHAR, size: '100', required: false }
