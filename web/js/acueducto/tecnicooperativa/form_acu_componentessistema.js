@@ -7,18 +7,27 @@ var tecnicooperativacomponentessistema_form = new Ext.form.FormPanel({
     buttons: [{
         text: 'Atrás',
         handler: function(){
+            tecnicooperativacomponentessistema_form.getForm().submit({
+                url: getAbsoluteUrl('acueducto_componentessistema', 'subirDatos'),
+                clientValidation: false
+            });
             tecnicooperativa_acueducto_tabpanel.setActiveTab(0);
         }
     }, {
         text: 'Siguiente',
         handler: function(){
+            tecnicooperativacomponentessistema_form.getForm().submit({
+                url: getAbsoluteUrl('acueducto_componentessistema', 'subirDatos'),
+                clientValidation: false
+            });
             tecnicooperativa_acueducto_tabpanel.setActiveTab(2);
         }
     }]
 });
 
 var tocs_captacion = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
     tabIndex: 2,
     id: "tocs_captacion",
     name: "tocs_captacion",
@@ -29,6 +38,11 @@ var tocs_captacion = {
         inputValue: 1
     }],
     listeners: {
+        check: function(radio, checked){
+            var textfield = Ext.getCmp('tocs_captacion_cantidad');
+            textfield.setDisabled(!checked);
+            textfield.focus();
+        },
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('tocs_captacion')).getEl(),
@@ -43,6 +57,8 @@ var tocs_captacion = {
 
 var tocs_captacion_cantidad = {
     xtype: "textfield",
+    value: 0,
+    disabled: true,
     tabIndex: 3,
     id: "tocs_captacion_cantidad",
     name: "tocs_captacion_cantidad",
@@ -62,7 +78,8 @@ var tocs_captacion_cantidad = {
 }
 
 var tocs_aduccion = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
     tabIndex: 4,
     id: "tocs_aduccion",
     name: "tocs_aduccion",
@@ -73,6 +90,11 @@ var tocs_aduccion = {
         inputValue: 1
     }],
     listeners: {
+        check: function(radio, checked){
+            var textfield = Ext.getCmp('tocs_aduccion_cantidad');
+            textfield.setDisabled(!checked);
+            textfield.focus();
+        },
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('tocs_aduccion')).getEl(),
@@ -87,6 +109,8 @@ var tocs_aduccion = {
 
 var tocs_aduccion_cantidad = {
     xtype: "textfield",
+    value: 0,
+    disabled: true,
     tabIndex: 5,
     id: "tocs_aduccion_cantidad",
     name: "tocs_aduccion_cantidad",
@@ -106,7 +130,8 @@ var tocs_aduccion_cantidad = {
 }
 
 var tocs_desarenador = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
     tabIndex: 6,
     id: "tocs_desarenador",
     name: "tocs_desarenador",
@@ -117,6 +142,11 @@ var tocs_desarenador = {
         inputValue: 1
     }],
     listeners: {
+        check: function(radio, checked){
+            var textfield = Ext.getCmp('tocs_desarenador_cantidad');
+            textfield.setDisabled(!checked);
+            textfield.focus();
+        },
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('tocs_desarenador')).getEl(),
@@ -131,6 +161,8 @@ var tocs_desarenador = {
 
 var tocs_desarenador_cantidad = {
     xtype: "textfield",
+    value: 0,
+    disabled: true,
     tabIndex: 7,
     id: "tocs_desarenador_cantidad",
     name: "tocs_desarenador_cantidad",
@@ -150,7 +182,8 @@ var tocs_desarenador_cantidad = {
 }
 
 var tocs_conduccion_agua_cruda = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
     tabIndex: 8,
     id: "tocs_conduccion_agua_cruda",
     name: "tocs_conduccion_agua_cruda",
@@ -161,6 +194,11 @@ var tocs_conduccion_agua_cruda = {
         inputValue: 1
     }],
     listeners: {
+        check: function(radio, checked){
+            var textfield = Ext.getCmp('tocs_conduccion_agua_cruda_cantidad');
+            textfield.setDisabled(!checked);
+            textfield.focus();
+        },
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('tocs_conduccion_agua_cruda')).getEl(),
@@ -175,6 +213,8 @@ var tocs_conduccion_agua_cruda = {
 
 var tocs_conduccion_agua_cruda_cantidad = {
     xtype: "textfield",
+    value: 0,
+    disabled: true,
     tabIndex: 9,
     id: "tocs_conduccion_agua_cruda_cantidad",
     name: "tocs_conduccion_agua_cruda_cantidad",
@@ -194,7 +234,8 @@ var tocs_conduccion_agua_cruda_cantidad = {
 }
 
 var tocs_planta_tratamiento = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
     tabIndex: 10,
     id: "tocs_planta_tratamiento",
     name: "tocs_planta_tratamiento",
@@ -205,6 +246,11 @@ var tocs_planta_tratamiento = {
         inputValue: 1
     }],
     listeners: {
+        check: function(radio, checked){
+            var textfield = Ext.getCmp('tocs_planta_tratamiento_cantidad');
+            textfield.setDisabled(!checked);
+            textfield.focus();
+        },
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('tocs_planta_tratamiento')).getEl(),
@@ -219,6 +265,8 @@ var tocs_planta_tratamiento = {
 
 var tocs_planta_tratamiento_cantidad = {
     xtype: "textfield",
+    value: 0,
+    disabled: true,
     tabIndex: 11,
     id: "tocs_planta_tratamiento_cantidad",
     name: "tocs_planta_tratamiento_cantidad",
@@ -238,7 +286,8 @@ var tocs_planta_tratamiento_cantidad = {
 }
 
 var tocs_desinfeccion = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
     tabIndex: 12,
     id: "tocs_desinfeccion",
     name: "tocs_desinfeccion",
@@ -249,6 +298,11 @@ var tocs_desinfeccion = {
         inputValue: 1
     }],
     listeners: {
+        check: function(radio, checked){
+            var textfield = Ext.getCmp('tocs_desinfeccion_cantidad');
+            textfield.setDisabled(!checked);
+            textfield.focus();
+        },
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('tocs_desinfeccion')).getEl(),
@@ -263,6 +317,8 @@ var tocs_desinfeccion = {
 
 var tocs_desinfeccion_cantidad = {
     xtype: "textfield",
+    value: 0,
+    disabled: true,
     tabIndex: 13,
     id: "tocs_desinfeccion_cantidad",
     name: "tocs_desinfeccion_cantidad",
@@ -282,7 +338,8 @@ var tocs_desinfeccion_cantidad = {
 }
 
 var tocs_tanque_almacenamiento = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
     tabIndex: 14,
     id: "tocs_tanque_almacenamiento",
     name: "tocs_tanque_almacenamiento",
@@ -293,6 +350,11 @@ var tocs_tanque_almacenamiento = {
         inputValue: 1
     }],
     listeners: {
+        check: function(radio, checked){
+            var textfield = Ext.getCmp('tocs_tanque_almacenamiento_cantidad');
+            textfield.setDisabled(!checked);
+            textfield.focus();
+        },
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('tocs_tanque_almacenamiento')).getEl(),
@@ -307,6 +369,8 @@ var tocs_tanque_almacenamiento = {
 
 var tocs_tanque_almacenamiento_cantidad = {
     xtype: "textfield",
+    value: 0,
+    disabled: true,
     tabIndex: 15,
     id: "tocs_tanque_almacenamiento_cantidad",
     name: "tocs_tanque_almacenamiento_cantidad",
@@ -326,7 +390,8 @@ var tocs_tanque_almacenamiento_cantidad = {
 }
 
 var tocs_conduccion_agua_tratada = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
     tabIndex: 16,
     id: "tocs_conduccion_agua_tratada",
     name: "tocs_conduccion_agua_tratada",
@@ -337,6 +402,11 @@ var tocs_conduccion_agua_tratada = {
         inputValue: 1
     }],
     listeners: {
+        check: function(radio, checked){
+            var textfield = Ext.getCmp('tocs_conduccion_agua_tratada_cantidad');
+            textfield.setDisabled(!checked);
+            textfield.focus();
+        },
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('tocs_conduccion_agua_tratada')).getEl(),
@@ -352,6 +422,8 @@ var tocs_conduccion_agua_tratada = {
 
 var tocs_conduccion_agua_tratada_cantidad = {
     xtype: "textfield",
+    value: 0,
+    disabled: true,
     tabIndex: 17,
     id: "tocs_conduccion_agua_tratada_cantidad",
     name: "tocs_conduccion_agua_tratada_cantidad",
@@ -371,7 +443,8 @@ var tocs_conduccion_agua_tratada_cantidad = {
 }
 
 var tocs_red_distribucion = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
     tabIndex: 18,
     id: "tocs_red_distribucion",
     name: "tocs_red_distribucion",
@@ -382,6 +455,11 @@ var tocs_red_distribucion = {
         inputValue: 1
     }],
     listeners: {
+        check: function(radio, checked){
+            var textfield = Ext.getCmp('tocs_red_distribucion_cantidad');
+            textfield.setDisabled(!checked);
+            textfield.focus();
+        },
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('tocs_red_distribucion')).getEl(),
@@ -396,6 +474,8 @@ var tocs_red_distribucion = {
 
 var tocs_red_distribucion_cantidad = {
     xtype: "textfield",
+    value: 0,
+    disabled: true,
     tabIndex: 19,
     id: "tocs_red_distribucion_cantidad",
     name: "tocs_red_distribucion_cantidad",
@@ -413,6 +493,78 @@ var tocs_red_distribucion_cantidad = {
         }
     }
 }
+
+var acu_componentessistema_datastore = new Ext.data.Store({
+    id: 'acu_componentessistema_datastore',
+    proxy: new Ext.data.HttpProxy({
+        url: getAbsoluteUrl('acueducto_componentessistema', 'obtenerDatos'),
+        method: 'POST'
+    }),
+    reader: new Ext.data.JsonReader({
+        root: 'data',
+    }, [{
+        name: 'tocs_captacion',
+        type: 'int'
+    }, {
+        name: 'tocs_captacion_cantidad',
+        type: 'int'
+    }, {
+        name: 'tocs_aduccion',
+        type: 'int'
+    }, {
+        name: 'tocs_aduccion_cantidad',
+        type: 'int'
+    }, {
+        name: 'tocs_desarenador',
+        type: 'int'
+    }, {
+        name: 'tocs_desarenador_cantidad',
+        type: 'int'
+    }, {
+        name: 'tocs_conduccion_agua_cruda',
+        type: 'int'
+    }, {
+        name: 'tocs_conduccion_agua_cruda_cantidad',
+        type: 'int'
+    }, {
+        name: 'tocs_planta_tratamiento',
+        type: 'int'
+    }, {
+        name: 'tocs_planta_tratamiento_cantidad',
+        type: 'int'
+    }, {
+        name: 'tocs_desinfeccion',
+        type: 'int'
+    }, {
+        name: 'tocs_desinfeccion_cantidad',
+        type: 'int'
+    }, {
+        name: 'tocs_tanque_almacenamiento',
+        type: 'int'
+    }, {
+        name: 'tocs_tanque_almacenamiento_cantidad',
+        type: 'int'
+    }, {
+        name: 'tocs_conduccion_agua_tratada',
+        type: 'int'
+    }, {
+        name: 'tocs_conduccion_agua_tratada_cantidad',
+        type: 'int'
+    }, {
+        name: 'tocs_red_distribucion',
+        type: 'int'
+    }, {
+        name: 'tocs_red_distribucion_cantidad',
+        type: 'int'
+    }])
+});
+
+acu_componentessistema_datastore.load({
+    callback: function(){
+        var registro = acu_componentessistema_datastore.getAt(0);
+        tecnicooperativacomponentessistema_form.getForm().loadRecord(registro);
+    }
+});
 
 tecnicooperativacomponentessistema_form.add({
     xtype: 'fieldset',

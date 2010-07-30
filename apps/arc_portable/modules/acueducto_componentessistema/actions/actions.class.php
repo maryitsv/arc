@@ -10,13 +10,115 @@
  */
 class acueducto_componentessistemaActions extends sfActions
 {
- /**
-  * Executes index action
-  *
-  * @param sfRequest $request A request object
-  */
-  public function executeIndex(sfWebRequest $request)
-  {
-  	
-  }
+	/**
+	 * Executes index action
+	 *
+	 * @param sfRequest $request A request object
+	 */
+	public function executeIndex(sfWebRequest $request)
+	{
+			
+	}
+
+	public function executeSubirDatos(sfWebRequest $request) {
+		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
+		$pps_ser_id = 1;
+
+		$criteria = new Criteria();
+		$criteria->add(TecnicooperativoPeer::TOP_PPS_ANIO, $pps_anio);
+		$criteria->add(TecnicooperativoPeer::TOP_PPS_PRE_ID, $pps_pre_id);
+		$criteria->add(TecnicooperativoPeer::TOP_PPS_SER_ID, $pps_ser_id);
+		$tecnicoOperativo = TecnicooperativoPeer::doSelectOne($criteria);
+
+		if($tecnicoOperativo) {
+			$tecnicoOperativaComponentesSistemas = $tecnicoOperativo->getTecnicooperativacomponentessistemas();
+			if(count($tecnicoOperativaComponentesSistemas)>0) {
+				$tecnicoOperativaComponentesSistema = $tecnicoOperativaComponentesSistemas[0];
+			}
+			else {
+				$tecnicoOperativaComponentesSistema = new Tecnicooperativacomponentessistema();
+				$tecnicoOperativaComponentesSistema->setTocsTopId($tecnicoOperativo->getTopId());
+			}
+		}
+		else {
+			$tecnicoOperativo = new Tecnicooperativo();
+			$tecnicoOperativo->setTopPpsAnio($pps_anio);
+			$tecnicoOperativo->setTopPpsPreId($pps_pre_id);
+			$tecnicoOperativo->setTopPpsSerId($pps_ser_id);
+			$tecnicoOperativo->save();
+
+			$tecnicoOperativaComponentesSistema = new Tecnicooperativacomponentessistema();
+			$tecnicoOperativaComponentesSistema->setToaTopId($tecnicoOperativo->getTopId());
+		}
+
+		$tecnicoOperativaComponentesSistema->setTocsCaptacion($request->getParameter('tocs_captacion', 0));
+		$tecnicoOperativaComponentesSistema->setTocsCaptacionCantidad($request->getParameter('tocs_captacion_cantidad', 0));
+		$tecnicoOperativaComponentesSistema->setTocsAduccion($request->getParameter('tocs_aduccion', 0));
+		$tecnicoOperativaComponentesSistema->setTocsAduccionCantidad($request->getParameter('tocs_aduccion_cantidad', 0));
+		$tecnicoOperativaComponentesSistema->setTocsDesarenador($request->getParameter('tocs_desarenador', 0));
+		$tecnicoOperativaComponentesSistema->setTocsDesarenadorCantidad($request->getParameter('tocs_desarenador_cantidad', 0));
+		$tecnicoOperativaComponentesSistema->setTocsConduccionAguaCruda($request->getParameter('tocs_conduccion_agua_cruda', 0));
+		$tecnicoOperativaComponentesSistema->setTocsConduccionAguaCrudaCantidad($request->getParameter('tocs_conduccion_agua_cruda_cantidad', 0));
+		$tecnicoOperativaComponentesSistema->setTocsPlantaTratamiento($request->getParameter('tocs_planta_tratamiento', 0));
+		$tecnicoOperativaComponentesSistema->setTocsPlantaTratamientoCantidad($request->getParameter('tocs_planta_tratamiento_cantidad', 0));
+		$tecnicoOperativaComponentesSistema->setTocsDesinfeccion($request->getParameter('tocs_desinfeccion', 0));
+		$tecnicoOperativaComponentesSistema->setTocsDesinfeccionCantidad($request->getParameter('tocs_desinfeccion_cantidad', 0));
+		$tecnicoOperativaComponentesSistema->setTocsTanqueAlmacenamiento($request->getParameter('tocs_tanque_almacenamiento', 0));
+		$tecnicoOperativaComponentesSistema->setTocsTanqueAlmacenamientoCantidad($request->getParameter('tocs_tanque_almacenamiento_cantidad', 0));
+		$tecnicoOperativaComponentesSistema->setTocsConduccionAguaTratada($request->getParameter('tocs_conduccion_agua_tratada', 0));
+		$tecnicoOperativaComponentesSistema->setTocsConduccionAguaTratadaCantidad($request->getParameter('tocs_conduccion_agua_tratada_cantidad', 0));
+		$tecnicoOperativaComponentesSistema->setTocsRedDistribucion($request->getParameter('tocs_red_distribucion', 0));
+		$tecnicoOperativaComponentesSistema->setTocsRedDistribucionCantidad($request->getParameter('tocs_red_distribucion_cantidad', 0));
+
+		$tecnicoOperativaComponentesSistema->save();
+		return $this->renderText('Almacenado correctamente');
+	}
+
+	public function executeObtenerDatos() {
+		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
+		$pps_ser_id = 1;
+
+		$criteria = new Criteria();
+		$criteria->add(TecnicooperativoPeer::TOP_PPS_ANIO, $pps_anio);
+		$criteria->add(TecnicooperativoPeer::TOP_PPS_PRE_ID, $pps_pre_id);
+		$criteria->add(TecnicooperativoPeer::TOP_PPS_SER_ID, $pps_ser_id);
+		$tecnicoOperativo = TecnicooperativoPeer::doSelectOne($criteria);
+
+		$result = array();
+		$datos = array();
+
+		if($tecnicoOperativo) {
+			$tecnicoOperativaComponentesSistemas = $tecnicoOperativo->getTecnicooperativacomponentessistemas();
+			if(count($tecnicoOperativaComponentesSistemas)>0) {
+				$tecnicoOperativaComponentesSistema = $tecnicoOperativaComponentesSistemas[0];
+				$campos = array();
+
+				$campos['tocs_captacion'] = $tecnicoOperativaComponentesSistema->getTocsCaptacion();
+				$campos['tocs_captacion_cantidad'] = $tecnicoOperativaComponentesSistema->getTocsCaptacionCantidad();
+				$campos['tocs_aduccion'] = $tecnicoOperativaComponentesSistema->getTocsAduccion();
+				$campos['tocs_aduccion_cantidad'] = $tecnicoOperativaComponentesSistema->getTocsAduccionCantidad();
+				$campos['tocs_desarenador'] = $tecnicoOperativaComponentesSistema->getTocsDesarenador();
+				$campos['tocs_desarenador_cantidad'] = $tecnicoOperativaComponentesSistema->getTocsDesarenadorCantidad();
+				$campos['tocs_conduccion_agua_cruda'] = $tecnicoOperativaComponentesSistema->getTocsConduccionAguaCruda();
+				$campos['tocs_conduccion_agua_cruda_cantidad'] = $tecnicoOperativaComponentesSistema->getTocsConduccionAguaCrudaCantidad();
+				$campos['tocs_planta_tratamiento'] = $tecnicoOperativaComponentesSistema->getTocsPlantaTratamiento();
+				$campos['tocs_planta_tratamiento_cantidad'] = $tecnicoOperativaComponentesSistema->getTocsPlantaTratamientoCantidad();
+				$campos['tocs_desinfeccion'] = $tecnicoOperativaComponentesSistema->getTocsDesinfeccion();
+				$campos['tocs_desinfeccion_cantidad'] = $tecnicoOperativaComponentesSistema->getTocsDesinfeccionCantidad();
+				$campos['tocs_tanque_almacenamiento'] = $tecnicoOperativaComponentesSistema->getTocsTanqueAlmacenamiento();
+				$campos['tocs_tanque_almacenamiento_cantidad'] = $tecnicoOperativaComponentesSistema->getTocsTanqueAlmacenamientoCantidad();
+				$campos['tocs_conduccion_agua_tratada'] = $tecnicoOperativaComponentesSistema->getTocsConduccionAguaTratada();
+				$campos['tocs_conduccion_agua_tratada_cantidad'] = $tecnicoOperativaComponentesSistema->getTocsConduccionAguaTratadaCantidad();
+				$campos['tocs_red_distribucion'] = $tecnicoOperativaComponentesSistema->getTocsRedDistribucion();
+				$campos['tocs_red_distribucion_cantidad'] = $tecnicoOperativaComponentesSistema->getTocsRedDistribucionCantidad();
+
+				$datos[] = $campos;
+			}
+		}
+
+		$result['data'] = $datos;
+		return $this->renderText(json_encode($result));
+	}
 }

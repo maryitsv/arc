@@ -6,18 +6,27 @@ var form_acu_aduccionimpulsion = new Ext.form.FormPanel({
     buttons: [{
         text: 'Atrás',
         handler: function(){
+            form_acu_aduccionimpulsion.getForm().submit({
+                url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'subirDatos'),
+                clientValidation: false
+            });
             tecnicooperativa_acueducto_tabpanel.setActiveTab(2);
         }
     }, {
         text: 'Siguiente',
         handler: function(){
+            form_acu_aduccionimpulsion.getForm().submit({
+                url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'subirDatos'),
+                clientValidation: false
+            });
             tecnicooperativa_acueducto_tabpanel.setActiveTab(4);
         }
     }]
 });
 
 var toai_canal_abierto = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
     tabIndex: 18,
     id: "toai_canal_abierto",
     name: "toai_canal_abierto",
@@ -27,6 +36,15 @@ var toai_canal_abierto = {
         inputValue: 1
     }],
     listeners: {
+        check: function(radio, checked){
+            var textfield = Ext.getCmp('toai_canal_abierto_tierra_longitud').setDisabled(!checked);
+            textfield.focus();
+            Ext.getCmp('toai_canal_abierto_tierra_edad').setDisabled(!checked);
+            Ext.getCmp('toai_canal_abierto_concreto_longitud').setDisabled(!checked);
+            Ext.getCmp('toai_canal_abierto_concreto_edad').setDisabled(!checked);
+            Ext.getCmp('toai_canal_abierto_mamposteria_longitud').setDisabled(!checked);
+            Ext.getCmp('toai_canal_abierto_mamposteria_edad').setDisabled(!checked);
+        },
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_canal_abierto')).getEl(),
@@ -41,6 +59,8 @@ var toai_canal_abierto = {
 
 var toai_canal_abierto_tierra_longitud = {
     xtype: "textfield",
+    value: 0,
+    disabled: true,
     tabIndex: 1,
     id: "toai_canal_abierto_tierra_longitud",
     name: "toai_canal_abierto_tierra_longitud",
@@ -62,6 +82,8 @@ var toai_canal_abierto_tierra_longitud = {
 
 var toai_canal_abierto_tierra_edad = {
     xtype: "textfield",
+    value: 0,
+    disabled: true,
     tabIndex: 1,
     id: "toai_canal_abierto_tierra_edad",
     name: "toai_canal_abierto_tierra_edad",
@@ -83,6 +105,8 @@ var toai_canal_abierto_tierra_edad = {
 
 var toai_canal_abierto_concreto_longitud = {
     xtype: "textfield",
+    value: 0,
+    disabled: true,
     tabIndex: 1,
     id: "toai_canal_abierto_concreto_longitud",
     name: "toai_canal_abierto_concreto_longitud",
@@ -104,6 +128,8 @@ var toai_canal_abierto_concreto_longitud = {
 
 var toai_canal_abierto_concreto_edad = {
     xtype: "textfield",
+    value: 0,
+    disabled: true,
     tabIndex: 1,
     id: "toai_canal_abierto_concreto_edad",
     name: "toai_canal_abierto_concreto_edad",
@@ -125,6 +151,8 @@ var toai_canal_abierto_concreto_edad = {
 
 var toai_canal_abierto_mamposteria_longitud = {
     xtype: "textfield",
+    value: 0,
+    disabled: true,
     tabIndex: 1,
     id: "toai_canal_abierto_mamposteria_longitud",
     name: "toai_canal_abierto_mamposteria_longitud",
@@ -146,6 +174,8 @@ var toai_canal_abierto_mamposteria_longitud = {
 
 var toai_canal_abierto_mamposteria_edad = {
     xtype: "textfield",
+    value: 0,
+    disabled: true,
     tabIndex: 1,
     id: "toai_canal_abierto_mamposteria_edad",
     name: "toai_canal_abierto_mamposteria_edad",
@@ -166,7 +196,8 @@ var toai_canal_abierto_mamposteria_edad = {
 }
 
 var toai_canal_cubierto = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
     tabIndex: 18,
     id: "toai_canal_cubierto",
     name: "toai_canal_cubierto",
@@ -176,6 +207,15 @@ var toai_canal_cubierto = {
         inputValue: 1
     }],
     listeners: {
+        check: function(radio, checked){
+            var textfield = Ext.getCmp('toai_canal_cubierto_tierra_longitud').setDisabled(!checked);
+            textfield.focus();
+            Ext.getCmp('toai_canal_cubierto_tierra_edad').setDisabled(!checked);
+            Ext.getCmp('toai_canal_cubierto_concreto_longitud').setDisabled(!checked);
+            Ext.getCmp('toai_canal_cubierto_concreto_edad').setDisabled(!checked);
+            Ext.getCmp('toai_canal_cubierto_mamposteria_longitud').setDisabled(!checked);
+            Ext.getCmp('toai_canal_cubierto_mamposteria_edad').setDisabled(!checked);
+        },
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_canal_cubierto')).getEl(),
@@ -190,6 +230,8 @@ var toai_canal_cubierto = {
 
 var toai_canal_cubierto_tierra_longitud = {
     xtype: "textfield",
+    value: 0,
+    disabled: true,
     tabIndex: 1,
     id: "toai_canal_cubierto_tierra_longitud",
     name: "toai_canal_cubierto_tierra_longitud",
@@ -211,6 +253,8 @@ var toai_canal_cubierto_tierra_longitud = {
 
 var toai_canal_cubierto_tierra_edad = {
     xtype: "textfield",
+    value: 0,
+    disabled: true,
     tabIndex: 1,
     id: "toai_canal_cubierto_tierra_edad",
     name: "toai_canal_cubierto_tierra_edad",
@@ -232,6 +276,8 @@ var toai_canal_cubierto_tierra_edad = {
 
 var toai_canal_cubierto_concreto_longitud = {
     xtype: "textfield",
+    value: 0,
+    disabled: true,
     tabIndex: 1,
     id: "toai_canal_cubierto_concreto_longitud",
     name: "toai_canal_cubierto_concreto_longitud",
@@ -253,6 +299,8 @@ var toai_canal_cubierto_concreto_longitud = {
 
 var toai_canal_cubierto_concreto_edad = {
     xtype: "textfield",
+    value: 0,
+    disabled: true,
     tabIndex: 1,
     id: "toai_canal_cubierto_concreto_edad",
     name: "toai_canal_cubierto_concreto_edad",
@@ -274,6 +322,8 @@ var toai_canal_cubierto_concreto_edad = {
 
 var toai_canal_cubierto_mamposteria_longitud = {
     xtype: "textfield",
+    value: 0,
+    disabled: true,
     tabIndex: 1,
     id: "toai_canal_cubierto_mamposteria_longitud",
     name: "toai_canal_cubierto_mamposteria_longitud",
@@ -295,6 +345,8 @@ var toai_canal_cubierto_mamposteria_longitud = {
 
 var toai_canal_cubierto_mamposteria_edad = {
     xtype: "textfield",
+    value: 0,
+    disabled: true,
     tabIndex: 1,
     id: "toai_canal_cubierto_mamposteria_edad",
     name: "toai_canal_cubierto_mamposteria_edad",
@@ -313,6 +365,66 @@ var toai_canal_cubierto_mamposteria_edad = {
         }
     }
 }
+
+var acu_aduccionimpulsion_datastore = new Ext.data.Store({
+    id: 'acu_aduccionimpulsion_datastore',
+    proxy: new Ext.data.HttpProxy({
+        url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'obtenerDatos'),
+        method: 'POST'
+    }),
+    reader: new Ext.data.JsonReader({
+        root: 'data',
+    }, [{
+        name: 'toai_canal_abierto',
+        type: 'int'
+    }, {
+        name: 'toai_canal_abierto_tierra_longitud',
+        type: 'int'
+    }, {
+        name: 'toai_canal_abierto_tierra_edad',
+        type: 'int'
+    }, {
+        name: 'toai_canal_abierto_concreto_longitud',
+        type: 'int'
+    }, {
+        name: 'toai_canal_abierto_concreto_edad',
+        type: 'int'
+    }, {
+        name: 'toai_canal_abierto_mamposteria_longitud',
+        type: 'int'
+    }, {
+        name: 'toai_canal_abierto_mamposteria_edad',
+        type: 'int'
+    }, {
+        name: 'toai_canal_cubierto',
+        type: 'int'
+    }, {
+        name: 'toai_canal_cubierto_tierra_longitud',
+        type: 'int'
+    }, {
+        name: 'toai_canal_cubierto_tierra_edad',
+        type: 'int'
+    }, {
+        name: 'toai_canal_cubierto_concreto_longitud',
+        type: 'int'
+    }, {
+        name: 'toai_canal_cubierto_concreto_edad',
+        type: 'int'
+    }, {
+        name: 'toai_canal_cubierto_mamposteria_longitud',
+        type: 'int'
+    }, {
+        name: 'toai_canal_cubierto_mamposteria_edad',
+        type: 'int'
+    }])
+});
+
+acu_aduccionimpulsion_datastore.load({
+    callback: function(){
+        var registro = acu_aduccionimpulsion_datastore.getAt(0);
+        form_acu_aduccionimpulsion.getForm().loadRecord(registro);
+    }
+});
 
 form_acu_aduccionimpulsion.add({
     xtype: 'fieldset',
