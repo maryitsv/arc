@@ -1,4 +1,5 @@
 
+
 var login_title_panel = new Ext.Panel({
 	frame: false,
 	border: false,
@@ -33,7 +34,19 @@ var login_panel = new Ext.form.FormPanel({
 		id: 'usu_login',
 		name: 'usu_login',
 		vtype:'alphanum',
-		allowBlank:false
+		allowBlank:false,
+		listeners: {
+			specialkey: function(field, e){
+				if (e.getKey() == e.ENTER) {
+					if(Ext.getCmp('usu_login').isValid() && Ext.getCmp('usu_clave').isValid()){
+						login_autenticar();
+					}
+					else{
+						Ext.example.msg('Error', 'campos incompletos');
+					}
+				}
+			}
+		}
 	  },
 	  {
 		fieldLabel: 'Contrase&ntilde;a', 
@@ -42,7 +55,19 @@ var login_panel = new Ext.form.FormPanel({
 		anchor: '100%', 
 		id: 'usu_clave',
 		name: 'usu_clave',
-		allowBlank:false
+		allowBlank:false,
+		listeners: {
+			specialkey: function(field, e){
+				if (e.getKey() == e.ENTER) {
+					if(Ext.getCmp('usu_login').isValid() && Ext.getCmp('usu_clave').isValid()){
+						login_autenticar();
+					}
+					else{
+						Ext.example.msg('Error', 'campos incompletos');
+					}
+				}
+			}
+		}
 	  }
 	],
 	buttons:[
