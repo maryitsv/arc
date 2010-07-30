@@ -1,6 +1,6 @@
 var form_acu_aduccionimpulsion = new Ext.form.FormPanel({
     id: 'tecnicooperativaaduccionimpulsion-form',
-    width: 840,
+    autoWidth: true,
     height: 380,
     frame: true,
     buttons: [{
@@ -19,7 +19,9 @@ var form_acu_aduccionimpulsion = new Ext.form.FormPanel({
                 url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'subirDatos'),
                 clientValidation: false
             });
-            tecnicooperativa_acueducto_tabpanel.setActiveTab(4);
+            form_acu_aduccionimpulsion.hide();
+            form_acu_aduccionimpulsion2.show();
+            //            tecnicooperativa_acueducto_tabpanel.setActiveTab(4);
         }
     }]
 });
@@ -512,4 +514,4 @@ form_acu_aduccionimpulsion.add({
     }]
 });
 
-form_acu_aduccionimpulsion.render('div_form_acu_aduccionimpulsion');
+//form_acu_aduccionimpulsion.render('div_form_acu_aduccionimpulsion');
