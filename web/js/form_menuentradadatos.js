@@ -123,7 +123,7 @@ init: function () {
 										items: [{
 													autoScroll: true,
 													frame: true,
-													autoLoad: {url: url_arc+'acueducto_calidadagua', scripts: true, scope: this}
+													autoLoad: {url: url_arc+'acueducto_calidad', scripts: true, scope: this}
 												}
 										]	
 									}]
