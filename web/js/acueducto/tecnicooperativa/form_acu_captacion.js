@@ -1,7 +1,7 @@
 var captacionacueducto_form = new Ext.Panel({
     id: 'captacionacueducto-form',
     layout: 'form',
-    width: 840,
+    autoWidth: true,
     height: 380,
     frame: true,
     buttons: [{
@@ -293,12 +293,25 @@ captacionacueducto_form.add({
             buttons: [{
                 text: 'Adicionar',
                 handler: function(){
-                    acu_captacion_fuente_superficial_datastore.load();
+                    Ext.Ajax.request({
+                        url: getAbsoluteUrl('acueducto_captacion', 'adicionarFuenteSuperficial'),
+                        success: function(){
+                            acu_captacion_fuente_superficial_datastore.load();
+                        }
+                    });
                 }
             }, {
                 text: 'Eliminar',
                 handler: function(){
-                    acu_captacion_fuente_superficial_datastore.remove(acu_captacion_fuente_superficial_gridpanel.getSelectionModel().getSelected());
+                    Ext.Ajax.request({
+                        url: getAbsoluteUrl('acueducto_captacion', 'eliminarFuenteSuperficial'),
+                        success: function(){
+                            acu_captacion_fuente_superficial_datastore.load();
+                        },
+                        params: {
+                            capt_id: acu_captacion_fuente_superficial_gridpanel.getSelectionModel().getSelected().get('capt_id')
+                        }
+                    });
                 }
             }]
         }]

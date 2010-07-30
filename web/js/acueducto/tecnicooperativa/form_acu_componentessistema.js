@@ -1,6 +1,7 @@
 var tecnicooperativacomponentessistema_form = new Ext.form.FormPanel({
     id: 'tecnicooperativacomponentessistema-form',
-    width: 840,
+    //    width: 840,
+    autoWidth: true,
     height: 380,
     frame: true,
     //    anchor: '100%',

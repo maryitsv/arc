@@ -2,6 +2,7 @@ var sistemasabastecimiento_form = new Ext.form.FormPanel({
     id: 'sistemasabastecimiento-form',
     layout: 'form',
     width: 840,
+    autoWidth: true,
     height: 380,
     //    height: '400',
     frame: true,

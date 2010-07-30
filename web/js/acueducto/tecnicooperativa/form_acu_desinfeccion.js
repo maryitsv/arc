@@ -1,17 +1,17 @@
 var form_acu_desinfeccion = new Ext.form.FormPanel({
     id: 'tecnicooperativaplantatratamientoaguapotable3-form',
-    width: 840,
+    autoWidth: true,
     height: 380,
     frame: true,
     buttons: [{
         text: 'Atrás',
         handler: function(){
-            tecnicooperativa_acueducto_tabpanel.setActiveTab(8);
+            tecnicooperativa_acueducto_tabpanel.setActiveTab(5);
         }
     }, {
         text: 'Siguiente',
         handler: function(){
-            tecnicooperativa_acueducto_tabpanel.setActiveTab(10);
+            tecnicooperativa_acueducto_tabpanel.setActiveTab(7);
         }
     }]
 });

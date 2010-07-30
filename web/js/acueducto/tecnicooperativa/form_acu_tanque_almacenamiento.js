@@ -1,18 +1,18 @@
 var form_acu_tanque_almacenamiento = new Ext.Panel({
     id: 'tanque_almacenamiento-form',
     layout: 'form',
-    width: 840,
+    autoWidth: true,
     height: 380,
     frame: true,
     buttons: [{
         text: 'Atrás',
         handler: function(){
-            tecnicooperativa_acueducto_tabpanel.setActiveTab(9);
+            tecnicooperativa_acueducto_tabpanel.setActiveTab(6);
         }
     }, {
         text: 'Siguiente',
         handler: function(){
-            tecnicooperativa_acueducto_tabpanel.setActiveTab(11);
+            tecnicooperativa_acueducto_tabpanel.setActiveTab(8);
         }
     }]
 });

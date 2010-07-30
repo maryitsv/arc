@@ -1,8 +1,9 @@
 var form_acu_aduccionimpulsion2 = new Ext.form.FormPanel({
     id: 'tecnicooperativaaduccionimpulsion2-form',
-    width: 840,
+    autoWidth: true,
     height: 380,
     frame: true,
+    hidden: true,
     buttons: [{
         text: 'Atrás',
         handler: function(){
@@ -10,7 +11,9 @@ var form_acu_aduccionimpulsion2 = new Ext.form.FormPanel({
                 url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'subirDatos'),
                 clientValidation: false
             });
-            tecnicooperativa_acueducto_tabpanel.setActiveTab(3);
+//            tecnicooperativa_acueducto_tabpanel.setActiveTab(3);
+            form_acu_aduccionimpulsion.show();
+            form_acu_aduccionimpulsion2.hide();
         }
     }, {
         text: 'Siguiente',
@@ -19,7 +22,7 @@ var form_acu_aduccionimpulsion2 = new Ext.form.FormPanel({
                 url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'subirDatos'),
                 clientValidation: false
             });
-            tecnicooperativa_acueducto_tabpanel.setActiveTab(5);
+            tecnicooperativa_acueducto_tabpanel.setActiveTab(4);
         }
     }]
 });
@@ -692,4 +695,10 @@ form_acu_aduccionimpulsion2.add({
     }]
 });
 
-form_acu_aduccionimpulsion2.render('div_form_acu_aduccionimpulsion2');
+var panel_aduccion_impulsion = new Ext.Panel({
+    renderTo: 'div_form_acu_aduccionimpulsion',
+    autoWidth: true,
+    items: [form_acu_aduccionimpulsion, form_acu_aduccionimpulsion2]
+});
+
+//form_acu_aduccionimpulsion2.render('div_form_acu_aduccionimpulsion2');

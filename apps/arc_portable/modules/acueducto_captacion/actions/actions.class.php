@@ -67,17 +67,16 @@ class acueducto_captacionActions extends sfActions
 		$criteria->add(TecnicooperativoPeer::TOP_PPS_PRE_ID, $pps_pre_id);
 		$criteria->add(TecnicooperativoPeer::TOP_PPS_SER_ID, $pps_ser_id);
 		$tecnicoOperativo = TecnicooperativoPeer::doSelectOne($criteria);
-			
+
 		$data = array();
 
 		if($tecnicoOperativo) {
 			$criteria = new Criteria();
-			$criteria->add(TecnicooperativacaptacionacueductoPeer::TOCA_TOP_ID, $tecnicoOperativo->getTopId());
-			$tecnicoOperativaCaptaciones = TecnicooperativacaptacionacueductoPeer::doSelect($criteria);
+			$criteria->add(CaptacionPeer::CAPT_TOP_ID, $tecnicoOperativo->getTopId());
+			$captaciones = CaptacionPeer::doSelect($criteria);
 
-			foreach($tecnicoOperativaCaptaciones as $tecnicoOperativaCaptacion) {
-				$captacion = CaptacionPeer::retrieveByPK($tecnicoOperativaCaptacion->getTocaCaptId());
-				if($captacion->getCaptTipoDeFondo()==null) {
+			foreach($captaciones as $captacion) {
+				if($captacion->getCaptFuenteSuperficial()==0) {
 					$campos = array();
 					$campos['capt_id'] = $captacion->getCaptId();
 					$campos['capt_estado_pozo_id'] = $captacion->getCaptEstadoPozoId();
@@ -106,8 +105,22 @@ class acueducto_captacionActions extends sfActions
 
 		if($tecnicoOperativo) {
 			$captacion = new Captacion();
-			//			$captacion->set
+			$captacion->setTecnicooperativo($tecnicoOperativo);
+			$captacion->setCaptTipoDeFondo(0);
+			$captacion->setCaptTipoLateral(0);
+			$captacion->setCaptTipoLechoFiltrante(0);
+			$captacion->setCaptTipoTrinchoRepresa(0);
+			$captacion->setCaptEstadoEstructuraId(1);
+			$captacion->setCaptFuenteSuperficial(1);
+
+			$captacion->setCaptEstadoPozoId(1);
+			$captacion->setCaptEstadoBombaId(1);
+			$captacion->setCaptFuenteEnergiaId(1);
+
+			$captacion->save();
 		}
+
+		return $this->renderText('Fuente superficial adicionada');
 	}
 
 	public function executeActualizarFuenteSuperficial(sfWebRequest $request) {
@@ -127,6 +140,12 @@ class acueducto_captacionActions extends sfActions
 		$fuenteSuperficial->setCaptEstadoBombaId($request->getParameter('capt_estado_bomba_id'));
 		$fuenteSuperficial->setCaptFuenteEnergiaId($request->getParameter('capt_fuente_energia_id'));
 		$fuenteSuperficial->save();
+		return sfView::NONE;
+	}
+
+	public function executeEliminarFuenteSuperficial(sfWebRequest $request) {
+		$fuenteSuperficial = CaptacionPeer::retrieveByPK($request->getParameter('capt_id'));
+		$fuenteSuperficial->delete();
 		return sfView::NONE;
 	}
 }

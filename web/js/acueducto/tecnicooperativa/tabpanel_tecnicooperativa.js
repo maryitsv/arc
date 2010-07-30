@@ -1,6 +1,7 @@
 var tecnicooperativa_acueducto_tabpanel = new Ext.TabPanel({
     id: 'tecnicooperativa_acueducto_tabpanel',
-    width: 840,
+    //    width: 840,
+    autoWidth: true,
     height: 405,
     activeTab: 0,
     frame: true,
@@ -31,12 +32,6 @@ var tecnicooperativa_acueducto_tabpanel = new Ext.TabPanel({
             scripts: true
         }
     }, {
-        title: 'Aducción e impulsión.',
-        autoLoad: {
-            url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'index2'),
-            scripts: true
-        }
-    }, {
         title: 'Desarenador',
         autoLoad: {
             url: getAbsoluteUrl('acueducto_desarenador', 'index'),
@@ -46,18 +41,6 @@ var tecnicooperativa_acueducto_tabpanel = new Ext.TabPanel({
         title: 'Planta tratamiento',
         autoLoad: {
             url: getAbsoluteUrl('acueducto_plantatratamiento_aguapotable', 'index'),
-            scripts: true
-        }
-    }, {
-        title: 'Planta tratamiento',
-        autoLoad: {
-            url: getAbsoluteUrl('acueducto_plantatratamiento_aguapotable', 'index2'),
-            scripts: true
-        }
-    }, {
-        title: 'Planta tratamiento',
-        autoLoad: {
-            url: getAbsoluteUrl('acueducto_plantatratamiento_aguapotable', 'index3'),
             scripts: true
         }
     }, {

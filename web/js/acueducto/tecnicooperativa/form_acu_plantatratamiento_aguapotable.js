@@ -1,17 +1,18 @@
 var form_acu_plantatratamiento_aguapotable = new Ext.form.FormPanel({
     id: 'tecnicooperativaplantatratamientoaguapotable-form',
-    width: 840,
+    autoWidth: true,
     height: 380,
     frame: true,
     buttons: [{
         text: 'Atrás',
         handler: function(){
-            tecnicooperativa_acueducto_tabpanel.setActiveTab(5);
+            tecnicooperativa_acueducto_tabpanel.setActiveTab(4);
         }
     }, {
         text: 'Siguiente',
         handler: function(){
-            tecnicooperativa_acueducto_tabpanel.setActiveTab(7);
+            form_acu_plantatratamiento_aguapotable.hide();
+            form_acu_plantatratamiento_aguapotable2.show();
         }
     }]
 });
@@ -324,4 +325,4 @@ form_acu_plantatratamiento_aguapotable.add({
     }]
 });
 
-form_acu_plantatratamiento_aguapotable.render('div_form_acu_plantatratamiento_aguapotable');
+//form_acu_plantatratamiento_aguapotable.render('div_form_acu_plantatratamiento_aguapotable');
