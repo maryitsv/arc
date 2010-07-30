@@ -25,7 +25,8 @@ all:
     param:
       classname:  PropelPDO
 #      dsn:        pgsql:dbname=arc;host=localhost
-      dsn:  pgsql:host=localhost;port=5432;dbname=arc;user=administrador;password=administrador
+#      dsn:  pgsql:host=localhost;port=5432;dbname=arc;user=administrador;password=administrador
+      dsn:  pgsql:host=localhost;port=5432;dbname=arc_db;user=arc_system;password=arc_system
 #      dsn:        sqlite:%SF_DATA_DIR%/database.db
 #      username:   postgres
 #      password:   postgres
