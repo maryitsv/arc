@@ -158,10 +158,10 @@ propel:
     cap_iaf_id: { phpName: CapIafId, type: INTEGER, required: true, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     cap_dada_prestador: { phpName: CapDadaPrestador, type: VARCHAR, required: true }
     cap_actividad_capacitacion_uso_eficiente_agua: { phpName: CapActividadCapacitacionUsoEficienteAgua, type: VARCHAR, required: false }
-    cap_actividad_capacitacion_higiene_personal_acu: { phpName: CapActividadCapacitacionHigienePersonalAcu, type: VARCHAR, required: false }
-    cap_actividad_capacitacion_higiene_vivienda_acu: { phpName: CapActividadCapacitacionHigieneViviendaAcu, type: VARCHAR, required: false }
-    cap_actividad_capacitacion_higiene_sitios_publicos_acu: { phpName: CapActividadCapacitacionHigieneSitiosPublicosAcu, type: VARCHAR, required: false }
-    cap_capacitacion_recibida_prestador_acu: { phpName: CapCapacitacionRecibidaPrestadorAcu, type: VARCHAR, required: false }
+    cap_actividad_capacitacion_higiene_personal: { phpName: CapActividadCapacitacionHigienePersonal, type: VARCHAR, required: false }
+    cap_actividad_capacitacion_higiene_vivienda: { phpName: CapActividadCapacitacionHigieneVivienda, type: VARCHAR, required: false }
+    cap_actividad_capacitacion_higiene_sitios_publicos: { phpName: CapActividadCapacitacionHigieneSitiosPublicos, type: VARCHAR, required: false }
+    cap_capacitacion_recibida_prestador: { phpName: CapCapacitacionRecibidaPrestador, type: VARCHAR, required: false }
     cap_actividad_capacitacion_educacion_ambiental: { phpName: CapActividadCapacitacionEducacionAmbiental, type: VARCHAR, required: false }
     cap_actividad_capacitacion_participacion_comunitaria: { phpName: CapActividadCapacitacionParticipacionComunitaria, type: VARCHAR, required: false }
     cap_actividad_capacitacion_veeduria_ciudadana: { phpName: CapActividadCapacitacionVeeduriaCiudadana, type: VARCHAR, required: false }

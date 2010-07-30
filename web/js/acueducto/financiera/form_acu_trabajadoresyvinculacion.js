@@ -49,6 +49,7 @@ var acu_tra_tipoVinculacion_operativo_combobox = new Ext.form.ComboBox({
 });
 
 var acu_tra_personaladministrativo_roweditor = new Ext.ux.grid.RowEditor({
+	id: 'acu_tra_personaladministrativo_roweditor',
 	saveText: 'Guardar',
 	cancelText: 'Cancelar'
 });
@@ -121,6 +122,7 @@ var acu_tra_personaloperativo_datastore = new Ext.data.SimpleStore({
 acu_tra_personaloperativo_datastore.loadData(acu_tra_personaloperativo_data);
 
 var acu_tra_personaloperativo_roweditor = new Ext.ux.grid.RowEditor({
+	id: 'acu_tra_personaloperativo_roweditor',
 	saveText: 'Guardar',
 	cancelText: 'Cancelar'
 });
