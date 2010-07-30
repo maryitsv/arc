@@ -3,11 +3,9 @@ create table FUENTES
 (
    FUE_ID               SERIAL NOT NULL,
    FUE_MIC_ID           INT NOT NULL,
-   
    FUE_TIENE_FUENTES_SUPERFICIALES int2, --nuevo
    FUE_TIENE_FUENTES_SUBTERRANEAS int2, --nuevo
    FUE_COMPRA_AGUA_BLOQUE int2,
-   
  -- cambiar este FUE_NUMERO_FUENTES  por el siguiente 
    FUE_NUMERO_FUENTES_SUPERFICIALES INT,
    FUE_NUMERO_FUENTES_SUBTERRANEAS INT,
@@ -20,8 +18,33 @@ create table FUENTES
 );
 
 	*/
+	
+	var acu_fuentes_abastecenelsistema_datos_datastore = new Ext.data.Store({
+        id: 'acu_fuentes_abastecenelsistema_datos_datastore',
+        proxy: new Ext.data.HttpProxy({
+                url: 'acueducto_fuentes/obtenerDatosFuentes', 
+                method: 'POST'
+        }),
+        baseParams:{formulario:'abastecenElSistema'}, 
+        reader: new Ext.data.JsonReader({
+                root: 'results',
+                totalProperty: 'total',
+                id: 'id'
+                },[ 
+                  {name: 'acu_fue_tiene_fuentes_superficiales', type: 'int'},	    
+                  {name: 'acu_fue_tiene_fuentes_subterraneas', type: 'int'},
+				  {name: 'acu_fue_compra_agua_bloque', type: 'int'},
+				  {name: 'acu_fue_numero_fuentes_subterraneas', type: 'int'},
+				  {name: 'acu_fue_numero_fuentes_superficiales', type: 'int'},
+				  {name: 'acu_fue_metodo_aforo_micromolinete', type: 'int'},
+				  {name: 'acu_fue_metodo_aforo_volumetrico', type: 'int'},
+				  {name: 'acu_fue_metodo_aforo_velocidad', type: 'int'},
+				  {name: 'acu_fue_metodo_aforo_otro_cual', type: 'string'},
+				  {name: 'acu_fue_cumple_permisos', type: 'int'}
+		])
+    });
+	
 	var acu_fuentes_abastecenelsistema_panel = new Ext.FormPanel({
-	//	renderTo:'div_form_acu_fuentes',
 		id:'acu_fuentes_abastecenelsistema_panel',
 		frame: false,
 		border:false,
@@ -252,23 +275,109 @@ create table FUENTES
 			 iconCls:'continuar',
 			 handler: function()
 			 {
-				acu_fuentes_abastecenelsistema_panel.hide();
-				acu_cantidadaguafuentesuperficiales_grid.show();
 				
-				/*acu_informaciongeneralmicrocuencas_cargardatostemporal();
-				var accion=acu_informaciongeneralmicrocuencas_verfiricaraccion();
+				acu_fuentes_abastecenelsistema_cargardatostemporal();
+				var accion=acu_fuentes_abastecenelsistema_verfiricaraccion();
 				
 				if(accion=='crear' || accion=='actualizar')
 				{
-					acu_informaciongeneralmicrocuencas_subirdatos(accion);
+					acu_fuentes_abastecenelsistema_subirdatos(accion);
 				}
+				 
+				acu_fuentes_abastecenelsistema_panel.hide();
+				acu_cantidadaguafuentesuperficiales_grid.show();
 				
-				 acu_microcuenca_tabpanel.setActiveTab(1);*/
 			 }
 		  }      
 		]
 	});
+	
+	
+    var acu_fuentes_abastecenelsistema_panel_datanuevo;
+	var acu_fuentes_abastecenelsistema_panel_dataviejo=new Array();
 
+	
+	function acu_fuentes_abastecenelsistema_cargardatostemporal(){
+	
+		if(acu_fuentes_abastecenelsistema_panel_datanuevo)
+		{
+			acu_fuentes_abastecenelsistema_panel_dataviejo=acu_fuentes_abastecenelsistema_panel_datanuevo;
+		}
+		acu_fuentes_abastecenelsistema_panel_datanuevo=new Array();
+		acu_fuentes_abastecenelsistema_panel_datanuevo['acu_fue_tiene_fuentes_superficiales'] = Ext.getCmp('acu_fue_tiene_fuentes_superficiales').getValue();
+		
+		acu_fuentes_abastecenelsistema_panel_datanuevo['acu_fue_tiene_fuentes_subterraneas'] =Ext.getCmp('acu_fue_tiene_fuentes_subterraneas').getValue();
+		acu_fuentes_abastecenelsistema_panel_datanuevo['acu_fue_compra_agua_bloque'] = Ext.getCmp('acu_fue_compra_agua_bloque').getValue();
+		acu_fuentes_abastecenelsistema_panel_datanuevo['acu_fue_numero_fuentes_subterraneas'] = Ext.getCmp('acu_fue_numero_fuentes_subterraneas').getValue();
+		acu_fuentes_abastecenelsistema_panel_datanuevo['acu_fue_numero_fuentes_superficiales'] = Ext.getCmp('acu_fue_numero_fuentes_superficiales').getValue();
+		acu_fuentes_abastecenelsistema_panel_datanuevo['acu_fue_metodo_aforo_micromolinete'] = Ext.getCmp('acu_fue_metodo_aforo_micromolinete').getValue();
+		acu_fuentes_abastecenelsistema_panel_datanuevo['acu_fue_metodo_aforo_volumetrico'] = Ext.getCmp('acu_fue_metodo_aforo_volumetrico').getValue();
+		acu_fuentes_abastecenelsistema_panel_datanuevo['acu_fue_metodo_aforo_velocidad'] = Ext.getCmp('acu_fue_metodo_aforo_velocidad').getValue();
+		acu_fuentes_abastecenelsistema_panel_datanuevo['acu_fue_metodo_aforo_otro_cual'] = Ext.getCmp('acu_fue_metodo_aforo_otro_cual').getValue();
+		acu_fuentes_abastecenelsistema_panel_datanuevo['acu_fue_cumple_permisos'] = Ext.getCmp('acu_fue_cumple_permisos').getValue().getGroupValue();
+		
+	}
+	
+	function acu_fuentes_abastecenelsistema_verfiricaraccion()
+	{//compara dos arraglos si son diferentes actualiza sino solo pasa al siguiente form
+		var accion='ninguna';
+	
+		if(acu_fuentes_abastecenelsistema_panel_dataviejo) // si existe el viejo, compare
+		{
+			if(acu_fuentes_abastecenelsistema_panel_datanuevo['acu_fue_tiene_fuentes_superficiales'] != acu_fuentes_abastecenelsistema_panel_dataviejo['acu_fue_tiene_fuentes_superficiales'])
+			{accion='actualizar';}
+			
+			if(acu_fuentes_abastecenelsistema_panel_datanuevo['acu_fue_tiene_fuentes_subterraneas'] != acu_fuentes_abastecenelsistema_panel_dataviejo['acu_fue_tiene_fuentes_subterraneas'])
+			{accion='actualizar';}
+			
+			if(acu_fuentes_abastecenelsistema_panel_datanuevo['acu_fue_compra_agua_bloque'] != acu_fuentes_abastecenelsistema_panel_dataviejo['acu_fue_compra_agua_bloque'])
+			{accion='actualizar';}
+			
+			if(acu_fuentes_abastecenelsistema_panel_datanuevo['acu_fue_numero_fuentes_subterraneas'] != acu_fuentes_abastecenelsistema_panel_dataviejo['acu_fue_numero_fuentes_subterraneas'])
+			{accion='actualizar';}
+			
+			if(acu_fuentes_abastecenelsistema_panel_datanuevo['acu_fue_numero_fuentes_superficiales'] != acu_fuentes_abastecenelsistema_panel_dataviejo['acu_fue_numero_fuentes_superficiales'])
+			{accion='actualizar';}
+			
+			if(acu_fuentes_abastecenelsistema_panel_datanuevo['acu_fue_metodo_aforo_micromolinete'] != acu_fuentes_abastecenelsistema_panel_dataviejo['acu_fue_metodo_aforo_micromolinete'])
+			{accion='actualizar';}
+			
+			if(acu_fuentes_abastecenelsistema_panel_datanuevo['acu_fue_metodo_aforo_volumetrico'] != acu_fuentes_abastecenelsistema_panel_dataviejo['acu_fue_metodo_aforo_volumetrico'])
+			{accion='actualizar';}
+			
+			if(acu_fuentes_abastecenelsistema_panel_datanuevo['acu_fue_metodo_aforo_velocidad'] != acu_fuentes_abastecenelsistema_panel_dataviejo['acu_fue_metodo_aforo_velocidad'])
+			{accion='actualizar';}
+			
+			if(acu_fuentes_abastecenelsistema_panel_datanuevo['acu_fue_metodo_aforo_otro_cual'] != acu_fuentes_abastecenelsistema_panel_dataviejo['acu_fue_metodo_aforo_otro_cual'])
+			{accion='actualizar';}
+			
+			if(acu_fuentes_abastecenelsistema_panel_datanuevo['acu_fue_cumple_permisos'] != acu_fuentes_abastecenelsistema_panel_dataviejo['acu_fue_cumple_permisos'])
+			{accion='actualizar';}			
+		}
+		else
+		{
+			accion='crear';
+		}
+			
+		return accion;
+	}
+	
+	function acu_fuentes_abastecenelsistema_subirdatos(accion_realizar){
+		subirDatos(acu_fuentes_abastecenelsistema_panel,
+				'acueducto_fuentes/actualizarFuentes',
+				{formulario:'abastecenElSistema'});
+		
+	}
+	
+	
+acu_fuentes_abastecenelsistema_datos_datastore.load({
+  callback: function() {
+	var record = acu_fuentes_abastecenelsistema_datos_datastore.getAt(0);
+	acu_fuentes_abastecenelsistema_panel.getForm().loadRecord(record);	
+  }
+});
+
+	
 /****************************************Fuentes superficiales*****************/
 
 

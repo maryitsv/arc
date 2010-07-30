@@ -2,9 +2,8 @@
 	var acu_calidadcantidadagua_actividadagricola_panel = new Ext.Panel({
 		//frame: true,
 		//hidden: true,
-		title: 'Actividad agricola',
 		autoWidth: true,
-		height: 380,
+		height:largo_panel-15,
 		items:
 		[
 			{
@@ -20,7 +19,7 @@
 					defaults:{labelStyle: 'width:150px;'+letra},
 					items:[
 							{xtype: 'label',text: 'Tipo cultivo', cls:'x-form-check-group-label'},
-							{xtype: 'checkbox', fieldLabel: 'Cultivo permanente',itemCls: 'x-check-group-alt',
+							{xtype: 'checkbox', fieldLabel: 'Cultivo permanente',
 								id: 'acu_cca_actividades_agricola_cultivos_permanentes',
 								name:'acu_cca_actividades_agricola_cultivos_permanentes',
 							},
@@ -28,7 +27,7 @@
 								id: 'acu_cca_actividades_agricola_cultivos_semipermanentes',
 								name: 'acu_cca_actividades_agricola_cultivos_semipermanentes'
 							},
-							{xtype: 'checkbox', fieldLabel: 'Cultivo temporal',itemCls: 'x-check-group-alt',
+							{xtype: 'checkbox', fieldLabel: 'Cultivo temporal',
 								id: 'acu_cca_actividades_agricola_cultivos_temporales',
 								name: 'acu_cca_actividades_agricola_cultivos_temporales'
 							}
@@ -47,7 +46,7 @@
 									 { xtype: 'label', text: 'Cual ocupa mayor area?', cls:'x-form-check-group-label'},
 									 { name: 'acu_cca_actividades_agricola_mayor_area',
 										id: 'acu_cca_actividades_agricola_mayor_area_permanente',
-										inputValue: 'permanentes',itemCls: 'x-check-group-alt'}
+										inputValue: 'permanentes'}
 									]
 						},
 						{
@@ -57,7 +56,7 @@
 									}]
 						},{
 							xtype: 'radiogroup',
-							items: [{ name: 'acu_cca_actividades_agricola_mayor_area', inputValue: 'temporales',itemCls: 'x-check-group-alt',
+							items: [{ name: 'acu_cca_actividades_agricola_mayor_area', inputValue: 'temporales',
 										id: 'acu_cca_actividades_agricola_mayor_area_temporales'
 									}]
 						}
@@ -79,7 +78,7 @@
 											{ xtype: 'label', text: 'Incremento', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_actividades_agricola_cultivos_permanentes_tendencia', 
 												id: 'acu_cca_actividades_agricola_cultivos_permanentes_tendencia_incremento', 
-												inputValue: 'incremento',itemCls: 'x-check-group-alt'
+												inputValue: 'incremento'
 											}
 											]
 									},{
@@ -88,7 +87,7 @@
 											{ xtype: 'label', text: 'Estable', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_actividades_agricola_cultivos_permanentes_tendencia',
 												id: 'acu_cca_actividades_agricola_cultivos_permanentes_tendencia_estable',
-												inputValue: 'estable',itemCls: 'x-check-group-alt',
+												inputValue: 'estable',
 												}
 											]
 									},{
@@ -97,7 +96,7 @@
 											{ xtype: 'label', text: 'Disminucion', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_actividades_agricola_cultivos_permanentes_tendencia', 
 												id: 'acu_cca_actividades_agricola_cultivos_permanentes_tendencia_disminucion', 
-												inputValue: 'disminucion',itemCls: 'x-check-group-alt'}
+												inputValue: 'disminucion'}
 											]
 									}]
 						},
@@ -124,15 +123,15 @@
 							items: [
 								{ name: 'acu_cca_actividades_agricola_cultivos_temporales_tendencia',
 									id: 'acu_cca_actividades_agricola_cultivos_temporales_tendencia_incremento',
-									inputValue: 'incremento',itemCls: 'x-check-group-alt'
+									inputValue: 'incremento'
 								},
 								{ name: 'acu_cca_actividades_agricola_cultivos_temporales_tendencia',
 									id: 'acu_cca_actividades_agricola_cultivos_temporales_tendencia_estable',
-									inputValue: 'estable', checked: true,itemCls: 'x-check-group-alt'
+									inputValue: 'estable', checked: true
 								},
 								{ name: 'acu_cca_actividades_agricola_cultivos_temporales_tendencia',
 									id: 'acu_cca_actividades_agricola_cultivos_temporales_tendencia_disminucion',
-									inputValue: 'disminucion', itemCls: 'x-check-group-alt'
+									inputValue: 'disminucion'
 								}
 							]
 						}
@@ -145,17 +144,17 @@
 		buttons: [
 		{
 			text: '<html>Atr&aacute;s<html>',
+			iconCls:'atras',
 			handler:function(){
-				//SUI_Microcuenca_V11.hide();
-				//SUI_Microcuenca_V10.show();
+				acu_microcuenca_tabpanel.setActiveTab(2);
 			}
 		},
 		{
 			text: 'Continuar',
+			iconCls:'continuar',
 			handler:function(){
-				//var tab=Ext.getCmp('tabPanel').getActiveTab();
-				//SUI_Microcuenca_V11.hide();
-				//SUI_Microcuenca_V12.show();
+				acu_calidadcantidadagua_actividadagricola_panel.hide();
+				acu_calidadcantidadagua_actividadpecuaria_panel.show();
 			}
 		}]
 	});
@@ -165,9 +164,8 @@
 	var acu_calidadcantidadagua_actividadpecuaria_panel = new Ext.Panel({
 		//frame: true,
 		//hidden: true,
-		title: 'Actividad pecuaria',
 		autoWidth: true,
-		height: 380,
+		height:largo_panel-15,
 		items:
 		[
 			{
@@ -183,7 +181,7 @@
 					defaults:{labelStyle: 'width:150px;'+letra},
 					items:[
 							{xtype: 'label',text: 'Tipo actividad', cls:'x-form-check-group-label'},
-							{xtype: 'checkbox', fieldLabel: 'Ganaderia bovina',itemCls: 'x-check-group-alt',
+							{xtype: 'checkbox', fieldLabel: 'Ganaderia bovina',
 								id: 'acu_cca_actividad_pecuaria_ganaderia_bovina',
 								name:'acu_cca_actividad_pecuaria_ganaderia_bovina',
 							},
@@ -191,11 +189,11 @@
 								id: 'acu_cca_actividad_pecuaria_pecuaria_ganaderia_equina',
 								name: 'acu_cca_actividad_pecuaria_pecuaria_ganaderia_equina'
 							},
-							{xtype: 'checkbox', fieldLabel: 'Porcicultura',itemCls: 'x-check-group-alt',
+							{xtype: 'checkbox', fieldLabel: 'Porcicultura',
 								id: 'acu_cca_actividad_pecuaria_porcicultura',
 								name: 'acu_cca_actividad_pecuaria_porcicultura'
 							},
-							{xtype: 'checkbox', fieldLabel: 'Capricultura y/o ovinos',itemCls: 'x-check-group-alt',
+							{xtype: 'checkbox', fieldLabel: 'Capricultura y/o ovinos',
 								id: 'acu_cca_actividad_pecuaria_capricultura_ovinos',
 								name:'acu_cca_actividad_pecuaria_capricultura_ovinos',
 							},
@@ -203,11 +201,11 @@
 								id: 'acu_cca_actividad_pecuaria_avicultura',
 								name: 'acu_cca_actividad_pecuaria_avicultura'
 							},
-							{xtype: 'checkbox', fieldLabel: 'Piscicultura',itemCls: 'x-check-group-alt',
+							{xtype: 'checkbox', fieldLabel: 'Piscicultura',
 								id: 'acu_cca_actividad_pecuaria_piscicultura',
 								name: 'acu_cca_actividad_pecuaria_piscicultura'
 							},
-							{xtype: 'checkbox', fieldLabel: 'Otro',itemCls: 'x-check-group-alt',
+							{xtype: 'checkbox', fieldLabel: 'Otro',
 								id: 'acu_cca_actividad_pecuaria_otros_cual',
 								name: 'acu_cca_actividad_pecuaria_otros_cual'
 							}
@@ -226,7 +224,7 @@
 									 { xtype: 'label', text: 'Cual ocupa mayor area?', cls:'x-form-check-group-label'},
 									 { name: 'acu_cca_actividad_pecuaria_mayor_area',
 										id: 'acu_cca_actividad_pecuaria_mayor_area_ganaderia_bovina',
-										inputValue: 'ganaderia bovina',itemCls: 'x-check-group-alt'}
+										inputValue: 'ganaderia bovina'}
 									]
 						},
 						{
@@ -237,7 +235,7 @@
 						},
 						{
 							xtype: 'radiogroup',
-							items: [{ name: 'acu_cca_actividad_pecuaria_mayor_area', inputValue: 'porcicultura',itemCls: 'x-check-group-alt',
+							items: [{ name: 'acu_cca_actividad_pecuaria_mayor_area', inputValue: 'porcicultura',
 										id: 'acu_cca_actividad_pecuaria_mayor_area_porcicultura'
 									}]
 						},
@@ -249,7 +247,7 @@
 						},
 						{
 							xtype: 'radiogroup',
-							items: [{ name: 'acu_cca_actividad_pecuaria_mayor_area', inputValue: 'avicultura',itemCls: 'x-check-group-alt',
+							items: [{ name: 'acu_cca_actividad_pecuaria_mayor_area', inputValue: 'avicultura',
 										id: 'acu_cca_actividad_pecuaria_mayor_area_avicultura'
 									}]
 						},
@@ -261,7 +259,7 @@
 						},
 						{
 							xtype: 'radiogroup',
-							items: [{ name: 'acu_cca_actividad_pecuaria_mayor_area', inputValue: 'otro',itemCls: 'x-check-group-alt',
+							items: [{ name: 'acu_cca_actividad_pecuaria_mayor_area', inputValue: 'otro',
 										id: 'acu_cca_actividad_pecuaria_mayor_area_otro'
 									}]
 						}
@@ -283,7 +281,7 @@
 											{ xtype: 'label', text: 'Incremento', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_actividad_pecuaria_ganaderia_bovina_tendencia', 
 												id: 'acu_cca_actividad_pecuaria_ganaderia_bovina_tendencia_incremento', 
-												inputValue: 'incremento',itemCls: 'x-check-group-alt'
+												inputValue: 'incremento'
 											}
 											]
 									},{
@@ -292,7 +290,7 @@
 											{ xtype: 'label', text: 'Estable', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_actividad_pecuaria_ganaderia_bovina_tendencia',
 												id: 'acu_cca_actividad_pecuaria_ganaderia_bovina_tendencia_estable',
-												inputValue: 'estable',itemCls: 'x-check-group-alt',
+												inputValue: 'estable',
 												}
 											]
 									},{
@@ -301,7 +299,7 @@
 											{ xtype: 'label', text: 'Disminucion', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_actividad_pecuaria_ganaderia_bovina_tendencia', 
 												id: 'acu_cca_actividad_pecuaria_ganaderia_bovina_tendencia_disminucion', 
-												inputValue: 'disminucion',itemCls: 'x-check-group-alt'}
+												inputValue: 'disminucion'}
 											]
 									}]
 						},
@@ -329,15 +327,15 @@
 							items: [
 								{ name: 'acu_cca_actividad_pecuaria_porcicultura_tendencia',
 									id: 'acu_cca_actividad_pecuaria_porcicultura_tendencia_incremento',
-									inputValue: 'incremento',itemCls: 'x-check-group-alt'
+									inputValue: 'incremento'
 								},
 								{ name: 'acu_cca_actividad_pecuaria_porcicultura_tendencia',
 									id: 'acu_cca_actividad_pecuaria_porcicultura_tendencia_estable',
-									inputValue: 'estable', checked: true,itemCls: 'x-check-group-alt'
+									inputValue: 'estable', checked: true
 								},
 								{ name: 'acu_cca_actividad_pecuaria_porcicultura_tendencia',
 									id: 'acu_cca_actividad_pecuaria_porcicultura_tendencia_disminucion',
-									inputValue: 'disminucion', itemCls: 'x-check-group-alt'
+									inputValue: 'disminucion'
 								}
 							]
 						},
@@ -365,15 +363,15 @@
 							items: [
 								{ name: 'acu_cca_actividad_pecuaria_avicultura_tendencia',
 									id: 'acu_cca_actividad_pecuaria_avicultura_tendencia_incremento',
-									inputValue: 'incremento',itemCls: 'x-check-group-alt'
+									inputValue: 'incremento'
 								},
 								{ name: 'acu_cca_actividad_pecuaria_avicultura_tendencia',
 									id: 'acu_cca_actividad_pecuaria_avicultura_tendencia_estable',
-									inputValue: 'estable', checked: true,itemCls: 'x-check-group-alt'
+									inputValue: 'estable', checked: true
 								},
 								{ name: 'acu_cca_actividad_pecuaria_avicultura_tendencia',
 									id: 'acu_cca_actividad_pecuaria_avicultura_tendencia_disminucion',
-									inputValue: 'disminucion', itemCls: 'x-check-group-alt'
+									inputValue: 'disminucion'
 								}
 							]
 						},
@@ -401,15 +399,15 @@
 							items: [
 								{ name: 'acu_cca_actividad_pecuaria_otros_tendencia',
 									id: 'acu_cca_actividad_pecuaria_otros_tendencia_incremento',
-									inputValue: 'incremento',itemCls: 'x-check-group-alt'
+									inputValue: 'incremento'
 								},
 								{ name: 'acu_cca_actividad_pecuaria_otros_tendencia',
 									id: 'acu_cca_actividad_pecuaria_otros_tendencia_estable',
-									inputValue: 'estable', checked: true,itemCls: 'x-check-group-alt'
+									inputValue: 'estable', checked: true
 								},
 								{ name: 'acu_cca_actividad_pecuaria_otros_tendencia',
 									id: 'acu_cca_actividad_pecuaria_otros_tendencia_disminucion',
-									inputValue: 'disminucion', itemCls: 'x-check-group-alt'
+									inputValue: 'disminucion'
 								}
 							]
 						}
@@ -422,15 +420,19 @@
 		buttons: [
 		{
 			text: '<html>Atr&aacute;s<html>',
+			iconCls: 'atras',
 			handler:function(){
-				//SUI_Microcuenca_V11.hide();
-				//SUI_Microcuenca_V10.show();
+				
+				acu_calidadcantidadagua_actividadpecuaria_panel.hide();
+				acu_calidadcantidadagua_actividadagricola_panel.show();
 			}
 		},
 		{
 			text: 'Continuar',
+			iconCls: 'continuar',
 			handler:function(){
-				//SUI_Microcuenca_V12.show();
+				acu_calidadcantidadagua_actividadpecuaria_panel.hide();
+				acu_calidadcantidadagua_controlplagas_panel.show();
 			}
 		}]
 	});
@@ -441,9 +443,8 @@
 	var acu_calidadcantidadagua_controlplagas_panel = new Ext.Panel({
 		//frame: true,
 		//hidden: true,
-		title: 'Control de plagas y enfermedades',
 		autoWidth: true,
-		height: 380,
+		height:largo_panel-15,
 		items:
 		[
 			{
@@ -459,7 +460,7 @@
 					defaults:{labelStyle: 'width:150px;'+letra},
 					items:[
 							{xtype: 'label',text: 'Tipo control que se realiza', cls:'x-form-check-group-label'},
-							{xtype: 'checkbox', fieldLabel: 'Quimico',itemCls: 'x-check-group-alt',
+							{xtype: 'checkbox', fieldLabel: 'Quimico',
 								id: 'acu_cca_control_plagas_enfermedades_quimico',
 								name:'acu_cca_control_plagas_enfermedades_quimico',
 							},
@@ -467,11 +468,11 @@
 								id: 'acu_cca_control_plagas_enfermedades_organico',
 								name: 'acu_cca_control_plagas_enfermedades_organico'
 							},
-							{xtype: 'checkbox', fieldLabel: 'Biologico',itemCls: 'x-check-group-alt',
+							{xtype: 'checkbox', fieldLabel: 'Biologico',
 								id: 'acu_cca_control_plagas_enfermedades_biologico',
 								name: 'acu_cca_control_plagas_enfermedades_biologico'
 							},
-							{xtype: 'checkbox', fieldLabel: 'Ninguno',itemCls: 'x-check-group-alt',
+							{xtype: 'checkbox', fieldLabel: 'Ninguno',
 								id: 'acu_cca_control_plagas_enfermedades_ninguno',
 								name:'acu_cca_control_plagas_enfermedades_ninguno',
 							}
@@ -490,7 +491,7 @@
 									 { xtype: 'label', text: 'Cual es mas usado?', cls:'x-form-check-group-label'},
 									 { name: 'acu_cca_control_plagas_enfermedades_mas_usado',
 										id: 'acu_cca_control_plagas_enfermedades_mas_usado_quimico',
-										inputValue: 'quimico',itemCls: 'x-check-group-alt'}
+										inputValue: 'quimico'}
 									]
 						},
 						{
@@ -501,7 +502,7 @@
 						},
 						{
 							xtype: 'radiogroup',
-							items: [{ name: 'acu_cca_control_plagas_enfermedades_mas_usado', inputValue: 'biologico',itemCls: 'x-check-group-alt',
+							items: [{ name: 'acu_cca_control_plagas_enfermedades_mas_usado', inputValue: 'biologico',
 										id: 'acu_cca_control_plagas_enfermedades_mas_usado_biologico'
 									}]
 						},
@@ -529,7 +530,7 @@
 											{ xtype: 'label', text: 'Incremento', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_control_plagas_enfermedades_quimico_tendencia', 
 												id: 'acu_cca_control_plagas_enfermedades_quimico_tendencia_incremento', 
-												inputValue: 'incremento',itemCls: 'x-check-group-alt'
+												inputValue: 'incremento'
 											}
 											]
 									},{
@@ -538,7 +539,7 @@
 											{ xtype: 'label', text: 'Estable', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_control_plagas_enfermedades_quimico_tendencia',
 												id: 'acu_cca_control_plagas_enfermedades_quimico_tendencia_estable',
-												inputValue: 'estable',itemCls: 'x-check-group-alt',
+												inputValue: 'estable',
 												}
 											]
 									},{
@@ -547,7 +548,7 @@
 											{ xtype: 'label', text: 'Disminucion', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_control_plagas_enfermedades_quimico_tendencia', 
 												id: 'acu_cca_control_plagas_enfermedades_quimico_tendencia_disminucion', 
-												inputValue: 'disminucion',itemCls: 'x-check-group-alt'}
+												inputValue: 'disminucion'}
 											]
 									}]
 						},
@@ -575,15 +576,15 @@
 							items: [
 								{ name: 'acu_cca_control_plagas_enfermedades_biologico_tendencia',
 									id: 'acu_cca_control_plagas_enfermedades_biologico_tendencia_incremento',
-									inputValue: 'incremento',itemCls: 'x-check-group-alt'
+									inputValue: 'incremento'
 								},
 								{ name: 'acu_cca_control_plagas_enfermedades_biologico_tendencia',
 									id: 'acu_cca_control_plagas_enfermedades_biologico_tendencia_estable',
-									inputValue: 'estable', checked: true,itemCls: 'x-check-group-alt'
+									inputValue: 'estable', checked: true
 								},
 								{ name: 'acu_cca_control_plagas_enfermedades_biologico_tendencia',
 									id: 'acu_cca_control_plagas_enfermedades_biologico_tendencia_disminucion',
-									inputValue: 'disminucion', itemCls: 'x-check-group-alt'
+									inputValue: 'disminucion'
 								}
 							]
 						}/*,
@@ -614,15 +615,18 @@
 		buttons: [
 		{
 			text: '<html>Atr&aacute;s<html>',
+			iconCls:'atras',
 			handler:function(){
-				//SUI_Microcuenca_V11.hide();
-				//SUI_Microcuenca_V10.show();
+				acu_calidadcantidadagua_controlplagas_panel.hide();
+				acu_calidadcantidadagua_actividadpecuaria_panel.show();
 			}
 		},
 		{
 			text: 'Continuar',
+			iconCls:'continuar',
 			handler:function(){
-				//SUI_Microcuenca_V12.show();
+				acu_calidadcantidadagua_controlplagas_panel.hide();
+				acu_calidadcantidadagua_fertilizacioncultivos_panel.show();
 			}
 		}]
 	});
@@ -632,9 +636,8 @@
 	var acu_calidadcantidadagua_fertilizacioncultivos_panel = new Ext.Panel({
 		//frame: true,
 		//hidden: true,
-		title: 'Fertilizacion de cultivos',
 		autoWidth: true,
-		height: 380,
+		height:largo_panel-15,
 		items:
 		[
 			{
@@ -650,7 +653,7 @@
 					defaults:{labelStyle: 'width:150px;'+letra},
 					items:[
 							{xtype: 'label',text: 'Tipo de fertilizantes usados', cls:'x-form-check-group-label'},
-							{xtype: 'checkbox', fieldLabel: 'Quimico',itemCls: 'x-check-group-alt',
+							{xtype: 'checkbox', fieldLabel: 'Quimico',
 								id: 'acu_cca_fertilizacion_cultivos_quimico',
 								name:'acu_cca_fertilizacion_cultivos_quimico',
 							},
@@ -658,7 +661,7 @@
 								id: 'acu_cca_fertilizacion_cultivos_organico',
 								name: 'acu_cca_fertilizacion_cultivos_organico'
 							},
-							{xtype: 'checkbox', fieldLabel: 'Ninguno',itemCls: 'x-check-group-alt',
+							{xtype: 'checkbox', fieldLabel: 'Ninguno',
 								id: 'acu_cca_fertilizacion_cultivos_ninguno',
 								name:'acu_cca_fertilizacion_cultivos_ninguno',
 							}
@@ -677,7 +680,7 @@
 									 { xtype: 'label', text: 'Cual es mas usado?', cls:'x-form-check-group-label'},
 									 { name: 'acu_cca_fertilizacion_cultivos_mas_usado',
 										id: 'acu_cca_fertilizacion_cultivos_mas_usado_quimico',
-										inputValue: 'quimico',itemCls: 'x-check-group-alt'}
+										inputValue: 'quimico'}
 									]
 						},
 						{
@@ -710,7 +713,7 @@
 											{ xtype: 'label', text: 'Incremento', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_fertilizacion_cultivos_quimico_tendencia', 
 												id: 'acu_cca_fertilizacion_cultivos_quimico_tendencia_incremento', 
-												inputValue: 'incremento',itemCls: 'x-check-group-alt'
+												inputValue: 'incremento'
 											}
 											]
 									},{
@@ -719,7 +722,7 @@
 											{ xtype: 'label', text: 'Estable', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_fertilizacion_cultivos_quimico_tendencia',
 												id: 'acu_cca_fertilizacion_cultivos_quimico_tendencia_estable',
-												inputValue: 'estable',itemCls: 'x-check-group-alt',
+												inputValue: 'estable',
 												}
 											]
 									},{
@@ -728,7 +731,7 @@
 											{ xtype: 'label', text: 'Disminucion', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_fertilizacion_cultivos_quimico_tendencia', 
 												id: 'acu_cca_fertilizacion_cultivos_quimico_tendencia_disminucion', 
-												inputValue: 'disminucion',itemCls: 'x-check-group-alt'}
+												inputValue: 'disminucion'}
 											]
 									}]
 						},
@@ -777,15 +780,18 @@
 		buttons: [
 		{
 			text: '<html>Atr&aacute;s<html>',
+			iconCls:'atras',
 			handler:function(){
-				//SUI_Microcuenca_V11.hide();
-				//SUI_Microcuenca_V10.show();
+				acu_calidadcantidadagua_fertilizacioncultivos_panel.hide();
+				acu_calidadcantidadagua_controlplagas_panel.show();
 			}
 		},
 		{
 			text: 'Continuar',
+			iconCls:'continuar',
 			handler:function(){
-				//SUI_Microcuenca_V12.show();
+				acu_calidadcantidadagua_fertilizacioncultivos_panel.hide();
+				acu_calidadcantidadagua_controlmalezas_panel.show();
 			}
 		}]
 	});
@@ -796,9 +802,8 @@
 	var acu_calidadcantidadagua_controlmalezas_panel = new Ext.Panel({
 		//frame: true,
 		//hidden: true,
-		title: 'Control de malezas',
 		autoWidth: true,
-		height: 380,
+		height:largo_panel-15,
 		items:
 		[
 			{
@@ -814,7 +819,7 @@
 					defaults:{labelStyle: 'width:150px;'+letra},
 					items:[
 							{xtype: 'label',text: 'Tipo de fertilizantes usados', cls:'x-form-check-group-label'},
-							{xtype: 'checkbox', fieldLabel: 'Quimico',itemCls: 'x-check-group-alt',
+							{xtype: 'checkbox', fieldLabel: 'Quimico',
 								id:  'acu_cca_control_malezas_quimico',
 								name:'acu_cca_control_malezas_quimico',
 							},
@@ -826,7 +831,7 @@
 								id:   'acu_cca_control_malezas_meca_manu',
 								name: 'acu_cca_control_malezas_meca_manu'
 							},
-							{xtype: 'checkbox', fieldLabel: 'Ninguno',itemCls: 'x-check-group-alt',
+							{xtype: 'checkbox', fieldLabel: 'Ninguno',
 								id:   'acu_cca_control_malezas_ninguno',
 								name: 'acu_cca_control_malezas_ninguno',
 							}
@@ -845,7 +850,7 @@
 									 { xtype: 'label', text: 'Cual es mas usado?', cls:'x-form-check-group-label'},
 									 { name: 'acu_cca_control_malezas_mas_usado',
 										id: 'acu_cca_control_malezas_mas_usado_quimico',
-										inputValue: 'quimico',itemCls: 'x-check-group-alt'}
+										inputValue: 'quimico'}
 									]
 						},
 						{
@@ -884,7 +889,7 @@
 											{ xtype: 'label', text: 'Incremento', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_control_malezas_quimico_tendencia', 
 												id: 'acu_cca_control_malezas_quimico_tendencia_incremento', 
-												inputValue: 'incremento',itemCls: 'x-check-group-alt'
+												inputValue: 'incremento'
 											}
 											]
 									},{
@@ -893,7 +898,7 @@
 											{ xtype: 'label', text: 'Estable', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_control_malezas_quimico_tendencia',
 												id: 'acu_cca_control_malezas_quimico_tendencia_estable',
-												inputValue: 'estable',itemCls: 'x-check-group-alt',
+												inputValue: 'estable',
 												}
 											]
 									},{
@@ -902,7 +907,7 @@
 											{ xtype: 'label', text: 'Disminucion', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_control_malezas_quimico_tendencia', 
 												id: 'acu_cca_control_malezas_quimico_tendencia_disminucion', 
-												inputValue: 'disminucion',itemCls: 'x-check-group-alt'}
+												inputValue: 'disminucion'}
 											]
 									}]
 						},
@@ -969,15 +974,18 @@
 		buttons: [
 		{
 			text: '<html>Atr&aacute;s<html>',
+			iconCls:'atras',
 			handler:function(){
-				//SUI_Microcuenca_V11.hide();
-				//SUI_Microcuenca_V10.show();
+				acu_calidadcantidadagua_controlmalezas_panel.hide();
+				acu_calidadcantidadagua_fertilizacioncultivos_panel.show();
 			}
 		},
 		{
 			text: 'Continuar',
+			iconCls:'continuar',
 			handler:function(){
-				//SUI_Microcuenca_V12.show();
+				acu_calidadcantidadagua_controlmalezas_panel.hide();
+				acu_calidadcantidadagua_mineriaerosion_panel.show();
 			}
 		}]
 	});
@@ -985,12 +993,11 @@
 	
 	//******************* Minera y erosion**********//
 	
-	var acu_calidadcantidadagua_controlmalezas_panel = new Ext.Panel({
+	var acu_calidadcantidadagua_mineriaerosion_panel = new Ext.Panel({
 		//frame: true,
 		//hidden: true,
-		title: 'Control de malezas',
 		autoWidth: true,
-		height: 380,
+		height:largo_panel-15,
 		items:
 		[
 			{
@@ -1006,7 +1013,7 @@
 					defaults:{labelStyle: 'width:150px;'+letra},
 					items:[
 							{xtype: 'label',text: 'Existe esta actividad', cls:'x-form-check-group-label'},
-							{xtype: 'checkbox', fieldLabel: 'Minera?',itemCls: 'x-check-group-alt',
+							{xtype: 'checkbox', fieldLabel: 'Minera?',
 								id:  'acu_cca_mineria',
 								name:'acu_cca_mineria',
 							},
@@ -1032,7 +1039,7 @@
 											{ xtype: 'label', text: 'Incremento', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_mineria_tendencia', 
 												id: 'acu_cca_mineria_tendencia_incremento', 
-												inputValue: 'incremento',itemCls: 'x-check-group-alt'
+												inputValue: 'incremento'
 											}
 											]
 									},{
@@ -1041,7 +1048,7 @@
 											{ xtype: 'label', text: 'Estable', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_mineria_tendencia',
 												id: 'acu_cca_mineria_tendencia_estable',
-												inputValue: 'estable',itemCls: 'x-check-group-alt',
+												inputValue: 'estable',
 												}
 											]
 									},{
@@ -1050,7 +1057,7 @@
 											{ xtype: 'label', text: 'Disminucion', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_mineria_tendencia', 
 												id: 'acu_cca_mineria_tendencia_disminucion', 
-												inputValue: 'disminucion',itemCls: 'x-check-group-alt'}
+												inputValue: 'disminucion'}
 											]
 									}]
 						},
@@ -1081,15 +1088,18 @@
 		buttons: [
 		{
 			text: '<html>Atr&aacute;s<html>',
+			iconCls:'atras',
 			handler:function(){
-				//SUI_Microcuenca_V11.hide();
-				//SUI_Microcuenca_V10.show();
+				acu_calidadcantidadagua_mineriaerosion_panel.hide();
+				acu_calidadcantidadagua_fertilizacioncultivos_panel.show();
 			}
 		},
 		{
 			text: 'Continuar',
+			iconCls:'continuar',
 			handler:function(){
-				//SUI_Microcuenca_V12.show();
+
+				Ext.getCmp('acueducto').setActiveTab(5);
 			}
 		}]
 	});
