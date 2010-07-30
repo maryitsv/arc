@@ -9,7 +9,7 @@ var tecnicooperativa_acueducto_tabpanel = new Ext.TabPanel({
     items: [{
         title: 'Paso 1',
         autoLoad: {
-            url: getAbsoluteUrl('acueducto_tecnicooperativa', 'tecnicoOperativa'),
+            url: getAbsoluteUrl('acueducto_sistemasabastecimiento', 'index'),
             scripts: true
         }
     }, {
@@ -64,6 +64,12 @@ var tecnicooperativa_acueducto_tabpanel = new Ext.TabPanel({
         title: 'Paso 10',
         autoLoad: {
             url: getAbsoluteUrl('acueducto_desinfeccion', 'index'),
+            scripts: true
+        }
+    }, {
+        title: 'Paso 11',
+        autoLoad: {
+            url: getAbsoluteUrl('acueducto_tanque_almacenamiento', 'index'),
             scripts: true
         }
     }]
