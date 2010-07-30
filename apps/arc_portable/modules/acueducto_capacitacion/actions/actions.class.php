@@ -40,91 +40,99 @@ class acueducto_capacitacionActions extends sfActions
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_ANIO, $pps_anio);
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_SER_ID, $pps_ser_id);
 	$acu_administrativafinanciera = AdministrativafinancieraPeer::doSelectOne($conexion);
+
+	$iaf_id;
 	
 	if($acu_administrativafinanciera)
 	{
 		$iaf_id = $acu_administrativafinanciera->getIafId();
+	}
+	else
+	{
+		$acu_administrativafinanciera = new Administrativafinanciera();
+		$acu_administrativafinanciera->setIafPpsPreId($pps_pre_id);
+		$acu_administrativafinanciera->setIafPpsAnio($pps_anio);
+		$acu_administrativafinanciera->setIafPpsSerId($pps_ser_id);
+		$acu_administrativafinanciera->save();
+
+		$iaf_id = $acu_administrativafinanciera->getIafId();
+	}
+
+	$conexion = new Criteria();
+	$conexion->add(CapacitacionPeer::CAP_IAF_ID, $iaf_id);
+	$acu_capacitacion = CapacitacionPeer::doSelectOne($conexion);
 		
-		$conexion = new Criteria();
-		$conexion->add(CapacitacionPeer::CAP_IAF_ID, $iaf_id);
-		$acu_capacitacion = CapacitacionPeer::doSelectOne($conexion);
-		
-		if($acu_capacitacion)
+	if($acu_capacitacion)
+	{
+		try
 		{
-			try
-			{
-				$acu_capacitacion->setCapDadaPrestador($this->getRequestParameter('acu_cap_dada_prestador'));
-				$acu_capacitacion->setCapActividadCapacitacionUsoEficienteAgua($this->getRequestParameter('acu_cap_actividad_capacitacion_uso_eficiente_agua'));
-				$acu_capacitacion->setCapActividadCapacitacionHigienePersonal($this->getRequestParameter('acu_cap_actividad_capacitacion_higiene_personal'));
-				$acu_capacitacion->setCapActividadCapacitacionHigieneVivienda($this->getRequestParameter('acu_cap_actividad_capacitacion_higiene_vivienda'));
-				$acu_capacitacion->setCapActividadCapacitacionHigieneSitiosPublicos($this->getRequestParameter('acu_cap_actividad_capacitacion_higiene_sitios_publicos'));
-				$acu_capacitacion->setCapActividadCapacitacionEducacionAmbiental($this->getRequestParameter('acu_cap_actividad_capacitacion_educacion_ambiental'));
-				$acu_capacitacion->setCapActividadCapacitacionParticipacionComunitaria($this->getRequestParameter('acu_cap_actividad_capacitacion_participacion_comunitaria'));
-				$acu_capacitacion->setCapActividadCapacitacionVeeduriaCiudadana($this->getRequestParameter('acu_cap_actividad_capacitacion_veeduria_ciudadana'));
-				$acu_capacitacion->setCapActividadCapacitacionFuncionSistAbastecimiento($this->getRequestParameter('acu_cap_actividad_capacitacion_funcion_sist_abastecimiento'));
-				$acu_capacitacion->setCapActividadCapacitacionOtraCuales($this->getRequestParameter('acu_cap_actividad_capacitacion_otra_cuales'));
-				$acu_capacitacion->setCapCapacitacionRecibidaPrestador($this->getRequestParameter('acu_cap_capacitacion_recibida_prestador')); 
-				$acu_capacitacion->setCapTemasCapacitacionAdministrativos($this->getRequestParameter('acu_cap_temas_capacitacion_administrativos'));
-				$acu_capacitacion->setCapTemasCapacitacionNormativos($this->getRequestParameter('acu_cap_temas_capacitacion_normativos'));
-				$acu_capacitacion->setCapTemasCapacitacionAmbientales($this->getRequestParameter('acu_cap_temas_capacitacion_ambientales'));
-				$acu_capacitacion->setCapTemasCapacitacionOperativos($this->getRequestParameter('acu_cap_temas_capacitacion_operativos'));
-				$acu_capacitacion->setCapTemasCapacitacionSui($this->getRequestParameter('acu_cap_temas_capacitacion_sui')); 
-				$acu_capacitacion->setCapTemasCapacitacionOtraCual($this->getRequestParameter('acu_cap_temas_capacitacion_otra_cual'));
-				$acu_capacitacion->setCapInstitucionesOfrecieron($this->getRequestParameter('acu_cap_instituciones_ofrecieron'));
-				$acu_capacitacion->setCapNumeroDirectivaHombres($this->getRequestParameter('acu_cap_numero_directiva_hombres'));
-				$acu_capacitacion->setCapNumeroDirectivaMujeres($this->getRequestParameter('acu_cap_numero_directiva_mujeres'));
-				
-				$acu_capacitacion->save();
+			$acu_capacitacion->setCapDadaPrestador($this->getRequestParameter('acu_cap_dada_prestador'));
+			$acu_capacitacion->setCapActividadCapacitacionUsoEficienteAgua($this->getRequestParameter('acu_cap_actividad_capacitacion_uso_eficiente_agua'));
+			$acu_capacitacion->setCapActividadCapacitacionHigienePersonal($this->getRequestParameter('acu_cap_actividad_capacitacion_higiene_personal'));
+			$acu_capacitacion->setCapActividadCapacitacionHigieneVivienda($this->getRequestParameter('acu_cap_actividad_capacitacion_higiene_vivienda'));
+			$acu_capacitacion->setCapActividadCapacitacionHigieneSitiosPublicos($this->getRequestParameter('acu_cap_actividad_capacitacion_higiene_sitios_publicos'));
+			$acu_capacitacion->setCapActividadCapacitacionEducacionAmbiental($this->getRequestParameter('acu_cap_actividad_capacitacion_educacion_ambiental'));
+			$acu_capacitacion->setCapActividadCapacitacionParticipacionComunitaria($this->getRequestParameter('acu_cap_actividad_capacitacion_participacion_comunitaria'));
+			$acu_capacitacion->setCapActividadCapacitacionVeeduriaCiudadana($this->getRequestParameter('acu_cap_actividad_capacitacion_veeduria_ciudadana'));
+			$acu_capacitacion->setCapActividadCapacitacionFuncionSistAbastecimiento($this->getRequestParameter('acu_cap_actividad_capacitacion_funcion_sist_abastecimiento'));
+			$acu_capacitacion->setCapActividadCapacitacionOtraCuales($this->getRequestParameter('acu_cap_actividad_capacitacion_otra_cuales'));
+			$acu_capacitacion->setCapCapacitacionRecibidaPrestador($this->getRequestParameter('acu_cap_capacitacion_recibida_prestador')); 
+			$acu_capacitacion->setCapTemasCapacitacionAdministrativos($this->getRequestParameter('acu_cap_temas_capacitacion_administrativos'));
+			$acu_capacitacion->setCapTemasCapacitacionNormativos($this->getRequestParameter('acu_cap_temas_capacitacion_normativos'));
+			$acu_capacitacion->setCapTemasCapacitacionAmbientales($this->getRequestParameter('acu_cap_temas_capacitacion_ambientales'));
+			$acu_capacitacion->setCapTemasCapacitacionOperativos($this->getRequestParameter('acu_cap_temas_capacitacion_operativos'));
+			$acu_capacitacion->setCapTemasCapacitacionSui($this->getRequestParameter('acu_cap_temas_capacitacion_sui')); 
+			$acu_capacitacion->setCapTemasCapacitacionOtraCual($this->getRequestParameter('acu_cap_temas_capacitacion_otra_cual'));
+			$acu_capacitacion->setCapInstitucionesOfrecieron($this->getRequestParameter('acu_cap_instituciones_ofrecieron'));
+			$acu_capacitacion->setCapNumeroDirectivaHombres($this->getRequestParameter('acu_cap_numero_directiva_hombres'));
+			$acu_capacitacion->setCapNumeroDirectivaMujeres($this->getRequestParameter('acu_cap_numero_directiva_mujeres'));
 			
-				$salida = "({success: true, mensaje:'La informacion de capacitacion fue actualizada exitosamente'})";
-			}
-			catch(Exception $exception)
-			{
-				return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en capacitacion:".$exception."'}})");
-			}
+			$acu_capacitacion->save();
+		
+			$salida = "({success: true, mensaje:'La informacion de capacitacion fue actualizada exitosamente'})";
 		}
-		else
+		catch(Exception $exception)
 		{
-			try
-			{
-				$acu_capacitacion = new Capacitacion();
-				
-				$acu_capacitacion->setCapIafId($iaf_id);
-				$acu_capacitacion->setCapDadaPrestador($this->getRequestParameter('acu_cap_dada_prestador'));
-				$acu_capacitacion->setCapActividadCapacitacionUsoEficienteAgua($this->getRequestParameter('acu_cap_actividad_capacitacion_uso_eficiente_agua'));
-				$acu_capacitacion->setCapActividadCapacitacionHigienePersonal($this->getRequestParameter('acu_cap_actividad_capacitacion_higiene_personal'));
-  
-				$acu_capacitacion->setCapActividadCapacitacionHigieneVivienda($this->getRequestParameter('acu_cap_actividad_capacitacion_higiene_vivienda'));
-				$acu_capacitacion->setCapActividadCapacitacionHigieneSitiosPublicos($this->getRequestParameter('acu_cap_actividad_capacitacion_higiene_sitios_publicos'));
-				$acu_capacitacion->setCapActividadCapacitacionEducacionAmbiental($this->getRequestParameter('acu_cap_actividad_capacitacion_educacion_ambiental'));
-				$acu_capacitacion->setCapActividadCapacitacionParticipacionComunitaria($this->getRequestParameter('acu_cap_actividad_capacitacion_participacion_comunitaria'));
-				$acu_capacitacion->setCapActividadCapacitacionVeeduriaCiudadana($this->getRequestParameter('acu_cap_actividad_capacitacion_veeduria_ciudadana'));
-				$acu_capacitacion->setCapActividadCapacitacionFuncionSistAbastecimiento($this->getRequestParameter('acu_cap_actividad_capacitacion_funcion_sist_abastecimiento'));
-				$acu_capacitacion->setCapActividadCapacitacionOtraCuales($this->getRequestParameter('acu_cap_actividad_capacitacion_otra_cuales'));
-				$acu_capacitacion->setCapCapacitacionRecibidaPrestador($this->getRequestParameter('acu_cap_capacitacion_recibida_prestador')); 
-				$acu_capacitacion->setCapTemasCapacitacionAdministrativos($this->getRequestParameter('acu_cap_temas_capacitacion_administrativos'));
-				$acu_capacitacion->setCapTemasCapacitacionNormativos($this->getRequestParameter('acu_cap_temas_capacitacion_normativos'));
-				$acu_capacitacion->setCapTemasCapacitacionAmbientales($this->getRequestParameter('acu_cap_temas_capacitacion_ambientales'));
-				$acu_capacitacion->setCapTemasCapacitacionOperativos($this->getRequestParameter('acu_cap_temas_capacitacion_operativos'));
-				$acu_capacitacion->setCapTemasCapacitacionSui($this->getRequestParameter('acu_cap_temas_capacitacion_sui')); 
-				$acu_capacitacion->setCapTemasCapacitacionOtraCual($this->getRequestParameter('acu_cap_temas_capacitacion_otra_cual'));
-				$acu_capacitacion->setCapInstitucionesOfrecieron($this->getRequestParameter('acu_cap_instituciones_ofrecieron'));
-				$acu_capacitacion->setCapNumeroDirectivaHombres($this->getRequestParameter('acu_cap_numero_directiva_hombres'));
-				$acu_capacitacion->setCapNumeroDirectivaMujeres($this->getRequestParameter('acu_cap_numero_directiva_mujeres'));
-				
-				$acu_capacitacion->save();
-				
-				$salida = "({success: true, mensaje:'La informacion de capacitacion fue actualizada exitosamente'})";
-			}
-			catch(Exception $exception)
-			{
-				return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en capacitacion:".$exception."'}})");
-			}
+			return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en capacitacion:".$exception."'}})");
 		}
 	}
 	else
 	{
-		return $this->renderText("({success: false, errors: { reason: 'Debe primero registrar informacion general de administracion financiera'}})");
+		try
+		{
+			$acu_capacitacion = new Capacitacion();
+			
+			$acu_capacitacion->setCapIafId($iaf_id);
+			$acu_capacitacion->setCapDadaPrestador($this->getRequestParameter('acu_cap_dada_prestador'));
+			$acu_capacitacion->setCapActividadCapacitacionUsoEficienteAgua($this->getRequestParameter('acu_cap_actividad_capacitacion_uso_eficiente_agua'));
+			$acu_capacitacion->setCapActividadCapacitacionHigienePersonal($this->getRequestParameter('acu_cap_actividad_capacitacion_higiene_personal'));
+
+			$acu_capacitacion->setCapActividadCapacitacionHigieneVivienda($this->getRequestParameter('acu_cap_actividad_capacitacion_higiene_vivienda'));
+			$acu_capacitacion->setCapActividadCapacitacionHigieneSitiosPublicos($this->getRequestParameter('acu_cap_actividad_capacitacion_higiene_sitios_publicos'));
+			$acu_capacitacion->setCapActividadCapacitacionEducacionAmbiental($this->getRequestParameter('acu_cap_actividad_capacitacion_educacion_ambiental'));
+			$acu_capacitacion->setCapActividadCapacitacionParticipacionComunitaria($this->getRequestParameter('acu_cap_actividad_capacitacion_participacion_comunitaria'));
+			$acu_capacitacion->setCapActividadCapacitacionVeeduriaCiudadana($this->getRequestParameter('acu_cap_actividad_capacitacion_veeduria_ciudadana'));
+			$acu_capacitacion->setCapActividadCapacitacionFuncionSistAbastecimiento($this->getRequestParameter('acu_cap_actividad_capacitacion_funcion_sist_abastecimiento'));
+			$acu_capacitacion->setCapActividadCapacitacionOtraCuales($this->getRequestParameter('acu_cap_actividad_capacitacion_otra_cuales'));
+			$acu_capacitacion->setCapCapacitacionRecibidaPrestador($this->getRequestParameter('acu_cap_capacitacion_recibida_prestador')); 
+			$acu_capacitacion->setCapTemasCapacitacionAdministrativos($this->getRequestParameter('acu_cap_temas_capacitacion_administrativos'));
+			$acu_capacitacion->setCapTemasCapacitacionNormativos($this->getRequestParameter('acu_cap_temas_capacitacion_normativos'));
+			$acu_capacitacion->setCapTemasCapacitacionAmbientales($this->getRequestParameter('acu_cap_temas_capacitacion_ambientales'));
+			$acu_capacitacion->setCapTemasCapacitacionOperativos($this->getRequestParameter('acu_cap_temas_capacitacion_operativos'));
+			$acu_capacitacion->setCapTemasCapacitacionSui($this->getRequestParameter('acu_cap_temas_capacitacion_sui')); 
+			$acu_capacitacion->setCapTemasCapacitacionOtraCual($this->getRequestParameter('acu_cap_temas_capacitacion_otra_cual'));
+			$acu_capacitacion->setCapInstitucionesOfrecieron($this->getRequestParameter('acu_cap_instituciones_ofrecieron'));
+			$acu_capacitacion->setCapNumeroDirectivaHombres($this->getRequestParameter('acu_cap_numero_directiva_hombres'));
+			$acu_capacitacion->setCapNumeroDirectivaMujeres($this->getRequestParameter('acu_cap_numero_directiva_mujeres'));
+			
+			$acu_capacitacion->save();
+			
+			$salida = "({success: true, mensaje:'La informacion de capacitacion fue actualizada exitosamente'})";
+		}
+		catch(Exception $exception)
+		{
+			return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en capacitacion:".$exception."'}})");
+		}
 	}
 	
 	return $this->renderText($salida);

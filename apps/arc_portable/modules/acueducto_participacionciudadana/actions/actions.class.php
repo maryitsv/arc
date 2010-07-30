@@ -40,62 +40,70 @@ class acueducto_participacionciudadanaActions extends sfActions
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_ANIO, $pps_anio);
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_SER_ID, $pps_ser_id);
 	$acu_administrativafinanciera = AdministrativafinancieraPeer::doSelectOne($conexion);
+
+	$iaf_id;
 	
 	if($acu_administrativafinanciera)
 	{
 		$iaf_id = $acu_administrativafinanciera->getIafId();
-		
-		$conexion = new Criteria();
-		$conexion->add(ParticipacionciudadanaPeer::PAR_IAF_ID, $iaf_id);
-		$acu_participacionciudadana = ParticipacionciudadanaPeer::doSelectOne($conexion);
-		
-		if($acu_participacionciudadana)
-		{
-			try
-			{
-				$acu_participacionciudadana->setParParticipacionCiudadanaDirecta($this->getRequestParameter('acu_par_participacion_ciudadana_directa'));
-				$acu_participacionciudadana->setParParticipacionCiudadanaAsamblea($this->getRequestParameter('acu_par_participacion_ciudadana_asamblea'));
-				$acu_participacionciudadana->setParParticipacionCiudadanaComiteDesarrolloControlSocial($this->getRequestParameter('acu_par_participacion_ciudadana_comite_desarrollo_control_social'));
-				$acu_participacionciudadana->setParParticipacionCiudadanaVeedurias($this->getRequestParameter('acu_par_participacion_ciudadana_veedurias'));
-				$acu_participacionciudadana->setParParticipacionCiudadanaOtraCual($this->getRequestParameter('acu_par_participacion_ciudadana_otra_cual'));
-				$acu_participacionciudadana->setParPropuestasVocales($this->getRequestParameter('acu_par_propuestas_vocales'));
-				
-				$acu_participacionciudadana->save();
-			
-				$salida = "({success: true, mensaje:'La informacion de participacion ciudadana fue actualizada exitosamente'})";
-			}
-			catch(Exception $exception)
-			{
-				return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en participacion ciudadana'}})");
-			}
-		}
-		else
-		{
-			try
-			{
-				$acu_participacionciudadana = new Participacionciudadana();
+	}
+	else
+	{
+		$acu_administrativafinanciera = new Administrativafinanciera();
+		$acu_administrativafinanciera->setIafPpsPreId($pps_pre_id);
+		$acu_administrativafinanciera->setIafPpsAnio($pps_anio);
+		$acu_administrativafinanciera->setIafPpsSerId($pps_ser_id);
+		$acu_administrativafinanciera->save();
 
-				$acu_participacionciudadana->setParIafId($iaf_id);
-				$acu_participacionciudadana->setParParticipacionCiudadanaDirecta($this->getRequestParameter('acu_par_participacion_ciudadana_directa'));
-				$acu_participacionciudadana->setParParticipacionCiudadanaAsamblea($this->getRequestParameter('acu_par_participacion_ciudadana_asamblea'));
-				$acu_participacionciudadana->setParParticipacionCiudadanaComiteDesarrolloControlSocial($this->getRequestParameter('acu_par_participacion_ciudadana_comite_desarrollo_control_social'));
-				$acu_participacionciudadana->setParParticipacionCiudadanaVeedurias($this->getRequestParameter('acu_par_participacion_ciudadana_veedurias'));
-				$acu_participacionciudadana->setParParticipacionCiudadanaOtraCual($this->getRequestParameter('acu_par_participacion_ciudadana_otra_cual'));
-				$acu_participacionciudadana->setParPropuestasVocales($this->getRequestParameter('acu_par_propuestas_vocales'));
-				
-				$acu_participacionciudadana->save();
-				
-				$salida = "({success: true, mensaje:'La informacion de participacion ciudadana fue actualizada exitosamente'})";
-			}
-			catch(Exception $exception)
-			{
-				return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en participacion ciudadana'}})");
-			}
+		$iaf_id = $acu_administrativafinanciera->getIafId();
+	}
+
+	$conexion = new Criteria();
+	$conexion->add(ParticipacionciudadanaPeer::PAR_IAF_ID, $iaf_id);
+	$acu_participacionciudadana = ParticipacionciudadanaPeer::doSelectOne($conexion);
+
+	if($acu_participacionciudadana)
+	{
+		try
+		{
+			$acu_participacionciudadana->setParParticipacionCiudadanaDirecta($this->getRequestParameter('acu_par_participacion_ciudadana_directa'));
+			$acu_participacionciudadana->setParParticipacionCiudadanaAsamblea($this->getRequestParameter('acu_par_participacion_ciudadana_asamblea'));
+			$acu_participacionciudadana->setParParticipacionCiudadanaComiteDesarrolloControlSocial($this->getRequestParameter('acu_par_participacion_ciudadana_comite_desarrollo_control_social'));
+			$acu_participacionciudadana->setParParticipacionCiudadanaVeedurias($this->getRequestParameter('acu_par_participacion_ciudadana_veedurias'));
+			$acu_participacionciudadana->setParParticipacionCiudadanaOtraCual($this->getRequestParameter('acu_par_participacion_ciudadana_otra_cual'));
+			$acu_participacionciudadana->setParPropuestasVocales($this->getRequestParameter('acu_par_propuestas_vocales'));
+			
+			$acu_participacionciudadana->save();
+		
+			$salida = "({success: true, mensaje:'La informacion de participacion ciudadana fue actualizada exitosamente'})";
+		}
+		catch(Exception $exception)
+		{
+			return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en participacion ciudadana'}})");
 		}
 	}
 	else
 	{
-		return $this->renderText("({success: false, errors: { reason: 'Debe primero registrar informacion general de administracion financiera'}})");
+		try
+		{
+			$acu_participacionciudadana = new Participacionciudadana();
+
+			$acu_participacionciudadana->setParIafId($iaf_id);
+			$acu_participacionciudadana->setParParticipacionCiudadanaDirecta($this->getRequestParameter('acu_par_participacion_ciudadana_directa'));
+			$acu_participacionciudadana->setParParticipacionCiudadanaAsamblea($this->getRequestParameter('acu_par_participacion_ciudadana_asamblea'));
+			$acu_participacionciudadana->setParParticipacionCiudadanaComiteDesarrolloControlSocial($this->getRequestParameter('acu_par_participacion_ciudadana_comite_desarrollo_control_social'));
+			$acu_participacionciudadana->setParParticipacionCiudadanaVeedurias($this->getRequestParameter('acu_par_participacion_ciudadana_veedurias'));
+			$acu_participacionciudadana->setParParticipacionCiudadanaOtraCual($this->getRequestParameter('acu_par_participacion_ciudadana_otra_cual'));
+			$acu_participacionciudadana->setParPropuestasVocales($this->getRequestParameter('acu_par_propuestas_vocales'));
+			
+			$acu_participacionciudadana->save();
+			
+			$salida = "({success: true, mensaje:'La informacion de participacion ciudadana fue actualizada exitosamente'})";
+		}
+		catch(Exception $exception)
+		{
+			return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en participacion ciudadana'}})");
+		}
 	}
 	
 	return $this->renderText($salida);
