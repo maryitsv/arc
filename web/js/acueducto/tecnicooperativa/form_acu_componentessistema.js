@@ -561,7 +561,6 @@ var acu_componentessistema_datastore = new Ext.data.Store({
 
 acu_componentessistema_datastore.load({
     callback: function(){
-        alert(acu_componentessistema_datastore.getCount());
         var registro = acu_componentessistema_datastore.getAt(0);
         tecnicooperativacomponentessistema_form.getForm().loadRecord(registro);
     }

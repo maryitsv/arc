@@ -421,7 +421,6 @@ var acu_aduccionimpulsion_datastore = new Ext.data.Store({
 
 acu_aduccionimpulsion_datastore.load({
     callback: function(){
-        alert(acu_aduccionimpulsion_datastore.getCount());
         var registro = acu_aduccionimpulsion_datastore.getAt(0);
         form_acu_aduccionimpulsion.getForm().loadRecord(registro);
     }
