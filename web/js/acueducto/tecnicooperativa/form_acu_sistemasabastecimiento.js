@@ -562,7 +562,7 @@ var acu_sistemasabastecimiento_datastore = new Ext.data.Store({
 
 acu_sistemasabastecimiento_datastore.load({
     callback: function(){
-        alert(acu_sistemasabastecimiento_datastore.getCount());
+//        alert(acu_sistemasabastecimiento_datastore.getCount());
         var registro = acu_sistemasabastecimiento_datastore.getAt(0);
         sistemasabastecimiento_form.getForm().loadRecord(registro);
     }
