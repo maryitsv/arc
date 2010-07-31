@@ -72,7 +72,8 @@ propel:
     cag_fluoruros_frecuencia: { phpName: CagFluorurosFrecuencia, type: VARCHAR, required: false }
     cag_laboratorio_propio: { phpName: CagLaboratorioPropio, type: VARCHAR, required: false }
     cag_control_ca_distribuida: { phpName: CagControlCaDistribuida, type: VARCHAR, required: false }
-    cag_numero_visita_sspd: { phpName: CagNumeroVisitaSspd, type: INTEGER, required: false }
+    cag_puntos_red_analizados: { phpName: CagPuntosRedAnalizados, type: INTEGER, required: false }
+    cag_visita_sspd: { phpName: CagVisitaSspd, type: VARCHAR, required: false }
   calidadcantidadagua:
     _attributes: { phpName: Calidadcantidadagua }
     cca_id: { phpName: CcaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -161,12 +162,12 @@ propel:
     cap_actividad_capacitacion_higiene_personal: { phpName: CapActividadCapacitacionHigienePersonal, type: VARCHAR, required: false }
     cap_actividad_capacitacion_higiene_vivienda: { phpName: CapActividadCapacitacionHigieneVivienda, type: VARCHAR, required: false }
     cap_actividad_capacitacion_higiene_sitios_publicos: { phpName: CapActividadCapacitacionHigieneSitiosPublicos, type: VARCHAR, required: false }
-    cap_capacitacion_recibida_prestador: { phpName: CapCapacitacionRecibidaPrestador, type: VARCHAR, required: false }
     cap_actividad_capacitacion_educacion_ambiental: { phpName: CapActividadCapacitacionEducacionAmbiental, type: VARCHAR, required: false }
     cap_actividad_capacitacion_participacion_comunitaria: { phpName: CapActividadCapacitacionParticipacionComunitaria, type: VARCHAR, required: false }
     cap_actividad_capacitacion_veeduria_ciudadana: { phpName: CapActividadCapacitacionVeeduriaCiudadana, type: VARCHAR, required: false }
     cap_actividad_capacitacion_funcion_sist_abastecimiento: { phpName: CapActividadCapacitacionFuncionSistAbastecimiento, type: VARCHAR, required: false }
     cap_actividad_capacitacion_otra_cuales: { phpName: CapActividadCapacitacionOtraCuales, type: VARCHAR, size: '100', required: false }
+    cap_capacitacion_recibida_prestador: { phpName: CapCapacitacionRecibidaPrestador, type: VARCHAR, required: false }
     cap_temas_capacitacion_administrativos: { phpName: CapTemasCapacitacionAdministrativos, type: VARCHAR, required: false }
     cap_temas_capacitacion_normativos: { phpName: CapTemasCapacitacionNormativos, type: VARCHAR, required: false }
     cap_temas_capacitacion_ambientales: { phpName: CapTemasCapacitacionAmbientales, type: VARCHAR, required: false }
@@ -238,7 +239,7 @@ propel:
     dfr_cantidad_anual_residuos_relleno_sanitario: { phpName: DfrCantidadAnualResiduosRellenoSanitario, type: VARCHAR, required: false }
     dfr_dist_centro_poblado_mas_cercano_sitio: { phpName: DfrDistCentroPobladoMasCercanoSitio, type: VARCHAR, size: '100', required: false }
     dfr_dist_cuerpo_agua_mas_cercano_sitio: { phpName: DfrDistCuerpoAguaMasCercanoSitio, type: VARCHAR, size: '100', required: false }
-    dfr_anios_utilizacion_sitio: { phpName: DfrAniosUtilizacionSitio, type: INTEGER, required: false }
+    drf_anios_utilizacion_sitio: { phpName: DrfAniosUtilizacionSitio, type: INTEGER, required: false }
     dfr_area_destinada_para_disposicion_sitio: { phpName: DfrAreaDestinadaParaDisposicionSitio, type: VARCHAR, required: false }
     dfr_si_relleno_tipo_relleno: { phpName: DfrSiRellenoTipoRelleno, type: VARCHAR, required: false }
     dfr_presencia_recicladores_sitio: { phpName: DfrPresenciaRecicladoresSitio, type: VARCHAR, required: false }
@@ -282,7 +283,7 @@ propel:
     fac_frecuenc_facturacion: { phpName: FacFrecuencFacturacion, type: VARCHAR, size: '30', required: false }
     fac_frecuenc_fac_justificacion: { phpName: FacFrecuencFacJustificacion, type: VARCHAR, size: '30', required: false }
     fac_num_fac_exp_ultimo_periodo: { phpName: FacNumFacExpUltimoPeriodo, type: INTEGER, required: false }
-    fac_sist_fac_utilizado: { phpName: FacSistFacUtilizado, type: VARCHAR, size: '30', required: false }
+    fac_sist_fac_utilizado: { phpName: FacSistFacUtilizado, type: VARCHAR, required: false }
     fac_frecuencia_fac_justifica: { phpName: FacFrecuenciaFacJustifica, type: VARCHAR, size: '30', required: false }
     fac_morosidad_promedio: { phpName: FacMorosidadPromedio, type: VARCHAR, required: false }
     fac_vol_agua_fac_en_el_anio_acu: { phpName: FacVolAguaFacEnElAnioAcu, type: VARCHAR, required: false }
@@ -305,11 +306,9 @@ propel:
     _attributes: { phpName: Fuentes }
     fue_id: { phpName: FueId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     fue_mic_id: { phpName: FueMicId, type: INTEGER, required: true, foreignTable: microcuencas, foreignReference: mic_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    fue_tiene_fuentes_superficiales: { phpName: FueTieneFuentesSuperficiales, type: VARCHAR, required: false }
-    fue_tiene_fuentes_subterraneas: { phpName: FueTieneFuentesSubterraneas, type: VARCHAR, required: false }
-    fue_compra_agua_bloque: { phpName: FueCompraAguaBloque, type: VARCHAR, required: false }
-    fue_numero_fuentes_superficiales: { phpName: FueNumeroFuentesSuperficiales, type: INTEGER, required: false }
+    fue_numero_fuentes: { phpName: FueNumeroFuentes, type: INTEGER, required: false }
     fue_numero_fuentes_subterraneas: { phpName: FueNumeroFuentesSubterraneas, type: INTEGER, required: false }
+    fue_compra_agua_bloque: { phpName: FueCompraAguaBloque, type: VARCHAR, required: false }
     fue_metodo_aforo_volumetrico: { phpName: FueMetodoAforoVolumetrico, type: VARCHAR, required: false }
     fue_metodo_aforo_micromolinete: { phpName: FueMetodoAforoMicromolinete, type: VARCHAR, required: false }
     fue_metodo_aforo_velocidad: { phpName: FueMetodoAforoVelocidad, type: VARCHAR, required: false }
@@ -334,11 +333,11 @@ propel:
     fsp_epoca_lluvia_caudal_captado: { phpName: FspEpocaLluviaCaudalCaptado, type: VARCHAR, required: false }
     fsp_epoca_seca_caudal_total: { phpName: FspEpocaSecaCaudalTotal, type: VARCHAR, required: false }
     fsp_epoca_seca_caudal_captado: { phpName: FspEpocaSecaCaudalCaptado, type: VARCHAR, required: false }
-    fsp_entidad_expidio_concesion: { phpName: FspEntidadExpidioConcesion, type: VARCHAR, size: '200', required: false }
-    fsp_fecha_expedicion_concesion: { phpName: FspFechaExpedicionConcesion, type: DATE, required: false }
-    fsp_fecha_vencimiento_concesion: { phpName: FspFechaVencimientoConcesion, type: DATE, required: false }
-    fsp_caudal_adjudicado_concesion: { phpName: FspCaudalAdjudicadoConcesion, type: VARCHAR, required: false }
-    fsp_tipo_fuente: { phpName: FspTipoFuente, type: VARCHAR, size: '30', required: false }
+    caf_entidad_expidio_concesion: { phpName: CafEntidadExpidioConcesion, type: VARCHAR, size: '200', required: false }
+    caf_fecha_expedicion_concesion: { phpName: CafFechaExpedicionConcesion, type: DATE, required: false }
+    caf_fecha_vencimiento_concesion: { phpName: CafFechaVencimientoConcesion, type: DATE, required: false }
+    caf_caudal_adjudicado_concesion: { phpName: CafCaudalAdjudicadoConcesion, type: VARCHAR, required: false }
+    caf_tipo_fuente: { phpName: CafTipoFuente, type: VARCHAR, size: '30', required: false }
   gestionresultado:
     _attributes: { phpName: Gestionresultado }
     gre_id: { phpName: GreId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -458,7 +457,6 @@ propel:
     pps_pre_id: { phpName: PpsPreId, type: INTEGER, primaryKey: true, required: true, foreignTable: prestadorporservicio, foreignReference: ppsg_pre_id, onUpdate: CASCADE }
     pps_ser_id: { phpName: PpsSerId, type: INTEGER, primaryKey: true, required: true }
     pps_anio: { phpName: PpsAnio, type: INTEGER, primaryKey: true, required: true }
-    pps_numero_suscriptores: { phpName: PpsNumeroSuscriptores, type: VARCHAR, required: false }
     pps_presupuesto_aprobado: { phpName: PpsPresupuestoAprobado, type: VARCHAR, required: false }
     pps_suscriptores_pendientes_de_pago: { phpName: PpsSuscriptoresPendientesDePago, type: VARCHAR, required: false }
     pps_estatutos: { phpName: PpsEstatutos, type: VARCHAR, required: false }
@@ -467,9 +465,10 @@ propel:
     pps_numero_empleados_proceso_competencias: { phpName: PpsNumeroEmpleadosProcesoCompetencias, type: VARCHAR, required: false }
     pps_nombre_diligenciador: { phpName: PpsNombreDiligenciador, type: VARCHAR, size: '200', required: false }
     pps_apellido_diligenciador: { phpName: PpsApellidoDiligenciador, type: VARCHAR, size: '200', required: false }
-    pps_tipo_identificacion_diligenciador: { phpName: PpsTipoIdentificacionDiligenciador, type: VARCHAR, size: '50', required: false }
-    pps_identificacion_diligenciador: { phpName: PpsIdentificacionDiligenciador, type: VARCHAR, size: '15', required: false }
     pps_telefono_diligenciador: { phpName: PpsTelefonoDiligenciador, type: VARCHAR, size: '15', required: false }
+    pps_identificacion_diligenciador: { phpName: PpsIdentificacionDiligenciador, type: VARCHAR, size: '30', required: false }
+    pps_tipo_identificacion_diligenciador: { phpName: PpsTipoIdentificacionDiligenciador, type: VARCHAR, size: '20', required: false }
+    pps_numero_suscriptores: { phpName: PpsNumeroSuscriptores, type: INTEGER, required: false }
   personaladministrativo:
     _attributes: { phpName: Personaladministrativo }
     pad_id: { phpName: PadId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -529,17 +528,16 @@ propel:
     pfu_programas_reduccion_uso_agroquimicos: { phpName: PfuProgramasReduccionUsoAgroquimicos, type: VARCHAR, required: false }
     pfu_situacion_arriba_captacion_reserva: { phpName: PfuSituacionArribaCaptacionReserva, type: VARCHAR, required: false }
     pfu_situacion_arriba_captacion_protegida: { phpName: PfuSituacionArribaCaptacionProtegida, type: VARCHAR, required: false }
-    pfu_cobertura_forestal_natural: { phpName: PfuCoberturaForestalNatural, type: VARCHAR, required: false }
-    pfu_cobertura_forestal_protector: { phpName: PfuCoberturaForestalProtector, type: VARCHAR, required: false }
-    pfu_cobertura_forestal_protector_productor: { phpName: PfuCoberturaForestalProtectorProductor, type: VARCHAR, required: false }
+    pfu_cobertura_forestal_bosque_natural: { phpName: PfuCoberturaForestalBosqueNatural, type: VARCHAR, required: false }
+    pfu_cobertura_forestal_bosque_protector: { phpName: PfuCoberturaForestalBosqueProtector, type: VARCHAR, required: false }
+    pfu_cobertura_forestal_bosque_protector_productor: { phpName: PfuCoberturaForestalBosqueProtectorProductor, type: VARCHAR, required: false }
     pfu_cobertura_forestal_productor: { phpName: PfuCoberturaForestalProductor, type: VARCHAR, required: false }
     pfu_cobertura_forestal_regeneracion_natural: { phpName: PfuCoberturaForestalRegeneracionNatural, type: VARCHAR, required: false }
-    pfu_cobertura_forestal_natural_tendencia: { phpName: PfuCoberturaForestalNaturalTendencia, type: VARCHAR, size: '50', required: false }
-    pfu_cobertura_forestal_protector_tendencia: { phpName: PfuCoberturaForestalProtectorTendencia, type: VARCHAR, size: '50', required: false }
-    pfu_cobertura_forestal_protector_productor_tendencia: { phpName: PfuCoberturaForestalProtectorProductorTendencia, type: VARCHAR, size: '50', required: false }
+    pfu_cobertura_forestal_bosque_natural_tendencia: { phpName: PfuCoberturaForestalBosqueNaturalTendencia, type: VARCHAR, size: '50', required: false }
+    pfu_cobertura_forestal_bosque_protector_tendencia: { phpName: PfuCoberturaForestalBosqueProtectorTendencia, type: VARCHAR, size: '50', required: false }
+    pfu_cobertura_forestal_bosque_protector_productor_tendencia: { phpName: PfuCoberturaForestalBosqueProtectorProductorTendencia, type: VARCHAR, size: '50', required: false }
     pfu_cobertura_forestal_productor_tendencia: { phpName: PfuCoberturaForestalProductorTendencia, type: VARCHAR, size: '50', required: false }
     pfu_cobertura_forestal_regeneracion_natural_tendencia: { phpName: PfuCoberturaForestalRegeneracionNaturalTendencia, type: VARCHAR, size: '50', required: false }
-    pfu_extension_has: { phpName: PfuExtensionHas, type: INTEGER, required: false }
     pfu_aislamiento_franja_amarilla_microcuenca: { phpName: PfuAislamientoFranjaAmarillaMicrocuenca, type: VARCHAR, required: false }
     pfu_cobertura_forestal_area_protectora_cauce: { phpName: PfuCoberturaForestalAreaProtectoraCauce, type: VARCHAR, required: false }
     pfu_area_microcuenca_propiedad_acueducto: { phpName: PfuAreaMicrocuencaPropiedadAcueducto, type: VARCHAR, required: false }

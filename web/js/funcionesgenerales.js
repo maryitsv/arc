@@ -17,17 +17,18 @@ function ayuda( idcomponente, mensaje, titulo ){
 		});
 	}
 }
-
-function formatoNumeroCelda ( algo ){
+/*
+function formatoNumeroCelda ( algo ){ //esta funcion esta implementada mas abajo
 	
 	return algo;
 }
-
+*/
+/*
 function formatoNumeroCampo(algo)   //esta funcion esta implementada mas abajo
 {
 	return algo
 }
-
+*/
 
 function mostrarMensajeRapido(titulo, contenido)
 {
@@ -71,25 +72,36 @@ function subirDatos(panel, url_Action, extraParams, funcionSuccess, funcionFailu
 		}
 	});
 }
-/*
+
+function formatoNumeroCelda(valor)
+{
+	valor += ''; 
+	var expresionRegular = /(\d+)(\d{3})/;
+	while (expresionRegular.test(valor))
+	{
+	  valor = valor.replace(expresionRegular, '$1' + ',' + '$2');
+	}
+	return valor;
+}
+
 function formatoNumeroCampo(campo)
 {
-   valor =  campo.getValue() + '';
-   separandoDecimales = valor.split('.');
-   separandoMilesAnteriores = separandoDecimales[0].split(',');
-   parteEntera = '';
-   for (i=0; i<separandoMilesAnteriores.length; i++)
-   {
-      parteEntera += ''+ separandoMilesAnteriores[i] +'' ;
-   }
-   parteDecimal = separandoDecimales.length > 1 ? '.' + separandoDecimales[1] : '';
-   var expresionRegular = /(\d+)(\d{3})/;
-   while (expresionRegular.test(parteEntera))
-   {
-      parteEntera = parteEntera.replace(expresionRegular, '$1' + ',' + '$2');
-   }
-   campo.setValue(parteEntera + parteDecimal);
-   return false;
+	valor =  campo.getValue() + '';
+	separandoDecimales = valor.split('.');
+	separandoMilesAnteriores = separandoDecimales[0].split(',');
+	parteEntera = '';
+	for (i=0; i<separandoMilesAnteriores.length; i++)
+	{
+	parteEntera += ''+ separandoMilesAnteriores[i] +'' ;
+	}
+	parteDecimal = separandoDecimales.length > 1 ? '.' + separandoDecimales[1] : '';
+	var expresionRegular = /(\d+)(\d{3})/;
+	while (expresionRegular.test(parteEntera))
+	{
+	parteEntera = parteEntera.replace(expresionRegular, '$1' + ',' + '$2');
+	}
+	campo.setValue(parteEntera + parteDecimal);
+	return false;
 }
 
 function quitarFormatoNumeroCampo(campo)
@@ -99,5 +111,12 @@ function quitarFormatoNumeroCampo(campo)
    sinFormato = valor.replace(expresionRegular, '$1' + '$3' + '$5');
    return sinFormato;
 }
-*/
 
+function validar_formatear(campo){
+	if(campo.getValue() == ''){
+		campo.setValue('0');
+	}
+	var activo = parseFloat(quitarFormatoNumeroCampo(campo));
+	var valorFormateado = formatoNumeroCelda(activo);
+	campo.setValue(valorFormateado);
+}
