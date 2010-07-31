@@ -30,28 +30,74 @@ class loginActions extends sfActions
 		$conexion->add(UsuarioPeer::USU_CLAVE,$this->getRequestParameter('usu_clave_encriptada'));
 		$usuario = UsuarioPeer::doSelectOne($conexion);
 		
-		if(!$usuario){			
+		if(!$usuario)
+		{			
 	
 			return $this->renderText("{success: false, errors: { reason: 'el usuario o clave incorrectas' }}");
-			}
-		else {
+		}
+		else
+		{
 						
 			$this->getUser()->setAttribute('usu_id', $usuario->getUsuId());
 			$this->getUser()->setAttribute('usu_login', $usuario->getUsuLogin());
 			$this->getUser()->setAttribute('usu_per_id', $usuario->getUsuPerId());
+			
+			$perfil=$usuario->getPerfil()->getPerNombre();
+
+			if($perfil == 'prestador')
+			{
+				if($this->obtenerPrestador($usuario->getUsuId()))
+				{
+					$this->getUser()->setAuthenticated(true);
+					return $this->renderText("{success:true,mensaje:'".$perfil."'}");
+				}
+				else
+				{
+					return $this->renderText("{success: false, errors: { reason: 'el usuario o clave incorrectas' }}");
+				}
+			}
+			if($perfil == 'administrador')
+			{
+				return $this->renderText("{success:true,mensaje:'".$perfil."'}");
+			}
+
 			//eto no va aqui		
 			//$this->getUser()->setAttribute('pps_anio','2010');
-		//	$this->getUser()->setAttribute('pps_pre_id','5');
+			//$this->getUser()->setAttribute('pps_pre_id','5');
 			//$this->getUser()->setAttribute('pps_pre_id', 1);
-			
-			$this->getUser()->setAuthenticated(true);
-			
-					
-			return $this->renderText("{success:true,mensaje:'".$usuario->getPerfil()->getPerNombre()."'}");
-		}
 
+		}
   }
 
+	public function obtenerPrestador($usu_id)
+	{
+		
+		try
+		{
+			//$usu_id = $this->getRequestParameter('usu_id');
+			$conexion = new Criteria();
+			$conexion->add(PrestadorPeer::PRE_USU_ID, $usu_id);
+			$prestador = PrestadorPeer::doSelectOne($conexion);
+		//	echo($prestador->getPreId());
+			if($prestador)
+			{
+				$this->getUser()->setAttribute('pps_pre_id', $prestador->getPreId()); 
+				//$prestador->getPreRanId(); rango
+				//$prestador->getPreNombrePrestador(); nombre
+				//echo($prestador->getPreId());
+			} 
+			else 
+			{
+				return false;
+			}
+		}
+		catch (Exception $excepcion)
+		{
+			return false;
+			$salida =  "({success: false, errors: { reason: 'Hubo una excepcion'}})";
+		}
+		return true;
+	}
 
   
   

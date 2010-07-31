@@ -87,7 +87,7 @@ class periodoprestadorservicioActions extends sfActions
 		}
 	}
 	
-	if($pps_ser_alc == 1)
+	if($pps_ser_alc == 2)
 	{
 		$conexion = new Criteria();
 		$conexion->add(PrestadorporservicioPeer::PPSG_PRE_ID, $pps_pre_id);
@@ -130,7 +130,7 @@ class periodoprestadorservicioActions extends sfActions
 		}
 	}
 	
-	if($pps_ser_ase == 1)
+	if($pps_ser_ase == 3)
 	{
 		$conexion = new Criteria();
 		$conexion->add(PrestadorporservicioPeer::PPSG_PRE_ID, $pps_pre_id);

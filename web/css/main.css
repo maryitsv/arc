@@ -48,6 +48,14 @@ body .x-panel {
 .usuario_deshabilitados_icono{ background-image:url(../images/iconos/usuario/deshabilitado.png) !important;} 
 .usuario_habilitados_icono{ background-image:url(../images/iconos/usuario/habilitado.png) !important;} 
 
+/*gestion de prestadores*/
+.prestador_gestionar_nuevo_icono{ background-image:url(../images/iconos/usuario/add_usu.png) !important;}
+.prestador_gestionar_borrar_icono{ background-image:url(../images/iconos/usuario/eli_usu.png) !important;}
+.prestador_gestionar_actualizar_icono{ background-image:url(../images/iconos/usuario/edit_usu.png) !important;}
+.prestador_gestionar_todos_icono{ background-image:url(../images/iconos/usuario/usuarios.png) !important;} 
+.prestador_gestionar_deshabilitados_icono{ background-image:url(../images/iconos/usuario/deshabilitado.png) !important;} 
+.prestador_gestionar_habilitados_icono{ background-image:url(../images/iconos/usuario/habilitado.png) !important;} 
+
 /*botones generales*/
 .continuar {
 background-image:url(../images/iconos/next.png) !important;

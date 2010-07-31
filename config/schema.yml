@@ -187,8 +187,6 @@ propel:
     capt_estado_pozo_id: { phpName: CaptEstadoPozoId, type: INTEGER, required: true, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
     capt_estado_bomba_id: { phpName: CaptEstadoBombaId, type: INTEGER, required: true, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
     capt_fuente_energia_id: { phpName: CaptFuenteEnergiaId, type: INTEGER, required: true, foreignTable: fuenteenergia, foreignReference: fen_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    capt_fuente_superficial: { phpName: CaptFuenteSuperficial, type: VARCHAR, required: false }
-    capt_top_id: { phpName: CaptTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onUpdate: CASCADE }
   categoriadetipodesolucionindividualalcantarillado:
     _attributes: { phpName: Categoriadetipodesolucionindividualalcantarillado }
     ctdsia_id: { phpName: CtdsiaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -660,10 +658,17 @@ propel:
     toaa_top_id: { phpName: ToaaTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
     toaa_tan_id: { phpName: ToaaTanId, type: INTEGER, required: true, foreignTable: tanque, foreignReference: tan_id, onDelete: RESTRICT, onUpdate: CASCADE }
     _uniques: { tecnicooperativaalmacenamientoac: [toaa_top_id, toaa_tan_id] }
+  tecnicooperativacaptacionacueducto:
+    _attributes: { phpName: Tecnicooperativacaptacionacueducto }
+    toca_id: { phpName: TocaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    toca_top_id: { phpName: TocaTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    toca_capt_id: { phpName: TocaCaptId, type: INTEGER, required: true, foreignTable: captacion, foreignReference: capt_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    _uniques: { tecnicooperativacaptacionacueduc: [toca_top_id, toca_capt_id] }
   tecnicooperativacomponentessistema:
     _attributes: { phpName: Tecnicooperativacomponentessistema }
     tocs_id: { phpName: TocsId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     tocs_top_id: { phpName: TocsTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    tocs_componentes: { phpName: TocsComponentes, type: VARCHAR, size: '100', required: true }
     tocs_captacion: { phpName: TocsCaptacion, type: VARCHAR, required: false }
     tocs_captacion_cantidad: { phpName: TocsCaptacionCantidad, type: INTEGER, required: false }
     tocs_aduccion: { phpName: TocsAduccion, type: VARCHAR, required: false }

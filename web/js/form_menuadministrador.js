@@ -27,7 +27,7 @@ init: function () {
 									expanded: false,
 									items: [
 										{
-											id: 'datos_prestador',
+											id: 'datos_usuario',
 											title: 'Manejo de usuarios',
 											tabTip: 'Manejo de ususarios',
 											border: false,
@@ -41,7 +41,24 @@ init: function () {
 										}
 										]
 								},
-								
+								{
+									expanded: false,
+									items: [
+										{
+											id: 'datos_prestador',
+											title: 'Manejo de prestadores',
+											tabTip: 'Manejo de prestadores',
+											border: false,
+											style: 'padding: 10px;',
+											items:[
+												{
+													frame: true,
+													autoLoad: { url: url_arc+'prestador_gestionar', scripts: true, scope: this }
+												}
+											]                
+										}
+										]
+								},
 								{
 									expanded: false,
 									items: [
