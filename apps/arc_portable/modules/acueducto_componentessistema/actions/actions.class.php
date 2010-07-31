@@ -72,7 +72,7 @@ class acueducto_componentessistemaActions extends sfActions
 		$tecnicoOperativaComponentesSistema->setTocsRedDistribucionCantidad($request->getParameter('tocs_red_distribucion_cantidad', 0));
 
 		$tecnicoOperativaComponentesSistema->save();
-		return $this->renderText('Almacenado correctamente');
+		return sfView::NONE;
 	}
 
 	public function executeObtenerDatos() {
