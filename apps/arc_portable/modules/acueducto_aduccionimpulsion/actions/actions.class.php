@@ -238,7 +238,7 @@ class acueducto_aduccionimpulsionActions extends sfActions
 			$polietilenoLd->save();
 		}
 
-		return $this->renderText('Almacenado correctamente');
+		return sfView::NONE;
 	}
 
 	public function executeObtenerDatos() {

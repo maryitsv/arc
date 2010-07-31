@@ -74,7 +74,7 @@ class acueducto_sistemasabastecimientoActions extends sfActions
 		$tecnicoOperativaAcueducto->setToaSolucionOtroViviendas($request->getParameter('toa_solucion_otro_viviendas'));
 
 		$tecnicoOperativaAcueducto->save();
-		return $this->renderText('Almacenado correctamente');
+		return sfView::NONE;
 	}
 
 	public function executeObtenerDatos() {
