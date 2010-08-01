@@ -138,7 +138,7 @@ var acu_pps_apellido_diligenciador = new Ext.form.TextField({
 });
 
 var acu_pps_identificacion_diligenciador = new Ext.form.TextField({
-    fieldLabel: 'Identificacion del diligenciador',
+    fieldLabel: 'Identificación del diligenciador',
     emptyText: 'ingrese la identificacion del diligenciador',
     id: 'acu_pps_identificacion_diligenciador',
     name: 'acu_pps_identificacion_diligenciador',
