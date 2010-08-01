@@ -53,8 +53,8 @@ var acu_pps_estatutos = new Ext.form.RadioGroup( {
 	}]} );
 
 var acu_pps_numero_empleados_con_competencias = new Ext.form.NumberField( {
-	fieldLabel: 'Cuantos empleados cuentan con certificacion basada en competencias rurales', 
-	emptyText: 'numero de empleados que cuentan con certificacion basada en competencias', 
+	fieldLabel: 'Cu&aacute;ntos empleados cuentan con certificaci&oacute;n basada en competencias rurales', 
+	emptyText: 'n&uacute;mero de empleados que cuentan con certificaci&oacute;n basada en competencias', 
 	id: 'acu_pps_numero_empleados_con_competencias', 
 	name: 'acu_pps_numero_empleados_con_competencias', 
 	anchor: '100%', 
@@ -67,8 +67,8 @@ var acu_pps_numero_empleados_con_competencias = new Ext.form.NumberField( {
 } );
 
 var acu_pps_numero_empleados_sin_competencias = new Ext.form.NumberField( {
-	fieldLabel: 'Cuantos empleados no cuentan con certificacion basada en competencias rurales', 
-	emptyText: 'numero de empleados que no cuentan con certificacion basada en competencias', 
+	fieldLabel: 'Cu&aacute;ntos empleados NO cuentan con certificaci&oacute;n basada en competencias rurales', 
+	emptyText: 'n&uacute;mero de empleados que NO cuentan con certificaci&oacute;n basada en competencias', 
 	id: 'acu_pps_numero_empleados_sin_competencias', 
 	name: 'acu_pps_numero_empleados_sin_competencias', 
 	anchor: '100%', 
@@ -81,8 +81,8 @@ var acu_pps_numero_empleados_sin_competencias = new Ext.form.NumberField( {
 } );
 
 var acu_pps_numero_empleados_proceso_competencias = new Ext.form.NumberField( { 
-	fieldLabel: 'Cuantos empleados estan en proceso de certificacion basada en competencias rurales', 
-	emptyText: 'numero de empleados que estan en proceso de certificacion basada en competencias', 
+	fieldLabel: 'Cu&aacute;ntos empleados est&aacute;n EN PROCESO de certificaci&oacute;n basada en competencias rurales', 
+	emptyText: 'n&uacute;mero de empleados que est&aacute;n EN PROCESO de certificaci&oacute;n basada en competencias', 
 	id: 'acu_pps_numero_empleados_proceso_competencias', 
 	name: 'acu_pps_numero_empleados_proceso_competencias', 
 	anchor: '100%', 
@@ -95,8 +95,8 @@ var acu_pps_numero_empleados_proceso_competencias = new Ext.form.NumberField( {
 } );
 
 var acu_pps_numero_suscriptores = new Ext.form.NumberField( {
-	fieldLabel: 'Numero de suscriptores', 
-	emptyText: 'ingrese el numero de suscriptores', 
+	fieldLabel: 'N&uacute;mero de suscriptores', 
+	emptyText: 'ingrese el n&uacute;mero de suscriptores', 
 	id: 'acu_pps_numero_suscriptores', 
 	name: 'acu_pps_numero_suscriptores',
 	anchor: '100%', 
@@ -138,7 +138,7 @@ var acu_pps_apellido_diligenciador = new Ext.form.TextField({
 });
 
 var acu_pps_identificacion_diligenciador = new Ext.form.TextField({
-    fieldLabel: 'Identificación del diligenciador',
+    fieldLabel: 'Identificaci&oacute;n del diligenciador',
     emptyText: 'ingrese la identificacion del diligenciador',
     id: 'acu_pps_identificacion_diligenciador',
     name: 'acu_pps_identificacion_diligenciador',
@@ -160,7 +160,7 @@ var acu_pps_tipo_identificacion_diligenciador = new Ext.form.ComboBox({
     store: acu_pps_tipos_identificacion,
 	name : 'acu_pps_tipo_identificacion_diligenciador',
 	fieldLabel: 'Tipo de identificaci&oacute;n',
-    emptyText:'seleccione el tipo de identificacion del diligenciador',
+    emptyText:'seleccione el tipo de identificaci&oacute;n del diligenciador',
 	id: 'acu_pps_tipo_identificacion_diligenciador',
     displayField: 'tipo',
     typeAhead: true,
@@ -180,7 +180,7 @@ var acu_pps_tipo_identificacion_diligenciador = new Ext.form.ComboBox({
 
 var acu_pps_telefono_diligenciador = new Ext.form.TextField({
     fieldLabel: 'Tel&eacute;fono fijo &oacute; celular',
-    emptyText: 'ingrese el numero de telefono fijo o celular del diligenciador',
+    emptyText: 'ingrese el n&uacute;mero de tel&eacute;fono fijo o celular del diligenciador',
     id: 'acu_pps_telefono_diligenciador',
     name: 'acu_pps_telefono_diligenciador',
     anchor: '100%',
@@ -214,8 +214,8 @@ var acu_pps_presupuesto_aprobado = new Ext.form.RadioGroup({
 });
 
 var acu_pps_suscriptores_pendientes_de_pago = new Ext.form.NumberField({
-    fieldLabel: 'Numero de suscriptores que a diciembre 31 deben mas de 3 Facturas',
-    emptyText: 'ingrese la cantidad de suscriptores que a diciembre 31 deben mas de 3 facturas',
+    fieldLabel: 'N&uacute;mero de suscriptores que a diciembre 31 deben m&aacute;s de 3 Facturas',
+    emptyText: 'ingrese la cantidad de suscriptores que a diciembre 31 deben m&aacute;s de 3 facturas',
     id: 'acu_pps_suscriptores_pendientes_de_pago',
     name: 'acu_pps_suscriptores_pendientes_de_pago',
     anchor: '100%',
