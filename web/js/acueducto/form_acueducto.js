@@ -58,6 +58,8 @@ var acu_pps_numero_empleados_con_competencias = new Ext.form.NumberField( {
 	id: 'acu_pps_numero_empleados_con_competencias', 
 	name: 'acu_pps_numero_empleados_con_competencias', 
 	anchor: '100%', 
+	minLength : '1',
+      	maxLength : '7',
 	//allowBlank:false,
 	listeners: {
         'render': function(){ 
