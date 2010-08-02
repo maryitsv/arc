@@ -81,10 +81,10 @@ create table FUENTES
 										ayuda('acu_fue_tiene_fuentes_superficiales',ayuda_acu_fue_tiene_fuentes_superficiales);
 									},
 									'check':function( chekbox , cheked){
-										if(cheked){
+										if(!cheked){
 											Ext.getCmp('acu_fue_numero_fuentes_superficiales').reset();
 										}
-										Ext.getCmp('acu_fue_numero_fuentes_superficiales').setDisabled(cheked!);
+										Ext.getCmp('acu_fue_numero_fuentes_superficiales').setDisabled(!cheked);
 									}
 								}
 							},
@@ -100,10 +100,10 @@ create table FUENTES
 										ayuda('acu_fue_tiene_fuentes_subterraneas',ayuda_acu_fue_tiene_fuentes_subterraneas);
 									},
 									'check':function( chekbox , cheked){
-										if(cheked){
+										if(!cheked){
 											Ext.getCmp('acu_fue_numero_fuentes_subterraneas').reset();
 										}
-										Ext.getCmp('acu_fue_numero_fuentes_subterraneas').setDisabled(cheked!);
+										Ext.getCmp('acu_fue_numero_fuentes_subterraneas').setDisabled(!cheked);
 									}
 								}
 							},
@@ -128,7 +128,8 @@ create table FUENTES
 						[	
 							{xtype: 'label', text: 'Cantidad', cls:'x-form-check-group-label'},
 							{
-							   xtype: 'textfield',
+							   xtype: 'numberfield',
+							   disabled:true,
 							   name: 'acu_fue_numero_fuentes_superficiales',
 							   id: 'acu_fue_numero_fuentes_superficiales',
 							   listeners:
@@ -139,7 +140,8 @@ create table FUENTES
 								}
 							},
 							{
-							   xtype: 'textfield',
+							   xtype: 'numberfield',
+							   disabled:true,
 							   name: 'acu_fue_numero_fuentes_subterraneas',
 							   id: 'acu_fue_numero_fuentes_subterraneas',
 							   listeners:
