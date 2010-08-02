@@ -70,34 +70,34 @@ class acueducto_informacioncontableActions extends sfActions
 			{
 				//$acu_informacioncontable->setIcoBalanceGeneral($this->getRequestParameter('acu_ico_balance_general'));
 				$acu_informacioncontable->setIcoBalanceGeneral($pps_anio);
-				$acu_informacioncontable->setIcoActivos($this->getRequestParameter('acu_ico_activos'));
-				$acu_informacioncontable->setIcoActivosCorrientes($this->getRequestParameter('acu_ico_activos_corrientes'));
-				$acu_informacioncontable->setIcoEfectivo($this->getRequestParameter('acu_ico_efectivo'));
-				$acu_informacioncontable->setIcoDeudores($this->getRequestParameter('acu_ico_deudores'));
-				$acu_informacioncontable->setIcoInventario($this->getRequestParameter('acu_ico_inventario'));
-				$acu_informacioncontable->setIcoActivosFijos($this->getRequestParameter('acu_ico_activos_fijos'));
-				$acu_informacioncontable->setIcoPropiedadPlantaEquipos($this->getRequestParameter('acu_ico_propiedad_planta_equipos'));
-				$acu_informacioncontable->setIcoOtrosActivos($this->getRequestParameter('acu_ico_otros_activos'));
-				$acu_informacioncontable->setIcoPasivos($this->getRequestParameter('acu_ico_pasivos')); 
-				$acu_informacioncontable->setIcoPasivosCorrientes($this->getRequestParameter('acu_ico_pasivos_corrientes')); 
-				$acu_informacioncontable->setIcoObligacionesFinancieras($this->getRequestParameter('acu_ico_obligaciones_financieras')); 
-				$acu_informacioncontable->setIcoOtrasCuentasPorPagar($this->getRequestParameter('acu_ico_otras_cuentas_por_pagar'));
-				$acu_informacioncontable->setIcoObligacionesLaborales($this->getRequestParameter('acu_ico_obligaciones_laborales'));
-				$acu_informacioncontable->setIcoOtrosPasivos($this->getRequestParameter('acu_ico_otros_pasivos'));
-				$acu_informacioncontable->setIcoPatrimonio($this->getRequestParameter('acu_ico_patrimonio'));
+				$acu_informacioncontable->setIcoActivos(str_replace(',', '', $this->getRequestParameter('acu_ico_activos')));
+				$acu_informacioncontable->setIcoActivosCorrientes(str_replace(',', '', $this->getRequestParameter('acu_ico_activos_corrientes')));
+				$acu_informacioncontable->setIcoEfectivo(str_replace(',', '', $this->getRequestParameter('acu_ico_efectivo')));
+				$acu_informacioncontable->setIcoDeudores(str_replace(',', '', $this->getRequestParameter('acu_ico_deudores')));
+				$acu_informacioncontable->setIcoInventario(str_replace(',', '', $this->getRequestParameter('acu_ico_inventario')));
+				$acu_informacioncontable->setIcoActivosFijos(str_replace(',', '', $this->getRequestParameter('acu_ico_activos_fijos')));
+				$acu_informacioncontable->setIcoPropiedadPlantaEquipos(str_replace(',', '', $this->getRequestParameter('acu_ico_propiedad_planta_equipos')));
+				$acu_informacioncontable->setIcoOtrosActivos(str_replace(',', '', $this->getRequestParameter('acu_ico_otros_activos')));
+				$acu_informacioncontable->setIcoPasivos(str_replace(',', '', $this->getRequestParameter('acu_ico_pasivos'))); 
+				$acu_informacioncontable->setIcoPasivosCorrientes(str_replace(',', '', $this->getRequestParameter('acu_ico_pasivos_corrientes'))); 
+				$acu_informacioncontable->setIcoObligacionesFinancieras(str_replace(',', '', $this->getRequestParameter('acu_ico_obligaciones_financieras'))); 
+				$acu_informacioncontable->setIcoOtrasCuentasPorPagar(str_replace(',', '', $this->getRequestParameter('acu_ico_otras_cuentas_por_pagar')));
+				$acu_informacioncontable->setIcoObligacionesLaborales(str_replace(',', '', $this->getRequestParameter('acu_ico_obligaciones_laborales')));
+				$acu_informacioncontable->setIcoOtrosPasivos(str_replace(',', '', $this->getRequestParameter('acu_ico_otros_pasivos')));
+				$acu_informacioncontable->setIcoPatrimonio(str_replace(',', '', $this->getRequestParameter('acu_ico_patrimonio')));
 				$acu_informacioncontable->setIcoEstadoDeResultados($pps_anio);
 				//$acu_informacioncontable->setIcoEstadoDeResultados($this->getRequestParameter('acu_ico_estado_de_resultados'));
 			}
 			if($this->getRequestParameter('form') == 'totales')
 			{
-				$acu_informacioncontable->setIcoTotalIngresos($this->getRequestParameter('acu_ico_total_ingresos'));
-				$acu_informacioncontable->setIcoIngresosOperacionales($this->getRequestParameter('acu_ico_ingresos_operacionales'));
-				$acu_informacioncontable->setIcoIngresosNoOperacionales($this->getRequestParameter('acu_ico_ingresos_no_operacionales'));
-				$acu_informacioncontable->setIcoTotalEgresos($this->getRequestParameter('acu_ico_total_egresos'));
-				$acu_informacioncontable->setIcoGastosAdministrativos($this->getRequestParameter('acu_ico_gastos_administrativos'));
-				$acu_informacioncontable->setIcoCostoOperacionMantenimiento($this->getRequestParameter('acu_ico_costo_operacion_mantenimiento')); 
-				$acu_informacioncontable->setIcoCostoInversion($this->getRequestParameter('acu_ico_costo_inversion'));
-				$acu_informacioncontable->setIcoResultadosEjercicio($this->getRequestParameter('acu_ico_resultados_ejercicio'));
+				$acu_informacioncontable->setIcoTotalIngresos(str_replace(',', '', $this->getRequestParameter('acu_ico_total_ingresos')));
+				$acu_informacioncontable->setIcoIngresosOperacionales(str_replace(',', '', $this->getRequestParameter('acu_ico_ingresos_operacionales')));
+				$acu_informacioncontable->setIcoIngresosNoOperacionales(str_replace(',', '', $this->getRequestParameter('acu_ico_ingresos_no_operacionales')));
+				$acu_informacioncontable->setIcoTotalEgresos(str_replace(',', '', $this->getRequestParameter('acu_ico_total_egresos')));
+				$acu_informacioncontable->setIcoGastosAdministrativos(str_replace(',', '', $this->getRequestParameter('acu_ico_gastos_administrativos')));
+				$acu_informacioncontable->setIcoCostoOperacionMantenimiento(str_replace(',', '', $this->getRequestParameter('acu_ico_costo_operacion_mantenimiento'))); 
+				$acu_informacioncontable->setIcoCostoInversion(str_replace(',', '', $this->getRequestParameter('acu_ico_costo_inversion')));
+				$acu_informacioncontable->setIcoResultadosEjercicio(str_replace(',', '', $this->getRequestParameter('acu_ico_resultados_ejercicio')));
 			}
 			
 			$acu_informacioncontable->save();
@@ -120,34 +120,34 @@ class acueducto_informacioncontableActions extends sfActions
 			{
 				//$acu_informacioncontable->setIcoBalanceGeneral($this->getRequestParameter('acu_ico_balance_general'));
 				$acu_informacioncontable->setIcoBalanceGeneral($pps_anio);
-				$acu_informacioncontable->setIcoActivos($this->getRequestParameter('acu_ico_activos'));
-				$acu_informacioncontable->setIcoActivosCorrientes($this->getRequestParameter('acu_ico_activos_corrientes'));
-				$acu_informacioncontable->setIcoEfectivo($this->getRequestParameter('acu_ico_efectivo'));
-				$acu_informacioncontable->setIcoDeudores($this->getRequestParameter('acu_ico_deudores'));
-				$acu_informacioncontable->setIcoInventario($this->getRequestParameter('acu_ico_inventario'));
-				$acu_informacioncontable->setIcoActivosFijos($this->getRequestParameter('acu_ico_activos_fijos'));
-				$acu_informacioncontable->setIcoPropiedadPlantaEquipos($this->getRequestParameter('acu_ico_propiedad_planta_equipos'));
-				$acu_informacioncontable->setIcoOtrosActivos($this->getRequestParameter('acu_ico_otros_activos'));
-				$acu_informacioncontable->setIcoPasivos($this->getRequestParameter('acu_ico_pasivos')); 
-				$acu_informacioncontable->setIcoPasivosCorrientes($this->getRequestParameter('acu_ico_pasivos_corrientes')); 
-				$acu_informacioncontable->setIcoObligacionesFinancieras($this->getRequestParameter('acu_ico_obligaciones_financieras')); 
-				$acu_informacioncontable->setIcoOtrasCuentasPorPagar($this->getRequestParameter('acu_ico_otras_cuentas_por_pagar'));
-				$acu_informacioncontable->setIcoObligacionesLaborales($this->getRequestParameter('acu_ico_obligaciones_laborales'));
-				$acu_informacioncontable->setIcoOtrosPasivos($this->getRequestParameter('acu_ico_otros_pasivos'));
-				$acu_informacioncontable->setIcoPatrimonio($this->getRequestParameter('acu_ico_patrimonio'));
+				$acu_informacioncontable->setIcoActivos(str_replace(',', '', $this->getRequestParameter('acu_ico_activos')));
+				$acu_informacioncontable->setIcoActivosCorrientes(str_replace(',', '', $this->getRequestParameter('acu_ico_activos_corrientes')));
+				$acu_informacioncontable->setIcoEfectivo(str_replace(',', '', $this->getRequestParameter('acu_ico_efectivo')));
+				$acu_informacioncontable->setIcoDeudores(str_replace(',', '', $this->getRequestParameter('acu_ico_deudores')));
+				$acu_informacioncontable->setIcoInventario(str_replace(',', '', $this->getRequestParameter('acu_ico_inventario')));
+				$acu_informacioncontable->setIcoActivosFijos(str_replace(',', '', $this->getRequestParameter('acu_ico_activos_fijos')));
+				$acu_informacioncontable->setIcoPropiedadPlantaEquipos(str_replace(',', '', $this->getRequestParameter('acu_ico_propiedad_planta_equipos')));
+				$acu_informacioncontable->setIcoOtrosActivos(str_replace(',', '', $this->getRequestParameter('acu_ico_otros_activos')));
+				$acu_informacioncontable->setIcoPasivos(str_replace(',', '', $this->getRequestParameter('acu_ico_pasivos'))); 
+				$acu_informacioncontable->setIcoPasivosCorrientes(str_replace(',', '', $this->getRequestParameter('acu_ico_pasivos_corrientes'))); 
+				$acu_informacioncontable->setIcoObligacionesFinancieras(str_replace(',', '', $this->getRequestParameter('acu_ico_obligaciones_financieras'))); 
+				$acu_informacioncontable->setIcoOtrasCuentasPorPagar(str_replace(',', '', $this->getRequestParameter('acu_ico_otras_cuentas_por_pagar')));
+				$acu_informacioncontable->setIcoObligacionesLaborales(str_replace(',', '', $this->getRequestParameter('acu_ico_obligaciones_laborales')));
+				$acu_informacioncontable->setIcoOtrosPasivos(str_replace(',', '', $this->getRequestParameter('acu_ico_otros_pasivos')));
+				$acu_informacioncontable->setIcoPatrimonio(str_replace(',', '', $this->getRequestParameter('acu_ico_patrimonio')));
 				$acu_informacioncontable->setIcoEstadoDeResultados($pps_anio);
 				//$acu_informacioncontable->setIcoEstadoDeResultados($this->getRequestParameter('acu_ico_estado_de_resultados'));
 			}
 			if($this->getRequestParameter('form') == 'totales')
 			{
-				$acu_informacioncontable->setIcoTotalIngresos($this->getRequestParameter('acu_ico_total_ingresos'));
-				$acu_informacioncontable->setIcoIngresosOperacionales($this->getRequestParameter('acu_ico_ingresos_operacionales'));
-				$acu_informacioncontable->setIcoIngresosNoOperacionales($this->getRequestParameter('acu_ico_ingresos_no_operacionales'));
-				$acu_informacioncontable->setIcoTotalEgresos($this->getRequestParameter('acu_ico_total_egresos'));
-				$acu_informacioncontable->setIcoGastosAdministrativos($this->getRequestParameter('acu_ico_gastos_administrativos'));
-				$acu_informacioncontable->setIcoCostoOperacionMantenimiento($this->getRequestParameter('acu_ico_costo_operacion_mantenimiento')); 
-				$acu_informacioncontable->setIcoCostoInversion($this->getRequestParameter('acu_ico_costo_inversion'));
-				$acu_informacioncontable->setIcoResultadosEjercicio($this->getRequestParameter('acu_ico_resultados_ejercicio'));
+				$acu_informacioncontable->setIcoTotalIngresos(str_replace(',', '', $this->getRequestParameter('acu_ico_total_ingresos')));
+				$acu_informacioncontable->setIcoIngresosOperacionales(str_replace(',', '', $this->getRequestParameter('acu_ico_ingresos_operacionales')));
+				$acu_informacioncontable->setIcoIngresosNoOperacionales(str_replace(',', '', $this->getRequestParameter('acu_ico_ingresos_no_operacionales')));
+				$acu_informacioncontable->setIcoTotalEgresos(str_replace(',', '', $this->getRequestParameter('acu_ico_total_egresos')));
+				$acu_informacioncontable->setIcoGastosAdministrativos(str_replace(',', '', $this->getRequestParameter('acu_ico_gastos_administrativos')));
+				$acu_informacioncontable->setIcoCostoOperacionMantenimiento(str_replace(',', '', $this->getRequestParameter('acu_ico_costo_operacion_mantenimiento'))); 
+				$acu_informacioncontable->setIcoCostoInversion(str_replace(',', '', $this->getRequestParameter('acu_ico_costo_inversion')));
+				$acu_informacioncontable->setIcoResultadosEjercicio(str_replace(',', '', $this->getRequestParameter('acu_ico_resultados_ejercicio')));
 			}
 			
 			$acu_informacioncontable->save();

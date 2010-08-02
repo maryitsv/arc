@@ -65,15 +65,24 @@ var acu_calidad_calidadaguafuente_data = [
 ];
 
 
-var acu_calidad_calidadaguafuente_datastore = new Ext.data.SimpleStore({
-	fields: [
-	   {name: 'parametros'},
-	   {name: 'valores', type: 'float'},
-	   {name: 'frecuencia', type: 'float'}
-	]
+var acu_calidad_calidadaguafuente_datastore = new Ext.data.Store({
+	id: 'acu_calidad_calidadaguafuente_datastore',
+	proxy: new Ext.data.HttpProxy({
+			url: 'acueducto_calidadaguafuente/obtenerDatosAcuCalidadAguaFuente', 
+			method: 'POST'
+	}),
+	baseParams:{}, 
+	reader: new Ext.data.JsonReader({
+			root: 'results',
+			totalProperty: 'total',
+			},[
+			  {name: 'parametros', type: 'string'},
+			  {name: 'valores', type: 'float'},
+			  {name: 'frecuencia', type: 'float'}
+	])
 });
 
-acu_calidad_calidadaguafuente_datastore.loadData(acu_calidad_calidadaguafuente_data);
+//acu_calidad_calidadaguafuente_datastore.loadData(acu_calidad_calidadaguafuente_data);
 
 var acu_calidad_calidadaguafuente_roweditor = new Ext.ux.grid.RowEditor({
 	saveText: 'Guardar',
@@ -186,6 +195,8 @@ var form_acu_calidad_calidadaguafuente = new Ext.FormPanel({
 	    }
 	]
 });
+
+acu_calidad_calidadaguafuente_datastore.load();
 
 function acu_trabajadoresyvinculacion_subirdatos(){
 	subirDatos(

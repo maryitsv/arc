@@ -188,7 +188,6 @@ propel:
     capt_estado_bomba_id: { phpName: CaptEstadoBombaId, type: INTEGER, required: true, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
     capt_fuente_energia_id: { phpName: CaptFuenteEnergiaId, type: INTEGER, required: true, foreignTable: fuenteenergia, foreignReference: fen_id, onDelete: RESTRICT, onUpdate: CASCADE }
     capt_fuente_superficial: { phpName: CaptFuenteSuperficial, type: VARCHAR, required: false }
-    capt_top_id: { phpName: CaptTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onUpdate: CASCADE }
   categoriadetipodesolucionindividualalcantarillado:
     _attributes: { phpName: Categoriadetipodesolucionindividualalcantarillado }
     ctdsia_id: { phpName: CtdsiaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
