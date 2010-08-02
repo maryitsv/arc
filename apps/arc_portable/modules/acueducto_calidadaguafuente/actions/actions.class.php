@@ -88,8 +88,8 @@ class acueducto_calidadaguafuenteActions extends sfActions
 			$acu_calidadaguafuente->setCagFluorurosFrecuencia($this->getRequestParameter('acu_cag_fluoruros_frecuencia'));
 			$acu_calidadaguafuente->setCagLaboratorioPropio($this->getRequestParameter('acu_cag_laboratorio_propio'));
 			$acu_calidadaguafuente->setCagControlCaDistribuida($this->getRequestParameter('acu_cag_control_ca_distribuida'));
-			$acu_calidadaguafuente->setCagPuntosRedAnalizados($this->getRequestParameter('acu_cag_puntos_red_analizados'));
-			$acu_calidadaguafuente->setCagVisitaSspd($this->getRequestParameter('acu_cag_visita_sspd'));
+			//$acu_calidadaguafuente->setCagPuntosRedAnalizados($this->getRequestParameter('acu_cag_puntos_red_analizados'));
+			$acu_calidadaguafuente->setCagNumeroVisitaSspd($this->getRequestParameter('acu_cag_visita_sspd'));
 			
 			$acu_calidadaguafuente->save();
 		
@@ -130,8 +130,8 @@ class acueducto_calidadaguafuenteActions extends sfActions
 			$acu_calidadaguafuente->setCagFluorurosFrecuencia($this->getRequestParameter('acu_cag_fluoruros_frecuencia'));
 			$acu_calidadaguafuente->setCagLaboratorioPropio($this->getRequestParameter('acu_cag_laboratorio_propio'));
 			$acu_calidadaguafuente->setCagControlCaDistribuida($this->getRequestParameter('acu_cag_control_ca_distribuida'));
-			$acu_calidadaguafuente->setCagPuntosRedAnalizados($this->getRequestParameter('acu_cag_puntos_red_analizados'));
-			$acu_calidadaguafuente->setCagVisitaSspd($this->getRequestParameter('acu_cag_visita_sspd'));
+			//$acu_calidadaguafuente->setCagPuntosRedAnalizados($this->getRequestParameter('acu_cag_puntos_red_analizados'));
+			$acu_calidadaguafuente->setCagNumeroVisitaSspd($this->getRequestParameter('acu_cag_visita_sspd'));
 			
 			$acu_calidadaguafuente->save();
 			
@@ -160,57 +160,81 @@ class acueducto_calidadaguafuenteActions extends sfActions
 	$conexion->add(CalidadPeer::CAL_PPS_SER_ID, $pps_ser_id);
 	$acu_calidad = CalidadPeer::doSelectOne($conexion);
 
-	if($acu_calidad)
-	{
+
 	
 		$conexion = new Criteria();
-		$conexion->add(CapacitacionPeer::CAP_IAF_ID, $acu_calidad->getCalId());
+		$conexion->add(CalidadaguaPeer::CAG_CAL_ID, $acu_calidad->getCalId());
 		$acu_calidadaguafuente = CalidadaguaPeer::doSelectOne($conexion);
 		
 		$datos;
-		$pos=0;
+		$pos=8;
 		
 		if($acu_calidadaguafuente)
 		{
-			/*$datos[0]['parametros']='DBO<sub>5</sub>(mg/l)';
-			$datos[0]['valores']=$acu_calidadaguafuente->();
-			$datos[0]['frecuencia']=$acu_calidadaguafuente->();
+			$datos[0]['parametros']='DBO<sub>5</sub>(mg/l)';
+			$datos[0]['valores']=$acu_calidadaguafuente->getCagDb05Valor();
+			$datos[0]['frecuencia']=$acu_calidadaguafuente->getCagDb05Frecuencia();
 			$datos[1]['parametros']='Coliformes Totales UFC/100 ml';
-			$datos[1]['valores']=$acu_calidadaguafuente->();
-			$datos[1]['frecuencia']=$acu_calidadaguafuente->();
+			$datos[1]['valores']=$acu_calidadaguafuente->getCagColiformesValor();
+			$datos[1]['frecuencia']=$acu_calidadaguafuente->getCagColiformesFrecuencia();
 			$datos[2]['parametros']='Ox&iacute;geno disuelto (mg/l)';
-			$datos[2]['valores']=$acu_calidadaguafuente->();
-			$datos[2]['frecuencia']=$acu_calidadaguafuente->();
+			$datos[2]['valores']=$acu_calidadaguafuente->getCagOxigenoDisueltoValor();
+			$datos[2]['frecuencia']=$acu_calidadaguafuente->getCagOxigenoDisueltoFrecuencia();
 			$datos[3]['parametros']='pH';
-			$datos[3]['valores']=$acu_calidadaguafuente->(); 
-			$datos[3]['frecuencia']=$acu_calidadaguafuente->();
+			$datos[3]['valores']=$acu_calidadaguafuente->getCagPhValor(); 
+			$datos[3]['frecuencia']=$acu_calidadaguafuente->getCagPhFrecuencia();
 			$datos[4]['parametros']='Turbiedad (UNT)';
-			$datos[4]['valores']=$acu_calidadaguafuente->();
-			$datos[4]['frecuencia']=$acu_calidadaguafuente->();
+			$datos[4]['valores']=$acu_calidadaguafuente->getCagTurbiedadValor();
+			$datos[4]['frecuencia']=$acu_calidadaguafuente->getCagTurbiedadFrecuencia();
 			$datos[5]['parametros']='Color verdadero (UPC)'; 
-			$datos[5]['valores']=$acu_calidadaguafuente->();
-			$datos[5]['frecuencia']=$acu_calidadaguafuente->();
+			$datos[5]['valores']=$acu_calidadaguafuente->getCagColorVerdaderoValor();
+			$datos[5]['frecuencia']=$acu_calidadaguafuente->getCagColorVerdaderoFrecuencia();
 			$datos[6]['parametros']='Sabor y Olor';
-			$datos[6]['valores']=$acu_calidadaguafuente->();
-			$datos[6]['frecuencia']=$acu_calidadaguafuente->();
+			$datos[6]['valores']=$acu_calidadaguafuente->getCagSaborOlorValor();
+			$datos[6]['frecuencia']=$acu_calidadaguafuente->getCagSaborOlorFrecuencia();
 			$datos[7]['parametros']='Cloruros (mg-Cl)';
-			$datos[7]['valores']=$acu_calidadaguafuente->();
-			$datos[7]['frecuencia']=$acu_calidadaguafuente->();
+			$datos[7]['valores']=$acu_calidadaguafuente->getCagClorurosValor();
+			$datos[7]['frecuencia']=$acu_calidadaguafuente->getCagClorurosFrecuencia();
 			$datos[8]['parametros']='Floruros (mg-F)';
-			$datos[8]['valores']=$acu_calidadaguafuente->();
-			$datos[8]['frecuencia']=$acu_calidadaguafuente->();*/
+			$datos[8]['valores']=$acu_calidadaguafuente->getCagFluorurosValor();
+			$datos[8]['frecuencia']=$acu_calidadaguafuente->getCagFluorurosFrecuencia();
 			
 			$jsonresult = json_encode($datos);
-			$salida = '({"total":'.$pos.',"results":'.$jsonresult.'})';
+			$salida = '({"total":8,"results":'.$jsonresult.'})';
 		}
 		else
 		{
-			$salida = '({"total":"0", "results":""})';
+			$datos[0]['parametros']='DBO<sub>5</sub>(mg/l)';
+			$datos[0]['valores']=0;
+			$datos[0]['frecuencia']=0;
+			$datos[1]['parametros']='Coliformes Totales UFC/100 ml';
+			$datos[1]['valores']=0;
+			$datos[1]['frecuencia']=0;
+			$datos[2]['parametros']='Ox&iacute;geno disuelto (mg/l)';
+			$datos[2]['valores']=0;
+			$datos[2]['frecuencia']=0;
+			$datos[3]['parametros']='pH';
+			$datos[3]['valores']=0; 
+			$datos[3]['frecuencia']=0;
+			$datos[4]['parametros']='Turbiedad (UNT)';
+			$datos[4]['valores']=0;
+			$datos[4]['frecuencia']=0;
+			$datos[5]['parametros']='Color verdadero (UPC)'; 
+			$datos[5]['valores']=0;
+			$datos[5]['frecuencia']=0;
+			$datos[6]['parametros']='Sabor y Olor';
+			$datos[6]['valores']=0;
+			$datos[6]['frecuencia']=0;
+			$datos[7]['parametros']='Cloruros (mg-Cl)';
+			$datos[7]['valores']=0;
+			$datos[7]['frecuencia']=0;
+			$datos[8]['parametros']='Floruros (mg-F)';
+			$datos[8]['valores']=0;
+			$datos[8]['frecuencia']=0;
+			
+			$jsonresult = json_encode($datos);
+			$salida = '({"total":8,"results":'.$jsonresult.'})';
 		}
-	}
-	else {
-		$salida = '({"total":"0", "results":""})';
-	}
 	return 	$this->renderText($salida);
   }
   

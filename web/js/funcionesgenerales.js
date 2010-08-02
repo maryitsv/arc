@@ -106,16 +106,16 @@ function formatoNumeroCampo(campo)
 
 function quitarFormatoNumeroCampo(campo)
 {
-   valor =  campo.getValue() + '';
-   var expresionRegular = /(\d+)(\W*)(\d*)(\W*)(\d*)/;
-   sinFormato = valor.replace(expresionRegular, '$1' + '$3' + '$5');
-   return sinFormato;
+	valor =  campo.getValue() + '';
+	var expresionRegular = /(\d+)(\W*)(\d*)(\W*)(\d*)/;
+	sinFormato = valor.replace(expresionRegular, '$1' + '$3' + '$5');
+	if(sinFormato == ''){
+		sinFormato = '0';
+	}
+	return sinFormato;
 }
 
 function validar_formatear(campo){
-	if(campo.getValue() == ''){
-		campo.setValue('0');
-	}
 	var activo = parseFloat(quitarFormatoNumeroCampo(campo));
 	var valorFormateado = formatoNumeroCelda(activo);
 	campo.setValue(valorFormateado);
