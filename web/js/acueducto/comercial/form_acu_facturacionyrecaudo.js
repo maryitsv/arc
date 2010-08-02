@@ -136,8 +136,7 @@ Desarrollado maryit sanchez
 				html:'<br/><br/>'
 			},
 		   {
-			   xtype: 'textfield',
-			   enableKeyEvents: true,
+			   xtype: 'numberfield',
 			   width: 100,
 			   labelStyle: 'width:200px;'+letra,
 			   emptyText: '0',
@@ -149,8 +148,7 @@ Desarrollado maryit sanchez
 			   {
 				  'render': function() {
 							ayuda('acu_fac_num_fac_exp_ultimo_periodo', ayuda_acu_fac_num_fac_exp_ultimo_periodo);
-							},
-				  'keyup' : { fn: function(campo) { formatoNumeroCampo(this); } }                
+							}              
 			   }                
 		   }                                 
 		   ]
@@ -221,7 +219,7 @@ Desarrollado maryit sanchez
 					}
 			   },
 			   {
-				   xtype: 'textfield',
+				   xtype: 'numberfield',
 				   enableKeyEvents: true,
 				   width: 100,
 				   labelStyle: 'width:200px;'+letra,
@@ -233,13 +231,11 @@ Desarrollado maryit sanchez
 				   {
 				      'render': function() {
 								ayuda('acu_fac_morosidad_promedio', ayuda_acu_fac_morosidad_promedio);
-								},
-					  'keyup' : { fn: function(campo) { formatoNumeroCampo(this); } }                
+								}                
 				   }               
 			   },//estos campos son solo de acueducto
 			   {
-				   xtype: 'textfield',
-				   enableKeyEvents: true,
+				   xtype: 'numberfield',
 				   width: 100,
 				   labelStyle: 'width:200px;'+letra,
 				   emptyText: '0',
@@ -250,13 +246,11 @@ Desarrollado maryit sanchez
 				   {
 				      'render': function() {
 								ayuda('acu_fac_vol_agua_fac_en_el_anio_acu', ayuda_acu_fac_vol_agua_fac_en_el_anio_acu);
-								},
-					  'keyup' : { fn: function(campo) { formatoNumeroCampo(this); } }                
+								}                
 				   }                
 			   },
 			   {
-				   xtype: 'textfield',
-				   enableKeyEvents: true,
+				   xtype: 'numberfield',
 				   width: 100,
 				   labelStyle: 'width:200px;'+letra,
 				   emptyText: '0',
@@ -267,8 +261,7 @@ Desarrollado maryit sanchez
 				   {
 				      'render': function() {
 								ayuda('acu_fac_vol_agua_suministrado_anio_acu', ayuda_acu_fac_vol_agua_suministrado_anio_acu);
-								},
-					  'keyup' : { fn: function(campo) { formatoNumeroCampo(this); } }               
+								}             
 				   }                
 			   }
 			   

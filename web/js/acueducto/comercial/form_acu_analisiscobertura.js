@@ -65,7 +65,7 @@ desarrollado por maryit sanchez
 			},
 			{
 				xtype: 'spinnerfield',
-				fieldLabel: '<html>En que a&ntilde;o lo implemento?</html>',
+				fieldLabel: '<html>&iquest;En que a&ntilde;o lo implemento?</html>',
 				name:'acu_aco_anio_ela_impl_catastro_usu',
 				id:'acu_aco_anio_ela_impl_catastro_usu',
 				labelStyle: 'width: 370px; text-align:right;'+letra,
@@ -96,7 +96,7 @@ desarrollado por maryit sanchez
 				html:'<br/>'
 			},
 			{
-			   xtype: 'textfield',
+			   xtype: 'numberfield',
 			   labelStyle: 'width: 370px;'+letra,
 			   fieldLabel: '<html>N&uacute;mero de predios en el &aacute;rea de prestaci&oacute;n del servicio p&uacute;blico domiciliario</html>',
 			   name: 'acu_aco_num_predios_area',
@@ -109,12 +109,11 @@ desarrollado por maryit sanchez
 			   {
 			   'render': function() {
 						ayuda('acu_aco_num_predios_area', ayuda_acu_aco_num_predios_area);
-					},
-			   'keyup' : { fn: function(campo) { formatoNumeroCampo(this); } }                
+					}             
 			   }
 			},
 			{
-			   xtype: 'textfield',
+			   xtype: 'numberfield',
 			   labelStyle: 'width: 370px;'+letra,
 			   fieldLabel: '<html>N&uacute;mero de predios conectados al sistema</html>',
 			   name: 'acu_aco_num_predios_conec_sistema',
@@ -152,8 +151,14 @@ desarrollado por maryit sanchez
 					 {
 						'check' : function(radio, valor) 
 						   {
-							  if (!valor) Ext.getCmp('acu_aco_estra_soceco_adop_mpio_jus').enable();
-							  else Ext.getCmp('acu_aco_estra_soceco_adop_mpio_jus').disable();
+								if (!valor)
+								{
+								Ext.getCmp('acu_aco_estra_soceco_adop_mpio_jus').enable();
+								}
+								else {
+								Ext.getCmp('acu_aco_estra_soceco_adop_mpio_jus').reset();
+								Ext.getCmp('acu_aco_estra_soceco_adop_mpio_jus').disable();
+								}
 						   }                
 					 }
 				  },

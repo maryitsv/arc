@@ -28,13 +28,13 @@ Desarrollado maryit sanchez
     });
 
 	function acu_pqr_calcularcantidadpqr(){
-		/*Ext.getCmp('acu_pqr_cantidad_anual_pqr').setValue(
-			parseFloat(quitarFormatoNumeroCampo(acu_pqr_cantidad_pqr_facturacion)) +
-			parseFloat(quitarFormatoNumeroCampo(acu_pqr_cantidad_pqr_instalacion)) +
-			parseFloat(quitarFormatoNumeroCampo(acu_pqr_cantidad_pqr_prest_servicio)) +
-			parseFloat(quitarFormatoNumeroCampo(acu_pqr_cantidad_pqr_prest_otro)) 
+		Ext.getCmp('acu_pqr_cantidad_anual_pqr').setValue(
+			Ext.getCmp('acu_pqr_cantidad_pqr_facturacion').getValue() +
+			Ext.getCmp('acu_pqr_cantidad_pqr_instalacion').getValue() +
+			Ext.getCmp('acu_pqr_cantidad_pqr_prest_servicio').getValue() +
+			Ext.getCmp('acu_pqr_cantidad_pqr_otro').getValue()  
 		);
-		validar_formatear(Ext.getCmp('acu_pqr_cantidad_anual_pqr'));*/
+		/*validar_formatear(Ext.getCmp('acu_pqr_cantidad_anual_pqr'));*/
 	}
 
 	var acu_peticionesquejasrecursos_panel = new Ext.FormPanel({
@@ -161,12 +161,13 @@ Desarrollado maryit sanchez
 			items:
 			[
 				{
-					xtype: 'textfield',
+					xtype: 'numberfield',
 					width: 100,
+					value:'0',
 					name: 'acu_pqr_cantidad_anual_pqr',
 					id: 'acu_pqr_cantidad_anual_pqr',
 					fieldLabel: '<html>&iquest;En total cuantas PQR recibio durante el a&ntilde;o?</html>',
-					disabled : false,
+					disabled : true,
 					listeners:
 					{
 					  'render' :
@@ -179,7 +180,9 @@ Desarrollado maryit sanchez
 					}               
 				},
 				{
-					xtype: 'textfield',
+					xtype: 'numberfield',
+					enableKeyEvents: true,
+					emptyText:'0',
 					name: 'acu_pqr_cantidad_pqr_facturacion',
 					id: 'acu_pqr_cantidad_pqr_facturacion',
 					fieldLabel: '<html>&iquest;Cantidad de PQR recibidas por facturaci&oacute;n?</html>',
@@ -194,14 +197,14 @@ Desarrollado maryit sanchez
 						  }
 					   },
 					  'keyup' : function(){ 
-							  validar_formatear(Ext.getCmp('acu_pqr_cantidad_pqr_facturacion'));
 							  acu_pqr_calcularcantidadpqr(); 
-
 					   } 
 					}               
 				},
 				{
-					xtype: 'textfield',
+					xtype: 'numberfield',
+					enableKeyEvents: true,
+					emptyText:'0',
 					name: 'acu_pqr_cantidad_pqr_instalacion',
 					id: 'acu_pqr_cantidad_pqr_instalacion',
 					fieldLabel: '<html>&iquest;Cantidad de PQR recibidas por instalaci&oacute;n?</html>',
@@ -216,14 +219,14 @@ Desarrollado maryit sanchez
 						  }
 					   },
 					  'keyup' : function(){ 
-							  validar_formatear(Ext.getCmp('acu_pqr_cantidad_pqr_instalacion'));
 							  acu_pqr_calcularcantidadpqr(); 
-
 					   } 
 					}               
 				},
 				{
-					xtype: 'textfield',
+					xtype: 'numberfield',
+					enableKeyEvents: true,
+					emptyText:'0',
 					name: 'acu_pqr_cantidad_pqr_prest_servicio',
 					id: 'acu_pqr_cantidad_pqr_prest_servicio',
 					fieldLabel: '<html>&iquest;Cantidad de PQR recibidas por prestaci&oacute;n de servicios?</html>',
@@ -238,14 +241,14 @@ Desarrollado maryit sanchez
 						  }
 					   },
 					  'keyup' : function(){ 
-							  validar_formatear(Ext.getCmp('acu_pqr_cantidad_pqr_prest_servicio'));
 							  acu_pqr_calcularcantidadpqr(); 
-
 					   } 
 					}               
 				},
 				{
-					xtype: 'textfield',
+					xtype: 'numberfield',
+					enableKeyEvents: true,
+					emptyText:'0',
 					name: 'acu_pqr_cantidad_pqr_otro',
 					id: 'acu_pqr_cantidad_pqr_otro',
 					fieldLabel: '<html>&iquest;Cantidad de PQR recibidas por otra causa?</html>',
@@ -260,7 +263,6 @@ Desarrollado maryit sanchez
 						  }
 					   },
 					  'keyup' : function(){ 
-							  validar_formatear(Ext.getCmp('acu_pqr_cantidad_pqr_otro'));
 							  acu_pqr_calcularcantidadpqr(); 
 
 					   } 
@@ -389,8 +391,9 @@ Desarrollado maryit sanchez
 	}
 	
 	function acu_peticionesquejasrecursos_subirdatos(accion_realizar){
-		subirDatos(acu_peticionesquejasrecursos_panel,'acueducto_peticionesquejasrecursos/actualizarPeticionesquejasrecursos',{});
-
+		var url_acu_pqr='acueducto_peticionesquejasrecursos/actualizarPeticionesquejasrecursos';
+		subirDatos(acu_peticionesquejasrecursos_panel,url_acu_pqr,{acu_pqr_cantidad_anual_pqr:Ext.getCmp('acu_pqr_cantidad_anual_pqr').getValue()});
+		url_acu_pqr='';
 	}
 	
 acu_peticionesquejasrecursos_datos_datastore.load({
