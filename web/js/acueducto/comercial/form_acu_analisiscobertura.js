@@ -17,8 +17,8 @@ desarrollado por maryit sanchez
                 totalProperty: 'total',
                 id: 'id'
                 },[ 
-                  {name: 'acu_aco_catastro_usuarios', type: 'int'},	    
-                  {name: 'acu_aco_anio_ela_impl_catastro_usu', type: 'string'},
+				  {name: 'acu_aco_catastro_usuarios', type: 'int'},	    
+				  {name: 'acu_aco_anio_ela_impl_catastro_usu', type: 'string'},
 				  {name: 'acu_aco_num_predios_conec_sistema', type: 'string'},
 				  {name: 'acu_aco_estrat_soceco_adop_mpio', type: 'int'},
 				  {name: 'acu_aco_estra_soceco_adop_mpio_jus', type: 'string'},
@@ -63,7 +63,23 @@ desarrollado por maryit sanchez
 						}
 			   }
 			},
-			{  
+			{
+				xtype: 'spinnerfield',
+				fieldLabel: '<html>En que a&ntilde;o lo implemento?</html>',
+				name:'acu_aco_anio_ela_impl_catastro_usu',
+				id:'acu_aco_anio_ela_impl_catastro_usu',
+				labelStyle: 'width: 370px; text-align:right;'+letra,
+				minValue: 2005,
+				maxValue: 2040,
+				value: 2010,
+				accelerate: true,
+				listeners:{
+					'render': function() {
+						ayuda('acu_aco_anio_ela_impl_catastro_usu', ayuda_acu_aco_anio_ela_impl_catastro_usu);
+					}
+				}
+			},
+			/*{  
 			   xtype:'textfield', 
 			   labelStyle: 'width: 370px; text-align:right;'+letra,
 			   fieldLabel: '<html>En que a&ntilde;o lo implemento?</html>',
@@ -74,7 +90,7 @@ desarrollado por maryit sanchez
 							ayuda('acu_aco_anio_ela_impl_catastro_usu', ayuda_acu_aco_anio_ela_impl_catastro_usu);
 						}
 			   }
-			},
+			},*/
 			{
 				xtype:'label',
 				html:'<br/>'

@@ -27,6 +27,16 @@ Desarrollado maryit sanchez
 		])
     });
 
+	function acu_pqr_calcularcantidadpqr(){
+		/*Ext.getCmp('acu_pqr_cantidad_anual_pqr').setValue(
+			parseFloat(quitarFormatoNumeroCampo(acu_pqr_cantidad_pqr_facturacion)) +
+			parseFloat(quitarFormatoNumeroCampo(acu_pqr_cantidad_pqr_instalacion)) +
+			parseFloat(quitarFormatoNumeroCampo(acu_pqr_cantidad_pqr_prest_servicio)) +
+			parseFloat(quitarFormatoNumeroCampo(acu_pqr_cantidad_pqr_prest_otro)) 
+		);
+		validar_formatear(Ext.getCmp('acu_pqr_cantidad_anual_pqr'));*/
+	}
+
 	var acu_peticionesquejasrecursos_panel = new Ext.FormPanel({
 	  id:'acu_peticionesquejasrecursos_panel',
 	  //frame: true,
@@ -90,8 +100,13 @@ Desarrollado maryit sanchez
 							{
 							   fn: function(radio, valor) 
 							   {
-							      if (valor) Ext.getCmp('acu_pqr_inf_causa_susp_corte_explic').enable();
-								  else Ext.getCmp('acu_pqr_inf_causa_susp_corte_explic').disable();
+								if (valor){
+									Ext.getCmp('acu_pqr_inf_causa_susp_corte_explic').enable();
+								}
+								else {
+									Ext.getCmp('acu_pqr_inf_causa_susp_corte_explic').reset();
+									Ext.getCmp('acu_pqr_inf_causa_susp_corte_explic').disable();
+								}
 							   }
 							}   
 						 }
@@ -130,24 +145,6 @@ Desarrollado maryit sanchez
 				{
 					xtype:'label',
 					html:'<br/><br/>'
-				},
-				{
-					xtype: 'numberfield',
-					width: 100,
-					name: 'acu_pqr_cantidad_anual_pqr',
-					id: 'acu_pqr_cantidad_anual_pqr',
-					fieldLabel: '<html>&iquest;En total cuantas PQR recibio durante el a&ntilde;o?</html>',
-					disabled : false,
-					listeners:
-					{
-					  'render' :
-					  {
-						  fn: function()
-						  {
-							ayuda('acu_pqr_cantidad_anual_pqr',ayuda_acu_pqr_cantidad_anual_pqr);
-						  }
-					   }
-					}               
 				}
 			]
 		},
@@ -164,7 +161,25 @@ Desarrollado maryit sanchez
 			items:
 			[
 				{
-					xtype: 'numberfield',
+					xtype: 'textfield',
+					width: 100,
+					name: 'acu_pqr_cantidad_anual_pqr',
+					id: 'acu_pqr_cantidad_anual_pqr',
+					fieldLabel: '<html>&iquest;En total cuantas PQR recibio durante el a&ntilde;o?</html>',
+					disabled : false,
+					listeners:
+					{
+					  'render' :
+					  {
+						  fn: function()
+						  {
+							ayuda('acu_pqr_cantidad_anual_pqr',ayuda_acu_pqr_cantidad_anual_pqr);
+						  }
+					   } 
+					}               
+				},
+				{
+					xtype: 'textfield',
 					name: 'acu_pqr_cantidad_pqr_facturacion',
 					id: 'acu_pqr_cantidad_pqr_facturacion',
 					fieldLabel: '<html>&iquest;Cantidad de PQR recibidas por facturaci&oacute;n?</html>',
@@ -177,11 +192,16 @@ Desarrollado maryit sanchez
 						  {
 							ayuda('acu_pqr_cantidad_pqr_facturacion',ayuda_acu_pqr_cantidad_pqr_facturacion);
 						  }
-					   }
+					   },
+					  'keyup' : function(){ 
+							  validar_formatear(Ext.getCmp('acu_pqr_cantidad_pqr_facturacion'));
+							  acu_pqr_calcularcantidadpqr(); 
+
+					   } 
 					}               
 				},
 				{
-					xtype: 'numberfield',
+					xtype: 'textfield',
 					name: 'acu_pqr_cantidad_pqr_instalacion',
 					id: 'acu_pqr_cantidad_pqr_instalacion',
 					fieldLabel: '<html>&iquest;Cantidad de PQR recibidas por instalaci&oacute;n?</html>',
@@ -194,11 +214,16 @@ Desarrollado maryit sanchez
 						  {
 							ayuda('acu_pqr_cantidad_pqr_instalacion',ayuda_acu_pqr_cantidad_pqr_instalacion);
 						  }
-					   }
+					   },
+					  'keyup' : function(){ 
+							  validar_formatear(Ext.getCmp('acu_pqr_cantidad_pqr_instalacion'));
+							  acu_pqr_calcularcantidadpqr(); 
+
+					   } 
 					}               
 				},
 				{
-					xtype: 'numberfield',
+					xtype: 'textfield',
 					name: 'acu_pqr_cantidad_pqr_prest_servicio',
 					id: 'acu_pqr_cantidad_pqr_prest_servicio',
 					fieldLabel: '<html>&iquest;Cantidad de PQR recibidas por prestaci&oacute;n de servicios?</html>',
@@ -211,11 +236,16 @@ Desarrollado maryit sanchez
 						  {
 							ayuda('acu_pqr_cantidad_pqr_prest_servicio',ayuda_acu_pqr_cantidad_pqr_prest_servicio);
 						  }
-					   }
+					   },
+					  'keyup' : function(){ 
+							  validar_formatear(Ext.getCmp('acu_pqr_cantidad_pqr_prest_servicio'));
+							  acu_pqr_calcularcantidadpqr(); 
+
+					   } 
 					}               
 				},
 				{
-					xtype: 'numberfield',
+					xtype: 'textfield',
 					name: 'acu_pqr_cantidad_pqr_otro',
 					id: 'acu_pqr_cantidad_pqr_otro',
 					fieldLabel: '<html>&iquest;Cantidad de PQR recibidas por otra causa?</html>',
@@ -228,7 +258,12 @@ Desarrollado maryit sanchez
 						  {
 							ayuda('acu_pqr_cantidad_pqr_otro',ayuda_acu_pqr_cantidad_pqr_otro);
 						  }
-					   }
+					   },
+					  'keyup' : function(){ 
+							  validar_formatear(Ext.getCmp('acu_pqr_cantidad_pqr_otro'));
+							  acu_pqr_calcularcantidadpqr(); 
+
+					   } 
 					}               
 				},//En total cuantas PQR recibio durante el a&ntilde;o
 				{

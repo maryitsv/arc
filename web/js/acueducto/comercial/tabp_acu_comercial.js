@@ -10,15 +10,15 @@
 	    auroScroll: true,
 		renderTo: 'div_tabp_acueducto_comercial',
 	    items: [	  
-                 {
-				frame: true,
-				title: 'Analisis de cobertura',
-				id: 'acueducto_analisiscobertura',
-				autoLoad: { url: url_arc+'acueducto_analisiscobertura', scripts: true, scope: this }
+				{
+					frame: true,
+					title: 'An&aacute;lisis de cobertura',
+					id: 'acueducto_analisiscobertura',
+					autoLoad: { url: url_arc+'acueducto_analisiscobertura', scripts: true, scope: this }
 				},
 				{
 					frame: true,
-					title: 'Facturacion y recaudo.',
+					title: 'Facturaci&oacute;n y recaudo.',
 					id: 'acueducto_facturacionyrecaudo',
 					autoLoad: { url: url_arc+'acueducto_facturacionyrecaudo', scripts: true, scope: this }
 				},

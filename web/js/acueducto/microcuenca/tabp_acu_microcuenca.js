@@ -10,9 +10,9 @@
 	   // border:false,
 	    renderTo: 'div_tabp_acueducto_microcuenca',
 		items: [	  
-                 {
+				{
 				frame: true,
-				title: 'Informacion general.',
+				title: 'Informaci&oacute;n general.',
 				id: 'acueducto_informaciongeneralmicrocuencas',
 				autoLoad: { url: url_arc+'acueducto_informaciongeneralmicrocuencas', scripts: true, scope: this }
 				},
@@ -30,13 +30,14 @@
 				},
 				{
 					frame: true,
-					title: 'Proteccion de la fuentes.',
+					title: 'Protecci&oacute;n de la fuentes.',
 					id: 'acueducto_proteccionfuentessuperficialesagua',
 					autoLoad: { url: url_arc+'acueducto_proteccionfuentessuperficialesagua', scripts: true, scope: this }
 				},
 				{
 					frame: true,
-					title: 'actividades que inciden en la calidad y cantidad de agua',
+					title: 'Calidad y cantidad de agua',
+					tooltip: 'Actividades que inciden en la calidad y cantidad de agua',
 					id: 'acueducto_calidadcantidadagua',
 					autoLoad: { url: url_arc+'acueducto_calidadcantidadagua', scripts: true, scope: this }
 				}

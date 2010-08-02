@@ -97,8 +97,13 @@ Desarrollado maryit sanchez
 						{
 						   fn: function(radio, valor) 
 						   { 
-							  if (valor) Ext.getCmp('acu_fac_frecuenc_fac_justificacion').enable();
-							  else Ext.getCmp('acu_fac_frecuenc_fac_justificacion').disable();
+							  if (valor) {
+								Ext.getCmp('acu_fac_frecuenc_fac_justificacion').enable();
+								}
+							  else {
+								Ext.getCmp('acu_fac_frecuenc_fac_justificacion').reset();
+								Ext.getCmp('acu_fac_frecuenc_fac_justificacion').disable();
+								}
 						   }
 						}   
 					 } 
@@ -181,8 +186,13 @@ Desarrollado maryit sanchez
 							{
 							   fn: function(radio, valor) 
 							   {
-							      if (valor) Ext.getCmp('acu_fac_frecuencia_fac_justifica').enable();
-								  else Ext.getCmp('acu_fac_frecuencia_fac_justifica').disable();
+							      	if (valor) {
+									Ext.getCmp('acu_fac_frecuencia_fac_justifica').enable();
+								}
+								else {
+									Ext.getCmp('acu_fac_frecuencia_fac_justifica').reset();
+									Ext.getCmp('acu_fac_frecuencia_fac_justifica').disable();
+								}
 							   }
 							}   
 						 }

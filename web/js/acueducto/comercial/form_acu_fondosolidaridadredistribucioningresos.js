@@ -77,9 +77,13 @@ Desarrollado maryit sanchez
 						{
 						   fn: function(radio, valor) 
 						   {
-							  if (valor) Ext.getCmp('acu_fsi_recibo_recursos_valor_recib').enable();
-							  else Ext.getCmp('acu_fsi_recibo_recursos_valor_recib').disable();
-						   }
+							if (valor) {
+								Ext.getCmp('acu_fsi_recibo_recursos_valor_recib').enable();
+							}
+							else {
+								Ext.getCmp('acu_fsi_recibo_recursos_valor_recib').reset();
+								Ext.getCmp('acu_fsi_recibo_recursos_valor_recib').disable();
+							}						   }
 						}                
 					 }
 				  },
@@ -132,8 +136,14 @@ Desarrollado maryit sanchez
 						{
 						   fn: function(radio, valor) 
 						   {
-					          if (valor) Ext.getCmp('acu_fsi_aporte_recursos_valor_apor').enable();
-					          else Ext.getCmp('acu_fsi_aporte_recursos_valor_apor').disable();
+							if (valor) {
+								Ext.getCmp('acu_fsi_aporte_recursos_valor_apor').enable();
+							}
+							else {
+								Ext.getCmp('acu_fsi_aporte_recursos_valor_apor').reset();
+								Ext.getCmp('acu_fsi_aporte_recursos_valor_apor').disable();
+							}
+
 						   }
 						}                
 					 }
