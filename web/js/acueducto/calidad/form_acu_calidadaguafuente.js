@@ -77,7 +77,9 @@ acu_calidad_calidadaguafuente_datastore.loadData(acu_calidad_calidadaguafuente_d
 
 var acu_calidad_calidadaguafuente_roweditor = new Ext.ux.grid.RowEditor({
 	saveText: 'Guardar',
-	cancelText: 'Cancelar'
+	cancelText: 'Cancelar',
+	commitChangesText: 'Debe terminar de editar los campos, o cancelar la edicion',
+	errorText: 'Error'
 });
 
 var acu_calidad_calidadaguafuente_gridpanel = new Ext.grid.GridPanel({
@@ -178,8 +180,40 @@ var form_acu_calidad_calidadaguafuente = new Ext.FormPanel({
 	    	text: 'Continuar', 
 	    	iconCls: 'crear16', 
 	    	handler: function(){
-							Ext.getCmp('tabp_acu_calidad').setActiveTab(1);
+							acu_trabajadoresyvinculacion_subirdatos();
+							//Ext.getCmp('tabp_acu_calidad').setActiveTab(1);
 			}
 	    }
 	]
 });
+
+function acu_trabajadoresyvinculacion_subirdatos(){
+	subirDatos(
+		form_acu_calidad_calidadaguafuente, 
+		'acueducto_calidadaguafuente/actualizarCalidadAguaFuente',
+		{
+			acu_cag_db05_valor: acu_calidad_calidadaguafuente_datastore.getAt(0).get('valores'),
+			acu_cag_db05_frecuencia: acu_calidad_calidadaguafuente_datastore.getAt(0).get('frecuencia'), 
+			acu_cag_coliformes_valor: acu_calidad_calidadaguafuente_datastore.getAt(1).get('valores'),
+			acu_cag_coliformes_frecuencia: acu_calidad_calidadaguafuente_datastore.getAt(1).get('frecuencia'),
+			acu_cag_oxigeno_disuelto_valor: acu_calidad_calidadaguafuente_datastore.getAt(2).get('valores'),
+			acu_cag_oxigeno_disuelto_frecuencia: acu_calidad_calidadaguafuente_datastore.getAt(2).get('frecuencia'),
+			acu_cag_ph_valor: acu_calidad_calidadaguafuente_datastore.getAt(3).get('valores'),
+			acu_cag_ph_frecuencia: acu_calidad_calidadaguafuente_datastore.getAt(3).get('frecuencia'),
+			acu_cag_turbiedad_valor: acu_calidad_calidadaguafuente_datastore.getAt(4).get('valores'),
+			acu_cag_turbiedad_frecuencia: acu_calidad_calidadaguafuente_datastore.getAt(4).get('frecuencia'),
+			acu_cag_color_verdadero_valor: acu_calidad_calidadaguafuente_datastore.getAt(5).get('valores'),
+			acu_cag_color_verdadero_frecuencia: acu_calidad_calidadaguafuente_datastore.getAt(5).get('frecuencia'),
+			acu_cag_sabor_olor_valor: acu_calidad_calidadaguafuente_datastore.getAt(6).get('valores'),
+			acu_cag_sabor_olor_frecuencia: acu_calidad_calidadaguafuente_datastore.getAt(6).get('frecuencia'),
+			acu_cag_cloruros_valor: acu_calidad_calidadaguafuente_datastore.getAt(7).get('valores'),
+			acu_cag_cloruros_frecuencia: acu_calidad_calidadaguafuente_datastore.getAt(7).get('frecuencia'),
+			acu_cag_fluoruros_valor: acu_calidad_calidadaguafuente_datastore.getAt(8).get('valores'),
+			acu_cag_fluoruros_frecuencia: acu_calidad_calidadaguafuente_datastore.getAt(8).get('frecuencia'),
+		},
+		function(){
+			//Ext.getCmp('tabp_acu_calidad').setActiveTab(1);
+		}
+	);
+}
+
