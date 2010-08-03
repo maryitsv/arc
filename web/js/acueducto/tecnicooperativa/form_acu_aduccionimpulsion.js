@@ -7,7 +7,7 @@ var form_acu_aduccionimpulsion = new Ext.form.FormPanel({
         text: 'Atrás',
         handler: function(){
             form_acu_aduccionimpulsion.getForm().submit({
-                url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'subirDatos'),
+                url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'subirDatos1'),
                 clientValidation: false
             });
             tecnicooperativa_acueducto_tabpanel.setActiveTab(2);
@@ -16,7 +16,7 @@ var form_acu_aduccionimpulsion = new Ext.form.FormPanel({
         text: 'Siguiente',
         handler: function(){
             form_acu_aduccionimpulsion.getForm().submit({
-                url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'subirDatos'),
+                url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'subirDatos1'),
                 clientValidation: false
             });
             form_acu_aduccionimpulsion.hide();
