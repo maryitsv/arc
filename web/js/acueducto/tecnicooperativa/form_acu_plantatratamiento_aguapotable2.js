@@ -7,6 +7,10 @@ var form_acu_plantatratamiento_aguapotable2 = new Ext.form.FormPanel({
     buttons: [{
         text: 'Atrás',
         handler: function(){
+            form_acu_plantatratamiento_aguapotable2.getForm().submit({
+                url: getAbsoluteUrl('acueducto_plantatratamiento_aguapotable', 'subirDatos2'),
+                clientValidation: false
+            });
             form_acu_plantatratamiento_aguapotable.show();
             form_acu_plantatratamiento_aguapotable2.hide();
             //            tecnicooperativa_acueducto_tabpanel.setActiveTab(6);
@@ -14,6 +18,10 @@ var form_acu_plantatratamiento_aguapotable2 = new Ext.form.FormPanel({
     }, {
         text: 'Siguiente',
         handler: function(){
+            form_acu_plantatratamiento_aguapotable2.getForm().submit({
+                url: getAbsoluteUrl('acueducto_plantatratamiento_aguapotable', 'subirDatos2'),
+                clientValidation: false
+            });
             form_acu_plantatratamiento_aguapotable2.hide();
             form_acu_plantatratamiento_aguapotable3.show();
             //            tecnicooperativa_acueducto_tabpanel.setActiveTab(8);
@@ -22,7 +30,8 @@ var form_acu_plantatratamiento_aguapotable2 = new Ext.form.FormPanel({
 });
 
 var topla_tecnologia_utilizada_fime = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
     id: "topla_tecnologia_utilizada_fime",
     name: "topla_tecnologia_utilizada_fime",
     fieldLabel: "Filtración en múltiples etapas(FiME)",
@@ -31,6 +40,13 @@ var topla_tecnologia_utilizada_fime = {
         inputValue: 1
     }],
     listeners: {
+        check: function(radio, checked){
+            Ext.getCmp('topla_fime_fgdi').setDisabled(!checked);
+            Ext.getCmp('topla_fime_fgac').setDisabled(!checked);
+            Ext.getCmp('topla_fime_fgas2').setDisabled(!checked);
+            Ext.getCmp('topla_fime_fgas3').setDisabled(!checked);
+            Ext.getCmp('topla_fime_fla').setDisabled(!checked);
+        },
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_tecnologia_utilizada_fime')).getEl(),
@@ -44,7 +60,9 @@ var topla_tecnologia_utilizada_fime = {
 }
 
 var topla_fime_fgdi = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "topla_fime_fgdi",
     name: "topla_fime_fgdi",
     fieldLabel: "Filtro grueso dinámico(FGDi)",
@@ -66,7 +84,9 @@ var topla_fime_fgdi = {
 }
 
 var topla_fime_fgac = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "topla_fime_fgac",
     name: "topla_fime_fgac",
     fieldLabel: "Filtro grueso ascendente en capas(FGAC)",
@@ -88,7 +108,9 @@ var topla_fime_fgac = {
 }
 
 var topla_fime_fgas2 = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "topla_fime_fgas2",
     name: "topla_fime_fgas2",
     fieldLabel: "Filtro grueso ascendente en serie de 2 etapas(FGAS2)",
@@ -110,7 +132,9 @@ var topla_fime_fgas2 = {
 }
 
 var topla_fime_fgas3 = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "topla_fime_fgas3",
     name: "topla_fime_fgas3",
     fieldLabel: "Filtro grueso ascendente en serie de 3 etapas(FGAS3)",
@@ -133,7 +157,9 @@ var topla_fime_fgas3 = {
 }
 
 var topla_fime_fla = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "topla_fime_fla",
     name: "topla_fime_fla",
     fieldLabel: "Filtración lenta en arena(FLA)",
@@ -156,7 +182,8 @@ var topla_fime_fla = {
 }
 
 var topla_tecnologia_utilizada_rhm = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
     id: "topla_tecnologia_utilizada_rhm",
     name: "topla_tecnologia_utilizada_rhm",
     fieldLabel: "Remoción de hierro y manganeso",
@@ -165,6 +192,13 @@ var topla_tecnologia_utilizada_rhm = {
         inputValue: 1
     }],
     listeners: {
+        check: function(radio, checked){
+            Ext.getCmp('topla_rhm_bandejas_cascadas').setDisabled(!checked);
+            Ext.getCmp('topla_rhm_aspersores').setDisabled(!checked);
+            Ext.getCmp('topla_rhm_sd').setDisabled(!checked);
+            Ext.getCmp('topla_rhm_fr').setDisabled(!checked);
+            Ext.getCmp('topla_rhm_fime').setDisabled(!checked);
+        },
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_tecnologia_utilizada_rhm')).getEl(),
@@ -178,7 +212,9 @@ var topla_tecnologia_utilizada_rhm = {
 }
 
 var topla_rhm_bandejas_cascadas = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "topla_rhm_bandejas_cascadas",
     name: "topla_rhm_bandejas_cascadas",
     fieldLabel: "Bandejas o cascadas",
@@ -200,7 +236,9 @@ var topla_rhm_bandejas_cascadas = {
 }
 
 var topla_rhm_aspersores = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "topla_rhm_aspersores",
     name: "topla_rhm_aspersores",
     fieldLabel: "Aspersores",
@@ -222,7 +260,9 @@ var topla_rhm_aspersores = {
 }
 
 var topla_rhm_sd = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "topla_rhm_sd",
     name: "topla_rhm_sd",
     fieldLabel: "Sedimentación(SD)",
@@ -244,7 +284,9 @@ var topla_rhm_sd = {
 }
 
 var topla_rhm_fr = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "topla_rhm_fr",
     name: "topla_rhm_fr",
     fieldLabel: "Filtración rápida(FR)",
@@ -267,7 +309,9 @@ var topla_rhm_fr = {
 }
 
 var topla_rhm_fime = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "topla_rhm_fime",
     name: "topla_rhm_fime",
     fieldLabel: "Filtración en múltiples etapas(FIME)",
