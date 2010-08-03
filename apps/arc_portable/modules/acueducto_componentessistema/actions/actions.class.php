@@ -61,7 +61,6 @@ class acueducto_componentessistemaActions extends sfActions
 		$tecnicoOperativaComponentesSistema = TecnicooperativacomponentessistemaPeer::consultarComponentesSistemaSiExiste($pps_anio, $pps_pre_id, $pps_ser_id);
 			
 		if($tecnicoOperativaComponentesSistema) {
-
 			$campos = array();
 
 			$campos['tocs_captacion'] = $tecnicoOperativaComponentesSistema->getTocsCaptacion();
@@ -84,7 +83,6 @@ class acueducto_componentessistemaActions extends sfActions
 			$campos['tocs_red_distribucion_cantidad'] = $tecnicoOperativaComponentesSistema->getTocsRedDistribucionCantidad();
 
 			$datos[] = $campos;
-
 		}
 
 		$result['data'] = $datos;
