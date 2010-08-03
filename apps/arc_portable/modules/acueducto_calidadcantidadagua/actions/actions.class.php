@@ -270,12 +270,12 @@ class acueducto_calidadcantidadaguaActions extends sfActions
 				$datos[$fila]['acu_cca_fertilizacion_cultivos_mas_usado'] = $calidadcantidadagua->getCcaFertilizacionCultivosMasUsado();
 				$datos[$fila]['acu_cca_fertilizacion_cultivos_quimico_tendencia'] = $calidadcantidadagua->getCcaFertilizacionCultivosQuimicoTendencia();
 				$datos[$fila]['acu_cca_fertilizacion_cultivos_organico_tendencia'] = $calidadcantidadagua->getCcaFertilizacionCultivosOrganicoTendencia();
-			
 
 				$datos[$fila]['acu_cca_control_malezas_quimico'] = $calidadcantidadagua->getCcaControlMalezasQuimico();
 				$datos[$fila]['acu_cca_control_malezas_organico'] = $calidadcantidadagua->getCcaControlMalezasOrganico();
 				$datos[$fila]['acu_cca_control_malezas_meca_manu'] = $calidadcantidadagua->getCcaControlMalezasMecaManu();
 				$datos[$fila]['acu_cca_control_malezas_ninguno'] = $calidadcantidadagua->getCcaControlMalezasNinguno();
+				$datos[$fila]['acu_cca_control_malezas_mas_usado'] = $calidadcantidadagua->getCcaControlMalezasMasUsado();	
 				$datos[$fila]['acu_cca_control_malezas_quimico_tendencia'] = $calidadcantidadagua->getCcaControlMalezasQuimicoTendencia();
 				$datos[$fila]['acu_cca_control_malezas_organico_tendencia'] = $calidadcantidadagua->getCcaControlMalezasOrganicoTendencia();
 				$datos[$fila]['acu_cca_control_malezas_meca_manu_tendencia'] = $calidadcantidadagua->getCcaControlMalezasMecaManuTendencia();
@@ -283,8 +283,34 @@ class acueducto_calidadcantidadaguaActions extends sfActions
 				$datos[$fila]['acu_cca_erosion'] = $calidadcantidadagua->getCcaErosion();
 				$datos[$fila]['acu_cca_mineria_tendencia'] = $calidadcantidadagua->getCcaMineriaTendencia();
 				$datos[$fila]['acu_cca_erosion_tendencia'] = $calidadcantidadagua->getCcaErosionTendencia();
-			
-		
+				
+				$datos[$fila]['acu_cca_desarrolla_modificacion_paisaje'] = $calidadcantidadagua->getCcaDesarrollaModificacionPaisaje();
+				$datos[$fila]['acu_cca_modificacion_paisaje_construccion_vias'] = $calidadcantidadagua->getCcaModificacionPaisajeConstruccionVias();
+				$datos[$fila]['acu_cca_modificacion_paisaje_construccion_vivienda'] = $calidadcantidadagua->getCcaModificacionPaisajeConstruccionVivienda();
+				$datos[$fila]['acu_cca_modificacion_paisaje_construccion_otro'] = $calidadcantidadagua->getCcaModificacionPaisajeConstruccionOtro();
+				$datos[$fila]['acu_cca_modificacion_paisaje_construccion_vias_tendencia'] = $calidadcantidadagua->getCcaModificacionPaisajeConstruccionViasTendencia();
+				$datos[$fila]['acu_cca_modificacion_paisaje_construccion_vivienda_tendencia'] = $calidadcantidadagua->getCcaModificacionPaisajeConstruccionViviendaTendencia();
+				$datos[$fila]['acu_cca_modificacion_paisaje_construccion_otro_tendencia'] = $calidadcantidadagua->getCcaModificacionPaisajeConstruccionOtroTendencia();
+				$datos[$fila]['acu_cca_descarga_vivienda_liquido'] = $calidadcantidadagua->getCcaDescargaViviendaLiquido();
+				$datos[$fila]['acu_cca_descarga_vivienda_solido'] = $calidadcantidadagua->getCcaDescargaViviendaSolido();
+				
+				$datos[$fila]['acu_cca_descarga_actividad_productiva_agricola'] = $calidadcantidadagua->getCcaDescargaActividadProductivaAgricola();
+				$datos[$fila]['acu_cca_descarga_actividad_productiva_pecuaria'] = $calidadcantidadagua->getCcaDescargaActividadProductivaPecuaria();
+				$datos[$fila]['acu_cca_descarga_actividad_productiva_minera'] = $calidadcantidadagua->getCcaDescargaActividadProductivaMinera();
+				$datos[$fila]['acu_cca_descarga_actividad_productiva_industrial'] = $calidadcantidadagua->getCcaDescargaActividadProductivaIndustrial();
+				$datos[$fila]['acu_cca_descarga_actividad_productiva_otra'] = $calidadcantidadagua->getCcaDescargaActividadProductivaOtra();
+				$datos[$fila]['acu_cca_descarga_actividad_productiva_agricola_especifica'] = $calidadcantidadagua->getCcaDescargaActividadProductivaAgricolaEspecifica();
+				$datos[$fila]['acu_cca_descarga_actividad_productiva_pecuaria_especifica'] = $calidadcantidadagua->getCcaDescargaActividadProductivaPecuariaEspecifica();
+				$datos[$fila]['acu_cca_descarga_actividad_productiva_minera_especifica'] = $calidadcantidadagua->getCcaDescargaActividadProductivaMineraEspecifica();
+				$datos[$fila]['acu_cca_descarga_actividad_productiva_industrial_especifica'] = $calidadcantidadagua->getCcaDescargaActividadProductivaIndustrialEspecifica();
+				$datos[$fila]['acu_cca_descarga_actividad_productiva_otra_especifica'] = $calidadcantidadagua->getCcaDescargaActividadProductivaOtraEspecifica();
+				$datos[$fila]['acu_cca_descarga_actividad_productiva_agricola_tendencia'] = $calidadcantidadagua->getCcaDescargaActividadProductivaAgricolaTendencia();
+				$datos[$fila]['acu_cca_descarga_actividad_productiva_pecuaria_tendencia'] = $calidadcantidadagua->getCcaDescargaActividadProductivaPecuariaTendencia();
+				$datos[$fila]['acu_cca_descarga_actividad_productiva_minera_tendencia'] = $calidadcantidadagua->getCcaDescargaActividadProductivaMineraTendencia();
+				$datos[$fila]['acu_cca_descarga_actividad_productiva_industrial_tendencia'] = $calidadcantidadagua->getCcaDescargaActividadProductivaIndustrialTendencia();
+				$datos[$fila]['acu_cca_descarga_actividad_productiva_otra_tendencia'] = $calidadcantidadagua->getCcaDescargaActividadProductivaOtraTendencia();
+				
+
 				$fila++;
 				$jsonresult = json_encode($datos);
 				$salida= '({"total":"'.$fila.'","results":'.$jsonresult.'})';
@@ -325,8 +351,6 @@ var ayuda_ acu_cca_actividad_pecuaria_avicultura_tendencia = 'Cual es la tendenc
 var ayuda_ acu_cca_actividad_pecuaria_piscicultura_tendencia = 'Cual es la tendencia la piscicultura';
 var ayuda_ acu_cca_actividad_pecuaria_otros_tendencia = 'Cual es la tendencia de las otras actividades pecuarias';
 
-
-
 //controPlagas
 var ayuda_ acu_cca_control_plagas_enfermedades_quimico = 'Cual es la tendencia de las otras actividades pecuarias';
 var ayuda_ acu_cca_control_plagas_enfermedades_organico = 'Cual es la tendencia de las otras actividades pecuarias';
@@ -343,8 +367,6 @@ var ayuda_ acu_cca_fertilizacion_cultivos_ninguno = '';
 var ayuda_ acu_cca_fertilizacion_cultivos_mas_usado = '';
 var ayuda_ acu_cca_fertilizacion_cultivos_quimico_tendencia = '';
 var ayuda_ acu_cca_fertilizacion_cultivos_organico_tendencia = '';
-
-
 //
 acu_cca_control_malezas_quimico = '';
 acu_cca_control_malezas_organico = '';

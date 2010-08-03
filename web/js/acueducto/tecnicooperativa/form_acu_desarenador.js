@@ -6,11 +6,19 @@ var form_acu_desarenador = new Ext.form.FormPanel({
     buttons: [{
         text: 'Atrás',
         handler: function(){
+            form_acu_desarenador.getForm().submit({
+                url: getAbsoluteUrl('acueducto_desarenador', 'subirDatos'),
+                clientValidation: false
+            });
             tecnicooperativa_acueducto_tabpanel.setActiveTab(3);
         }
     }, {
         text: 'Siguiente',
         handler: function(){
+            form_acu_desarenador.getForm().submit({
+                url: getAbsoluteUrl('acueducto_desarenador', 'subirDatos'),
+                clientValidation: false
+            });
             tecnicooperativa_acueducto_tabpanel.setActiveTab(5);
         }
     }]
@@ -18,26 +26,27 @@ var form_acu_desarenador = new Ext.form.FormPanel({
 
 var todes_bypass = {
     xtype: "radiogroup",
-    id: "topla_todes_bypass",
-    name: "topla_todes_bypass",
+    id: "todes_bypass",
+    name: "todes_bypass",
     labelSeparator: '',
     fieldLabel: "¿Presencia de Bypass para mantenimiento?",
     items: [{
-        name: 'topla_todes_bypass',
+        name: 'todes_bypass',
         boxLabel: 'Si',
         inputValue: 1
     }, {
-        name: 'topla_todes_bypass',
+        name: 'todes_bypass',
         boxLabel: 'No',
-        inputValue: 2
+        inputValue: 0,
+        checked: true
     }],
     listeners: {
         render: function(){
             new Ext.ToolTip({
-                target: (Ext.getCmp('topla_todes_bypass')).getEl(),
-                title: 'Titulo topla_todes_bypass',
+                target: (Ext.getCmp('todes_bypass')).getEl(),
+                title: 'Titulo todes_bypass',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_todes_bypass',
+                html: 'Mensaje de ayuda para todes_bypass',
                 trackMouse: true
             });
         }
@@ -46,26 +55,27 @@ var todes_bypass = {
 
 var todes_valvula = {
     xtype: "radiogroup",
-    id: "topla_todes_valvula",
-    name: "topla_todes_valvula",
+    id: "todes_valvula",
+    name: "todes_valvula",
     labelSeparator: '',
     fieldLabel: "¿Presencia de válvula y desagüe de salida de sólidos?",
     items: [{
-        name: 'topla_todes_valvula',
+        name: 'todes_valvula',
         boxLabel: 'Si',
         inputValue: 1
     }, {
-        name: 'topla_todes_valvula',
+        name: 'todes_valvula',
         boxLabel: 'No',
-        inputValue: 2
+        inputValue: 0,
+        checked: true
     }],
     listeners: {
         render: function(){
             new Ext.ToolTip({
-                target: (Ext.getCmp('topla_todes_valvula')).getEl(),
-                title: 'Titulo topla_todes_valvula',
+                target: (Ext.getCmp('todes_valvula')).getEl(),
+                title: 'Titulo todes_valvula',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_todes_valvula',
+                html: 'Mensaje de ayuda para todes_valvula',
                 trackMouse: true
             });
         }
@@ -74,31 +84,59 @@ var todes_valvula = {
 
 var todes_aguas_erosion = {
     xtype: "radiogroup",
-    id: "topla_todes_aguas_erosion",
-    name: "topla_todes_aguas_erosion",
+    id: "todes_aguas_erosion",
+    name: "todes_aguas_erosion",
     labelSeparator: '',
     fieldLabel: "¿Las aguas de rebose y desagüe causan erosión?",
     items: [{
-        name: 'topla_todes_aguas_erosion',
+        name: 'todes_aguas_erosion',
         boxLabel: 'Si',
         inputValue: 1
     }, {
-        name: 'topla_todes_aguas_erosion',
+        name: 'todes_aguas_erosion',
         boxLabel: 'No',
-        inputValue: 2
+        inputValue: 0,
+        checked: true
     }],
     listeners: {
         render: function(){
             new Ext.ToolTip({
-                target: (Ext.getCmp('topla_todes_aguas_erosion')).getEl(),
-                title: 'Titulo topla_todes_aguas_erosion',
+                target: (Ext.getCmp('todes_aguas_erosion')).getEl(),
+                title: 'Titulo todes_aguas_erosion',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_todes_aguas_erosion',
+                html: 'Mensaje de ayuda para todes_aguas_erosion',
                 trackMouse: true
             });
         }
     }
 }
+
+var acu_desarenador_datastore = new Ext.data.Store({
+    id: 'acu_desarenador_datastore',
+    proxy: new Ext.data.HttpProxy({
+        url: getAbsoluteUrl('acueducto_desarenador', 'obtenerDatos'),
+        method: 'POST'
+    }),
+    reader: new Ext.data.JsonReader({
+        root: 'data',
+    }, [{
+        name: 'todes_valvula',
+        type: 'int'
+    }, {
+        name: 'todes_bypass',
+        type: 'int'
+    }, {
+        name: 'todes_aguas_erosion',
+        type: 'int'
+    }])
+});
+
+acu_desarenador_datastore.load({
+    callback: function(){
+        var registro = acu_desarenador_datastore.getAt(0);
+        form_acu_desarenador.getForm().loadRecord(registro);
+    }
+});
 
 form_acu_desarenador.add({
     xtype: 'fieldset',

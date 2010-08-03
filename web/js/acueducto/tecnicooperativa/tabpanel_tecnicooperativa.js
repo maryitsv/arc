@@ -31,7 +31,7 @@ var tecnicooperativa_acueducto_tabpanel = new Ext.TabPanel({
             scripts: true
         }
     }, {
-        title: 'Desarenador',
+        title: 'Desarenador.',
         autoLoad: {
             url: getAbsoluteUrl('acueducto_desarenador', 'index'),
             scripts: true

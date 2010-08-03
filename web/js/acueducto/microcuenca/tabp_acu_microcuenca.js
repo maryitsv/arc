@@ -36,7 +36,7 @@
 				},
 				{
 					frame: true,
-					title: 'Calidad y cantidad de agua',
+					title: 'Calidad y cantidad de agua.',
 					tooltip: 'Actividades que inciden en la calidad y cantidad de agua',
 					id: 'acueducto_calidadcantidadagua',
 					autoLoad: { url: url_arc+'acueducto_calidadcantidadagua', scripts: true, scope: this }
