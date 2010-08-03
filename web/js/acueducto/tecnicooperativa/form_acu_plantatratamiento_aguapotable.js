@@ -6,11 +6,19 @@ var form_acu_plantatratamiento_aguapotable = new Ext.form.FormPanel({
     buttons: [{
         text: 'Atrás',
         handler: function(){
+            form_acu_plantatratamiento_aguapotable.getForm().submit({
+                url: getAbsoluteUrl('acueducto_plantatratamiento_aguapotable', 'subirDatos1'),
+                clientValidation: false
+            });
             tecnicooperativa_acueducto_tabpanel.setActiveTab(4);
         }
     }, {
         text: 'Siguiente',
         handler: function(){
+            form_acu_plantatratamiento_aguapotable.getForm().submit({
+                url: getAbsoluteUrl('acueducto_plantatratamiento_aguapotable', 'subirDatos1'),
+                clientValidation: false
+            });
             form_acu_plantatratamiento_aguapotable.hide();
             form_acu_plantatratamiento_aguapotable2.show();
         }
@@ -18,7 +26,8 @@ var form_acu_plantatratamiento_aguapotable = new Ext.form.FormPanel({
 });
 
 var topla_tecnologia_utilizada_cc = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
     id: "topla_tecnologia_utilizada_cc",
     name: "topla_tecnologia_utilizada_cc",
     fieldLabel: "Ciclo completo",
@@ -27,6 +36,13 @@ var topla_tecnologia_utilizada_cc = {
         inputValue: 1
     }],
     listeners: {
+        check: function(radio, checked){
+            Ext.getCmp('topla_ciclo_completo_mr').setDisabled(!checked);
+            Ext.getCmp('topla_ciclo_completo_flh').setDisabled(!checked);
+            Ext.getCmp('topla_ciclo_completo_flm').setDisabled(!checked);
+            Ext.getCmp('topla_ciclo_completo_sd').setDisabled(!checked);
+            Ext.getCmp('topla_ciclo_completo_fr').setDisabled(!checked);
+        },
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_tecnologia_utilizada_cc')).getEl(),
@@ -40,7 +56,9 @@ var topla_tecnologia_utilizada_cc = {
 }
 
 var topla_ciclo_completo_mr = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "topla_ciclo_completo_mr",
     name: "topla_ciclo_completo_mr",
     fieldLabel: "Coagulación y mezcla rápida(MR)",
@@ -62,7 +80,9 @@ var topla_ciclo_completo_mr = {
 }
 
 var topla_ciclo_completo_flh = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "topla_ciclo_completo_flh",
     name: "topla_ciclo_completo_flh",
     fieldLabel: "Floculación hidraúlica(FLH)",
@@ -84,7 +104,9 @@ var topla_ciclo_completo_flh = {
 }
 
 var topla_ciclo_completo_flm = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "topla_ciclo_completo_flm",
     name: "topla_ciclo_completo_flm",
     fieldLabel: "Floculación mecánica(FLM)",
@@ -106,7 +128,9 @@ var topla_ciclo_completo_flm = {
 }
 
 var topla_ciclo_completo_sd = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "topla_ciclo_completo_sd",
     name: "topla_ciclo_completo_sd",
     fieldLabel: "Sedimentación(SD)",
@@ -129,7 +153,9 @@ var topla_ciclo_completo_sd = {
 }
 
 var topla_ciclo_completo_fr = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "topla_ciclo_completo_fr",
     name: "topla_ciclo_completo_fr",
     fieldLabel: "Filtración rápida(FR)",
@@ -152,7 +178,8 @@ var topla_ciclo_completo_fr = {
 }
 
 var topla_tecnologia_utilizada_fd = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
     id: "topla_tecnologia_utilizada_fd",
     name: "topla_tecnologia_utilizada_fd",
     fieldLabel: "Filtración directa",
@@ -161,6 +188,12 @@ var topla_tecnologia_utilizada_fd = {
         inputValue: 1
     }],
     listeners: {
+        check: function(radio, checked){
+            Ext.getCmp('topla_filtracion_directa_mr').setDisabled(!checked);
+            Ext.getCmp('topla_filtracion_directa_flh').setDisabled(!checked);
+            Ext.getCmp('topla_filtracion_directa_flm').setDisabled(!checked);
+            Ext.getCmp('topla_filtracion_directa_fr').setDisabled(!checked);
+        },
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_tecnologia_utilizada_fd')).getEl(),
@@ -174,7 +207,9 @@ var topla_tecnologia_utilizada_fd = {
 }
 
 var topla_filtracion_directa_mr = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "topla_filtracion_directa_mr",
     name: "topla_filtracion_directa_mr",
     fieldLabel: "Coagulación y mezcla rápida(MR)",
@@ -196,7 +231,9 @@ var topla_filtracion_directa_mr = {
 }
 
 var topla_filtracion_directa_flh = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "topla_filtracion_directa_flh",
     name: "topla_filtracion_directa_flh",
     fieldLabel: "Floculación hidraúlica(FLH)",
@@ -218,7 +255,9 @@ var topla_filtracion_directa_flh = {
 }
 
 var topla_filtracion_directa_flm = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "topla_filtracion_directa_flm",
     name: "topla_filtracion_directa_flm",
     fieldLabel: "Floculación mecánica(FLM)",
@@ -240,7 +279,9 @@ var topla_filtracion_directa_flm = {
 }
 
 var topla_filtracion_directa_fr = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "topla_filtracion_directa_fr",
     name: "topla_filtracion_directa_fr",
     fieldLabel: "Filtración rápida(FR)",
@@ -263,7 +304,8 @@ var topla_filtracion_directa_fr = {
 }
 
 var topla_tecnologia_utilizada_pc = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
     id: "topla_tecnologia_utilizada_pc",
     name: "topla_tecnologia_utilizada_pc",
     fieldLabel: "Planta compacta",
