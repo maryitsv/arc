@@ -10,13 +10,17 @@
  */
 class acueducto_desarenadorActions extends sfActions
 {
- /**
-  * Executes index action
-  *
-  * @param sfRequest $request A request object
-  */
-  public function executeIndex(sfWebRequest $request)
-  {
-  	
-  }
+	/**
+	 * Executes index action
+	 *
+	 * @param sfRequest $request A request object
+	 */
+	public function executeIndex(sfWebRequest $request)
+	{
+		 
+	}
+
+	public function subirDatos(sfWebRequest $request) {
+		
+	}
 }

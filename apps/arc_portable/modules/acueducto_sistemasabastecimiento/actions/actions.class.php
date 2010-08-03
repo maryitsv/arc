@@ -25,32 +25,8 @@ class acueducto_sistemasabastecimientoActions extends sfActions
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
-		$criteria = new Criteria();
-		$criteria->add(TecnicooperativoPeer::TOP_PPS_ANIO, $pps_anio);
-		$criteria->add(TecnicooperativoPeer::TOP_PPS_PRE_ID, $pps_pre_id);
-		$criteria->add(TecnicooperativoPeer::TOP_PPS_SER_ID, $pps_ser_id);
-		$tecnicoOperativo = TecnicooperativoPeer::doSelectOne($criteria);
+		$tecnicoOperativaAcueducto = TecnicooperativaacueductoPeer::consultarTecnicoOperativoAcueducto($pps_anio, $pps_pre_id, $pps_ser_id);
 
-		if($tecnicoOperativo) {
-			$tecnicoOperativaAcueductos = $tecnicoOperativo->getTecnicooperativaacueductos();
-			if(count($tecnicoOperativaAcueductos)>0) {
-				$tecnicoOperativaAcueducto = $tecnicoOperativaAcueductos[0];
-			}
-			else {
-				$tecnicoOperativaAcueducto = new Tecnicooperativaacueducto();
-				$tecnicoOperativaAcueducto->setToaTopId($tecnicoOperativo->getTopId());
-			}
-		}
-		else {
-			$tecnicoOperativo = new Tecnicooperativo();
-			$tecnicoOperativo->setTopPpsAnio($pps_anio);
-			$tecnicoOperativo->setTopPpsPreId($pps_pre_id);
-			$tecnicoOperativo->setTopPpsSerId($pps_ser_id);
-			$tecnicoOperativo->save();
-
-			$tecnicoOperativaAcueducto = new Tecnicooperativaacueducto();
-			$tecnicoOperativaAcueducto->setToaTopId($tecnicoOperativo->getTopId());
-		}
 		$tecnicoOperativaAcueducto->setToaGravedadSinTratamiento($request->getParameter('toa_gravedad_sin_tratamiento', 0));
 		$tecnicoOperativaAcueducto->setToaBombeoSinTratamiento($request->getParameter('toa_bombeo_sin_tratamiento', 0));
 		$tecnicoOperativaAcueducto->setToaGravedadConTratamiento($request->getParameter('toa_gravedad_con_tratamiento', 0));
@@ -82,45 +58,39 @@ class acueducto_sistemasabastecimientoActions extends sfActions
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
-		$criteria = new Criteria();
-		$criteria->add(TecnicooperativoPeer::TOP_PPS_ANIO, $pps_anio);
-		$criteria->add(TecnicooperativoPeer::TOP_PPS_PRE_ID, $pps_pre_id);
-		$criteria->add(TecnicooperativoPeer::TOP_PPS_SER_ID, $pps_ser_id);
-		$tecnicoOperativo = TecnicooperativoPeer::doSelectOne($criteria);
-
 		$result = array();
 		$datos = array();
 
-		if($tecnicoOperativo) {
-			$tecnicoOperativaAcueductos = $tecnicoOperativo->getTecnicooperativaacueductos();
-			if(count($tecnicoOperativaAcueductos)>0) {
-				$tecnicoOperativaAcueducto = $tecnicoOperativaAcueductos[0];
-				$campos = array();
+		$tecnicoOperativaAcueducto = TecnicooperativaacueductoPeer::consultarTecnicoOperativoAcueductoSiExiste($pps_anio, $pps_pre_id, $pps_ser_id);
 
-				$campos['toa_gravedad_sin_tratamiento'] = $tecnicoOperativaAcueducto->getToaGravedadSinTratamiento();
-				$campos['toa_bombeo_sin_tratamiento'] = $tecnicoOperativaAcueducto->getToaBombeoSinTratamiento();
-				$campos['toa_gravedad_con_tratamiento'] = $tecnicoOperativaAcueducto->getToaGravedadConTratamiento();
-				$campos['toa_bombeo_con_tratamiento'] = $tecnicoOperativaAcueducto->getToaBombeoConTratamiento();
-				$campos['toa_gravedad_bombeo_sin_tratamiento'] = $tecnicoOperativaAcueducto->getToaGravedadBombeoSinTratamiento();
-				$campos['toa_gravedad_bombeo_con_tratamiento'] = $tecnicoOperativaAcueducto->getToaGravedadBombeoConTratamiento();
-				$campos['toa_gravedad_sin_tratamiento_bombeo_con_tratamiento'] = $tecnicoOperativaAcueducto->getToaGravedadSinTratamientoBombeoConTratamiento();
-				$campos['toa_gravedad_con_tratamiento_bombeo_sin_tratamiento'] = $tecnicoOperativaAcueducto->getToaGravedadConTratamientoBombeoSinTratamiento();
-				$campos['toa_cantidad_agua_distribuida_por_ano'] = $tecnicoOperativaAcueducto->getToaCantidadAguaDistribuidaPorAno();
+		if($tecnicoOperativaAcueducto) {
 
-				$campos['toa_solucion_acarreo'] = $tecnicoOperativaAcueducto->getToaSolucionAcarreo();
-				$campos['toa_solucion_acarreo_viviendas'] = $tecnicoOperativaAcueducto->getToaSolucionAcarreoViviendas();
-				$campos['toa_solucion_nacimiento'] = $tecnicoOperativaAcueducto->getToaSolucionNacimiento();
-				$campos['toa_solucion_nacimiento_viviendas'] = $tecnicoOperativaAcueducto->getToaSolucionNacimientoViviendas();
-				$campos['toa_solucion_aljibe'] = $tecnicoOperativaAcueducto->getToaSolucionAljibe();
-				$campos['toa_solucion_aljibe_viviendas'] = $tecnicoOperativaAcueducto->getToaSolucionAljibeViviendas();
-				$campos['toa_solucion_agua_lluvia'] = $tecnicoOperativaAcueducto->getToaSolucionAguaLluvia();
-				$campos['toa_solucion_agua_lluvia_viviendas'] = $tecnicoOperativaAcueducto->getToaSolucionAguaLluviaViviendas();
-				$campos['toa_solucion_otro'] = $tecnicoOperativaAcueducto->getToaSolucionOtro();
-				$campos['toa_solucion_otro_cual'] = $tecnicoOperativaAcueducto->getToaSolucionOtroCual();
-				$campos['toa_solucion_otro_viviendas'] = $tecnicoOperativaAcueducto->getToaSolucionOtroViviendas();				
+			$campos = array();
 
-				$datos[] = $campos;
-			}
+			$campos['toa_gravedad_sin_tratamiento'] = $tecnicoOperativaAcueducto->getToaGravedadSinTratamiento();
+			$campos['toa_bombeo_sin_tratamiento'] = $tecnicoOperativaAcueducto->getToaBombeoSinTratamiento();
+			$campos['toa_gravedad_con_tratamiento'] = $tecnicoOperativaAcueducto->getToaGravedadConTratamiento();
+			$campos['toa_bombeo_con_tratamiento'] = $tecnicoOperativaAcueducto->getToaBombeoConTratamiento();
+			$campos['toa_gravedad_bombeo_sin_tratamiento'] = $tecnicoOperativaAcueducto->getToaGravedadBombeoSinTratamiento();
+			$campos['toa_gravedad_bombeo_con_tratamiento'] = $tecnicoOperativaAcueducto->getToaGravedadBombeoConTratamiento();
+			$campos['toa_gravedad_sin_tratamiento_bombeo_con_tratamiento'] = $tecnicoOperativaAcueducto->getToaGravedadSinTratamientoBombeoConTratamiento();
+			$campos['toa_gravedad_con_tratamiento_bombeo_sin_tratamiento'] = $tecnicoOperativaAcueducto->getToaGravedadConTratamientoBombeoSinTratamiento();
+			$campos['toa_cantidad_agua_distribuida_por_ano'] = $tecnicoOperativaAcueducto->getToaCantidadAguaDistribuidaPorAno();
+
+			$campos['toa_solucion_acarreo'] = $tecnicoOperativaAcueducto->getToaSolucionAcarreo();
+			$campos['toa_solucion_acarreo_viviendas'] = $tecnicoOperativaAcueducto->getToaSolucionAcarreoViviendas();
+			$campos['toa_solucion_nacimiento'] = $tecnicoOperativaAcueducto->getToaSolucionNacimiento();
+			$campos['toa_solucion_nacimiento_viviendas'] = $tecnicoOperativaAcueducto->getToaSolucionNacimientoViviendas();
+			$campos['toa_solucion_aljibe'] = $tecnicoOperativaAcueducto->getToaSolucionAljibe();
+			$campos['toa_solucion_aljibe_viviendas'] = $tecnicoOperativaAcueducto->getToaSolucionAljibeViviendas();
+			$campos['toa_solucion_agua_lluvia'] = $tecnicoOperativaAcueducto->getToaSolucionAguaLluvia();
+			$campos['toa_solucion_agua_lluvia_viviendas'] = $tecnicoOperativaAcueducto->getToaSolucionAguaLluviaViviendas();
+			$campos['toa_solucion_otro'] = $tecnicoOperativaAcueducto->getToaSolucionOtro();
+			$campos['toa_solucion_otro_cual'] = $tecnicoOperativaAcueducto->getToaSolucionOtroCual();
+			$campos['toa_solucion_otro_viviendas'] = $tecnicoOperativaAcueducto->getToaSolucionOtroViviendas();
+
+			$datos[] = $campos;
+
 		}
 
 		$result['data'] = $datos;

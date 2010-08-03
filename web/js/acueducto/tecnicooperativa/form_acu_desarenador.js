@@ -6,11 +6,19 @@ var form_acu_desarenador = new Ext.form.FormPanel({
     buttons: [{
         text: 'Atrás',
         handler: function(){
+            form_acu_desarenador.getForm().submit({
+                url: getAbsoluteUrl('acueducto_desarenador', 'subirDatos'),
+                clientValidation: false
+            });
             tecnicooperativa_acueducto_tabpanel.setActiveTab(3);
         }
     }, {
         text: 'Siguiente',
         handler: function(){
+            form_acu_desarenador.getForm().submit({
+                url: getAbsoluteUrl('acueducto_desarenador', 'subirDatos'),
+                clientValidation: false
+            });
             tecnicooperativa_acueducto_tabpanel.setActiveTab(5);
         }
     }]
