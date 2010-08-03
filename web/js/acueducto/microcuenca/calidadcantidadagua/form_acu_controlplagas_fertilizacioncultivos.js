@@ -17,7 +17,7 @@
 						{xtype: 'label',html: '<html>Tipo control que <br/>se realiza</html>',anchor:'100%', cls:'x-form-check-group-label'},
 						{	
 							xtype: 'checkbox', 
-							fieldLabel: 'Quimico',
+							fieldLabel: 'Qu&iacute;mico',
 							id: 'acu_cca_control_plagas_enfermedades_quimico',
 							name:'acu_cca_control_plagas_enfermedades_quimico',
 							inputValue:1,
@@ -39,7 +39,7 @@
 						},
 						{	
 							xtype: 'checkbox', 
-							fieldLabel: 'Organico',
+							fieldLabel: 'Org&aacute;nico',
 							id: 'acu_cca_control_plagas_enfermedades_organico',
 							name: 'acu_cca_control_plagas_enfermedades_organico',
 							inputValue:1,
@@ -61,7 +61,7 @@
 						},
 						{
 							xtype: 'checkbox', 
-							fieldLabel: 'Biologico',
+							fieldLabel: 'Biol&oacute;gico',
 							id: 'acu_cca_control_plagas_enfermedades_biologico',
 							name: 'acu_cca_control_plagas_enfermedades_biologico',
 							inputValue:1,
@@ -101,7 +101,7 @@
 				defaults:{hideLabel: true,width:79},
 				items:
 				[ 	
-					{ xtype: 'label', html: 'Cual es mas <br/>usado?', cls:'x-form-check-group-label'},
+					{ xtype: 'label', html: 'Cu&aacute;l es m&aacute;s <br/>usado?', cls:'x-form-check-group-label'},
 					{
 						xtype: 'radiogroup',
 						columns: 1,
@@ -135,18 +135,19 @@
 			},{
 				width: 220,
 				title: '<center>Tendencia</center>',    
-				defaults:{hideLabel: true,disabled:true},
+				defaults:{hideLabel: true,disabled:true,columns:[ 73, 73, 73]},
 				items:
 				[ 	
 					{
 						xtype: 'radiogroup',
-						anchor: '100%',
+						//anchor: '100%',
 						layout: 'column',
 						id: 'acu_cca_control_plagas_enfermedades_quimico_tendencia', 
+						columns:[ 73, 73, 73],
 						items: [{
-									columnWidth: '.33',
+									width: 73,
 									items: [
-										{ xtype: 'label', text: 'Incremento', cls:'x-form-check-group-label'},
+										{ xtype: 'label', html: 'Incremento', cls:'x-form-check-group-label'},
 										{ 
 											name: 'acu_cca_control_plagas_enfermedades_quimico_tendencia', 
 											id: 'acu_cca_control_plagas_enfermedades_quimico_tendencia_incremento', 
@@ -154,18 +155,18 @@
 										}
 										]
 								},{
-									columnWidth: '.33',
+									width: 73,
 									items: [
-										{ xtype: 'label', text: 'Estable', cls:'x-form-check-group-label'},
+										{ xtype: 'label', html: 'Estable', cls:'x-form-check-group-label'},
 										{ name: 'acu_cca_control_plagas_enfermedades_quimico_tendencia',
 											id: 'acu_cca_control_plagas_enfermedades_quimico_tendencia_estable',
 											inputValue: 'estable',
 											}
 										]
 								},{
-									columnWidth: '.33',
+									width: 73,
 									items: [
-										{ xtype: 'label', text: 'Disminucion', cls:'x-form-check-group-label'},
+										{ xtype: 'label', html: 'Disminuci&oacute;n', cls:'x-form-check-group-label'},
 										{ name: 'acu_cca_control_plagas_enfermedades_quimico_tendencia', 
 											id: 'acu_cca_control_plagas_enfermedades_quimico_tendencia_disminucion', 
 											inputValue: 'disminucion'}
@@ -249,7 +250,7 @@
 					{xtype: 'label',anchor:'100%',html: 'Tipo de fertilizantes<br/> usados', cls:'x-form-check-group-label'},
 					{	
 						xtype: 'checkbox', 
-						fieldLabel: 'Quimico',
+						fieldLabel: 'Qu&iacute;mico',
 						id: 'acu_cca_fertilizacion_cultivos_quimico',
 						name:'acu_cca_fertilizacion_cultivos_quimico',
 						inputValue:1,
@@ -271,7 +272,7 @@
 					},
 					{	
 						xtype: 'checkbox', 
-						fieldLabel: 'Organico',
+						fieldLabel: 'Org&aacute;nico',
 						id: 'acu_cca_fertilizacion_cultivos_organico',
 						name: 'acu_cca_fertilizacion_cultivos_organico',
 						inputValue:1,
@@ -311,7 +312,7 @@
 			defaults:{ hideLabel: true},
 			items:
 			[
-				{ xtype: 'label', text: 'Cual es mas usado?', cls:'x-form-check-group-label'},
+				{ xtype: 'label', html: 'Cu&aacute;l es m&aacute;s usado?', cls:'x-form-check-group-label'},
 				{
 					xtype: 'radiogroup',
 					id: 'acu_cca_fertilizacion_cultivos_mas_usado',
@@ -342,7 +343,7 @@
 		},{
 			width: 220,
 			title: '<center>Tendencia</center>',    
-			defaults:{hideLabel: true,disabled:true},
+			defaults:{hideLabel: true,disabled:true,columns:[ 73, 73, 73]},
 			items:
 			[ 	
 				{
@@ -350,30 +351,31 @@
 					anchor: '100%',
 					layout: 'column',
 					id: 'acu_cca_fertilizacion_cultivos_quimico_tendencia', 
+					columns:[ 73, 73, 73],
 					items: 
 					[		
 						{
-							columnWidth: '.33',
+							width: 73,
 							items: [
-								{ xtype: 'label', text: 'Incremento', cls:'x-form-check-group-label'},
+								{ xtype: 'label', html: 'Incremento', cls:'x-form-check-group-label'},
 								{ name: 'acu_cca_fertilizacion_cultivos_quimico_tendencia', 
 									id: 'acu_cca_fertilizacion_cultivos_quimico_tendencia_incremento', 
 									inputValue: 'incremento'
 								}
 								]
 						},{
-							columnWidth: '.33',
+							width: 73,
 							items: [
-								{ xtype: 'label', text: 'Estable', cls:'x-form-check-group-label'},
+								{ xtype: 'label',html: 'Estable', cls:'x-form-check-group-label'},
 								{ name: 'acu_cca_fertilizacion_cultivos_quimico_tendencia',
 									id: 'acu_cca_fertilizacion_cultivos_quimico_tendencia_estable',
 									inputValue: 'estable',
 									}
 								]
 						},{
-							columnWidth: '.33',
+							width: 73,
 							items: [
-								{ xtype: 'label', text: 'Disminucion', cls:'x-form-check-group-label'},
+								{ xtype: 'label', html: 'Disminuci&oacute;n', cls:'x-form-check-group-label'},
 								{ name: 'acu_cca_fertilizacion_cultivos_quimico_tendencia', 
 									id: 'acu_cca_fertilizacion_cultivos_quimico_tendencia_disminucion', 
 									inputValue: 'disminucion'}
@@ -422,8 +424,8 @@
 	
 	var acu_calidadcantidadagua_controlplagas_panel = new Ext.FormPanel({
 		//frame: true,
-		//hidden: true,
-		autoWidth: true,
+		hidden: true,
+		//autoWidth: true,
 		height:largo_panel-15,
 		layout:'column',
 		items:
@@ -434,7 +436,7 @@
 			},
 			acu_calidadcantidadagua_fertilizacioncultivos_fieldset
 		],
-		renderTo: 'div_form_acu_calidadcantidadagua',
+		//renderTo: 'div_form_acu_calidadcantidadagua',
 		buttons: [
 		{
 			text: '<html>Atr&aacute;s<html>',
@@ -462,12 +464,5 @@
 		var url_calidadcantidadagua = '';
 	}
 	
-	acu_calidadcantidadagua_actividadagricola_datos_datastore.load({
-	  callback: function() {
-		var record = acu_calidadcantidadagua_actividadagricola_datos_datastore.getAt(0);
-		acu_calidadcantidadagua_actividadagricola_panel.getForm().loadRecord(record);	
-		acu_calidadcantidadagua_actividadpecuaria_panel.getForm().loadRecord(record);
-		acu_calidadcantidadagua_controlplagas_panel.getForm().loadRecord(record);
-	  }
-	});
+	
 

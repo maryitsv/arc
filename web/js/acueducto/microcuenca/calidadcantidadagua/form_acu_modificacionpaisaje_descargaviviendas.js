@@ -1,5 +1,4 @@
 	var acu_calidadcantidadagua_modificacionpaisaje_fieldset =new Ext.form.FieldSet({
-	 //	columnWidth: '.5',
 		width: 460,
 		height:180,
 		bodyStyle: 'padding:5px;',			
@@ -16,7 +15,7 @@
 					{xtype: 'label',html: 'Existe este tipo de <br/>construcci&oacute;n', cls:'x-form-check-group-label'},
 					{	
 						xtype: 'checkbox', 
-						fieldLabel: 'Construccion de vias',
+						fieldLabel: 'Construcci&oacute;n de v&iacute;as',
 						id:  'acu_cca_modificacion_paisaje_construccion_vias',
 						name:'acu_cca_modificacion_paisaje_construccion_vias',
 						inputValue:1,
@@ -36,7 +35,7 @@
 					},
 					{
 						xtype: 'checkbox', 
-						fieldLabel: 'Construccion de vivienda',
+						fieldLabel: 'Construcci&oacute;n de vivienda',
 						id:   'acu_cca_modificacion_paisaje_construccion_vivienda',
 						name: 'acu_cca_modificacion_paisaje_construccion_vivienda',
 						inputValue:1,
@@ -56,7 +55,7 @@
 					},
 					{	
 						xtype: 'checkbox', 
-						fieldLabel: 'Otro tipo de construccion',
+						fieldLabel: 'Otro tipo de construcci&oacute;n',
 						id:   'acu_cca_modificacion_paisaje_construccion_otro',
 						name: 'acu_cca_modificacion_paisaje_construccion_otro',
 						inputValue:1,
@@ -78,20 +77,21 @@
 		},{
 			width: 220,
 			title: '<center>Tendencia</center>',    
-			defaults:{hideLabel: true,disabled:true},
+			defaults:{hideLabel: true,disabled:true,columns:[ 73, 73, 73]},
 			items:
 			[ 	
 				{
 					xtype: 'radiogroup',
-					anchor: '100%',
+					//anchor: '100%',
 					layout: 'column',
-					id: 'acu_cca_modificacion_paisaje_construccion_vias_tendencia', 
+					id: 'acu_cca_modificacion_paisaje_construccion_vias_tendencia',
+					columns:[ 73, 73, 73],					
 					items: 
 					[		
 						{
-							columnWidth: '.33',
+							width: 73,
 							items: [
-								{ xtype: 'label', text: 'Incremento', cls:'x-form-check-group-label'},
+								{ xtype: 'label', html: 'Incremento', cls:'x-form-check-group-label'},
 								{ 	
 									name: 'acu_cca_modificacion_paisaje_construccion_vias_tendencia', 
 									id: 'acu_cca_modificacion_paisaje_construccion_vias_tendencia_incremento', 
@@ -99,10 +99,10 @@
 								}
 								]
 						},{
-							columnWidth: '.33',
+							width: 73,
 							items: 
 							[
-								{ xtype: 'label', text: 'Estable', cls:'x-form-check-group-label'},
+								{ xtype: 'label', html: 'Estable', cls:'x-form-check-group-label'},
 								{ 	
 									name: 'acu_cca_modificacion_paisaje_construccion_vias_tendencia',
 									id: 'acu_cca_modificacion_paisaje_construccion_vias_tendencia_estable',
@@ -110,10 +110,10 @@
 								}
 							]
 						},{
-							columnWidth: '.33',
+							width: 73,
 							items: 
 							[
-								{ xtype: 'label', text: 'Disminucion', cls:'x-form-check-group-label'},
+								{ xtype: 'label', html: 'Disminuci&oacute;n', cls:'x-form-check-group-label'},
 								{ 
 									name: 'acu_cca_modificacion_paisaje_construccion_vias_tendencia', 
 									id: 'acu_cca_modificacion_paisaje_construccion_vias_tendencia_disminucion', 
@@ -185,29 +185,30 @@
 	var acu_calidadcantidadagua_descargaviviendas_fieldset =new Ext.form.FieldSet({
 		xtype:'fieldset',
 		//autoWidth: true,
-		width: 420,
+		width: 430,
 		height:180,
 		bodyStyle: 'padding:5px;',			
 		//columnWidth:'.5',
 		title:'Descarga de viviendas',
 		layout:'form',
-		defaults:{border:false,labelStyle: 'width:270px;'+letra,width:110,columns: 2},
+		defaults:{border:false,labelStyle: 'width:270px;'+letra,columns: 2},
 		items:
 		[
 			{
 			   xtype: 'radiogroup',
 			   fieldLabel: '<html>Viviendas con descargas directas de residuos l&iacute;quidos a la fuente?</html>',
 			   labelSeparator: ':',
+			    width:100,
 			   id:'acu_cca_descarga_vivienda_liquido',
 			   items:
 			   [
 				  {
 					 boxLabel: 'Si', name: 'acu_cca_descarga_vivienda_liquido',id:'acu_cca_descarga_vivienda_liquido_si', 
-					 checked: true, inputValue:1,
+					 checked: true, inputValue:1, width:50
 				  },
 				  { 
 					boxLabel: 'No', name: 'acu_cca_descarga_vivienda_liquido',id:'acu_cca_descarga_vivienda_liquido_no',
-					inputValue:0 
+					inputValue:0 , width:50
 				  }
 			   ],
 			   listeners:
@@ -219,18 +220,20 @@
 			},
 			{
 			   xtype: 'radiogroup',
-			   fieldLabel: '<html>Viviendas con descargas directas de residuos solidos a la fuente?</html>',
+			   fieldLabel: '<html>Viviendas con descargas directas de residuos s&oacute;lidos a la fuente?</html>',
 			   labelSeparator: ':',
-			   id:'acu_cca_descarga_vivienda_solido',		
+			    width:100,
+			   id:'acu_cca_descarga_vivienda_solido',
+			   
 			   items:
 			   [
 				  {
 					 boxLabel: 'Si', name: 'acu_cca_descarga_vivienda_solido',id:'acu_cca_descarga_vivienda_solido_si', 
-					 checked: true, inputValue:1,
+					 checked: true, inputValue:1, width:50
 				  },
 				  { 
 					boxLabel: 'No', name: 'acu_cca_descarga_vivienda_solido',id:'acu_cca_descarga_vivienda_solido_no',
-					inputValue:0 
+					inputValue:0 , width:50
 				  }
 			   ],
 			   listeners:
@@ -244,16 +247,17 @@
 			   xtype: 'radiogroup',
 			   fieldLabel: '<html>Se han desarrollado actividades que modifican el paisaje?</html>',
 			   labelSeparator: ':',
-			   id:'acu_cca_desarrolla_modificacion_paisaje',			   
+			   id:'acu_cca_desarrolla_modificacion_paisaje',	
+			   width:100,
 			   items:
 			   [
 				  {
 					 boxLabel: 'Si', name: 'acu_cca_desarrolla_modificacion_paisaje',id:'acu_cca_desarrolla_modificacion_paisaje_si', 
-					 checked: true, inputValue:1,
+					 checked: true, inputValue:1, width:50
 				  },
 				  { 
 					boxLabel: 'No', name: 'acu_cca_desarrolla_modificacion_paisaje',id:'acu_cca_desarrolla_modificacion_paisaje_no',
-					inputValue:0 
+					inputValue:0 , width:50
 				  }
 			   ],
 			   listeners:
@@ -268,7 +272,7 @@
 	
 	var acu_calidadcantidadagua_modificacionpaisaje_panel = new Ext.FormPanel({
 		//frame: true,
-		//hidden: true,
+		hidden: true,
 		autoWidth: true,
 		layout:'column',
 		height:largo_panel-15,
@@ -280,7 +284,7 @@
 			},
 			acu_calidadcantidadagua_modificacionpaisaje_fieldset
 		],
-		renderTo: 'div_form_acu_calidadcantidadagua',
+	//	renderTo: 'div_form_acu_calidadcantidadagua',
 		buttons: [
 		{
 			text: '<html>Atr&aacute;s<html>',
@@ -306,6 +310,6 @@
 	function acu_calidadcantidadagua_modificacionpaisaje_subirdatos()
 	{
 		var url_calidadcantidadagua = 'acueducto_calidadcantidadagua/actualizarCalidadcantidadagua';
-		subirDatos(acu_calidadcantidadagua_modificacionpaisaje_panel,url_calidadcantidadagua,{formulario:'controlMalezas'});	
+		subirDatos(acu_calidadcantidadagua_modificacionpaisaje_panel,url_calidadcantidadagua,{formulario:'modificacionPaisaje'});	
 		var url_calidadcantidadagua = '';
 	}

@@ -1,8 +1,8 @@
-//******************* Actividad pecuaria**********//
+//******************* Actividad descarga productiva**********//
 	
 	var acu_calidadcantidadagua_descargaactividadproductiva_panel = new Ext.FormPanel({
 		//frame: true,
-		//hidden: true,
+		hidden: true,
 		//autoWidth: true,
 		height:largo_panel-15,
 		layout:'form',
@@ -23,7 +23,7 @@
 							{xtype: 'label',text: 'Tipo actividad', cls:'x-form-check-group-label'},
 							{	
 								xtype: 'checkbox', 
-								fieldLabel: 'Agricola',
+								fieldLabel: 'Agr&iacute;cola',
 								inputValue: 1,
 								id: 'acu_cca_descarga_actividad_productiva_agricola',
 								name:'acu_cca_descarga_actividad_productiva_agricola',
@@ -136,10 +136,10 @@
 				},{
 					//width: 180,
 					bodyStyle: 'padding-top:23px;padding-right:5px;',
-					defaults:{hideLabel: true,disabled:true,width:150},
+					defaults:{hideLabel: true,disabled:true,width:150,maxLength : 49},
 					items:
 					[ 	
-						{ xtype: 'label', text: 'Actividad especifica', cls:'x-form-check-group-label',disabled:false},
+						{ xtype: 'label', html: 'Actividad espec&iacute;fica', cls:'x-form-check-group-label',disabled:false},
 						{	
 							xtype: 'textfield', 
 							id: 'acu_cca_descarga_actividad_productiva_agricola_especifica',
@@ -211,7 +211,7 @@
 							items: [{
 										width: 73,
 										items: [
-											{ xtype: 'label', text: 'Incremento', cls:'x-form-check-group-label'},
+											{ xtype: 'label', html: 'Incremento', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_descarga_actividad_productiva_agricola_tendencia', 
 												id: 'acu_cca_descarga_actividad_productiva_agricola_tendencia_incremento', 
 												inputValue: 'incremento'
@@ -220,7 +220,7 @@
 									},{
 										width: 73,
 										items: [
-											{ xtype: 'label', text: 'Estable', cls:'x-form-check-group-label'},
+											{ xtype: 'label', html: 'Estable', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_descarga_actividad_productiva_agricola_tendencia',
 												id: 'acu_cca_descarga_actividad_productiva_agricola_tendencia_estable',
 												inputValue: 'estable',
@@ -229,7 +229,7 @@
 									},{
 										width: 73,
 										items: [
-											{ xtype: 'label', text: 'Disminucion', cls:'x-form-check-group-label'},
+											{ xtype: 'label', html: 'Disminuci&oacute;n', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_descarga_actividad_productiva_agricola_tendencia', 
 												id: 'acu_cca_descarga_actividad_productiva_agricola_tendencia_disminucion', 
 												inputValue: 'disminucion'}
@@ -346,7 +346,7 @@
 				]
 			}
 		],
-		renderTo: 'div_form_acu_calidadcantidadagua',
+		//renderTo: 'div_form_acu_calidadcantidadagua',
 		buttons: [
 		{
 			text: '<html>Atr&aacute;s<html>',
@@ -374,14 +374,7 @@
 	function acu_calidadcantidadagua_descargaactividadproductiva_subirdatos()
 	{
 		var url_calidadcantidadagua = 'acueducto_calidadcantidadagua/actualizarCalidadcantidadagua';
-		subirDatos(acu_calidadcantidadagua_descargaactividadproductiva_panel,url_calidadcantidadagua,{formulario:'actividadPecuaria'});	
+		subirDatos(acu_calidadcantidadagua_descargaactividadproductiva_panel,url_calidadcantidadagua,{formulario:'descargasActividadProductiva'});	
 	}
-/*	
-	acu_calidadcantidadagua_actividadagricola_datos_datastore.load({
-	  callback: function() {
-		var record = acu_calidadcantidadagua_actividadagricola_datos_datastore.getAt(0);
-		acu_calidadcantidadagua_actividadagricola_panel.getForm().loadRecord(record);	
-		acu_calidadcantidadagua_descargaactividadproductiva_panel.getForm().loadRecord(record);
-	  }
-	});
-*/
+
+	
