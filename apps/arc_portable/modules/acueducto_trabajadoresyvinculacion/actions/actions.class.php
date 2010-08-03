@@ -46,14 +46,15 @@ class acueducto_trabajadoresyvinculacionActions extends sfActions
 		$iaf_id = $acu_administrativafinanciera->getIafId();
 		
 		$conexion = new Criteria();
-		$conexion->add(Trabajadoresyvinculacion::TRA_IAF_ID, $iaf_id);
-		$acu_trabajadoresyvinculacion = Trabajadoresyvinculacion::doSelectOne($conexion);
+		$conexion->add(TrabajadoresyvinculacionPeer::TRA_IAF_ID, $iaf_id);
+		$acu_trabajadoresyvinculacion = TrabajadoresyvinculacionPeer::doSelectOne($conexion);
 		
 		if($acu_trabajadoresyvinculacion)
 		{
 			try
 			{
-				//$acu_trabajadoresyvinculacion->set....
+				$acu_trabajadoresyvinculacion->setTraManualProcedimiento($this->getRequestParameter('acu_tra_manual_procedimiento'));
+				$acu_trabajadoresyvinculacion->setTraManualFunciones($this->getRequestParameter('acu_tra_manual_funciones'));
 				
 				$acu_trabajadoresyvinculacion->save();
 			
@@ -71,7 +72,8 @@ class acueducto_trabajadoresyvinculacionActions extends sfActions
 				$acu_trabajadoresyvinculacion = new Trabajadoresyvinculacion();
 				
 				$acu_trabajadoresyvinculacion->setTraIafId($iaf_id);
-				//$acu_trabajadoresyvinculacion->set...
+				$acu_trabajadoresyvinculacion->setTraManualProcedimiento($this->getRequestParameter('acu_tra_manual_procedimiento'));
+				$acu_trabajadoresyvinculacion->setTraManualFunciones($this->getRequestParameter('acu_tra_manual_funciones'));
 				
 				$acu_trabajadoresyvinculacion->save();
 				
@@ -89,5 +91,113 @@ class acueducto_trabajadoresyvinculacionActions extends sfActions
 	}
 	
 	return $this->renderText($salida);
+  }
+  
+  public function executeObtenerDatosAcuTrabajadoresyVinculacion(sfWebRequest $request)
+  {
+	$salida = "";
+	
+	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
+	$pps_ser_id = $this->obtenerServicioId('acueducto');
+	
+	$conexion = new Criteria();
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PRE_ID, $pps_pre_id);
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_ANIO, $pps_anio);
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_SER_ID, $pps_ser_id);
+	$acu_administrativafinanciera = AdministrativafinancieraPeer::doSelectOne($conexion);
+
+	if($acu_administrativafinanciera)
+	{
+	
+		$conexion = new Criteria();
+		$conexion->add(TrabajadoresyvinculacionPeer::TRA_IAF_ID, $acu_administrativafinanciera->getIafId());
+		$acu_trabajadoresyvinculacion = TrabajadoresyvinculacionPeer::doSelectOne($conexion);
+		
+		$datos;
+		$pos=0;
+		
+		if($acu_trabajadoresyvinculacion)
+		{
+		
+			$datos[$pos]['acu_tra_manual_procedimiento']=$acu_trabajadoresyvinculacion->getTraManualProcedimiento();
+			$datos[$pos]['acu_tra_manual_funciones']=$acu_trabajadoresyvinculacion->getTraManualFunciones();
+			
+			$jsonresult = json_encode($datos);
+			$salida = '({"total":'.$pos.',"results":'.$jsonresult.'})';
+		}
+		else
+		{
+			$salida = '({"total":"0", "results":""})';
+		}
+	}
+	else {
+		$salida = '({"total":"0", "results":""})';
+	}
+	return 	$this->renderText($salida);
+  }
+  
+  public function executeObtenerDatosAcuTrabajadores(sfWebRequest $request)
+  {
+	$salida = "";
+	
+	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
+	$pps_ser_id = $this->obtenerServicioId('acueducto');
+	
+	$conexion = new Criteria();
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PRE_ID, $pps_pre_id);
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_ANIO, $pps_anio);
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_SER_ID, $pps_ser_id);
+	$acu_administrativafinanciera = AdministrativafinancieraPeer::doSelectOne($conexion);
+
+	if($acu_administrativafinanciera)
+	{
+		$conexion = new Criteria();
+		$conexion->add(TrabajadoresyvinculacionPeer::TRA_IAF_ID, $acu_administrativafinanciera->getIafId());
+		$acu_trabajadoresyvinculacion = TrabajadoresyvinculacionPeer::doSelectOne($conexion);
+		
+		if($acu_trabajadoresyvinculacion)
+		{	
+			$conexion = new Criteria();
+			$conexion->add(PersonaloperativoadministrativoPeer::POA_TRA_ID, $acu_trabajadoresyvinculacion->getTraId());
+			$numero_personaloperativoadministrativo = PersonaloperativoadministrativoPeer::doCount($conexion);
+			$acu_personaloperativoadministrativo = PersonaloperativoadministrativoPeer::doSelect($conexion);
+			
+			$datos;
+			$pos=0;
+
+			if($acu_personaloperativoadministrativo)
+			{
+				foreach ($acu_personaloperativoadministrativo As $temporal)
+				{
+					$datos[$pos]['acu_poa_id']=$temporal->getPoaId();
+					$datos[$pos]['acu_poa_cedula']=$temporal->getPoaCedula();
+					$datos[$pos]['acu_poa_nombre']=$temporal->getPoaNombre();
+					$datos[$pos]['acu_poa_cargo']=$temporal->getPoaCargo();
+					$datos[$pos]['acu_poa_tipo_vinculacion']=$temporal->getPoaTipoVinculacion();
+					$datos[$pos]['acu_poa_remuneracion_mensual']=$temporal->getPoaRemuneracionMensual();
+					$datos[$pos]['acu_poa_tipo_trabajador']=$temporal->getPoaTipoTrabajador();
+					
+					$pos++;
+				}
+				
+				$jsonresult = json_encode($datos);
+				$salida = '({"total":'.$numero_personaloperativoadministrativo.',"results":'.$jsonresult.'})';
+			}
+			else
+			{
+				$salida = '({"total":"0", "results":""})';
+			}
+		}
+		else
+		{
+			$salida = '({"total":"0", "results":""})';
+		}
+	}
+	else {
+		$salida = '({"total":"0", "results":""})';
+	}
+	return 	$this->renderText($salida);
   }
 }
