@@ -326,6 +326,60 @@ var topla_tecnologia_utilizada_pc = {
     }
 }
 
+var acu_plantatratamiento_datastore = new Ext.data.Store({
+    id: 'acu_plantatratamiento_datastore',
+    proxy: new Ext.data.HttpProxy({
+        url: getAbsoluteUrl('acueducto_plantatratamiento_aguapotable', 'obtenerDatos'),
+        method: 'POST'
+    }),
+    reader: new Ext.data.JsonReader({
+        root: 'data',
+    }, [{
+        name: 'topla_tecnologia_utilizada_cc',
+        type: 'int'
+    }, {
+        name: 'topla_ciclo_completo_mr',
+        type: 'int'
+    }, {
+        name: 'topla_ciclo_completo_flh',
+        type: 'int'
+    }, {
+        name: 'topla_ciclo_completo_flm',
+        type: 'int'
+    }, {
+        name: 'topla_ciclo_completo_sd',
+        type: 'int'
+    }, {
+        name: 'topla_ciclo_completo_fr',
+        type: 'int'
+    }, {
+        name: 'topla_tecnologia_utilizada_fd',
+        type: 'int'
+    }, {
+        name: 'topla_filtracion_directa_mr',
+        type: 'int'
+    }, {
+        name: 'topla_filtracion_directa_flh',
+        type: 'int'
+    }, {
+        name: 'topla_filtracion_directa_flm',
+        type: 'int'
+    }, {
+        name: 'topla_filtracion_directa_fr',
+        type: 'int'
+    }, {
+        name: 'topla_tecnologia_utilizada_pc',
+        type: 'int'
+    }])
+});
+
+acu_plantatratamiento_datastore.load({
+    callback: function(){
+        var registro = acu_plantatratamiento_datastore.getAt(0);
+        form_acu_plantatratamiento_aguapotable.getForm().loadRecord(registro);
+    }
+});
+
 form_acu_plantatratamiento_aguapotable.add({
     xtype: 'fieldset',
     title: 'Planta de tratamiento de agua potable',

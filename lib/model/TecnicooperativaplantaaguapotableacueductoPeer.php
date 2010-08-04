@@ -30,4 +30,15 @@ class TecnicooperativaplantaaguapotableacueductoPeer extends BaseTecnicooperativ
 
 		return $plantaTratamiento;
 	}
+
+	public static function consultarPlantaTratamientoSiExiste($pps_anio, $pps_pre_id, $pps_ser_id) {
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+		$plantasTratamiento = $tecnicoOperativo->getTecnicooperativaplantaaguapotableacueductos();
+		$plantaTratamiento = null;
+		if(count($plantasTratamiento)>0) {
+			$plantaTratamiento = $plantasTratamiento[0];
+		}
+
+		return $plantaTratamiento;
+	}
 } // TecnicooperativaplantaaguapotableacueductoPeer

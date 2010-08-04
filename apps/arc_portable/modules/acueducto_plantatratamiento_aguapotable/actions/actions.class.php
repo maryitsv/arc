@@ -82,4 +82,75 @@ class acueducto_plantatratamiento_aguapotableActions extends sfActions
 
 		return sfView::NONE;
 	}
+
+	public function executeSubirDatos3(sfWebRequest $request) {
+		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
+		$pps_ser_id = 1;
+
+		$plantaTratamiento = TecnicooperativaplantaaguapotableacueductoPeer::consultarPlantaTratamiento($pps_anio, $pps_pre_id, $pps_ser_id);
+
+		$plantaTratamiento->setToplaTecnologiaUtilizadaCt($request->getParameter('topla_tecnologia_utilizada_ct', 0));
+		$plantaTratamiento->setToplaPlantaTtmtoFunciona($request->getParameter('topla_planta_ttmto_funciona', 0));
+		$plantaTratamiento->setToplaEstructurasMedicionCau($request->getParameter('topla_estructuras_medicion_cau', 0));
+		$plantaTratamiento->setToplaMenorCaudalOperacionDiseno($request->getParameter('topla_menor_caudal_operacion_diseno', 0));
+
+		$plantaTratamiento->save();
+
+		return sfView::NONE;
+	}
+
+	public function executeObtenerDatos() {
+		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
+		$pps_ser_id = 1;
+
+		$result = array();
+		$datos = array();
+
+		$plantaTratamiento = TecnicooperativaplantaaguapotableacueductoPeer::consultarPlantaTratamientoSiExiste($pps_anio, $pps_pre_id, $pps_ser_id);
+
+		if($plantaTratamiento) {
+			$campos = array();
+
+			$campos['topla_tecnologia_utilizada_cc'] = $plantaTratamiento->getToplaTecnologiaUtilizadaCc();
+			$campos['topla_ciclo_completo_mr'] = $plantaTratamiento->getToplaCicloCompletoMr();
+			$campos['topla_ciclo_completo_flh'] = $plantaTratamiento->getToplaCicloCompletoFlh();
+			$campos['topla_ciclo_completo_flm'] = $plantaTratamiento->getToplaCicloCompletoFlm();
+			$campos['topla_ciclo_completo_sd'] = $plantaTratamiento->getToplaCicloCompletoSd();
+			$campos['topla_ciclo_completo_fr'] = $plantaTratamiento->getToplaCicloCompletoFr();
+
+			$campos['topla_tecnologia_utilizada_fd'] = $plantaTratamiento->getToplaTecnologiaUtilizadaFd();
+			$campos['topla_filtracion_directa_mr'] = $plantaTratamiento->getToplaFiltracionDirectaMr();
+			$campos['topla_filtracion_directa_flh'] = $plantaTratamiento->getToplaFiltracionDirectaFlh();
+			$campos['topla_filtracion_directa_flm'] = $plantaTratamiento->getToplaFiltracionDirectaFlm();
+			$campos['topla_filtracion_directa_fr'] = $plantaTratamiento->getToplaFiltracionDirectaFr();
+
+			$campos['topla_tecnologia_utilizada_pc'] = $plantaTratamiento->getToplaTecnologiaUtilizadaPc();
+
+			$campos['topla_tecnologia_utilizada_fime'] = $plantaTratamiento->getToplaTecnologiaUtilizadaFime();
+			$campos['topla_fime_fgdi'] = $plantaTratamiento->getToplaFimeFgd();
+			$campos['topla_fime_fgac'] = $plantaTratamiento->getToplaFimeFgac();
+			$campos['topla_fime_fgas2'] = $plantaTratamiento->getToplaFimeFgas2();
+			$campos['topla_fime_fgas3'] = $plantaTratamiento->getToplaFimeFgas3();
+			$campos['topla_fime_fla'] = $plantaTratamiento->getToplaFimeFla();
+
+			$campos['topla_tecnologia_utilizada_rhm'] = $plantaTratamiento->getToplaTecnologiaUtilizadaRhm();
+			$campos['topla_rhm_bandejas_cascadas'] = $plantaTratamiento->getToplaRhmBandejasCascadas();
+			$campos['topla_rhm_aspersores'] = $plantaTratamiento->getToplaRhmAspersores();
+			$campos['topla_rhm_sd'] = $plantaTratamiento->getToplaRhmSd();
+			$campos['topla_rhm_fr'] = $plantaTratamiento->getToplaRhmFr();
+			$campos['topla_rhm_fime'] = $plantaTratamiento->getToplaRhmFime();
+
+			$campos['topla_tecnologia_utilizada_ct'] = $plantaTratamiento->getToplaTecnologiaUtilizadaCt();
+			$campos['topla_planta_ttmto_funciona'] = $plantaTratamiento->getToplaPlantaTtmtoFunciona();
+			$campos['topla_estructuras_medicion_cau'] = $plantaTratamiento->getToplaEstructurasMedicionCau();
+			$campos['topla_menor_caudal_operacion_diseno'] = $plantaTratamiento->getToplaMenorCaudalOperacionDiseno();
+
+			$datos[] = $campos;
+		}
+
+		$result['data'] = $datos;
+		return $this->renderText(json_encode($result));
+	}
 }
