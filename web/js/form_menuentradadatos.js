@@ -280,18 +280,18 @@ init: function () {
 									]
 								}
 						]
-					}/*,
+					},
 					{
 						frame: true,
 						baseCls: 'x-bubble',
 						region: 'south',
-						layout: 'fit',
+						//layout: 'fit',
 						//padding: 0,
-						height: 40,
+						height: 65,
 						//autoWidth: true,
 						margins: '0 10 0 10',
-						html: '<p align=center><font face="arial" size=2 color=#4E79B2>Deasarrollado por Cedesoft</font></p>'
-					}*/
+						html: '<center><img width=200 height=43 border=0  src="../images/colaboradores2.png"/></center>'
+					}
 				]
 			});
 		}
