@@ -172,7 +172,7 @@
 		//height:largo_panel,
 		bodyStyle: 'padding:5px',
 		autoScroll: true,
-		defaults: { allowBlank:false, disabled:true, anchor:'90%',xtype:'textfield', labelStyle: 'width:140px;', boxMinWidth :90,boxMaxWidth:250},		
+		defaults: {  disabled:true, anchor:'90%',xtype:'textfield', labelStyle: 'width:140px;', boxMinWidth :90,boxMaxWidth:250},		
 		layout: 'form',
 		style: {"margin-left": "10px"},
 		items: 
@@ -180,6 +180,7 @@
 			{fieldLabel: 'Id prestador',name: 'pre_id',id: 'pre_id',hidden:true, hideLabel:true,disabled:false},
 			{fieldLabel: 'Nombre prestador',name: 'pre_nombre_prestador',id: 'pre_nombre_prestador',blankText: 'Este campo es obligatorio'},
 			{
+				allowBlank:false,
 				xtype: 'combo',
 				store:  prestador_gestionar_tipos_identificacion_arraystore,
 				name: 'pre_tipo_identificacion_prestador',
@@ -193,9 +194,15 @@
 				selectOnFocus: true,
 				fieldLabel: 'Tipo identificacion prestador'
 			},
-			{fieldLabel: 'Identificacion prestador',name: 'pre_identificacion_prestador',id: 'pre_identificacion_prestador',blankText: 'Este campo es obligatorio'},
-			//{fieldLabel: 'Rango de prestador',name: 'pre_ran_id',id: 'pre_ran_id',blankText: 'Este campo es obligatorio'},
+			{	
+				allowBlank:false,
+				fieldLabel: 'Identificacion prestador',
+				name: 'pre_identificacion_prestador',
+				id: 'pre_identificacion_prestador',
+				blankText: 'Este campo es obligatorio'
+			},
 			{
+				allowBlank:false,
 				xtype: 'combo',
 				store:  prestador_gestionar_rangos_datastore,
 				hiddenName :'pre_ran_id',
@@ -210,8 +217,8 @@
 				selectOnFocus: true,
 				fieldLabel: 'Rango de prestador'
 			},
-
 			{
+				allowBlank:false,
 				xtype: 'combo',
 				store:  prestador_gestionar_usuarios_datastore,
 				hiddenName :'pre_usu_id',
@@ -227,6 +234,7 @@
 				fieldLabel: 'Login usuario'
 			},
 			{
+				allowBlank:false,
 				xtype:      'radiogroup',
 				fieldLabel: 'Estado de prestador',
 				columns:1,
