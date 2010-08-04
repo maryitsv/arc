@@ -66,8 +66,8 @@ class acueducto_calidadaguafuenteActions extends sfActions
 	{
 		try
 		{
-			$acu_calidadaguafuente->setCagControlCaFuente($this->getRequestParameter('acu_cag_control_ca_fuente'));
-			$acu_calidadaguafuente->setCagMapaRiesgo($this->getRequestParameter('acu_cag_mapa_riesgo'));
+			/**/$acu_calidadaguafuente->setCagControlCaFuente($this->getRequestParameter('acu_cag_control_ca_fuente'));
+			/**/$acu_calidadaguafuente->setCagMapaRiesgo($this->getRequestParameter('acu_cag_mapa_riesgo'));
 			$acu_calidadaguafuente->setCagDb05Valor($this->getRequestParameter('acu_cag_db05_valor'));
 			$acu_calidadaguafuente->setCagDb05Frecuencia($this->getRequestParameter('acu_cag_db05_frecuencia'));
 			$acu_calidadaguafuente->setCagColiformesValor($this->getRequestParameter('acu_cag_coliformes_valor'));
@@ -86,10 +86,10 @@ class acueducto_calidadaguafuenteActions extends sfActions
 			$acu_calidadaguafuente->setCagClorurosFrecuencia($this->getRequestParameter('acu_cag_cloruros_frecuencia'));
 			$acu_calidadaguafuente->setCagFluorurosValor($this->getRequestParameter('acu_cag_fluoruros_valor'));
 			$acu_calidadaguafuente->setCagFluorurosFrecuencia($this->getRequestParameter('acu_cag_fluoruros_frecuencia'));
-			$acu_calidadaguafuente->setCagLaboratorioPropio($this->getRequestParameter('acu_cag_laboratorio_propio'));
-			$acu_calidadaguafuente->setCagControlCaDistribuida($this->getRequestParameter('acu_cag_control_ca_distribuida'));
+			/**/$acu_calidadaguafuente->setCagLaboratorioPropio($this->getRequestParameter('acu_cag_laboratorio_propio'));
+			//$acu_calidadaguafuente->setCagControlCaDistribuida($this->getRequestParameter('acu_cag_control_ca_distribuida'));
 			//$acu_calidadaguafuente->setCagPuntosRedAnalizados($this->getRequestParameter('acu_cag_puntos_red_analizados'));
-			$acu_calidadaguafuente->setCagNumeroVisitaSspd($this->getRequestParameter('acu_cag_visita_sspd'));
+			//$acu_calidadaguafuente->setCagNumeroVisitaSspd($this->getRequestParameter('acu_cag_visita_sspd'));
 			
 			$acu_calidadaguafuente->save();
 		
@@ -131,7 +131,7 @@ class acueducto_calidadaguafuenteActions extends sfActions
 			$acu_calidadaguafuente->setCagLaboratorioPropio($this->getRequestParameter('acu_cag_laboratorio_propio'));
 			$acu_calidadaguafuente->setCagControlCaDistribuida($this->getRequestParameter('acu_cag_control_ca_distribuida'));
 			//$acu_calidadaguafuente->setCagPuntosRedAnalizados($this->getRequestParameter('acu_cag_puntos_red_analizados'));
-			$acu_calidadaguafuente->setCagNumeroVisitaSspd($this->getRequestParameter('acu_cag_visita_sspd'));
+			//$acu_calidadaguafuente->setCagNumeroVisitaSspd($this->getRequestParameter('acu_cag_visita_sspd'));
 			
 			$acu_calidadaguafuente->save();
 			
@@ -170,7 +170,10 @@ class acueducto_calidadaguafuenteActions extends sfActions
 		$pos=8;
 		
 		if($acu_calidadaguafuente)
-		{
+		{	
+			$datos[0]['acu_cag_mapa_riesgo']=$acu_calidadaguafuente->getCagMapaRiesgo();
+			$datos[0]['acu_cag_control_ca_fuente']=$acu_calidadaguafuente->getCagControlCaFuente();
+			$datos[0]['acu_cag_laboratorio_propio']=$acu_calidadaguafuente->getCagLaboratorioPropio();
 			$datos[0]['parametros']='DBO<sub>5</sub>(mg/l)';
 			$datos[0]['valores']=$acu_calidadaguafuente->getCagDb05Valor();
 			$datos[0]['frecuencia']=$acu_calidadaguafuente->getCagDb05Frecuencia();

@@ -1,3 +1,19 @@
+/*var acu_trabajadoresyvinculacion_datastore = new Ext.data.Store({
+	id: 'acu_trabajadoresyvinculacion_datastore',
+	proxy: new Ext.data.HttpProxy({
+			url: 'acueducto_trabajadoresyvinculacion/obtenerDatosAcuTrabajadoresyVinculacion', 
+			method: 'POST'
+	}),
+	baseParams:{}, 
+	reader: new Ext.data.JsonReader({
+			root: 'results',
+			totalProperty: 'total',
+			},[
+			  {name: 'acu_tra_manual_procedimiento', type: 'int'}, 
+			  {name: 'acu_tra_manual_funciones', type: 'int'}
+	])
+});*/
+
 var acu_cag_control_ca_fuente = new Ext.form.RadioGroup({
 	id: 'acu_cag_control_ca_fuente',
 	width: 70,
@@ -76,9 +92,12 @@ var acu_calidad_calidadaguafuente_datastore = new Ext.data.Store({
 			root: 'results',
 			totalProperty: 'total',
 			},[
-			  {name: 'parametros', type: 'string'},
-			  {name: 'valores', type: 'float'},
-			  {name: 'frecuencia', type: 'float'}
+				{name: 'acu_cag_mapa_riesgo', type: 'int'},
+				{name: 'acu_cag_control_ca_fuente', type: 'int'},
+				{name: 'acu_cag_laboratorio_propio', type: 'int'},
+				{name: 'parametros', type: 'string'},
+				{name: 'valores', type: 'float'},
+				{name: 'frecuencia', type: 'float'}
 	])
 });
 
@@ -196,7 +215,12 @@ var form_acu_calidad_calidadaguafuente = new Ext.FormPanel({
 	]
 });
 
-acu_calidad_calidadaguafuente_datastore.load();
+acu_calidad_calidadaguafuente_datastore.load({
+	callback: function() {
+	var record = acu_calidad_calidadaguafuente_datastore.getAt(0);
+	form_acu_calidad_calidadaguafuente.getForm().loadRecord(record);
+  }
+});
 
 function acu_trabajadoresyvinculacion_subirdatos(){
 	subirDatos(
@@ -223,7 +247,7 @@ function acu_trabajadoresyvinculacion_subirdatos(){
 			acu_cag_fluoruros_frecuencia: acu_calidad_calidadaguafuente_datastore.getAt(8).get('frecuencia'),
 		},
 		function(){
-			//Ext.getCmp('tabp_acu_calidad').setActiveTab(1);
+			Ext.getCmp('tabp_acu_calidad').setActiveTab(1);
 		}
 	);
 }

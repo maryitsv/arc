@@ -2,7 +2,7 @@
 	
 	var acu_calidadcantidadagua_actividadpecuaria_panel = new Ext.FormPanel({
 		//frame: true,
-		//hidden: true,
+		hidden: true,
 		//autoWidth: true,
 		height:largo_panel-15,
 		layout:'form',
@@ -23,7 +23,7 @@
 							{xtype: 'label',text: 'Tipo actividad', cls:'x-form-check-group-label'},
 							{	
 								xtype: 'checkbox', 
-								fieldLabel: 'Ganaderia bovina',
+								fieldLabel: 'Ganader&iacute;a bovina',
 								inputValue: 1,
 								id: 'acu_cca_actividad_pecuaria_ganaderia_bovina',
 								name:'acu_cca_actividad_pecuaria_ganaderia_bovina',
@@ -45,7 +45,7 @@
 							},
 							{	
 								xtype: 'checkbox', 
-								fieldLabel: 'Ganaderia equina',
+								fieldLabel: 'Ganader&iacute;a equina',
 								inputValue: 1,
 								id: 'acu_cca_actividad_pecuaria_ganaderia_equina',
 								name: 'acu_cca_actividad_pecuaria_ganaderia_equina',
@@ -177,10 +177,11 @@
 							},
 							{	
 								xtype: 'textfield', 
-								fieldLabel: 'Cual?',
+								fieldLabel: '&iquest;Cu&aacute;l?',
 								labelStyle: 'width:40px;'+letra,
 								inputValue: 1,
 								width: 120,
+								maxLength : 49,
 								id: 'acu_cca_actividad_pecuaria_otros_cual',
 								name: 'acu_cca_actividad_pecuaria_otros_cual',
 								listeners:
@@ -197,7 +198,7 @@
 					defaults:{hideLabel: true,disabled:true},
 					items:
 					[ 	
-						{ xtype: 'label', text: 'Cual ocupa mayor area?', cls:'x-form-check-group-label',disabled:false},
+						{ xtype: 'label', html: 'Cu&aacute;l ocupa mayor area?', cls:'x-form-check-group-label',disabled:false},
 						{
 							xtype: 'radiogroup',
 							columns: 1,
@@ -263,7 +264,7 @@
 							items: [{
 										width: 73,
 										items: [
-											{ xtype: 'label', text: 'Incremento', cls:'x-form-check-group-label'},
+											{ xtype: 'label', html: 'Incremento', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_actividad_pecuaria_ganaderia_bovina_tendencia', 
 												id: 'acu_cca_actividad_pecuaria_ganaderia_bovina_tendencia_incremento', 
 												inputValue: 'incremento'
@@ -272,7 +273,7 @@
 									},{
 										width: 73,
 										items: [
-											{ xtype: 'label', text: 'Estable', cls:'x-form-check-group-label'},
+											{ xtype: 'label', html: 'Estable', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_actividad_pecuaria_ganaderia_bovina_tendencia',
 												id: 'acu_cca_actividad_pecuaria_ganaderia_bovina_tendencia_estable',
 												inputValue: 'estable',
@@ -281,7 +282,7 @@
 									},{
 										width: 73,
 										items: [
-											{ xtype: 'label', text: 'Disminucion', cls:'x-form-check-group-label'},
+											{ xtype: 'label', html: 'Disminuci&oacute;n', cls:'x-form-check-group-label'},
 											{ name: 'acu_cca_actividad_pecuaria_ganaderia_bovina_tendencia', 
 												id: 'acu_cca_actividad_pecuaria_ganaderia_bovina_tendencia_disminucion', 
 												inputValue: 'disminucion'}

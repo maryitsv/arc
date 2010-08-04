@@ -29,7 +29,7 @@ var tabp_acu_administrativafinanciera = new Ext.TabPanel( {
 			},
 			{
 				frame: true,
-				title: 'Trabajadores y su vinculacion',
+				title: 'Trabajadores y su vinculacion.',
 				autoLoad: { url: url_arc+'acueducto_trabajadoresyvinculacion', scripts: true, scope: this }
 			}
            ]

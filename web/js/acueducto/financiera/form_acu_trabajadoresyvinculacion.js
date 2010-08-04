@@ -1,36 +1,64 @@
-var acu_tra_trabajadores_data = [
-   ['Cargo', 'Contrato a t&eacute;rmino indefinido', 0, 'Administrativo'],
-   ['Cargo', 'Contrato a t&eacute;rmino indefinido', 0, 'Administrativo'],
-   ['Cargo', 'Contrato a t&eacute;rmino indefinido', 0, 'Operativo']
-];
-
-var acu_tra_trabajadores_datastore = new Ext.data.SimpleStore({
-   fields:
-   [
-      {name: 'cargo', type: 'string'},
-      {name: 'vinculacion', type: 'string'},
-      {name: 'remuneracion', type: 'int'},
-	  {name: 'tipotrabajador', type: 'string'}
-   ]
+var acu_trabajadoresyvinculacion_datastore = new Ext.data.Store({
+	id: 'acu_trabajadoresyvinculacion_datastore',
+	proxy: new Ext.data.HttpProxy({
+			url: 'acueducto_trabajadoresyvinculacion/obtenerDatosAcuTrabajadoresyVinculacion', 
+			method: 'POST'
+	}),
+	baseParams:{}, 
+	reader: new Ext.data.JsonReader({
+			root: 'results',
+			totalProperty: 'total',
+			},[
+			  {name: 'acu_tra_manual_procedimiento', type: 'int'}, 
+			  {name: 'acu_tra_manual_funciones', type: 'int'}
+	])
 });
 
-acu_tra_trabajadores_datastore.loadData(acu_tra_trabajadores_data);
+var acu_tra_trabajadores_data = [
+   ['', '', '', 'Cargo', 'Contrato a t&eacute;rmino indefinido', 0, 'Administrativo'],
+   ['', '', '', 'Cargo', 'Contrato a t&eacute;rmino indefinido', 0, 'Administrativo'],
+   ['', '', '', 'Cargo', 'Contrato a t&eacute;rmino indefinido', 0, 'Operativo']
+];
 
-var acu_tra_tipovinculacion_data = [
+var acu_tra_trabajadores_datastore = new Ext.data.Store({
+	id: 'acu_tra_trabajadores_datastore',
+	proxy: new Ext.data.HttpProxy({
+			url: 'acueducto_trabajadoresyvinculacion/obtenerDatosAcuTrabajadores', 
+			method: 'POST'
+	}),
+	baseParams:{}, 
+	reader: new Ext.data.JsonReader({
+			root: 'results',
+			totalProperty: 'total',
+			},[
+				{name: 'acu_poa_id', type: 'int'},
+				{name: 'acu_poa_cedula', type: 'string'},
+				{name: 'acu_poa_nombre', type: 'string'},
+				{name: 'acu_poa_cargo', type: 'string'},
+				{name: 'acu_poa_tipo_vinculacion', type: 'string'},
+				{name: 'acu_poa_remuneracion_mensual', type: 'int'},
+				{name: 'acu_poa_tipo_trabajador', type: 'string'}
+   ])
+});
+
+acu_tra_trabajadores_datastore.load();
+//acu_tra_trabajadores_datastore.loadData(acu_tra_trabajadores_data);
+
+var acu_poa_tipo_vinculacion_data = [
    ['Contrato a t&eacute;rmino indefinido'],
    ['Contrato a t&eacute;rmino fijo'],
    ['Oden de prestaci&oacute;n de servicios'],
    ['Sin contrato, con bonificaci&oacute;n']
 ];
 
-var acu_tra_tipovinculacion_datastore = new Ext.data.SimpleStore({
-    fields: ['vinculacion'],
-    data : acu_tra_tipovinculacion_data
+var acu_poa_tipo_vinculacion_datastore = new Ext.data.SimpleStore({
+    fields: ['acu_poa_tipo_vinculacion'],
+    data : acu_poa_tipo_vinculacion_data
 });
 
-var acu_tra_tipovinculacion_combobox = new Ext.form.ComboBox({
-    store: acu_tra_tipovinculacion_datastore,
-    displayField: 'vinculacion',
+var acu_poa_tipo_vinculacion_combobox = new Ext.form.ComboBox({
+    store: acu_poa_tipo_vinculacion_datastore,
+    displayField: 'acu_poa_tipo_vinculacion',
     typeAhead: true,
 	allowBlank: false,
 	forceSelection: true,
@@ -40,19 +68,19 @@ var acu_tra_tipovinculacion_combobox = new Ext.form.ComboBox({
     selectOnFocus: true
 });
 
-var acu_tra_tipotrabajador_data = [
+var acu_poa_tipo_trabajador_data = [
    ['Administrativo'],
    ['Operativo']
 ];
 
-var acu_tra_tipotrabajador_datastore = new Ext.data.SimpleStore({
-    fields: ['tipotrabajador'],
-    data : acu_tra_tipotrabajador_data
+var acu_poa_tipo_trabajador_datastore = new Ext.data.SimpleStore({
+    fields: ['acu_poa_tipo_trabajador'],
+    data : acu_poa_tipo_trabajador_data
 });
 
-var acu_tra_tipotrabajador_combobox = new Ext.form.ComboBox({
-    store: acu_tra_tipotrabajador_datastore,
-    displayField: 'tipotrabajador',
+var acu_poa_tipo_trabajador_combobox = new Ext.form.ComboBox({
+    store: acu_poa_tipo_trabajador_datastore,
+    displayField: 'acu_poa_tipo_trabajador',
     typeAhead: true,
 	forceSelection: true,
     mode: 'local',
@@ -66,11 +94,13 @@ var acu_tra_trabajadores_roweditor = new Ext.ux.grid.RowEditor({
 	id: 'acu_tra_trabajadores_roweditor',
 	saveText: 'Guardar',
 	cancelText: 'Cancelar',
+	//showTooltip: false,
 	listeners:
 	{
 		'afteredit': function(){
 			acu_trabajadoresyvinculacion_guardarTrabajador();
-		}
+		},
+		'canceledit': function(){}
 	}
 });
 
@@ -85,31 +115,50 @@ var acu_tra_trabajadores_gridpanel = new Ext.grid.GridPanel({
 	columns:
 	[
 		{
-			id:'cargo', 
+			header: "id",
+			width: 140,
+			hidden: true,
+			sortable: true, 
+			dataIndex: 'acu_poa_id',
+			editor: new Ext.form.TextField()
+		},
+		{
+			header: 'Cedula',
+			width: 170, 
+			dataIndex: 'acu_poa_cedula',
+			editor: new Ext.form.TextField({ allowBlank: false}) 
+		},
+		{
+			header: 'Nombre', 
+			width: 170, 
+			dataIndex: 'acu_poa_nombre',
+			editor: new Ext.form.TextField({ allowBlank: false}) 
+		},
+		{
 			header: "Cargo", 
 			width: 140, 
 			sortable: true, 
-			dataIndex: 'cargo',
+			dataIndex: 'acu_poa_cargo',
 			editor: new Ext.form.TextField({ allowBlank: false})
 		},
 		{
 			header: 'Tipo de vinculaci&oacute;n', 
 			width: 170, 
-			dataIndex: 'vinculacion',
-			editor: acu_tra_tipovinculacion_combobox 
+			dataIndex: 'acu_poa_tipo_vinculacion',
+			editor: acu_poa_tipo_vinculacion_combobox 
 		},
 		{
 			header: 'Remuneraci&oacute;n mensual', 
 			width: 130, 
-			dataIndex: 'remuneracion', 
+			dataIndex: 'acu_poa_remuneracion_mensual', 
 			renderer: 'usMoney',
 			editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false})
 		},
 		{
 			header: 'Tipo de Empleado', 
 			width: 130, 
-			dataIndex: 'tipotrabajador',
-			editor: acu_tra_tipotrabajador_combobox
+			dataIndex: 'acu_poa_tipo_trabajador',
+			editor: acu_poa_tipo_trabajador_combobox
 		}
 	],
 	tbar: [
@@ -141,11 +190,13 @@ var acu_tra_manual_procedimiento = new Ext.form.RadioGroup({
 		{
 			boxLabel: 'Si', 
 			name: 'acu_tra_manual_procedimiento', 
-			checked: true
+			checked: true,
+			inputValue: 1
 		},
 		{ 
 			boxLabel: 'No',
-			name: 'acu_tra_manual_procedimiento'
+			name: 'acu_tra_manual_procedimiento',
+			inputValue: 0
 		}
 	],
 	listeners:
@@ -168,12 +219,14 @@ var acu_tra_manual_funciones = new Ext.form.RadioGroup( {
 			boxLabel: 'Si',
 			id: 'acu_tra_manual_funciones_si',
 			name: 'acu_tra_manual_funciones', 
-			checked: true
+			checked: true,
+			inputValue: 1
 		},
 		{ 
 			boxLabel: 'No',
 			id: 'acu_tra_manual_funciones_no',
-			name: 'acu_tra_manual_funciones' 
+			name: 'acu_tra_manual_funciones',
+			inputValue: 0
 		}
 	],
 	listeners:
@@ -184,7 +237,7 @@ var acu_tra_manual_funciones = new Ext.form.RadioGroup( {
 	}
 } );
 
-var form_acu_trabajadoresyvinculacion = new Ext.form.FormPanel({
+var form_acu_trabajadoresyvinculacion = new Ext.FormPanel({
 	autoWidth: true,
 	border: false,
 	//hidden: true,
@@ -247,36 +300,82 @@ var form_acu_trabajadoresyvinculacion = new Ext.form.FormPanel({
 	    	text: 'Continuar', 
 	    	iconCls: 'crear16', 
 	    	handler: function(){
-							Ext.getCmp('acueducto').setActiveTab(2);
+							//Ext.getCmp('acueducto').setActiveTab(2);
 							acu_trabajadoresyvinculacion_subirdatos();
 			}
 	    }
 	]
 });
 
+acu_trabajadoresyvinculacion_datastore.load({
+  callback: function() {
+	var record = acu_trabajadoresyvinculacion_datastore.getAt(0);
+	form_acu_trabajadoresyvinculacion.getForm().loadRecord(record);
+  }
+});
+
 function acu_trabajadoresyvinculacion_subirdatos() {
-	//subirDatos(form_acu_trabajadoresyvinculacion, 'acueducto_trabajadoresyvinculacion/actualizarTrabajadoresyVinculacion'); //action no implementado
+	subirDatos(
+		form_acu_trabajadoresyvinculacion, 
+		'acueducto_trabajadoresyvinculacion/actualizarTrabajadoresyVinculacion',
+		{},
+		function(){
+			Ext.getCmp('acueducto').setActiveTab(2);
+		}
+	);
 }
 
 function acu_trabajadoresyvinculacion_guardarTrabajador() {
-	//subirDatos(form_acu_trabajadoresyvinculacion, 'acueducto_trabajadoresyvinculacion/actualizarTrabajadoresyVinculacion'); //action no implementado
+	var rec = acu_tra_trabajadores_gridpanel.getSelectionModel().getSelected();
+	subirDatos(
+		form_acu_trabajadoresyvinculacion, 
+		'acueducto_trabajadoresyvinculacion/actualizarTrabajadoresyVinculacion',
+		{
+			acu_poa_id: rec.get('acu_poa_id'),
+			acu_poa_cedula: rec.get('acu_poa_cedula'),
+			acu_poa_nombre: rec.get('acu_poa_nombre'),
+			acu_poa_cargo: rec.get('acu_poa_cargo'),
+			acu_poa_tipo_vinculacion: rec.get('acu_poa_tipo_vinculacion'),
+			acu_poa_remuneracion_mensual: rec.get('acu_poa_remuneracion_mensual'),
+			acu_poa_tipo_trabajador: rec.get('acu_poa_tipo_trabajador')
+		}
+	);
 }
 
 function acu_trabajadoresyvinculacion_agregartrabajadores(btn, ev) {
 	var row = new acu_tra_trabajadores_gridpanel.store.recordType({
-		cargo : '',
-		vinculacion: '',
-		remuneracion : ''
+		acu_poa_id: '',
+		acu_poa_cedula: 'nuevo',
+		acu_poa_nombre: 'nuevo',
+		acu_poa_cargo: 'nuevo',
+		acu_poa_tipo_vinculacion: '',
+		acu_poa_remuneracion_mensual: '0',
+		acu_poa_tipo_trabajador: ''
 	});
 	acu_tra_trabajadores_roweditor.stopEditing();
 	acu_tra_trabajadores_gridpanel.store.insert(0, row);
-	acu_tra_trabajadores_roweditor.startEditing(0);
 }
 
 function acu_trabajadoresyvinculacion_eliminartrabajadores() {
 	var rec = acu_tra_trabajadores_gridpanel.getSelectionModel().getSelected();
+	
 	if (!rec) {
 		return false;
 	}
-	acu_tra_trabajadores_gridpanel.store.remove(rec);
+	
+	if(rec.get('acu_poa_id') == ''){
+		acu_tra_trabajadores_gridpanel.store.remove(rec);
+	}
+	else{
+		subirDatos(
+			form_acu_trabajadoresyvinculacion, 
+			'acueducto_trabajadoresyvinculacion/eliminarTrabajadores',
+			{
+				acu_poa_id: rec.get('acu_poa_id')
+			},
+			function(){
+				acu_tra_trabajadores_datastore.load();
+			}
+		);
+	}
 }

@@ -1,6 +1,6 @@
 	var acu_calidadcantidadagua_controlmalezas_fieldset =new Ext.form.FieldSet({
 	 //	columnWidth: '.5',
-		width: 480,
+		width: 490,
 		height:185,
 		bodyStyle: 'padding:5px;',			
 		title:'Control de malezas',
@@ -8,14 +8,14 @@
 		defaults:{layout:'form',border:false},
 		items:[
 		{  
-			width:140,
-			bodyStyle: 'padding-top:8px;',
-			defaults:{labelStyle: 'width:100px;'+letra},
+			width:150,
+			bodyStyle: 'padding-top:24px;',
+			defaults:{labelStyle: 'width:125px;'+letra},
 			items:[
-					{xtype: 'label',text: 'Tipos de fertilizantes usados', cls:'x-form-check-group-label'},
+					{xtype: 'label',text: 'Tipos de control usados', cls:'x-form-check-group-label'},
 					{	
 						xtype: 'checkbox', 
-						fieldLabel: 'Quimico',
+						fieldLabel: 'Qu&iacute;mico',
 						id:  'acu_cca_control_malezas_quimico',
 						name:'acu_cca_control_malezas_quimico',
 						inputValue:1,
@@ -37,7 +37,7 @@
 					},
 					{
 						xtype: 'checkbox', 
-						fieldLabel: 'Organico',
+						fieldLabel: 'Org&aacute;nico',
 						id:   'acu_cca_control_malezas_organico',
 						name: 'acu_cca_control_malezas_organico',
 						inputValue:1,
@@ -59,7 +59,7 @@
 					},
 					{	
 						xtype: 'checkbox', 
-						fieldLabel: 'Organico',
+						fieldLabel: 'Mec&aacute;nico o manual',
 						id:   'acu_cca_control_malezas_meca_manu',
 						name: 'acu_cca_control_malezas_meca_manu',
 						inputValue:1,
@@ -99,7 +99,7 @@
 			defaults:{hideLabel: true},
 			items:
 			[ 	
-				{ xtype: 'label', text: 'Cual es mas usado?', cls:'x-form-check-group-label'},
+				{ xtype: 'label', html: 'Cu&aacute;l es m&aacute;s usado?', cls:'x-form-check-group-label'},
 				{
 					xtype: 'radiogroup',
 					id: 'acu_cca_control_malezas_mas_usado',
@@ -134,38 +134,39 @@
 		},{
 			width: 220,
 			title: '<center>Tendencia</center>',    
-			defaults:{hideLabel: true,disabled:true},
+			defaults:{hideLabel: true,disabled:true,columns:[ 73, 73, 73]},
 			items:
 			[ 	
 				{
 					xtype: 'radiogroup',
-					anchor: '100%',
+					//anchor: '100%',
 					layout: 'column',
 					id: 'acu_cca_control_malezas_quimico_tendencia', 
+					columns:[ 73, 73, 73],
 					items: 
 					[		
 						{
-							columnWidth: '.33',
+							width: 73,
 							items: [
-								{ xtype: 'label', text: 'Incremento', cls:'x-form-check-group-label'},
+								{ xtype: 'label', html: 'Incremento', cls:'x-form-check-group-label'},
 								{ name: 'acu_cca_control_malezas_quimico_tendencia', 
 									id: 'acu_cca_control_malezas_quimico_tendencia_incremento', 
 									inputValue: 'incremento'
 								}
 								]
 						},{
-							columnWidth: '.33',
+							width: 73,
 							items: [
-								{ xtype: 'label', text: 'Estable', cls:'x-form-check-group-label'},
+								{ xtype: 'label', html: 'Estable', cls:'x-form-check-group-label'},
 								{ name: 'acu_cca_control_malezas_quimico_tendencia',
 									id: 'acu_cca_control_malezas_quimico_tendencia_estable',
 									inputValue: 'estable',
 									}
 								]
 						},{
-							columnWidth: '.33',
+							width: 73,
 							items: [
-								{ xtype: 'label', text: 'Disminucion', cls:'x-form-check-group-label'},
+								{ xtype: 'label', html: 'Disminuci&oacute;n', cls:'x-form-check-group-label'},
 								{ name: 'acu_cca_control_malezas_quimico_tendencia', 
 									id: 'acu_cca_control_malezas_quimico_tendencia_disminucion', 
 									inputValue: 'disminucion'}
@@ -239,7 +240,7 @@
 		height:140,
 		bodyStyle: 'padding:5px;',			
 		//columnWidth:'.5',
-		title:'Minera y erosion',
+		title:'Minera y erosi&oacute;n',
 		layout:'column',
 		defaults:{layout:'form',border:false},
 		items:[
@@ -270,7 +271,7 @@
 						}
 					},
 					{	xtype: 'checkbox', 
-						fieldLabel: 'Erosion?',
+						fieldLabel: 'Erosi&oacute;n?',
 						id:   'acu_cca_erosion',
 						name: 'acu_cca_erosion',
 						inputValue:1,
@@ -292,38 +293,39 @@
 		},{
 			width: 220,
 			title: '<center>Tendencia</center>',    
-			defaults:{hideLabel: true, disabled:true},
+			defaults:{hideLabel: true, disabled:true,columns:[ 73, 73, 73]},
 			items:
 			[ 	
 				{
 					xtype: 'radiogroup',
-					anchor: '100%',
+					//anchor: '100%',
 					layout: 'column',
 					id: 'acu_cca_mineria_tendencia', 
+					columns:[ 73, 73, 73],
 					items: 
 					[		
 						{
-							columnWidth: '.33',
+							width: 73,
 							items: [
-								{ xtype: 'label', text: 'Incremento', cls:'x-form-check-group-label'},
+								{ xtype: 'label', html: 'Incremento', cls:'x-form-check-group-label'},
 								{ name: 'acu_cca_mineria_tendencia', 
 									id: 'acu_cca_mineria_tendencia_incremento', 
 									inputValue: 'incremento'
 								}
 								]
 						},{
-							columnWidth: '.33',
+							width: 73,
 							items: [
-								{ xtype: 'label', text: 'Estable', cls:'x-form-check-group-label'},
+								{ xtype: 'label', html: 'Estable', cls:'x-form-check-group-label'},
 								{ name: 'acu_cca_mineria_tendencia',
 									id: 'acu_cca_mineria_tendencia_estable',
 									inputValue: 'estable',
 									}
 								]
 						},{
-							columnWidth: '.33',
+							width: 73,
 							items: [
-								{ xtype: 'label', text: 'Disminucion', cls:'x-form-check-group-label'},
+								{ xtype: 'label', html: 'Disminuci&oacute;n', cls:'x-form-check-group-label'},
 								{ name: 'acu_cca_mineria_tendencia', 
 									id: 'acu_cca_mineria_tendencia_disminucion', 
 									inputValue: 'disminucion'}
@@ -370,7 +372,7 @@
 	
 	var acu_calidadcantidadagua_controlmalezas_panel = new Ext.FormPanel({
 		//frame: true,
-		//hidden: true,
+		hidden: true,
 		autoWidth: true,
 		layout:'column',
 		height:largo_panel-15,
@@ -382,7 +384,7 @@
 			},
 			acu_calidadcantidadagua_mineriaerosion_fieldset
 		],
-		renderTo: 'div_form_acu_calidadcantidadagua',
+		//renderTo: 'div_form_acu_calidadcantidadagua',
 		buttons: [
 		{
 			text: '<html>Atr&aacute;s<html>',
