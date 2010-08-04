@@ -94,11 +94,13 @@ var acu_tra_trabajadores_roweditor = new Ext.ux.grid.RowEditor({
 	id: 'acu_tra_trabajadores_roweditor',
 	saveText: 'Guardar',
 	cancelText: 'Cancelar',
+	//showTooltip: false,
 	listeners:
 	{
 		'afteredit': function(){
 			acu_trabajadoresyvinculacion_guardarTrabajador();
-		}
+		},
+		'canceledit': function(){}
 	}
 });
 
@@ -113,15 +115,15 @@ var acu_tra_trabajadores_gridpanel = new Ext.grid.GridPanel({
 	columns:
 	[
 		{
-			header: "id", 
+			header: "id",
 			width: 140,
 			hidden: true,
 			sortable: true, 
 			dataIndex: 'acu_poa_id',
-			editor: new Ext.form.TextField({ allowBlank: false})
+			editor: new Ext.form.TextField()
 		},
 		{
-			header: 'Cedula', 
+			header: 'Cedula',
 			width: 170, 
 			dataIndex: 'acu_poa_cedula',
 			editor: new Ext.form.TextField({ allowBlank: false}) 
@@ -324,27 +326,56 @@ function acu_trabajadoresyvinculacion_subirdatos() {
 }
 
 function acu_trabajadoresyvinculacion_guardarTrabajador() {
-	//subirDatos(form_acu_trabajadoresyvinculacion, 'acueducto_trabajadoresyvinculacion/actualizarTrabajadoresyVinculacion'); //action no implementado
+	var rec = acu_tra_trabajadores_gridpanel.getSelectionModel().getSelected();
+	subirDatos(
+		form_acu_trabajadoresyvinculacion, 
+		'acueducto_trabajadoresyvinculacion/actualizarTrabajadoresyVinculacion',
+		{
+			acu_poa_id: rec.get('acu_poa_id'),
+			acu_poa_cedula: rec.get('acu_poa_cedula'),
+			acu_poa_nombre: rec.get('acu_poa_nombre'),
+			acu_poa_cargo: rec.get('acu_poa_cargo'),
+			acu_poa_tipo_vinculacion: rec.get('acu_poa_tipo_vinculacion'),
+			acu_poa_remuneracion_mensual: rec.get('acu_poa_remuneracion_mensual'),
+			acu_poa_tipo_trabajador: rec.get('acu_poa_tipo_trabajador')
+		}
+	);
 }
 
 function acu_trabajadoresyvinculacion_agregartrabajadores(btn, ev) {
 	var row = new acu_tra_trabajadores_gridpanel.store.recordType({
-		id: '',
-		cedula: '',
-		nombre: '',
-		cargo : '',
-		vinculacion: '',
-		remuneracion : ''
+		acu_poa_id: '',
+		acu_poa_cedula: 'nuevo',
+		acu_poa_nombre: 'nuevo',
+		acu_poa_cargo: 'nuevo',
+		acu_poa_tipo_vinculacion: '',
+		acu_poa_remuneracion_mensual: '0',
+		acu_poa_tipo_trabajador: ''
 	});
 	acu_tra_trabajadores_roweditor.stopEditing();
 	acu_tra_trabajadores_gridpanel.store.insert(0, row);
-	acu_tra_trabajadores_roweditor.startEditing(0);
 }
 
 function acu_trabajadoresyvinculacion_eliminartrabajadores() {
 	var rec = acu_tra_trabajadores_gridpanel.getSelectionModel().getSelected();
+	
 	if (!rec) {
 		return false;
 	}
-	acu_tra_trabajadores_gridpanel.store.remove(rec);
+	
+	if(rec.get('acu_poa_id') == ''){
+		acu_tra_trabajadores_gridpanel.store.remove(rec);
+	}
+	else{
+		subirDatos(
+			form_acu_trabajadoresyvinculacion, 
+			'acueducto_trabajadoresyvinculacion/eliminarTrabajadores',
+			{
+				acu_poa_id: rec.get('acu_poa_id')
+			},
+			function(){
+				acu_tra_trabajadores_datastore.load();
+			}
+		);
+	}
 }

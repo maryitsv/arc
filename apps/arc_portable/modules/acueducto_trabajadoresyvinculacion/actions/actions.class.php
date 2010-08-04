@@ -57,12 +57,50 @@ class acueducto_trabajadoresyvinculacionActions extends sfActions
 				$acu_trabajadoresyvinculacion->setTraManualFunciones($this->getRequestParameter('acu_tra_manual_funciones'));
 				
 				$acu_trabajadoresyvinculacion->save();
-			
+				
+				$acu_poa_id = $this->getRequestParameter('acu_poa_id');
+				
+				if($acu_poa_id)
+				{
+					$personaloperativoadministrativo = PersonaloperativoadministrativoPeer::retrieveByPK($this->getRequestParameter('acu_poa_id'));
+					if($personaloperativoadministrativo)
+					{
+						$personaloperativoadministrativo->setPoaCedula($this->getRequestParameter('acu_poa_cedula'));
+						$personaloperativoadministrativo->setPoaNombre($this->getRequestParameter('acu_poa_nombre'));
+						$personaloperativoadministrativo->setPoaCargo($this->getRequestParameter('acu_poa_cargo'));
+						$personaloperativoadministrativo->setPoaTipoVinculacion($this->getRequestParameter('acu_poa_tipo_vinculacion'));
+						$personaloperativoadministrativo->setPoaRemuneracionMensual($this->getRequestParameter('acu_poa_remuneracion_mensual'));
+						$personaloperativoadministrativo->setPoaTipoTrabajador($this->getRequestParameter('acu_poa_tipo_trabajador'));
+						$personaloperativoadministrativo->save();
+					}
+					else
+					{
+						return $this->renderText("({success: false, errors: { reason: 'El empleado no existe en la base de datos'}})");
+					}
+				}
+				else
+				{
+					$acu_poa_cedula = $this->getRequestParameter('acu_poa_cedula');
+				
+					if($acu_poa_cedula)
+					{
+						$personaloperativoadministrativo = new Personaloperativoadministrativo();
+						$personaloperativoadministrativo->setPoaTraId($acu_trabajadoresyvinculacion->getTraId());
+						$personaloperativoadministrativo->setPoaCedula($this->getRequestParameter('acu_poa_cedula'));
+						$personaloperativoadministrativo->setPoaNombre($this->getRequestParameter('acu_poa_nombre'));
+						$personaloperativoadministrativo->setPoaCargo($this->getRequestParameter('acu_poa_cargo'));
+						$personaloperativoadministrativo->setPoaTipoVinculacion($this->getRequestParameter('acu_poa_tipo_vinculacion'));
+						$personaloperativoadministrativo->setPoaRemuneracionMensual($this->getRequestParameter('acu_poa_remuneracion_mensual'));
+						$personaloperativoadministrativo->setPoaTipoTrabajador($this->getRequestParameter('acu_poa_tipo_trabajador'));
+						$personaloperativoadministrativo->save();
+					}
+				}
+				
 				$salida = "({success: true, mensaje:'La informacion de trabajadores y vinculacion fue actualizada exitosamente'})";
 			}
 			catch(Exception $exception)
 			{
-				return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en trabajadores y vinculacion'}})");
+				return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en trabajadores y vinculacion:".$exception."'}})");
 			}
 		}
 		else
@@ -90,6 +128,30 @@ class acueducto_trabajadoresyvinculacionActions extends sfActions
 		return $this->renderText("({success: false, errors: { reason: 'Debe primero registrar informacion general de administracion financiera'}})");
 	}
 	
+	return $this->renderText($salida);
+  }
+  
+  public function executeEliminarTrabajadores(sfWebRequest $request)
+  {
+	$salida;
+	$poa_id = $this->getRequestParameter('acu_poa_id');
+	
+	if($poa_id != '')
+	{
+		$personaloperativoadministrativo = PersonaloperativoadministrativoPeer::retrieveByPK($poa_id);
+		if($personaloperativoadministrativo)
+		{
+			try
+			{
+				$personaloperativoadministrativo->delete();
+				$salida = "({success: true, mensaje:'Trabajador eliminado exitosamente'})";
+			}
+			catch(Exception $exception)
+			{
+				$salida = "({success: false, errors: { reason: 'error al eliminar el trabajador'}})";
+			}
+		}
+	}
 	return $this->renderText($salida);
   }
   

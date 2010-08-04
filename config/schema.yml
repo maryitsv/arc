@@ -78,17 +78,16 @@ propel:
     _attributes: { phpName: Calidadcantidadagua }
     cca_id: { phpName: CcaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     cca_mic_id: { phpName: CcaMicId, type: INTEGER, required: true, foreignTable: microcuencas, foreignReference: mic_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    cca_actividad_agricola_permanentes: { phpName: CcaActividadAgricolaPermanentes, type: VARCHAR, required: false }
-    cca_actividad_agricola_semipermanentes: { phpName: CcaActividadAgricolaSemipermanentes, type: VARCHAR, required: false }
-    cca_actividad_agricola_temporales: { phpName: CcaActividadAgricolaTemporales, type: VARCHAR, required: false }
-    cca_actividad_pecuaria_ganaderia_bovina: { phpName: CcaActividadPecuariaGanaderiaBovina, type: VARCHAR, required: false }
+    cca_actividades_agricola_cultivos_permanentes: { phpName: CcaActividadesAgricolaCultivosPermanentes, type: VARCHAR, required: false }
+    cca_actividades_agricola_cultivos_semipermanentes: { phpName: CcaActividadesAgricolaCultivosSemipermanentes, type: VARCHAR, required: false }
+    cca_actividades_agricola_temporales: { phpName: CcaActividadesAgricolaTemporales, type: VARCHAR, required: false }
+    cca_actividad_pecuaria_ganaderia_bobina: { phpName: CcaActividadPecuariaGanaderiaBobina, type: VARCHAR, required: false }
     cca_actividad_pecuaria_ganaderia_equina: { phpName: CcaActividadPecuariaGanaderiaEquina, type: VARCHAR, required: false }
     cca_actividad_pecuaria_porcicultura: { phpName: CcaActividadPecuariaPorcicultura, type: VARCHAR, required: false }
     cca_actividad_pecuaria_capricultura_ovinos: { phpName: CcaActividadPecuariaCapriculturaOvinos, type: VARCHAR, required: false }
     cca_actividad_pecuaria_avicultura: { phpName: CcaActividadPecuariaAvicultura, type: VARCHAR, required: false }
     cca_actividad_pecuaria_piscicultura: { phpName: CcaActividadPecuariaPiscicultura, type: VARCHAR, required: false }
-    cca_actividad_pecuaria_otros: { phpName: CcaActividadPecuariaOtros, type: VARCHAR, required: false }
-    cca_actividad_pecuaria_otros_cual: { phpName: CcaActividadPecuariaOtrosCual, type: VARCHAR, size: '100', required: false }
+    cca_actividad_pecuaria_otros_cual: { phpName: CcaActividadPecuariaOtrosCual, type: VARCHAR, required: false }
     cca_control_plagas_enfermedades_quimico: { phpName: CcaControlPlagasEnfermedadesQuimico, type: VARCHAR, required: false }
     cca_control_plagas_enfermedades_organico: { phpName: CcaControlPlagasEnfermedadesOrganico, type: VARCHAR, required: false }
     cca_control_plagas_enfermedades_biologico: { phpName: CcaControlPlagasEnfermedadesBiologico, type: VARCHAR, required: false }
@@ -103,55 +102,57 @@ propel:
     cca_control_malezas_ninguno: { phpName: CcaControlMalezasNinguno, type: VARCHAR, required: false }
     cca_mineria: { phpName: CcaMineria, type: VARCHAR, required: false }
     cca_erosion: { phpName: CcaErosion, type: VARCHAR, required: false }
-    cca_modificacion_paisaje_construccion_vias: { phpName: CcaModificacionPaisajeConstruccionVias, type: VARCHAR, required: false }
-    cca_modificacion_paisaje_construccion_vivienda: { phpName: CcaModificacionPaisajeConstruccionVivienda, type: VARCHAR, required: false }
-    cca_modificacion_paisaje_construccion_otro: { phpName: CcaModificacionPaisajeConstruccionOtro, type: VARCHAR, required: false }
-    cca_descarga_vivienda_liquido: { phpName: CcaDescargaViviendaLiquido, type: VARCHAR, required: false }
-    cca_descarga_vivienda_solido: { phpName: CcaDescargaViviendaSolido, type: VARCHAR, required: false }
-    cca_desarrolla_modificacion_paisaje: { phpName: CcaDesarrollaModificacionPaisaje, type: VARCHAR, required: false }
+    cca_modificaciones_paisaje_construcion_vias: { phpName: CcaModificacionesPaisajeConstrucionVias, type: VARCHAR, required: false }
+    cca_modificaciones_paisaje_construcion_vivienda: { phpName: CcaModificacionesPaisajeConstrucionVivienda, type: VARCHAR, required: false }
+    cca_modificaciones_paisaje_construcion_otro: { phpName: CcaModificacionesPaisajeConstrucionOtro, type: VARCHAR, required: false }
+    cca_descargas_vivienda_liquido: { phpName: CcaDescargasViviendaLiquido, type: VARCHAR, required: false }
+    cca_descargas_vivienda_solido: { phpName: CcaDescargasViviendaSolido, type: VARCHAR, required: false }
     cca_descarga_actividad_productiva_agricola: { phpName: CcaDescargaActividadProductivaAgricola, type: VARCHAR, required: false }
     cca_descarga_actividad_productiva_pecuaria: { phpName: CcaDescargaActividadProductivaPecuaria, type: VARCHAR, required: false }
     cca_descarga_actividad_productiva_minera: { phpName: CcaDescargaActividadProductivaMinera, type: VARCHAR, required: false }
     cca_descarga_actividad_productiva_industrial: { phpName: CcaDescargaActividadProductivaIndustrial, type: VARCHAR, required: false }
     cca_descarga_actividad_productiva_otra: { phpName: CcaDescargaActividadProductivaOtra, type: VARCHAR, required: false }
-    cca_actividad_agricola_mayor_area: { phpName: CcaActividadAgricolaMayorArea, type: VARCHAR, size: '50', required: false }
-    cca_actividad_agricola_permanentes_tendencia: { phpName: CcaActividadAgricolaPermanentesTendencia, type: VARCHAR, size: '50', required: false }
-    cca_actividad_agricola_semipermanentes_tendencia: { phpName: CcaActividadAgricolaSemipermanentesTendencia, type: VARCHAR, size: '50', required: false }
-    cca_actividad_agricola_temporales_tendencia: { phpName: CcaActividadAgricolaTemporalesTendencia, type: VARCHAR, size: '50', required: false }
+    cca_actividades_agricola_mayor_area: { phpName: CcaActividadesAgricolaMayorArea, type: VARCHAR, size: '50', required: false }
+    cca_actividades_agricola_cultivos_permanentes_tendencia: { phpName: CcaActividadesAgricolaCultivosPermanentesTendencia, type: VARCHAR, size: '50', required: false }
+    cca_actividades_agricola_cultivos_semipermanentes_tendencia: { phpName: CcaActividadesAgricolaCultivosSemipermanentesTendencia, type: VARCHAR, size: '50', required: false }
+    cca_actividades_agricola_temporales_tendencia: { phpName: CcaActividadesAgricolaTemporalesTendencia, type: VARCHAR, size: '50', required: false }
     cca_actividad_pecuaria_mayor_area: { phpName: CcaActividadPecuariaMayorArea, type: VARCHAR, size: '50', required: false }
-    cca_actividad_pecuaria_ganaderia_bovina_tendencia: { phpName: CcaActividadPecuariaGanaderiaBovinaTendencia, type: VARCHAR, size: '50', required: false }
+    cca_actividad_pecuaria_ganaderia_bobina_tendencia: { phpName: CcaActividadPecuariaGanaderiaBobinaTendencia, type: VARCHAR, size: '50', required: false }
     cca_actividad_pecuaria_ganaderia_equina_tendencia: { phpName: CcaActividadPecuariaGanaderiaEquinaTendencia, type: VARCHAR, size: '50', required: false }
     cca_actividad_pecuaria_porcicultura_tendencia: { phpName: CcaActividadPecuariaPorciculturaTendencia, type: VARCHAR, size: '50', required: false }
     cca_actividad_pecuaria_capricultura_ovinos_tendencia: { phpName: CcaActividadPecuariaCapriculturaOvinosTendencia, type: VARCHAR, size: '50', required: false }
     cca_actividad_pecuaria_avicultura_tendencia: { phpName: CcaActividadPecuariaAviculturaTendencia, type: VARCHAR, size: '50', required: false }
     cca_actividad_pecuaria_piscicultura_tendencia: { phpName: CcaActividadPecuariaPisciculturaTendencia, type: VARCHAR, size: '50', required: false }
-    cca_actividad_pecuaria_otros_tendencia: { phpName: CcaActividadPecuariaOtrosTendencia, type: VARCHAR, size: '50', required: false }
+    cca_actividad_pecuaria_otros_cual_tendencia: { phpName: CcaActividadPecuariaOtrosCualTendencia, type: VARCHAR, size: '50', required: false }
     cca_control_plagas_enfermedades_mas_usado: { phpName: CcaControlPlagasEnfermedadesMasUsado, type: VARCHAR, size: '50', required: false }
     cca_control_plagas_enfermedades_quimico_tendencia: { phpName: CcaControlPlagasEnfermedadesQuimicoTendencia, type: VARCHAR, size: '50', required: false }
     cca_control_plagas_enfermedades_organico_tendencia: { phpName: CcaControlPlagasEnfermedadesOrganicoTendencia, type: VARCHAR, size: '50', required: false }
     cca_control_plagas_enfermedades_biologico_tendencia: { phpName: CcaControlPlagasEnfermedadesBiologicoTendencia, type: VARCHAR, size: '50', required: false }
+    cca_control_plagas_enfermedades_ninguno_tendencia: { phpName: CcaControlPlagasEnfermedadesNingunoTendencia, type: VARCHAR, size: '50', required: false }
     cca_fertilizacion_cultivos_mas_usado: { phpName: CcaFertilizacionCultivosMasUsado, type: VARCHAR, size: '50', required: false }
     cca_fertilizacion_cultivos_quimico_tendencia: { phpName: CcaFertilizacionCultivosQuimicoTendencia, type: VARCHAR, size: '50', required: false }
     cca_fertilizacion_cultivos_organico_tendencia: { phpName: CcaFertilizacionCultivosOrganicoTendencia, type: VARCHAR, size: '50', required: false }
+    cca_fertilizacion_cultivos_ninguno_tendencia: { phpName: CcaFertilizacionCultivosNingunoTendencia, type: VARCHAR, size: '50', required: false }
     cca_control_malezas_mas_usado: { phpName: CcaControlMalezasMasUsado, type: VARCHAR, size: '50', required: false }
     cca_control_malezas_quimico_tendencia: { phpName: CcaControlMalezasQuimicoTendencia, type: VARCHAR, size: '50', required: false }
     cca_control_malezas_meca_manu_tendencia: { phpName: CcaControlMalezasMecaManuTendencia, type: VARCHAR, size: '50', required: false }
     cca_control_malezas_organico_tendencia: { phpName: CcaControlMalezasOrganicoTendencia, type: VARCHAR, size: '50', required: false }
+    cca_control_malezas_ninguno_tendencia: { phpName: CcaControlMalezasNingunoTendencia, type: VARCHAR, size: '50', required: false }
     cca_mineria_tendencia: { phpName: CcaMineriaTendencia, type: VARCHAR, size: '50', required: false }
     cca_erosion_tendencia: { phpName: CcaErosionTendencia, type: VARCHAR, size: '50', required: false }
-    cca_modificacion_paisaje_construccion_vias_tendencia: { phpName: CcaModificacionPaisajeConstruccionViasTendencia, type: VARCHAR, size: '50', required: false }
-    cca_modificacion_paisaje_construccion_vivienda_tendencia: { phpName: CcaModificacionPaisajeConstruccionViviendaTendencia, type: VARCHAR, size: '50', required: false }
-    cca_modificacion_paisaje_construccion_otro_tendencia: { phpName: CcaModificacionPaisajeConstruccionOtroTendencia, type: VARCHAR, size: '50', required: false }
+    cca_modificaciones_paisaje_construcion_vias_tendencia: { phpName: CcaModificacionesPaisajeConstrucionViasTendencia, type: VARCHAR, size: '50', required: false }
+    cca_modificaciones_paisaje_construcion_vivienda_tendencia: { phpName: CcaModificacionesPaisajeConstrucionViviendaTendencia, type: VARCHAR, size: '50', required: false }
+    cca_modificaciones_paisaje_construcion_otro_tendencia: { phpName: CcaModificacionesPaisajeConstrucionOtroTendencia, type: VARCHAR, size: '50', required: false }
     cca_descarga_actividad_productiva_agricola_tendencia: { phpName: CcaDescargaActividadProductivaAgricolaTendencia, type: VARCHAR, size: '50', required: false }
     cca_descarga_actividad_productiva_pecuaria_tendencia: { phpName: CcaDescargaActividadProductivaPecuariaTendencia, type: VARCHAR, size: '50', required: false }
     cca_descarga_actividad_productiva_minera_tendencia: { phpName: CcaDescargaActividadProductivaMineraTendencia, type: VARCHAR, size: '50', required: false }
     cca_descarga_actividad_productiva_industrial_tendencia: { phpName: CcaDescargaActividadProductivaIndustrialTendencia, type: VARCHAR, size: '50', required: false }
     cca_descarga_actividad_productiva_otra_tendencia: { phpName: CcaDescargaActividadProductivaOtraTendencia, type: VARCHAR, size: '50', required: false }
-    cca_descarga_actividad_productiva_agricola_especifica: { phpName: CcaDescargaActividadProductivaAgricolaEspecifica, type: VARCHAR, size: '50', required: false }
-    cca_descarga_actividad_productiva_pecuaria_especifica: { phpName: CcaDescargaActividadProductivaPecuariaEspecifica, type: VARCHAR, size: '50', required: false }
-    cca_descarga_actividad_productiva_minera_especifica: { phpName: CcaDescargaActividadProductivaMineraEspecifica, type: VARCHAR, size: '50', required: false }
-    cca_descarga_actividad_productiva_industrial_especifica: { phpName: CcaDescargaActividadProductivaIndustrialEspecifica, type: VARCHAR, size: '50', required: false }
-    cca_descarga_actividad_productiva_otra_especifica: { phpName: CcaDescargaActividadProductivaOtraEspecifica, type: VARCHAR, size: '50', required: false }
+    cca_descarga_actividad_productiva_agricola_espe: { phpName: CcaDescargaActividadProductivaAgricolaEspe, type: VARCHAR, size: '50', required: false }
+    cca_descarga_actividad_productiva_pecuaria_espe: { phpName: CcaDescargaActividadProductivaPecuariaEspe, type: VARCHAR, size: '50', required: false }
+    cca_descarga_actividad_productiva_minera_espe: { phpName: CcaDescargaActividadProductivaMineraEspe, type: VARCHAR, size: '50', required: false }
+    cca_descarga_actividad_productiva_industrial_espe: { phpName: CcaDescargaActividadProductivaIndustrialEspe, type: VARCHAR, size: '50', required: false }
+    cca_descarga_actividad_productiva_otra_espe: { phpName: CcaDescargaActividadProductivaOtraEspe, type: VARCHAR, size: '50', required: false }
   capacitacion:
     _attributes: { phpName: Capacitacion }
     cap_id: { phpName: CapId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }

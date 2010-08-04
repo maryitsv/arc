@@ -9,7 +9,7 @@ var tabp_acu_administrativafinanciera = new Ext.TabPanel( {
     items: [
             {
 				frame: true,
-				title: 'Calidad del agua en la fuente',
+				title: 'Calidad del agua en la fuente.',
 				autoLoad: { url: url_arc+'acueducto_calidadaguafuente', scripts: true, scope: this }
 			},
 			{
