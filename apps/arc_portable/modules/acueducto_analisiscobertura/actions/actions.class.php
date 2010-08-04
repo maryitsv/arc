@@ -20,55 +20,6 @@ class acueducto_analisiscoberturaActions extends sfActions
   //  $this->forward('default', 'module');
   }
   
-    /**
-  *@author:maryit sanchez
-  *@date:13 de julio de 2010
-  *Este metodo controla las peticiones que le hacen a el modulo, y dependiendo de lo que se solicite se llama a la funcion adecuada
-  */
-    public function executeCargar(){
-  	   
-		
-		
-    }
-
-  /**
-  *@author:maryit sanchez
-  *@date:13 de julio de 2010
-  *Este metodo retorna un listado de los estratos socioeconomicos
-  */	
-	public function executeListarEstratos()
-	{
-		$salida='({"total":"0", "results":""})';
-		$fila=0;
-		$datos;
-		
-        try{
-
-			$conexion = new Criteria();
-			$estratos = EstratoPeer::doSelect($conexion);
-			
-			foreach($estratos As $estrato)
-			{
-			  $datos[$fila]['est_id'] = $estrato->getEstId();
-			  $datos[$fila]['est_nombre'] = $estrato->getEstNombre();
-			  if($estrato->getEstResidencial())
-			  {$datos[$fila]['est_residencial'] = 'Residencial';}
-			  else{$datos[$fila]['est_residencial'] = 'No Residencial';}
-			  $fila++;
-			}
-
-			if($fila>0){
-				$jsonresult = json_encode($datos);
-				$salida= '({"total":"'.$fila.'","results":'.$jsonresult.'})';
-			}
-		}catch (Exception $excepcion)
-		{
-			//return $salida;
-		}		
-
-		return $this->renderText($salida);
-	}  
-
 	/**
   *@author:maryit sanchez
   *@date:13 de julio de 2010
@@ -156,33 +107,6 @@ class acueducto_analisiscoberturaActions extends sfActions
 	return $this->renderText($salida);
   }
   
-    public function executeActualizarSuscriptoresServicioAcueducto(sfWebRequest $request)
-  {
-/*  $salida = '';
-	
-		try{
-			$com_id=$this->obtenerComId();
-			
-			$conexion = new Criteria();
-			$conexion->add(AnalisisCoberturaPeer::ACO_COM_ID, $com_id);
-			$analisisCobertura = AnalisisCoberturaPeer::doSelectOne($conexion);
-
-			if($analisisCobertura)
-			{
-				$analisisCobertura->save();
-		
-				$salida = "({success: true, mensaje:'Fue actualizado exitosamente'})";
-			} else {
-				$salida = "({success: false, errors: { reason: 'No se a actualizado Peticiones , quejas y recursos'}})";
-			}
-		}
-		catch (Exception $excepcion)
-		{
-			return "({success: false, errors: { reason: 'Hubo una excepcion'}})";
-		}
-		
-	return $this->renderText($salida);*/
-  }
    /*
   *@author:maryit sanchez
   *@date:28 de julio de 2010
@@ -223,4 +147,142 @@ class acueducto_analisiscoberturaActions extends sfActions
 		return $this->renderText($salida);
   }
 
+  /**
+  *@author:maryit sanchez
+  *@date:4 de agosto de 2010
+  *Este metodo retorna un el id de analisis cobertura
+  */
+    public function obtenerAcoId()
+  { 
+	$com_id=$this->obtenerComId();
+			
+	$conexion = new Criteria();
+	$conexion->add(AnalisiscoberturaPeer::ACO_COM_ID, $com_id);
+	$analisisCobertura = AnalisiscoberturaPeer::doSelectOne($conexion);
+
+	if(!$analisisCobertura)
+	{
+		$analisisCobertura=new Analisiscobertura();
+		$analisisCobertura->setAcoComId($com_id);
+	}
+	
+	return $analisisCobertura->getAcoId();
+  }
+  
+  /**
+  *@author:maryit sanchez
+  *@date:4 de agosto de 2010
+  *Este metodo actualiza los suscritores servicio acueducto por estrato 
+  */
+    public function executeActualizarSuscriptoresservicioacueducto(sfWebRequest $request)
+  {
+  $salida = '';
+	/*Nota SSACU_ACO_ID , SSACU_EST_ID deben ser indixes unicos */
+		try{
+			$aco_id=$this->obtenerAcoId();
+			$est_id=$this->getRequestParameter('acu_ssacu_est_id');
+			
+			$conexion = new Criteria();
+			
+			$conexion->add(SuscriptoresservicioacueductoPeer::SSACU_ACO_ID, $aco_id);
+			$conexion->add(SuscriptoresservicioacueductoPeer::SSACU_EST_ID, $est_id);			
+			$suscriptoresacueducto = SuscriptoresservicioacueductoPeer::doSelectOne($conexion);
+
+			
+			if(!$suscriptoresacueducto)
+			{
+				$suscriptoresacueducto=new Suscriptoresservicioacueducto();
+				
+				$suscriptoresacueducto->setSsacuAcoId($aco_id);//pendiente
+				$suscriptoresacueducto->setSsacuEstId($est_id);
+				
+			}
+			
+			if($suscriptoresacueducto)
+			{   
+				$suscriptoresacueducto->setSsacuNumeroSuscriptores($this->getRequestParameter('acu_ssacu_numero_suscriptores'));
+				$suscriptoresacueducto->setSsacuTarifaSinMedicion($this->getRequestParameter('acu_ssacu_tarifa_sin_medicion'));
+				$suscriptoresacueducto->setSsacuCargoFijo($this->getRequestParameter('acu_ssacu_cargo_fijo'));
+				$suscriptoresacueducto->setSsacuTarifaConsumoBasico($this->getRequestParameter('acu_ssacu_tarifa_consumo_basico'));
+				$suscriptoresacueducto->setSsacuTarifaConsumoComplementario($this->getRequestParameter('acu_ssacu_tarifa_consumo_complementario'));
+				$suscriptoresacueducto->setSsacuTarifaConsumoSuntuario($this->getRequestParameter('acu_ssacu_tarifa_consumo_suntuario'));
+				$suscriptoresacueducto->save();
+		
+				$salida = "({success: true, mensaje:'Fue actualizado exitosamente'})";
+			}
+		}
+		catch (Exception $excepcion)
+		{
+			return "({success: false, errors: { reason: 'Hubo una excepcion en suscriptores servicio acueducto descripcion".$excepcion."'}})";
+		}
+		
+	return $this->renderText($salida);
+  }
+  
+   /**
+  *@author:maryit sanchez
+  *@date:4 de agosto de 2010
+  *Este metodo retorna un listado de los estratos socioeconomicos con  las tarifas de medicion cargo fijo entre otros
+  */	
+	public function executeListarSuscritoresservicioacueducto()
+	{
+		$salida='({"total":"0", "results":""})';
+		$fila=0;
+		$datos;
+		
+        try{
+
+			$conexion = new Criteria();
+			$estratos = EstratoPeer::doSelect($conexion);
+			
+			foreach($estratos As $estrato)
+			{
+			  $datos[$fila]['acu_est_id'] = $estrato->getEstId();
+			  $datos[$fila]['acu_est_nombre'] = $estrato->getEstNombre();
+			  if($estrato->getEstResidencial())
+			  {$datos[$fila]['acu_est_residencial'] = 'Residencial';}
+			  else{$datos[$fila]['acu_est_residencial'] = 'No Residencial';}
+			  
+			  //obtener los datos de los suscriptores
+			  $aco_id=$this->obtenerAcoId();
+			  $est_id=$estrato->getEstId();
+			
+			  $conexion = new Criteria();
+			  $conexion->add(SuscriptoresservicioacueductoPeer::SSACU_ACO_ID, $aco_id);
+			  $conexion->add(SuscriptoresservicioacueductoPeer::SSACU_EST_ID, $est_id);			
+			  $suscriptoresacueducto = SuscriptoresservicioacueductoPeer::doSelectOne($conexion);
+			  
+			  if($suscriptoresacueducto){
+				$datos[$fila]['acu_ssacu_numero_suscriptores'] = $suscriptoresacueducto->getSsacuNumeroSuscriptores ();
+				$datos[$fila]['acu_ssacu_tarifa_sin_medicion'] =$suscriptoresacueducto->getSsacuTarifaSinMedicion ();
+				$datos[$fila]['acu_ssacu_cargo_fijo'] = $suscriptoresacueducto->getSsacuCargoFijo ();
+				$datos[$fila]['acu_ssacu_tarifa_consumo_basico'] = $suscriptoresacueducto->getSsacuTarifaConsumoBasico ();
+				$datos[$fila]['acu_ssacu_tarifa_consumo_complementario'] = $suscriptoresacueducto->getSsacuTarifaConsumoComplementario ();
+				$datos[$fila]['acu_ssacu_tarifa_consumo_suntuario'] = $suscriptoresacueducto->getSsacuTarifaConsumoSuntuario ();				
+			  }
+			  else{
+				$datos[$fila]['acu_ssacu_numero_suscriptores'] = "0";
+				$datos[$fila]['acu_ssacu_tarifa_sin_medicion'] = "0";
+				$datos[$fila]['acu_ssacu_cargo_fijo'] = "0";
+				$datos[$fila]['acu_ssacu_tarifa_consumo_basico'] = "0";
+				$datos[$fila]['acu_ssacu_tarifa_consumo_complementario'] = "0";
+				$datos[$fila]['acu_ssacu_tarifa_consumo_suntuario'] = "0";	
+			  }
+
+			
+			  $fila++;
+			}
+
+			if($fila>0){
+				$jsonresult = json_encode($datos);
+				$salida= '({"total":"'.$fila.'","results":'.$jsonresult.'})';
+			}
+		}catch (Exception $excepcion)
+		{
+			return "({success: false, errors: { reason: 'Hubo una excepcion en suscriptores servicio acueducto descripcion".$excepcion."'}})";
+		}		
+
+		return $this->renderText($salida);
+	}  
+	
 }

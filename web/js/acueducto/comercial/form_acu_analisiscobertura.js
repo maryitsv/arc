@@ -79,18 +79,6 @@ desarrollado por maryit sanchez
 					}
 				}
 			},
-			/*{  
-			   xtype:'textfield', 
-			   labelStyle: 'width: 370px; text-align:right;'+letra,
-			   fieldLabel: '<html>En que a&ntilde;o lo implemento?</html>',
-			   name:'acu_aco_anio_ela_impl_catastro_usu',
-			   id:'acu_aco_anio_ela_impl_catastro_usu',
-			   listeners:{
-			   'render': function() {
-							ayuda('acu_aco_anio_ela_impl_catastro_usu', ayuda_acu_aco_anio_ela_impl_catastro_usu);
-						}
-			   }
-			},*/
 			{
 				xtype:'label',
 				html:'<br/>'
@@ -224,58 +212,70 @@ desarrollado por maryit sanchez
 	});
 
 
+/*****************************Formulario 2 estratos*********************************/
 	var acu_analisiscobertura_estratos_datastore=new Ext.data.GroupingStore({
 	        proxy: new Ext.data.HttpProxy({
-		      url: 'acueducto_analisiscobertura/listarEstratos',	
+		      url: 'acueducto_analisiscobertura/listarSuscritoresservicioacueducto',	
 			  method: 'POST'
 	        }),
-	        baseParams:{task: 'LISTARESTRATOS'},
+	        baseParams:{},
 			id:'acu_analisiscobertura_estratos_datastore',
 			reader:new Ext.data.JsonReader({
 			  root:'results',
 			  totalProperty:'total',
 			  id:'acu_id'},
 			  [
-			   {name:'est_id'},
-			   {name:'est_nombre'},
-			   {name:'est_residencial'},
-			   {name:'ssacu_numero_suscriptores'},
-			   {name:'ssacu_tarifa_sin_medicion'},
-			   {name:'ssacu_cargo_fijo'},
-			   {name:'ssacu_tarifa_consumo_basico'},
-			   {name:'ssacu_tarifa_consumo_complementario'},
-			   {name:'ssacu_tarifa_consumo_suntuario'}
+			   {name:'acu_est_id'},
+			   {name:'acu_est_nombre'},//esto es del estrato
+			   {name:'acu_est_residencial'},//esto es del estrato
+			   {name:'acu_ssacu_numero_suscriptores'},
+			   {name:'acu_ssacu_tarifa_sin_medicion'},
+			   {name:'acu_ssacu_cargo_fijo'},
+			   {name:'acu_ssacu_tarifa_consumo_basico'},
+			   {name:'acu_ssacu_tarifa_consumo_complementario'},
+			   {name:'acu_ssacu_tarifa_consumo_suntuario'}
 			  ]
 			 ),
-			sortInfo:{field: 'est_nombre', direction: 'ASC'},	
-		    groupField:'est_residencial'
+			sortInfo:{field: 'acu_est_nombre', direction: 'ASC'},	
+		    groupField:'acu_est_residencial'
     });
 
 	
+	var acu_analisiscobertura_estratos_maxvalue=1000000000;
 	var acu_analisiscobertura_estratos_colmodel = new Ext.grid.ColumnModel({
 	  defaults:{sortable:false, allowBlank: false, allowNegative: false},
 	  columns:[
-		{header: "<html>Clasificaci&oacute;n</html>", width: 80,  sortable: true, dataIndex: 'est_nombre'},
-		{header: "<html>Clasificaci&oacute;n</html>", width: 80,  sortable: true,hidden:true, dataIndex: 'est_residencial'},
-        {header: "<html>N&uacute;mero de <br/>suscriptores</html>", width: 120, dataIndex: 'ssacu_numero_suscriptores', renderer: formatoNumeroCelda,
-         editor: new Ext.form.NumberField({ maxValue: 10000})},
-        {header: "<html>Tarifa sin medici&oacute;n <br/>($/Suscr/mes)</html>", width: 100, dataIndex: 'ssacu_tarifa_sin_medicion', renderer: formatoNumeroCelda,
-         editor: new Ext.form.NumberField({  maxValue: 100000})},
-        {header: "Cargo fijo <br/>($/Suscr/mes)", width: 80, dataIndex: 'ssacu_cargo_fijo', renderer: formatoNumeroCelda,
-         editor: new Ext.form.NumberField({  maxValue: 1000000})},
-        {header: "<html>Tarifa consumo <br/>b&aacute;sico</html> ($/m3)", width: 120, dataIndex: 'ssacu_tarifa_consumo_basico', renderer: formatoNumeroCelda, 
-           editor: new Ext.form.NumberField({  maxValue: 1000000})},
-        {header: "Tarifa consumo <br/>complementario ($/m3)", width: 120, dataIndex: 'ssacu_tarifa_consumo_complementario', renderer: formatoNumeroCelda,
-         editor: new Ext.form.NumberField({ maxValue: 1000000})},
-        {header: "Tarifa consumo <br/>suntuario ($/m3)", width: 120, dataIndex: 'ssacu_tarifa_consumo_suntuario', renderer: formatoNumeroCelda,
-         editor: new Ext.form.NumberField({ maxValue: 1000000})}                  
+		{header: "<html>Clasificaci&oacute;n</html>", width: 80,  sortable: true, dataIndex: 'acu_est_nombre'},
+		{header: "<html>Clasificaci&oacute;n</html>", width: 80,  sortable: true, hidden:true, dataIndex: 'acu_est_residencial'},
+        {header: "<html>N&uacute;mero de <br/>suscriptores</html>", width: 120, dataIndex: 'acu_ssacu_numero_suscriptores', renderer: formatoNumeroCelda,
+         editor: new Ext.form.NumberField({ maxValue:acu_analisiscobertura_estratos_maxvalue })},
+        {header: "<html>Tarifa sin medici&oacute;n <br/>($/Suscr/mes)</html>", width: 100, dataIndex: 'acu_ssacu_tarifa_sin_medicion', renderer: formatoNumeroCelda,
+         editor: new Ext.form.NumberField({  maxValue: acu_analisiscobertura_estratos_maxvalue})},
+        {header: "Cargo fijo <br/>($/Suscr/mes)", width: 80, dataIndex: 'acu_ssacu_cargo_fijo', renderer: formatoNumeroCelda,
+         editor: new Ext.form.NumberField({  maxValue: acu_analisiscobertura_estratos_maxvalue})},
+        {header: "<html>Tarifa consumo <br/>b&aacute;sico</html> ($/m3)", width: 120, dataIndex: 'acu_ssacu_tarifa_consumo_basico', renderer: formatoNumeroCelda, 
+           editor: new Ext.form.NumberField({  maxValue: acu_analisiscobertura_estratos_maxvalue})},
+        {header: "Tarifa consumo <br/>complementario ($/m3)", width: 120, dataIndex: 'acu_ssacu_tarifa_consumo_complementario', renderer: formatoNumeroCelda,
+         editor: new Ext.form.NumberField({ maxValue: acu_analisiscobertura_estratos_maxvalue})},
+        {header: "Tarifa consumo <br/>suntuario ($/m3)", width: 120, dataIndex: 'acu_ssacu_tarifa_consumo_suntuario', renderer: formatoNumeroCelda,
+         editor: new Ext.form.NumberField({ maxValue: acu_analisiscobertura_estratos_maxvalue})}                  
 		]
 	});
 
    	acu_analisiscobertura_estratos_datastore.load();
 	
+	var acu_analisiscobertura_estratos_roweditor = new Ext.ux.grid.RowEditor({
+		saveText: 'Guardar',
+		cancelText: 'Cancelar',
+		commitChangesText: 'Debe terminar de editar los campos, o cancelar la edicion',
+		errorText: 'Error'
+	});
+
+	acu_analisiscobertura_estratos_datastore.on('update',acu_analisiscobertura_estratos_actualizar);
+	
+	
 	//grilla con lo modulos 
-	var acu_analisiscobertura_estratos_gridpanel = new Ext.grid.EditorGridPanel({
+	var acu_analisiscobertura_estratos_gridpanel = new Ext.grid.GridPanel({
 		id: 'acu_analisiscobertura_estratos_gridpanel',	
         hidden: true,
 		columnLines : true,
@@ -307,11 +307,13 @@ desarrollado por maryit sanchez
 			 iconCls:'continuar',
 			 handler: function()
 			 {
-			 acu_comercial_tabpanel.setActiveTab(1);
+			 acu_analisiscobertura_datos_datastore.reload();
+			 acu_comercial_tabpanel.setActiveTab(1);		 
 			 }
 		  }      
 	    ],
-        view: new Ext.grid.GroupingView()
+        view: new Ext.grid.GroupingView(),
+		plugins:[acu_analisiscobertura_estratos_roweditor]
 	});
 	
    var acu_analisiscobertura_contenedor=new Ext.Panel({
@@ -402,9 +404,41 @@ desarrollado por maryit sanchez
 
 	}
 	
-acu_analisiscobertura_datos_datastore.load({
-  callback: function() {
-	var record = acu_analisiscobertura_datos_datastore.getAt(0);
-	acu_analisiscobertura_panel.getForm().loadRecord(record);	
-  }
-});
+	acu_analisiscobertura_datos_datastore.load({
+	  callback: function() {
+		var record = acu_analisiscobertura_datos_datastore.getAt(0);
+		acu_analisiscobertura_panel.getForm().loadRecord(record);	
+	  }
+	});
+
+	function acu_analisiscobertura_estratos_actualizar(store,record,operation){
+
+		 Ext.Ajax.request({
+			waitMsg: 'Por Favor Espere...',
+			url: 'acueducto_analisiscobertura/actualizarSuscriptoresservicioacueducto',
+			method: 'POST',
+			params: {
+				acu_est_nombre:      record.data.acu_est_nombre,
+				acu_est_residencial: record.data.acu_est_residencial,
+				acu_ssacu_est_id:                record.data.acu_est_id,
+				acu_ssacu_numero_suscriptores:   record.data.acu_ssacu_numero_suscriptores,
+				acu_ssacu_tarifa_sin_medicion:   record.data.acu_ssacu_tarifa_sin_medicion,
+				acu_ssacu_cargo_fijo:                    record.data.acu_ssacu_cargo_fijo,
+				acu_ssacu_tarifa_consumo_basico:         record.data.acu_ssacu_tarifa_consumo_basico,
+				acu_ssacu_tarifa_consumo_complementario: record.data.acu_ssacu_tarifa_consumo_complementario,
+				acu_ssacu_tarifa_consumo_suntuario:      record.data.acu_ssacu_tarifa_consumo_suntuario
+			},
+			success: function(response, action)
+			{
+				//obj = Ext.util.JSON.decode(action.response.responseText);
+				mostrarMensajeRapido('Aviso','La informacion del estrato fue actualizada');
+			},
+			failure: function(form, action, response)
+			{
+				if(action.failureType == 'server'){
+					obj = Ext.util.JSON.decode(action.response.responseText); 
+					mostrarMensajeConfirmacion('Error','hubo un problema al tratar de guardar la configuracion del estrato');
+				}
+			}
+		});
+	}

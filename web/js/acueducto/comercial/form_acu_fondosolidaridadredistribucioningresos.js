@@ -308,29 +308,14 @@ Desarrollado maryit sanchez
 	}
 	
 	function acu_fondosolidaridadredistribucioningresos_subirdatos(accion_realizar){
-	
-		acu_fondosolidaridadredistribucioningresos_panel.getForm().submit({
-			method: 'POST',
-			url:'acueducto_fondosolidaridadredistribucioningresos/actualizarFondosolidaridadredistribucioningresos',
-			params: {
-				servicio:'acueducto'
-			},
-			waitTitle: 'Enviando',
-			waitMsg: 'Enviando datos...',
-			success: function(response, action)
-			{
-			  obj = Ext.util.JSON.decode(action.response.responseText);
-			   mostrarMensajeRapido('Aviso',obj.mensaje);
-			},
-			failure: function(form, action, response)
-			{
-				if(action.failureType == 'server'){
-					obj = Ext.util.JSON.decode(action.response.responseText); 
-					mostrarMensajeConfirmacion('Error',obj.errors.reason);
-				}
-			}
-		});
-
+		
+		subirDatos(
+			acu_fondosolidaridadredistribucioningresos_panel,
+			'acueducto_fondosolidaridadredistribucioningresos/actualizarFondosolidaridadredistribucioningresos',
+			{},
+			function(){}
+		);
+		
 	}
 
 

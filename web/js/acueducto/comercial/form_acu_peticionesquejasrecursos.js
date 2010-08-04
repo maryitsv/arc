@@ -391,9 +391,14 @@ Desarrollado maryit sanchez
 	}
 	
 	function acu_peticionesquejasrecursos_subirdatos(accion_realizar){
-		var url_acu_pqr='acueducto_peticionesquejasrecursos/actualizarPeticionesquejasrecursos';
-		subirDatos(acu_peticionesquejasrecursos_panel,url_acu_pqr,{acu_pqr_cantidad_anual_pqr:Ext.getCmp('acu_pqr_cantidad_anual_pqr').getValue()});
-		url_acu_pqr='';
+		
+		subirDatos(
+					acu_peticionesquejasrecursos_panel,
+					'acueducto_peticionesquejasrecursos/actualizarPeticionesquejasrecursos',
+					{acu_pqr_cantidad_anual_pqr:Ext.getCmp('acu_pqr_cantidad_anual_pqr').getValue()},
+					function(){}
+		);
+		
 	}
 	
 acu_peticionesquejasrecursos_datos_datastore.load({
