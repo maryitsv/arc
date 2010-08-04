@@ -6,18 +6,27 @@ var form_acu_desinfeccion = new Ext.form.FormPanel({
     buttons: [{
         text: 'Atrás',
         handler: function(){
+            form_acu_desinfeccion.getForm().submit({
+                url: getAbsoluteUrl('acueducto_desinfeccion', 'subirDatos'),
+                clientValidation: false
+            });
             tecnicooperativa_acueducto_tabpanel.setActiveTab(5);
         }
     }, {
         text: 'Siguiente',
         handler: function(){
+            form_acu_desinfeccion.getForm().submit({
+                url: getAbsoluteUrl('acueducto_desinfeccion', 'subirDatos'),
+                clientValidation: false
+            });
             tecnicooperativa_acueducto_tabpanel.setActiveTab(7);
         }
     }]
 });
 
 var toda_desinfeccion = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
     id: "toda_desinfeccion",
     name: "toda_desinfeccion",
     fieldLabel: "Existencia del proceso de desinfección",
@@ -26,6 +35,14 @@ var toda_desinfeccion = {
         inputValue: 1
     }],
     listeners: {
+        check: function(radio, checked){
+            Ext.getCmp('toda_desinfeccion_cloro').setDisabled(!checked);
+            Ext.getCmp('toda_desinfeccion_hipoclorito_sodio').setDisabled(!checked);
+            Ext.getCmp('toda_desinfeccion_hipoclorito_calcio').setDisabled(!checked);
+            Ext.getCmp('toda_desinfeccion_ozonacion').setDisabled(!checked);
+            Ext.getCmp('toda_desinfeccion_rayos_ultravioleta').setDisabled(!checked);
+            Ext.getCmp('toda_desinfeccion_dioxido_cloro').setDisabled(!checked);
+        },
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toda_desinfeccion')).getEl(),
@@ -39,7 +56,9 @@ var toda_desinfeccion = {
 }
 
 var toda_desinfeccion_cloro = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "toda_desinfeccion_cloro",
     name: "toda_desinfeccion_cloro",
     fieldLabel: "Cloro gaseoso",
@@ -62,7 +81,9 @@ var toda_desinfeccion_cloro = {
 
 
 var toda_desinfeccion_hipoclorito_sodio = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "toda_desinfeccion_hipoclorito_sodio",
     name: "toda_desinfeccion_hipoclorito_sodio",
     fieldLabel: "Hipoclorito de sodio",
@@ -84,7 +105,9 @@ var toda_desinfeccion_hipoclorito_sodio = {
 }
 
 var toda_desinfeccion_hipoclorito_calcio = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "toda_desinfeccion_hipoclorito_calcio",
     name: "toda_desinfeccion_hipoclorito_calcio",
     fieldLabel: "Hipoclorito de calcio",
@@ -106,7 +129,9 @@ var toda_desinfeccion_hipoclorito_calcio = {
 }
 
 var toda_desinfeccion_ozonacion = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "toda_desinfeccion_ozonacion",
     name: "toda_desinfeccion_ozonacion",
     fieldLabel: "Ozonación",
@@ -128,7 +153,9 @@ var toda_desinfeccion_ozonacion = {
 }
 
 var toda_desinfeccion_rayos_ultravioleta = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "toda_desinfeccion_rayos_ultravioleta",
     name: "toda_desinfeccion_rayos_ultravioleta",
     fieldLabel: "Rayos ultravioleta",
@@ -150,7 +177,9 @@ var toda_desinfeccion_rayos_ultravioleta = {
 }
 
 var toda_desinfeccion_dioxido_cloro = {
-    xtype: "checkboxgroup",
+    xtype: "checkbox",
+    inputValue: 1,
+    disabled: true,
     id: "toda_desinfeccion_dioxido_cloro",
     name: "toda_desinfeccion_dioxido_cloro",
     fieldLabel: "Dióxido de cloro",
@@ -171,6 +200,45 @@ var toda_desinfeccion_dioxido_cloro = {
     }
 }
 
+var acu_desinfeccion_datastore = new Ext.data.Store({
+    id: 'acu_desinfeccion_datastore',
+    proxy: new Ext.data.HttpProxy({
+        url: getAbsoluteUrl('acueducto_desinfeccion', 'obtenerDatos'),
+        method: 'POST'
+    }),
+    reader: new Ext.data.JsonReader({
+        root: 'data',
+    }, [{
+        name: 'toda_desinfeccion',
+        type: 'int'
+    }, {
+        name: 'toda_desinfeccion_cloro',
+        type: 'int'
+    }, {
+        name: 'toda_desinfeccion_hipoclorito_sodio',
+        type: 'int'
+    }, {
+        name: 'toda_desinfeccion_hipoclorito_calcio',
+        type: 'int'
+    }, {
+        name: 'toda_desinfeccion_ozonacion',
+        type: 'int'
+    }, {
+        name: 'toda_desinfeccion_rayos_ultravioleta',
+        type: 'int'
+    }, {
+        name: 'toda_desinfeccion_dioxido_cloro',
+        type: 'int'
+    }])
+});
+
+acu_desinfeccion_datastore.load({
+    callback: function(){
+        var registro = acu_desinfeccion_datastore.getAt(0);
+        form_acu_desinfeccion.getForm().loadRecord(registro);
+    }
+});
+
 form_acu_desinfeccion.add({
     xtype: 'fieldset',
     title: 'Desinfección',
@@ -186,7 +254,7 @@ form_acu_desinfeccion.add({
         }, {
             layout: 'form',
             labelWidth: 150,
-            items: [toda_desinfeccion_cloro, toda_desinfeccion_hipoclorito_sodio, toda_desinfeccion_hipoclorito_calcio, toda_desinfeccion_ozonacion, toda_desinfeccion_rayos_ultravioleta]
+            items: [toda_desinfeccion_cloro, toda_desinfeccion_hipoclorito_sodio, toda_desinfeccion_hipoclorito_calcio, toda_desinfeccion_ozonacion, toda_desinfeccion_rayos_ultravioleta, toda_desinfeccion_dioxido_cloro]
         }]
     }]
 });

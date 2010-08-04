@@ -37,13 +37,13 @@ var tecnicooperativa_acueducto_tabpanel = new Ext.TabPanel({
             scripts: true
         }
     }, {
-        title: 'Planta tratamiento',
+        title: 'Planta tratamiento.',
         autoLoad: {
             url: getAbsoluteUrl('acueducto_plantatratamiento_aguapotable', 'index'),
             scripts: true
         }
     }, {
-        title: 'Desinfección',
+        title: 'Desinfección.',
         autoLoad: {
             url: getAbsoluteUrl('acueducto_desinfeccion', 'index'),
             scripts: true
