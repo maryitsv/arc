@@ -368,7 +368,7 @@ Desarrollado maryit sanchez
 	}
 	
 	function acu_facturacionyrecaudo_subirdatos(accion_realizar){
-		subirDatos(acu_facturacionyrecaudo_panel,'acueducto_facturacionyrecaudo/actualizarFacturacionyrecaudo',{});
+		subirDatos(acu_facturacionyrecaudo_panel,'acueducto_facturacionyrecaudo/actualizarFacturacionyrecaudo',{},function(){});
 		
 	}
 	

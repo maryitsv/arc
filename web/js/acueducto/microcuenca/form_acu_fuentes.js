@@ -299,14 +299,14 @@ create table FUENTES
 				}
 				 
 				acu_fuentes_abastecenelsistema_panel.hide();
-				acu_cantidadaguafuentesuperficiales_grid.show();
+				acu_fuentesuperficiales_gridpanel.show();
 				
 			 }
 		  }      
 		]
 	});
 	
-	
+	/*Funciones*/
     var acu_fuentes_abastecenelsistema_panel_datanuevo;
 	var acu_fuentes_abastecenelsistema_panel_dataviejo=new Array();
 
@@ -377,9 +377,7 @@ create table FUENTES
 	}
 	
 	function acu_fuentes_abastecenelsistema_subirdatos(accion_realizar){
-		subirDatos(acu_fuentes_abastecenelsistema_panel,
-				'acueducto_fuentes/actualizarFuentes',
-				{formulario:'abastecenElSistema'});
+		subirDatos(acu_fuentes_abastecenelsistema_panel,'acueducto_fuentes/actualizarFuentes',{formulario:'abastecenElSistema'});
 		
 	}
 	
@@ -393,122 +391,187 @@ acu_fuentes_abastecenelsistema_datos_datastore.load({
 
 	
 /****************************************Fuentes superficiales*****************/
+	var acu_fuentes_superficiales_datastore=new Ext.data.Store({
+	        proxy: new Ext.data.HttpProxy({
+		      url: 'acueducto_fuentes/listarFuentessuperficiales',	
+			  method: 'POST'
+	        }),
+	        baseParams:{},
+			id:'acu_fuentes_superficiales_datastore',
+			reader:new Ext.data.JsonReader({
+			  root:'results',
+			  totalProperty:'total',
+			  id:'acu_id'},
+			  [
+				{type: 'int', name: 'acu_fsp_id'},
+				{type: 'string', name: 'acu_fsp_nombre_fuente'},
+				{type: 'string', name: 'acu_fsp_tipo_fuente'},
+				{type: 'float', name: 'acu_fsp_epoca_lluvia_caudal_captado'},
+				{type: 'float', name: 'acu_fsp_epoca_lluvia_caudal_total'},
+				{type: 'float', name: 'acu_fsp_epoca_seca_caudal_captado'},
+				{type: 'float', name: 'acu_fsp_epoca_seca_caudal_total'},
+				{type: 'string', name: 'acu_fsp_entidad_expidio_concesion'},
+				{type: 'date', name: 'acu_fsp_fecha_expedicion_concesion',dateFormat: 'Y-m-d'},
+				{type: 'date', name: 'acu_fsp_fecha_vencimiento_concesion',dateFormat: 'Y-m-d'},
+				{type: 'float', name: 'acu_fsp_caudal_adjudicado_concesion'}
+			  ]
+			 ),
+			sortInfo:{field: 'acu_fsp_nombre_fuente', direction: 'ASC'}
+    });
 
+	function formatDate(value){
+        return value ? value.dateFormat('d-m-Y') : '';
+    }
+	
+	var acu_fuentesuperficiales_tipo_fuente_data = [
+	   ['Nacimiento'],
+	   ['Quebrada o R&iacute;o'],
+	   ['Lago o Reservorio'],
+	   ['Mar']
+	];
+	
+	var acu_fuentesuperficiales_tipo_fuente_datastore = new Ext.data.SimpleStore({
+		fields: ['tipofuente'],
+		data : acu_fuentesuperficiales_tipo_fuente_data
+	});
 
-    var acu_cantidadaguafuentesuperficiales_fields = [
-	      {type: 'string', name: 'caf_nombre'},
-          {type: 'string', name: 'caf_tipo_fuente'},
-          {type: 'int', name: 'caf_epoca_lluvia_caudal_captado'},
-          {type: 'int', name: 'caf_epoca_lluvia_caudal_total'},
-	      {type: 'int', name: 'caf_epoca_seca_caudal_captado'},
-          {type: 'int', name: 'caf_epoca_seca_caudal_total'},
-		  {type: 'string', name: 'caf_entidad_expidio_concesion'},
-          {type: 'string', name: 'caf_fecha_expedicion_concesion'},
-	      {type: 'string', name: 'caf_fecha_vencimiento_concesion'},
-          {type: 'string', name: 'caf_caudal_adjudicado_concesion'},
-      ];
-	  
-    var acu_cantidadaguafuentesuperficiales_columns = [
-			{dataIndex: 'caf_nombre', header: 'Nombre',
-				 editor: new Ext.form.TextField({
-                    allowBlank: false
-                }),
-				tooltip:'Nombre de la fuente'
+	var acu_fuentesuperficiales_tipo_fuente_combobox = new Ext.form.ComboBox({
+		store: acu_fuentesuperficiales_tipo_fuente_datastore,
+		displayField: 'tipofuente',
+		typeAhead: true,
+		mode: 'local',
+		triggerAction: 'all',
+		emptyText: 'Selecciona...',
+		selectOnFocus: true
+	});
+	
+	var acu_fuentesuperficiales_autoridadambiental_datastore= new Ext.data.Store({
+		id: 'acu_fuentesuperficiales_autoridadambiental_datastore',
+		proxy: new Ext.data.HttpProxy({
+			url: 'acueducto_fuentes/listarAutoridadesambientales', 
+			method: 'POST'
+			}),
+		baseParams:{}, 
+		reader: new Ext.data.JsonReader({
+			root: 'results',
+			totalProperty: 'total',
+			id: 'id'
 			},
-			{dataIndex: 'caf_tipo_fuente', header: 'Tipo',
-				//editor: new Ext.form.ComboBox({
-                  //  typeAhead: true,
-                    //triggerAction: 'all'
-                //}),
-				tooltip:'Tipo de fuente superficial'
-			},
-			{dataIndex: 'caf_epoca_lluvia_caudal_captado', header: 'Caudal captado',
-				editor: new Ext.form.NumberField({
-                    allowBlank: false,
-                    allowNegative: false,
-                    maxValue: 100000
-                })
-			},
-			{dataIndex: 'caf_epoca_lluvia_caudal_total', header: 'Caudal total',
-				editor: new Ext.form.NumberField({
-                    allowBlank: false,
-                    allowNegative: false,
-                    maxValue: 100000
-                })
-			},
-			{dataIndex: 'caf_epoca_seca_caudal_captado', header: 'Caudal captado',
-				editor: new Ext.form.NumberField({
-                    allowBlank: false,
-                    allowNegative: false,
-                    maxValue: 100000
-                })
-			},
-			{dataIndex: 'caf_epoca_seca_caudal_total', header: 'Caudal total',
-				editor: new Ext.form.NumberField({
-                    allowBlank: false,
-                    allowNegative: false,
-                    maxValue: 100000
-                })
-			},			
-			{dataIndex: 'caf_entidad_expidio_concesion', header: 'Entidad expidio',
-				//editor: new Ext.form.ComboBox({
-                  //  typeAhead: true,
-                    //triggerAction: 'all'
-                //}),
-				tooltip:'Entidad que expidio la concesion'
-			},
-			{dataIndex: 'caf_fecha_expedicion_concesion', header: 'Fecha expedicion',
-				format:'d/m/Y',xtype: 'datecolumn',
-				editor: {
-					xtype: 'datefield',
-                    allowBlank: false
-                },
-				tooltip:'Fecha de expidicion de la concesion de aguas'
-			},
-			{dataIndex: 'caf_fecha_vencimiento_concesion', header: 'Fecha vencimiento',
-				format:'d/m/Y',xtype: 'datecolumn',
-				editor: {
-					xtype: 'datefield',
-                    allowBlank: false
-                },
-				tooltip:'Fecha de vencimiento de la concesion'
-			},
-			{dataIndex: 'caf_caudal_adjudicado_concesion', header: 'Caudal adjudicado (l/s)',
-				editor: new Ext.form.TextField({
-                    allowBlank: false
-                }),
-				tooltip:'Caudal adjudicado en la concesion'
-			}
-      ];
-    var acu_cantidadaguafuentesuperficiales_data = [['t1','r2','2','4','9','0']];
-    var acu_cantidadaguafuentesuperficiales_nombreCampos = [
+			[{name: 'aua_id'},{name: 'aua_nombre'}]),
+		sortInfo:{field: 'aua_nombre', direction: "ASC"}
+    });
+	acu_fuentesuperficiales_autoridadambiental_datastore.load();
+	
+	var acu_fuentesuperficiales_autoridadambiental_combobox = new Ext.form.ComboBox({
+		store: acu_fuentesuperficiales_autoridadambiental_datastore,
+		displayField: 'aua_nombre',
+		typeAhead: true,
+		mode: 'local',
+		triggerAction: 'all',
+		emptyText: 'Selecciona...',
+		selectOnFocus: true
+	});
+	
+	var acu_fuentes_superficiales_colmodel = new Ext.grid.ColumnModel({
+	  defaults:{sortable:false, allowBlank: false, allowNegative: false},
+	  columns:[
+		        {dataIndex: 'acu_fsp_nombre_fuente', header: 'Nombre',
+					editor: new Ext.form.TextField({allowBlank: false}),
+					tooltip:'Nombre de la fuente'
+				},
+				{dataIndex: 'acu_fsp_tipo_fuente', header: 'Tipo',
+					editor: acu_fuentesuperficiales_tipo_fuente_combobox,
+					tooltip:'Tipo de fuente superficial'
+				},
+				{dataIndex: 'acu_fsp_epoca_lluvia_caudal_captado', header: 'Caudal captado',
+					editor: new Ext.form.NumberField({allowBlank: false,allowNegative: false,maxValue: 100000})
+				},
+				{dataIndex: 'acu_fsp_epoca_lluvia_caudal_total', header: 'Caudal total',
+					editor: new Ext.form.NumberField({allowBlank: false,allowNegative: false,maxValue: 100000})
+				},
+				{dataIndex: 'acu_fsp_epoca_seca_caudal_captado', header: 'Caudal captado',
+					editor: new Ext.form.NumberField({allowBlank: false,allowNegative: false,maxValue: 100000})
+				},
+				{dataIndex: 'acu_fsp_epoca_seca_caudal_total', header: 'Caudal total',
+					editor: new Ext.form.NumberField({allowBlank: false,allowNegative: false,maxValue: 100000})
+				},			
+				{dataIndex: 'acu_fsp_entidad_expidio_concesion', header: 'Entidad expidio',
+					editor: acu_fuentesuperficiales_autoridadambiental_combobox,
+					tooltip:'Entidad que expidio la concesion'
+				},
+				/*{dataIndex: 'acu_fsp_fecha_expedicion_concesion', header: 'Fecha expedicion',
+					//format: 'd-m-Y',xtype: 'datecolumn',
+					renderer:formatDate,
+					editor: Ext.form.DateField({
+							format: 'd-m-Y'
+						}),
+						//{xtype: 'datefield',format:'d-m-Y'},
+					tooltip:'Fecha de expidicion de la concesion de aguas'
+				},*/
+				{
+					header: 'Fecha expedicion',dataIndex: 'acu_fsp_fecha_expedicion_concesion',
+					width: 95,renderer: formatDate,
+					format: 'Y-m-d',xtype: 'datecolumn',
+					editor: new  Ext.form.DateField({
+						format: 'Y-m-d'
+					}),
+					tooltip:'Fecha de expidicion de la concesion de aguas'
+				},
+				{dataIndex: 'acu_fsp_fecha_vencimiento_concesion', header: 'Fecha vencimiento',
+					format:'Y-m-d',xtype: 'datecolumn',
+					editor: {xtype: 'datefield',format:'Y-m-d'},
+					tooltip:'Fecha de vencimiento de la concesion'
+				},
+				{dataIndex: 'acu_fsp_caudal_adjudicado_concesion', header: 'Caudal adjudicado (l/s)',
+					editor: new Ext.form.NumberField({allowNegative: false,maxValue: 100000}),
+					tooltip:'Caudal adjudicado en la concesion'
+				}
+		]
+	});
+
+   	acu_fuentes_superficiales_datastore.load();
+	
+    //esto es para las multiples columnas
+    var acu_fuentesuperficiales_nombreCampos = [
 			{header: 'Datos de la Fuente', colspan:2 , align: 'center'},
 			{header: 'Epoca de lluvia', colspan: 2, align: 'center'},
 			{header: 'Epoca seca', colspan: 2, align: 'center'},
 			{header: 'Aspectos legales', colspan: 4, align: 'center'},
      ];
-    
-    var acu_cantidadaguafuentesuperficiales_group = new Ext.ux.grid.ColumnHeaderGroup({
-        rows: [ acu_cantidadaguafuentesuperficiales_nombreCampos]
+    //este es el plugin de las multiples columnas
+    var acu_fuentesuperficiales_group = new Ext.ux.grid.ColumnHeaderGroup({
+        rows: [ acu_fuentesuperficiales_nombreCampos]
     });
     
-    var acu_cantidadaguafuentesuperficiales_grid = new Ext.grid.EditorGridPanel({
+	var acu_fuentesuperficiales_roweditor = new Ext.ux.grid.RowEditor({
+		saveText: 'Guardar',
+		cancelText: 'Cancelar',
+		commitChangesText: 'Debe terminar de editar los campos, o cancelar la edicion',
+		errorText: 'Error'
+	});
+	
+    var acu_fuentesuperficiales_gridpanel = new Ext.grid.GridPanel({
 		frame: true,
 		hidden:true,
         title: 'Fuentes Superficiales',
-		id:'acu_cantidadaguafuentesuperficiales_grid',
+		id:'acu_fuentesuperficiales_grid',
 		autoWidth:true,
 		clicksToEdit: 1,
         height: largo_panel-15,
-        store: new Ext.data.ArrayStore({//poner esto en un datastore
-            fields: acu_cantidadaguafuentesuperficiales_fields,
-            data: acu_cantidadaguafuentesuperficiales_data
-        }),
-        columns: acu_cantidadaguafuentesuperficiales_columns,
+        store:acu_fuentes_superficiales_datastore,
+        cm: acu_fuentes_superficiales_colmodel,
         viewConfig: {
             forceFit: true
         },
-		tbar:[{text:'Agregar otra fuente'}],
+		tbar:
+		[
+			{
+				text:'Agregar',
+				tooltip:'Agregar otra fuente',
+				iconCls:'agregar',
+				handler:acu_fuentesuperficiales_agregarfuente
+			},'-'
+		],
 		bbar:
 		[	'->',
 			{
@@ -516,7 +579,7 @@ acu_fuentes_abastecenelsistema_datos_datastore.load({
 				iconCls:'atras',
 				handler:function(){
 				acu_fuentes_abastecenelsistema_panel.show();
-				acu_cantidadaguafuentesuperficiales_grid.hide();
+				acu_fuentesuperficiales_grid.hide();
 				
 				}
 			},
@@ -525,20 +588,68 @@ acu_fuentes_abastecenelsistema_datos_datastore.load({
 				iconCls:'continuar',
 				handler:function(){
 				
-				acu_cantidadaguafuentesuperficiales_grid.hide();
-				acu_fuentessubterraneas_grid.show();
-					//acu_proteccionfuentessuperficialesagua_programas_subirdatos();
-					//acu_proteccionfuentessuperficialesagua_programas_panel.hide();
-					//acu_proteccionfuentessuperficialesagua_coberturaforestal_panel.show();
+				acu_fuentesuperficiales_gridpanel.hide();
+				acu_fuentessubterraneas_gridpanel.show();
 				}
 			}
 		],
-        plugins: acu_cantidadaguafuentesuperficiales_group
+        plugins: [acu_fuentesuperficiales_group,acu_fuentesuperficiales_roweditor]
     }); 
+	acu_fuentes_superficiales_datastore.on('update',acu_fuentes_superficiales_actualizar);
 	
 	
-	/*Metodo de aforo*/
-	/*lo que falta de aspectos legales*/
+	/*****Funciones*/
+	
+	function acu_fuentes_superficiales_actualizar(store,record,operation){
+
+		 Ext.Ajax.request({
+			waitMsg: 'Por Favor Espere...',
+			url: 'acueducto_fuentes/actualizarFuentessuperficiales',
+			method: 'POST',
+			params: {
+				acu_fsp_id:            record.data.acu_fsp_id,
+				acu_fsp_nombre_fuente: record.data.acu_fsp_nombre_fuente,
+				acu_fsp_tipo_fuente:   record.data.acu_fsp_tipo_fuente,
+				acu_fsp_epoca_lluvia_caudal_captado: record.data.acu_fsp_epoca_lluvia_caudal_captado,
+				acu_fsp_epoca_lluvia_caudal_total:   record.data.acu_fsp_epoca_lluvia_caudal_total,
+				acu_fsp_epoca_seca_caudal_captado:   record.data.acu_fsp_epoca_seca_caudal_captado,
+				acu_fsp_epoca_seca_caudal_total:     record.data.acu_fsp_epoca_seca_caudal_total,
+				acu_fsp_entidad_expidio_concesion:   record.data.acu_fsp_entidad_expidio_concesion,
+				acu_fsp_fecha_expedicion_concesion:  record.data.acu_fsp_fecha_expedicion_concesion.format('Y-m-d'),
+				acu_fsp_fecha_vencimiento_concesion: record.data.acu_fsp_fecha_vencimiento_concesion.format('Y-m-d'),
+				acu_fsp_caudal_adjudicado_concesion: record.data.acu_fsp_caudal_adjudicado_concesion
+			},
+			success: function(response, action)
+			{
+				//obj = Ext.util.JSON.decode(action.response.responseText);
+				mostrarMensajeRapido('Aviso','La informacion de fuentes superficiales  fue actualizado exitosamente');
+			},
+			failure: function(form, action, response)
+			{
+				if(action.failureType == 'server'){
+					//obj = Ext.util.JSON.decode(action.response.responseText); 
+					mostrarMensajeConfirmacion('Error','Hubo un problema al tratar de guardar esta fuente');
+				}
+			}
+		});
+	}
+	function acu_fuentesuperficiales_agregarfuente(btn, ev) {
+		var row = new acu_fuentesuperficiales_gridpanel.store.recordType({
+			acu_fsp_nombre_fuente : 'Nombre fuente',
+			acu_fsp_tipo_fuente: '',
+			acu_fsp_epoca_lluvia_caudal_captado : '0',
+			acu_fsp_epoca_lluvia_caudal_total : '0',
+			acu_fsp_epoca_seca_caudal_captado: '0',
+			acu_fsp_epoca_seca_caudal_total : '0',
+			acu_fsp_entidad_expidio_concesion : '0',
+			acu_fsp_fecha_expedicion_concesion: '0',
+			acu_fsp_fecha_vencimiento_concesion : '0',
+			acu_fsp_caudal_adjudicado_concesion : '0'
+		});
+		acu_fuentesuperficiales_roweditor.stopEditing();
+		acu_fuentesuperficiales_gridpanel.store.insert(0, row);
+		acu_fuentesuperficiales_roweditor.startEditing(0);
+	}
 /*****************Fuentes subterraneas***************/
 
 
@@ -572,24 +683,16 @@ acu_fuentes_abastecenelsistema_datos_datastore.load({
 			},
 			{dataIndex: 'fsu_fecha_expedicion_concesion', header: 'Fecha expedicion',
 				format:'d/m/Y',xtype: 'datecolumn',
-				editor: {
-					xtype: 'datefield',
-                    allowBlank: false
-                },
+				editor: {xtype: 'datefield'},
 				tooltip:'Fecha de expidicion de la concesion de aguas'
 			},
 			{dataIndex: 'fsu_fecha_vencimiento_concesion', header: 'Fecha vencimiento',
 				format:'d/m/Y',xtype: 'datecolumn',
-				editor: {
-					xtype: 'datefield',
-                    allowBlank: false
-                },
+				editor: {xtype: 'datefield'},
 				tooltip:'Fecha de vencimiento de la concesion'
 			},
 			{dataIndex: 'fsu_caudal_adjudicado_concesion', header: 'Caudal adjudicado (l/s)',
-				editor: new Ext.form.TextField({
-                    allowBlank: false
-                }),
+				editor: new Ext.form.TextField({}),
 				tooltip:'Caudal adjudicado en la concesion'
 			}
       ];
@@ -603,11 +706,11 @@ acu_fuentes_abastecenelsistema_datos_datastore.load({
         rows: [ acu_fuentessubterraneas_nombreCampos]
     });
     
-    var acu_fuentessubterraneas_grid = new Ext.grid.EditorGridPanel({
+    var acu_fuentessubterraneas_gridpanel = new Ext.grid.EditorGridPanel({
         //renderTo: 'div_form_acu_fuentes',
 		frame: true,
 		hidden:true,
-		id:'acu_fuentessubterraneas_grid',
+		id:'acu_fuentessubterraneas_gridpanel',
         title: 'Fuentes Subterraneas',
 		autoWidth:true,
 		clicksToEdit: 1,
@@ -628,8 +731,8 @@ acu_fuentes_abastecenelsistema_datos_datastore.load({
 				text: '<html>Atr&aacute;s<html>',
 				iconCls:'atras',
 				handler:function(){
-				acu_fuentessubterraneas_grid.hide();
-				acu_cantidadaguafuentesuperficiales_grid.show();
+				acu_fuentessubterraneas_gridpanel.hide();
+				acu_fuentesuperficiales_gridpanel.show();
 				}
 			},
 			{
@@ -637,7 +740,6 @@ acu_fuentes_abastecenelsistema_datos_datastore.load({
 				iconCls:'continuar',
 				handler:function(){
 				acu_microcuenca_tabpanel.setActiveTab(2);
-					//acu_proteccionfuentessuperficialesagua_programas_subirdatos();
 				}
 			}
 		]
@@ -651,9 +753,10 @@ acu_fuentes_abastecenelsistema_datos_datastore.load({
 	border:false,
 	layout:'fit',
     items:
-	[	acu_fuentes_abastecenelsistema_panel,
-		acu_cantidadaguafuentesuperficiales_grid,
-		acu_fuentessubterraneas_grid
+	[	
+		acu_fuentes_abastecenelsistema_panel,
+		acu_fuentesuperficiales_gridpanel,
+		acu_fuentessubterraneas_gridpanel
 	],
 	renderTo:'div_form_acu_fuentes'
    });

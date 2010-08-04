@@ -12,7 +12,7 @@
 	    items: [	  
 				{
 					frame: true,
-					title: 'An&aacute;lisis de cobertura',
+					title: 'An&aacute;lisis de cobertura.',
 					id: 'acueducto_analisiscobertura',
 					autoLoad: { url: url_arc+'acueducto_analisiscobertura', scripts: true, scope: this }
 				},
