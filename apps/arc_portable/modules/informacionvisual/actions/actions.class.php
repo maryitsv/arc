@@ -69,7 +69,8 @@ public function executeListarInformacionvisual()
   {
 	$salida	='';
 
-	try{    	
+	try
+	{    	
 		/*$doc = new AgilhuDocumento();
 		
 		$doc->setDocNombre($this->getRequestParameter('nombre'));
@@ -80,18 +81,8 @@ public function executeListarInformacionvisual()
 		$doc->setDocIdPro($this->getUser()->getAttribute('proyectoSeleccionado'));//del proyecto que tenga seleccionado hasta el momento
 		
 		$doc->setDocIdRemitente($this->getUser()->getAttribute('idUsuario'));
-		*/
-		sleep(1);
-		$nombre = $_FILES['archivo']['name'];
-		$tamano = $_FILES['archivo']['size'];
-		$tipo = $_FILES['archivo']['type'];
-		$temporal = $_FILES['archivo']['tmp_name'];
 		
-		//if(file_exists("uploads/".$nombre)){ya existe}else{
-		
-		copy($temporal, "uploads/".$nombre); 
-			
-		/*$fp = fopen($temporal, "rb");
+		$fp = fopen($temporal, "rb");
 		$contenido = fread($fp, $tamano);
 		fclose($fp); 
 		
@@ -100,14 +91,47 @@ public function executeListarInformacionvisual()
 		
 		$doc->setDocContenido(''.$contenido);
 				
-		$doc->save();*/
+		$doc->save();
+		*/
+		
+		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
+		
+		$nombre_carpeta = "uploads/".$pps_pre_id;
+
+		if(!is_dir($nombre_carpeta))
+		{
+			mkdir($nombre_carpeta, 0700);
+		}
+		
+		sleep(1);
+		$nombre = $_FILES['archivo']['name'];
+		$tamano = $_FILES['archivo']['size'];
+		$tipo = $_FILES['archivo']['type'];
+		$temporal = $_FILES['archivo']['tmp_name'];
+		
+		if(file_exists($nombre_carpeta."/".$nombre))
+		{
+			$salida = "({success: false, errors: { reason: 'Ya existe el archivo'}})";
+		}
+		else
+		{
+			if(false/*$tamano > algo*/)
+			{
+				$salida = "({success: false, errors: { reason: 'El archivo exede el limite de tamaño'}})";
+			}
+			else
+			{
+				copy($temporal, "uploads/".$this->getUser()->getAttribute('pps_pre_id')."/".$nombre);
+				$salida = "({success: true, mensaje:'El archivo subio exitosamente'})";
+			}
+		}
+		
 	}
 	catch (Exception $excepcion)
 	{
 		$salida = "({success: false, errors: { reason: 'Ya'}})";
 		return $salida;
 	}
-	$salida = "({success: true, mensaje:'El proyecto fue creado exitosamente'})";
 	 		
 	return $this->renderText($salida);
   }
@@ -137,6 +161,8 @@ public function executeListarInformacionvisual()
  public function executeEliminarInformacionVisual()
   {
         $salida	='';
+		
+		//unlink($_GET['nombrearchivo'])  
 
        		try{    	
 		$conexion = new Criteria();

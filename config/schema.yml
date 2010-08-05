@@ -407,6 +407,7 @@ propel:
     iv_url: { phpName: IvUrl, type: VARCHAR, size: '200', required: false }
     iv_descripcion: { phpName: IvDescripcion, type: VARCHAR, size: '200', required: false }
     iv_tipo: { phpName: IvTipo, type: VARCHAR, size: '50', required: false }
+    iv_tipo_archivo: { phpName: IvTipoArchivo, type: VARCHAR, size: '30', required: false }
   materialcanal:
     _attributes: { phpName: Materialcanal }
     mca_id: { phpName: McaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
