@@ -87,6 +87,8 @@ public function executeListarInformacionvisual()
 		$tipo = $_FILES['archivo']['type'];
 		$temporal = $_FILES['archivo']['tmp_name'];
 		
+		//if(file_exists("uploads/".$nombre)){ya existe}else{
+		
 		copy($temporal, "uploads/".$nombre); 
 			
 		/*$fp = fopen($temporal, "rb");
