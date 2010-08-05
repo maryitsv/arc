@@ -54,5 +54,11 @@ var tecnicooperativa_acueducto_tabpanel = new Ext.TabPanel({
             url: getAbsoluteUrl('acueducto_tanque_almacenamiento', 'index'),
             scripts: true
         }
+    }, {
+        title: 'Conducción agua cruda',
+        autoLoad: {
+            url: getAbsoluteUrl('acueducto_conduccionaguacruda', 'index'),
+            scripts: true
+        }
     }]
 });

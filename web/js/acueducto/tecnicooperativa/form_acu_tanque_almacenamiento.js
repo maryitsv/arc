@@ -29,7 +29,13 @@ var acu_tanque_almacenamiento_estado_datastore = new Ext.data.ArrayStore({
 });
 
 var acu_tanque_almacenamiento_datastore = new Ext.data.SimpleStore({
-    fields: [{
+    proxy: new Ext.data.HttpProxy({
+        url: getAbsoluteUrl('acueducto_tanque_almacenamiento', 'obtenerDatos'),
+        method: 'POST'
+    }),
+    reader: new Ext.data.JsonReader({
+        root: 'data',
+    }, [{
         name: 'tan_volumen',
         type: 'float'
     }, {
@@ -53,8 +59,10 @@ var acu_tanque_almacenamiento_datastore = new Ext.data.SimpleStore({
     }, {
         name: 'tan_macro_medidor',
         type: 'bool'
-    }]
+    }])
 });
+
+acu_tanque_almacenamiento_datastore.load();
 
 var acu_tanque_almacenamiento_gridpanel = new Ext.grid.EditorGridPanel({
     store: acu_tanque_almacenamiento_datastore,
@@ -174,12 +182,17 @@ form_acu_tanque_almacenamiento.add({
         buttons: [{
             text: 'Adicionar',
             handler: function(){
-                acu_tanque_almacenamiento_datastore.loadData([[false, false, false, false, 0]], true);
+                Ext.Ajax.request({
+                    url: getAbsoluteUrl('acueducto_tanque_almacenamiento', 'adicionarTanque'),
+                    success: function(){
+                        acu_tanque_almacenamiento_datastore.load();
+                    }
+                });
             }
         }, {
             text: 'Eliminar',
             handler: function(){
-                acu_tanque_almacenamiento_datastore.remove(acu_tanque_almacenamiento_gridpanel.getSelectionModel().getSelected());
+              
             }
         }]
     }]
