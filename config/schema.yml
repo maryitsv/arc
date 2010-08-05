@@ -72,22 +72,22 @@ propel:
     cag_fluoruros_frecuencia: { phpName: CagFluorurosFrecuencia, type: VARCHAR, required: false }
     cag_laboratorio_propio: { phpName: CagLaboratorioPropio, type: VARCHAR, required: false }
     cag_control_ca_distribuida: { phpName: CagControlCaDistribuida, type: VARCHAR, required: false }
-    cag_puntos_red_analizados: { phpName: CagPuntosRedAnalizados, type: INTEGER, required: false }
-    cag_visita_sspd: { phpName: CagVisitaSspd, type: VARCHAR, required: false }
+    cag_numero_visita_sspd: { phpName: CagNumeroVisitaSspd, type: INTEGER, required: false }
   calidadcantidadagua:
     _attributes: { phpName: Calidadcantidadagua }
     cca_id: { phpName: CcaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     cca_mic_id: { phpName: CcaMicId, type: INTEGER, required: true, foreignTable: microcuencas, foreignReference: mic_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    cca_actividades_agricola_cultivos_permanentes: { phpName: CcaActividadesAgricolaCultivosPermanentes, type: VARCHAR, required: false }
-    cca_actividades_agricola_cultivos_semipermanentes: { phpName: CcaActividadesAgricolaCultivosSemipermanentes, type: VARCHAR, required: false }
-    cca_actividades_agricola_temporales: { phpName: CcaActividadesAgricolaTemporales, type: VARCHAR, required: false }
-    cca_actividad_pecuaria_ganaderia_bobina: { phpName: CcaActividadPecuariaGanaderiaBobina, type: VARCHAR, required: false }
+    cca_actividad_agricola_permanentes: { phpName: CcaActividadAgricolaPermanentes, type: VARCHAR, required: false }
+    cca_actividad_agricola_semipermanentes: { phpName: CcaActividadAgricolaSemipermanentes, type: VARCHAR, required: false }
+    cca_actividad_agricola_temporales: { phpName: CcaActividadAgricolaTemporales, type: VARCHAR, required: false }
+    cca_actividad_pecuaria_ganaderia_bovina: { phpName: CcaActividadPecuariaGanaderiaBovina, type: VARCHAR, required: false }
     cca_actividad_pecuaria_ganaderia_equina: { phpName: CcaActividadPecuariaGanaderiaEquina, type: VARCHAR, required: false }
     cca_actividad_pecuaria_porcicultura: { phpName: CcaActividadPecuariaPorcicultura, type: VARCHAR, required: false }
     cca_actividad_pecuaria_capricultura_ovinos: { phpName: CcaActividadPecuariaCapriculturaOvinos, type: VARCHAR, required: false }
     cca_actividad_pecuaria_avicultura: { phpName: CcaActividadPecuariaAvicultura, type: VARCHAR, required: false }
     cca_actividad_pecuaria_piscicultura: { phpName: CcaActividadPecuariaPiscicultura, type: VARCHAR, required: false }
-    cca_actividad_pecuaria_otros_cual: { phpName: CcaActividadPecuariaOtrosCual, type: VARCHAR, required: false }
+    cca_actividad_pecuaria_otros: { phpName: CcaActividadPecuariaOtros, type: VARCHAR, required: false }
+    cca_actividad_pecuaria_otros_cual: { phpName: CcaActividadPecuariaOtrosCual, type: VARCHAR, size: '100', required: false }
     cca_control_plagas_enfermedades_quimico: { phpName: CcaControlPlagasEnfermedadesQuimico, type: VARCHAR, required: false }
     cca_control_plagas_enfermedades_organico: { phpName: CcaControlPlagasEnfermedadesOrganico, type: VARCHAR, required: false }
     cca_control_plagas_enfermedades_biologico: { phpName: CcaControlPlagasEnfermedadesBiologico, type: VARCHAR, required: false }
@@ -102,72 +102,70 @@ propel:
     cca_control_malezas_ninguno: { phpName: CcaControlMalezasNinguno, type: VARCHAR, required: false }
     cca_mineria: { phpName: CcaMineria, type: VARCHAR, required: false }
     cca_erosion: { phpName: CcaErosion, type: VARCHAR, required: false }
-    cca_modificaciones_paisaje_construcion_vias: { phpName: CcaModificacionesPaisajeConstrucionVias, type: VARCHAR, required: false }
-    cca_modificaciones_paisaje_construcion_vivienda: { phpName: CcaModificacionesPaisajeConstrucionVivienda, type: VARCHAR, required: false }
-    cca_modificaciones_paisaje_construcion_otro: { phpName: CcaModificacionesPaisajeConstrucionOtro, type: VARCHAR, required: false }
-    cca_descargas_vivienda_liquido: { phpName: CcaDescargasViviendaLiquido, type: VARCHAR, required: false }
-    cca_descargas_vivienda_solido: { phpName: CcaDescargasViviendaSolido, type: VARCHAR, required: false }
+    cca_modificacion_paisaje_construccion_vias: { phpName: CcaModificacionPaisajeConstruccionVias, type: VARCHAR, required: false }
+    cca_modificacion_paisaje_construccion_vivienda: { phpName: CcaModificacionPaisajeConstruccionVivienda, type: VARCHAR, required: false }
+    cca_modificacion_paisaje_construccion_otro: { phpName: CcaModificacionPaisajeConstruccionOtro, type: VARCHAR, required: false }
+    cca_descarga_vivienda_liquido: { phpName: CcaDescargaViviendaLiquido, type: VARCHAR, required: false }
+    cca_descarga_vivienda_solido: { phpName: CcaDescargaViviendaSolido, type: VARCHAR, required: false }
+    cca_desarrolla_modificacion_paisaje: { phpName: CcaDesarrollaModificacionPaisaje, type: VARCHAR, required: false }
     cca_descarga_actividad_productiva_agricola: { phpName: CcaDescargaActividadProductivaAgricola, type: VARCHAR, required: false }
     cca_descarga_actividad_productiva_pecuaria: { phpName: CcaDescargaActividadProductivaPecuaria, type: VARCHAR, required: false }
     cca_descarga_actividad_productiva_minera: { phpName: CcaDescargaActividadProductivaMinera, type: VARCHAR, required: false }
     cca_descarga_actividad_productiva_industrial: { phpName: CcaDescargaActividadProductivaIndustrial, type: VARCHAR, required: false }
     cca_descarga_actividad_productiva_otra: { phpName: CcaDescargaActividadProductivaOtra, type: VARCHAR, required: false }
-    cca_actividades_agricola_mayor_area: { phpName: CcaActividadesAgricolaMayorArea, type: VARCHAR, size: '50', required: false }
-    cca_actividades_agricola_cultivos_permanentes_tendencia: { phpName: CcaActividadesAgricolaCultivosPermanentesTendencia, type: VARCHAR, size: '50', required: false }
-    cca_actividades_agricola_cultivos_semipermanentes_tendencia: { phpName: CcaActividadesAgricolaCultivosSemipermanentesTendencia, type: VARCHAR, size: '50', required: false }
-    cca_actividades_agricola_temporales_tendencia: { phpName: CcaActividadesAgricolaTemporalesTendencia, type: VARCHAR, size: '50', required: false }
+    cca_actividad_agricola_mayor_area: { phpName: CcaActividadAgricolaMayorArea, type: VARCHAR, size: '50', required: false }
+    cca_actividad_agricola_permanentes_tendencia: { phpName: CcaActividadAgricolaPermanentesTendencia, type: VARCHAR, size: '50', required: false }
+    cca_actividad_agricola_semipermanentes_tendencia: { phpName: CcaActividadAgricolaSemipermanentesTendencia, type: VARCHAR, size: '50', required: false }
+    cca_actividad_agricola_temporales_tendencia: { phpName: CcaActividadAgricolaTemporalesTendencia, type: VARCHAR, size: '50', required: false }
     cca_actividad_pecuaria_mayor_area: { phpName: CcaActividadPecuariaMayorArea, type: VARCHAR, size: '50', required: false }
-    cca_actividad_pecuaria_ganaderia_bobina_tendencia: { phpName: CcaActividadPecuariaGanaderiaBobinaTendencia, type: VARCHAR, size: '50', required: false }
+    cca_actividad_pecuaria_ganaderia_bovina_tendencia: { phpName: CcaActividadPecuariaGanaderiaBovinaTendencia, type: VARCHAR, size: '50', required: false }
     cca_actividad_pecuaria_ganaderia_equina_tendencia: { phpName: CcaActividadPecuariaGanaderiaEquinaTendencia, type: VARCHAR, size: '50', required: false }
     cca_actividad_pecuaria_porcicultura_tendencia: { phpName: CcaActividadPecuariaPorciculturaTendencia, type: VARCHAR, size: '50', required: false }
     cca_actividad_pecuaria_capricultura_ovinos_tendencia: { phpName: CcaActividadPecuariaCapriculturaOvinosTendencia, type: VARCHAR, size: '50', required: false }
     cca_actividad_pecuaria_avicultura_tendencia: { phpName: CcaActividadPecuariaAviculturaTendencia, type: VARCHAR, size: '50', required: false }
     cca_actividad_pecuaria_piscicultura_tendencia: { phpName: CcaActividadPecuariaPisciculturaTendencia, type: VARCHAR, size: '50', required: false }
-    cca_actividad_pecuaria_otros_cual_tendencia: { phpName: CcaActividadPecuariaOtrosCualTendencia, type: VARCHAR, size: '50', required: false }
+    cca_actividad_pecuaria_otros_tendencia: { phpName: CcaActividadPecuariaOtrosTendencia, type: VARCHAR, size: '50', required: false }
     cca_control_plagas_enfermedades_mas_usado: { phpName: CcaControlPlagasEnfermedadesMasUsado, type: VARCHAR, size: '50', required: false }
     cca_control_plagas_enfermedades_quimico_tendencia: { phpName: CcaControlPlagasEnfermedadesQuimicoTendencia, type: VARCHAR, size: '50', required: false }
     cca_control_plagas_enfermedades_organico_tendencia: { phpName: CcaControlPlagasEnfermedadesOrganicoTendencia, type: VARCHAR, size: '50', required: false }
     cca_control_plagas_enfermedades_biologico_tendencia: { phpName: CcaControlPlagasEnfermedadesBiologicoTendencia, type: VARCHAR, size: '50', required: false }
-    cca_control_plagas_enfermedades_ninguno_tendencia: { phpName: CcaControlPlagasEnfermedadesNingunoTendencia, type: VARCHAR, size: '50', required: false }
     cca_fertilizacion_cultivos_mas_usado: { phpName: CcaFertilizacionCultivosMasUsado, type: VARCHAR, size: '50', required: false }
     cca_fertilizacion_cultivos_quimico_tendencia: { phpName: CcaFertilizacionCultivosQuimicoTendencia, type: VARCHAR, size: '50', required: false }
     cca_fertilizacion_cultivos_organico_tendencia: { phpName: CcaFertilizacionCultivosOrganicoTendencia, type: VARCHAR, size: '50', required: false }
-    cca_fertilizacion_cultivos_ninguno_tendencia: { phpName: CcaFertilizacionCultivosNingunoTendencia, type: VARCHAR, size: '50', required: false }
     cca_control_malezas_mas_usado: { phpName: CcaControlMalezasMasUsado, type: VARCHAR, size: '50', required: false }
     cca_control_malezas_quimico_tendencia: { phpName: CcaControlMalezasQuimicoTendencia, type: VARCHAR, size: '50', required: false }
     cca_control_malezas_meca_manu_tendencia: { phpName: CcaControlMalezasMecaManuTendencia, type: VARCHAR, size: '50', required: false }
     cca_control_malezas_organico_tendencia: { phpName: CcaControlMalezasOrganicoTendencia, type: VARCHAR, size: '50', required: false }
-    cca_control_malezas_ninguno_tendencia: { phpName: CcaControlMalezasNingunoTendencia, type: VARCHAR, size: '50', required: false }
     cca_mineria_tendencia: { phpName: CcaMineriaTendencia, type: VARCHAR, size: '50', required: false }
     cca_erosion_tendencia: { phpName: CcaErosionTendencia, type: VARCHAR, size: '50', required: false }
-    cca_modificaciones_paisaje_construcion_vias_tendencia: { phpName: CcaModificacionesPaisajeConstrucionViasTendencia, type: VARCHAR, size: '50', required: false }
-    cca_modificaciones_paisaje_construcion_vivienda_tendencia: { phpName: CcaModificacionesPaisajeConstrucionViviendaTendencia, type: VARCHAR, size: '50', required: false }
-    cca_modificaciones_paisaje_construcion_otro_tendencia: { phpName: CcaModificacionesPaisajeConstrucionOtroTendencia, type: VARCHAR, size: '50', required: false }
+    cca_modificacion_paisaje_construccion_vias_tendencia: { phpName: CcaModificacionPaisajeConstruccionViasTendencia, type: VARCHAR, size: '50', required: false }
+    cca_modificacion_paisaje_construccion_vivienda_tendencia: { phpName: CcaModificacionPaisajeConstruccionViviendaTendencia, type: VARCHAR, size: '50', required: false }
+    cca_modificacion_paisaje_construccion_otro_tendencia: { phpName: CcaModificacionPaisajeConstruccionOtroTendencia, type: VARCHAR, size: '50', required: false }
     cca_descarga_actividad_productiva_agricola_tendencia: { phpName: CcaDescargaActividadProductivaAgricolaTendencia, type: VARCHAR, size: '50', required: false }
     cca_descarga_actividad_productiva_pecuaria_tendencia: { phpName: CcaDescargaActividadProductivaPecuariaTendencia, type: VARCHAR, size: '50', required: false }
     cca_descarga_actividad_productiva_minera_tendencia: { phpName: CcaDescargaActividadProductivaMineraTendencia, type: VARCHAR, size: '50', required: false }
     cca_descarga_actividad_productiva_industrial_tendencia: { phpName: CcaDescargaActividadProductivaIndustrialTendencia, type: VARCHAR, size: '50', required: false }
     cca_descarga_actividad_productiva_otra_tendencia: { phpName: CcaDescargaActividadProductivaOtraTendencia, type: VARCHAR, size: '50', required: false }
-    cca_descarga_actividad_productiva_agricola_espe: { phpName: CcaDescargaActividadProductivaAgricolaEspe, type: VARCHAR, size: '50', required: false }
-    cca_descarga_actividad_productiva_pecuaria_espe: { phpName: CcaDescargaActividadProductivaPecuariaEspe, type: VARCHAR, size: '50', required: false }
-    cca_descarga_actividad_productiva_minera_espe: { phpName: CcaDescargaActividadProductivaMineraEspe, type: VARCHAR, size: '50', required: false }
-    cca_descarga_actividad_productiva_industrial_espe: { phpName: CcaDescargaActividadProductivaIndustrialEspe, type: VARCHAR, size: '50', required: false }
-    cca_descarga_actividad_productiva_otra_espe: { phpName: CcaDescargaActividadProductivaOtraEspe, type: VARCHAR, size: '50', required: false }
+    cca_descarga_actividad_productiva_agricola_especifica: { phpName: CcaDescargaActividadProductivaAgricolaEspecifica, type: VARCHAR, size: '50', required: false }
+    cca_descarga_actividad_productiva_pecuaria_especifica: { phpName: CcaDescargaActividadProductivaPecuariaEspecifica, type: VARCHAR, size: '50', required: false }
+    cca_descarga_actividad_productiva_minera_especifica: { phpName: CcaDescargaActividadProductivaMineraEspecifica, type: VARCHAR, size: '50', required: false }
+    cca_descarga_actividad_productiva_industrial_especifica: { phpName: CcaDescargaActividadProductivaIndustrialEspecifica, type: VARCHAR, size: '50', required: false }
+    cca_descarga_actividad_productiva_otra_especifica: { phpName: CcaDescargaActividadProductivaOtraEspecifica, type: VARCHAR, size: '50', required: false }
   capacitacion:
     _attributes: { phpName: Capacitacion }
     cap_id: { phpName: CapId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     cap_iaf_id: { phpName: CapIafId, type: INTEGER, required: true, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     cap_dada_prestador: { phpName: CapDadaPrestador, type: VARCHAR, required: true }
     cap_actividad_capacitacion_uso_eficiente_agua: { phpName: CapActividadCapacitacionUsoEficienteAgua, type: VARCHAR, required: false }
-    cap_actividad_capacitacion_higiene_personal: { phpName: CapActividadCapacitacionHigienePersonal, type: VARCHAR, required: false }
-    cap_actividad_capacitacion_higiene_vivienda: { phpName: CapActividadCapacitacionHigieneVivienda, type: VARCHAR, required: false }
-    cap_actividad_capacitacion_higiene_sitios_publicos: { phpName: CapActividadCapacitacionHigieneSitiosPublicos, type: VARCHAR, required: false }
+    cap_actividad_capacitacion_higiene_personal_acu: { phpName: CapActividadCapacitacionHigienePersonalAcu, type: VARCHAR, required: false }
+    cap_actividad_capacitacion_higiene_vivienda_acu: { phpName: CapActividadCapacitacionHigieneViviendaAcu, type: VARCHAR, required: false }
+    cap_actividad_capacitacion_higiene_sitios_publicos_acu: { phpName: CapActividadCapacitacionHigieneSitiosPublicosAcu, type: VARCHAR, required: false }
+    cap_capacitacion_recibida_prestador_acu: { phpName: CapCapacitacionRecibidaPrestadorAcu, type: VARCHAR, required: false }
     cap_actividad_capacitacion_educacion_ambiental: { phpName: CapActividadCapacitacionEducacionAmbiental, type: VARCHAR, required: false }
     cap_actividad_capacitacion_participacion_comunitaria: { phpName: CapActividadCapacitacionParticipacionComunitaria, type: VARCHAR, required: false }
     cap_actividad_capacitacion_veeduria_ciudadana: { phpName: CapActividadCapacitacionVeeduriaCiudadana, type: VARCHAR, required: false }
     cap_actividad_capacitacion_funcion_sist_abastecimiento: { phpName: CapActividadCapacitacionFuncionSistAbastecimiento, type: VARCHAR, required: false }
     cap_actividad_capacitacion_otra_cuales: { phpName: CapActividadCapacitacionOtraCuales, type: VARCHAR, size: '100', required: false }
-    cap_capacitacion_recibida_prestador: { phpName: CapCapacitacionRecibidaPrestador, type: VARCHAR, required: false }
     cap_temas_capacitacion_administrativos: { phpName: CapTemasCapacitacionAdministrativos, type: VARCHAR, required: false }
     cap_temas_capacitacion_normativos: { phpName: CapTemasCapacitacionNormativos, type: VARCHAR, required: false }
     cap_temas_capacitacion_ambientales: { phpName: CapTemasCapacitacionAmbientales, type: VARCHAR, required: false }
@@ -188,6 +186,8 @@ propel:
     capt_estado_pozo_id: { phpName: CaptEstadoPozoId, type: INTEGER, required: true, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
     capt_estado_bomba_id: { phpName: CaptEstadoBombaId, type: INTEGER, required: true, foreignTable: estadogeneral, foreignReference: esg_id, onDelete: RESTRICT, onUpdate: CASCADE }
     capt_fuente_energia_id: { phpName: CaptFuenteEnergiaId, type: INTEGER, required: true, foreignTable: fuenteenergia, foreignReference: fen_id, onDelete: RESTRICT, onUpdate: CASCADE }
+    capt_fuente_superficial: { phpName: CaptFuenteSuperficial, type: VARCHAR, required: false }
+    capt_top_id: { phpName: CaptTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onUpdate: CASCADE }
   categoriadetipodesolucionindividualalcantarillado:
     _attributes: { phpName: Categoriadetipodesolucionindividualalcantarillado }
     ctdsia_id: { phpName: CtdsiaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -239,7 +239,7 @@ propel:
     dfr_cantidad_anual_residuos_relleno_sanitario: { phpName: DfrCantidadAnualResiduosRellenoSanitario, type: VARCHAR, required: false }
     dfr_dist_centro_poblado_mas_cercano_sitio: { phpName: DfrDistCentroPobladoMasCercanoSitio, type: VARCHAR, size: '100', required: false }
     dfr_dist_cuerpo_agua_mas_cercano_sitio: { phpName: DfrDistCuerpoAguaMasCercanoSitio, type: VARCHAR, size: '100', required: false }
-    drf_anios_utilizacion_sitio: { phpName: DrfAniosUtilizacionSitio, type: INTEGER, required: false }
+    dfr_anios_utilizacion_sitio: { phpName: DfrAniosUtilizacionSitio, type: INTEGER, required: false }
     dfr_area_destinada_para_disposicion_sitio: { phpName: DfrAreaDestinadaParaDisposicionSitio, type: VARCHAR, required: false }
     dfr_si_relleno_tipo_relleno: { phpName: DfrSiRellenoTipoRelleno, type: VARCHAR, required: false }
     dfr_presencia_recicladores_sitio: { phpName: DfrPresenciaRecicladoresSitio, type: VARCHAR, required: false }
@@ -283,7 +283,7 @@ propel:
     fac_frecuenc_facturacion: { phpName: FacFrecuencFacturacion, type: VARCHAR, size: '30', required: false }
     fac_frecuenc_fac_justificacion: { phpName: FacFrecuencFacJustificacion, type: VARCHAR, size: '30', required: false }
     fac_num_fac_exp_ultimo_periodo: { phpName: FacNumFacExpUltimoPeriodo, type: INTEGER, required: false }
-    fac_sist_fac_utilizado: { phpName: FacSistFacUtilizado, type: VARCHAR, required: false }
+    fac_sist_fac_utilizado: { phpName: FacSistFacUtilizado, type: VARCHAR, size: '30', required: false }
     fac_frecuencia_fac_justifica: { phpName: FacFrecuenciaFacJustifica, type: VARCHAR, size: '30', required: false }
     fac_morosidad_promedio: { phpName: FacMorosidadPromedio, type: VARCHAR, required: false }
     fac_vol_agua_fac_en_el_anio_acu: { phpName: FacVolAguaFacEnElAnioAcu, type: VARCHAR, required: false }
@@ -306,9 +306,11 @@ propel:
     _attributes: { phpName: Fuentes }
     fue_id: { phpName: FueId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     fue_mic_id: { phpName: FueMicId, type: INTEGER, required: true, foreignTable: microcuencas, foreignReference: mic_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    fue_numero_fuentes: { phpName: FueNumeroFuentes, type: INTEGER, required: false }
-    fue_numero_fuentes_subterraneas: { phpName: FueNumeroFuentesSubterraneas, type: INTEGER, required: false }
+    fue_tiene_fuentes_superficiales: { phpName: FueTieneFuentesSuperficiales, type: VARCHAR, required: false }
+    fue_tiene_fuentes_subterraneas: { phpName: FueTieneFuentesSubterraneas, type: VARCHAR, required: false }
     fue_compra_agua_bloque: { phpName: FueCompraAguaBloque, type: VARCHAR, required: false }
+    fue_numero_fuentes_superficiales: { phpName: FueNumeroFuentesSuperficiales, type: INTEGER, required: false }
+    fue_numero_fuentes_subterraneas: { phpName: FueNumeroFuentesSubterraneas, type: INTEGER, required: false }
     fue_metodo_aforo_volumetrico: { phpName: FueMetodoAforoVolumetrico, type: VARCHAR, required: false }
     fue_metodo_aforo_micromolinete: { phpName: FueMetodoAforoMicromolinete, type: VARCHAR, required: false }
     fue_metodo_aforo_velocidad: { phpName: FueMetodoAforoVelocidad, type: VARCHAR, required: false }
@@ -333,11 +335,11 @@ propel:
     fsp_epoca_lluvia_caudal_captado: { phpName: FspEpocaLluviaCaudalCaptado, type: VARCHAR, required: false }
     fsp_epoca_seca_caudal_total: { phpName: FspEpocaSecaCaudalTotal, type: VARCHAR, required: false }
     fsp_epoca_seca_caudal_captado: { phpName: FspEpocaSecaCaudalCaptado, type: VARCHAR, required: false }
-    caf_entidad_expidio_concesion: { phpName: CafEntidadExpidioConcesion, type: VARCHAR, size: '200', required: false }
-    caf_fecha_expedicion_concesion: { phpName: CafFechaExpedicionConcesion, type: DATE, required: false }
-    caf_fecha_vencimiento_concesion: { phpName: CafFechaVencimientoConcesion, type: DATE, required: false }
-    caf_caudal_adjudicado_concesion: { phpName: CafCaudalAdjudicadoConcesion, type: VARCHAR, required: false }
-    caf_tipo_fuente: { phpName: CafTipoFuente, type: VARCHAR, size: '30', required: false }
+    fsp_entidad_expidio_concesion: { phpName: FspEntidadExpidioConcesion, type: VARCHAR, size: '200', required: false }
+    fsp_fecha_expedicion_concesion: { phpName: FspFechaExpedicionConcesion, type: DATE, required: false }
+    fsp_fecha_vencimiento_concesion: { phpName: FspFechaVencimientoConcesion, type: DATE, required: false }
+    fsp_caudal_adjudicado_concesion: { phpName: FspCaudalAdjudicadoConcesion, type: VARCHAR, required: false }
+    fsp_tipo_fuente: { phpName: FspTipoFuente, type: VARCHAR, size: '30', required: false }
   gestionresultado:
     _attributes: { phpName: Gestionresultado }
     gre_id: { phpName: GreId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -402,6 +404,7 @@ propel:
     iv_url: { phpName: IvUrl, type: VARCHAR, size: '200', required: false }
     iv_descripcion: { phpName: IvDescripcion, type: VARCHAR, size: '200', required: false }
     iv_tipo: { phpName: IvTipo, type: VARCHAR, size: '50', required: false }
+    iv_tipo_archivo: { phpName: IvTipoArchivo, type: VARCHAR, size: '30', required: false }
   materialcanal:
     _attributes: { phpName: Materialcanal }
     mca_id: { phpName: McaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -457,6 +460,7 @@ propel:
     pps_pre_id: { phpName: PpsPreId, type: INTEGER, primaryKey: true, required: true, foreignTable: prestadorporservicio, foreignReference: ppsg_pre_id, onUpdate: CASCADE }
     pps_ser_id: { phpName: PpsSerId, type: INTEGER, primaryKey: true, required: true }
     pps_anio: { phpName: PpsAnio, type: INTEGER, primaryKey: true, required: true }
+    pps_numero_suscriptores: { phpName: PpsNumeroSuscriptores, type: VARCHAR, required: false }
     pps_presupuesto_aprobado: { phpName: PpsPresupuestoAprobado, type: VARCHAR, required: false }
     pps_suscriptores_pendientes_de_pago: { phpName: PpsSuscriptoresPendientesDePago, type: VARCHAR, required: false }
     pps_estatutos: { phpName: PpsEstatutos, type: VARCHAR, required: false }
@@ -465,10 +469,9 @@ propel:
     pps_numero_empleados_proceso_competencias: { phpName: PpsNumeroEmpleadosProcesoCompetencias, type: VARCHAR, required: false }
     pps_nombre_diligenciador: { phpName: PpsNombreDiligenciador, type: VARCHAR, size: '200', required: false }
     pps_apellido_diligenciador: { phpName: PpsApellidoDiligenciador, type: VARCHAR, size: '200', required: false }
+    pps_tipo_identificacion_diligenciador: { phpName: PpsTipoIdentificacionDiligenciador, type: VARCHAR, size: '50', required: false }
+    pps_identificacion_diligenciador: { phpName: PpsIdentificacionDiligenciador, type: VARCHAR, size: '15', required: false }
     pps_telefono_diligenciador: { phpName: PpsTelefonoDiligenciador, type: VARCHAR, size: '15', required: false }
-    pps_identificacion_diligenciador: { phpName: PpsIdentificacionDiligenciador, type: VARCHAR, size: '30', required: false }
-    pps_tipo_identificacion_diligenciador: { phpName: PpsTipoIdentificacionDiligenciador, type: VARCHAR, size: '20', required: false }
-    pps_numero_suscriptores: { phpName: PpsNumeroSuscriptores, type: INTEGER, required: false }
   personaloperativoadministrativo:
     _attributes: { phpName: Personaloperativoadministrativo }
     poa_id: { phpName: PoaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -518,16 +521,17 @@ propel:
     pfu_programas_reduccion_uso_agroquimicos: { phpName: PfuProgramasReduccionUsoAgroquimicos, type: VARCHAR, required: false }
     pfu_situacion_arriba_captacion_reserva: { phpName: PfuSituacionArribaCaptacionReserva, type: VARCHAR, required: false }
     pfu_situacion_arriba_captacion_protegida: { phpName: PfuSituacionArribaCaptacionProtegida, type: VARCHAR, required: false }
-    pfu_cobertura_forestal_bosque_natural: { phpName: PfuCoberturaForestalBosqueNatural, type: VARCHAR, required: false }
-    pfu_cobertura_forestal_bosque_protector: { phpName: PfuCoberturaForestalBosqueProtector, type: VARCHAR, required: false }
-    pfu_cobertura_forestal_bosque_protector_productor: { phpName: PfuCoberturaForestalBosqueProtectorProductor, type: VARCHAR, required: false }
+    pfu_cobertura_forestal_natural: { phpName: PfuCoberturaForestalNatural, type: VARCHAR, required: false }
+    pfu_cobertura_forestal_protector: { phpName: PfuCoberturaForestalProtector, type: VARCHAR, required: false }
+    pfu_cobertura_forestal_protector_productor: { phpName: PfuCoberturaForestalProtectorProductor, type: VARCHAR, required: false }
     pfu_cobertura_forestal_productor: { phpName: PfuCoberturaForestalProductor, type: VARCHAR, required: false }
     pfu_cobertura_forestal_regeneracion_natural: { phpName: PfuCoberturaForestalRegeneracionNatural, type: VARCHAR, required: false }
-    pfu_cobertura_forestal_bosque_natural_tendencia: { phpName: PfuCoberturaForestalBosqueNaturalTendencia, type: VARCHAR, size: '50', required: false }
-    pfu_cobertura_forestal_bosque_protector_tendencia: { phpName: PfuCoberturaForestalBosqueProtectorTendencia, type: VARCHAR, size: '50', required: false }
-    pfu_cobertura_forestal_bosque_protector_productor_tendencia: { phpName: PfuCoberturaForestalBosqueProtectorProductorTendencia, type: VARCHAR, size: '50', required: false }
+    pfu_cobertura_forestal_natural_tendencia: { phpName: PfuCoberturaForestalNaturalTendencia, type: VARCHAR, size: '50', required: false }
+    pfu_cobertura_forestal_protector_tendencia: { phpName: PfuCoberturaForestalProtectorTendencia, type: VARCHAR, size: '50', required: false }
+    pfu_cobertura_forestal_protector_productor_tendencia: { phpName: PfuCoberturaForestalProtectorProductorTendencia, type: VARCHAR, size: '50', required: false }
     pfu_cobertura_forestal_productor_tendencia: { phpName: PfuCoberturaForestalProductorTendencia, type: VARCHAR, size: '50', required: false }
     pfu_cobertura_forestal_regeneracion_natural_tendencia: { phpName: PfuCoberturaForestalRegeneracionNaturalTendencia, type: VARCHAR, size: '50', required: false }
+    pfu_extension_has: { phpName: PfuExtensionHas, type: INTEGER, required: false }
     pfu_aislamiento_franja_amarilla_microcuenca: { phpName: PfuAislamientoFranjaAmarillaMicrocuenca, type: VARCHAR, required: false }
     pfu_cobertura_forestal_area_protectora_cauce: { phpName: PfuCoberturaForestalAreaProtectoraCauce, type: VARCHAR, required: false }
     pfu_area_microcuenca_propiedad_acueducto: { phpName: PfuAreaMicrocuencaPropiedadAcueducto, type: VARCHAR, required: false }
@@ -646,17 +650,10 @@ propel:
     toaa_top_id: { phpName: ToaaTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
     toaa_tan_id: { phpName: ToaaTanId, type: INTEGER, required: true, foreignTable: tanque, foreignReference: tan_id, onDelete: RESTRICT, onUpdate: CASCADE }
     _uniques: { tecnicooperativaalmacenamientoac: [toaa_top_id, toaa_tan_id] }
-  tecnicooperativacaptacionacueducto:
-    _attributes: { phpName: Tecnicooperativacaptacionacueducto }
-    toca_id: { phpName: TocaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    toca_top_id: { phpName: TocaTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    toca_capt_id: { phpName: TocaCaptId, type: INTEGER, required: true, foreignTable: captacion, foreignReference: capt_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    _uniques: { tecnicooperativacaptacionacueduc: [toca_top_id, toca_capt_id] }
   tecnicooperativacomponentessistema:
     _attributes: { phpName: Tecnicooperativacomponentessistema }
     tocs_id: { phpName: TocsId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     tocs_top_id: { phpName: TocsTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    tocs_componentes: { phpName: TocsComponentes, type: VARCHAR, size: '100', required: true }
     tocs_captacion: { phpName: TocsCaptacion, type: VARCHAR, required: false }
     tocs_captacion_cantidad: { phpName: TocsCaptacionCantidad, type: INTEGER, required: false }
     tocs_aduccion: { phpName: TocsAduccion, type: VARCHAR, required: false }
@@ -735,7 +732,6 @@ propel:
     topla_estructuras_medicion_cau: { phpName: ToplaEstructurasMedicionCau, type: VARCHAR, required: false }
     topla_menor_caudal_operacion_diseno: { phpName: ToplaMenorCaudalOperacionDiseno, type: VARCHAR, required: false }
     topla_planta_compacta: { phpName: ToplaPlantaCompacta, type: VARCHAR, required: false }
-    topla_combinacion_tecnologias: { phpName: ToplaCombinacionTecnologias, type: VARCHAR, required: false }
   tecnicooperativareddistribucionacueducto:
     _attributes: { phpName: Tecnicooperativareddistribucionacueducto }
     tord_id: { phpName: TordId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
