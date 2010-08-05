@@ -49,7 +49,7 @@ var tecnicooperativa_acueducto_tabpanel = new Ext.TabPanel({
             scripts: true
         }
     }, {
-        title: 'Almacenamiento',
+        title: 'Almacenamiento.',
         autoLoad: {
             url: getAbsoluteUrl('acueducto_tanque_almacenamiento', 'index'),
             scripts: true
