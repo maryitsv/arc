@@ -65,12 +65,12 @@ public function executeListarInformacionvisual()
  /**
  *Aqui se crea un doc
  */ 
-  public function executeCrearInformacionVisual()
+  public function executeCrearInformacionvisual()
   {
         $salida	='';
-
+/*
        		try{    	
-       		        $doc = new AgilhuDocumento();
+       		$doc = new AgilhuDocumento();
 			
 			$doc->setDocNombre($this->getRequestParameter('nombre'));
 			
@@ -102,10 +102,10 @@ public function executeListarInformacionvisual()
 			{
 			$salida = "({success: false, errors: { reason: 'Ya'}})";
 			return $salida;
-			}
+			}*/
 			$salida = "({success: true, mensaje:'El proyecto fue creado exitosamente'})";
 	 		
-  return $salida;
+	return $this->renderText($salida);
   }
   
 

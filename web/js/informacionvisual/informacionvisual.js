@@ -115,11 +115,16 @@
    /*CREACION DE FORMULARIO*/
 	var informacionvisual_formpanel = new Ext.FormPanel({
 		title:'Datos detallados de la informaci&oacute;nvisual',
+		//width: 300,
+		split: true,
 		columnWidth:'.4',
 		height: largo_panel-15,
+		collapsible: true,    
 		frame:true,
 		id:'informacionvisual_formpanel',
-		//fileUpload: true,
+		fileUpload: true,
+		deferredRender: false,
+		defaults:{bodyStyle:'padding:15px',layout:'form',border:false},
 		defaults:{xtype:'textfield',anchor:'100%'},
 		items:
 		[
@@ -127,20 +132,19 @@
 				fieldLabel: 'Nombre',
 				id:'iv_nombre',
 				name: 'iv_nombre',
-				emptyText: 'Nombre del documento'
-			},
-			{
+				emptyText: 'Nombre del documento',
+				allowBlank:false
+			},{
 				xtype: 'fileuploadfield', 
 				id: 'archivo', 
 				emptyText: 'Seleccione un documento', 
 				fieldLabel: 'Escojer',
-				name: 'archivo',buttonText: '',
+				name: 'archivo',buttonText: '',allowBlank:false,
 				buttonCfg: {iconCls: 'archivo'}
-		  	},
-			{
+		  	},{
 				id:'iv_id',
-				name: 'iv_id'//,
-				//xtype:'hidden'
+				name: 'iv_id',
+				xtype:'hidden'
 			},
 			informacionvisual_tipoarchivo_combobox,
 			{
@@ -201,13 +205,13 @@
         
 	function informacionvisual_descargar()
 	{
-		//if(Ext.getCmp('informacionvisual_descargar_boton').getText()=='Guardar')
-		//{//falta verificar campos, el iv_nombre , el archivo: la iv_descripcion
+		if(Ext.getCmp('informacionvisual_descargar_boton').getText()=='Guardar')
+		{//falta verificar campos, el iv_nombre , el archivo: la iv_descripcion
 			 var verificacion =informacionvisual_verificarCamposDocumento();
-			
+	  
 	 		 if(verificacion)
 	  		{
-				/*subirDatos(
+				subirDatos(
 					informacionvisual_formpanel,
 					'informacionvisual/crearInformacionvisual',
 					{},
@@ -215,55 +219,15 @@
 					Ext.getCmp('informacionvisual_descargar_boton').setText('Descargar');
 					Ext.getCmp('informacionvisual_eliminar_boton').setText('Eliminar');
 					}
-					);*/
-					
-					(informacionvisual_formpanel.getForm()).submit({
-						//method: 'POST',
-						scope:this,
-						url: 'informacionvisual/crearInformacionvisual',
-						params: {},
-						waitTitle: 'Enviando',
-						waitMsg: 'Enviando datos...',
-						success: function(response, action)
-						{
-							obj = Ext.util.JSON.decode(action.response.responseText);
-							salida = true;
-							mostrarMensajeRapido('Aviso',obj.mensaje);
-						},
-						failure: function(form, action, response)
-						{
-							if(action.failureType == 'server'){
-								obj = Ext.util.JSON.decode(action.response.responseText); 
-								mostrarMensajeConfirmacion('Error',obj.errors.reason);
-							}
-						}
-					});
-					/*
-					(formDocumento.getForm()).submit({
-				  waitTitle: 'Enviando',
-				  waitMsg: 'Por Favor Espere...',
-				  scope:this,
-				  url:'documentos/cargar',
-				  params: { 
-					  task: 'CREATEDOC'
-				  }, 
-				  success: function(response, action)
-				  {
-				  },
-				  failure: function(form, response)
-				  {
-				  }
-				  });*/
-			
-
+					);
 			}
-		//}
-		/*
+		}
+		
 		if(Ext.getCmp('informacionvisual_descargar_boton').getText()=='Descargar')
 		{
             // var url = URL_AGILHU+'informacionvisual/descargar //le mandamos los url
             //win = window.open(url,'Documento','height=400,width=600,resizable=1,scrollbars=1, menubar=1');
-		}*/
+		}
     }
          
 	function informacionvisual_eliminar()
