@@ -19,7 +19,7 @@ var tecnicooperativa_acueducto_tabpanel = new Ext.TabPanel({
             scripts: true
         }
     }, {
-        title: 'Captación',
+        title: 'Captación.',
         autoLoad: {
             url: getAbsoluteUrl('acueducto_captacion', 'index'),
             scripts: true
@@ -55,7 +55,7 @@ var tecnicooperativa_acueducto_tabpanel = new Ext.TabPanel({
             scripts: true
         }
     }, {
-        title: 'Conducción agua cruda',
+        title: 'Conducción agua cruda.',
         autoLoad: {
             url: getAbsoluteUrl('acueducto_conduccionaguacruda', 'index'),
             scripts: true

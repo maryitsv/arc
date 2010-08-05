@@ -25,66 +25,23 @@ class acueducto_captacionActions extends sfActions
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
-		$criteria = new Criteria();
-		$criteria->add(TecnicooperativoPeer::TOP_PPS_ANIO, $pps_anio);
-		$criteria->add(TecnicooperativoPeer::TOP_PPS_PRE_ID, $pps_pre_id);
-		$criteria->add(TecnicooperativoPeer::TOP_PPS_SER_ID, $pps_ser_id);
-		$tecnicoOperativo = TecnicooperativoPeer::doSelectOne($criteria);
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
 
 		$data = array();
 
-		if($tecnicoOperativo) {
-			$criteria = new Criteria();
-			$criteria->add(CaptacionPeer::CAPT_TOP_ID, $tecnicoOperativo->getTopId());
-			$captaciones = CaptacionPeer::doSelect($criteria);
-
-			foreach($captaciones as $captacion) {
-				if($captacion->getCaptFuenteSuperficial()==1) {
-					$campos = array();
-					$campos['capt_id'] = $captacion->getCaptId();
-					$campos['capt_tipo_de_fondo'] = $captacion->getCaptTipoDeFondo();
-					$campos['capt_tipo_lateral'] = $captacion->getCaptTipoLateral();
-					$campos['capt_tipo_lecho_filtrante'] = $captacion->getCaptTipoLechoFiltrante();
-					$campos['capt_tipo_trincho_represa'] = $captacion->getCaptTipoTrinchoRepresa();
-					$campos['capt_estado_estructura_id'] = $captacion->getCaptEstadoEstructuraId();
-					$data[] = $campos;
-				}
-			}
-		}
-
-		$result['data'] = $data;
-
-		return $this->renderText(json_encode($result));
-	}
-
-	public function executeObtenerDatosFuentesSubterraneas() {
-		$pps_anio = $this->getUser()->getAttribute('pps_anio');
-		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
-		$pps_ser_id = 1;
-
 		$criteria = new Criteria();
-		$criteria->add(TecnicooperativoPeer::TOP_PPS_ANIO, $pps_anio);
-		$criteria->add(TecnicooperativoPeer::TOP_PPS_PRE_ID, $pps_pre_id);
-		$criteria->add(TecnicooperativoPeer::TOP_PPS_SER_ID, $pps_ser_id);
-		$tecnicoOperativo = TecnicooperativoPeer::doSelectOne($criteria);
+		$criteria->add(CaptacionSuperficialPeer::CASP_TOP_ID, $tecnicoOperativo->getTopId());
+		$captaciones = CaptacionSuperficialPeer::doSelect($criteria);
 
-		$data = array();
-
-		if($tecnicoOperativo) {
-			$criteria = new Criteria();
-			$criteria->add(CaptacionPeer::CAPT_TOP_ID, $tecnicoOperativo->getTopId());
-			$captaciones = CaptacionPeer::doSelect($criteria);
-
-			foreach($captaciones as $captacion) {
-				if($captacion->getCaptFuenteSuperficial()==0) {
-					$campos = array();
-					$campos['capt_id'] = $captacion->getCaptId();
-					$campos['capt_estado_pozo_id'] = $captacion->getCaptEstadoPozoId();
-					$campos['capt_estado_bomba_id'] = $captacion->getCaptEstadoBombaId();
-					$campos['capt_fuente_energia_id'] = $captacion->getCaptFuenteEnergiaId();
-					$data[] = $campos;
-				}
-			}
+		foreach($captaciones as $captacion) {
+			$campos = array();
+			$campos['casp_id'] = $captacion->getCaspId();
+			$campos['casp_tipo_de_fondo'] = $captacion->getCaspTipoDeFondo();
+			$campos['casp_tipo_lateral'] = $captacion->getCaspTipoLateral();
+			$campos['casp_tipo_lecho_filtrante'] = $captacion->getCaspTipoLechoFiltrante();
+			$campos['casp_tipo_trincho_represa'] = $captacion->getCaspTipoTrinchoRepresa();
+			$campos['casp_estado_estructura_id'] = $captacion->getCaspEstadoEstructuraId();
+			$data[] = $campos;
 		}
 
 		$result['data'] = $data;
@@ -97,55 +54,95 @@ class acueducto_captacionActions extends sfActions
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
-		$criteria = new Criteria();
-		$criteria->add(TecnicooperativoPeer::TOP_PPS_ANIO, $pps_anio);
-		$criteria->add(TecnicooperativoPeer::TOP_PPS_PRE_ID, $pps_pre_id);
-		$criteria->add(TecnicooperativoPeer::TOP_PPS_SER_ID, $pps_ser_id);
-		$tecnicoOperativo = TecnicooperativoPeer::doSelectOne($criteria);
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
 
-		if($tecnicoOperativo) {
-			$captacion = new Captacion();
-			$captacion->setTecnicooperativo($tecnicoOperativo);
-			$captacion->setCaptTipoDeFondo(0);
-			$captacion->setCaptTipoLateral(0);
-			$captacion->setCaptTipoLechoFiltrante(0);
-			$captacion->setCaptTipoTrinchoRepresa(0);
-			$captacion->setCaptEstadoEstructuraId(1);
-			$captacion->setCaptFuenteSuperficial(1);
+		$captacion = new CaptacionSuperficial();
+		$captacion->setTecnicooperativo($tecnicoOperativo);
+		$captacion->setCaspTipoDeFondo(0);
+		$captacion->setCaspTipoLateral(0);
+		$captacion->setCaspTipoLechoFiltrante(0);
+		$captacion->setCaspTipoTrinchoRepresa(0);
+		$captacion->setCaspEstadoEstructuraId(1);
 
-			$captacion->setCaptEstadoPozoId(1);
-			$captacion->setCaptEstadoBombaId(1);
-			$captacion->setCaptFuenteEnergiaId(1);
+		$captacion->save();
 
-			$captacion->save();
-		}
-
-		return $this->renderText('Fuente superficial adicionada');
+		return sfView::NONE;
 	}
 
 	public function executeActualizarFuenteSuperficial(sfWebRequest $request) {
-		$fuenteSuperficial = CaptacionPeer::retrieveByPK($request->getParameter('capt_id'));
-		$fuenteSuperficial->setCaptTipoDeFondo($request->getParameter('capt_tipo_de_fondo'));
-		$fuenteSuperficial->setCaptTipoLateral($request->getParameter('capt_tipo_lateral'));
-		$fuenteSuperficial->setCaptTipoLechoFiltrante($request->getParameter('capt_tipo_lecho_filtrante'));
-		$fuenteSuperficial->setCaptTipoTrinchoRepresa($request->getParameter('capt_tipo_trincho_represa'));
-		$fuenteSuperficial->setCaptEstadoEstructuraId($request->getParameter('capt_estado_estructura_id'));
+		$fuenteSuperficial = CaptacionSuperficialPeer::retrieveByPK($request->getParameter('casp_id'));
+		$fuenteSuperficial->setCaspTipoDeFondo($request->getParameter('casp_tipo_de_fondo'));
+		$fuenteSuperficial->setCaspTipoLateral($request->getParameter('casp_tipo_lateral'));
+		$fuenteSuperficial->setCaspTipoLechoFiltrante($request->getParameter('casp_tipo_lecho_filtrante'));
+		$fuenteSuperficial->setCaspTipoTrinchoRepresa($request->getParameter('casp_tipo_trincho_represa'));
+		$fuenteSuperficial->setCaspEstadoEstructuraId($request->getParameter('casp_estado_estructura_id'));
 		$fuenteSuperficial->save();
 		return sfView::NONE;
 	}
 
 	public function executeActualizarFuenteSubterranea(sfWebRequest $request) {
-		$fuenteSuperficial = CaptacionPeer::retrieveByPK($request->getParameter('capt_id'));
-		$fuenteSuperficial->setCaptEstadoPozoId($request->getParameter('capt_estado_pozo_id'));
-		$fuenteSuperficial->setCaptEstadoBombaId($request->getParameter('capt_estado_bomba_id'));
-		$fuenteSuperficial->setCaptFuenteEnergiaId($request->getParameter('capt_fuente_energia_id'));
-		$fuenteSuperficial->save();
+		$fuenteSubterranea = CaptacionSubterraneaPeer::retrieveByPK($request->getParameter('casb_id'));
+		$fuenteSubterranea->setCasbEstadoPozoId($request->getParameter('casb_estado_pozo_id'));
+		$fuenteSubterranea->setCasbEstadoBombaId($request->getParameter('casb_estado_bomba_id'));
+		$fuenteSubterranea->setCasbFuenteEnergiaId($request->getParameter('casb_fuente_energia_id'));
+		$fuenteSubterranea->save();
 		return sfView::NONE;
 	}
 
 	public function executeEliminarFuenteSuperficial(sfWebRequest $request) {
-		$fuenteSuperficial = CaptacionPeer::retrieveByPK($request->getParameter('capt_id'));
+		$fuenteSuperficial = CaptacionSuperficialPeer::retrieveByPK($request->getParameter('casp_id'));
 		$fuenteSuperficial->delete();
+		return sfView::NONE;
+	}
+
+	public function executeObtenerDatosFuentesSubterraneas() {
+		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
+		$pps_ser_id = 1;
+
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+
+		$data = array();
+
+		$criteria = new Criteria();
+		$criteria->add(CaptacionSubterraneaPeer::CASB_TOP_ID, $tecnicoOperativo->getTopId());
+		$captaciones = CaptacionSubterraneaPeer::doSelect($criteria);
+
+		foreach($captaciones as $captacion) {
+			$campos = array();
+			$campos['casb_id'] = $captacion->getCasbId();
+			$campos['casb_estado_pozo_id'] = $captacion->getCasbEstadoPozoId();
+			$campos['casb_estado_bomba_id'] = $captacion->getCasbEstadoBombaId();
+			$campos['casb_fuente_energia_id'] = $captacion->getCasbFuenteEnergiaId();
+			$data[] = $campos;
+		}
+
+		$result['data'] = $data;
+
+		return $this->renderText(json_encode($result));
+	}
+
+	public function executeAdicionarFuenteSubterranea() {
+		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
+		$pps_ser_id = 1;
+
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+
+		$captacion = new CaptacionSubterranea();
+		$captacion->setTecnicooperativo($tecnicoOperativo);
+		$captacion->setCasbEstadoPozoId(1);
+		$captacion->setCasbEstadoBombaId(1);
+		$captacion->setCasbFuenteEnergiaId(1);
+
+		$captacion->save();
+
+		return sfView::NONE;
+	}
+
+	public function executeEliminarFuenteSubterranea(sfWebRequest $request) {
+		$fuenteSubterranea = CaptacionSubterraneaPeer::retrieveByPK($request->getParameter('casb_id'));
+		$fuenteSubterranea->delete();
 		return sfView::NONE;
 	}
 }

@@ -54,6 +54,19 @@ var acu_captacion_fuente_energia_datastore = new Ext.data.ArrayStore({
     data: [[1, 'Eléctrica'], [2, 'Eólica'], [3, 'Diesel'], [4, 'Gasolina']]
 });
 
+var acu_captacion_fuente_energia_renderer = function(value){
+    switch (value) {
+        case 1:
+            return 'Eléctrica';
+        case 2:
+            return 'Eólica';
+        case 3:
+            return 'Diesel';
+        case 4:
+            return 'Gasolina';
+    }
+}
+
 var acu_captacion_fuente_superficial_datastore = new Ext.data.Store({
     proxy: new Ext.data.HttpProxy({
         url: getAbsoluteUrl('acueducto_captacion', 'obtenerDatosFuentesSuperficiales'),
@@ -62,22 +75,22 @@ var acu_captacion_fuente_superficial_datastore = new Ext.data.Store({
     reader: new Ext.data.JsonReader({
         root: 'data',
     }, [{
-        name: 'capt_id',
+        name: 'casp_id',
         type: 'int'
     }, {
-        name: 'capt_tipo_de_fondo',
+        name: 'casp_tipo_de_fondo',
         type: 'int'
     }, {
-        name: 'capt_tipo_lateral',
+        name: 'casp_tipo_lateral',
         type: 'int'
     }, {
-        name: 'capt_tipo_lecho_filtrante',
+        name: 'casp_tipo_lecho_filtrante',
         type: 'int'
     }, {
-        name: 'capt_tipo_trincho_represa',
+        name: 'casp_tipo_trincho_represa',
         type: 'int'
     }, {
-        name: 'capt_estado_estructura_id',
+        name: 'casp_estado_estructura_id',
         type: 'int'
     }])
 });
@@ -95,7 +108,7 @@ var acu_captacion_fuente_superficial_gridpanel = new Ext.grid.EditorGridPanel({
         id: 'tipo_de_fondo',
         header: "De fondo",
         width: 55,
-        dataIndex: 'capt_tipo_de_fondo',
+        dataIndex: 'casp_tipo_de_fondo',
         renderer: acu_captacion_si_no_renderer,
         editor: new Ext.form.ComboBox({
             triggerAction: 'all',
@@ -108,7 +121,7 @@ var acu_captacion_fuente_superficial_gridpanel = new Ext.grid.EditorGridPanel({
     }, {
         header: 'Lateral',
         width: 45,
-        dataIndex: 'capt_tipo_lateral',
+        dataIndex: 'casp_tipo_lateral',
         renderer: acu_captacion_si_no_renderer,
         editor: new Ext.form.ComboBox({
             triggerAction: 'all',
@@ -121,7 +134,7 @@ var acu_captacion_fuente_superficial_gridpanel = new Ext.grid.EditorGridPanel({
     }, {
         header: 'Lecho filtrante',
         width: 80,
-        dataIndex: 'capt_tipo_lecho_filtrante',
+        dataIndex: 'casp_tipo_lecho_filtrante',
         renderer: acu_captacion_si_no_renderer,
         editor: new Ext.form.ComboBox({
             triggerAction: 'all',
@@ -134,7 +147,7 @@ var acu_captacion_fuente_superficial_gridpanel = new Ext.grid.EditorGridPanel({
     }, {
         header: 'Trincho o represa',
         width: 100,
-        dataIndex: 'capt_tipo_trincho_represa',
+        dataIndex: 'casp_tipo_trincho_represa',
         renderer: acu_captacion_si_no_renderer,
         editor: new Ext.form.ComboBox({
             triggerAction: 'all',
@@ -147,7 +160,7 @@ var acu_captacion_fuente_superficial_gridpanel = new Ext.grid.EditorGridPanel({
     }, {
         header: 'Estado estructura',
         width: 95,
-        dataIndex: 'capt_estado_estructura_id',
+        dataIndex: 'casp_estado_estructura_id',
         renderer: acu_captacion_estado_general_renderer,
         editor: new Ext.form.ComboBox({
             triggerAction: 'all',
@@ -172,12 +185,12 @@ var acu_captacion_fuente_superficial_gridpanel = new Ext.grid.EditorGridPanel({
                     acu_captacion_fuente_superficial_datastore.load();
                 },
                 params: {
-                    capt_id: registro.get('capt_id'),
-                    capt_tipo_de_fondo: registro.get('capt_tipo_de_fondo'),
-                    capt_tipo_lateral: registro.get('capt_tipo_lateral'),
-                    capt_tipo_lecho_filtrante: registro.get('capt_tipo_lecho_filtrante'),
-                    capt_tipo_trincho_represa: registro.get('capt_tipo_trincho_represa'),
-                    capt_estado_estructura_id: registro.get('capt_estado_estructura_id')
+                    casp_id: registro.get('casp_id'),
+                    casp_tipo_de_fondo: registro.get('casp_tipo_de_fondo'),
+                    casp_tipo_lateral: registro.get('casp_tipo_lateral'),
+                    casp_tipo_lecho_filtrante: registro.get('casp_tipo_lecho_filtrante'),
+                    casp_tipo_trincho_represa: registro.get('casp_tipo_trincho_represa'),
+                    casp_estado_estructura_id: registro.get('casp_estado_estructura_id')
                 }
             });
         }
@@ -192,16 +205,16 @@ var acu_captacion_fuente_subterranea_datastore = new Ext.data.Store({
     reader: new Ext.data.JsonReader({
         root: 'data'
     }, [{
-        name: 'capt_id',
+        name: 'casb_id',
         type: 'int'
     }, {
-        name: 'capt_estado_pozo_id',
+        name: 'casb_estado_pozo_id',
         type: 'int'
     }, {
-        name: 'capt_estado_bomba_id',
+        name: 'casb_estado_bomba_id',
         type: 'int'
     }, {
-        name: 'capt_fuente_energia_id',
+        name: 'casb_fuente_energia_id',
         type: 'int'
     }])
 });
@@ -219,7 +232,7 @@ var acu_captacion_fuente_subterranea_gridpanel = new Ext.grid.EditorGridPanel({
         id: 'estado_pozo_id',
         header: "Estado del pozo",
         width: 100,
-        dataIndex: 'capt_estado_pozo_id',
+        dataIndex: 'casb_estado_pozo_id',
         renderer: acu_captacion_estado_general_renderer,
         editor: new Ext.form.ComboBox({
             triggerAction: 'all',
@@ -232,7 +245,7 @@ var acu_captacion_fuente_subterranea_gridpanel = new Ext.grid.EditorGridPanel({
     }, {
         header: 'Estado de la bomba',
         width: 120,
-        dataIndex: 'capt_estado_bomba_id',
+        dataIndex: 'casb_estado_bomba_id',
         renderer: acu_captacion_estado_general_renderer,
         editor: new Ext.form.ComboBox({
             triggerAction: 'all',
@@ -245,8 +258,8 @@ var acu_captacion_fuente_subterranea_gridpanel = new Ext.grid.EditorGridPanel({
     }, {
         header: 'Fuente de energia',
         width: 100,
-        dataIndex: 'capt_fuente_energia_id',
-        renderer: acu_captacion_estado_general_renderer,
+        dataIndex: 'casb_fuente_energia_id',
+        renderer: acu_captacion_fuente_energia_renderer,
         editor: new Ext.form.ComboBox({
             triggerAction: 'all',
             mode: 'local',
@@ -269,10 +282,10 @@ var acu_captacion_fuente_subterranea_gridpanel = new Ext.grid.EditorGridPanel({
                     acu_captacion_fuente_subterranea_datastore.load();
                 },
                 params: {
-                    capt_id: registro.get('capt_id'),
-                    capt_estado_pozo_id: registro.get('capt_estado_pozo_id'),
-                    capt_estado_bomba_id: registro.get('capt_estado_bomba_id'),
-                    capt_fuente_energia_id: registro.get('capt_fuente_energia_id')
+                    casb_id: registro.get('casb_id'),
+                    casb_estado_pozo_id: registro.get('casb_estado_pozo_id'),
+                    casb_estado_bomba_id: registro.get('casb_estado_bomba_id'),
+                    casb_fuente_energia_id: registro.get('casb_fuente_energia_id')
                 }
             });
         }
@@ -309,7 +322,7 @@ captacionacueducto_form.add({
                             acu_captacion_fuente_superficial_datastore.load();
                         },
                         params: {
-                            capt_id: acu_captacion_fuente_superficial_gridpanel.getSelectionModel().getSelected().get('capt_id')
+                            casp_id: acu_captacion_fuente_superficial_gridpanel.getSelectionModel().getSelected().get('casp_id')
                         }
                     });
                 }
@@ -324,9 +337,28 @@ captacionacueducto_form.add({
             items: [acu_captacion_fuente_subterranea_gridpanel],
             buttonAlign: 'left',
             buttons: [{
-                text: 'Adicionar'
+                text: 'Adicionar',
+                handler: function(){
+                    Ext.Ajax.request({
+                        url: getAbsoluteUrl('acueducto_captacion', 'adicionarFuenteSubterranea'),
+                        success: function(){
+                            acu_captacion_fuente_subterranea_datastore.load();
+                        }
+                    });
+                }
             }, {
-                text: 'Eliminar'
+                text: 'Eliminar',
+                handler: function(){
+                    Ext.Ajax.request({
+                        url: getAbsoluteUrl('acueducto_captacion', 'eliminarFuenteSubterranea'),
+                        success: function(){
+                            acu_captacion_fuente_subterranea_datastore.load();
+                        },
+                        params: {
+                            casb_id: acu_captacion_fuente_subterranea_gridpanel.getSelectionModel().getSelected().get('casb_id')
+                        }
+                    });
+                }
             }]
         }]
     }]
