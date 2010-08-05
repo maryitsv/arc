@@ -275,7 +275,7 @@
 		var valido=true;
 		if(!(Ext.getCmp('iv_nombre').isValid())) 
 	 	{
-	 		agalerta('El nombre del documento y el archivo son obligatorios');
+	 		//agalerta('El nombre del documento y el archivo son obligatorios');
 	 		return false;
 	 	}
 		return valido;

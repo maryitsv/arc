@@ -12,9 +12,9 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [main.css, ../extjs/resources/css/ext-all.css, ../extjs/resources/css/xtheme-blue.css, ../extjs/examples/shared/examples.css, ../extjs/examples/panel/css/bubble.css, ../extjs/examples/ux/css/Portal.css, ../extjs/examples/ux/css/GroupTab.css, ../extjs/examples/ux/css/ux-all.css]
+  stylesheets:    [main.css, ../extjs/resources/css/ext-all.css, ../extjs/resources/css/xtheme-blue.css, ../extjs/examples/shared/examples.css, ../extjs/examples/panel/css/bubble.css, ../extjs/examples/ux/css/Portal.css, ../extjs/examples/ux/css/GroupTab.css, ../extjs/examples/ux/css/ux-all.css, ../extjs/examples/ux/fileuploadfield/css/fileuploadfield.css]
 
-  javascripts:    [../extjs/adapter/ext/ext-base.js, ../extjs/ext-all.js, ../extjs/src/locale/ext-lang-es.js, ../extjs/examples/shared/examples.js, ../extjs/examples/panel/BubblePanel.js, ../extjs/examples/ux/GroupTabPanel.js, ../extjs/examples/ux/GroupTab.js, ../extjs/examples/ux/Portal.js, ../extjs/examples/ux/PortalColumn.js, ../extjs/examples/ux/ux-all.js, ../extjs/examples/ux/Portlet.js, variablesgenerales.js, funcionesgenerales.js, form_login.js, form_menuentradadatos.js]
+  javascripts:    [../extjs/adapter/ext/ext-base.js, ../extjs/ext-all.js, ../extjs/src/locale/ext-lang-es.js, ../extjs/examples/shared/examples.js, ../extjs/examples/panel/BubblePanel.js, ../extjs/examples/ux/GroupTabPanel.js, ../extjs/examples/ux/GroupTab.js, ../extjs/examples/ux/Portal.js, ../extjs/examples/ux/PortalColumn.js, ../extjs/examples/ux/ux-all.js, ../extjs/examples/ux/Portlet.js, variablesgenerales.js, funcionesgenerales.js, form_login.js, form_menuentradadatos.js, ../extjs/examples/ux/fileuploadfield/FileUploadField.js]
 
   has_layout:     true
   layout:         layout

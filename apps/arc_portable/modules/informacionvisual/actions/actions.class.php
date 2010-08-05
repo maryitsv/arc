@@ -65,47 +65,51 @@ public function executeListarInformacionvisual()
  /**
  *Aqui se crea un doc
  */ 
-  public function executeCrearInformacionVisual()
+  public function executeCrearInformacionvisual()
   {
-        $salida	='';
+	$salida	='';
 
-       		try{    	
-       		        $doc = new AgilhuDocumento();
+	try{    	
+		/*$doc = new AgilhuDocumento();
+		
+		$doc->setDocNombre($this->getRequestParameter('nombre'));
+		
+		$doc->setDocDescripcion($this->getRequestParameter('descripcion'));
+		$doc->setDocIdHis($this->getRequestParameter('historia'));
+		$doc->setDocIdMod($this->getRequestParameter('modulo'));
+		$doc->setDocIdPro($this->getUser()->getAttribute('proyectoSeleccionado'));//del proyecto que tenga seleccionado hasta el momento
+		
+		$doc->setDocIdRemitente($this->getUser()->getAttribute('idUsuario'));
+		*/
+		sleep(1);
+		$nombre = $_FILES['archivo']['name'];
+		$tamano = $_FILES['archivo']['size'];
+		$tipo = $_FILES['archivo']['type'];
+		$temporal = $_FILES['archivo']['tmp_name'];
+		
+		//if(file_exists("uploads/".$nombre)){ya existe}else{
+		
+		copy($temporal, "uploads/".$nombre); 
 			
-			$doc->setDocNombre($this->getRequestParameter('nombre'));
-			
-			$doc->setDocDescripcion($this->getRequestParameter('descripcion'));
-			$doc->setDocIdHis($this->getRequestParameter('historia'));
-			$doc->setDocIdMod($this->getRequestParameter('modulo'));
-			$doc->setDocIdPro($this->getUser()->getAttribute('proyectoSeleccionado'));//del proyecto que tenga seleccionado hasta el momento
-			
-			$doc->setDocIdRemitente($this->getUser()->getAttribute('idUsuario'));
-			
-			sleep(1);
-			$tamano = $_FILES['archivo']['size'];
-			$tipo = $_FILES['archivo']['type'];
-			$temporal = $_FILES['archivo']['tmp_name'];
+		/*$fp = fopen($temporal, "rb");
+		$contenido = fread($fp, $tamano);
+		fclose($fp); 
+		
+		$doc->setDocTamano(''.$tamano);
+		$doc->setDocTipo(''.$tipo);
+		
+		$doc->setDocContenido(''.$contenido);
 				
-			$fp = fopen($temporal, "rb");
-			$contenido = fread($fp, $tamano);
-			fclose($fp); 
-			
-			$doc->setDocTamano(''.$tamano);
-			$doc->setDocTipo(''.$tipo);
-			
-			$doc->setDocContenido(''.$contenido);
-					
-			$doc->save();
-			
-			}
-			catch (Exception $excepcion)
-			{
-			$salida = "({success: false, errors: { reason: 'Ya'}})";
-			return $salida;
-			}
-			$salida = "({success: true, mensaje:'El proyecto fue creado exitosamente'})";
+		$doc->save();*/
+	}
+	catch (Exception $excepcion)
+	{
+		$salida = "({success: false, errors: { reason: 'Ya'}})";
+		return $salida;
+	}
+	$salida = "({success: true, mensaje:'El proyecto fue creado exitosamente'})";
 	 		
-  return $salida;
+	return $this->renderText($salida);
   }
   
 
