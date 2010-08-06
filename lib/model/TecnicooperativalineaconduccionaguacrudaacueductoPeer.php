@@ -34,6 +34,25 @@ class TecnicooperativalineaconduccionaguacrudaacueductoPeer extends BaseTecnicoo
 		$canal->setTolcEdad($edad);
 		$canal->save();
 	}
+	public static function crearCanalOtro($topId, $tipoCanalId, $materialCanalId, $longitud, $diametro, $edad, $nombreCanal, $nombreMaterial) {
+		$criteria = new Criteria();
+		$criteria->add(TecnicooperativalineaconduccionaguacrudaacueductoPeer::TOLC_TOP_ID, $topId);
+		$criteria->add(TecnicooperativalineaconduccionaguacrudaacueductoPeer::TOLC_TIPO_CANAL_ID, $tipoCanalId);
+		$criteria->add(TecnicooperativalineaconduccionaguacrudaacueductoPeer::TOLC_MATERIAL_CANAL_ID, $materialCanalId);
+		$canal = TecnicooperativalineaconduccionaguacrudaacueductoPeer::doSelectOne($criteria);
+		if(!$canal) {
+			$canal = new Tecnicooperativalineaconduccionaguacrudaacueducto();
+			$canal->setTolcTopId($topId);
+			$canal->setTolcTipoCanalId($tipoCanalId);
+			$canal->setTolcMaterialCanalId($materialCanalId);
+		}
+		$canal->setTolcLongitud($longitud);
+		$canal->setTolcDiametro($diametro);
+		$canal->setTolcEdad($edad);
+		$canal->setTolcNombreCanal($nombreCanal);
+		$canal->setTolcNombreMaterial($nombreMaterial);
+		$canal->save();
+	}
 	public static function eliminarCanales($topId, $tipoCanalId) {
 		$criteria = new Criteria();
 		$criteria->add(TecnicooperativalineaconduccionaguacrudaacueductoPeer::TOLC_TOP_ID, $topId);

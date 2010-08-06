@@ -68,6 +68,7 @@ class acueducto_conduccionaguacrudaActions extends sfActions
 		if($request->hasParameter('tolc_manguera')) {
 			TecnicooperativalineaconduccionaguacrudaacueductoPeer::crearCanal($tecnicoOperativo->getTopId(), 4, 7, $request->getParameter('tolc_manguera_polietileno_hd_longitud'), $request->getParameter('tolc_manguera_polietileno_hd_diametro'), $request->getParameter('tolc_manguera_polietileno_hd_edad'));
 			TecnicooperativalineaconduccionaguacrudaacueductoPeer::crearCanal($tecnicoOperativo->getTopId(), 4, 8, $request->getParameter('tolc_manguera_polietileno_ld_longitud'), $request->getParameter('tolc_manguera_polietileno_ld_diametro'), $request->getParameter('tolc_manguera_polietileno_ld_edad'));
+			TecnicooperativalineaconduccionaguacrudaacueductoPeer::crearCanalOtro($tecnicoOperativo->getTopId(), 4, 9, $request->getParameter('tolc_manguera_otro_longitud'), $request->getParameter('tolc_manguera_otro_diametro'), $request->getParameter('tolc_manguera_otro_edad'), 'Manguera', $request->getParameter('tolc_manguera_otro_nombre'));
 		}
 		else {
 			TecnicooperativalineaconduccionaguacrudaacueductoPeer::eliminarCanales($tecnicoOperativo->getTopId(), 4);
@@ -186,6 +187,14 @@ class acueducto_conduccionaguacrudaActions extends sfActions
 					$campos['tolc_manguera_polietileno_ld_longitud'] = $polietilenoLd->getTolcLongitud();
 					$campos['tolc_manguera_polietileno_ld_diametro'] = $polietilenoLd->getTolcDiametro();
 					$campos['tolc_manguera_polietileno_ld_edad'] = $polietilenoLd->getTolcEdad();
+				}
+
+				$otro = TecnicooperativalineaconduccionaguacrudaacueductoPeer::consultarCanalSiExiste($tecnicoOperativo->getTopId(), 4, 9);
+				if($otro){
+					$campos['tolc_manguera_otro_longitud'] = $otro->getTolcLongitud();
+					$campos['tolc_manguera_otro_diametro'] = $otro->getTolcDiametro();
+					$campos['tolc_manguera_otro_edad'] = $otro->getTolcEdad();
+					$campos['tolc_manguera_otro_nombre'] = $otro->getTolcNombreMaterial();
 				}
 			}
 
