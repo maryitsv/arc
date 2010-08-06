@@ -323,7 +323,7 @@ propel:
     _attributes: { phpName: Fuentessubterraneas }
     fsu_id: { phpName: FsuId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     fsu_fue_id: { phpName: FsuFueId, type: INTEGER, required: true, foreignTable: fuentes, foreignReference: fue_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    fsu_nombre: { phpName: FsuNombre, type: VARCHAR, size: '100', required: true }
+    fsu_nombre_fuente: { phpName: FsuNombreFuente, type: VARCHAR, size: '100', required: true }
     fsu_promedio_captacion: { phpName: FsuPromedioCaptacion, type: VARCHAR, required: false }
     fsu_entidad_expidio_concesion: { phpName: FsuEntidadExpidioConcesion, type: VARCHAR, size: '200', required: false }
     fsu_fecha_expedicion_concesion: { phpName: FsuFechaExpedicionConcesion, type: DATE, required: false }

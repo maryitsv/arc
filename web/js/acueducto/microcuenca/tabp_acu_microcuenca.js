@@ -24,7 +24,7 @@
 				},*/
 				{
 					frame: true,
-					title: 'Cantidad agua en las fuentes',
+					title: 'Cantidad agua en las fuentes.',
 					id: 'acueducto_fuentes',
 					autoLoad: { url: url_arc+'acueducto_fuentes', scripts: true, scope: this }
 				},
