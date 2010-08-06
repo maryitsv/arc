@@ -73,6 +73,7 @@ class acueducto_aduccionimpulsionActions extends sfActions
 		if($request->hasParameter('toai_manguera')) {
 			TecnicooperativaaduccionimpulsionacueductoPeer::crearCanal($tecnicoOperativo->getTopId(), 4, 7, $request->getParameter('toai_manguera_polietileno_hd_longitud'), $request->getParameter('toai_manguera_polietileno_hd_diametro'), $request->getParameter('toai_manguera_polietileno_hd_edad'));
 			TecnicooperativaaduccionimpulsionacueductoPeer::crearCanal($tecnicoOperativo->getTopId(), 4, 8, $request->getParameter('toai_manguera_polietileno_ld_longitud'), $request->getParameter('toai_manguera_polietileno_ld_diametro'), $request->getParameter('toai_manguera_polietileno_ld_edad'));
+			TecnicooperativaaduccionimpulsionacueductoPeer::crearCanalOtro($tecnicoOperativo->getTopId(), 4, 9, $request->getParameter('toai_manguera_otro_longitud'), $request->getParameter('toai_manguera_otro_diametro'), $request->getParameter('toai_manguera_otro_edad'), 'Manguera', $request->getParameter('toai_manguera_otro_nombre'));
 		}
 		else {
 			TecnicooperativaaduccionimpulsionacueductoPeer::eliminarCanales($tecnicoOperativo->getTopId(), 4);
@@ -192,6 +193,14 @@ class acueducto_aduccionimpulsionActions extends sfActions
 					$campos['toai_manguera_polietileno_ld_longitud'] = $polietilenoLd->getToaiLongitud();
 					$campos['toai_manguera_polietileno_ld_diametro'] = $polietilenoLd->getToaiDiametro();
 					$campos['toai_manguera_polietileno_ld_edad'] = $polietilenoLd->getToaiEdad();
+				}
+
+				$otro = TecnicooperativaaduccionimpulsionacueductoPeer::consultarCanalSiExiste($tecnicoOperativo->getTopId(), 4, 9);
+				if($otro){
+					$campos['toai_manguera_otro_longitud'] = $otro->getToaiLongitud();
+					$campos['toai_manguera_otro_diametro'] = $otro->getToaiDiametro();
+					$campos['toai_manguera_otro_edad'] = $otro->getToaiEdad();
+					$campos['toai_manguera_otro_nombre'] = $otro->getToaiNombreMaterial();
 				}
 			}
 

@@ -34,6 +34,25 @@ class TecnicooperativaaduccionimpulsionacueductoPeer extends BaseTecnicooperativ
 		$canal->setToaiEdad($edad);
 		$canal->save();
 	}
+	public static function crearCanalOtro($topId, $tipoCanalId, $materialCanalId, $longitud, $diametro, $edad, $nombreCanal, $nombreMaterial) {
+		$criteria = new Criteria();
+		$criteria->add(TecnicooperativaaduccionimpulsionacueductoPeer::TOAI_TOP_ID, $topId);
+		$criteria->add(TecnicooperativaaduccionimpulsionacueductoPeer::TOAI_TIPO_CANAL_ID, $tipoCanalId);
+		$criteria->add(TecnicooperativaaduccionimpulsionacueductoPeer::TOAI_MATERIAL_CANAL_ID, $materialCanalId);
+		$canal = TecnicooperativaaduccionimpulsionacueductoPeer::doSelectOne($criteria);
+		if(!$canal) {
+			$canal = new Tecnicooperativaaduccionimpulsionacueducto();
+			$canal->setToaiTopId($topId);
+			$canal->setToaiTipoCanalId($tipoCanalId);
+			$canal->setToaiMaterialCanalId($materialCanalId);
+		}
+		$canal->setToaiLongitud($longitud);
+		$canal->setToaiDiametro($diametro);
+		$canal->setToaiEdad($edad);
+		$canal->setToaiNombreCanal($nombreCanal);
+		$canal->setToaiNombreMaterial($nombreMaterial);
+		$canal->save();
+	}
 	public static function eliminarCanales($topId, $tipoCanalId) {
 		$criteria = new Criteria();
 		$criteria->add(TecnicooperativaaduccionimpulsionacueductoPeer::TOAI_TOP_ID, $topId);

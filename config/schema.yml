@@ -647,6 +647,8 @@ propel:
     toai_longitud: { phpName: ToaiLongitud, type: VARCHAR, required: false }
     toai_diametro: { phpName: ToaiDiametro, type: VARCHAR, required: false }
     toai_edad: { phpName: ToaiEdad, type: INTEGER, required: false }
+    toai_nombre_canal: { phpName: ToaiNombreCanal, type: VARCHAR, size: '100', required: false }
+    toai_nombre_material: { phpName: ToaiNombreMaterial, type: VARCHAR, size: '100', required: false }
   tecnicooperativacomponentessistema:
     _attributes: { phpName: Tecnicooperativacomponentessistema }
     tocs_id: { phpName: TocsId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -696,6 +698,8 @@ propel:
     tolc_longitud: { phpName: TolcLongitud, type: VARCHAR, required: false }
     tolc_diametro: { phpName: TolcDiametro, type: VARCHAR, required: false }
     tolc_edad: { phpName: TolcEdad, type: INTEGER, required: false }
+    tolc_nombre_canal: { phpName: TolcNombreCanal, type: VARCHAR, size: '100', required: false }
+    tolc_nombre_material: { phpName: TolcNombreMaterial, type: VARCHAR, size: '100', required: false }
   tecnicooperativaplantaaguapotableacueducto:
     _attributes: { phpName: Tecnicooperativaplantaaguapotableacueducto }
     topla_id: { phpName: ToplaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
