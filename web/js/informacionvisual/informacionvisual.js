@@ -1,95 +1,4 @@
 
-/*CREACION DE DATSOTORES Y COLUMNS*/
-    //creamos el data estore cargando desde la base de datos
-    informacionvisual_datastore = new Ext.data.GroupingStore({
-		id: 'informacionvisual_datastore',
-		proxy: new Ext.data.HttpProxy({
-			  url: 'informacionvisual/listarInformacionvisual', 
-			  method: 'POST'
-		}),
-		baseParams:{}, 
-		reader: new Ext.data.JsonReader({
-			root: 'results',
-			totalProperty: 'total',
-			id: 'id'
-			},[ 
-			{name: 'iv_id'},
-			{name: 'iv_nombre'},
-			{name: 'iv_tipo'},
-			{name: 'iv_tipo_archivo'},
-			{name: 'iv_url'},
-			{name: 'iv_descripcion'}	
-		]),
-		sortInfo:{field: 'iv_nombre', direction: "ASC"},
-		groupField:'iv_tipo'
-    });
-
-	function ponerIconoDoc(val,x,store)
-    {
-		var iv_url_imagen=store.data.iv_url;
-		return '<img src="'+iv_url_imagen+'">';
-    }
-    
-    var informacionvisual_colmodel;
-	
-    informacionvisual_colmodel = new Ext.grid.ColumnModel({
-    defaults:{sortable: true, locked: false, resizable: true, width: 160},
-    columns:[
-		{id: 'imagen', header: "Imagen", width: 50, dataIndex: 'imagen', renderer: ponerIconoDoc},
-		{ header: "Nombre",  dataIndex: 'iv_nombre'},
-		{ header: "Tipo", width: 70, dataIndex: 'iv_tipo'},
-		{ header: "Tipo Archivo", width: 70, dataIndex: 'iv_tipo_archivo'},
-		{id: 'iv_descripcion', header: "Descripcion", width: 230,  dataIndex: 'iv_descripcion'}
-    	]
-    });
-
-    informacionvisual_datastore.load();
-   
-
-    /*CREACION DELA GRILLA*/
-    //cargamos el modelo de la tabla
-
-    var informacionvisual_gridpanel = new Ext.grid.GridPanel({
-        id: 'informacionvisual_gridpanel',
-        title:'Documentos Existentes',
-		columnWidth: '.6',
-		height: largo_panel-40,
-		frame: true,
-		autoExpandColumn: 'iv_descripcion',
-		autoExpandMin: 200,
-		ds: informacionvisual_datastore,
-		cm: informacionvisual_colmodel,
-		stripeRows:true,
-		sm: new Ext.grid.RowSelectionModel({
-			singleSelect: true,
-			listeners: {
-				rowselect: function(sm, row, rec) {
-							Ext.getCmp('informacionvisual_formpanel').getForm().loadRecord(rec);
-							Ext.getCmp('informacionvisual_descargar_boton').setText('Descargar');
-							Ext.getCmp('informacionvisual_eliminar_boton').setText('Eliminar');
-				}
-			}
-		}),           
-		listeners: {
-			render: function(g) {
-					g.getSelectionModel().selectRow(0);
-			},delay: 10
-		},
-		tbar:[
-			{text:'Nuevo',handler:informacionvisual_crear,iconCls:'nuevo_doc',tooltip:'Pulse aqui para guardar nuevos documentos'},'-',
-			{text:'Busqueda Especializada',iconCls:'buscar',tooltip:'Escoja un modulo para filtrar los documentos'}
-			
-		],
-		bbar: new Ext.PagingToolbar({
-			pageSize: 20,
-			store: informacionvisual_datastore,
-			displayInfo: true,
-			displayMsg: 'Informacion {0} - {1} de {2}',
-			emptyMsg: "No hay informacion"
-		}),
-		view: new Ext.grid.GroupingView()
-    });
-	
 	var informacionvisual_tipoarchivo_data = [
 	   ['Mapa'],
 	   ['Imagen'],
@@ -101,39 +10,28 @@
 		data : informacionvisual_tipoarchivo_data
 	});
 
-	var informacionvisual_tipoarchivo_combobox = new Ext.form.ComboBox({
-		store: informacionvisual_tipoarchivo_datastore,
-		displayField: 'tipoarchivo',
-		typeAhead: true,
-		mode: 'local',
-		triggerAction: 'all',
-		fieldLabel: 'Tipo archivo',
-		emptyText: 'Selecciona...',
-		selectOnFocus: true
-	});
-
-   /*CREACION DE FORMULARIO*/
+	
+   //CREACION DE FORMULARIO
 	var informacionvisual_formpanel = new Ext.FormPanel({
-		title:'Datos detallados de la informaci&oacute;nvisual',
-		//width: 300,
-		split: true,
+		title:'Datos detallados de la informaci&oacute;n visual',
 		columnWidth:'.4',
 		height: largo_panel-15,
-		collapsible: true,    
 		frame:true,
 		id:'informacionvisual_formpanel',
 		fileUpload: true,
-		deferredRender: false,
-		defaults:{bodyStyle:'padding:15px',layout:'form',border:false},
+		style: {"margin-left": "10px"},
+		bodyStyle: 'padding:5px',
 		defaults:{xtype:'textfield',anchor:'100%'},
 		items:
 		[
 			{
 				fieldLabel: 'Nombre',
-				id:'iv_nombre',
+				id: 'iv_nombre',
 				name: 'iv_nombre',
 				emptyText: 'Nombre del documento',
-				allowBlank:false
+				maxLength: 100,
+				maskRe: /([a-zA-Z0-9\s]+)$/,
+				allowBlank: false
 			},{
 				xtype: 'fileuploadfield', 
 				id: 'archivo', 
@@ -142,72 +40,185 @@
 				name: 'archivo',buttonText: '',allowBlank:false,
 				buttonCfg: {iconCls: 'archivo'}
 		  	},{
-				id:'iv_id',
-				name: 'iv_id',
-				xtype:'hidden'
+				xtype:'combo',
+				allowBlank:false,
+				store: informacionvisual_tipoarchivo_datastore,
+				id:'iv_tipo',
+				name:'iv_tipo',
+				forceSelection:true,
+				displayField: 'tipoarchivo',
+				typeAhead: true,
+				mode: 'local',
+				triggerAction: 'all',
+				fieldLabel: 'Tipo archivo',
+				emptyText: 'Selecciona...',
+				selectOnFocus: true
 			},
-			informacionvisual_tipoarchivo_combobox,
 			{
 				fieldLabel: 'Descripcion',
 				id:'iv_descripcion',
 				name:'iv_descripcion',
+				allowBlank:false,
 				xtype: 'textarea',
+				maxLength :200,
 				emptyText:'Digite una breve descripcion del archivo'
+			},{
+				id:'iv_url',
+				name: 'iv_url',
+				xtype:'hidden'
+			},{
+				id:'iv_id',
+				name: 'iv_id',
+				xtype:'hidden'
 			}
 		],
 		buttons:
 		[
-			{
-				text:'Descargar',
-				id:'informacionvisual_descargar_boton',
-				handler: informacionvisual_descargar,
-				iconCls: 'descargar_doc',
-				tooltip: 'Seleccione un documento y pulse aqui para descargarlo'
+			{	
+				text:'Nuevo',
+				handler:informacionvisual_crear,
+				id:'informacionvisual_crear_boton',
+				iconCls:'nuevo_doc',
+				tooltip:'Pulse aqui para guardar nuevos documentos'
 			},{
 				text:'Eliminar',
+				disabled:true,
 				id: 'informacionvisual_eliminar_boton',
 				handler: informacionvisual_eliminar,
 				iconCls: 'eliminar_doc',
 				tooltip: 'Seleccione un documento y pulse aqui para eliminarlo'
+			},{
+				text:'Descargar',
+				disabled:true,
+				id:'informacionvisual_descargar_boton',
+				handler: informacionvisual_descargar,
+				iconCls: 'descargar_doc',
+				tooltip: 'Seleccione un documento y pulse aqui para descargarlo'
 			}
 		]	
 	});
 
-    
+
+//creacion grid
+	var informacionvisual_datastore = new Ext.data.GroupingStore({
+		id: 'informacionvisual_datastore',
+		proxy: new Ext.data.HttpProxy({
+			url: 'informacionvisual/listarInformacionvisual', 
+			method: 'POST',
+			limit: 10,
+			star: 0
+		}),
+		baseParams:{}, 
+		reader: new Ext.data.JsonReader({
+			root: 'results',
+			totalProperty: 'total',
+			id: 'id'
+			},[ 
+			{name: 'iv_id'},
+			{name: 'iv_nombre'},
+			{name: 'iv_tipo'},
+			{name: 'iv_url'},
+			{name: 'iv_descripcion'}	
+		]),
+		sortInfo:{field: 'iv_nombre', direction: "ASC"},
+		groupField:'iv_tipo'
+	});
+	informacionvisual_datastore.load();
+
+	function informacionvisual_ponericono(val,x,store)
+	{
+		var iv_url_imagen=store.data.iv_url;
+		return '<img src="../'+iv_url_imagen+'" width=50 />';//height=50
+	}
+   
+ 	
+	var informacionvisual_colmodel = new Ext.grid.ColumnModel({
+	defaults:{sortable: true, locked: false, resizable: true},
+	columns:[
+		{id: 'imagen', header: "Imagen", width: 60, dataIndex: 'imagen', renderer: informacionvisual_ponericono},
+		{ header: "Nombre",  dataIndex: 'iv_nombre'},
+		{ header: "Tipo archivo", width: 70, dataIndex: 'iv_tipo'},
+		{id: 'iv_descripcion', header: "Descripcion", width: 230,  dataIndex: 'iv_descripcion'}
+	]
+	});
+
+	
+    //CREACION DELA GRILLA
+    //cargamos el modelo de la tabla
+	var informacionvisual_gridpanel = new Ext.grid.GridPanel({
+		id: 'informacionvisual_gridpanel',
+		title:'Informacion visual existente',
+		columnWidth: '.6',
+		//stripeRows:true,
+		frame: true,
+		ds: informacionvisual_datastore,
+		cm: informacionvisual_colmodel,
+		sm: new Ext.grid.RowSelectionModel({
+			singleSelect: true,
+			listeners: {
+				rowselect: function(sm, row, rec) {
+					Ext.getCmp('informacionvisual_formpanel').getForm().loadRecord(rec);
+					Ext.getCmp('informacionvisual_crear_boton').setText('Nuevo');
+					Ext.getCmp('informacionvisual_eliminar_boton').setText('Eliminar');
+					Ext.getCmp('informacionvisual_descargar_boton').setDisabled(false);
+					Ext.getCmp('informacionvisual_eliminar_boton').setDisabled(false);
+						
+				}
+			}
+		}),
+		autoExpandColumn: 'iv_descripcion',
+		autoExpandMin: 200,
+		height: largo_panel-40,
+		listeners: {
+			viewready: function(g) {
+				g.getSelectionModel().selectRow(0);
+			}
+		},
+		bbar: new Ext.PagingToolbar({
+			pageSize: 10,
+			store: informacionvisual_datastore,
+			displayInfo: true,
+			displayMsg: 'Informacion {0} - {1} de {2}',
+			emptyMsg: "No hay informacion visual"
+		}),
+		view: new Ext.grid.GroupingView()
+    	});
+	
 /*INTEGRACION AL CONTENEDOR*/
 	var informacionvisual_contenedor_panel = new Ext.Panel({
 		id: 'informacionvisual_contenedor_panel',
 		height: largo_panel-15,
 		autoWidth: true,
-		frame: true,
 		border: false,
-		iconCls:'docs',
 		tabTip :'Aqui puedes ver, agregar , eliminar y descargar doucmentos',
 		monitorResize:true,
 		layout:'column',
-		items: [informacionvisual_gridpanel, informacionvisual_formpanel],
+		items: 
+		[
+			informacionvisual_gridpanel, 
+			informacionvisual_formpanel
+		],
 		renderTo:'div_informacionvisual'
 	});
    
    
 
-		/***************************************************FUNCIONES******************************************/
-    function informacionvisual_crear(){
+/************************************************FUNCIONES*****************************/
+
+	function informacionvisual_crear(){
 		
-		Ext.getCmp('informacionvisual_formpanel').getForm().reset();
+		if(Ext.getCmp('informacionvisual_crear_boton').getText()=='Nuevo')
+		{
+			Ext.getCmp('informacionvisual_formpanel').getForm().reset();
+			Ext.getCmp('informacionvisual_crear_boton').setText('Guardar');
+			Ext.getCmp('informacionvisual_descargar_boton').setDisabled(true);
+			Ext.getCmp('informacionvisual_eliminar_boton').setText('Cancelar');
+			Ext.getCmp('informacionvisual_eliminar_boton').setDisabled(false);
+		}
 
-		Ext.getCmp('informacionvisual_descargar_boton').setText('Guardar');
-		Ext.getCmp('informacionvisual_eliminar_boton').setText('Cancelar');
-
-    }
-
-
-        
-	function informacionvisual_descargar()
-	{
-		if(Ext.getCmp('informacionvisual_descargar_boton').getText()=='Guardar')
-		{//falta verificar campos, el iv_nombre , el archivo: la iv_descripcion
-			 var verificacion =informacionvisual_verificarCamposDocumento();
+		if(Ext.getCmp('informacionvisual_crear_boton').getText()=='Guardar')
+		{ 
+			var verificacion =informacionvisual_verificarCamposDocumento();
 	  
 	 		 if(verificacion)
 	  		{
@@ -216,58 +227,60 @@
 					'informacionvisual/crearInformacionvisual',
 					{},
 					function(){
-					Ext.getCmp('informacionvisual_descargar_boton').setText('Descargar');
+					Ext.getCmp('informacionvisual_crear_boton').setText('Nuevo');
 					Ext.getCmp('informacionvisual_eliminar_boton').setText('Eliminar');
+					Ext.getCmp('informacionvisual_descargar_boton').setDisabled(false);
+					informacionvisual_datastore.reload(); 
 					}
 					);
 			}
 		}
-		
-		if(Ext.getCmp('informacionvisual_descargar_boton').getText()=='Descargar')
+
+	}
+
+
+        
+	function informacionvisual_descargar()
+	{
+		if(Ext.getCmp('iv_url').getValue()!='')
 		{
-            // var url = URL_AGILHU+'informacionvisual/descargar //le mandamos los url
-            //win = window.open(url,'Documento','height=400,width=600,resizable=1,scrollbars=1, menubar=1');
+			var url = '../'+Ext.getCmp('iv_url').getValue(); 
+			win = window.open(url,'Documento','height=400,width=400,resizable=1,scrollbars=1, menubar=1');
 		}
-    }
+		else{
+			mostrarMensajeConfirmacion('Error',"Selecione una imagen a descargar");
+		}
+	}
          
 	function informacionvisual_eliminar()
-	{/*
+	{
 		if(Ext.getCmp('informacionvisual_eliminar_boton').getText()=='Eliminar')
 		{
-			Ext.Ajax.request({  
-				waitMsg: 'Por Favor Espere...',
-				url:'documentos/cargar',
-   				params: { 
-					task: 'ELIMINARDOC',
-				  	Identificador:Ext.getCmp('idDocumento').getValue(),
-					iv_nombre:Ext.getCmp('iv_nombre').getValue()
-				}, 
-				success: function(response)
-				  {
-				     obj = Ext.util.JSON.decode(response.responseText);
-				     if(obj.success)
-				     {agaviso(obj.mensaje);}
+			if(Ext.getCmp('iv_id').getValue()!='')
+			{
+				subirDatosAjax(
+						'informacionvisual/eliminarInformacionvisual',
+						{iv_id:Ext.getCmp('iv_id').getValue()},
+						function(){
+						informacionvisual_formpanel.getForm().reset();
+						informacionvisual_datastore.reload(); 
+						}
+				);
+			}
+			else{
+				mostrarMensajeConfirmacion('Error',"Selecione una imagen a eliminar");
+			}
 
-				     if (obj.success == false)
-				     {agerror(obj.errors.reason);}
-
-				     informacionvisual_datastore.reload(); 
-				  },
-				  failure: function(form, response)
-				  {
-				     
-				      agerror('servidor no encontrado');
-				  }
-			});
 		}
+	
 		
-        if(Ext.getCmp('informacionvisual_eliminar_boton').getText()=='Cancelar')
-        {
-            informacionvisual_gridpanel.enable(); 
-            Ext.getCmp('informacionvisual_descargar_boton').setText('Descargar');
-            Ext.getCmp('informacionvisual_eliminar_boton').setText('Eliminar');
-		}*/
-    }
+		if(Ext.getCmp('informacionvisual_eliminar_boton').getText()=='Cancelar')
+		{
+		    Ext.getCmp('informacionvisual_crear_boton').setText('Nuevo');
+		    Ext.getCmp('informacionvisual_descargar_boton').setDisabled(false);
+		    Ext.getCmp('informacionvisual_eliminar_boton').setText('Eliminar');
+		}
+	}
 
 
 	function informacionvisual_verificarCamposDocumento(){
@@ -275,10 +288,21 @@
 		var valido=true;
 		if(!(Ext.getCmp('iv_nombre').isValid())) 
 	 	{
-	 		//agalerta('El nombre del documento y el archivo son obligatorios');
 	 		return false;
+			mostrarMensajeConfirmacion('Error',"El nombre descriptivo de la informaci&oacute;n es obligatorio");
 	 	}
+		if(!(Ext.getCmp('iv_descripcion').isValid())) 
+	 	{
+			mostrarMensajeConfirmacion('Error',"Verifique que la descripci&oacute;n este correcta");
+			return false;
+	 	}
+		if(!(informacionvisual_formpanel.getForm().isValid()))
+		{
+			mostrarMensajeConfirmacion('Error',"Verifique los campos sehan llenados correcta");
+			return false;
+
+		}
+
 		return valido;
 	}
-	
 

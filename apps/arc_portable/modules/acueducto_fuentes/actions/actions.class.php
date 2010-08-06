@@ -389,10 +389,119 @@ class acueducto_fuentesActions extends sfActions
 		}
 		catch (Exception $excepcion)
 		{
+			$salida = "({success: false, errors: { reason: 'Hubo una excepcion en listar autoridades ambientales".$excepcion."'}})";
+		}
+		
+	return $this->renderText($salida);
+  }
+
+ /*
+  *@author:maryit sanchez
+  *@date:6 de agosto de 2010
+  *Esta funcion retorna un listado de las fuentes subterraneas
+  */
+ public function executeListarFuentessubterraneas()
+  {  
+	$salida='({"total":"0", "results":""})';
+	$fila=0;
+	$datos;
+		
+	
+		try{
+
+			$fue_id = $this->obtenerFueId();
+			$conexion = new Criteria();
+			$conexion->add(FuentessubterraneasPeer::FSU_FUE_ID, $fue_id);
+			$fuentessubterraneas = FuentessubterraneasPeer::doSelect($conexion);
+
+			foreach ($fuentessubterraneas As $temporal)
+			{
+				$datos[$fila]['acu_fsu_id'] = $temporal->getFsuId();
+				$datos[$fila]['acu_fsu_nombre_fuente'] = $temporal->getFsuNombreFuente();
+				$datos[$fila]['acu_fsu_promedio_captacion'] = $temporal->getFsuPromedioCaptacion();
+				$datos[$fila]['acu_fsu_entidad_expidio_concesion'] = $temporal->getFsuEntidadExpidioConcesion();
+				$datos[$fila]['acu_fsu_fecha_expedicion_concesion'] = $temporal->getFsuFechaExpedicionConcesion();
+				$datos[$fila]['acu_fsu_fecha_vencimiento_concesion'] = $temporal->getFsuFechaVencimientoConcesion();
+				$datos[$fila]['acu_fsu_caudal_adjudicado_concesion'] = $temporal->getFsuCaudaladjudicadoConcesion();
+	
+				$fila++;
+			}
+			if($fila>0)
+			{
+				$jsonresult = json_encode($datos);
+				$salida= '({"total":"'.$fila.'","results":'.$jsonresult.'})';
+			}
+			else{
+				$datos[$fila]['acu_fsu_id'] = "";
+				$datos[$fila]['acu_fsu_nombre_fuente'] = "Nombre fuente";
+				$datos[$fila]['acu_fsu_promedio_captacion'] = "0";
+				$datos[$fila]['acu_fsu_entidad_expidio_concesion'] = "";
+				$datos[$fila]['acu_fsu_fecha_expedicion_concesion'] = "01-01-2010";
+				$datos[$fila]['acu_fsu_fecha_vencimiento_concesion'] = "01-01-2010";
+				$datos[$fila]['acu_fsu_caudal_adjudicado_concesion'] = "";
+	
+				$fila++;
+				$jsonresult = json_encode($datos);
+				$salida= '({"total":"'.$fila.'","results":'.$jsonresult.'})';
+			}			
+		
+		}
+		catch (Exception $excepcion)
+		{
 			$salida = "({success: false, errors: { reason: 'Hubo una excepcion en Fuentes formulario 1 ".$excepcion."'}})";
 		}
 		
 	return $this->renderText($salida);
   }
+  
+  /**
+  *@author:maryit sanchez
+  *@date:6 de agosto de 2010
+  *Este metodo actualiza la informacion de fuentes subterraneas
+  */
+    public function executeActualizarFuentessubterraneas()
+  {
+	$salida = '';
+		try{
+
+			$fue_id = $this->obtenerFueId();
+			$conexion = new Criteria();
+			$conexion->add(FuentessubterraneasPeer::FSU_FUE_ID, $fue_id);
+			if($this->getRequestParameter('acu_fsu_id'))
+			{
+				$conexion->add(FuentessubterraneasPeer::FSU_ID, $this->getRequestParameter('acu_fsu_id'));
+			}
+			$fuentessubterraneas = FuentessubterraneasPeer::doSelectOne($conexion);
+			
+			if(!($this->getRequestParameter('acu_fsu_id') && $fuentessubterraneas))
+			{
+				$fuentessubterraneas =new Fuentessubterraneas();
+				$fuentessubterraneas->setFsuFueId($fue_id);
+			}
+			
+			if($fuentessubterraneas)
+			{
+				$fuentessubterraneas->	setFsuNombreFuente($this->getRequestParameter('acu_fsu_nombre_fuente'));
+				$fuentessubterraneas->	setFsuPromedioCaptacion($this->getRequestParameter('acu_fsu_promedio_captacion'));
+				
+				$fuentessubterraneas->	setFsuEntidadExpidioConcesion($this->getRequestParameter('acu_fsu_entidad_expidio_concesion'));
+				$fuentessubterraneas->	setFsuFechaExpedicionConcesion($this->getRequestParameter('acu_fsu_fecha_expedicion_concesion'));
+				$fuentessubterraneas->	setFsuFechaVencimientoConcesion($this->getRequestParameter('acu_fsu_fecha_vencimiento_concesion'));
+				$fuentessubterraneas->	setFsuCaudalAdjudicadoConcesion($this->getRequestParameter('acu_fsu_caudal_adjudicado_concesion'));
+				
+				$fuentessubterraneas->save();
+				
+				$salida = "({success: true, mensaje:'La info de fuentes subterraneas  fue actualizado exitosamente'})";
+			}
+		
+		}
+		catch (Exception $excepcion)
+		{
+			$salida = "({success: false, errors: { reason: 'Hubo una excepcion en  fuente ssubterraneas ".$excepcion."'}})";
+		}
+		
+	return $this->renderText($salida);
+  }
+  
   
 }

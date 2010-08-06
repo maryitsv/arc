@@ -51,6 +51,19 @@ init: function () {
 													autoLoad: { url: url_arc+'prestador', scripts: true, scope: this }
 												}
 											]                
+										},{
+											id: 'informacion_visual',
+											title: 'Informaci&oacute; visual',
+											tabTip: 'Informaci&oacute; visual del Prestador',
+											border: false,
+											iconCls: 'x-icon-configuration',
+											style: 'padding: 10px;',
+											items:[
+												{
+													frame: true,
+													autoLoad: { url: url_arc+'informacionvisual', scripts: true, scope: this }
+												}
+											]                
 										}
 										]
 								},
