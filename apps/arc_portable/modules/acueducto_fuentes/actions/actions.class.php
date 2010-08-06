@@ -469,7 +469,7 @@ class acueducto_fuentesActions extends sfActions
 			$conexion->add(FuentessubterraneasPeer::FSU_FUE_ID, $fue_id);
 			if($this->getRequestParameter('acu_fsu_id'))
 			{
-				$conexion->add(FuentessubterraneasPeer::Fsu_ID, $this->getRequestParameter('acu_fsu_id'));
+				$conexion->add(FuentessubterraneasPeer::FSU_ID, $this->getRequestParameter('acu_fsu_id'));
 			}
 			$fuentessubterraneas = FuentessubterraneasPeer::doSelectOne($conexion);
 			

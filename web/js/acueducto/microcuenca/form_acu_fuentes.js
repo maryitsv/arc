@@ -638,7 +638,9 @@ acu_fuentes_abastecenelsistema_datos_datastore.load({
 			  totalProperty:'total',
 			  id:'acu_id'},
 			  [
+				{type: 'int', name: 'acu_fsu_id'},
 				{type: 'string', name: 'acu_fsu_nombre_fuente'},
+
 				{type: 'float', name: 'acu_fsu_promedio_captacion'},
 				{type: 'string', name: 'acu_fsu_entidad_expidio_concesion'},
 				{type: 'date', name: 'acu_fsu_fecha_expedicion_concesion',dateFormat: 'Y-m-d'},
