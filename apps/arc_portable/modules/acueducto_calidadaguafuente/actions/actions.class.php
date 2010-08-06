@@ -161,9 +161,11 @@ class acueducto_calidadaguafuenteActions extends sfActions
 	$acu_calidad = CalidadPeer::doSelectOne($conexion);
 
 
-	
-		$conexion = new Criteria();
-		$conexion->add(CalidadaguaPeer::CAG_CAL_ID, $acu_calidad->getCalId());
+		if($acu_calidad)
+		{
+			$conexion = new Criteria();
+			$conexion->add(CalidadaguaPeer::CAG_CAL_ID, $acu_calidad->getCalId());
+		}
 		$acu_calidadaguafuente = CalidadaguaPeer::doSelectOne($conexion);
 		
 		$datos;
