@@ -19,6 +19,8 @@
 		frame:true,
 		id:'informacionvisual_formpanel',
 		fileUpload: true,
+		style: {"margin-left": "10px"},
+		bodyStyle: 'padding:5px',
 		defaults:{xtype:'textfield',anchor:'100%'},
 		items:
 		[
@@ -126,7 +128,7 @@
 	function informacionvisual_ponericono(val,x,store)
 	{
 		var iv_url_imagen=store.data.iv_url;
-		return '<img src="../'+iv_url_imagen+'" width=50 heigth=50/>';
+		return '<img src="../'+iv_url_imagen+'" width=50 />';//height=50
 	}
    
  	
@@ -145,10 +147,10 @@
     //cargamos el modelo de la tabla
 	var informacionvisual_gridpanel = new Ext.grid.GridPanel({
 		id: 'informacionvisual_gridpanel',
-		title:'Informacion visual existentes',
+		title:'Informacion visual existente',
 		columnWidth: '.6',
 		//stripeRows:true,
-		//frame: true,
+		frame: true,
 		ds: informacionvisual_datastore,
 		cm: informacionvisual_colmodel,
 		sm: new Ext.grid.RowSelectionModel({
@@ -242,8 +244,8 @@
 	{
 		if(Ext.getCmp('iv_url').getValue()!='')
 		{
-			var url = '../'+Ext.getCmp('iv_url').getValue(); ;
-			var w = window.open(url,'Documento','height=400,width=600,resizable=1,scrollbars=1, menubar=1');
+			var url = '../'+Ext.getCmp('iv_url').getValue(); 
+			win = window.open(url,'Documento','height=400,width=400,resizable=1,scrollbars=1, menubar=1');
 		}
 		else{
 			mostrarMensajeConfirmacion('Error',"Selecione una imagen a descargar");
