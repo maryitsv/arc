@@ -94,7 +94,7 @@ var acu_tra_trabajadores_roweditor = new Ext.ux.grid.RowEditor({
 	id: 'acu_tra_trabajadores_roweditor',
 	saveText: 'Guardar',
 	cancelText: 'Cancelar',
-	//showTooltip: false,
+	showTooltip: function(msg){},
 	listeners:
 	{
 		'afteredit': function(){

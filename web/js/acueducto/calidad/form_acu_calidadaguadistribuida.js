@@ -106,7 +106,17 @@ acu_calidad_calidadaguadistribuida_datastore.load();
 
 var acu_calidad_calidadaguadistribuida_roweditor = new Ext.ux.grid.RowEditor({
 	saveText: 'Guardar',
-	cancelText: 'Cancelar'
+	cancelText: 'Cancelar',
+	commitChangesText: 'Debe terminar de editar los campos, o cancelar la edicion',
+	errorText: 'Error',
+	showTooltip: function(msg){},
+	listeners:
+	{
+		'afteredit': function(){
+			acu_calidadaguadistribuida_guardarpuntos();
+		},
+		'canceledit': function(){}
+	}
 });
 
 var acu_pfe_frecuencia_data = [
@@ -160,34 +170,71 @@ var acu_calidad_calidadaguadistribuida_gridpanel = new Ext.grid.GridPanel({
 	height: 255,
 	frame: true,
 	stripeRows: true,
-	//autoExpandColumn: 'parametros',
+	autoExpandColumn: 'parametros',
+	autoExpandMax: 700,
 	clicksToEdit:1,
 	title: 'Presente los resultados de los an&#225;lisis del agua que distribuye:',
 	columns: [
-		{header: "Id parametro", hidden: true, dataIndex: 'acu_ppr_id'},
-		{id:'parametros',header: "Par&aacute;metros", width: 200, dataIndex: 'acu_ppr_nombre_parametro'},
-		{header: "Frecuencia M&iacute;nima", width: 120, dataIndex: 'acu_pfe_frecuencia_minima', editor: acu_pfe_frecuencia_minima_combobox},
-		{header: "Frecuencia Real", width: 120, dataIndex: 'acu_pfe_frecuencia_real', editor: acu_pfe_frecuencia_real_combobox},
-		{header: "Punto 1:", width: 90, dataIndex: 'acu_rep_resultado_punto_1', editor: new Ext.form.NumberField({ allowBlank: false, maxValue: 100000})},
-		{header: "Punto 2:", width: 90, dataIndex: 'acu_rep_resultado_punto_2', editor: new Ext.form.NumberField({ allowBlank: false, maxValue: 100000})},
-		{header: "Punto 3:", width: 90, dataIndex: 'acu_rep_resultado_punto_3', editor: new Ext.form.NumberField({ allowBlank: false, maxValue: 100000})}
+		{
+			header: "Id parametro", 
+			hidden: true, 
+			dataIndex: 'acu_ppr_id',
+			readOnly: true
+		},
+		{
+			id:'parametros',
+			header: "Par&aacute;metros", 
+			width: 200, 
+			dataIndex: 'acu_ppr_nombre_parametro',
+			editor: new Ext.form.TextField({ allowBlank: false})
+		},
+		{
+			header: "Frecuencia M&iacute;nima", 
+			width: 120, 
+			dataIndex: 'acu_pfe_frecuencia_minima', 
+			editor: acu_pfe_frecuencia_minima_combobox
+		},
+		{
+			header: "Frecuencia Real", 
+			width: 120, 
+			dataIndex: 'acu_pfe_frecuencia_real', 
+			editor: acu_pfe_frecuencia_real_combobox
+		},
+		{
+			header: "Punto 1:", 
+			width: 90, 
+			dataIndex: 'acu_rep_resultado_punto_1', 
+			editor: new Ext.form.NumberField({ allowBlank: false, maxValue: 100000})
+		},
+		{
+			header: "Punto 2:", 
+			width: 90, 
+			dataIndex: 'acu_rep_resultado_punto_2', 
+			editor: new Ext.form.NumberField({ allowBlank: false, maxValue: 100000})
+		},
+		{
+			header: "Punto 3:", 
+			width: 90, 
+			dataIndex: 'acu_rep_resultado_punto_3', 
+			editor: new Ext.form.NumberField({ allowBlank: false, maxValue: 100000})
+		}
 		
 	],
 	tbar: [
 		{
 			text: 'Agregar parametro',
 			//iconCls: 'agregar',
-			//handler: acu_trabajadoresyvinculacion_agregarpersonaloperativo
+			handler: acu_calidadaguadistribuida_agregarparametro
 		},'-',
 		{
 			text: 'Borrar parametro',
 			//iconCls: 'eliminar',
-			//handler: acu_trabajadoresyvinculacion_eliminarpersonaloperativo
+			handler: acu_calidadaguadistribuida_borrarparametro
 		}, '-'
-	]/*,
+	],
 	viewConfig: {
 			forceFit: true
-	}*/
+	}
 });
 
 var form_acu_calidad_calidadaguadistribuida = new Ext.FormPanel({
@@ -249,7 +296,7 @@ function acu_calidadaguadistribuida_guardarpuntos(){
 	var rec = acu_calidad_calidadaguadistribuida_gridpanel.getSelectionModel().getSelected();
 	subirDatos(
 		form_acu_calidad_calidadaguadistribuida, 
-		'acueducto_calidadaguadistribuida/guardarPuntos',
+		'acueducto_calidadaguadistribuida/actualizarCalidadAguaDistribuida',
 		{
 			acu_ppr_id: rec.get('acu_ppr_id'),
 			acu_ppr_nombre_parametro: rec.get('acu_ppr_nombre_parametro'),
@@ -274,5 +321,43 @@ function acu_calidadaguadistribuida_subirdatos(){
 			Ext.getCmp('tabp_acu_calidad').setActiveTab(1);
 		}
 	);
+}
+
+function acu_calidadaguadistribuida_agregarparametro(){
+	var row = new acu_calidad_calidadaguadistribuida_gridpanel.store.recordType({
+		acu_ppr_id: '',
+		acu_ppr_nombre_parametro: '',
+		acu_pfe_frecuencia_minima: '',
+		acu_rep_resultado_punto_1: 0,
+		acu_rep_resultado_punto_2: 0,
+		acu_rep_resultado_punto_3: 0,
+		acu_pfe_frecuencia_real: ''
+	});
+	acu_calidad_calidadaguadistribuida_roweditor.stopEditing();
+	acu_calidad_calidadaguadistribuida_gridpanel.store.insert(0, row);
+}
+
+function acu_calidadaguadistribuida_borrarparametro(){
+	var rec = acu_calidad_calidadaguadistribuida_gridpanel.getSelectionModel().getSelected();
+	
+	if (!rec) {
+		return false;
+	}
+	
+	if(rec.get('acu_ppr_id') == ''){
+		acu_calidad_calidadaguadistribuida_gridpanel.store.remove(rec);
+	}
+	else{
+		subirDatos(
+			form_acu_calidad_calidadaguadistribuida, 
+			'acueducto_calidadaguadistribuida/eliminarParametro',
+			{
+				acu_ppr_id: rec.get('acu_ppr_id')
+			},
+			function(){
+				acu_calidad_calidadaguadistribuida_datastore.load();
+			}
+		);
+	}
 }
 

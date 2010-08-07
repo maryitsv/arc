@@ -107,7 +107,8 @@ var acu_calidad_calidadaguafuente_roweditor = new Ext.ux.grid.RowEditor({
 	saveText: 'Guardar',
 	cancelText: 'Cancelar',
 	commitChangesText: 'Debe terminar de editar los campos, o cancelar la edicion',
-	errorText: 'Error'
+	errorText: 'Error',
+	showTooltip: function(msg){}
 });
 
 var acu_calidad_calidadaguafuente_gridpanel = new Ext.grid.GridPanel({

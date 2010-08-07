@@ -171,4 +171,126 @@ class acueducto_calidadaguadistribuidaActions extends sfActions
 		return '';
 	}
   }
+  
+  public function executeActualizarCalidadAguaDistribuida(sfWebRequest $request)
+  {
+	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
+	$pps_ser_id = $this->obtenerServicioId('acueducto');
+	
+	$conexion = new Criteria();
+	$conexion->add(CalidadPeer::CAL_PPS_PRE_ID, $pps_pre_id);
+	$conexion->add(CalidadPeer::CAL_PPS_ANIO, $pps_anio);
+	$conexion->add(CalidadPeer::CAL_PPS_SER_ID, $pps_ser_id);
+	$acu_calidad = CalidadPeer::doSelectOne($conexion);
+
+	$cal_id;
+	
+	if($acu_calidad)
+	{
+		$cal_id = $acu_calidad->getCalId();
+	}
+	else
+	{
+		$acu_calidad = new Calidad();
+		$acu_calidad->setCalPpsPreId($pps_pre_id);
+		$acu_calidad->setCalPpsAnio($pps_anio);
+		$acu_calidad->setCalPpsSerId($pps_ser_id);
+		$acu_calidad->save();
+
+		$cal_id = $acu_calidad->getCalId();
+	}
+	
+	
+	
+	
+	if($acu_administrativafinanciera)
+	{
+		$iaf_id = $acu_administrativafinanciera->getIafId();
+		
+		$conexion = new Criteria();
+		$conexion->add(TrabajadoresyvinculacionPeer::TRA_IAF_ID, $iaf_id);
+		$acu_trabajadoresyvinculacion = TrabajadoresyvinculacionPeer::doSelectOne($conexion);
+		
+		if($acu_trabajadoresyvinculacion)
+		{
+			try
+			{
+				$acu_trabajadoresyvinculacion->setTraManualProcedimiento($this->getRequestParameter('acu_tra_manual_procedimiento'));
+				$acu_trabajadoresyvinculacion->setTraManualFunciones($this->getRequestParameter('acu_tra_manual_funciones'));
+				
+				$acu_trabajadoresyvinculacion->save();
+				
+				$acu_poa_id = $this->getRequestParameter('acu_poa_id');
+				
+				if($acu_poa_id)
+				{
+					$personaloperativoadministrativo = PersonaloperativoadministrativoPeer::retrieveByPK($this->getRequestParameter('acu_poa_id'));
+					if($personaloperativoadministrativo)
+					{
+						$personaloperativoadministrativo->setPoaCedula($this->getRequestParameter('acu_poa_cedula'));
+						$personaloperativoadministrativo->setPoaNombre($this->getRequestParameter('acu_poa_nombre'));
+						$personaloperativoadministrativo->setPoaCargo($this->getRequestParameter('acu_poa_cargo'));
+						$personaloperativoadministrativo->setPoaTipoVinculacion($this->getRequestParameter('acu_poa_tipo_vinculacion'));
+						$personaloperativoadministrativo->setPoaRemuneracionMensual($this->getRequestParameter('acu_poa_remuneracion_mensual'));
+						$personaloperativoadministrativo->setPoaTipoTrabajador($this->getRequestParameter('acu_poa_tipo_trabajador'));
+						$personaloperativoadministrativo->save();
+					}
+					else
+					{
+						return $this->renderText("({success: false, errors: { reason: 'El empleado no existe en la base de datos'}})");
+					}
+				}
+				else
+				{
+					$acu_poa_cedula = $this->getRequestParameter('acu_poa_cedula');
+				
+					if($acu_poa_cedula)
+					{
+						$personaloperativoadministrativo = new Personaloperativoadministrativo();
+						$personaloperativoadministrativo->setPoaTraId($acu_trabajadoresyvinculacion->getTraId());
+						$personaloperativoadministrativo->setPoaCedula($this->getRequestParameter('acu_poa_cedula'));
+						$personaloperativoadministrativo->setPoaNombre($this->getRequestParameter('acu_poa_nombre'));
+						$personaloperativoadministrativo->setPoaCargo($this->getRequestParameter('acu_poa_cargo'));
+						$personaloperativoadministrativo->setPoaTipoVinculacion($this->getRequestParameter('acu_poa_tipo_vinculacion'));
+						$personaloperativoadministrativo->setPoaRemuneracionMensual($this->getRequestParameter('acu_poa_remuneracion_mensual'));
+						$personaloperativoadministrativo->setPoaTipoTrabajador($this->getRequestParameter('acu_poa_tipo_trabajador'));
+						$personaloperativoadministrativo->save();
+					}
+				}
+				
+				$salida = "({success: true, mensaje:'La informacion de trabajadores y vinculacion fue actualizada exitosamente'})";
+			}
+			catch(Exception $exception)
+			{
+				return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en trabajadores y vinculacion:".$exception."'}})");
+			}
+		}
+		else
+		{
+			try
+			{
+				$acu_trabajadoresyvinculacion = new Trabajadoresyvinculacion();
+				
+				$acu_trabajadoresyvinculacion->setTraIafId($iaf_id);
+				$acu_trabajadoresyvinculacion->setTraManualProcedimiento($this->getRequestParameter('acu_tra_manual_procedimiento'));
+				$acu_trabajadoresyvinculacion->setTraManualFunciones($this->getRequestParameter('acu_tra_manual_funciones'));
+				
+				$acu_trabajadoresyvinculacion->save();
+				
+				$salida = "({success: true, mensaje:'La informacion de trabajadores y vinculacion fue actualizada exitosamente'})";
+			}
+			catch(Exception $exception)
+			{
+				return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en trabajadores y vinculacion'}})");
+			}
+		}
+	}
+	else
+	{
+		return $this->renderText("({success: false, errors: { reason: 'Debe primero registrar informacion general de administracion financiera'}})");
+	}
+	
+	return $this->renderText($salida);
+  }
 }
