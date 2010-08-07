@@ -73,6 +73,33 @@ function subirDatos(panel, url_Action, extraParams, funcionSuccess, funcionFailu
 	});
 }
 
+function subirDatosAjax(url_Action, extraParams, funcionSuccess, funcionFailure){
+	
+	Ext.Ajax.request({  
+		method: 'POST',
+		url: url_Action,
+		params: extraParams,
+		waitTitle: 'Enviando',
+		waitMsg: 'Enviando datos...',
+		success: function(response)
+		{
+			obj = Ext.util.JSON.decode(response.responseText);
+			salida = true;
+			funcionSuccess();
+			mostrarMensajeRapido('Aviso',obj.mensaje);
+		},
+		failure: function(form,  response)
+		{
+			if(action.failureType == 'server'){
+				obj = Ext.util.JSON.decode(response.responseText); 
+				mostrarMensajeConfirmacion('Error',obj.errors.reason);
+			}
+			funcionFailure();
+		}
+	});
+		
+}
+
 function formatoNumeroCelda(valor)
 {
 	valor += ''; 

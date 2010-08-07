@@ -17,17 +17,20 @@ class informacionvisualActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-   // $this->forward('default', 'module');
   }
   
   
 /**
-*Es esta funcion obtenemos un listado de todos los proyectos en los que puede participar el usuario logueado
+*@date : 6 de agosto de 2010
+*@author:maryit sanchez
+* Es esta funcion obtenemos un listado de todos los proyectos en los que puede participar el usuario logueado
 */
 public function executeListarInformacionvisual()
   {
   		$conexion = new Criteria();
 		$conexion->add(InformacionvisualPeer::IV_PRE_ID,$this->getUser()->getAttribute('pps_pre_id'));
+		$informacionvisual_cantidad = InformacionvisualPeer::doCount($conexion);
+
 		$conexion->setLimit($this->getRequestParameter('limit'));
 		$conexion->setOffset($this->getRequestParameter('start'));
 		$informacionvisual = InformacionvisualPeer::doSelect($conexion);
@@ -45,7 +48,6 @@ public function executeListarInformacionvisual()
 		    $datos[$pos]['iv_nombre']=$temporal->getIvNombre();
 		    $datos[$pos]['iv_descripcion']=$temporal->getIvDescripcion();
 		    $datos[$pos]['iv_tipo']=$temporal->getIvTipo();
-			$datos[$pos]['iv_tipo_archivo']=$temporal->getIvTipoArchivo();
 		    $datos[$pos]['iv_url']=$temporal->getIvUrl();
 		    
 		    $pos++;
@@ -53,7 +55,7 @@ public function executeListarInformacionvisual()
 			
 			if($pos>0){
 				$jsonresult = json_encode($datos);
-				$salida= '({"total":"'.$pos.'","results":'.$jsonresult.'})';
+				$salida= '({"total":"'.$informacionvisual_cantidad .'","results":'.$jsonresult.'})';
 			}
 		}
 		else {
@@ -70,31 +72,17 @@ public function executeListarInformacionvisual()
 	$salida	='';
 
 	try
-	{    	
-		/*$doc = new AgilhuDocumento();
-		
-		$doc->setDocNombre($this->getRequestParameter('nombre'));
-		
-		$doc->setDocDescripcion($this->getRequestParameter('descripcion'));
-		$doc->setDocIdHis($this->getRequestParameter('historia'));
-		$doc->setDocIdMod($this->getRequestParameter('modulo'));
-		$doc->setDocIdPro($this->getUser()->getAttribute('proyectoSeleccionado'));//del proyecto que tenga seleccionado hasta el momento
-		
-		$doc->setDocIdRemitente($this->getUser()->getAttribute('idUsuario'));
-		
-		$fp = fopen($temporal, "rb");
-		$contenido = fread($fp, $tamano);
-		fclose($fp); 
-		
-		$doc->setDocTamano(''.$tamano);
-		$doc->setDocTipo(''.$tipo);
-		
-		$doc->setDocContenido(''.$contenido);
-				
-		$doc->save();
-		*/
-		
-		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
+	{  
+		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');  
+		$iv_nombre = $this->getRequestParameter('iv_nombre');	
+		$informacionvisual = new Informacionvisual();
+		$informacionvisual->setIvPreId($pps_pre_id );
+		$informacionvisual->setIvNombre($iv_nombre);
+		$informacionvisual->setIvDescripcion($this->getRequestParameter('iv_descripcion'));
+		$informacionvisual->setIvTipo($this->getRequestParameter('iv_tipo'));
+		$informacionvisual->setIvUrl("uploads/".$pps_pre_id."/".$_FILES['archivo']['name']);
+		$informacionvisual->save();		
+
 		
 		$nombre_carpeta = "uploads/".$pps_pre_id;
 
@@ -104,7 +92,7 @@ public function executeListarInformacionvisual()
 		}
 		
 		sleep(1);
-		$nombre = $_FILES['archivo']['name'];
+		$nombre = $_FILES['archivo']['name'];//$iv_nombre;//
 		$tamano = $_FILES['archivo']['size'];
 		$tipo = $_FILES['archivo']['type'];
 		$temporal = $_FILES['archivo']['tmp_name'];
@@ -115,7 +103,7 @@ public function executeListarInformacionvisual()
 		}
 		else
 		{
-			if(false/*$tamano > algo*/)
+			if(false)/*$tamano > algo*/
 			{
 				$salida = "({success: false, errors: { reason: 'El archivo exede el limite de tamaño'}})";
 			}
@@ -136,53 +124,28 @@ public function executeListarInformacionvisual()
 	return $this->renderText($salida);
   }
   
+/*Aqui se elimina*/
 
-   public function executeDescargarInformacionVisual()
-   {
-	
-  		$conexion = new Criteria();
-		$conexion->add(InformacionvisualPeer::DOC_ID,$this->getRequestParameter('Identificador'));
-                $documento = InformacionvisualPeer::doSelectOne($conexion);
-	
-		$tipo=$documento->getDocTipo();
-	
-                $bin = $documento->getDocContenido(); 	
-		$this->getResponse()->clearHttpHeaders();
-	   
-     	        $this->getResponse()->clearHttpHeaders();
-	  	$this->getResponse()->setHttpHeader("Content-Type", $tipo);
-     	        $this->getResponse()->setHttpHeader("Content-Length",$documento->getDocTamano(), true);
-	  
-		$dato1 = fread($bin, $documento->getDocTamano());
-		$this->getResponse()->setContent($dato1);
-
-   }
-
- public function executeEliminarInformacionVisual()
+ public function executeEliminarInformacionvisual()
   {
-        $salida	='';
-		
-		//unlink($_GET['nombrearchivo'])  
-
-       		try{    	
-		$conexion = new Criteria();
-		$conexion->add(InformacionvisualPeer::DOC_ID,$this->getRequestParameter('Identificador'));
-		//$conexion->add(InformacionvisualPeer::DOC_NOMBRE,$this->getRequestParameter('nombre'));
-		$conexion->add(InformacionvisualPeer::DOC_ID_PRO,$this->getUser()->getAttribute('proyectoSeleccionado'));
-
-                $documento = InformacionvisualPeer::doSelectOne($conexion);
-
-		if($documento)				
-		{$documento->delete();}
-
-			}
-			catch (Exception $excepcion)
-			{
-			$salida = "({success: false, errors: { reason: 'No se pudo eliminar el documento'}})";
-			return $salida;
-			}
-			$salida = "({success: true, mensaje:'El documento fue eliminado con exito'})";
-	 		
-  return $salida;
+        $salida	="({success: false, mensaje:'El archivo no se ha eliminado con exito'})"; 
+	
+	try{	
+	       	$informacionvisual = InformacionvisualPeer::retrieveByPK($this->getRequestParameter('iv_id'));
+		if($informacionvisual){
+			unlink($informacionvisual->getIvUrl());
+			$informacionvisual->delete();
+			$salida = "({success: true, mensaje:'El archivo se ha eliminado con exito'})"; 
+		}
+		else{
+			$salida = "({success: false, mensaje:'El archivo no se ha eliminado con exito por que lo hemos encontrado'})"; 
+		}
+	}
+	catch (Exception $excepcion)
+	{
+		$salida = "({success: false, errors: { reason: 'Ha ocurrido una execpcion'}})";
+		return $salida;
+	}
+	return $this->renderText($salida);
   }
 }

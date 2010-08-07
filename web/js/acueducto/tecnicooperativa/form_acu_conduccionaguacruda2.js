@@ -362,6 +362,10 @@ var tolc_manguera = {
             var textfield = Ext.getCmp('tolc_manguera_polietileno_ld_longitud').setDisabled(!checked);
             var textfield = Ext.getCmp('tolc_manguera_polietileno_ld_diametro').setDisabled(!checked);
             var textfield = Ext.getCmp('tolc_manguera_polietileno_ld_edad').setDisabled(!checked);
+            var textfield = Ext.getCmp('tolc_manguera_otro_nombre').setDisabled(!checked);
+            var textfield = Ext.getCmp('tolc_manguera_otro_longitud').setDisabled(!checked);
+            var textfield = Ext.getCmp('tolc_manguera_otro_diametro').setDisabled(!checked);
+            var textfield = Ext.getCmp('tolc_manguera_otro_edad').setDisabled(!checked);
         },
         render: function(){
             new Ext.ToolTip({
@@ -513,6 +517,98 @@ var tolc_manguera_polietileno_ld_edad = {
     }
 }
 
+var tolc_manguera_otro_nombre = {
+    xtype: 'textfield',
+    width: 100,
+    emptyText: '¿Otro? ¿Cuál?',
+    disabled: true,
+    tabIndex: 1,
+    id: "tolc_manguera_otro_nombre",
+    name: "tolc_manguera_otro_nombre",
+    allowBlank: false,
+    hideLabel: true,
+    listeners: {
+        render: function(){
+            new Ext.ToolTip({
+                target: (Ext.getCmp('tolc_manguera_otro_nombre')).getEl(),
+                title: 'Titulo tolc_manguera_otro_nombre',
+                anchor: 'top',
+                html: 'Mensaje de ayuda para tolc_manguera_otro_nombre',
+                trackMouse: true
+            });
+        }
+    }
+}
+
+var tolc_manguera_otro_longitud = {
+    xtype: "textfield",
+    value: 0,
+    disabled: true,
+    tabIndex: 1,
+    id: "tolc_manguera_otro_longitud",
+    name: "tolc_manguera_otro_longitud",
+    fieldLabel: "En otro",
+    allowBlank: false,
+    hideLabel: true,
+    listeners: {
+        render: function(){
+            new Ext.ToolTip({
+                target: (Ext.getCmp('tolc_manguera_otro_longitud')).getEl(),
+                title: 'Titulo tolc_manguera_otro_longitud',
+                anchor: 'top',
+                html: 'Mensaje de ayuda para tolc_manguera_otro_longitud',
+                trackMouse: true
+            });
+        }
+    }
+}
+
+var tolc_manguera_otro_diametro = {
+    xtype: "textfield",
+    value: 0,
+    disabled: true,
+    tabIndex: 1,
+    id: "tolc_manguera_otro_diametro",
+    name: "tolc_manguera_otro_diametro",
+    fieldLabel: "En otro",
+    allowBlank: false,
+    hideLabel: true,
+    listeners: {
+        render: function(){
+            new Ext.ToolTip({
+                target: (Ext.getCmp('tolc_manguera_otro_diametro')).getEl(),
+                title: 'Titulo tolc_manguera_otro_diametro',
+                anchor: 'top',
+                html: 'Mensaje de ayuda para tolc_manguera_otro_diametro',
+                trackMouse: true
+            });
+        }
+    }
+}
+
+var tolc_manguera_otro_edad = {
+    xtype: "textfield",
+    value: 0,
+    disabled: true,
+    tabIndex: 1,
+    id: "tolc_manguera_otro_edad",
+    name: "tolc_manguera_otro_edad",
+    fieldLabel: "En otro",
+    allowBlank: false,
+    hideLabel: true,
+    listeners: {
+        render: function(){
+            new Ext.ToolTip({
+                target: (Ext.getCmp('tolc_manguera_otro_edad')).getEl(),
+                title: 'Titulo tolc_manguera_otro_edad',
+                anchor: 'top',
+                html: 'Mensaje de ayuda para tolc_manguera_otro_edad',
+                trackMouse: true
+            });
+        }
+    }
+}
+
 var acu_conduccionaguacruda2_datastore = new Ext.data.Store({
     id: 'acu_conduccionaguacruda2_datastore',
     proxy: new Ext.data.HttpProxy({
@@ -581,6 +677,18 @@ var acu_conduccionaguacruda2_datastore = new Ext.data.Store({
     }, {
         name: 'tolc_manguera_polietileno_ld_edad',
         type: 'int'
+    }, {
+        name: 'tolc_manguera_otro_edad',
+        type: 'int'
+    }, {
+        name: 'tolc_manguera_otro_longitud',
+        type: 'int'
+    }, {
+        name: 'tolc_manguera_otro_diametro',
+        type: 'int'
+    }, {
+        name: 'tolc_manguera_otro_nombre',
+        type: 'string'
     }])
 });
 
@@ -594,6 +702,7 @@ acu_conduccionaguacruda2_datastore.load({
 form_acu_conduccionaguacruda2.add({
     xtype: 'fieldset',
     title: 'Líneas de aducción - impulsión',
+    height: 320,
     items: [{
         layout: 'column',
         items: [{
@@ -666,7 +775,7 @@ form_acu_conduccionaguacruda2.add({
                 xtype: 'label',
                 fieldLabel: 'Polietileno LD:',
                 labelSeparator: ''
-            }]
+            }, tolc_manguera_otro_nombre]
         }, {
             layout: 'form',
             bodyStyle: 'padding-left: 50px;',
@@ -674,7 +783,7 @@ form_acu_conduccionaguacruda2.add({
                 xtype: 'label',
                 fieldLabel: '<b>Longitud(metros)</b>',
                 labelSeparator: ''
-            }, tolc_manguera_polietileno_hd_longitud, tolc_manguera_polietileno_ld_longitud]
+            }, tolc_manguera_polietileno_hd_longitud, tolc_manguera_polietileno_ld_longitud, tolc_manguera_otro_longitud]
         }, {
             layout: 'form',
             bodyStyle: 'padding-left: 50px;',
@@ -682,7 +791,7 @@ form_acu_conduccionaguacruda2.add({
                 xtype: 'label',
                 fieldLabel: '<b>Diámetro</b>',
                 labelSeparator: ''
-            }, tolc_manguera_polietileno_hd_diametro, tolc_manguera_polietileno_ld_diametro]
+            }, tolc_manguera_polietileno_hd_diametro, tolc_manguera_polietileno_ld_diametro, tolc_manguera_otro_diametro]
         }, {
             layout: 'form',
             bodyStyle: 'padding-left: 50px;',
@@ -690,7 +799,7 @@ form_acu_conduccionaguacruda2.add({
                 xtype: 'label',
                 fieldLabel: '<b>Edad(años)</b>',
                 labelSeparator: ''
-            }, tolc_manguera_polietileno_hd_edad, tolc_manguera_polietileno_ld_edad]
+            }, tolc_manguera_polietileno_hd_edad, tolc_manguera_polietileno_ld_edad, tolc_manguera_otro_edad]
         }]
     }]
 });

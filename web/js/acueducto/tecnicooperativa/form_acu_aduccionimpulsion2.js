@@ -11,7 +11,7 @@ var form_acu_aduccionimpulsion2 = new Ext.form.FormPanel({
                 url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'subirDatos2'),
                 clientValidation: false
             });
-//            tecnicooperativa_acueducto_tabpanel.setActiveTab(3);
+            //            tecnicooperativa_acueducto_tabpanel.setActiveTab(3);
             form_acu_aduccionimpulsion.show();
             form_acu_aduccionimpulsion2.hide();
         }
@@ -22,7 +22,9 @@ var form_acu_aduccionimpulsion2 = new Ext.form.FormPanel({
                 url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'subirDatos2'),
                 clientValidation: false
             });
-            tecnicooperativa_acueducto_tabpanel.setActiveTab(4);
+            form_acu_aduccionimpulsion3.show();
+            form_acu_aduccionimpulsion2.hide();
+            //            tecnicooperativa_acueducto_tabpanel.setActiveTab(4);
         }
     }]
 });
@@ -362,6 +364,10 @@ var toai_manguera = {
             var textfield = Ext.getCmp('toai_manguera_polietileno_ld_longitud').setDisabled(!checked);
             var textfield = Ext.getCmp('toai_manguera_polietileno_ld_diametro').setDisabled(!checked);
             var textfield = Ext.getCmp('toai_manguera_polietileno_ld_edad').setDisabled(!checked);
+            var textfield = Ext.getCmp('toai_manguera_otro_nombre').setDisabled(!checked);
+            var textfield = Ext.getCmp('toai_manguera_otro_longitud').setDisabled(!checked);
+            var textfield = Ext.getCmp('toai_manguera_otro_diametro').setDisabled(!checked);
+            var textfield = Ext.getCmp('toai_manguera_otro_edad').setDisabled(!checked);
         },
         render: function(){
             new Ext.ToolTip({
@@ -513,6 +519,98 @@ var toai_manguera_polietileno_ld_edad = {
     }
 }
 
+var toai_manguera_otro_nombre = {
+    xtype: 'textfield',
+    width: 100,
+    emptyText: '¿Otro? ¿Cuál?',
+    disabled: true,
+    tabIndex: 1,
+    id: "toai_manguera_otro_nombre",
+    name: "toai_manguera_otro_nombre",
+    allowBlank: false,
+    hideLabel: true,
+    listeners: {
+        render: function(){
+            new Ext.ToolTip({
+                target: (Ext.getCmp('toai_manguera_otro_nombre')).getEl(),
+                title: 'Titulo toai_manguera_otro_nombre',
+                anchor: 'top',
+                html: 'Mensaje de ayuda para toai_manguera_otro_nombre',
+                trackMouse: true
+            });
+        }
+    }
+}
+
+var toai_manguera_otro_longitud = {
+    xtype: "textfield",
+    value: 0,
+    disabled: true,
+    tabIndex: 1,
+    id: "toai_manguera_otro_longitud",
+    name: "toai_manguera_otro_longitud",
+    fieldLabel: "En otro",
+    allowBlank: false,
+    hideLabel: true,
+    listeners: {
+        render: function(){
+            new Ext.ToolTip({
+                target: (Ext.getCmp('toai_manguera_otro_longitud')).getEl(),
+                title: 'Titulo toai_manguera_otro_longitud',
+                anchor: 'top',
+                html: 'Mensaje de ayuda para toai_manguera_otro_longitud',
+                trackMouse: true
+            });
+        }
+    }
+}
+
+var toai_manguera_otro_diametro = {
+    xtype: "textfield",
+    value: 0,
+    disabled: true,
+    tabIndex: 1,
+    id: "toai_manguera_otro_diametro",
+    name: "toai_manguera_otro_diametro",
+    fieldLabel: "En otro",
+    allowBlank: false,
+    hideLabel: true,
+    listeners: {
+        render: function(){
+            new Ext.ToolTip({
+                target: (Ext.getCmp('toai_manguera_otro_diametro')).getEl(),
+                title: 'Titulo toai_manguera_otro_diametro',
+                anchor: 'top',
+                html: 'Mensaje de ayuda para toai_manguera_otro_diametro',
+                trackMouse: true
+            });
+        }
+    }
+}
+
+var toai_manguera_otro_edad = {
+    xtype: "textfield",
+    value: 0,
+    disabled: true,
+    tabIndex: 1,
+    id: "toai_manguera_otro_edad",
+    name: "toai_manguera_otro_edad",
+    fieldLabel: "En otro",
+    allowBlank: false,
+    hideLabel: true,
+    listeners: {
+        render: function(){
+            new Ext.ToolTip({
+                target: (Ext.getCmp('toai_manguera_otro_edad')).getEl(),
+                title: 'Titulo toai_manguera_otro_edad',
+                anchor: 'top',
+                html: 'Mensaje de ayuda para toai_manguera_otro_edad',
+                trackMouse: true
+            });
+        }
+    }
+}
+
 var acu_aduccionimpulsion2_datastore = new Ext.data.Store({
     id: 'acu_aduccionimpulsion2_datastore',
     proxy: new Ext.data.HttpProxy({
@@ -581,6 +679,18 @@ var acu_aduccionimpulsion2_datastore = new Ext.data.Store({
     }, {
         name: 'toai_manguera_polietileno_ld_edad',
         type: 'int'
+    }, {
+        name: 'toai_manguera_otro_edad',
+        type: 'int'
+    }, {
+        name: 'toai_manguera_otro_longitud',
+        type: 'int'
+    }, {
+        name: 'toai_manguera_otro_diametro',
+        type: 'int'
+    }, {
+        name: 'toai_manguera_otro_nombre',
+        type: 'string'
     }])
 });
 
@@ -594,6 +704,7 @@ acu_aduccionimpulsion2_datastore.load({
 form_acu_aduccionimpulsion2.add({
     xtype: 'fieldset',
     title: 'Líneas de aducción - impulsión',
+    height: 320,
     items: [{
         layout: 'column',
         items: [{
@@ -666,7 +777,7 @@ form_acu_aduccionimpulsion2.add({
                 xtype: 'label',
                 fieldLabel: 'Polietileno LD:',
                 labelSeparator: ''
-            }]
+            }, toai_manguera_otro_nombre]
         }, {
             layout: 'form',
             bodyStyle: 'padding-left: 50px;',
@@ -674,7 +785,7 @@ form_acu_aduccionimpulsion2.add({
                 xtype: 'label',
                 fieldLabel: '<b>Longitud(metros)</b>',
                 labelSeparator: ''
-            }, toai_manguera_polietileno_hd_longitud, toai_manguera_polietileno_ld_longitud]
+            }, toai_manguera_polietileno_hd_longitud, toai_manguera_polietileno_ld_longitud, toai_manguera_otro_longitud]
         }, {
             layout: 'form',
             bodyStyle: 'padding-left: 50px;',
@@ -682,7 +793,7 @@ form_acu_aduccionimpulsion2.add({
                 xtype: 'label',
                 fieldLabel: '<b>Diámetro</b>',
                 labelSeparator: ''
-            }, toai_manguera_polietileno_hd_diametro, toai_manguera_polietileno_ld_diametro]
+            }, toai_manguera_polietileno_hd_diametro, toai_manguera_polietileno_ld_diametro, toai_manguera_otro_diametro]
         }, {
             layout: 'form',
             bodyStyle: 'padding-left: 50px;',
@@ -690,15 +801,14 @@ form_acu_aduccionimpulsion2.add({
                 xtype: 'label',
                 fieldLabel: '<b>Edad(años)</b>',
                 labelSeparator: ''
-            }, toai_manguera_polietileno_hd_edad, toai_manguera_polietileno_ld_edad]
+            }, toai_manguera_polietileno_hd_edad, toai_manguera_polietileno_ld_edad, toai_manguera_otro_edad]
         }]
     }]
 });
 
-var panel_aduccion_impulsion = new Ext.Panel({
-    renderTo: 'div_form_acu_aduccionimpulsion',
-    autoWidth: true,
-    items: [form_acu_aduccionimpulsion, form_acu_aduccionimpulsion2]
-});
-
+//var panel_aduccion_impulsion = new Ext.Panel({
+//    renderTo: 'div_form_acu_aduccionimpulsion',
+//    autoWidth: true,
+//    items: [form_acu_aduccionimpulsion, form_acu_aduccionimpulsion2]
+//});
 //form_acu_aduccionimpulsion2.render('div_form_acu_aduccionimpulsion2');
