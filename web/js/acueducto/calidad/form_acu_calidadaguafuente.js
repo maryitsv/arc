@@ -107,7 +107,8 @@ var acu_calidad_calidadaguafuente_roweditor = new Ext.ux.grid.RowEditor({
 	saveText: 'Guardar',
 	cancelText: 'Cancelar',
 	commitChangesText: 'Debe terminar de editar los campos, o cancelar la edicion',
-	errorText: 'Error'
+	errorText: 'Error',
+	showTooltip: function(msg){}
 });
 
 var acu_calidad_calidadaguafuente_gridpanel = new Ext.grid.GridPanel({
@@ -208,7 +209,7 @@ var form_acu_calidad_calidadaguafuente = new Ext.FormPanel({
 	    	text: 'Continuar', 
 	    	iconCls: 'crear16', 
 	    	handler: function(){
-							acu_trabajadoresyvinculacion_subirdatos();
+							acu_calidadaguafuente_subirdatos();
 							//Ext.getCmp('tabp_acu_calidad').setActiveTab(1);
 			}
 	    }
@@ -222,7 +223,7 @@ acu_calidad_calidadaguafuente_datastore.load({
   }
 });
 
-function acu_trabajadoresyvinculacion_subirdatos(){
+function acu_calidadaguafuente_subirdatos(){
 	subirDatos(
 		form_acu_calidad_calidadaguafuente, 
 		'acueducto_calidadaguafuente/actualizarCalidadAguaFuente',

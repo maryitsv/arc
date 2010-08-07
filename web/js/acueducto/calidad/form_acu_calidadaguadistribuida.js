@@ -34,12 +34,14 @@ var acu_cag_visita_sspd = new Ext.form.RadioGroup({
 	items:
 	[
 		{
-			boxLabel: 'Si', 
+			boxLabel: 'Si',
+			name: 'acu_cag_visita_sspd',
 			inputValue: 1, 
 			checked: true
 		},
 		{
 			boxLabel: 'No',
+			name: 'acu_cag_visita_sspd',
 			inputValue: 0
 		}
 	],
@@ -77,22 +79,86 @@ var acu_calidad_calidadaguadistribuida_data = [
 	['Floruros (mg/l)','Anual',0,0,0,0]
 ];
 
-var acu_calidad_calidadaguadistribuida_datastore = new Ext.data.SimpleStore({
-	fields: [
-		{name: 'parametros'},
-		{name: 'frecuenciaMin', type: 'string'},
-		{name: 'punto1', type: 'float'},
-		{name: 'punto2', type: 'float'},
-		{name: 'punto3', type: 'float'},
-		{name: 'frecuenciaReal', type: 'string'}
-	]
+var acu_calidad_calidadaguadistribuida_datastore = new Ext.data.Store({
+	id: 'acu_calidad_calidadaguadistribuida_datastore',
+	proxy: new Ext.data.HttpProxy({
+			url: 'acueducto_calidadaguadistribuida/obtenerDatosAcuCalidadAguaDistribuida', 
+			method: 'POST'
+	}),
+	baseParams:{}, 
+	reader: new Ext.data.JsonReader({
+			root: 'results',
+			totalProperty: 'total',
+			},[
+				{name: 'acu_ppr_id', type: 'id'},
+				{name: 'acu_ppr_nombre_parametro', type: 'string'},
+				{name: 'acu_pfe_frecuencia_minima', type: 'string'},
+				{name: 'acu_rep_resultado_punto_1', type: 'float'},
+				{name: 'acu_rep_resultado_punto_2', type: 'float'},
+				{name: 'acu_rep_resultado_punto_3', type: 'float'},
+				{name: 'acu_pfe_frecuencia_real', type: 'string'}
+	])
 });
 
-acu_calidad_calidadaguadistribuida_datastore.loadData(acu_calidad_calidadaguadistribuida_data);
+acu_calidad_calidadaguadistribuida_datastore.load();
+
+//acu_calidad_calidadaguadistribuida_datastore.loadData(acu_calidad_calidadaguadistribuida_data);
 
 var acu_calidad_calidadaguadistribuida_roweditor = new Ext.ux.grid.RowEditor({
 	saveText: 'Guardar',
-	cancelText: 'Cancelar'
+	cancelText: 'Cancelar',
+	commitChangesText: 'Debe terminar de editar los campos, o cancelar la edicion',
+	errorText: 'Error',
+	showTooltip: function(msg){},
+	listeners:
+	{
+		'afteredit': function(){
+			acu_calidadaguadistribuida_guardarpuntos();
+		},
+		'canceledit': function(){}
+	}
+});
+
+var acu_pfe_frecuencia_data = [
+   ['Mensual'],
+   ['Bimensual'],
+   ['Trimestral'],
+   ['Semestral'],
+   ['Anual']
+];
+
+var acu_pfe_frecuencia_minima_datastore = new Ext.data.SimpleStore({
+    fields: ['acu_pfe_frecuencia_minima'],
+    data : acu_pfe_frecuencia_data
+});
+
+var acu_pfe_frecuencia_minima_combobox = new Ext.form.ComboBox({
+    store: acu_pfe_frecuencia_minima_datastore,
+    displayField: 'acu_pfe_frecuencia_minima',
+    typeAhead: true,
+	allowBlank: false,
+	forceSelection: true,
+    mode: 'local',
+    triggerAction: 'all',
+    emptyText: 'Selecciona...',
+    selectOnFocus: true
+});
+
+var acu_pfe_frecuencia_real_datastore = new Ext.data.SimpleStore({
+    fields: ['acu_pfe_frecuencia_real'],
+    data : acu_pfe_frecuencia_data
+});
+
+var acu_pfe_frecuencia_real_combobox = new Ext.form.ComboBox({
+    store: acu_pfe_frecuencia_real_datastore,
+    displayField: 'acu_pfe_frecuencia_real',
+    typeAhead: true,
+	allowBlank: false,
+	forceSelection: true,
+    mode: 'local',
+    triggerAction: 'all',
+    emptyText: 'Selecciona...',
+    selectOnFocus: true
 });
 
 var acu_calidad_calidadaguadistribuida_gridpanel = new Ext.grid.GridPanel({
@@ -100,52 +166,70 @@ var acu_calidad_calidadaguadistribuida_gridpanel = new Ext.grid.GridPanel({
 	//id: 'acu_calidad_calidadaguadistribuida_gridpanel',
 	plugins: [acu_calidad_calidadaguadistribuida_roweditor],
 	columnWidth: '1',
+	autoWidth: true,
 	height: 255,
 	frame: true,
 	stripeRows: true,
 	autoExpandColumn: 'parametros',
+	autoExpandMax: 700,
 	clicksToEdit:1,
 	title: 'Presente los resultados de los an&#225;lisis del agua que distribuye:',
 	columns: [
-		{id:'parametros',header: "Par&aacute;metros", width: 200, sortable: true, dataIndex: 'parametros', resizable: false},
-		{header: "Frecuencia<br>M&iacute;nima", width: 70,sortable: true, dataIndex: 'frecuenciaMin', resizable: false},
-		{header: "Punto 1:", width: 70,sortable: true, dataIndex: 'punto1', editor: new Ext.form.NumberField({ allowBlank: false, maxValue: 100000}), resizable: false},
-		{header: "Punto 2:", width: 70, sortable: true, dataIndex: 'punto2', editor: new Ext.form.NumberField({ allowBlank: false, maxValue: 100000}), resizable: false},
-		{header: "Punto 3:", width: 70, sortable: true, dataIndex: 'punto3', editor: new Ext.form.NumberField({ allowBlank: false, maxValue: 100000}), resizable: false},
-		{header: "Frecuencia<br>Real:", width: 70, sortable: true, dataIndex: 'frecuenciaReal', editor: new Ext.form.NumberField({ allowBlank: false, maxValue: 100000}), resizable: false}
-		/*
-		{header: 'Punto', editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false, maxValue: 100000})},
-		{header: 'Turbiedad (UNT)', editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false, maxValue: 100000})},
-		{header: 'Color Aparente (UPC)', editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false, maxValue: 100000})},
-		{header: 'Cloro residual libre (mg/l)', editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false, maxValue: 100000})},
-		{header: 'pH', editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false, maxValue: 100000})},
-		{header: 'Coliformes Totales UFC/100 ml', editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false, maxValue: 100000})},
-		{header: 'Eschericha Coli en 100 ml', editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false, maxValue: 100000})},
-		{header: 'Carbono Orgánico Total (mg/l)', editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false, maxValue: 100000})},
-		{header: 'Fluoruros (mg/l)', editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false, maxValue: 100000})},
-		{header: 'Frecuencia minima', editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false, maxValue: 100000})},
-		{header: 'Frecuencia real', editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false, maxValue: 100000})}*/
+		{
+			header: "Id parametro", 
+			hidden: true, 
+			dataIndex: 'acu_ppr_id',
+			readOnly: true
+		},
+		{
+			id:'parametros',
+			header: "Par&aacute;metros", 
+			width: 200, 
+			dataIndex: 'acu_ppr_nombre_parametro',
+			editor: new Ext.form.TextField({ allowBlank: false})
+		},
+		{
+			header: "Frecuencia M&iacute;nima", 
+			width: 120, 
+			dataIndex: 'acu_pfe_frecuencia_minima', 
+			editor: acu_pfe_frecuencia_minima_combobox
+		},
+		{
+			header: "Frecuencia Real", 
+			width: 120, 
+			dataIndex: 'acu_pfe_frecuencia_real', 
+			editor: acu_pfe_frecuencia_real_combobox
+		},
+		{
+			header: "Punto 1:", 
+			width: 90, 
+			dataIndex: 'acu_rep_resultado_punto_1', 
+			editor: new Ext.form.NumberField({ allowBlank: false, maxValue: 100000})
+		},
+		{
+			header: "Punto 2:", 
+			width: 90, 
+			dataIndex: 'acu_rep_resultado_punto_2', 
+			editor: new Ext.form.NumberField({ allowBlank: false, maxValue: 100000})
+		},
+		{
+			header: "Punto 3:", 
+			width: 90, 
+			dataIndex: 'acu_rep_resultado_punto_3', 
+			editor: new Ext.form.NumberField({ allowBlank: false, maxValue: 100000})
+		}
+		
 	],
 	tbar: [
 		{
-			text: 'Agregar punto',
-			//iconCls: 'agregar',
-			//handler: acu_trabajadoresyvinculacion_agregarpersonaloperativo
-		}, '-', 
-		{
 			text: 'Agregar parametro',
 			//iconCls: 'agregar',
-			//handler: acu_trabajadoresyvinculacion_agregarpersonaloperativo
-		},
-		{
-			text: 'Borrar punto',
-			//iconCls: 'eliminar',
-			//handler: acu_trabajadoresyvinculacion_eliminarpersonaloperativo
-		}, '-',
+			handler: acu_calidadaguadistribuida_agregarparametro
+		},'-',
 		{
 			text: 'Borrar parametro',
 			//iconCls: 'eliminar',
-			//handler: acu_trabajadoresyvinculacion_eliminarpersonaloperativo
+			handler: acu_calidadaguadistribuida_borrarparametro
 		}, '-'
 	],
 	viewConfig: {
@@ -207,3 +291,73 @@ var form_acu_calidad_calidadaguadistribuida = new Ext.FormPanel({
 	    }
 	]
 });
+
+function acu_calidadaguadistribuida_guardarpuntos(){
+	var rec = acu_calidad_calidadaguadistribuida_gridpanel.getSelectionModel().getSelected();
+	subirDatos(
+		form_acu_calidad_calidadaguadistribuida, 
+		'acueducto_calidadaguadistribuida/actualizarCalidadAguaDistribuida',
+		{
+			acu_ppr_id: rec.get('acu_ppr_id'),
+			acu_ppr_nombre_parametro: rec.get('acu_ppr_nombre_parametro'),
+			acu_pfe_frecuencia_minima: rec.get('acu_pfe_frecuencia_minima'),
+			acu_rep_resultado_punto_1: rec.get('acu_rep_resultado_punto_1'),
+			acu_rep_resultado_punto_2: rec.get('acu_rep_resultado_punto_2'),
+			acu_rep_resultado_punto_3: rec.get('acu_rep_resultado_punto_3'),
+			acu_pfe_frecuencia_real: rec.get('acu_pfe_frecuencia_real')
+		},
+		function(){
+		}
+	);
+}
+
+function acu_calidadaguadistribuida_subirdatos(){
+	subirDatos(
+		form_acu_calidad_calidadaguadistribuida, 
+		'acueducto_calidadaguadistribuida/actualizarCalidadAguaDistribuida',
+		{
+		},
+		function(){
+			Ext.getCmp('tabp_acu_calidad').setActiveTab(1);
+		}
+	);
+}
+
+function acu_calidadaguadistribuida_agregarparametro(){
+	var row = new acu_calidad_calidadaguadistribuida_gridpanel.store.recordType({
+		acu_ppr_id: '',
+		acu_ppr_nombre_parametro: '',
+		acu_pfe_frecuencia_minima: '',
+		acu_rep_resultado_punto_1: 0,
+		acu_rep_resultado_punto_2: 0,
+		acu_rep_resultado_punto_3: 0,
+		acu_pfe_frecuencia_real: ''
+	});
+	acu_calidad_calidadaguadistribuida_roweditor.stopEditing();
+	acu_calidad_calidadaguadistribuida_gridpanel.store.insert(0, row);
+}
+
+function acu_calidadaguadistribuida_borrarparametro(){
+	var rec = acu_calidad_calidadaguadistribuida_gridpanel.getSelectionModel().getSelected();
+	
+	if (!rec) {
+		return false;
+	}
+	
+	if(rec.get('acu_ppr_id') == ''){
+		acu_calidad_calidadaguadistribuida_gridpanel.store.remove(rec);
+	}
+	else{
+		subirDatos(
+			form_acu_calidad_calidadaguadistribuida, 
+			'acueducto_calidadaguadistribuida/eliminarParametro',
+			{
+				acu_ppr_id: rec.get('acu_ppr_id')
+			},
+			function(){
+				acu_calidad_calidadaguadistribuida_datastore.load();
+			}
+		);
+	}
+}
+
