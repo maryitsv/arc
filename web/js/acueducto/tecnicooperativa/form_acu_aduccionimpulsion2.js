@@ -22,7 +22,9 @@ var form_acu_aduccionimpulsion2 = new Ext.form.FormPanel({
                 url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'subirDatos2'),
                 clientValidation: false
             });
-            tecnicooperativa_acueducto_tabpanel.setActiveTab(4);
+            form_acu_aduccionimpulsion3.show();
+            form_acu_aduccionimpulsion2.hide();
+            //            tecnicooperativa_acueducto_tabpanel.setActiveTab(4);
         }
     }]
 });
@@ -804,10 +806,9 @@ form_acu_aduccionimpulsion2.add({
     }]
 });
 
-var panel_aduccion_impulsion = new Ext.Panel({
-    renderTo: 'div_form_acu_aduccionimpulsion',
-    autoWidth: true,
-    items: [form_acu_aduccionimpulsion, form_acu_aduccionimpulsion2]
-});
-
+//var panel_aduccion_impulsion = new Ext.Panel({
+//    renderTo: 'div_form_acu_aduccionimpulsion',
+//    autoWidth: true,
+//    items: [form_acu_aduccionimpulsion, form_acu_aduccionimpulsion2]
+//});
 //form_acu_aduccionimpulsion2.render('div_form_acu_aduccionimpulsion2');
