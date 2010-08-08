@@ -45,4 +45,15 @@ class TecnicooperativareddistribucionacueductoPeer extends BaseTecnicooperativar
 			}
 		}
 	}
+
+	public static function consultarRedSiExiste($topId, $tipoRedId, $materialId = null) {
+		$criteria = new Criteria();
+		$criteria->add(TecnicooperativareddistribucionacueductoPeer::TORD_TOP_ID, $topId);
+		$criteria->add(TecnicooperativareddistribucionacueductoPeer::TORD_RED_DISTRIBUCION_ID, $tipoRedId);
+		if($materialId) {
+			$criteria->add(TecnicooperativareddistribucionacueductoPeer::TORD_MATERIAL_DISTRIBUCION_ID, $materialId);
+		}
+
+		return TecnicooperativareddistribucionacueductoPeer::doSelectOne($criteria);
+	}
 } // TecnicooperativareddistribucionacueductoPeer

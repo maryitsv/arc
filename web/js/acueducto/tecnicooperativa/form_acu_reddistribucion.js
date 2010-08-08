@@ -499,29 +499,32 @@ var acu_reddistribucion_datastore = new Ext.data.Store({
         name: 'tord_redes_primarias_pvc_edad',
         type: 'int'
     }, {
-        name: 'tord_manguera',
+        name: 'tord_redes_secundarias',
         type: 'int'
     }, {
-        name: 'tord_manguera_polietileno_hd_diametro',
+        name: 'tord_redes_secundarias_asbesto_cemento_diametro',
         type: 'int'
     }, {
-        name: 'tord_manguera_polietileno_hd_edad',
+        name: 'tord_redes_secundarias_asbesto_cemento_edad',
         type: 'int'
     }, {
-        name: 'tord_manguera_polietileno_ld_diametro',
+        name: 'tord_redes_secundarias_hierro_ductil_diametro',
         type: 'int'
     }, {
-        name: 'tord_manguera_polietileno_ld_edad',
+        name: 'tord_redes_secundarias_hierro_ductil_edad',
         type: 'int'
     }, {
-        name: 'tord_manguera_otro_edad',
+        name: 'tord_redes_secundarias_concreto_diametro',
         type: 'int'
     }, {
-        name: 'tord_manguera_otro_diametro',
+        name: 'tord_redes_secundarias_concreto_edad',
         type: 'int'
     }, {
-        name: 'tord_manguera_otro_nombre',
-        type: 'string'
+        name: 'tord_redes_secundarias_pvc_diametro',
+        type: 'int'
+    }, {
+        name: 'tord_redes_secundarias_pvc_edad',
+        type: 'int'
     }])
 });
 

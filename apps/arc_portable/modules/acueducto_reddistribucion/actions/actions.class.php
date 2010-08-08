@@ -51,6 +51,82 @@ class acueducto_reddistribucionActions extends sfActions
 	}
 
 	public function executeObtenerDatos() {
-		return sfView::NONE;
+		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
+		$pps_ser_id = 1;
+
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+
+		$datos = array();
+
+		if($tecnicoOperativo) {
+			$campos = array();
+
+			$redes_primarias = TecnicooperativareddistribucionacueductoPeer::consultarRedSiExiste($tecnicoOperativo->getTopId(), 1);
+
+			if($redes_primarias) {
+				$campos['tord_redes_primarias'] = 1;
+
+				$asbestoCemento = TecnicooperativareddistribucionacueductoPeer::consultarRedSiExiste($tecnicoOperativo->getTopId(), 1, 1);
+				if($asbestoCemento){
+					$campos['tord_redes_primarias_asbesto_cemento_diametro'] = $asbestoCemento->getTordMaterialDiametro();
+					$campos['tord_redes_primarias_asbesto_cemento_edad'] = $asbestoCemento->getTordMaterialEdad();
+				}
+
+				$hierroDuctil = TecnicooperativareddistribucionacueductoPeer::consultarRedSiExiste($tecnicoOperativo->getTopId(), 1, 2);
+				if($hierroDuctil){
+					$campos['tord_redes_primarias_hierro_ductil_diametro'] = $hierroDuctil->getTordMaterialDiametro();
+					$campos['tord_redes_primarias_hierro_ductil_edad'] = $hierroDuctil->getTordMaterialEdad();
+				}
+
+				$concreto = TecnicooperativareddistribucionacueductoPeer::consultarRedSiExiste($tecnicoOperativo->getTopId(), 1, 3);
+				if($concreto){
+					$campos['tord_redes_primarias_concreto_diametro'] = $concreto->getTordMaterialDiametro();
+					$campos['tord_redes_primarias_concreto_edad'] = $concreto->getTordMaterialEdad();
+				}
+
+				$pvc = TecnicooperativareddistribucionacueductoPeer::consultarRedSiExiste($tecnicoOperativo->getTopId(), 1, 4);
+				if($pvc){
+					$campos['tord_redes_primarias_pvc_diametro'] = $pvc->getTordMaterialDiametro();
+					$campos['tord_redes_primarias_pvc_edad'] = $pvc->getTordMaterialEdad();
+				}
+			}
+
+			$redes_secundarias = TecnicooperativareddistribucionacueductoPeer::consultarRedSiExiste($tecnicoOperativo->getTopId(), 2);
+
+			if($redes_secundarias) {
+				$campos['tord_redes_secundarias'] = 1;
+
+				$asbestoCemento = TecnicooperativareddistribucionacueductoPeer::consultarRedSiExiste($tecnicoOperativo->getTopId(), 2, 1);
+				if($asbestoCemento){
+					$campos['tord_redes_secundarias_asbesto_cemento_diametro'] = $asbestoCemento->getTordMaterialDiametro();
+					$campos['tord_redes_secundarias_asbesto_cemento_edad'] = $asbestoCemento->getTordMaterialEdad();
+				}
+
+				$hierroDuctil = TecnicooperativareddistribucionacueductoPeer::consultarRedSiExiste($tecnicoOperativo->getTopId(), 2, 2);
+				if($hierroDuctil){
+					$campos['tord_redes_secundarias_hierro_ductil_diametro'] = $hierroDuctil->getTordMaterialDiametro();
+					$campos['tord_redes_secundarias_hierro_ductil_edad'] = $hierroDuctil->getTordMaterialEdad();
+				}
+
+				$concreto = TecnicooperativareddistribucionacueductoPeer::consultarRedSiExiste($tecnicoOperativo->getTopId(), 2, 3);
+				if($concreto){
+					$campos['tord_redes_secundarias_concreto_diametro'] = $concreto->getTordMaterialDiametro();
+					$campos['tord_redes_secundarias_concreto_edad'] = $concreto->getTordMaterialEdad();
+				}
+
+				$pvc = TecnicooperativareddistribucionacueductoPeer::consultarRedSiExiste($tecnicoOperativo->getTopId(), 2, 4);
+				if($pvc){
+					$campos['tord_redes_secundarias_pvc_diametro'] = $pvc->getTordMaterialDiametro();
+					$campos['tord_redes_secundarias_pvc_edad'] = $pvc->getTordMaterialEdad();
+				}
+			}
+
+			$datos[] = $campos;
+		}
+
+		$result = array();
+		$result['data'] = $datos;
+		return $this->renderText(json_encode($result));
 	}
 }
