@@ -213,7 +213,7 @@
 		frame: true,
                 monitorResize:true,  
 		labelAlign: 'left',
-		title: 'Gestion de usuarios',
+		title: 'Gesti&oacute;n de usuarios',
 		bodyStyle:'padding:5px',
 		autoScroll:true,
 		layout:'column',

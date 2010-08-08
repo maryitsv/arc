@@ -22,7 +22,8 @@ var form_acu_conduccionaguacruda2 = new Ext.form.FormPanel({
                 url: getAbsoluteUrl('acueducto_conduccionaguacruda', 'subirDatos2'),
                 clientValidation: false
             });
-            tecnicooperativa_acueducto_tabpanel.setActiveTab(9);
+            form_acu_conduccionaguacruda3.show();
+            form_acu_conduccionaguacruda2.hide();
         }
     }]
 });
@@ -802,12 +803,6 @@ form_acu_conduccionaguacruda2.add({
             }, tolc_manguera_polietileno_hd_edad, tolc_manguera_polietileno_ld_edad, tolc_manguera_otro_edad]
         }]
     }]
-});
-
-var panel_aduccion_impulsion = new Ext.Panel({
-    renderTo: 'div_form_acu_conduccionaguacruda',
-    autoWidth: true,
-    items: [form_acu_conduccionaguacruda, form_acu_conduccionaguacruda2]
 });
 
 //form_acu_conduccionaguacruda2.render('div_form_acu_conduccionaguacruda2');

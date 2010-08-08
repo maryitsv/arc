@@ -481,7 +481,7 @@ create table FUENTESSUBTERRANEAS
 (
     FSU_ID               SERIAL NOT NULL,
     FSU_FUE_ID           INT NOT NULL,
-    FSU_NOMBRE           VARCHAR(100) NOT NULL,
+    FSU_NOMBRE_FUENTE           VARCHAR(100) NOT NULL,
     FSU_PROMEDIO_CAPTACION FLOAT(16),
     FSU_ENTIDAD_EXPIDIO_CONCESION VARCHAR(200),
     FSU_FECHA_EXPEDICION_CONCESION DATE,
@@ -958,6 +958,10 @@ create table TECNICOOPERATIVAADUCCIONIMPULSIONACUEDUCTO
    TOAI_LONGITUD        float(16),
    TOAI_DIAMETRO        float(16),
    TOAI_EDAD            int,
+ 
+   TOAI_NOMBRE_CANAL    VARCHAR(100),
+   TOAI_NOMBRE_MATERIAL VARCHAR(100),
+ 
    primary key (TOAI_ID)
 );
 
@@ -1066,6 +1070,10 @@ create table TECNICOOPERATIVALINEACONDUCCIONAGUACRUDAACUEDUCTO
    TOLC_LONGITUD        float(16),
    TOLC_DIAMETRO        float(16),
    TOLC_EDAD            int,
+ 
+   TOLC_NOMBRE_CANAL    VARCHAR(100),
+   TOLC_NOMBRE_MATERIAL VARCHAR(100),
+ 
    primary key (TOLC_ID)
 );
 
@@ -1121,6 +1129,10 @@ create table TECNICOOPERATIVAREDDISTRIBUCIONACUEDUCTO
    TORD_MATERIAL_DISTRIBUCION_ID int not null,
    TORD_MATERIAL_DIAMETRO float(16),
    TORD_MATERIAL_EDAD   int,
+ 
+   TORD_NOMBRE_CANAL    VARCHAR(100),
+   TORD_NOMBRE_MATERIAL VARCHAR(100),
+ 
    primary key (TORD_ID)
 );
 
@@ -1214,19 +1226,23 @@ create table TIPOCANAL
    primary key (TCA_ID)
 );
 
+
+
 /*==============================================================*/
 /* Table: TIPOFUENTESUPERFICIAL                                 */
 /*==============================================================*/
+/* eliminada porque se convirtio en un atributo de la tabla fuentes superficiales, 2010-08-06
 create table TIPOFUENTESUPERFICIAL
 (
    TFU_ID               serial not null,
-   TFU_FUE_ID           int not null,
+    TFU_FUE_ID           int not null,
    TFU_NACIMIENTO       varchar(100) not null,
    TFU_QUEBRADA_RIO     varchar(100),
    TFU_RESERVORIO       varchar(100),
    TFU_MAR              varchar(100),
    primary key (TFU_ID)
 );
+*/
 
 /*==============================================================*/
 /* Table: TRABAJADORESYVINCULACION                              */
@@ -1594,8 +1610,6 @@ alter table TECNICOOPERATIVAREDDISTRIBUCIONACUEDUCTO add constraint FK_REFERENCE
 alter table TECNICOOPERATIVO add constraint FK_REFERENCE_54 foreign key (TOP_PPS_PRE_ID, TOP_PPS_ANIO, TOP_PPS_SER_ID)
       references PERIODOPORPRESTADORSERVICIO (PPS_PRE_ID, PPS_ANIO, PPS_SER_ID) on delete restrict on update cascade;
 
-alter table TIPOFUENTESUPERFICIAL add constraint FK_REFERENCE_14 foreign key (TFU_FUE_ID)
-      references FUENTES (FUE_ID) on delete restrict on update restrict;
 
 
 alter table TRATAMIENTOAPROVECHAMIENTORESIDUOSSOLIDOSASEO add constraint FK_REFERENCE_79 foreign key (TAP_TOP_ID)
@@ -1754,15 +1768,21 @@ insert into estrato values (9,'comercial',0);
 insert into estrato values (10,'oficial',0);
 insert into estrato values (11,'especial',0);
 insert into estrato values (12,'temporal',0);
+SELECT setval ('estrato_est_id_seq', (select max(est_id) from estrato));
+
+
 
 insert into servicio values (1,'acueducto');
 insert into servicio values (2,'alcantarillado');
 insert into servicio values (3,'aseo');
+SELECT setval ('servicio_ser_id_seq', (select max(ser_id) from servicio));
+
 
 insert into perfil(per_id, per_nombre) values (1, 'administrador');
 insert into perfil(per_id, per_nombre) values (2, 'prestador');
 insert into perfil(per_id, per_nombre) values (3, 'alcaldia');
 insert into perfil(per_id, per_nombre) values (4, 'gobernacion');
+SELECT setval ('perfil_per_id_seq', (select max(per_id) from perfil));
 
 
 insert into autoridadambiental (aua_nombre) values ('CODECHOCO');
@@ -1784,8 +1804,10 @@ insert into autoridadambiental (aua_nombre) values ('AREA METROPOLITANA DEL VALL
 insert into autoridadambiental (aua_nombre) values ('MINISTERIO DE AMBIENTE, VIVIENDA Y DESARROLLO TERRITORIAL');
 insert into autoridadambiental (aua_nombre) values ('CORPORACION AUTONOMA REGIONAL DEL ATLANTICO');
 insert into autoridadambiental (aua_nombre) values ('CORPORACION AUTONOMA REGIONAL DEL CAUCA -CRC');
-insert into autoridadambiental (aua_nombre) values ('CORPORACION AUTONOMA REGIONAL DE NARI�O');
+insert into autoridadambiental (aua_nombre) values ('CORPORACION AUTONOMA REGIONAL DE NARINO');
 insert into autoridadambiental (aua_nombre) values ('OTRA');
+SELECT setval ('autoridadambiental_aua_id_seq', (select max(aua_id) from autoridadambiental));
+
 
 insert into parametrospuntosred (ppr_nombre_paramentro) values ('Turbulencia');
 insert into parametrospuntosred (ppr_nombre_paramentro) values ('Color aparente');
@@ -1795,19 +1817,22 @@ insert into parametrospuntosred (ppr_nombre_paramentro) values ('Colifirme total
 insert into parametrospuntosred (ppr_nombre_paramentro) values ('Escherichia coli');
 insert into parametrospuntosred (ppr_nombre_paramentro) values ('Carbono organico total');
 insert into parametrospuntosred (ppr_nombre_paramentro) values ('Fluoruros');
+SELECT setval ('parametrospuntosred_ppr_id_seq', (select max(ppr_id) from parametrospuntosred));
+
 
 INSERT INTO ESTADOGENERAL (esg_id,esg_nombre) values (1, 'Bueno');
 INSERT INTO ESTADOGENERAL (esg_id,esg_nombre) values (2, 'Regular');
 INSERT INTO ESTADOGENERAL (esg_id,esg_nombre) values (3, 'Malo');
+SELECT setval ('estadogeneral_esg_id_seq', (select max(esg_id) from ESTADOGENERAL));
 
 
 INSERT INTO ACTIVIDADESAEJECUTARPORPRESTADORALCANTARILLADO (aaep_nombre) VALUES ('Recoleccion y transporte');
-
 INSERT INTO ACTIVIDADESAEJECUTARPORPRESTADORALCANTARILLADO (aaep_nombre) VALUES ('Tratamiento');
-
 INSERT INTO ACTIVIDADESAEJECUTARPORPRESTADORALCANTARILLADO (aaep_nombre) VALUES ('Operacion y Mantenimiento');
-
 INSERT INTO ACTIVIDADESAEJECUTARPORPRESTADORALCANTARILLADO (aaep_nombre) VALUES ('Disposicion final');
+SELECT setval ('actividadesaejecutarporprestadoralcantarillado_aaep_id_seq', (select max(aaep_id) from ACTIVIDADESAEJECUTARPORPRESTADORALCANTARILLADO));
+
+
 
 INSERT INTO TIPODESOLUCIONINDIVIDUALALCANTARILLADO (tdsia_id, tdsia_nombre) VALUES (1, 'Letrina' );
 INSERT INTO TIPODESOLUCIONINDIVIDUALALCANTARILLADO (tdsia_id, tdsia_nombre) VALUES (2, 'Tasa Sanitaria' );
@@ -1815,7 +1840,6 @@ INSERT INTO TIPODESOLUCIONINDIVIDUALALCANTARILLADO (tdsia_id, tdsia_nombre) VALU
 INSERT INTO TIPODESOLUCIONINDIVIDUALALCANTARILLADO (tdsia_id, tdsia_nombre) VALUES (4, 'Inodoro de alto consumo' );
 INSERT INTO TIPODESOLUCIONINDIVIDUALALCANTARILLADO (tdsia_id, tdsia_nombre) VALUES (5, 'Campo Abierto' );
 INSERT INTO TIPODESOLUCIONINDIVIDUALALCANTARILLADO (tdsia_id, tdsia_nombre) VALUES (6, 'Otro' );
-
 SELECT setval ('tipodesolucionindividualalcantarillado_tdsia_id_seq', (select max(tdsia_id) from TIPODESOLUCIONINDIVIDUALALCANTARILLADO));
 
 INSERT INTO CATEGORIADETIPODESOLUCIONINDIVIDUALALCANTARILLADO (ctdsia_id, ctdsia_nombre, ctdsia_tdsia_id) VALUES (1, 'Letrina Seca', 1 );
@@ -1857,6 +1881,10 @@ INSERT INTO materialcanal (mca_id, mca_nombre) VALUES (5, 'Hierro ductil');
 INSERT INTO materialcanal (mca_id, mca_nombre) VALUES (6, 'PVC');
 INSERT INTO materialcanal (mca_id, mca_nombre) VALUES (7, 'Polietileno HD');
 INSERT INTO materialcanal (mca_id, mca_nombre) VALUES (8, 'Polietileno LD');
+INSERT INTO materialcanal (mca_id, mca_nombre) VALUES (9, 'Otro manguera');
+INSERT INTO materialcanal (mca_id, mca_nombre) VALUES (10, 'Otro 1');
+INSERT INTO materialcanal (mca_id, mca_nombre) VALUES (11, 'Otro 2');
+INSERT INTO materialcanal (mca_id, mca_nombre) VALUES (12, 'Otro 3');
 SELECT setval ('materialcanal_mca_id_seq', (select max(mca_id) from materialcanal));
 
 
@@ -1864,13 +1892,23 @@ INSERT INTO tipocanal (tca_id, tca_nombre) VALUES (1, 'Canal abierto');
 INSERT INTO tipocanal (tca_id, tca_nombre) VALUES (2, 'Canal cubierto');
 INSERT INTO tipocanal (tca_id, tca_nombre) VALUES (3, 'Tuberia');
 INSERT INTO tipocanal (tca_id, tca_nombre) VALUES (4, 'Manguera');
-
+INSERT INTO tipocanal (tca_id, tca_nombre) VALUES (5, 'Otro');
 SELECT setval ('tipocanal_tca_id_seq', (select max(tca_id) from tipocanal));
 
 
 INSERT INTO rango (ran_id,ran_tipo) values (1, '>600');
 INSERT INTO rango (ran_id,ran_tipo) values (2, '<600');
 INSERT INTO rango (ran_id,ran_tipo) values (3, '>100');
+
+
+INSERT INTO usuario (usu_id,usu_per_id,usu_login,
+usu_clave,usu_estado) values (1, 2,'emcali','43f2d4a22e71a7ac03518bbdc4a22e7b','habilitado');
+INSERT INTO prestador (pre_id,pre_ran_id,pre_usu_id,pre_nombre_prestador,PRE_IDENTIFICACION_PRESTADOR, PRE_TIPO_IDENTIFICACION_PRESTADOR) values (1, 1,1,'emcali','12','Rut');
+
+
+INSERT INTO prestadorporservicio VALUES(1,1,'hola prueba');
+
+
 
 \echo 
 \echo "AVISO: Subir los scripts: departamentos.sql y municipios.sql"

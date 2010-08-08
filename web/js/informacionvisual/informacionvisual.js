@@ -55,7 +55,7 @@
 				selectOnFocus: true
 			},
 			{
-				fieldLabel: 'Descripcion',
+				fieldLabel: 'Descripci&oacute;n',
 				id:'iv_descripcion',
 				name:'iv_descripcion',
 				allowBlank:false,
@@ -138,7 +138,7 @@
 		{id: 'imagen', header: "Imagen", width: 60, dataIndex: 'imagen', renderer: informacionvisual_ponericono},
 		{ header: "Nombre",  dataIndex: 'iv_nombre'},
 		{ header: "Tipo archivo", width: 70, dataIndex: 'iv_tipo'},
-		{id: 'iv_descripcion', header: "Descripcion", width: 230,  dataIndex: 'iv_descripcion'}
+		{id: 'iv_descripcion', header: "Descripci&oacute;n", width: 230,  dataIndex: 'iv_descripcion'}
 	]
 	});
 
@@ -147,7 +147,7 @@
     //cargamos el modelo de la tabla
 	var informacionvisual_gridpanel = new Ext.grid.GridPanel({
 		id: 'informacionvisual_gridpanel',
-		title:'Informacion visual existente',
+		title:'Informaci&oacute;n visual existente',
 		columnWidth: '.6',
 		//stripeRows:true,
 		frame: true,
@@ -178,8 +178,8 @@
 			pageSize: 10,
 			store: informacionvisual_datastore,
 			displayInfo: true,
-			displayMsg: 'Informacion {0} - {1} de {2}',
-			emptyMsg: "No hay informacion visual"
+			displayMsg: 'Informaci&oacute;n {0} - {1} de {2}',
+			emptyMsg: "No hay informaci&oacute;n visual"
 		}),
 		view: new Ext.grid.GroupingView()
     	});

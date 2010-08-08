@@ -46,7 +46,7 @@ aco_tarif_estr_servicio_oficial	ACO_TARIF_ESTR_SERVICIO_OFICIAL
 			{  
 			   xtype:'textfield', 
 			   labelStyle: 'width: 370px; text-align:right;'+letra,
-			   fieldLabel: '<html>En que a&ntilde;o lo implemento?</html>',
+			   fieldLabel: '<html>¿En qu&eacute; a&ntilde;o lo implement&oacute;?</html>',
 			   name:'ase_aco_anio_ela_impl_catastro_usu',
 			   id:'ase_aco_anio_ela_impl_catastro_usu',
 			   listeners:{

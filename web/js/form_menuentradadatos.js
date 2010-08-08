@@ -53,8 +53,8 @@ init: function () {
 											]                
 										},{
 											id: 'informacion_visual',
-											title: 'Informaci&oacute; visual',
-											tabTip: 'Informaci&oacute; visual del Prestador',
+											title: 'Informaci&oacute;n Visual',
+											tabTip: 'Informaci&oacute;n Visual del Prestador',
 											border: false,
 											iconCls: 'x-icon-configuration',
 											style: 'padding: 10px;',
@@ -83,10 +83,10 @@ init: function () {
 												}
 										]
 										},{
-										title: 'Informacion Financiera',
+										title: 'Informaci&oacute;n Financiera',
 										id:'acueducto_financiera',
 										iconCls: 'x-icon-templates',
-										tabTip: 'Informacion Financiera',
+										tabTip: 'Informaci&oacute;n Financiera',
 										style: 'padding: 10px; ',
 										items: [{
 													frame: true,
@@ -94,10 +94,10 @@ init: function () {
 												}
 										]	
 									},{
-										title: 'Informacion Comercial',
+                                        title: 'Informaci&oacute;n Comercial',
 										iconCls: 'x-icon-templates',
 										id: 'acueducto_comercial',
-										tabTip: 'Informacion Comercial',
+                                            tabTip: 'Informaci&oacute;n Comercial',
 										style: 'padding: 10px;',
 										items: [{
 													autoScroll: true,
@@ -106,10 +106,10 @@ init: function () {
 												}
 										]	
 									},{
-										title: 'Tecnico-Operativa',
+                                        title: 'T&eacute;cnico-Operativa',
 										iconCls: 'x-icon-templates',
 										id: 'acueducto_tecnicooperativa',
-										tabTip: 'Informacion <br/>Tecnico-Operativa',
+										tabTip: 'Informaci&oacute;n <br/>T&eacute;cnico-Operativa',
 										style: 'padding: 10px;',
 										items: [{
 													autoScroll: true,
@@ -159,10 +159,10 @@ init: function () {
 										}
 								]
 									},{
-										title: 'Informacion Financiera',
+										title: 'Informaci&oacute;n Financiera',
 										id: 'alcantarillado_financiera',
 										iconCls: 'x-icon-templates',
-										tabTip: 'Informacion Financiera',
+										tabTip: 'Informaci&oacute;n Financiera',
 										style: 'padding: 10px;',
 										items: [{
 													autoScroll: true,
@@ -171,10 +171,10 @@ init: function () {
 												}
 										]	
 									},{
-										title: 'Informacion Comercial',
+                                        title: 'Informaci&oacute;n Comercial',
 										iconCls: 'x-icon-templates',
 										id: 'alcantarillado_comercial',
-										tabTip: 'Informacion Comercial de Alcantarillado',
+                                        tabTip: 'Informaci&oacute;n Comercial de Alcantarillado',
 										style: 'padding: 10px;',
 										items: [{
 													autoScroll: true,
@@ -183,10 +183,10 @@ init: function () {
 												}
 										]	
 									},{
-										title: 'Tecnico-Operativa',
+                                        title: 'T&eacute;cnico-Operativa',
 										iconCls: 'x-icon-templates',
 										id: 'alcantarillado_tecnicooperativa',
-										tabTip: 'Informacion <br/>Tecnico-Operativa',
+										tabTip: 'Informaci&oacute;n <br/>T&eacute;cnico-Operativa',
 										style: 'padding: 10px;',
 										layout:'fit',
 										items: [{
@@ -213,10 +213,10 @@ init: function () {
 												 }
 										]
 									},{
-										title: 'Informacion Financiera',
+										title: 'Informaci&oacute;n Financiera',
 										id:'aseo_financiera',
 										iconCls: 'x-icon-templates',
-										tabTip: 'Informacion Financiera',
+										tabTip: 'Informaci&oacute;n Financiera',
 										style: 'padding: 10px;',
 										items: [{
 													autoScroll: true,
@@ -225,10 +225,10 @@ init: function () {
 												}
 										]	
 									},{
-										title: 'Informacion Comercial',
+                                        title: 'Informaci&oacute;n Comercial',
 										iconCls: 'x-icon-templates',
 										id: 'aseo_comercial',
-										tabTip: 'Informacion Comercial de Aseo',
+										tabTip: 'Informaci&oacute;n Comercial de Aseo',
 										style: 'padding: 10px;',
 										items: [{
 													autoScroll: true,
@@ -237,10 +237,10 @@ init: function () {
 												}
 										]	
 									},{
-										title: 'Tecnico-Operativa',
+                                        title: 'T&eacute;cnico-Operativa',
 										iconCls: 'x-icon-templates',
 										id: 'aseo_tecnicooperativa',
-										tabTip: 'Informacion <br/>Tecnico-Operativa',
+										tabTip: 'Informaci&oacute;n <br/>T&eacute;cnico-Operativa',
 										style: 'padding: 10px;',
 										items: [{
 													autoScroll: true,
@@ -257,9 +257,9 @@ init: function () {
 											title: 'Salir',
 											tabTip: 'salir',
 											style: 'padding: 50px;',
-											html: '<center><font face="arial" size=15 color=#4E79B2>Gracias por usar ARC Pequenos Prestadores</font><br><br><br></center>',
+                                            html: '<center><font face="arial" size=15 color=#4E79B2>Gracias por usar ARC Peque&ntilde;os Prestadores</font><br><br><br></center>',
 											buttons: [{
-													text: '<font face="arial" size=5 color=black>Terminar Sesion</font>',
+													text: '<font face="arial" size=5 color=black>Terminar Sesi&oacute;n</font>',
 													//iconCls: 'salir32',
 													height: 70,
 													width: 250,
