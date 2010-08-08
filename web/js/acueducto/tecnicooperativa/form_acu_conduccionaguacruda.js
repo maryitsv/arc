@@ -430,7 +430,7 @@ acu_conduccionaguacruda_datastore.load({
 
 form_acu_conduccionaguacruda.add({
     xtype: 'fieldset',
-    title: 'Líneas de aducción - impulsión',
+    title: 'Línea de conducción de agua cruda',
     items: [{
         layout: 'column',
         items: [{
