@@ -267,28 +267,10 @@ init: function () {
 													handler: function(){  
 														subirDatosAjax(
 															'login/desautenticar', 
-															{}, function(){window.location = 'login';}, function(){}
-															);
-														/*Ext.Ajax.request({  
-														waitMsg: 'Espere por favor',
-														url: 'login/desautenticar', 
-														success: function(response, action){	  
-															obj = Ext.util.JSON.decode(response.responseText);
-															if (obj.success)
-															{
-																//Ext.example.msg('Alerta', obj.mensaje);
-																window.location = 'login';
-															}	
-															else if (obj.success == false)
-															{
-																Ext.example.msg('Error', obj.errors.reason);
-															}
-														},
-														failure: function(response){
-															var result=response.responseText;
-															Ext.example.msg('Error', 'no se pudo conectar a la base de datos intente mas tarde'); 
-														}
-														});*/
+															{}, 
+															function(){window.location = 'login';},
+ 															function(){}
+														);
 														
 													}
 												  }

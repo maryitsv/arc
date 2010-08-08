@@ -75,7 +75,12 @@ init: function () {
 													scale: 'large',
 													handler: function(){  
 													
-														window.location = 'login';
+														subirDatosAjax(
+															'login/desautenticar', 
+															{}, 
+															function(){window.location = 'login';},
+ 															function(){}
+														);
 													}
 												  }
 											]            
