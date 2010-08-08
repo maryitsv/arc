@@ -24,12 +24,12 @@ var tabp_acu_administrativafinanciera = new Ext.TabPanel( {
 			},
 			{
 				frame: true,
-				title: 'Plan de Gestion y resultados.',
+				title: 'Plan de Gesti&oacute;n y resultados.',
 				autoLoad: { url: url_arc+'acueducto_gestionresultado', scripts: true, scope: this }
 			},
 			{
 				frame: true,
-				title: 'Trabajadores y su vinculacion.',
+				title: 'Trabajadores y su vinculaci&oacute;n.',
 				autoLoad: { url: url_arc+'acueducto_trabajadoresyvinculacion', scripts: true, scope: this }
 			}
            ]
