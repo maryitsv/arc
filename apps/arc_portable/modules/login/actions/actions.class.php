@@ -61,11 +61,6 @@ class loginActions extends sfActions
 				return $this->renderText("{success:true,mensaje:'".$perfil."'}");
 			}
 
-			//eto no va aqui		
-			//$this->getUser()->setAttribute('pps_anio','2010');
-			//$this->getUser()->setAttribute('pps_pre_id','5');
-			//$this->getUser()->setAttribute('pps_pre_id', 1);
-
 		}
   }
 
@@ -97,6 +92,19 @@ class loginActions extends sfActions
 			$salida =  "({success: false, errors: { reason: 'Hubo una excepcion'}})";
 		}
 		return true;
+	}
+
+	/**
+	* Este metodo se encarga de sacar al usuario del sistema
+	*/  
+	public function executeDesautenticar()
+	{
+		if($this->getUser()->isAuthenticated())
+		{
+			$this->getUser()->setAuthenticated(false);
+			$this->getUser()->getAttributeHolder()->clear();
+		}    
+		return $this->renderText("{success: true, mensaje: 'El usuario ha terminado'}");
 	}
 
   

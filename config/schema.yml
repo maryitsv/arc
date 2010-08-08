@@ -176,20 +176,20 @@ propel:
     cap_numero_directiva_hombres: { phpName: CapNumeroDirectivaHombres, type: VARCHAR, required: false }
     cap_numero_directiva_mujeres: { phpName: CapNumeroDirectivaMujeres, type: VARCHAR, required: false }
   captacion_subterranea:
-    _attributes: { phpName: CaptacionSubterranea }   
-    casb_id: { phpName: CasbId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }   
-    casb_top_id: { phpName: CasbTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onUpdate: CASCADE }   
-    casb_estado_pozo_id: { phpName: CasbEstadoPozoId, type: INTEGER, required: true }   
-    casb_estado_bomba_id: { phpName: CasbEstadoBombaId, type: INTEGER, required: true }   
-    casb_fuente_energia_id: { phpName: CasbFuenteEnergiaId, type: INTEGER, required: true } 
-  captacion_superficial:   
-    _attributes: { phpName: CaptacionSuperficial }   
-    casp_id: { phpName: CaspId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true } 
-    casp_top_id: { phpName: CaspTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onUpdate: CASCADE }   
-    casp_tipo_de_fondo: { phpName: CaspTipoDeFondo, type: VARCHAR, required: false }   
-    casp_tipo_lateral: { phpName: CaspTipoLateral, type: VARCHAR, required: false }   
-    casp_tipo_lecho_filtrante: { phpName: CaspTipoLechoFiltrante, type: VARCHAR, required: false }   
-    casp_tipo_trincho_represa: { phpName: CaspTipoTrinchoRepresa, type: VARCHAR, required: false }   
+    _attributes: { phpName: CaptacionSubterranea }
+    casb_id: { phpName: CasbId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    casb_top_id: { phpName: CasbTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onUpdate: CASCADE }
+    casb_estado_pozo_id: { phpName: CasbEstadoPozoId, type: INTEGER, required: true }
+    casb_estado_bomba_id: { phpName: CasbEstadoBombaId, type: INTEGER, required: true }
+    casb_fuente_energia_id: { phpName: CasbFuenteEnergiaId, type: INTEGER, required: true }
+  captacion_superficial:
+    _attributes: { phpName: CaptacionSuperficial }
+    casp_id: { phpName: CaspId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    casp_top_id: { phpName: CaspTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onUpdate: CASCADE }
+    casp_tipo_de_fondo: { phpName: CaspTipoDeFondo, type: VARCHAR, required: false }
+    casp_tipo_lateral: { phpName: CaspTipoLateral, type: VARCHAR, required: false }
+    casp_tipo_lecho_filtrante: { phpName: CaspTipoLechoFiltrante, type: VARCHAR, required: false }
+    casp_tipo_trincho_represa: { phpName: CaspTipoTrinchoRepresa, type: VARCHAR, required: false }
     casp_estado_estructura_id: { phpName: CaspEstadoEstructuraId, type: INTEGER, required: false }
   categoriadetipodesolucionindividualalcantarillado:
     _attributes: { phpName: Categoriadetipodesolucionindividualalcantarillado }
@@ -433,15 +433,15 @@ propel:
   parametrospuntosred:
     _attributes: { phpName: Parametrospuntosred }
     ppr_id: { phpName: PprId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    ppr_nombre_parametro: { phpName: PprNombreParametro, type: VARCHAR, size: '100', required: true }
-    _uniques: { parametrospuntosred_ppr_nombre_p: [ppr_nombre_parametro] }
+    ppr_nombre_paramentro: { phpName: PprNombreParamentro, type: VARCHAR, size: '100', required: true }
+    _uniques: { parametrospuntosred_ppr_nombre_p: [ppr_nombre_paramentro] }
   parametroxfrecuencia:
     _attributes: { phpName: Parametroxfrecuencia }
     pfe_id: { phpName: PfeId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    pfe_ppr_id_parametro: { phpName: PfePprIdParametro, type: INTEGER, required: true, foreignTable: parametrospuntosred, foreignReference: ppr_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    pfe_ppr_id_paramentro: { phpName: PfePprIdParamentro, type: INTEGER, required: true, foreignTable: parametrospuntosred, foreignReference: ppr_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     pfe_cag_id: { phpName: PfeCagId, type: INTEGER, required: true, foreignTable: calidadagua, foreignReference: cag_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     pfe_frecuencia_minima: { phpName: PfeFrecuenciaMinima, type: VARCHAR, size: '100', required: false }
-    pfe_frecuencia_real: { phpName: PfeFrecuenciaReal, type: VARCHAR, size: '100', required: false }
+    pfe_frecuencia_real: { phpName: PfeFrecuenciaReal, type: VARCHAR, required: false }
   participacionciudadana:
     _attributes: { phpName: Participacionciudadana }
     par_id: { phpName: ParId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -560,7 +560,7 @@ propel:
   resultadosxpunto:
     _attributes: { phpName: Resultadosxpunto }
     rep_id: { phpName: RepId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    rep_ppr_id_parametro: { phpName: RepPprIdParametro, type: INTEGER, required: true, foreignTable: parametrospuntosred, foreignReference: ppr_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    rep_ppr_id_paramentro: { phpName: RepPprIdParamentro, type: INTEGER, required: true, foreignTable: parametrospuntosred, foreignReference: ppr_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     rep_cag_id: { phpName: RepCagId, type: INTEGER, required: true, foreignTable: calidadagua, foreignReference: cag_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     rep_punto: { phpName: RepPunto, type: INTEGER, required: false }
     rep_resultado: { phpName: RepResultado, type: VARCHAR, required: false }
@@ -647,14 +647,8 @@ propel:
     toai_longitud: { phpName: ToaiLongitud, type: VARCHAR, required: false }
     toai_diametro: { phpName: ToaiDiametro, type: VARCHAR, required: false }
     toai_edad: { phpName: ToaiEdad, type: INTEGER, required: false }
-    toai_nombre_canal: { phpName: ToaiNombreCanal, type: VARCHAR, size: '100', required: false }   
+    toai_nombre_canal: { phpName: ToaiNombreCanal, type: VARCHAR, size: '100', required: false }
     toai_nombre_material: { phpName: ToaiNombreMaterial, type: VARCHAR, size: '100', required: false }
-  tecnicooperativaalmacenamientoacueducto:
-    _attributes: { phpName: Tecnicooperativaalmacenamientoacueducto }
-    toaa_id: { phpName: ToaaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    toaa_top_id: { phpName: ToaaTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    toaa_tan_id: { phpName: ToaaTanId, type: INTEGER, required: true, foreignTable: tanque, foreignReference: tan_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    _uniques: { tecnicooperativaalmacenamientoac: [toaa_top_id, toaa_tan_id] }
   tecnicooperativacomponentessistema:
     _attributes: { phpName: Tecnicooperativacomponentessistema }
     tocs_id: { phpName: TocsId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -747,6 +741,8 @@ propel:
     tord_material_distribucion_id: { phpName: TordMaterialDistribucionId, type: INTEGER, required: true, foreignTable: materialreddistribucion, foreignReference: mrd_id, onDelete: RESTRICT, onUpdate: CASCADE }
     tord_material_diametro: { phpName: TordMaterialDiametro, type: VARCHAR, required: false }
     tord_material_edad: { phpName: TordMaterialEdad, type: INTEGER, required: false }
+    tord_nombre_canal: { phpName: TordNombreCanal, type: VARCHAR, size: '100', required: false }
+    tord_nombre_material: { phpName: TordNombreMaterial, type: VARCHAR, size: '100', required: false }
   tecnicooperativasolucioncolectivaalcantarillado:
     _attributes: { phpName: Tecnicooperativasolucioncolectivaalcantarillado }
     tosca_id: { phpName: ToscaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -815,14 +811,6 @@ propel:
     _attributes: { phpName: Tipodesolucionindividualalcantarillado }
     tdsia_id: { phpName: TdsiaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     tdsia_nombre: { phpName: TdsiaNombre, type: VARCHAR, size: '80', required: true }
-  tipofuentesuperficial:
-    _attributes: { phpName: Tipofuentesuperficial }
-    tfu_id: { phpName: TfuId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    tfu_fue_id: { phpName: TfuFueId, type: INTEGER, required: true, foreignTable: fuentes, foreignReference: fue_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    tfu_nacimiento: { phpName: TfuNacimiento, type: VARCHAR, size: '100', required: true }
-    tfu_quebrada_rio: { phpName: TfuQuebradaRio, type: VARCHAR, size: '100', required: false }
-    tfu_reservorio: { phpName: TfuReservorio, type: VARCHAR, size: '100', required: false }
-    tfu_mar: { phpName: TfuMar, type: VARCHAR, size: '100', required: false }
   trabajadoresyvinculacion:
     _attributes: { phpName: Trabajadoresyvinculacion }
     tra_id: { phpName: TraId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }

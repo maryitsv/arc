@@ -265,6 +265,10 @@ init: function () {
 													width: 250,
 													scale: 'large',
 													handler: function(){  
+														subirDatosAjax(
+															'login/desautenticar', 
+															{}, function(){window.location = 'login';}, function(){}
+															);
 														/*Ext.Ajax.request({  
 														waitMsg: 'Espere por favor',
 														url: 'login/desautenticar', 
@@ -285,7 +289,7 @@ init: function () {
 															Ext.example.msg('Error', 'no se pudo conectar a la base de datos intente mas tarde'); 
 														}
 														});*/
-														window.location = 'login';
+														
 													}
 												  }
 											]            
