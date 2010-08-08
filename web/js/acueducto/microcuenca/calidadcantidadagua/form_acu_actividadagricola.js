@@ -9,7 +9,7 @@
 		[
 			{
 			 xtype:'fieldset',
-			 title:'Actividad agricola',
+			 title:'Actividad agr&iacute;cola',
 			 layout:'column',
 			 defaults:{layout:'form',border: false},
 			 items:
@@ -259,7 +259,12 @@
 	{
 		//alert("asd");
 		var url_calidadcantidadagua = 'acueducto_calidadcantidadagua/actualizarCalidadcantidadagua';
-		subirDatos(acu_calidadcantidadagua_actividadagricola_panel,url_calidadcantidadagua,{formulario:'actividadAgricola'});
+		subirDatos(
+			acu_calidadcantidadagua_actividadagricola_panel,
+			url_calidadcantidadagua,
+			{formulario:'actividadAgricola'},
+			function(){}
+		);
 		
 	}
 	

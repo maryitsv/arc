@@ -309,7 +309,10 @@
 	
 	function acu_calidadcantidadagua_modificacionpaisaje_subirdatos()
 	{
-		var url_calidadcantidadagua = 'acueducto_calidadcantidadagua/actualizarCalidadcantidadagua';
-		subirDatos(acu_calidadcantidadagua_modificacionpaisaje_panel,url_calidadcantidadagua,{formulario:'modificacionPaisaje'});	
-		var url_calidadcantidadagua = '';
+		subirDatos(
+			acu_calidadcantidadagua_modificacionpaisaje_panel,
+			'acueducto_calidadcantidadagua/actualizarCalidadcantidadagua',
+			{formulario:'modificacionPaisaje'},
+			function(){}
+		);	
 	}

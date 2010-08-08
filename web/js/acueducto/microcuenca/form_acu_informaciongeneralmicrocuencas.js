@@ -18,12 +18,12 @@ Desarrollado maryit sanchez
                 totalProperty: 'total',
                 id: 'id'
                 },[ 
-                  {name: 'acu_imi_localidad', type: 'string'},	    
-                  {name: 'acu_imi_dep_id', type: 'int'},
-				  {name: 'acu_imi_mun_id', type: 'int'},
-				  {name: 'acu_imi_microcuenca', type: 'string'},
-				  {name: 'acu_imi_codigo_cuenca', type: 'string'},
-				  {name: 'acu_imi_fecha', type: 'string'}
+				{name: 'acu_imi_localidad', type: 'string'},	    
+				{name: 'acu_imi_dep_id', type: 'int'},
+				{name: 'acu_imi_mun_id', type: 'int'},
+				{name: 'acu_imi_microcuenca', type: 'string'},
+				{name: 'acu_imi_codigo_cuenca', type: 'string'},
+				{name: 'acu_imi_fecha', type: 'string'}
 		])
     });
 
@@ -81,6 +81,8 @@ Desarrollado maryit sanchez
 		   name: 'acu_imi_localidad',
 		   id: 'acu_imi_localidad',
 		   fieldLabel: '<html>Localidad</html>',
+		   allowBlank: false,
+		   maxLength : 100,
 		   listeners:
 		   {
 				'render': function() {
@@ -102,6 +104,7 @@ Desarrollado maryit sanchez
 			valueField:'dep_id',
 			triggerAction:'all',
 			forceSelection:true,
+			allowBlank: false,
 			listeners:
 		   {
 				'render': function() {
@@ -134,6 +137,7 @@ Desarrollado maryit sanchez
 			valueField:'mun_id',
 			triggerAction:'all',
 			forceSelection:true,
+			allowBlank: false,
 			listeners:
 		   {
 				'render': function() {
@@ -144,6 +148,7 @@ Desarrollado maryit sanchez
 		{
 		   xtype: 'textfield',
 		   labelStyle: 'width:100px; text-align:right;'+letra,
+		   maxLength : 100,
 		   name: 'acu_imi_microcuenca',
 		   id: 'acu_imi_microcuenca',
 		   fieldLabel: '<html>Microcuenca</html>',
@@ -157,6 +162,7 @@ Desarrollado maryit sanchez
 		{
 		   xtype: 'textfield',
 		   labelStyle: 'width:100px; text-align:right;'+letra,
+		   maxLength : 100,
 		   name: 'acu_imi_codigo_cuenca',
 		   id: 'acu_imi_codigo_cuenca',
 		   fieldLabel: '<html>C&oacute;digo cuenca</html>',
@@ -190,8 +196,6 @@ Desarrollado maryit sanchez
 			 handler: function()
 			 {
 				Ext.getCmp('acueducto').setActiveTab(3);
-			    // acu_comercial_tabpanel.setActiveTab(0);			 
-              //  (Ext.getCmp('comercialTabPanel')).setActiveTab(0);
 			 }
 		  },
 		  {
@@ -270,7 +274,12 @@ Desarrollado maryit sanchez
 	}
 	
 	function acu_informaciongeneralmicrocuencas_subirdatos(accion_realizar){
-		subirDatos(acu_informaciongeneralmicrocuencas_panel,'acueducto_informaciongeneralmicrocuencas/actualizarInformaciongeneralmicrocuencas',{});	
+		subirDatos(
+			acu_informaciongeneralmicrocuencas_panel,
+			'acueducto_informaciongeneralmicrocuencas/actualizarInformaciongeneralmicrocuencas',
+			{},
+			function(){}
+		);	
 	}
 
 acu_informaciongeneralmicrocuencas_datos_datastore.load({

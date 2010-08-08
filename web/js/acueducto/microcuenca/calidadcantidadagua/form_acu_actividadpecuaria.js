@@ -181,7 +181,7 @@
 								labelStyle: 'width:40px;'+letra,
 								inputValue: 1,
 								width: 120,
-								maxLength : 49,
+								maxLength : 100,
 								id: 'acu_cca_actividad_pecuaria_otros_cual',
 								name: 'acu_cca_actividad_pecuaria_otros_cual',
 								listeners:
@@ -474,7 +474,12 @@
 	function acu_calidadcantidadagua_actividadpecuaria_subirdatos()
 	{
 		var url_calidadcantidadagua = 'acueducto_calidadcantidadagua/actualizarCalidadcantidadagua';
-		subirDatos(acu_calidadcantidadagua_actividadpecuaria_panel,url_calidadcantidadagua,{formulario:'actividadPecuaria'});	
+		subirDatos(
+			acu_calidadcantidadagua_actividadpecuaria_panel,
+			url_calidadcantidadagua,
+			{formulario:'actividadPecuaria'},
+			function(){}
+		);	
 	}
 /*	
 	acu_calidadcantidadagua_actividadagricola_datos_datastore.load({

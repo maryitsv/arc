@@ -240,7 +240,7 @@
 		height:140,
 		bodyStyle: 'padding:5px;',			
 		//columnWidth:'.5',
-		title:'Minera y erosi&oacute;n',
+		title:'Miner&iacute;a y erosi&oacute;n',
 		layout:'column',
 		defaults:{layout:'form',border:false},
 		items:[
@@ -409,7 +409,10 @@
 	
 	function acu_calidadcantidadagua_controlmalezas_subirdatos()
 	{
-		var url_calidadcantidadagua = 'acueducto_calidadcantidadagua/actualizarCalidadcantidadagua';
-		subirDatos(acu_calidadcantidadagua_controlmalezas_panel,url_calidadcantidadagua,{formulario:'controlMalezas'});	
-		var url_calidadcantidadagua = '';
+		subirDatos(
+			acu_calidadcantidadagua_controlmalezas_panel,
+			'acueducto_calidadcantidadagua/actualizarCalidadcantidadagua',
+			{formulario:'controlMalezas'},
+			function(){}
+		);	
 	}

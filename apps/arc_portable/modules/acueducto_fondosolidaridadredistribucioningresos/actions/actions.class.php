@@ -86,9 +86,9 @@ class acueducto_fondosolidaridadredistribucioningresosActions extends sfActions
 			{
 					$fsri->setFsiSolTranferenciaRecursos($this->getRequestParameter('acu_fsi_sol_tranferencia_recursos'));
 					$fsri->setFsiReciboRecursos($this->getRequestParameter('acu_fsi_recibo_recursos'));
-					$fsri->setFsiReciboRecursosValorRecib($this->getRequestParameter('acu_fsi_recibo_recursos_valor_recib'));
+					$fsri->setFsiReciboRecursosValorRecib(str_replace(',','',$this->getRequestParameter('acu_fsi_recibo_recursos_valor_recib')));
 					$fsri->setFsiAporteRecursos($this->getRequestParameter('acu_fsi_aporte_recursos'));
-					$fsri->setFsiAporteRecursosValorApor($this->getRequestParameter('acu_fsi_aporte_recursos_valor_apor'));
+					$fsri->setFsiAporteRecursosValorApor(str_replace(',','',$this->getRequestParameter('acu_fsi_aporte_recursos_valor_apor')));
 					$fsri->save();
 					
 					$vinculacion->setVasSuscripcionContrato($this->getRequestParameter('acu_vas_suscripcion_contrato'));
@@ -100,9 +100,9 @@ class acueducto_fondosolidaridadredistribucioningresosActions extends sfActions
 					$fsri->setFsiComId($com_id);
 					$fsri->setFsiSolTranferenciaRecursos($this->getRequestParameter('acu_fsi_sol_tranferencia_recursos'));
 					$fsri->setFsiReciboRecursos($this->getRequestParameter('acu_fsi_recibo_recursos'));
-					$fsri->setFsiReciboRecursosValorRecib($this->getRequestParameter('acu_fsi_recibo_recursos_valor_recib'));
+					$fsri->setFsiReciboRecursosValorRecib(str_replace(',','',$this->getRequestParameter('acu_fsi_recibo_recursos_valor_recib')));
 					$fsri->setFsiAporteRecursos($this->getRequestParameter('acu_fsi_aporte_recursos'));
-					$fsri->setFsiAporteRecursosValorApor($this->getRequestParameter('acu_fsi_aporte_recursos_valor_apor'));
+					$fsri->setFsiAporteRecursosValorApor(str_replace(',','',$this->getRequestParameter('acu_fsi_aporte_recursos_valor_apor')));
 					$fsri->save();
 					
 					$vinculacion= new Vinculacionalservicio();

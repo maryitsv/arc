@@ -5,35 +5,33 @@ Desarrollado maryit sanchez
 */
 
 	var acu_facturacionyrecaudo_datos_datastore = new Ext.data.Store({
-        id: 'acu_facturacionyrecaudo_datos_datastore',
-        proxy: new Ext.data.HttpProxy({
-                url: 'acueducto_facturacionyrecaudo/obtenerDatosFacturacionyrecaudo', 
-                method: 'POST'
-        }),
-        baseParams:{}, 
-        reader: new Ext.data.JsonReader({
-                root: 'results',
-                totalProperty: 'total',
-                id: 'id'
-                },[ 
-                  {name: 'acu_fac_frecuencia_del_servicio', type: 'int'},	    
-                  {name: 'acu_fac_frecuenc_facturacion', type: 'string'},
-				  {name: 'acu_fac_frecuenc_fac_justificacion', type: 'string'},
-				  {name: 'acu_fac_num_fac_exp_ultimo_periodo', type: 'int'},
-				  {name: 'acu_fac_sist_fac_utilizado', type: 'string'},
-				  {name: 'acu_fac_frecuencia_fac_justifica', type: 'string'},
-				  {name: 'acu_fac_morosidad_promedio', type: 'float'},
-				  {name: 'acu_fac_vol_agua_fac_en_el_anio_acu', type: 'float'},
-				  {name: 'acu_fac_vol_agua_suministrado_anio_acu', type: 'float'},
-		])
-    });
+		id: 'acu_facturacionyrecaudo_datos_datastore',
+		proxy: new Ext.data.HttpProxy({
+			url: 'acueducto_facturacionyrecaudo/obtenerDatosFacturacionyrecaudo', 
+			method: 'POST'
+		}),
+		baseParams:{}, 
+		reader: new Ext.data.JsonReader({
+		        root: 'results',
+		        totalProperty: 'total',
+		        id: 'id'
+		        },[ 
+				{name: 'acu_fac_frecuencia_del_servicio', type: 'int'},	    
+				{name: 'acu_fac_frecuenc_facturacion', type: 'string'},
+				{name: 'acu_fac_frecuenc_fac_justificacion', type: 'string'},
+				{name: 'acu_fac_num_fac_exp_ultimo_periodo', type: 'int'},
+				{name: 'acu_fac_sist_fac_utilizado', type: 'string'},
+				{name: 'acu_fac_frecuencia_fac_justifica', type: 'string'},
+				{name: 'acu_fac_morosidad_promedio', type: 'float'},
+				{name: 'acu_fac_vol_agua_fac_en_el_anio_acu', type: 'float'},
+				{name: 'acu_fac_vol_agua_suministrado_anio_acu', type: 'float'}
+			])
+	});
 
 	var acu_facturacionyrecaudo_panel = new Ext.FormPanel({
 	  id:'acu_facturacionyrecaudo_panel',
-	  //frame: true,
 	  autoWidth: true,
 	  height: largo_panel-40,
-	 // title: '<html>Facturaci&oacute;n y recaudo</html>',
 	  layout:'column',
 	  defaults:{ bodyStyle: 'padding:0 10px 0;'},
 	  items:
@@ -124,6 +122,7 @@ Desarrollado maryit sanchez
 			   id: 'acu_fac_frecuenc_fac_justificacion',
 			   fieldLabel: '<html>&iquest;Cu&aacute;l?</html>',
 			   disabled : true,
+			   maxLength: 30,
 			   listeners:
 			   {
 					'render': function() {
@@ -140,6 +139,7 @@ Desarrollado maryit sanchez
 			   width: 100,
 			   labelStyle: 'width:200px;'+letra,
 			   emptyText: '0',
+			   maxLength: 9,
 			   name: 'acu_fac_num_fac_exp_ultimo_periodo',
 			   id: 'acu_fac_num_fac_exp_ultimo_periodo',
 			   fieldLabel: '<html>N&uacute;mero de facturas expedidas en el &uacute;ltimo periodo de facturaci&oacute;n</html>',
@@ -210,6 +210,7 @@ Desarrollado maryit sanchez
 				   name: 'acu_fac_frecuencia_fac_justifica',
 				   id: 'acu_fac_frecuencia_fac_justifica',
 				   fieldLabel: '<html>&iquest;Cu&aacute;l?</html>',
+				   maxLength: 30,
 				   disabled : true,
 				   listeners:
 					{
@@ -225,6 +226,7 @@ Desarrollado maryit sanchez
 				   labelStyle: 'width:200px;'+letra,
 				   emptyText: '0',
 				   name: 'acu_fac_morosidad_promedio',
+				   maxLength: 9,
 				   id: 'acu_fac_morosidad_promedio',
 				   fieldLabel: '<html>Morosidad promedio de los &uacute;ltimos 3 periodos de pago (%)</html>',
 				   listeners:
@@ -239,6 +241,7 @@ Desarrollado maryit sanchez
 				   width: 100,
 				   labelStyle: 'width:200px;'+letra,
 				   emptyText: '0',
+				   maxLength : 9,
 				   name: 'acu_fac_vol_agua_fac_en_el_anio_acu',
 				   id: 'acu_fac_vol_agua_fac_en_el_anio_acu',
 				   fieldLabel: '<html>Volumen de agua facturado en el a&ntilde;o (m'+'3'.sup()+')</html>',
@@ -254,6 +257,7 @@ Desarrollado maryit sanchez
 				   width: 100,
 				   labelStyle: 'width:200px;'+letra,
 				   emptyText: '0',
+				   maxLength : 9,
 				   name: 'acu_fac_vol_agua_suministrado_anio_acu',
 				   id: 'acu_fac_vol_agua_suministrado_anio_acu',
 				   fieldLabel: '<html>Volumen de agua suministrado en el a&ntilde;o (m'+'3'.sup()+')</html>',
