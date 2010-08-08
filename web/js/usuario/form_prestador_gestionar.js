@@ -29,8 +29,8 @@
 	columns:[{
 		header: 'id',dataIndex: 'pre_id',width: 60},{
 		header: 'Nombre Prestador',dataIndex: 'pre_nombre_prestador',width: 100},{
-		header: 'Identificacion Prestador',dataIndex: 'pre_identificacion_prestador',width: 100},{
-		header: 'Tipo Identificacion',dataIndex: 'pre_tipo_identificacion_prestador',width: 120}
+		header: 'Identificaci&oacute;n Prestador',dataIndex: 'pre_identificacion_prestador',width: 100},{
+		header: 'Tipo Identificaci&oacute;n',dataIndex: 'pre_tipo_identificacion_prestador',width: 120}
 	],
 	defaults:{sortable:true}});
 	
@@ -323,7 +323,7 @@
 		prestador_gestionar_maskara = new Ext.LoadMask(prestador_gestionar_formpanel.getEl(), {msg:'Cargando...',removeMask: true});
 		prestador_gestionar_maskara.show();
 		setTimeout('prestador_gestionar_maskara.hide()',500);
-		var prestador_gestionar_titulo_Panel = 'Nuevo prestador_gestionar';
+		var prestador_gestionar_titulo_Panel = 'Nuevo Prestador';
 		Ext.getCmp('prestador_gestionar_formpanel').setTitle(prestador_gestionar_titulo_Panel);
 		prestador_gestionar_formpanel.getForm().reset();
 

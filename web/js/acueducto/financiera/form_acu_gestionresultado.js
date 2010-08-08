@@ -60,7 +60,7 @@ var acu_gre_plan_gestion_resultados = new Ext.form.RadioGroup ({
 /////////////***************** micromedidores **********/////////////////////////
 
 var acu_gre_actividad1_label = new Ext.form.Label ( {
-	html: '<font size=2>Implementar micromedici&oacute;n<br/><br/><b>Indicadores</b></font><br/><br/>'
+	html: '<font size=2>Implementar MICROMEDICI&Oacute;N<br/><br/><b>Indicadores</b></font><br/><br/>'
 } );
 
 var acu_gre_micromedidores_funcionando = new Ext.form.NumberField ( {
@@ -117,7 +117,7 @@ var acu_gre_valor_micromedicion = new Ext.form.NumberField ( {
 /////////////***************** macromedidores **********/////////////////////////
 
 var acu_gre_actividad2_label = new Ext.form.Label ( {
-	html: '<font size=2>Implementar macromedici&oacute;n<br/><br/><b>Indicadores</b></font><br/><br/>'
+	html: '<font size=2>Implementar MACROMEDICI&Oacute;N<br/><br/><b>Indicadores</b></font><br/><br/>'
 } );
 
 var acu_gre_macromedidores_funcionando = new Ext.form.NumberField ( {

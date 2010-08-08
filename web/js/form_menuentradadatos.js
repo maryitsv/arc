@@ -174,7 +174,7 @@ init: function () {
                                         title: 'Informaci&oacute;n Comercial',
 										iconCls: 'x-icon-templates',
 										id: 'alcantarillado_comercial',
-                                            tabTip: 'Informaci&oacute;n Comercial de Alcantarillado',
+                                        tabTip: 'Informaci&oacute;n Comercial de Alcantarillado',
 										style: 'padding: 10px;',
 										items: [{
 													autoScroll: true,
