@@ -49,13 +49,20 @@ class acueducto_calidadaguafuenteActions extends sfActions
 	}
 	else
 	{
-		$acu_calidad = new Calidad();
-		$acu_calidad->setCalPpsPreId($pps_pre_id);
-		$acu_calidad->setCalPpsAnio($pps_anio);
-		$acu_calidad->setCalPpsSerId($pps_ser_id);
-		$acu_calidad->save();
+		try
+		{
+			$acu_calidad = new Calidad();
+			$acu_calidad->setCalPpsPreId($pps_pre_id);
+			$acu_calidad->setCalPpsAnio($pps_anio);
+			$acu_calidad->setCalPpsSerId($pps_ser_id);
+			$acu_calidad->save();
 
-		$cal_id = $acu_calidad->getCalId();
+			$cal_id = $acu_calidad->getCalId();
+		}
+		catch(Exception $exception)
+		{
+			return $this->renderText("({success: false, errors: { reason: 'Error en calidad'}})");
+		}
 	}
 
 	$conexion = new Criteria();

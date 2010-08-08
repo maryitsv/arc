@@ -36,13 +36,27 @@ var acu_cag_visita_sspd = new Ext.form.RadioGroup({
 		{
 			boxLabel: 'Si',
 			name: 'acu_cag_visita_sspd',
-			inputValue: 1, 
-			checked: true
+			inputValue: 1,
+			listeners:
+			{
+				'check': function(radio, valor) 
+				{
+					if (valor) Ext.getCmp('acu_cag_numero_visita_sspd').enable();
+				}
+			}
 		},
 		{
 			boxLabel: 'No',
 			name: 'acu_cag_visita_sspd',
-			inputValue: 0
+			inputValue: 0, 
+			checked: true,
+			listeners:
+			{
+				'check': function(radio, valor) 
+				{
+					if (valor) Ext.getCmp('acu_cag_numero_visita_sspd').disable();
+				}
+			}
 		}
 	],
 	listeners:
@@ -58,6 +72,7 @@ var acu_cag_numero_visita_sspd = new Ext.form.NumberField({
 	width: 100,
 	labelStyle: 'width:300px; text-align:center;',
 	emptyText: '0',
+	disabled: true,
 	name: 'acu_cag_numero_visita_sspd',
 	fieldLabel: '<html>&iquest;Cu&aacute;ntas?</html>',
 	listeners:
@@ -67,17 +82,6 @@ var acu_cag_numero_visita_sspd = new Ext.form.NumberField({
 		}
 	}
 });
-
-var acu_calidad_calidadaguadistribuida_data = [
-	['Turbiedad(UNT)','Mensual',0,0,0,0],
-	['Color Aparente (UPC)','Mensual',0,0,0,0],
-	['pH','Mensual',0,0,0,0],
-	['Cloro residual libre(mg/l)','Mensual',0,0,0,0],
-	['Coliformes totales UFC/100 ml','Bimestral',0,0,0,0],
-	['Eschericha Coli en 100 ml','Bimestral',0,0,0,0],
-	['Carbono Org&aacute;nico Total (mg/l)','Anual',0,0,0,0],
-	['Floruros (mg/l)','Anual',0,0,0,0]
-];
 
 var acu_calidad_calidadaguadistribuida_datastore = new Ext.data.Store({
 	id: 'acu_calidad_calidadaguadistribuida_datastore',
@@ -90,7 +94,9 @@ var acu_calidad_calidadaguadistribuida_datastore = new Ext.data.Store({
 			root: 'results',
 			totalProperty: 'total',
 			},[
-				{name: 'acu_ppr_id', type: 'id'},
+				{name: 'acu_cag_control_ca_distribuida', type: 'int'},
+				{name: 'acu_cag_numero_visita_sspd', type: 'int'},
+				{name: 'acu_ppr_id', type: 'int'},
 				{name: 'acu_ppr_nombre_parametro', type: 'string'},
 				{name: 'acu_pfe_frecuencia_minima', type: 'string'},
 				{name: 'acu_rep_resultado_punto_1', type: 'float'},
@@ -100,7 +106,7 @@ var acu_calidad_calidadaguadistribuida_datastore = new Ext.data.Store({
 	])
 });
 
-acu_calidad_calidadaguadistribuida_datastore.load();
+//acu_calidad_calidadaguadistribuida_datastore.load();
 
 //acu_calidad_calidadaguadistribuida_datastore.loadData(acu_calidad_calidadaguadistribuida_data);
 
@@ -225,12 +231,12 @@ var acu_calidad_calidadaguadistribuida_gridpanel = new Ext.grid.GridPanel({
 			text: 'Agregar parametro',
 			//iconCls: 'agregar',
 			handler: acu_calidadaguadistribuida_agregarparametro
-		},'-',
+		},'-'/*,
 		{
 			text: 'Borrar parametro',
 			//iconCls: 'eliminar',
 			handler: acu_calidadaguadistribuida_borrarparametro
-		}, '-'
+		}, '-'*/
 	],
 	viewConfig: {
 			forceFit: true
@@ -285,18 +291,28 @@ var form_acu_calidad_calidadaguadistribuida = new Ext.FormPanel({
 	    	text: 'Continuar', 
 	    	iconCls: 'crear16', 
 	    	handler: function(){
-							Ext.getCmp('panel_servicios').setActiveGroup(2);
-							Ext.getCmp('alcantarillado').setActiveTab(0);
+							acu_calidadaguadistribuida_subirdatos();
 			}
 	    }
 	]
+});
+
+acu_calidad_calidadaguadistribuida_datastore.load({
+	callback: function() {
+	var record = acu_calidad_calidadaguadistribuida_datastore.getAt(0);
+	form_acu_calidad_calidadaguadistribuida.getForm().loadRecord(record);
+	if(record.get('acu_cag_numero_visita_sspd') != ''){
+		Ext.getCmp('acu_cag_visita_sspd').setValue(1);
+		Ext.getCmp('acu_cag_numero_visita_sspd').enable();
+	}
+  }
 });
 
 function acu_calidadaguadistribuida_guardarpuntos(){
 	var rec = acu_calidad_calidadaguadistribuida_gridpanel.getSelectionModel().getSelected();
 	subirDatos(
 		form_acu_calidad_calidadaguadistribuida, 
-		'acueducto_calidadaguadistribuida/actualizarCalidadAguaDistribuida',
+		'acueducto_calidadaguadistribuida/actualizarPuntosCalidadAguaDistribuida',
 		{
 			acu_ppr_id: rec.get('acu_ppr_id'),
 			acu_ppr_nombre_parametro: rec.get('acu_ppr_nombre_parametro'),
@@ -318,7 +334,9 @@ function acu_calidadaguadistribuida_subirdatos(){
 		{
 		},
 		function(){
-			Ext.getCmp('tabp_acu_calidad').setActiveTab(1);
+			Ext.getCmp('panel_servicios').setActiveGroup(2);
+			Ext.getCmp('alcantarillado').setActiveTab(0);
+			//Ext.getCmp('tabp_acu_calidad').setActiveTab(1);
 		}
 	);
 }

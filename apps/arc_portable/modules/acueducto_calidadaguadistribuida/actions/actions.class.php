@@ -63,6 +63,9 @@ class acueducto_calidadaguadistribuidaActions extends sfActions
 		$conexion = new Criteria();
 		$numero_parametrosred = ParametrospuntosredPeer::doCount($conexion);
 		$parametrosred = ParametrospuntosredPeer::doSelect($conexion);
+
+		$datos[0]['acu_cag_control_ca_distribuida']=$acu_calidadaguadistribuida->getCagControlCaDistribuida();
+		$datos[0]['acu_cag_numero_visita_sspd']=$acu_calidadaguadistribuida->getCagNumeroVisitaSspd();
 		
 		if($parametrosred)
 		{
@@ -113,7 +116,7 @@ class acueducto_calidadaguadistribuidaActions extends sfActions
 	return 	$this->renderText($salida);
   }
   
-  private function obtenerResultadoPunto($acu_cag_id, $acu_ppr_id, $numero_punto)
+  private function obtenerResultadoPunto($id_calidadagua, $id_parametro, $numero_punto)
   {
 	$conexion = new Criteria();
 	$conexion->add(ResultadosxpuntoPeer::REP_CAG_ID, $id_calidadagua);
@@ -123,14 +126,14 @@ class acueducto_calidadaguadistribuidaActions extends sfActions
 	
 	if($resultadoxpunto)
 	{
-		if($resultadoxpunto->getRepResultado() == '')
+		/*if($resultadoxpunto->getRepResultado() == '')
 		{
 			return 0;
 		}
 		else
-		{
+		{*/
 			return $resultadoxpunto->getRepResultado();
-		}
+		//}
 	}
 	else
 	{
@@ -172,6 +175,147 @@ class acueducto_calidadaguadistribuidaActions extends sfActions
 	}
   }
   
+  public function executeActualizarPuntosCalidadAguaDistribuida(sfWebRequest $request)
+  {
+	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
+	$pps_ser_id = $this->obtenerServicioId('acueducto');
+	
+	$conexion = new Criteria();
+	$conexion->add(CalidadPeer::CAL_PPS_PRE_ID, $pps_pre_id);
+	$conexion->add(CalidadPeer::CAL_PPS_ANIO, $pps_anio);
+	$conexion->add(CalidadPeer::CAL_PPS_SER_ID, $pps_ser_id);
+	$acu_calidad = CalidadPeer::doSelectOne($conexion);
+
+	$cal_id;
+	
+	if($acu_calidad)
+	{
+		$cal_id = $acu_calidad->getCalId();
+	}
+	else
+	{
+		try
+		{
+			$acu_calidad = new Calidad();
+			$acu_calidad->setCalPpsPreId($pps_pre_id);
+			$acu_calidad->setCalPpsAnio($pps_anio);
+			$acu_calidad->setCalPpsSerId($pps_ser_id);
+			$acu_calidad->save();
+
+			$cal_id = $acu_calidad->getCalId();
+		}
+		catch(Exception $exception)
+		{
+			return $this->renderText("({success: false, errors: { reason: 'Error en calidad'}})");
+		}
+	}
+	
+	$conexion = new Criteria();
+	$conexion->add(CalidadaguaPeer::CAG_CAL_ID, $cal_id);
+	$acu_calidadaguadistribuida = CalidadaguaPeer::doSelectOne($conexion);
+	
+	if( !$acu_calidadaguadistribuida )
+	{
+		try
+		{
+			$acu_calidadaguadistribuida = new Calidadagua();
+			$acu_calidadaguadistribuida->setCagCalId($cal_id);
+			$acu_calidadaguadistribuida->save();
+		}
+		catch(Exception $exception)
+		{
+			return $this->renderText("({success: false, errors: { reason: 'Error en calidad de agua'}})");
+		}
+	}
+	
+	$acu_cag_id = $acu_calidadaguadistribuida->getCagId();
+	
+	$acu_ppr_id=$this->getRequestParameter('acu_ppr_id');
+	$acu_ppr_nombre_parametro=$this->getRequestParameter('acu_ppr_nombre_parametro');
+	
+	if($acu_ppr_id == '')
+	{
+		try
+		{
+			$parametrospuntosred = new Parametrospuntosred();
+			$parametrospuntosred->setPprNombreParametro($this->getRequestParameter('acu_ppr_nombre_parametro'));
+			$parametrospuntosred->save();
+			$acu_ppr_id = $parametrospuntosred->getPprId();
+		}
+		catch(Exception $exception)
+		{
+			return $this->renderText("({success: false, errors: { reason: 'Error al guardar el parametro'}})");
+		}
+	}
+	
+	try
+	{
+		$this->guardarResultadoxPunto($acu_cag_id, $acu_ppr_id, 1, $this->getRequestParameter('acu_rep_resultado_punto_1'));
+		$this->guardarResultadoxPunto($acu_cag_id, $acu_ppr_id, 2, $this->getRequestParameter('acu_rep_resultado_punto_2'));
+		$this->guardarResultadoxPunto($acu_cag_id, $acu_ppr_id, 3, $this->getRequestParameter('acu_rep_resultado_punto_3'));
+	}
+	catch(Exception $exception)
+	{
+		return $this->renderText("({success: false, errors: { reason: 'Error al guardar resultados de los puntos'}})");
+	}
+	
+	try
+	{
+		$conexion = new Criteria();
+		$conexion->add(ParametroxfrecuenciaPeer::PFE_CAG_ID, $acu_cag_id);
+		$conexion->add(ParametroxfrecuenciaPeer::PFE_PPR_ID_PARAMETRO, $acu_ppr_id);
+		$acu_parametroxfrecuencia = ParametroxfrecuenciaPeer::doSelectOne($conexion);
+		
+		if( !$acu_parametroxfrecuencia )
+		{
+			$acu_parametroxfrecuencia = new Parametroxfrecuencia();
+			$acu_parametroxfrecuencia->setPfePprIdParametro($acu_ppr_id);
+			$acu_parametroxfrecuencia->setPfeCagId($acu_cag_id);
+		}
+		
+		$acu_parametroxfrecuencia->setPfeFrecuenciaMinima($this->getRequestParameter('acu_pfe_frecuencia_minima'));
+		$acu_parametroxfrecuencia->setPfeFrecuenciaReal($this->getRequestParameter('acu_pfe_frecuencia_real'));
+		
+		$acu_parametroxfrecuencia->save();
+	}
+	catch(Exception $exception)
+	{
+		return $this->renderText("({success: false, errors: { reason: 'Error en parametro por frecuencia'}})");
+	}
+	
+	$salida = "({success: true, mensaje:'La informacion del parametro fue actualizada exitosamente'})";
+	return $this->renderText($salida);
+  }
+  
+  private function guardarResultadoxPunto($id_calidadagua, $id_parametro, $num_punto, $resultado_punto)
+  {
+	$conexion = new Criteria();
+	$conexion->add(ResultadosxpuntoPeer::REP_CAG_ID, $id_calidadagua);
+	$conexion->add(ResultadosxpuntoPeer::REP_PPR_ID_PARAMETRO, $id_parametro);
+	$conexion->add(ResultadosxpuntoPeer::REP_PUNTO, $num_punto);
+	$acu_resultadosxpunto = ResultadosxpuntoPeer::doSelectOne($conexion);
+	
+	try
+	{
+		if( !$acu_resultadosxpunto )
+		{
+			$acu_resultadosxpunto = new Resultadosxpunto();
+			$acu_resultadosxpunto->setRepCagId($id_calidadagua);
+			$acu_resultadosxpunto->setRepPprIdParametro($id_parametro);
+			$acu_resultadosxpunto->setRepPunto($num_punto);
+		}
+		
+		$acu_resultadosxpunto->setRepResultado($resultado_punto);
+		
+		$acu_resultadosxpunto->save();
+	}
+	catch(Exception $exception)
+	{
+		return $this->renderText("({success: false, errors: { reason: 'Error al guardar resultados de los puntos'}})");
+	}
+  }
+  
   public function executeActualizarCalidadAguaDistribuida(sfWebRequest $request)
   {
 	$pps_anio = $this->getUser()->getAttribute('pps_anio');
@@ -192,105 +336,47 @@ class acueducto_calidadaguadistribuidaActions extends sfActions
 	}
 	else
 	{
-		$acu_calidad = new Calidad();
-		$acu_calidad->setCalPpsPreId($pps_pre_id);
-		$acu_calidad->setCalPpsAnio($pps_anio);
-		$acu_calidad->setCalPpsSerId($pps_ser_id);
-		$acu_calidad->save();
+		try
+		{
+			$acu_calidad = new Calidad();
+			$acu_calidad->setCalPpsPreId($pps_pre_id);
+			$acu_calidad->setCalPpsAnio($pps_anio);
+			$acu_calidad->setCalPpsSerId($pps_ser_id);
+			$acu_calidad->save();
 
-		$cal_id = $acu_calidad->getCalId();
-	}
-	
-	
-	
-	
-	if($acu_administrativafinanciera)
-	{
-		$iaf_id = $acu_administrativafinanciera->getIafId();
-		
-		$conexion = new Criteria();
-		$conexion->add(TrabajadoresyvinculacionPeer::TRA_IAF_ID, $iaf_id);
-		$acu_trabajadoresyvinculacion = TrabajadoresyvinculacionPeer::doSelectOne($conexion);
-		
-		if($acu_trabajadoresyvinculacion)
-		{
-			try
-			{
-				$acu_trabajadoresyvinculacion->setTraManualProcedimiento($this->getRequestParameter('acu_tra_manual_procedimiento'));
-				$acu_trabajadoresyvinculacion->setTraManualFunciones($this->getRequestParameter('acu_tra_manual_funciones'));
-				
-				$acu_trabajadoresyvinculacion->save();
-				
-				$acu_poa_id = $this->getRequestParameter('acu_poa_id');
-				
-				if($acu_poa_id)
-				{
-					$personaloperativoadministrativo = PersonaloperativoadministrativoPeer::retrieveByPK($this->getRequestParameter('acu_poa_id'));
-					if($personaloperativoadministrativo)
-					{
-						$personaloperativoadministrativo->setPoaCedula($this->getRequestParameter('acu_poa_cedula'));
-						$personaloperativoadministrativo->setPoaNombre($this->getRequestParameter('acu_poa_nombre'));
-						$personaloperativoadministrativo->setPoaCargo($this->getRequestParameter('acu_poa_cargo'));
-						$personaloperativoadministrativo->setPoaTipoVinculacion($this->getRequestParameter('acu_poa_tipo_vinculacion'));
-						$personaloperativoadministrativo->setPoaRemuneracionMensual($this->getRequestParameter('acu_poa_remuneracion_mensual'));
-						$personaloperativoadministrativo->setPoaTipoTrabajador($this->getRequestParameter('acu_poa_tipo_trabajador'));
-						$personaloperativoadministrativo->save();
-					}
-					else
-					{
-						return $this->renderText("({success: false, errors: { reason: 'El empleado no existe en la base de datos'}})");
-					}
-				}
-				else
-				{
-					$acu_poa_cedula = $this->getRequestParameter('acu_poa_cedula');
-				
-					if($acu_poa_cedula)
-					{
-						$personaloperativoadministrativo = new Personaloperativoadministrativo();
-						$personaloperativoadministrativo->setPoaTraId($acu_trabajadoresyvinculacion->getTraId());
-						$personaloperativoadministrativo->setPoaCedula($this->getRequestParameter('acu_poa_cedula'));
-						$personaloperativoadministrativo->setPoaNombre($this->getRequestParameter('acu_poa_nombre'));
-						$personaloperativoadministrativo->setPoaCargo($this->getRequestParameter('acu_poa_cargo'));
-						$personaloperativoadministrativo->setPoaTipoVinculacion($this->getRequestParameter('acu_poa_tipo_vinculacion'));
-						$personaloperativoadministrativo->setPoaRemuneracionMensual($this->getRequestParameter('acu_poa_remuneracion_mensual'));
-						$personaloperativoadministrativo->setPoaTipoTrabajador($this->getRequestParameter('acu_poa_tipo_trabajador'));
-						$personaloperativoadministrativo->save();
-					}
-				}
-				
-				$salida = "({success: true, mensaje:'La informacion de trabajadores y vinculacion fue actualizada exitosamente'})";
-			}
-			catch(Exception $exception)
-			{
-				return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en trabajadores y vinculacion:".$exception."'}})");
-			}
+			$cal_id = $acu_calidad->getCalId();
 		}
-		else
+		catch(Exception $exception)
 		{
-			try
-			{
-				$acu_trabajadoresyvinculacion = new Trabajadoresyvinculacion();
-				
-				$acu_trabajadoresyvinculacion->setTraIafId($iaf_id);
-				$acu_trabajadoresyvinculacion->setTraManualProcedimiento($this->getRequestParameter('acu_tra_manual_procedimiento'));
-				$acu_trabajadoresyvinculacion->setTraManualFunciones($this->getRequestParameter('acu_tra_manual_funciones'));
-				
-				$acu_trabajadoresyvinculacion->save();
-				
-				$salida = "({success: true, mensaje:'La informacion de trabajadores y vinculacion fue actualizada exitosamente'})";
-			}
-			catch(Exception $exception)
-			{
-				return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en trabajadores y vinculacion'}})");
-			}
+			return $this->renderText("({success: false, errors: { reason: 'Error en calidad'}})");
 		}
 	}
-	else
+	
+	$conexion = new Criteria();
+	$conexion->add(CalidadaguaPeer::CAG_CAL_ID, $cal_id);
+	$acu_calidadaguadistribuida = CalidadaguaPeer::doSelectOne($conexion);
+	
+	try
 	{
-		return $this->renderText("({success: false, errors: { reason: 'Debe primero registrar informacion general de administracion financiera'}})");
+		if( !$acu_calidadaguadistribuida )
+		{
+
+				$acu_calidadaguadistribuida = new Calidadagua();
+				$acu_calidadaguadistribuida->setCagCalId($cal_id);
+		}
+		
+		$acu_calidadaguadistribuida->setCagControlCaDistribuida($this->getRequestParameter('acu_cag_control_ca_distribuida'));
+		//$acu_calidadaguadistribuida->setCagPuntosRedAnalizados($this->getRequestParameter('acu_cag_puntos_red_analizados'));
+		$acu_calidadaguadistribuida->setCagNumeroVisitaSspd($this->getRequestParameter('acu_cag_numero_visita_sspd'));
+		$acu_calidadaguadistribuida->save();
+	}
+	catch(Exception $exception)
+	{
+		return $this->renderText("({success: false, errors: { reason: 'Error en calidad de agua'}})");
 	}
 	
+	$salida = "({success: true, mensaje:'La informacion de calidad de agua distribuida fue actualizada exitosamente'})";
 	return $this->renderText($salida);
   }
+  
 }
