@@ -178,7 +178,19 @@
 		items: 
 		[
 			{fieldLabel: 'Id prestador',name: 'pre_id',id: 'pre_id',hidden:true, hideLabel:true,disabled:false},
-			{fieldLabel: 'Nombre prestador',name: 'pre_nombre_prestador',id: 'pre_nombre_prestador',blankText: 'Este campo es obligatorio'},
+			{
+				fieldLabel: 'Nombre prestador',
+				allowBlank:false,
+				name: 'pre_nombre_prestador',
+				id: 'pre_nombre_prestador',
+				blankText: 'Este campo es obligatorio',
+				listeners:
+				{
+					'render':function(){
+						 ayuda('pre_nombre_prestador',ayuda_pre_nombre_prestador); 
+						}
+				}
+			},
 			{
 				allowBlank:false,
 				xtype: 'combo',
@@ -192,14 +204,26 @@
 				triggerAction: 'all',
 				emptyText: 'Selecione....',
 				selectOnFocus: true,
-				fieldLabel: 'Tipo identificacion prestador'
+				fieldLabel: 'Tipo identificacion prestador',
+				listeners:
+				{
+					'render':function(){
+						 ayuda('pre_tipo_identificacion_prestador',ayuda_pre_tipo_identificacion_prestador); 
+						}
+				}
 			},
 			{	
 				allowBlank:false,
 				fieldLabel: 'Identificacion prestador',
 				name: 'pre_identificacion_prestador',
 				id: 'pre_identificacion_prestador',
-				blankText: 'Este campo es obligatorio'
+				blankText: 'Este campo es obligatorio',
+				listeners:
+				{
+					'render':function(){
+						 ayuda('pre_identificacion_prestador',ayuda_pre_identificacion_prestador); 
+						}
+				}
 			},
 			{
 				allowBlank:false,
@@ -215,7 +239,13 @@
 				triggerAction: 'all',
 				emptyText: 'Selecione....',
 				selectOnFocus: true,
-				fieldLabel: 'Rango de prestador'
+				fieldLabel: 'Rango de prestador',
+				listeners:
+				{
+					'render':function(){
+						 ayuda('pre_ran_tipo',ayuda_pre_ran_tipo); 
+						}
+				}
 			},
 			{
 				allowBlank:false,
@@ -231,7 +261,13 @@
 				triggerAction: 'all',
 				emptyText: 'Selecione....',
 				selectOnFocus: true,
-				fieldLabel: 'Login usuario'
+				fieldLabel: 'Login usuario',
+				listeners:
+				{
+					'render':function(){
+						 ayuda('pre_usu_login',ayuda_pre_usu_login); 
+						}
+				}
 			},
 			{
 				allowBlank:false,
@@ -243,7 +279,13 @@
 				[	
 					{disabled:true,boxLabel:'Habilitado',name:'pre_estado',id:'pre_estado_habilitado',inputValue: 'habilitado'},
 					{disabled:true,boxLabel:'Deshabilitado',name:'pre_estado',id:'pre_estado_deshabilitado',inputValue: 'deshabilitado'}
-				]
+				],
+				listeners:
+				{
+					'render':function(){
+						 ayuda('pre_estado',ayuda_pre_estado); 
+						}
+				}
 			},//checks
 			{
 				xtype:'fieldset',
@@ -431,7 +473,12 @@
 	
 	function prestador_gestionar_verificarcampos(){
 	var valido=true;
-	
+
+	if(!(prestador_gestionar_formpanel.getForm().isValid()))
+	{
+		mostrarMensajeConfirmacion('Error','Todos los campos del formulario son obligatorios, verifique que han sido diligenciado correctamente');
+		valido=false;
+	}
 
 	return valido;
 	}

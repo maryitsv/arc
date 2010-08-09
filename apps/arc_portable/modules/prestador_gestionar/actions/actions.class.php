@@ -23,7 +23,7 @@ class prestador_gestionarActions extends sfActions
    /**
   *@author:maryit sanchez
   *@date:18 de julio de 2010
-  *Este metodo permite la creacion de Prestadors del sistema
+  *Este metodo permite la creacion de Prestadores del sistema pero debe valida que el usuario y la identificacion sean unicas
   */	  
 	public function executeCrearPrestador()
 	{
@@ -31,39 +31,51 @@ class prestador_gestionarActions extends sfActions
 		
 		try{
 			$pre_usu_id = $this->getRequestParameter('pre_usu_id');
-			
-			$conexion=new Criteria();
-			$conexion->add(PrestadorPeer::PRE_USU_ID, $pre_usu_id);
-			$prestador=PrestadorPeer::doSelectOne($conexion);
+			$pre_identificacion_prestador = $this->getRequestParameter('pre_identificacion_prestador');
 
-			if(!$prestador)
+			$conexion=new Criteria();
+			$conexion1=$conexion->getNewCriterion(PrestadorPeer::PRE_USU_ID, $pre_usu_id,Criteria::EQUAL);
+			$conexion2=$conexion->getNewCriterion(PrestadorPeer::PRE_IDENTIFICACION_PRESTADOR, $pre_identificacion_prestador,Criteria::EQUAL);
+			$conexion1->addOr($conexion2);
+			$conexion->add($conexion1);
+			$prestador=PrestadorPeer::doCount($conexion);
+
+			if($prestador==0)
 			{
+
 				$prestador = new Prestador();	
 				$prestador->setPreUsuId($this->getRequestParameter('pre_usu_id')); //esto debe ser unico para todos los prestadores
 				$prestador->setPreRanId($this->getRequestParameter('pre_ran_id'));
 				$prestador->setPreNombrePrestador($this->getRequestParameter('pre_nombre_prestador'));
 				$prestador->setPreTipoIdentificacionPrestador($this->getRequestParameter('pre_tipo_identificacion_prestador'));
 				$prestador->setPreIdentificacionPrestador($this->getRequestParameter('pre_identificacion_prestador'));
-	
-			/*	$prestador->getPreEstado($this->getRequestParameter('pre_estado'));
-				$prestador->getPreSerAcueducto($this->getRequestParameter('pre_ser_acueducto'));
-				$prestador->getPreSerAlcantarillado($this->getRequestParameter('pre_ser_alcantarillado'));
-				$prestador->getPreSerAseo($this->getRequestParameter('pre_ser_aseo'));*/
+				$prestador->setPreEstado($this->getRequestParameter('pre_estado'));
 				  
 				$prestador->save();
+
+				if($this->getRequestParameter('pre_ser_acueducto')==1){
+				$this->crearPrestadorxServicio('acueducto',$prestador->getPreId());}
+
+				if($this->getRequestParameter('pre_ser_alcantarillado')==1){
+				$this->crearPrestadorxServicio('alcantarillado',$prestador->getPreId());}
+
+				if($this->getRequestParameter('pre_ser_aseo')==1){
+				$this->crearPrestadorxServicio('aseo',$prestador->getPreId());}
+
 				$salida = "({success: true, mensaje:'El prestador fue creado exitosamente'})";
 				
 			} 
 			else {
-				$salida = "({success: false, errors: { reason: 'Ya existe un prestador con ese mismo login de este prestador,cambielo e intente de nuevo'}})";
+				$salida = "({success: false, errors: { reason: 'Ya existe un prestador con ese mismo login de este prestador o con la misma identificacion,cambielo e intente de nuevo'}})";
 			}
 		}
 		catch (Exception $excepcion)
 		{
-			$salida = "({success: false, errors: { reason: 'Hubo una excepcion en  el prestador".$excepcion."'}})";
+			$salida = "({success: false, errors: { reason: 'Hubo una excepcion en  el prestador ".$excepcion."'}})";
 		}	
 		return $this->renderText($salida);
 	}
+
   /**
   *@author:maryit sanchez
   *@date:30 de julio de 2010
@@ -74,29 +86,51 @@ class prestador_gestionarActions extends sfActions
 		$salida = '';
 		
 		try{
+
 			$pre_id = $this->getRequestParameter('pre_id');
-			$conexion = new Criteria();
-			$conexion->add(PrestadorPeer::PRE_ID, $pre_id);
-			$prestador = PrestadorPeer::doSelectOne($conexion);
+			$pre_usu_id = $this->getRequestParameter('pre_usu_id');
+			$pre_identificacion_prestador = $this->getRequestParameter('pre_identificacion_prestador');
+
+			//validamos que no se esta utilizando por otro prestador ni el usuario ni la identificacion del prestador
+			$conexion=new Criteria();
+			$conexion1=$conexion->getNewCriterion(PrestadorPeer::PRE_USU_ID, $pre_usu_id,Criteria::EQUAL);
+			$conexion2=$conexion->getNewCriterion(PrestadorPeer::PRE_IDENTIFICACION_PRESTADOR, $pre_identificacion_prestador,Criteria::EQUAL);
+			$conexion1->addOr($conexion2);
+			$conexion->add($conexion1);
+			$conexion->add(PrestadorPeer::PRE_ID, $pre_id,Criteria::NOT_EQUAL);
+			$validar_prestador=PrestadorPeer::doCount($conexion);
+
+			if($validar_prestador==0){
+
+
+				$conexion = new Criteria();
+				$conexion->add(PrestadorPeer::PRE_ID, $pre_id);
+				$prestador = PrestadorPeer::doSelectOne($conexion);
 			
-			if($prestador)
-			{
-				$prestador->setPreUsuId($this->getRequestParameter('pre_usu_id')); 
-				$prestador->setPreRanId($this->getRequestParameter('pre_ran_id'));
-				$prestador->setPreNombrePrestador($this->getRequestParameter('pre_nombre_prestador'));
-				$prestador->setPreTipoIdentificacionPrestador($this->getRequestParameter('pre_tipo_identificacion_prestador'));
-				$prestador->setPreIdentificacionPrestador($this->getRequestParameter('pre_identificacion_prestador'));
-			/*	$prestador->getPreEstado($this->getRequestParameter('pre_estado'));
-				$prestador->getPreSerAcueducto($this->getRequestParameter('pre_ser_acueducto'));
-				$prestador->getPreSerAlcantarillado($this->getRequestParameter('pre_ser_alcantarillado'));
-				$prestador->getPreSerAseo($this->getRequestParameter('pre_ser_aseo')); */
-				
-				$prestador->save();
-				$salida = "({success: true, mensaje:'El Prestador fue actualizado exitosamente'})";
-			} 
+				if($prestador)
+				{
+					$prestador->setPreUsuId($this->getRequestParameter('pre_usu_id')); 
+					$prestador->setPreRanId($this->getRequestParameter('pre_ran_id'));
+					$prestador->setPreNombrePrestador($this->getRequestParameter('pre_nombre_prestador'));
+					$prestador->setPreTipoIdentificacionPrestador($this->getRequestParameter('pre_tipo_identificacion_prestador'));
+					$prestador->setPreIdentificacionPrestador($this->getRequestParameter('pre_identificacion_prestador'));
+					$prestador->getPreEstado($this->getRequestParameter('pre_estado'));
+
+					$this->actualizarPrestadorxServicio('acueducto',$prestador->getPreId(),$this->getRequestParameter('pre_ser_acueducto'));
+					$this->actualizarPrestadorxServicio('alcantarillado',$prestador->getPreId(),$this->getRequestParameter('pre_ser_alcantarillado'));
+					$this->actualizarPrestadorxServicio('aseo',$prestador->getPreId(),$this->getRequestParameter('pre_ser_aseo'));
+
+					$prestador->save();
+					$salida = "({success: true, mensaje:'El Prestador fue actualizado exitosamente'})";
+				} 
+				else 
+				{
+					$salida = "({success: false, errors: { reason: 'No se a actualizado el prestador, porque no existe'}})";
+				}
+			}
 			else 
 			{
-				$salida = "({success: false, errors: { reason: 'No se a actualizado el prestador , porque no existe'}})";
+				$salida = "({success: false, errors: { reason: 'No se a actualizado el prestador, porque el usuario escojido o la identificacion estan asignados a otro prestador'}})";
 			}
 		}
 		catch (Exception $excepcion)
@@ -109,7 +143,7 @@ class prestador_gestionarActions extends sfActions
   *@author:maryit sanchez
   *@date:30 de julio de 2010
   *Este metodo permite la eliminacion de Prestadores
-  */	  
+  */	  /*
 	public function executeEliminarPrestador()
 	{
 		$salida =  "";
@@ -144,7 +178,7 @@ class prestador_gestionarActions extends sfActions
 		}
 		return $this->renderText($salida);
 	}
-
+*/
 	
 	  /**
   *@author:maryit sanchez
@@ -156,10 +190,10 @@ class prestador_gestionarActions extends sfActions
 		$salida = '';
 		try{
 			$conexion = new Criteria();
-		/*	if($this->getRequestParameter('pre_estado'))
+			if($this->getRequestParameter('pre_estado'))
 			{
-			$conexion->add(PrestadorPeer::pre_estado,$this->getRequestParameter('pre_estado'));
-			}*/
+			$conexion->add(PrestadorPeer::PRE_ESTADO,$this->getRequestParameter('pre_estado'));
+			}
 			$numero_prestadores = PrestadorPeer::doCount($conexion);
 			$conexion->setLimit($this->getRequestParameter('limit'));
 			$conexion->setOffset($this->getRequestParameter('start'));
@@ -175,10 +209,10 @@ class prestador_gestionarActions extends sfActions
 				$datos[$pos]['pre_nombre_prestador']=$temporal->getPreNombrePrestador();
 				$datos[$pos]['pre_tipo_identificacion_prestador'] = $temporal->getPreTipoIdentificacionPrestador();
 				$datos[$pos]['pre_identificacion_prestador'] = $temporal->getPreIdentificacionPrestador();
-				//$datos[$pos]['pre_estado']=$temporal->getPreEstado();
-				//$datos[$pos]['pre_ser_acueducto'] = $temporal->getPreSerAcueducto();
-				//$datos[$pos]['pre_ser_alcantarillado'] =  $temporal->getPreSerAlcantarillado();
-				//$datos[$pos]['pre_ser_aseo'] =  $temporal->getPreSerAseo();
+				$datos[$pos]['pre_estado']=$temporal->getPreEstado();
+				$datos[$pos]['pre_ser_acueducto'] = $this->obtenerPrestadorxServicio('acueducto',$temporal->getPreId()) ;
+				$datos[$pos]['pre_ser_alcantarillado'] = $this->obtenerPrestadorxServicio('alcantarillado',$temporal->getPreId());
+				$datos[$pos]['pre_ser_aseo'] = $this->obtenerPrestadorxServicio('aseo',$temporal->getPreId());
 				
 				$pos++;
 			}
@@ -282,5 +316,120 @@ class prestador_gestionarActions extends sfActions
 			$salida = '({"total":"0", "results":"", mensaje:"Hubo una excepcion"})';
 		}
 		return $this->renderText($salida);
+	}
+
+/**
+  *@author:maryit sanchez
+  *@date:13 de julio de 2010
+  *Este metodo retorna el id de un servicio especifico
+  */  
+  protected function obtenerServicioId($ser_nombre)
+	{
+		$conexion = new Criteria();			
+		$conexion->add(ServicioPeer::SER_NOMBRE, $ser_nombre);
+		$servicio = ServicioPeer::doSelectOne($conexion);
+		$ser_id = $servicio->getSerId();
+		return  $ser_id;
+	}
+
+	 /**
+  *@author:maryit sanchez
+  *@date:7 de agosto de 2010
+  *Este metodo no sindica si un prestador ofrece un servicio particular, 
+  *retorna 1 si el prestador  ofrece el servicio y 0 en sino
+  */	
+	protected function obtenerPrestadorxServicio($servicio,$pre_id)
+	{ 
+		
+		try{
+			$ser_id=$this->obtenerServicioId($servicio);
+
+			$conexion = new Criteria();
+			$conexion->add(PrestadorporservicioPeer::PPSG_SER_ID,$ser_id);
+			$conexion->add(PrestadorporservicioPeer::PPSG_PRE_ID,$pre_id);
+			$prestadorporservicio = PrestadorporservicioPeer::doSelectOne($conexion);
+			
+			
+			if($prestadorporservicio)
+			{
+				return 1;
+			}
+		}
+		catch (Exception $excepcion)
+		{
+			echo('mensaje:Hubo una excepcion');
+		}
+		return 0;
+	}
+
+ /**
+  *@author:maryit sanchez
+  *@date:7 de agosto de 2010
+  *Este metodo crea tuplas en prestador por servicio dado un prestador y un servicio en particular
+  */	
+	protected function crearPrestadorxServicio($servicio,$pre_id)
+	{ 
+		
+		try{
+			
+			$ser_id=$this->obtenerServicioId($servicio);
+
+			$prestadorporservicio = new Prestadorporservicio(); 
+			$prestadorporservicio->setPpsgSerId($ser_id);
+			$prestadorporservicio->setPpsgPreId($pre_id);
+			$prestadorporservicio->save();
+			
+			return 1;			
+		}
+		catch (Exception $excepcion)
+		{
+			echo('mensaje:Hubo una excepcion en crear prestador por servicio'.$excepcion);
+		}
+		return 0;
+	}
+
+ /**
+  *@author:maryit sanchez
+  *@date:8 de agosto de 2010
+  *Este metodo crea tuplas en prestador por servicio dado un prestador y un servicio en particular
+  */	
+	protected function actualizarPrestadorxServicio($servicio,$pre_id,$estado_servicio)
+	{ 
+		
+		try{
+			
+			$ser_id=$this->obtenerServicioId($servicio);
+
+			$conexion = new Criteria();
+			$conexion->add(PrestadorporservicioPeer::PPSG_SER_ID,$ser_id);
+			$conexion->add(PrestadorporservicioPeer::PPSG_PRE_ID,$pre_id);
+			$prestadorporservicio = PrestadorporservicioPeer::doSelectOne($conexion);
+			
+			
+			if($estado_servicio==1)
+			{
+				if(!$prestadorporservicio)
+				{
+				$prestadorporservicio = new Prestadorporservicio(); 
+				$prestadorporservicio->setPpsgSerId($ser_id);
+				$prestadorporservicio->setPpsgPreId($pre_id);
+				$prestadorporservicio->save();
+				}
+			}
+			else
+			{
+				if($prestadorporservicio)
+				{
+				$prestadorporservicio->delete();
+				}
+			}
+
+			return 1;			
+		}
+		catch (Exception $excepcion)
+		{
+			echo('mensaje:Hubo una excepcion en actualizar prestador por servicio'.$excepcion);
+		}
+		return 0;
 	}
 }
