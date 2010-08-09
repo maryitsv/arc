@@ -198,6 +198,8 @@ var acu_cap_actividad_capacitacion_otra_cuales = new Ext.form.TextField( {
 	name: 'acu_cap_actividad_capacitacion_otra_cuales',
 	id: 'acu_cap_actividad_capacitacion_otra_cuales',
 	fieldLabel: '<html>&iquest;Otra, cu&aacute;l?</html>',
+	maxLength: 100,
+	minLength: 0,
 	disabled : false,
 	listeners:
 	{
@@ -331,6 +333,8 @@ var acu_cap_temas_capacitacion_otra_cual = new Ext.form.TextField( {
 	labelStyle: 'width:300px; text-align:right;',
 	name: 'acu_cap_temas_capacitacion_otra_cual',
 	id: 'acu_cap_temas_capacitacion_otra_cual',
+	maxLength: 100,
+	minLength: 0,
 	fieldLabel: '<html>&iquest;Otra, cu&aacute;l?</html>',
 	disabled : false,
 	listeners:
@@ -347,6 +351,8 @@ var acu_cap_instituciones_ofrecieron = new Ext.form.TextField( {
 	name: 'acu_cap_instituciones_ofrecieron',
 	id: 'acu_cap_instituciones_ofrecieron',
 	fieldLabel: 'Instituciones que ofrecieron capacitaciones',
+	maxLength: 100,
+	minLength: 4,
 	disabled : false,
 	listeners:
 	{
@@ -363,6 +369,8 @@ var acu_cap_numero_directiva_hombres = new Ext.form.NumberField( {
 	name: 'acu_cap_numero_directiva_hombres',
 	id: 'acu_cap_numero_directiva_hombres',
 	fieldLabel: 'N&uacute;mero de hombres integrantes de la directiva',
+	maxLength: 1000,
+	minLength: 0,
 	disabled : false,
 	listeners:
 	{
@@ -379,6 +387,8 @@ var acu_cap_numero_directiva_mujeres = new Ext.form.NumberField( {
 	name: 'acu_cap_numero_directiva_mujeres',
 	id: 'acu_cap_numero_directiva_mujeres',
 	fieldLabel: 'N&uacute;mero de mujeres integrantes de la directiva',
+	maxLength: 1000,
+	minLength: 0,
 	disabled : false,
 	listeners:
 	{

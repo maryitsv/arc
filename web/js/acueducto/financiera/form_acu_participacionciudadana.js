@@ -104,6 +104,8 @@ var acu_par_participacion_ciudadana_otra_cual = new Ext.form.TextField({
     name: 'acu_par_participacion_ciudadana_otra_cual',
     id: 'acu_par_participacion_ciudadana_otra_cual',
     fieldLabel: '&iquest; Cu&aacute;l ?',
+	maxLength: 100,
+	minLength: 0,
     disabled : false,
     listeners:
     {

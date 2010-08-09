@@ -58,8 +58,8 @@ var acu_pps_numero_empleados_con_competencias = new Ext.form.NumberField( {
 	id: 'acu_pps_numero_empleados_con_competencias', 
 	name: 'acu_pps_numero_empleados_con_competencias', 
 	anchor: '100%', 
-	minLength : '1',
-      	maxLength : '7',
+	minLength : 1,
+    maxLength : 7,
 	//allowBlank:false,
 	listeners: {
         'render': function(){ 
@@ -73,7 +73,9 @@ var acu_pps_numero_empleados_sin_competencias = new Ext.form.NumberField( {
 	emptyText: 'n&uacute;mero de empleados que NO cuentan con certificaci&oacute;n basada en competencias', 
 	id: 'acu_pps_numero_empleados_sin_competencias', 
 	name: 'acu_pps_numero_empleados_sin_competencias', 
-	anchor: '100%', 
+	anchor: '100%',
+	minLength : 1,
+    maxLength : 7,
 	//allowBlank:false,
 	listeners: {
         'render': function(){ 
@@ -87,7 +89,9 @@ var acu_pps_numero_empleados_proceso_competencias = new Ext.form.NumberField( {
 	emptyText: 'n&uacute;mero de empleados que est&aacute;n EN PROCESO de certificaci&oacute;n basada en competencias', 
 	id: 'acu_pps_numero_empleados_proceso_competencias', 
 	name: 'acu_pps_numero_empleados_proceso_competencias', 
-	anchor: '100%', 
+	anchor: '100%',
+	minLength : 1,
+    maxLength : 7,
 	//allowBlank:false,
 	listeners: {
         'render': function(){ 
@@ -101,7 +105,9 @@ var acu_pps_numero_suscriptores = new Ext.form.NumberField( {
 	emptyText: 'ingrese el n&uacute;mero de suscriptores', 
 	id: 'acu_pps_numero_suscriptores', 
 	name: 'acu_pps_numero_suscriptores',
-	anchor: '100%', 
+	anchor: '100%',
+	minLength : 1,
+    maxLength : 8,
 	//allowBlank: false,
 	listeners: {
         'render': function(){ 
@@ -117,6 +123,8 @@ var acu_pps_nombre_diligenciador = new Ext.form.TextField({
     id: 'acu_pps_nombre_diligenciador',
     name: 'acu_pps_nombre_diligenciador',
     width: 300,
+	minLength : 4,
+    maxLength : 200,
     //allowBlank: false,
     listeners: {
         'render': function(){
@@ -130,6 +138,8 @@ var acu_pps_apellido_diligenciador = new Ext.form.TextField({
     emptyText: 'ingrese el apellido del diligenciador',
     id: 'acu_pps_apellido_diligenciador',
     name: 'acu_pps_apellido_diligenciador',
+	minLength : 4,
+    maxLength : 200,
     anchor: '100%',
     //allowBlank: false,
     listeners: {
@@ -144,6 +154,8 @@ var acu_pps_identificacion_diligenciador = new Ext.form.TextField({
     emptyText: 'ingrese la identificacion del diligenciador',
     id: 'acu_pps_identificacion_diligenciador',
     name: 'acu_pps_identificacion_diligenciador',
+	minLength : 4,
+    maxLength : 15,
     anchor: '100%',
     //allowBlank: false,
     listeners: {
@@ -185,6 +197,8 @@ var acu_pps_telefono_diligenciador = new Ext.form.TextField({
     emptyText: 'ingrese el n&uacute;mero de tel&eacute;fono fijo o celular del diligenciador',
     id: 'acu_pps_telefono_diligenciador',
     name: 'acu_pps_telefono_diligenciador',
+	minLength : 4,
+    maxLength : 15,
     anchor: '100%',
     //allowBlank: false,
     listeners: {

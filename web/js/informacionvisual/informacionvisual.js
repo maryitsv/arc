@@ -15,7 +15,7 @@
 	var informacionvisual_formpanel = new Ext.FormPanel({
 		title:'Datos detallados de la informaci&oacute;n visual',
 		columnWidth:'.4',
-		height: largo_panel-15,
+		height: largo_panel+50,
 		frame:true,
 		id:'informacionvisual_formpanel',
 		fileUpload: true,
@@ -32,14 +32,14 @@
 				maxLength: 100,
 				maskRe: /([a-zA-Z0-9\s]+)$/,
 				allowBlank: false
-			},{
+			},{xtype: 'label', html: '<br/>'},{
 				xtype: 'fileuploadfield', 
 				id: 'archivo', 
 				emptyText: 'Seleccione un documento', 
 				fieldLabel: 'Escojer',
 				name: 'archivo',buttonText: '',allowBlank:false,
 				buttonCfg: {iconCls: 'archivo'}
-		  	},{
+		  	},{xtype: 'label', html: '<br/>'},{
 				xtype:'combo',
 				allowBlank:false,
 				store: informacionvisual_tipoarchivo_datastore,
@@ -53,7 +53,7 @@
 				fieldLabel: 'Tipo archivo',
 				emptyText: 'Selecciona...',
 				selectOnFocus: true
-			},
+			},{xtype: 'label', html: '<br/>'},
 			{
 				fieldLabel: 'Descripci&oacute;n',
 				id:'iv_descripcion',
@@ -61,12 +61,13 @@
 				allowBlank:false,
 				xtype: 'textarea',
 				maxLength :200,
+				height: 120,
 				emptyText:'Digite una breve descripcion del archivo'
-			},{
+			},{xtype: 'label', html: '<br/>'},{
 				id:'iv_url',
 				name: 'iv_url',
 				xtype:'hidden'
-			},{
+			},{xtype: 'label', html: '<br/>'},{
 				id:'iv_id',
 				name: 'iv_id',
 				xtype:'hidden'
@@ -168,7 +169,7 @@
 		}),
 		autoExpandColumn: 'iv_descripcion',
 		autoExpandMin: 200,
-		height: largo_panel-40,
+		height: largo_panel-15,
 		listeners: {
 			viewready: function(g) {
 				g.getSelectionModel().selectRow(0);

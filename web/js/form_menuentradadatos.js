@@ -289,7 +289,7 @@ init: function () {
 						height: 65,
 						//autoWidth: true,
 						margins: '0 10 0 10',
-						html: '<center><img width=200 height=43 border=0  src="../images/colaboradores2.png"/></center>'
+						html: '<center><img width=210 height=43 border=0  src="../images/colaboradores2.png"/></center>'
 					}
 				]
 			});

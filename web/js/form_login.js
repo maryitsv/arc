@@ -13,7 +13,7 @@ var login_colaboradores_bubblepanel = new Ext.ux.BubblePanel({
 	frame: true,
 	autoHeight: true,
 	renderTo: 'colaboradores',
-	html: '<font face="arial" size=2 color=#4E79B2><center>Descargar Manual</center></font><br /><img src="../images/colaboradores.png" width=400 height=80 border=0 alt="user"></center>',
+	html: '<font face="arial" size=2 color=#4E79B2><center>Descargar Manual</center></font><br /><img src="../images/colaboradores.png" width=380 height=90 border=0 alt="user"></center>',
 	width: 500,
 });
 
@@ -33,6 +33,8 @@ var login_panel = new Ext.form.FormPanel({
 		anchor: '100%', 
 		id: 'usu_login',
 		name: 'usu_login',
+		maxLength: 30,
+		minLength: 4,
 		vtype:'alphanum',
 		allowBlank:false,
 		listeners: {
@@ -50,7 +52,9 @@ var login_panel = new Ext.form.FormPanel({
 	  },
 	  {
 		fieldLabel: 'Contrase&ntilde;a', 
-		inputType : 'password', 
+		inputType : 'password',
+		maxLength: 32,
+		minLength: 4,
 		emptyText: 'digite su contrasena', 
 		anchor: '100%', 
 		id: 'usu_clave',
