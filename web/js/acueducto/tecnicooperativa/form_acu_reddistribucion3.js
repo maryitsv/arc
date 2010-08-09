@@ -15,7 +15,7 @@ var form_acu_reddistribucion3 = new Ext.form.FormPanel({
             form_acu_reddistribucion2.show();
             form_acu_reddistribucion3.hide();
         }
-    }    //    , {
+    } //    , {
     //        text: 'Siguiente',
     //        handler: function(){
     //            form_acu_reddistribucion3.getForm().submit({
@@ -43,15 +43,12 @@ var tord_otro = {
         check: function(radio, checked){
             var textfield = Ext.getCmp('tord_otro_tipo_nombre').setDisabled(!checked);
             textfield.focus();
-            var textfield = Ext.getCmp('tord_otro_otro1_longitud').setDisabled(!checked);
             var textfield = Ext.getCmp('tord_otro_otro1_diametro').setDisabled(!checked);
             var textfield = Ext.getCmp('tord_otro_otro1_edad').setDisabled(!checked);
             var textfield = Ext.getCmp('tord_otro_otro1_nombre').setDisabled(!checked);
-            var textfield = Ext.getCmp('tord_otro_otro2_longitud').setDisabled(!checked);
             var textfield = Ext.getCmp('tord_otro_otro2_diametro').setDisabled(!checked);
             var textfield = Ext.getCmp('tord_otro_otro2_edad').setDisabled(!checked);
             var textfield = Ext.getCmp('tord_otro_otro2_nombre').setDisabled(!checked);
-            var textfield = Ext.getCmp('tord_otro_otro3_longitud').setDisabled(!checked);
             var textfield = Ext.getCmp('tord_otro_otro3_diametro').setDisabled(!checked);
             var textfield = Ext.getCmp('tord_otro_otro3_edad').setDisabled(!checked);
             var textfield = Ext.getCmp('tord_otro_otro3_nombre').setDisabled(!checked);
@@ -86,29 +83,6 @@ var tord_otro_tipo_nombre = {
                 title: 'Titulo tord_otro_tipo_nombre',
                 anchor: 'top',
                 html: 'Mensaje de ayuda para tord_otro_tipo_nombre',
-                trackMouse: true
-            });
-        }
-    }
-}
-
-var tord_otro_otro1_longitud = {
-    xtype: "textfield",
-    value: 0,
-    disabled: true,
-    tabIndex: 1,
-    id: "tord_otro_otro1_longitud",
-    name: "tord_otro_otro1_longitud",
-    fieldLabel: "En otro1",
-    allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_otro_otro1_longitud')).getEl(),
-                title: 'Titulo tord_otro_otro1_longitud',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_otro_otro1_longitud',
                 trackMouse: true
             });
         }
@@ -185,29 +159,6 @@ var tord_otro_otro1_nombre = {
     }
 }
 
-var tord_otro_otro2_longitud = {
-    xtype: "textfield",
-    value: 0,
-    disabled: true,
-    tabIndex: 1,
-    id: "tord_otro_otro2_longitud",
-    name: "tord_otro_otro2_longitud",
-    fieldLabel: "En otro2",
-    allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_otro_otro2_longitud')).getEl(),
-                title: 'Titulo tord_otro_otro2_longitud',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_otro_otro2_longitud',
-                trackMouse: true
-            });
-        }
-    }
-}
-
 var tord_otro_otro2_diametro = {
     xtype: "textfield",
     value: 0,
@@ -272,29 +223,6 @@ var tord_otro_otro2_nombre = {
                 title: 'Titulo tord_otro_otro2_nombre',
                 anchor: 'top',
                 html: 'Mensaje de ayuda para tord_otro_otro2_nombre',
-                trackMouse: true
-            });
-        }
-    }
-}
-
-var tord_otro_otro3_longitud = {
-    xtype: "textfield",
-    value: 0,
-    disabled: true,
-    tabIndex: 1,
-    id: "tord_otro_otro3_longitud",
-    name: "tord_otro_otro3_longitud",
-    fieldLabel: "En otro3",
-    allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_otro_otro3_longitud')).getEl(),
-                title: 'Titulo tord_otro_otro3_longitud',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_otro_otro3_longitud',
                 trackMouse: true
             });
         }
@@ -371,8 +299,68 @@ var tord_otro_otro3_nombre = {
     }
 }
 
-var acu_reddistribucion2_datastore = new Ext.data.Store({
-    id: 'acu_reddistribucion2_datastore',
+var toa_planos_actualizados = {
+    xtype: "radiogroup",
+    id: "toa_planos_actualizados",
+    name: "toa_planos_actualizados",
+    labelSeparator: '',
+    fieldLabel: "¿Existen planos actualizados de la red de distribución?",
+    width: 100,
+    items: [{
+        name: 'toa_planos_actualizados',
+        boxLabel: 'Si',
+        inputValue: 1,
+        listeners: {
+            check: function(radio, checked){
+                var textfield = Ext.getCmp('toa_ano_actualizacion_planos');
+                textfield.setDisabled(!checked);
+                textfield.focus();
+            }
+        }
+    }, {
+        name: 'toa_planos_actualizados',
+        boxLabel: 'No',
+        inputValue: 0,
+        checked: true
+    }],
+    listeners: {
+        render: function(){
+            new Ext.ToolTip({
+                target: (Ext.getCmp('toa_planos_actualizados')).getEl(),
+                title: 'Titulo toa_planos_actualizados',
+                anchor: 'top',
+                html: 'Mensaje de ayuda para toa_planos_actualizados',
+                trackMouse: true
+            });
+        }
+    }
+}
+
+var toa_ano_actualizacion_planos = {
+    xtype: 'textfield',
+    width: 100,
+    emptyText: '2010',
+    disabled: true,
+    tabIndex: 1,
+    id: "toa_ano_actualizacion_planos",
+    name: "toa_ano_actualizacion_planos",
+    allowBlank: false,
+    fieldLabel: 'Año de actualización',
+    listeners: {
+        render: function(){
+            new Ext.ToolTip({
+                target: (Ext.getCmp('toa_ano_actualizacion_planos')).getEl(),
+                title: 'Titulo toa_ano_actualizacion_planos',
+                anchor: 'top',
+                html: 'Mensaje de ayuda para toa_ano_actualizacion_planos',
+                trackMouse: true
+            });
+        }
+    }
+}
+
+var acu_reddistribucion3_datastore = new Ext.data.Store({
+    id: 'acu_reddistribucion3_datastore',
     proxy: new Ext.data.HttpProxy({
         url: getAbsoluteUrl('acueducto_reddistribucion', 'obtenerDatos'),
         method: 'POST'
@@ -386,9 +374,6 @@ var acu_reddistribucion2_datastore = new Ext.data.Store({
         name: 'tord_otro_tipo_nombre',
         type: 'string'
     }, {
-        name: 'tord_otro_otro1_longitud',
-        type: 'int'
-    }, {
         name: 'tord_otro_otro1_diametro',
         type: 'int'
     }, {
@@ -397,9 +382,6 @@ var acu_reddistribucion2_datastore = new Ext.data.Store({
     }, {
         name: 'tord_otro_otro1_nombre',
         type: 'string'
-    }, {
-        name: 'tord_otro_otro2_longitud',
-        type: 'int'
     }, {
         name: 'tord_otro_otro2_diametro',
         type: 'int'
@@ -410,9 +392,6 @@ var acu_reddistribucion2_datastore = new Ext.data.Store({
         name: 'tord_otro_otro2_nombre',
         type: 'string'
     }, {
-        name: 'tord_otro_otro3_longitud',
-        type: 'int'
-    }, {
         name: 'tord_otro_otro3_diametro',
         type: 'int'
     }, {
@@ -421,19 +400,25 @@ var acu_reddistribucion2_datastore = new Ext.data.Store({
     }, {
         name: 'tord_otro_otro3_nombre',
         type: 'string'
+    }, {
+        name: 'toa_planos_actualizados',
+        type: 'int'
+    }, {
+        name: 'toa_ano_actualizacion_planos',
+        type: 'int'
     }])
 });
 
-acu_reddistribucion2_datastore.load({
+acu_reddistribucion3_datastore.load({
     callback: function(){
-        var registro = acu_reddistribucion2_datastore.getAt(0);
+        var registro = acu_reddistribucion3_datastore.getAt(0);
         form_acu_reddistribucion3.getForm().loadRecord(registro);
     }
 });
 
 form_acu_reddistribucion3.add({
     xtype: 'fieldset',
-    title: 'Línea de conducción de agua cruda',
+    title: 'Red de distribución',
     height: 320,
     items: [{
         layout: 'column',
@@ -451,13 +436,6 @@ form_acu_reddistribucion3.add({
             }, tord_otro_otro1_nombre, tord_otro_otro2_nombre, tord_otro_otro3_nombre]
         }, {
             layout: 'form',
-            items: [{
-                xtype: 'label',
-                fieldLabel: '<b>Longitud(metros)</b>',
-                labelSeparator: ''
-            }, tord_otro_otro1_longitud, tord_otro_otro2_longitud, tord_otro_otro3_longitud]
-        }, {
-            layout: 'form',
             bodyStyle: 'padding-left: 50px;',
             items: [{
                 xtype: 'label',
@@ -473,8 +451,22 @@ form_acu_reddistribucion3.add({
                 labelSeparator: ''
             }, tord_otro_otro1_edad, tord_otro_otro2_edad, tord_otro_otro3_edad]
         }]
+    }, {
+        layout: 'column',
+        items: [{
+            layout: 'form',
+            labelWidth: 300,
+            width: 400,
+            items: [toa_planos_actualizados]
+        }, {
+            layout: 'form',
+            labelWidth: 150,
+            items: [toa_ano_actualizacion_planos]
+        }]
     }]
 });
+
+
 
 var panel_reddistribucion = new Ext.Panel({
     renderTo: 'div_form_acu_reddistribucion',

@@ -79,6 +79,32 @@ class acueducto_reddistribucionActions extends sfActions
 		return sfView::NONE;
 	}
 
+	public function executeSubirDatos3(sfWebRequest $request) {
+		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
+		$pps_ser_id = 1;
+
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+
+		if($request->hasParameter('tord_otro')) {
+			TecnicooperativareddistribucionacueductoPeer::crearRedOtra($tecnicoOperativo->getTopId(), 5, 8, $request->getParameter('tord_otro_otro1_diametro'), $request->getParameter('tord_otro_otro1_edad'),  $request->getParameter('tord_otro_tipo_nombre'), $request->getParameter('tord_otro_otro1_nombre'));
+			TecnicooperativareddistribucionacueductoPeer::crearRedOtra($tecnicoOperativo->getTopId(), 5, 9, $request->getParameter('tord_otro_otro2_diametro'), $request->getParameter('tord_otro_otro2_edad'),  $request->getParameter('tord_otro_tipo_nombre'), $request->getParameter('tord_otro_otro2_nombre'));
+			TecnicooperativareddistribucionacueductoPeer::crearRedOtra($tecnicoOperativo->getTopId(), 5, 10, $request->getParameter('tord_otro_otro3_diametro'), $request->getParameter('tord_otro_otro3_edad'), $request->getParameter('tord_otro_tipo_nombre'), $request->getParameter('tord_otro_otro3_nombre'));
+		}
+		else {
+			TecnicooperativareddistribucionacueductoPeer::eliminarRedes($tecnicoOperativo->getTopId(), 5);
+		}
+
+		if($request->hasParameter('toa_planos_actualizados')) {
+			$acueducto = TecnicooperativaacueductoPeer::consultarTecnicoOperativoAcueducto($pps_anio, $pps_pre_id, $pps_ser_id);
+			$acueducto->setToaPlanosActualizados($request->getParameter('toa_planos_actualizados'));
+			$acueducto->setToaAnoActualizacionPlanos($request->getParameter('toa_ano_actualizacion_planos'));
+			$acueducto->save();
+		}
+
+		return sfView::NONE;
+	}
+
 	public function executeObtenerDatos() {
 		$pps_anio = $this->getUser()->getAttribute('pps_anio');
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
@@ -204,6 +230,39 @@ class acueducto_reddistribucionActions extends sfActions
 					$campos['tord_manguera_otro_edad'] = $otro->getTordMaterialEdad();
 					$campos['tord_manguera_otro_nombre'] = $otro->getTordNombreMaterial();
 				}
+			}
+
+			$otro = TecnicooperativareddistribucionacueductoPeer::consultarRedSiExiste($tecnicoOperativo->getTopId(), 5);
+			if($otro) {
+				$campos['tord_otro'] = 1;
+
+				$otro1 = TecnicooperativareddistribucionacueductoPeer::consultarRedSiExiste($tecnicoOperativo->getTopId(), 5, 8);
+				if($otro1){
+					$campos['tord_otro_otro1_diametro'] = $otro1->getTordMaterialDiametro();
+					$campos['tord_otro_otro1_edad'] =     $otro1->getTordMaterialEdad();
+					$campos['tord_otro_otro1_nombre'] =   $otro1->getTordNombreMaterial();
+					$campos['tord_otro_tipo_nombre'] = $otro1->getTordNombreCanal();
+				}
+
+				$otro2 = TecnicooperativareddistribucionacueductoPeer::consultarRedSiExiste($tecnicoOperativo->getTopId(), 5, 9);
+				if($otro2){
+					$campos['tord_otro_otro2_diametro'] = $otro2->getTordMaterialDiametro();
+					$campos['tord_otro_otro2_edad'] =     $otro2->getTordMaterialEdad();
+					$campos['tord_otro_otro2_nombre'] =   $otro2->getTordNombreMaterial();
+				}
+
+				$otro3 = TecnicooperativareddistribucionacueductoPeer::consultarRedSiExiste($tecnicoOperativo->getTopId(), 5, 10);
+				if($otro3){
+					$campos['tord_otro_otro3_diametro'] = $otro3->getTordMaterialDiametro();
+					$campos['tord_otro_otro3_edad'] =     $otro3->getTordMaterialEdad();
+					$campos['tord_otro_otro3_nombre'] =   $otro3->getTordNombreMaterial();
+				}
+			}
+
+			$acueducto = TecnicooperativaacueductoPeer::consultarTecnicoOperativoAcueductoSiExiste($pps_anio, $pps_pre_id, $pps_ser_id);
+			if($acueducto) {
+				$campos['toa_planos_actualizados'] = $acueducto->getToaPlanosActualizados();
+				$campos['toa_ano_actualizacion_planos'] = $acueducto->getToaAnoActualizacionPlanos();
 			}
 
 			$datos[] = $campos;
