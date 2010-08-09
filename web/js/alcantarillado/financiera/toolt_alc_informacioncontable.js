@@ -24,4 +24,4 @@ ayuda_alc_ico_total_egresos = 'Ayuda!!!';
 ayuda_alc_ico_gastos_administrativos = 'Ayuda!!!';
 ayuda_alc_ico_costo_operacion_mantenimiento = 'Ayuda!!!';
 ayuda_alc_ico_costo_inversion = 'Ayuda!!!';
-ayuda_alc_ico_resultados_ejecicio = 'Ayuda!!!';
+ayuda_alc_ico_resultados_ejercicio = 'Ayuda!!!';

@@ -42,20 +42,30 @@ class acueducto_calidadaguadistribuidaActions extends sfActions
 	$conexion->add(CalidadPeer::CAL_PPS_ANIO, $pps_anio);
 	$conexion->add(CalidadPeer::CAL_PPS_SER_ID, $pps_ser_id);
 	$acu_calidad = CalidadPeer::doSelectOne($conexion);
-
-	if($acu_calidad)
+	
+	if(!$acu_calidad)
 	{
-		$conexion = new Criteria();
-		$conexion->add(CalidadaguaPeer::CAG_CAL_ID, $acu_calidad->getCalId());
+		try
+		{
+			$acu_calidad = new Calidad();
+			$acu_calidad->setCalPpsPreId($pps_pre_id);
+			$acu_calidad->setCalPpsAnio($pps_anio);
+			$acu_calidad->setCalPpsSerId($pps_ser_id);
+			$acu_calidad->save();
+		}
+		catch(Exception $exception)
+		{
+			return $this->renderText("({success: false, errors: { reason: 'Error en calidad'}})");
+		}
 	}
-	$acu_calidadaguadistribuida = CalidadaguaPeer::doSelectOne($conexion);
-	
-	$datos;
-	$pos=0;
-	
+
 	$conexion = new Criteria();
 	$conexion->add(CalidadaguaPeer::CAG_CAL_ID, $acu_calidad->getCalId());
-	
+	$acu_calidadaguadistribuida = CalidadaguaPeer::doSelectOne($conexion);
+
+	$datos;
+	$pos=0;
+
 	if($acu_calidadaguadistribuida)
 	{
 		$acu_cag_id = $acu_calidadaguadistribuida->getCagId();
@@ -84,7 +94,6 @@ class acueducto_calidadaguadistribuidaActions extends sfActions
 				$pos++;
 			}
 		}
-		
 		$jsonresult = json_encode($datos);
 		$salida = '({"total":'.$numero_parametrosred.',"results":'.$jsonresult.'})';
 	}
@@ -107,9 +116,10 @@ class acueducto_calidadaguadistribuidaActions extends sfActions
 				$datos[$pos]['acu_rep_resultado_punto_1']=0;
 				$datos[$pos]['acu_rep_resultado_punto_2']=0;
 				$datos[$pos]['acu_rep_resultado_punto_3']=0;
+				
+				$pos++;
 			}
 		}
-		
 		$jsonresult = json_encode($datos);
 		$salida = '({"total":'.$numero_parametrosred.',"results":'.$jsonresult.'})';
 	}
@@ -126,14 +136,7 @@ class acueducto_calidadaguadistribuidaActions extends sfActions
 	
 	if($resultadoxpunto)
 	{
-		/*if($resultadoxpunto->getRepResultado() == '')
-		{
-			return 0;
-		}
-		else
-		{*/
-			return $resultadoxpunto->getRepResultado();
-		//}
+		return $resultadoxpunto->getRepResultado();
 	}
 	else
 	{
@@ -281,7 +284,7 @@ class acueducto_calidadaguadistribuidaActions extends sfActions
 	}
 	catch(Exception $exception)
 	{
-		return $this->renderText("({success: false, errors: { reason: 'Error en parametro por frecuencia'}})");
+		return $this->renderText("({success: false, errors: { reason: 'Error en parametro por frecuencia:".$exception."'}})");
 	}
 	
 	$salida = "({success: true, mensaje:'La informacion del parametro fue actualizada exitosamente'})";
