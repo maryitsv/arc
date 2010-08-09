@@ -1,7 +1,7 @@
-var aceducto_datastore = new Ext.data.Store({
-	id: 'aceducto_datastore',
+var aseo_datastore = new Ext.data.Store({
+	id: 'aseo_datastore',
 	proxy: new Ext.data.HttpProxy({
-			url: 'acueducto/obtenerDatosAcueducto', 
+			url: 'aseo/obtenerDatosAseeducto', 
 			method: 'POST'
 	}),
 	baseParams:{}, 
@@ -10,31 +10,31 @@ var aceducto_datastore = new Ext.data.Store({
 			totalProperty: 'total',
 			id: 'id'
 			},[ 
-				{name: 'acu_pps_pre_id', type: 'int'},
-				{name: 'acu_pps_ser_id', type: 'int'},
-				{name: 'acu_pps_anio', type: 'int'},
-				{name: 'acu_pps_presupuesto_aprobado', type: 'int'},
-				{name: 'acu_pps_suscriptores_pendientes_de_pago', type: 'int'},
-				{name: 'acu_pps_estatutos', type: 'int'},
-				{name: 'acu_pps_numero_empleados_con_competencias', type: 'int'},
-				{name: 'acu_pps_numero_empleados_sin_competencias', type: 'int'},
-				{name: 'acu_pps_numero_empleados_proceso_competencias', type: 'int'},
-				{name: 'acu_pps_nombre_diligenciador', type: 'string'},
-				{name: 'acu_pps_apellido_diligenciador', type: 'string'},
-				{name: 'acu_pps_telefono_diligenciador', type: 'string'},
-				{name: 'acu_pps_identificacion_diligenciador', type: 'string'},
-				{name: 'acu_pps_tipo_identificacion_diligenciador', type: 'string'},
-				{name: 'acu_pps_numero_suscriptores', type: 'int'}
+				{name: 'ase_pps_pre_id', type: 'int'},
+				{name: 'ase_pps_ser_id', type: 'int'},
+				{name: 'ase_pps_anio', type: 'int'},
+				{name: 'ase_pps_presupuesto_aprobado', type: 'int'},
+				{name: 'ase_pps_suscriptores_pendientes_de_pago', type: 'int'},
+				{name: 'ase_pps_estatutos', type: 'int'},
+				{name: 'ase_pps_numero_empleados_con_competencias', type: 'int'},
+				{name: 'ase_pps_numero_empleados_sin_competencias', type: 'int'},
+				{name: 'ase_pps_numero_empleados_proceso_competencias', type: 'int'},
+				{name: 'ase_pps_nombre_diligenciador', type: 'string'},
+				{name: 'ase_pps_apellido_diligenciador', type: 'string'},
+				{name: 'ase_pps_telefono_diligenciador', type: 'string'},
+				{name: 'ase_pps_identificacion_diligenciador', type: 'string'},
+				{name: 'ase_pps_tipo_identificacion_diligenciador', type: 'string'},
+				{name: 'ase_pps_numero_suscriptores', type: 'int'}
 	])
 });
 
-var acu_pps_estatutos = new Ext.form.RadioGroup( { 
-	id: 'acu_pps_estatutos',
+var ase_pps_estatutos = new Ext.form.RadioGroup( { 
+	id: 'ase_pps_estatutos',
 	fieldLabel: '&iquest;Cuenta el prestador con estatutos?',
 	listeners:
   	{
 		'render': function(){ 	
-					ayuda( 'acu_pps_estatutos', ayuda_acu_pps_estatutos );
+					ayuda( 'ase_pps_estatutos', ayuda_ase_pps_estatutos );
 			}             
 	},
 	items: 
@@ -42,140 +42,140 @@ var acu_pps_estatutos = new Ext.form.RadioGroup( {
 	    items:[
 			{
 				boxLabel: 'Si',
-			  	name: 'acu_pps_estatutos',
+			  	name: 'ase_pps_estatutos',
 			  	inputValue: 1
 		  },
 		  {
 			  	boxLabel: 'No',
-			  	name: 'acu_pps_estatutos',
+			  	name: 'ase_pps_estatutos',
 			  	inputValue: 0
 		  }]
 	}]} );
 
-var acu_pps_numero_empleados_con_competencias = new Ext.form.NumberField( {
+var ase_pps_numero_empleados_con_competencias = new Ext.form.NumberField( {
 	fieldLabel: 'Cu&aacute;ntos empleados cuentan con certificaci&oacute;n basada en competencias rurales', 
 	emptyText: 'n&uacute;mero de empleados que cuentan con certificaci&oacute;n basada en competencias', 
-	id: 'acu_pps_numero_empleados_con_competencias', 
-	name: 'acu_pps_numero_empleados_con_competencias', 
+	id: 'ase_pps_numero_empleados_con_competencias', 
+	name: 'ase_pps_numero_empleados_con_competencias', 
 	anchor: '100%', 
 	minLength : 1,
     maxLength : 7,
 	//allowBlank:false,
 	listeners: {
         'render': function(){ 
-					ayuda( 'acu_pps_numero_empleados_con_competencias', ayuda_acu_pps_numero_empleados_con_competencias );
+					ayuda( 'ase_pps_numero_empleados_con_competencias', ayuda_ase_pps_numero_empleados_con_competencias );
      	}
 	}
 } );
 
-var acu_pps_numero_empleados_sin_competencias = new Ext.form.NumberField( {
+var ase_pps_numero_empleados_sin_competencias = new Ext.form.NumberField( {
 	fieldLabel: 'Cu&aacute;ntos empleados NO cuentan con certificaci&oacute;n basada en competencias rurales', 
 	emptyText: 'n&uacute;mero de empleados que NO cuentan con certificaci&oacute;n basada en competencias', 
-	id: 'acu_pps_numero_empleados_sin_competencias', 
-	name: 'acu_pps_numero_empleados_sin_competencias', 
+	id: 'ase_pps_numero_empleados_sin_competencias', 
+	name: 'ase_pps_numero_empleados_sin_competencias', 
 	anchor: '100%',
 	minLength : 1,
     maxLength : 7,
 	//allowBlank:false,
 	listeners: {
         'render': function(){ 
-					ayuda( 'acu_pps_numero_empleados_sin_competencias', ayuda_acu_pps_numero_empleados_sin_competencias );
+					ayuda( 'ase_pps_numero_empleados_sin_competencias', ayuda_ase_pps_numero_empleados_sin_competencias );
      	}
 	}
 } );
 
-var acu_pps_numero_empleados_proceso_competencias = new Ext.form.NumberField( { 
+var ase_pps_numero_empleados_proceso_competencias = new Ext.form.NumberField( { 
 	fieldLabel: 'Cu&aacute;ntos empleados est&aacute;n EN PROCESO de certificaci&oacute;n basada en competencias rurales', 
 	emptyText: 'n&uacute;mero de empleados que est&aacute;n EN PROCESO de certificaci&oacute;n basada en competencias', 
-	id: 'acu_pps_numero_empleados_proceso_competencias', 
-	name: 'acu_pps_numero_empleados_proceso_competencias', 
+	id: 'ase_pps_numero_empleados_proceso_competencias', 
+	name: 'ase_pps_numero_empleados_proceso_competencias', 
 	anchor: '100%',
 	minLength : 1,
     maxLength : 7,
 	//allowBlank:false,
 	listeners: {
         'render': function(){ 
-					ayuda( 'acu_pps_numero_empleados_proceso_competencias', ayuda_acu_pps_numero_empleados_proceso_competencias );
+					ayuda( 'ase_pps_numero_empleados_proceso_competencias', ayuda_ase_pps_numero_empleados_proceso_competencias );
      	}
 	}
 } );
 
-var acu_pps_numero_suscriptores = new Ext.form.NumberField( {
+var ase_pps_numero_suscriptores = new Ext.form.NumberField( {
 	fieldLabel: 'N&uacute;mero de suscriptores', 
 	emptyText: 'ingrese el n&uacute;mero de suscriptores', 
-	id: 'acu_pps_numero_suscriptores', 
-	name: 'acu_pps_numero_suscriptores',
+	id: 'ase_pps_numero_suscriptores', 
+	name: 'ase_pps_numero_suscriptores',
 	anchor: '100%',
 	minLength : 1,
     maxLength : 8,
 	//allowBlank: false,
 	listeners: {
         'render': function(){ 
-					ayuda( 'acu_pps_numero_suscriptores', ayuda_acu_pps_numero_suscriptores );
+					ayuda( 'ase_pps_numero_suscriptores', ayuda_ase_pps_numero_suscriptores );
      	}
 	}
 } );
 
-var acu_pps_nombre_diligenciador = new Ext.form.TextField({
+var ase_pps_nombre_diligenciador = new Ext.form.TextField({
     fieldLabel: 'Nombre del diligenciador',
     emptyText: 'ingrese el nombre del diligenciador',
     anchor: '100%',
-    id: 'acu_pps_nombre_diligenciador',
-    name: 'acu_pps_nombre_diligenciador',
+    id: 'ase_pps_nombre_diligenciador',
+    name: 'ase_pps_nombre_diligenciador',
     width: 300,
 	minLength : 4,
     maxLength : 200,
     //allowBlank: false,
     listeners: {
         'render': function(){
-            ayuda('acu_pps_nombre_diligenciador', ayuda_acu_pps_nombre_diligenciador);
+            ayuda('ase_pps_nombre_diligenciador', ayuda_ase_pps_nombre_diligenciador);
         }
     }
 });
 
-var acu_pps_apellido_diligenciador = new Ext.form.TextField({
+var ase_pps_apellido_diligenciador = new Ext.form.TextField({
     fieldLabel: 'Apellido del diligenciador',
     emptyText: 'ingrese el apellido del diligenciador',
-    id: 'acu_pps_apellido_diligenciador',
-    name: 'acu_pps_apellido_diligenciador',
+    id: 'ase_pps_apellido_diligenciador',
+    name: 'ase_pps_apellido_diligenciador',
 	minLength : 4,
     maxLength : 200,
     anchor: '100%',
     //allowBlank: false,
     listeners: {
         'render': function(){
-            ayuda('acu_pps_apellido_diligenciador', ayuda_acu_pps_apellido_diligenciador);
+            ayuda('ase_pps_apellido_diligenciador', ayuda_ase_pps_apellido_diligenciador);
         }
     }
 });
 
-var acu_pps_identificacion_diligenciador = new Ext.form.TextField({
+var ase_pps_identificacion_diligenciador = new Ext.form.TextField({
     fieldLabel: 'Identificaci&oacute;n del diligenciador',
     emptyText: 'ingrese la identificacion del diligenciador',
-    id: 'acu_pps_identificacion_diligenciador',
-    name: 'acu_pps_identificacion_diligenciador',
+    id: 'ase_pps_identificacion_diligenciador',
+    name: 'ase_pps_identificacion_diligenciador',
 	minLength : 4,
     maxLength : 15,
     anchor: '100%',
     //allowBlank: false,
     listeners: {
         'render': function(){
-            ayuda('acu_pps_identificacion_diligenciador', ayuda_acu_pps_identificacion_diligenciador);
+            ayuda('ase_pps_identificacion_diligenciador', ayuda_ase_pps_identificacion_diligenciador);
         }
     }
 });
 
-var acu_pps_tipos_identificacion = new Ext.data.ArrayStore({
+var ase_pps_tipos_identificacion = new Ext.data.ArrayStore({
     fields: ['tipo'],
     data : [ ['Cedula'], ['Nit'], ['Pasaporte'], ['Rut'] ]
 });
 
-var acu_pps_tipo_identificacion_diligenciador = new Ext.form.ComboBox({
-    store: acu_pps_tipos_identificacion,
-	name : 'acu_pps_tipo_identificacion_diligenciador',
+var ase_pps_tipo_identificacion_diligenciador = new Ext.form.ComboBox({
+    store: ase_pps_tipos_identificacion,
+	name : 'ase_pps_tipo_identificacion_diligenciador',
 	fieldLabel: 'Tipo de identificaci&oacute;n',
     emptyText:'seleccione el tipo de identificaci&oacute;n del diligenciador',
-	id: 'acu_pps_tipo_identificacion_diligenciador',
+	id: 'ase_pps_tipo_identificacion_diligenciador',
     displayField: 'tipo',
     typeAhead: true,
 	anchor: '70%',
@@ -187,68 +187,68 @@ var acu_pps_tipo_identificacion_diligenciador = new Ext.form.ComboBox({
 	listeners:
   	{
 		'render': function(){ 	
-					ayuda( 'acu_pps_tipo_identificacion_diligenciador', ayuda_acu_pps_tipo_identificacion_diligenciador );
+					ayuda( 'ase_pps_tipo_identificacion_diligenciador', ayuda_ase_pps_tipo_identificacion_diligenciador );
 			}             
 	}
 });
 
-var acu_pps_telefono_diligenciador = new Ext.form.TextField({
+var ase_pps_telefono_diligenciador = new Ext.form.TextField({
     fieldLabel: 'Tel&eacute;fono fijo &oacute; celular',
     emptyText: 'ingrese el n&uacute;mero de tel&eacute;fono fijo o celular del diligenciador',
-    id: 'acu_pps_telefono_diligenciador',
-    name: 'acu_pps_telefono_diligenciador',
+    id: 'ase_pps_telefono_diligenciador',
+    name: 'ase_pps_telefono_diligenciador',
 	minLength : 4,
     maxLength : 15,
     anchor: '100%',
     //allowBlank: false,
     listeners: {
         'render': function(){
-            ayuda('acu_pps_telefono_diligenciador', ayuda_acu_pps_telefono_diligenciador);
+            ayuda('ase_pps_telefono_diligenciador', ayuda_ase_pps_telefono_diligenciador);
         }
     }
 });
 
-var acu_pps_presupuesto_aprobado = new Ext.form.RadioGroup({
-    id: 'acu_pps_presupuesto_aprobado',
-    fieldLabel: '&iquest;Se cuenta con presupuesto anual aprobado para acueducto?',
+var ase_pps_presupuesto_aprobado = new Ext.form.RadioGroup({
+    id: 'ase_pps_presupuesto_aprobado',
+    fieldLabel: '&iquest;Se cuenta con presupuesto anual aprobado para aseo?',
     listeners: {
         'render': function(){
-            ayuda('acu_pps_presupuesto_aprobado', ayuda_acu_pps_presupuesto_aprobado);
+            ayuda('ase_pps_presupuesto_aprobado', ayuda_ase_pps_presupuesto_aprobado);
         }
     },
     items: [{
         items: [{
             boxLabel: 'Si',
-            name: 'acu_pps_presupuesto_aprobado',
+            name: 'ase_pps_presupuesto_aprobado',
             inputValue: 1
         }, {
             boxLabel: 'No',
-            name: 'acu_pps_presupuesto_aprobado',
+            name: 'ase_pps_presupuesto_aprobado',
             inputValue: 0
         }]
     }]
 });
 
-var acu_pps_suscriptores_pendientes_de_pago = new Ext.form.NumberField({
+var ase_pps_suscriptores_pendientes_de_pago = new Ext.form.NumberField({
     fieldLabel: 'N&uacute;mero de suscriptores que a diciembre 31 deben m&aacute;s de 3 Facturas',
     emptyText: 'ingrese la cantidad de suscriptores que a diciembre 31 deben m&aacute;s de 3 facturas',
-    id: 'acu_pps_suscriptores_pendientes_de_pago',
-    name: 'acu_pps_suscriptores_pendientes_de_pago',
+    id: 'ase_pps_suscriptores_pendientes_de_pago',
+    name: 'ase_pps_suscriptores_pendientes_de_pago',
     anchor: '100%',
     //allowBlank: false,
     listeners: {
         'render': function(){
-            ayuda('acu_pps_suscriptores_pendientes_de_pago', ayuda_acu_pps_suscriptores_pendientes_de_pago);
+            ayuda('ase_pps_suscriptores_pendientes_de_pago', ayuda_ase_pps_suscriptores_pendientes_de_pago);
         }
     }
 });
 
-var form_acueducto = new Ext.FormPanel({
-    title: 'Informaci&oacute;n general de acueducto',
+var form_aseo = new Ext.FormPanel({
+    title: 'Informaci&oacute;n general de aseo',
     autoWidth: true,
     frame: true,
     border: false,
-    renderTo: 'div_form_acueducto',
+    renderTo: 'div_form_aseo',
     height: largo_panel,
 	layout: 'column',
     padding: 10,
@@ -270,11 +270,11 @@ var form_acueducto = new Ext.FormPanel({
 			},
 			bodyStyle: Ext.isIE ? 'padding:5 5 5px 15px;' : 'padding: 10px 10px;',
 			items: [
-						acu_pps_nombre_diligenciador, 
-						acu_pps_apellido_diligenciador, 
-						acu_pps_identificacion_diligenciador, 
-						acu_pps_tipo_identificacion_diligenciador, 
-						acu_pps_telefono_diligenciador
+						ase_pps_nombre_diligenciador, 
+						ase_pps_apellido_diligenciador, 
+						ase_pps_identificacion_diligenciador, 
+						ase_pps_tipo_identificacion_diligenciador, 
+						ase_pps_telefono_diligenciador
 					]
 		},
 		{xtype: 'panel', columnWidth: '.01' },
@@ -290,9 +290,9 @@ var form_acueducto = new Ext.FormPanel({
 			},
 			bodyStyle: Ext.isIE ? 'padding:5 5 5px 15px;' : 'padding: 10px 10px;',
 			items: [
-						acu_pps_numero_empleados_con_competencias, 
-						acu_pps_numero_empleados_sin_competencias, 
-						acu_pps_numero_empleados_proceso_competencias
+						ase_pps_numero_empleados_con_competencias, 
+						ase_pps_numero_empleados_sin_competencias, 
+						ase_pps_numero_empleados_proceso_competencias
 					]
 		},
 		{
@@ -306,8 +306,8 @@ var form_acueducto = new Ext.FormPanel({
 			},
 			bodyStyle: Ext.isIE ? 'padding:5 5 5px 15px;' : 'padding: 10px 10px;',
 			items: [
-						acu_pps_presupuesto_aprobado, 
-						acu_pps_suscriptores_pendientes_de_pago
+						ase_pps_presupuesto_aprobado, 
+						ase_pps_suscriptores_pendientes_de_pago
 			]
 		},
 		{
@@ -321,8 +321,8 @@ var form_acueducto = new Ext.FormPanel({
 			},
 			bodyStyle: Ext.isIE ? 'padding:5 5 5px 15px;' : 'padding: 10px 10px;',
 			items: [
-						acu_pps_estatutos,
-						acu_pps_numero_suscriptores
+						ase_pps_estatutos,
+						ase_pps_numero_suscriptores
 			]
 		}
 	],
@@ -336,26 +336,26 @@ var form_acueducto = new Ext.FormPanel({
         text: 'Continuar',
         iconCls: 'crear16',
         handler: function(){
-			acueducto_subirDatos();
+			aseo_subirDatos();
         }
     }]
 });
 
-function acueducto_subirDatos(){
+function aseo_subirDatos(){
     subirDatos(
-		form_acueducto, 
-		'acueducto/actualizarAcueducto',
+		form_aseo, 
+		'aseo/actualizarAseeducto',
 		{},
 		function(){
-			Ext.getCmp('acueducto').setActiveTab(1);
+			Ext.getCmp('aseo').setActiveTab(1);
 		}
 	);
 }
 
-aceducto_datastore.load({
+aseo_datastore.load({
   callback: function() {
-	var record = aceducto_datastore.getAt(0);
-	form_acueducto.getForm().loadRecord(record);
+	var record = aseo_datastore.getAt(0);
+	form_aseo.getForm().loadRecord(record);
   }
 });
 

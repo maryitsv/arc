@@ -27,6 +27,8 @@ var pre_nombre_prestador = new Ext.form.TextField( {
 	id: 'pre_nombre_prestador', 
 	name: 'pre_nombre_prestador', 
 	allowBlank: false,
+	maxLength: 200,
+	minLength: 4,
 	listeners: {
         'render': function(){ 
 					ayuda( 'pre_nombre_prestador', ayuda_pre_nombre_prestador );
@@ -38,7 +40,9 @@ var pre_identificacion_prestador = new Ext.form.TextField( {
 	fieldLabel: 'Numero de identificaci&oacute;n', 
 	emptyText: 'ingrese el numero de identificacion del prestador', 
 	id: 'pre_identificacion_prestador', 
-	name: 'pre_identificacion_prestador', 
+	name: 'pre_identificacion_prestador',
+	maxLength: 50,
+	minLength: 4,
 	anchor: '100%', 
 	allowBlank: false,
 	listeners: {

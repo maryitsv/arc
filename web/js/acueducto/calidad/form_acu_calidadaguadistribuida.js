@@ -72,6 +72,8 @@ var acu_cag_numero_visita_sspd = new Ext.form.NumberField({
 	width: 100,
 	labelStyle: 'width:300px; text-align:center;',
 	emptyText: '0',
+	minLength : 0,
+    maxLength : 4,
 	disabled: true,
 	name: 'acu_cag_numero_visita_sspd',
 	fieldLabel: '<html>&iquest;Cu&aacute;ntas?</html>',
@@ -192,7 +194,7 @@ var acu_calidad_calidadaguadistribuida_gridpanel = new Ext.grid.GridPanel({
 			header: "Par&aacute;metros", 
 			width: 200, 
 			dataIndex: 'acu_ppr_nombre_parametro',
-			editor: new Ext.form.TextField({ allowBlank: false})
+			editor: new Ext.form.TextField({ allowBlank: false, maxLength: 150, minLength: 0})
 		},
 		{
 			header: "Frecuencia M&iacute;nima", 

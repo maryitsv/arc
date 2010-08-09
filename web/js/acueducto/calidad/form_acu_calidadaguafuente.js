@@ -123,9 +123,27 @@ var acu_calidad_calidadaguafuente_gridpanel = new Ext.grid.GridPanel({
 	clicksToEdit:1,
 	title:'Calidad de Agua: Presente los resultados y la frecuencia de los an&aacute;lisis de agua que realiza en la fuente',
 	columns: [
-		{id:'parametros', header: "Par&aacute;metros", width: 160, sortable: true, dataIndex: 'parametros'},
-		{header: "Valores", width: 75, sortable: true, dataIndex: 'valores', editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false, maxValue: 100000})},
-		{header: "Frecuencia", width: 75, sortable: true, dataIndex: 'frecuencia', editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false, maxValue: 100000})}
+		{
+			id:'parametros', 
+			header: "Par&aacute;metros", 
+			width: 160, 
+			sortable: true, 
+			dataIndex: 'parametros'
+		},
+		{
+			header: "Valores", 
+			width: 75, 
+			sortable: true, 
+			dataIndex: 'valores', 
+			editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false, maxValue: 100000})
+		},
+		{
+			header: "Frecuencia", 
+			width: 75, 
+			sortable: true, 
+			dataIndex: 'frecuencia', 
+			editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false, maxValue: 100000})
+		}
 	]
 });
 

@@ -458,6 +458,7 @@ acu_fuentes_abastecenelsistema_datos_datastore.load({
 		displayField: 'aua_nombre',
 		typeAhead: true,
 		mode: 'local',
+		forceSelection: true,
 		triggerAction: 'all',
 		emptyText: 'Selecciona...',
 		selectOnFocus: true
@@ -583,8 +584,17 @@ acu_fuentes_abastecenelsistema_datos_datastore.load({
 	/*****Funciones fuentes superficiales*/
 	
 	function acu_fuentes_superficiales_actualizar(store,record,operation){
+		var acu_fsp_fecha_expedicion='';
+		var acu_fsp_fecha_vencimiento='';
+		
+		if(record.data.acu_fsp_fecha_expedicion_concesion!=''){
+			acu_fsp_fecha_expedicion=record.data.acu_fsp_fecha_expedicion_concesion.format('Y-m-d');
+		}
+		if(record.data.acu_fsp_fecha_vencimiento_concesion!=''){
+			acu_fsp_fecha_vencimiento=record.data.acu_fsp_fecha_vencimiento_concesion.format('Y-m-d');
+		}
 
-		 Ext.Ajax.request({
+		Ext.Ajax.request({
 			waitMsg: 'Por Favor Espere...',
 			url: 'acueducto_fuentes/actualizarFuentessuperficiales',
 			method: 'POST',
@@ -597,8 +607,8 @@ acu_fuentes_abastecenelsistema_datos_datastore.load({
 				acu_fsp_epoca_seca_caudal_captado:   record.data.acu_fsp_epoca_seca_caudal_captado,
 				acu_fsp_epoca_seca_caudal_total:     record.data.acu_fsp_epoca_seca_caudal_total,
 				acu_fsp_entidad_expidio_concesion:   record.data.acu_fsp_entidad_expidio_concesion,
-				acu_fsp_fecha_expedicion_concesion:  record.data.acu_fsp_fecha_expedicion_concesion.format('Y-m-d'),
-				acu_fsp_fecha_vencimiento_concesion: record.data.acu_fsp_fecha_vencimiento_concesion.format('Y-m-d'),
+				acu_fsp_fecha_expedicion_concesion:  acu_fsp_fecha_expedicion,
+				acu_fsp_fecha_vencimiento_concesion: acu_fsp_fecha_vencimiento,
 				acu_fsp_caudal_adjudicado_concesion: record.data.acu_fsp_caudal_adjudicado_concesion
 			},
 			success: function(response, action)
@@ -678,6 +688,7 @@ acu_fuentes_abastecenelsistema_datos_datastore.load({
 		displayField: 'aua_nombre',
 		typeAhead: true,
 		mode: 'local',
+		forceSelection: true,
 		triggerAction: 'all',
 		emptyText: 'Selecciona...',
 		selectOnFocus: true
@@ -800,7 +811,16 @@ acu_fuentes_abastecenelsistema_datos_datastore.load({
 	/*****Funciones fuentes subterraneas*/
 	
 	function acu_fuentes_subterraneas_actualizar(store,record,operation){
-
+		var acu_fsu_fecha_expedicion='';
+		var acu_fsu_fecha_vencimiento='';
+		
+		if(record.data.acu_fsu_fecha_expedicion_concesion!=''){
+			acu_fsu_fecha_expedicion=record.data.acu_fsu_fecha_expedicion_concesion.format('Y-m-d');
+		}
+		if(record.data.acu_fsu_fecha_vencimiento_concesion!=''){
+			acu_fsu_fecha_vencimiento=record.data.acu_fsu_fecha_vencimiento_concesion.format('Y-m-d');
+		}
+		
 		 Ext.Ajax.request({
 			waitMsg: 'Por Favor Espere...',
 			url: 'acueducto_fuentes/actualizarFuentessubterraneas',
@@ -810,8 +830,8 @@ acu_fuentes_abastecenelsistema_datos_datastore.load({
 				acu_fsu_nombre_fuente: record.data.acu_fsu_nombre_fuente,
 				acu_fsu_promedio_captacion:   record.data.acu_fsu_promedio_captacion,
 				acu_fsu_entidad_expidio_concesion:   record.data.acu_fsu_entidad_expidio_concesion,
-				acu_fsu_fecha_expedicion_concesion:  record.data.acu_fsu_fecha_expedicion_concesion.format('Y-m-d'),
-				acu_fsu_fecha_vencimiento_concesion: record.data.acu_fsu_fecha_vencimiento_concesion.format('Y-m-d'),
+				acu_fsu_fecha_expedicion_concesion:  acu_fsu_fecha_expedicion,
+				acu_fsu_fecha_vencimiento_concesion: acu_fsu_fecha_vencimiento,
 				acu_fsu_caudal_adjudicado_concesion: record.data.acu_fsu_caudal_adjudicado_concesion
 			},
 			success: function(response, action)

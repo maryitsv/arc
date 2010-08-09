@@ -157,10 +157,10 @@ propel:
     cap_iaf_id: { phpName: CapIafId, type: INTEGER, required: true, foreignTable: administrativafinanciera, foreignReference: iaf_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     cap_dada_prestador: { phpName: CapDadaPrestador, type: VARCHAR, required: true }
     cap_actividad_capacitacion_uso_eficiente_agua: { phpName: CapActividadCapacitacionUsoEficienteAgua, type: VARCHAR, required: false }
-    cap_actividad_capacitacion_higiene_personal_acu: { phpName: CapActividadCapacitacionHigienePersonalAcu, type: VARCHAR, required: false }
-    cap_actividad_capacitacion_higiene_vivienda_acu: { phpName: CapActividadCapacitacionHigieneViviendaAcu, type: VARCHAR, required: false }
-    cap_actividad_capacitacion_higiene_sitios_publicos_acu: { phpName: CapActividadCapacitacionHigieneSitiosPublicosAcu, type: VARCHAR, required: false }
-    cap_capacitacion_recibida_prestador_acu: { phpName: CapCapacitacionRecibidaPrestadorAcu, type: VARCHAR, required: false }
+    cap_actividad_capacitacion_higiene_personal: { phpName: CapActividadCapacitacionHigienePersonal, type: VARCHAR, required: false }
+    cap_actividad_capacitacion_higiene_vivienda: { phpName: CapActividadCapacitacionHigieneVivienda, type: VARCHAR, required: false }
+    cap_actividad_capacitacion_higiene_sitios_publicos: { phpName: CapActividadCapacitacionHigieneSitiosPublicos, type: VARCHAR, required: false }
+    cap_capacitacion_recibida_prestador: { phpName: CapCapacitacionRecibidaPrestador, type: VARCHAR, required: false }
     cap_actividad_capacitacion_educacion_ambiental: { phpName: CapActividadCapacitacionEducacionAmbiental, type: VARCHAR, required: false }
     cap_actividad_capacitacion_participacion_comunitaria: { phpName: CapActividadCapacitacionParticipacionComunitaria, type: VARCHAR, required: false }
     cap_actividad_capacitacion_veeduria_ciudadana: { phpName: CapActividadCapacitacionVeeduriaCiudadana, type: VARCHAR, required: false }
@@ -173,8 +173,8 @@ propel:
     cap_temas_capacitacion_sui: { phpName: CapTemasCapacitacionSui, type: VARCHAR, required: false }
     cap_temas_capacitacion_otra_cual: { phpName: CapTemasCapacitacionOtraCual, type: VARCHAR, size: '100', required: false }
     cap_instituciones_ofrecieron: { phpName: CapInstitucionesOfrecieron, type: VARCHAR, size: '100', required: false }
-    cap_numero_directiva_hombres: { phpName: CapNumeroDirectivaHombres, type: VARCHAR, required: false }
-    cap_numero_directiva_mujeres: { phpName: CapNumeroDirectivaMujeres, type: VARCHAR, required: false }
+    cap_numero_directiva_hombres: { phpName: CapNumeroDirectivaHombres, type: INTEGER, required: false }
+    cap_numero_directiva_mujeres: { phpName: CapNumeroDirectivaMujeres, type: INTEGER, required: false }
   captacion_subterranea:
     _attributes: { phpName: CaptacionSubterranea }
     casb_id: { phpName: CasbId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -433,15 +433,15 @@ propel:
   parametrospuntosred:
     _attributes: { phpName: Parametrospuntosred }
     ppr_id: { phpName: PprId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    ppr_nombre_paramentro: { phpName: PprNombreParamentro, type: VARCHAR, size: '100', required: true }
-    _uniques: { parametrospuntosred_ppr_nombre_p: [ppr_nombre_paramentro] }
+    ppr_nombre_parametro: { phpName: PprNombreParametro, type: VARCHAR, size: '100', required: true }
+    _uniques: { parametrospuntosred_ppr_nombre_p: [ppr_nombre_parametro] }
   parametroxfrecuencia:
     _attributes: { phpName: Parametroxfrecuencia }
     pfe_id: { phpName: PfeId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    pfe_ppr_id_paramentro: { phpName: PfePprIdParamentro, type: INTEGER, required: true, foreignTable: parametrospuntosred, foreignReference: ppr_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    pfe_ppr_id_parametro: { phpName: PfePprIdParametro, type: INTEGER, required: true, foreignTable: parametrospuntosred, foreignReference: ppr_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     pfe_cag_id: { phpName: PfeCagId, type: INTEGER, required: true, foreignTable: calidadagua, foreignReference: cag_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     pfe_frecuencia_minima: { phpName: PfeFrecuenciaMinima, type: VARCHAR, size: '100', required: false }
-    pfe_frecuencia_real: { phpName: PfeFrecuenciaReal, type: VARCHAR, required: false }
+    pfe_frecuencia_real: { phpName: PfeFrecuenciaReal, type: VARCHAR, size: '100', required: false }
   participacionciudadana:
     _attributes: { phpName: Participacionciudadana }
     par_id: { phpName: ParId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -462,13 +462,13 @@ propel:
     pps_pre_id: { phpName: PpsPreId, type: INTEGER, primaryKey: true, required: true, foreignTable: prestadorporservicio, foreignReference: ppsg_pre_id, onUpdate: CASCADE }
     pps_ser_id: { phpName: PpsSerId, type: INTEGER, primaryKey: true, required: true }
     pps_anio: { phpName: PpsAnio, type: INTEGER, primaryKey: true, required: true }
-    pps_numero_suscriptores: { phpName: PpsNumeroSuscriptores, type: VARCHAR, required: false }
+    pps_numero_suscriptores: { phpName: PpsNumeroSuscriptores, type: INTEGER, required: false }
     pps_presupuesto_aprobado: { phpName: PpsPresupuestoAprobado, type: VARCHAR, required: false }
-    pps_suscriptores_pendientes_de_pago: { phpName: PpsSuscriptoresPendientesDePago, type: VARCHAR, required: false }
+    pps_suscriptores_pendientes_de_pago: { phpName: PpsSuscriptoresPendientesDePago, type: INTEGER, required: false }
     pps_estatutos: { phpName: PpsEstatutos, type: VARCHAR, required: false }
-    pps_numero_empleados_con_competencias: { phpName: PpsNumeroEmpleadosConCompetencias, type: VARCHAR, required: false }
-    pps_numero_empleados_sin_competencias: { phpName: PpsNumeroEmpleadosSinCompetencias, type: VARCHAR, required: false }
-    pps_numero_empleados_proceso_competencias: { phpName: PpsNumeroEmpleadosProcesoCompetencias, type: VARCHAR, required: false }
+    pps_numero_empleados_con_competencias: { phpName: PpsNumeroEmpleadosConCompetencias, type: INTEGER, required: false }
+    pps_numero_empleados_sin_competencias: { phpName: PpsNumeroEmpleadosSinCompetencias, type: INTEGER, required: false }
+    pps_numero_empleados_proceso_competencias: { phpName: PpsNumeroEmpleadosProcesoCompetencias, type: INTEGER, required: false }
     pps_nombre_diligenciador: { phpName: PpsNombreDiligenciador, type: VARCHAR, size: '200', required: false }
     pps_apellido_diligenciador: { phpName: PpsApellidoDiligenciador, type: VARCHAR, size: '200', required: false }
     pps_tipo_identificacion_diligenciador: { phpName: PpsTipoIdentificacionDiligenciador, type: VARCHAR, size: '50', required: false }
@@ -505,6 +505,7 @@ propel:
     pre_identificacion_prestador: { phpName: PreIdentificacionPrestador, type: VARCHAR, size: '50', required: true }
     pre_tipo_identificacion_prestador: { phpName: PreTipoIdentificacionPrestador, type: VARCHAR, size: '50', required: true }
     pre_nombre_prestador: { phpName: PreNombrePrestador, type: VARCHAR, size: '200', required: true }
+    pre_estado: { phpName: PreEstado, type: VARCHAR, size: '30', required: false }
     _uniques: { pre_identificacion_prestador_idx: [pre_identificacion_prestador] }
   prestadorporservicio:
     _attributes: { phpName: Prestadorporservicio }
@@ -560,7 +561,7 @@ propel:
   resultadosxpunto:
     _attributes: { phpName: Resultadosxpunto }
     rep_id: { phpName: RepId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
-    rep_ppr_id_paramentro: { phpName: RepPprIdParamentro, type: INTEGER, required: true, foreignTable: parametrospuntosred, foreignReference: ppr_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    rep_ppr_id_parametro: { phpName: RepPprIdParametro, type: INTEGER, required: true, foreignTable: parametrospuntosred, foreignReference: ppr_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     rep_cag_id: { phpName: RepCagId, type: INTEGER, required: true, foreignTable: calidadagua, foreignReference: cag_id, onDelete: RESTRICT, onUpdate: RESTRICT }
     rep_punto: { phpName: RepPunto, type: INTEGER, required: false }
     rep_resultado: { phpName: RepResultado, type: VARCHAR, required: false }
@@ -638,6 +639,8 @@ propel:
     toa_solucion_otro: { phpName: ToaSolucionOtro, type: VARCHAR, required: false }
     toa_solucion_otro_cual: { phpName: ToaSolucionOtroCual, type: VARCHAR, size: '100', required: false }
     toa_solucion_otro_viviendas: { phpName: ToaSolucionOtroViviendas, type: INTEGER, required: false }
+    toa_planos_actualizados: { phpName: ToaPlanosActualizados, type: VARCHAR, required: false }
+    toa_ano_actualizacion_planos: { phpName: ToaAnoActualizacionPlanos, type: INTEGER, required: false }
   tecnicooperativaaduccionimpulsionacueducto:
     _attributes: { phpName: Tecnicooperativaaduccionimpulsionacueducto }
     toai_id: { phpName: ToaiId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }

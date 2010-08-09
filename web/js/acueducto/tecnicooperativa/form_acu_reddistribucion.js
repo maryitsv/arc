@@ -634,5 +634,3 @@ form_acu_reddistribucion.add({
         }]
     }]
 });
-
-form_acu_reddistribucion.render('div_form_acu_reddistribucion');

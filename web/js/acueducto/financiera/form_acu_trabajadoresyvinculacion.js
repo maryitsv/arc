@@ -119,27 +119,29 @@ var acu_tra_trabajadores_gridpanel = new Ext.grid.GridPanel({
 			width: 140,
 			hidden: true,
 			sortable: true, 
-			dataIndex: 'acu_poa_id',
-			editor: new Ext.form.TextField()
+			dataIndex: 'acu_poa_id'//,
+			//editor: new Ext.form.TextField()
 		},
 		{
 			header: 'Cedula',
-			width: 170, 
+			width: 170,
 			dataIndex: 'acu_poa_cedula',
-			editor: new Ext.form.TextField({ allowBlank: false}) 
+			editor: new Ext.form.TextField({ allowBlank: false, maxLength: 100, minLength: 0}) 
 		},
 		{
 			header: 'Nombre', 
-			width: 170, 
+			width: 170,
 			dataIndex: 'acu_poa_nombre',
-			editor: new Ext.form.TextField({ allowBlank: false}) 
+			editor: new Ext.form.TextField({ allowBlank: false, maxLength: 250, minLength: 0}) 
 		},
 		{
 			header: "Cargo", 
 			width: 140, 
-			sortable: true, 
+			sortable: true,
+			maxLength: 100,
+			minLength: 0,
 			dataIndex: 'acu_poa_cargo',
-			editor: new Ext.form.TextField({ allowBlank: false})
+			editor: new Ext.form.TextField({ allowBlank: false, maxLength: 100, minLength: 0})
 		},
 		{
 			header: 'Tipo de vinculaci&oacute;n', 
@@ -149,10 +151,10 @@ var acu_tra_trabajadores_gridpanel = new Ext.grid.GridPanel({
 		},
 		{
 			header: 'Remuneraci&oacute;n mensual', 
-			width: 130, 
+			width: 130,
 			dataIndex: 'acu_poa_remuneracion_mensual', 
 			renderer: 'usMoney',
-			editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false})
+			editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false, maxLength: 17, minLength: 0})
 		},
 		{
 			header: 'Tipo de Empleado', 
@@ -177,7 +179,6 @@ var acu_tra_trabajadores_gridpanel = new Ext.grid.GridPanel({
 			forceFit: true
 	}
 });
-
 
 var acu_tra_manual_procedimiento = new Ext.form.RadioGroup({
 	id: 'acu_tra_manual_procedimiento',

@@ -61,7 +61,7 @@ var tecnicooperativa_acueducto_tabpanel = new Ext.TabPanel({
             scripts: true
         }
     }, {
-        title: 'Red de distribución',
+        title: 'Red de distribución.',
         autoLoad: {
             url: getAbsoluteUrl('acueducto_reddistribucion', 'index'),
             scripts: true

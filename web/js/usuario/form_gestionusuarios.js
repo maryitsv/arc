@@ -252,7 +252,7 @@
 
 	  if(verificacion)
 	  {
-		  var claveEncrypt = '';
+		  /*--var claveEncrypt = '';
 		  if(Ext.getCmp('usu_clave').getValue() != ''){
 			if(usu_clave_valor_trae == Ext.getCmp('usu_clave').getValue() && Ext.getCmp('usuario_guardar_boton').getText() == 'Actualizar')
 			{//este if es para ver si cambio la clave o no, si no la cambio no encripte
@@ -260,10 +260,11 @@
 			}
 			else
 			{//si la cambio o esta creando entonces encripte y mande
-			claveEncrypt = hex_md5(Ext.getCmp('usu_clave').getValue());
+			//--cambio quite el md5 de la interfaz
+			claveEncrypt =Ext.getCmp('usu_clave').getValue(); //--hex_md5(Ext.getCmp('usu_clave').getValue()); 
 			}
 
-		  }
+		  }*/
 		  
 		  if (Ext.getCmp('usuario_guardar_boton').getText() == 'Actualizar')
 		  {
@@ -275,15 +276,15 @@
 		  {
 			  task = 'CREARUSUARIO';
 		  }
-		    Ext.getCmp('usu_clave').setDisabled(true);
-		    Ext.getCmp('usu_reclave').setDisabled(true);
+		  //--  Ext.getCmp('usu_clave').setDisabled(true);
+		  //--  Ext.getCmp('usu_reclave').setDisabled(true);
 		  
 		  usuario_formpanel.getForm().submit({
 			  method: 'POST',
 			  url:'usuario/cargar',
 			  params: {
-				task: task,
-				usu_clave_encriptada:claveEncrypt
+				task: task//--,
+				//--usu_clave_encriptada:claveEncrypt
 			  },
 			  waitTitle: 'Enviando',
 			  waitMsg: 'Enviando datos...',
@@ -302,8 +303,8 @@
 				else{
 				usuario_formpanel.getForm().reset();
 				}
-				Ext.getCmp('usu_clave').setDisabled(false);
-				Ext.getCmp('usu_reclave').setDisabled(false);
+				//--Ext.getCmp('usu_clave').setDisabled(false);
+				//--Ext.getCmp('usu_reclave').setDisabled(false);
 				
 			  },
 			  failure: function(form, action, response)
@@ -318,8 +319,8 @@
 				{
 				Ext.getCmp('usu_login').setDisabled(true);
 				}
-				Ext.getCmp('usu_clave').setDisabled(false);
-				Ext.getCmp('usu_reclave').setDisabled(false);
+				//--Ext.getCmp('usu_clave').setDisabled(false);
+				//--Ext.getCmp('usu_reclave').setDisabled(false);
 			  }
 		  });
 		    		

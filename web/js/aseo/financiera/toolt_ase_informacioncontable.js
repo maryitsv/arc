@@ -24,4 +24,4 @@ ayuda_ase_ico_total_egresos = 'Ayuda!!!';
 ayuda_ase_ico_gastos_administrativos = 'Ayuda!!!';
 ayuda_ase_ico_costo_operacion_mantenimiento = 'Ayuda!!!';
 ayuda_ase_ico_costo_inversion = 'Ayuda!!!';
-ayuda_ase_ico_resultados_ejecicio = 'Ayuda!!!';
+ayuda_ase_ico_resultados_ejercicio = 'Ayuda!!!';
