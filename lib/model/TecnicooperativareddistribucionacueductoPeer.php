@@ -33,6 +33,24 @@ class TecnicooperativareddistribucionacueductoPeer extends BaseTecnicooperativar
 		$red->setTordMaterialEdad($edad);
 		$red->save();
 	}
+	public static function crearRedOtra($topId, $tipoRedId, $materialRedId, $diametro, $edad, $nombreRed, $nombreMaterial) {
+		$criteria = new Criteria();
+		$criteria->add(TecnicooperativareddistribucionacueductoPeer::TORD_TOP_ID, $topId);
+		$criteria->add(TecnicooperativareddistribucionacueductoPeer::TORD_RED_DISTRIBUCION_ID, $tipoRedId);
+		$criteria->add(TecnicooperativareddistribucionacueductoPeer::TORD_MATERIAL_DISTRIBUCION_ID, $materialRedId);
+		$red = TecnicooperativareddistribucionacueductoPeer::doSelectOne($criteria);
+		if(!$red) {
+			$red = new Tecnicooperativareddistribucionacueducto();
+			$red->setTordTopId($topId);
+			$red->setTordRedDistribucionId($tipoRedId);
+			$red->setTordMaterialDistribucionId($materialRedId);
+		}
+		$red->setTordMaterialDiametro($diametro);
+		$red->setTordMaterialEdad($edad);
+		$red->setTordNombreCanal($nombreRed);
+		$red->setTordNombreMaterial($nombreMaterial);
+		$red->save();
+	}
 
 	public static function eliminarRedes($topId, $tipoRedId) {
 		$criteria = new Criteria();
