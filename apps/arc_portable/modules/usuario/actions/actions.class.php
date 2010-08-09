@@ -76,7 +76,8 @@ class usuarioActions extends sfActions
 			{
 				  $usuario = new Usuario();			  
 				  $usuario->setUsuLogin($this->getRequestParameter('usu_login'));
-				  $usuario->setUsuClave($this->getRequestParameter('usu_clave_encriptada'));
+				 //-- $usuario->setUsuClave($this->getRequestParameter('usu_clave_encriptada'));
+				  $usuario->setUsuClave(md5($this->getRequestParameter('usu_clave')));
 				  $usuario->setUsuEstado($this->getRequestParameter('usu_estado'));
 				  $usuario->setUsuPerId($this->getRequestParameter('per_id'));
 				  try
@@ -117,7 +118,10 @@ class usuarioActions extends sfActions
 			if($usuario)
 			{
 				//	$usuario->setUsuLogin($this->getRequestParameter('usu_login'));//no se actualiza por que debe ser unico
-					$usuario->setUsuClave($this->getRequestParameter('usu_clave_encriptada'));
+					//--$usuario->setUsuClave($this->getRequestParameter('usu_clave_encriptada'));
+					if($usuario->getUsuClave() != $this->getRequestParameter('usu_clave')){
+						$usuario->setUsuClave(md5($this->getRequestParameter('usu_clave')));
+					}
 					$usuario->setUsuEstado($this->getRequestParameter('usu_estado'));
 					$usuario->setUsuPerId($this->getRequestParameter('per_id'));
 					
