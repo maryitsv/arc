@@ -14,7 +14,7 @@ var tabp_acu_administrativafinanciera = new Ext.TabPanel( {
 			},
 			{
 				frame: true,
-				title: 'Calidad del agua distribuida',
+				title: 'Calidad del agua distribuida.',
 				autoLoad: { url: url_arc+'acueducto_calidadaguadistribuida', scripts: true, scope: this }
 			}
            ]
