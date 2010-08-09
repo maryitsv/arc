@@ -373,8 +373,12 @@
 	
 	function acu_calidadcantidadagua_descargaactividadproductiva_subirdatos()
 	{
-		var url_calidadcantidadagua = 'acueducto_calidadcantidadagua/actualizarCalidadcantidadagua';
-		subirDatos(acu_calidadcantidadagua_descargaactividadproductiva_panel,url_calidadcantidadagua,{formulario:'descargasActividadProductiva'});	
+		subirDatos(
+			acu_calidadcantidadagua_descargaactividadproductiva_panel,
+			'acueducto_calidadcantidadagua/actualizarCalidadcantidadagua',
+			{formulario:'descargasActividadProductiva'},
+			function(){}
+		);	
 	}
 
 	

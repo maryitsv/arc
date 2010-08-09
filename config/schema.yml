@@ -638,6 +638,8 @@ propel:
     toa_solucion_otro: { phpName: ToaSolucionOtro, type: VARCHAR, required: false }
     toa_solucion_otro_cual: { phpName: ToaSolucionOtroCual, type: VARCHAR, size: '100', required: false }
     toa_solucion_otro_viviendas: { phpName: ToaSolucionOtroViviendas, type: INTEGER, required: false }
+    toa_planos_actualizados: { phpName: ToaPlanosActualizados, type: VARCHAR, required: false }
+    toa_ano_actualizacion_planos: { phpName: ToaAnoActualizacionPlanos, type: INTEGER, required: false }
   tecnicooperativaaduccionimpulsionacueducto:
     _attributes: { phpName: Tecnicooperativaaduccionimpulsionacueducto }
     toai_id: { phpName: ToaiId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }

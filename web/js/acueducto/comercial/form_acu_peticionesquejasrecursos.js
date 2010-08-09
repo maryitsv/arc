@@ -129,6 +129,7 @@ Desarrollado maryit sanchez
 					labelStyle: 'width:200px; text-align:right;',
 					name: 'acu_pqr_inf_causa_susp_corte_explic',
 					id: 'acu_pqr_inf_causa_susp_corte_explic',
+					maxLength : 50,
 					fieldLabel: '<html>&iquest;C&oacute;mo?</html>',
 					disabled : false,
 					listeners:
@@ -166,7 +167,8 @@ Desarrollado maryit sanchez
 					value:'0',
 					name: 'acu_pqr_cantidad_anual_pqr',
 					id: 'acu_pqr_cantidad_anual_pqr',
-					fieldLabel: '<html>&iquest;En total cuantas PQR recibio durante el a&ntilde;o?</html>',
+					maxLength : 9,
+					fieldLabel: '<html>&iquest;En total cu&aacute;ntas PQR recibio durante el a&ntilde;o?</html>',
 					disabled : true,
 					listeners:
 					{
@@ -185,6 +187,7 @@ Desarrollado maryit sanchez
 					emptyText:'0',
 					name: 'acu_pqr_cantidad_pqr_facturacion',
 					id: 'acu_pqr_cantidad_pqr_facturacion',
+					maxLength : 8,
 					fieldLabel: '<html>&iquest;Cantidad de PQR recibidas por facturaci&oacute;n?</html>',
 					disabled : false,
 					listeners:
@@ -207,6 +210,7 @@ Desarrollado maryit sanchez
 					emptyText:'0',
 					name: 'acu_pqr_cantidad_pqr_instalacion',
 					id: 'acu_pqr_cantidad_pqr_instalacion',
+					maxLength : 8,
 					fieldLabel: '<html>&iquest;Cantidad de PQR recibidas por instalaci&oacute;n?</html>',
 					disabled : false,
 					listeners:
@@ -229,6 +233,7 @@ Desarrollado maryit sanchez
 					emptyText:'0',
 					name: 'acu_pqr_cantidad_pqr_prest_servicio',
 					id: 'acu_pqr_cantidad_pqr_prest_servicio',
+					maxLength : 8,
 					fieldLabel: '<html>&iquest;Cantidad de PQR recibidas por prestaci&oacute;n de servicios?</html>',
 					disabled : false,
 					listeners:
@@ -251,6 +256,7 @@ Desarrollado maryit sanchez
 					emptyText:'0',
 					name: 'acu_pqr_cantidad_pqr_otro',
 					id: 'acu_pqr_cantidad_pqr_otro',
+					maxLength : 8,
 					fieldLabel: '<html>&iquest;Cantidad de PQR recibidas por otra causa?</html>',
 					disabled : false,
 					listeners:
@@ -274,6 +280,7 @@ Desarrollado maryit sanchez
 					labelStyle: 'width:130px;',
 					name: 'acu_pqr_cantidad_pqr_explica_otros',
 					id: 'acu_pqr_cantidad_pqr_explica_otros',
+					maxLength : 50,
 					fieldLabel: '<html>&iquest;Cu&aacute;l otra causa?</html>',
 					disabled : false,
 					listeners:

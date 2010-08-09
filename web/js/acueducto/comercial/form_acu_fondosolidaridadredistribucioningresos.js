@@ -108,6 +108,7 @@ Desarrollado maryit sanchez
 			   id: 'acu_fsi_recibo_recursos_valor_recib',
 			   fieldLabel: 'Valor recibido ($)',
 			   disabled : false,
+			   maxLength : 11,
 			   listeners:
 			   {   
 			      'render': function() {
@@ -168,6 +169,7 @@ Desarrollado maryit sanchez
 			   name: 'acu_fsi_aporte_recursos_valor_apor',
 			   id: 'acu_fsi_aporte_recursos_valor_apor',
 			   fieldLabel: 'Valor aportado ($)',
+			   maxLength : 11,
 			   disabled : false,
 			   listeners:
 			   {

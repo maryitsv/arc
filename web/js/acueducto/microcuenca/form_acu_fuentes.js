@@ -74,7 +74,7 @@
 								name: 'acu_fue_tiene_fuentes_subterraneas',
 								id:   'acu_fue_tiene_fuentes_subterraneas',
 								inputValue: 1,
-								fieldLabel: '<html>Fuentes subterraneas</html>',
+								fieldLabel: '<html>Fuentes subterr&aacute;neas</html>',
 								listeners:
 								{
 									'render':function(){
@@ -113,6 +113,8 @@
 							   disabled:true,
 							   name: 'acu_fue_numero_fuentes_superficiales',
 							   id: 'acu_fue_numero_fuentes_superficiales',
+							   emptyText : '0',
+							   maxLength : 9,
 							   listeners:
 							   {
 									'render': function() {
@@ -125,6 +127,8 @@
 							   disabled:true,
 							   name: 'acu_fue_numero_fuentes_subterraneas',
 							   id: 'acu_fue_numero_fuentes_subterraneas',
+							   emptyText : '0',
+							   maxLength : 9,
 							   listeners:
 							   {
 									'render': function() {
@@ -142,7 +146,7 @@
 			},
 			{
 				xtype:'fieldset',
-				title:'Metodo de aforo',
+				title:'M&eacute;todo de aforo',
 				layout:'column',
 				columnWidth:'.4',
 				defaults:{layout:'form',border:false},
@@ -159,7 +163,7 @@
 								name: 'acu_fue_metodo_aforo_volumetrico',
 								id:   'acu_fue_metodo_aforo_volumetrico',
 								inputValue: 1,
-								fieldLabel: '<html>Volumetrico</html>',
+								fieldLabel: '<html>Volum&eacute;trico</html>',
 								listeners:
 								{
 									'render':function(){
@@ -197,6 +201,7 @@
 								xtype: 'textfield', 
 								name: 'acu_fue_metodo_aforo_otro_cual',
 								id:   'acu_fue_metodo_aforo_otro_cual',
+								maxLength : 100,
 								fieldLabel: '<html>Otro</html>',
 								listeners:
 								{
@@ -481,12 +486,12 @@ acu_fuentes_abastecenelsistema_datos_datastore.load({
 				{dataIndex: 'acu_fsp_epoca_seca_caudal_total', header: 'Caudal total',
 					editor: new Ext.form.NumberField({allowBlank: false,allowNegative: false,maxValue: 100000})
 				},			
-				{dataIndex: 'acu_fsp_entidad_expidio_concesion', header: 'Entidad expidio',
+				{dataIndex: 'acu_fsp_entidad_expidio_concesion', header: 'Entidad expidi&oacute;',
 					editor: acu_fuentessuperficiales_autoridadambiental_combobox,
-					tooltip:'Entidad que expidio la concesion'
+					tooltip:'Entidad que expidi&oacute; la concesi&oacute;n'
 				},
 				{
-					header: 'Fecha expedicion',dataIndex: 'acu_fsp_fecha_expedicion_concesion',
+					header: 'Fecha expedici&oacute;n',dataIndex: 'acu_fsp_fecha_expedicion_concesion',
 					width: 95,renderer: formatDate,
 					format: 'Y-m-d',xtype: 'datecolumn',
 					editor: new  Ext.form.DateField({
@@ -511,8 +516,8 @@ acu_fuentes_abastecenelsistema_datos_datastore.load({
     //esto es para las multiples columnas
     var acu_fuentessuperficiales_nombreCampos = [
 			{header: 'Datos de la Fuente', colspan:2 , align: 'center'},
-			{header: 'Epoca de lluvia', colspan: 2, align: 'center'},
-			{header: 'Epoca seca', colspan: 2, align: 'center'},
+			{header: '&Eacute;poca de lluvia', colspan: 2, align: 'center'},
+			{header: '&Eacute;poca seca', colspan: 2, align: 'center'},
 			{header: 'Aspectos legales', colspan: 4, align: 'center'},
      ];
     //este es el plugin de las multiples columnas
@@ -640,7 +645,6 @@ acu_fuentes_abastecenelsistema_datos_datastore.load({
 			  [
 				{type: 'int', name: 'acu_fsu_id'},
 				{type: 'string', name: 'acu_fsu_nombre_fuente'},
-
 				{type: 'float', name: 'acu_fsu_promedio_captacion'},
 				{type: 'string', name: 'acu_fsu_entidad_expidio_concesion'},
 				{type: 'date', name: 'acu_fsu_fecha_expedicion_concesion',dateFormat: 'Y-m-d'},
@@ -696,12 +700,12 @@ acu_fuentes_abastecenelsistema_datos_datastore.load({
 				},		
 				{
 					dataIndex: 'acu_fsu_entidad_expidio_concesion', 
-					header: 'Entidad expidio',
+					header: 'Entidad expidi&oacute;',
 					editor: acu_fuentessubterraneas_autoridadambiental_combobox,
-					tooltip:'Entidad que expidio la concesion'
+					tooltip:'Entidad que expidi&oacute; la concesi&oacute;n'
 				},
 				{
-					header: 'Fecha expedicion',
+					header: 'Fecha expedici&oacute;n',
 					dataIndex: 'acu_fsu_fecha_expedicion_concesion',
 					width: 95,renderer: formatDate,
 					format: 'Y-m-d',xtype: 'datecolumn',

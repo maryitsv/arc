@@ -55,9 +55,15 @@ var tecnicooperativa_acueducto_tabpanel = new Ext.TabPanel({
             scripts: true
         }
     }, {
-        title: 'Conducción agua cruda.',
+        title: 'Agua cruda.',
         autoLoad: {
             url: getAbsoluteUrl('acueducto_conduccionaguacruda', 'index'),
+            scripts: true
+        }
+    }, {
+        title: 'Red de distribución.',
+        autoLoad: {
+            url: getAbsoluteUrl('acueducto_reddistribucion', 'index'),
             scripts: true
         }
     }]

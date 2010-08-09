@@ -236,7 +236,7 @@
 	var acu_calidadcantidadagua_fertilizacioncultivos_fieldset =new Ext.form.FieldSet({
 		width:470,
 		height:170,
-		title:'Fertilizacion de cultivos',
+		title:'Fertilizaci&oacute;n de cultivos',
 		layout:'column',
 		bodyStyle: 'padding:5px;',			
 		defaults:{layout:'form',border:false},
@@ -459,9 +459,13 @@
 	
 	function acu_calidadcantidadagua_controlplagas_subirdatos()
 	{
-		var url_calidadcantidadagua = 'acueducto_calidadcantidadagua/actualizarCalidadcantidadagua';
-		subirDatos(acu_calidadcantidadagua_controlplagas_panel,url_calidadcantidadagua,{formulario:'controlPlagas'});	
-		var url_calidadcantidadagua = '';
+		subirDatos(
+			acu_calidadcantidadagua_controlplagas_panel,
+			'acueducto_calidadcantidadagua/actualizarCalidadcantidadagua',
+			{formulario:'controlPlagas'},
+			function(){}
+		);	
+
 	}
 	
 	

@@ -71,6 +71,7 @@ desarrollado por maryit sanchez
 				labelStyle: 'width: 370px; text-align:right;'+letra,
 				minValue: 2005,
 				maxValue: 2040,
+				maxLength : 4,
 				value: 2010,
 				accelerate: true,
 				listeners:{
@@ -92,7 +93,7 @@ desarrollado por maryit sanchez
 			   emptyText: '0',
 			   enableKeyEvents: true,
 			   width: 120,
-			   vtype: 'alphanum',
+			   maxLength : 9,
 			   listeners:
 			   {
 			   'render': function() {
@@ -109,14 +110,13 @@ desarrollado por maryit sanchez
 			   enableKeyEvents: true,
 			   width: 120,
 			   emptyText: '0',
+			   maxLength : 9,
 			   listeners:
 			   {
 			   	'render': function() {
 						ayuda('acu_aco_num_predios_conec_sistema', ayuda_acu_aco_num_predios_conec_sistema);
-					},
-				'keyup' : { fn: function(campo) { formatoNumeroCampo(this); } } 
-			   },
-				vtype: 'alphanum'
+					}
+			   }
 			},
 			{
 			   xtype: 'radiogroup',
@@ -171,6 +171,7 @@ desarrollado por maryit sanchez
 			   name: 'acu_aco_estra_soceco_adop_mpio_jus',
 			   id: 'acu_aco_estra_soceco_adop_mpio_jus',
 			   disabled : true,
+			   maxLength: 50,
 			   width: 300,
 			   listeners:
 			   {
@@ -277,7 +278,7 @@ desarrollado por maryit sanchez
 	//grilla con lo modulos 
 	var acu_analisiscobertura_estratos_gridpanel = new Ext.grid.GridPanel({
 		id: 'acu_analisiscobertura_estratos_gridpanel',	
-        hidden: true,
+		hidden: true,
 		columnLines : true,
 		stripeRows:true,
 		store: acu_analisiscobertura_estratos_datastore,
@@ -286,12 +287,12 @@ desarrollado por maryit sanchez
 		border: true,
 		enableColLock:false,
 		autoWidth: true,
-	    wrap:true,
-	    stripeRows: true,
-	    clicksToEdit: 1,
-	    title: 'An&aacute;lisis de cobertura: Suscriptores',
-	    buttons:
-	    [
+		wrap:true,
+		stripeRows: true,
+		clicksToEdit: 1,
+		title: 'An&aacute;lisis de cobertura: Suscriptores del servicio de acueducto',
+		buttons:
+		[
 		  {
 			 text: '<html>Atr&aacute;s</html>',
 			 disabled: false,
