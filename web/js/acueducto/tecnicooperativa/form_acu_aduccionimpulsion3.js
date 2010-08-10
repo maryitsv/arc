@@ -7,22 +7,25 @@ var form_acu_aduccionimpulsion3 = new Ext.form.FormPanel({
     buttons: [{
         text: 'Atrás',
         handler: function(){
-            form_acu_aduccionimpulsion3.getForm().submit({
+            submit({
+                form: form_acu_aduccionimpulsion3,
                 url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'subirDatos3'),
-                clientValidation: false
+                success: function(){
+                    form_acu_aduccionimpulsion2.show();
+                    form_acu_aduccionimpulsion3.hide();
+                }
             });
-            //            tecnicooperativa_acueducto_tabpanel.setActiveTab(3);
-            form_acu_aduccionimpulsion2.show();
-            form_acu_aduccionimpulsion3.hide();
         }
     }, {
         text: 'Siguiente',
         handler: function(){
-            form_acu_aduccionimpulsion3.getForm().submit({
+            submit({
+                form: form_acu_aduccionimpulsion3,
                 url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'subirDatos3'),
-                clientValidation: false
+                success: function(){
+                    tecnicooperativa_acueducto_tabpanel.setActiveTab(4);
+                }
             });
-            tecnicooperativa_acueducto_tabpanel.setActiveTab(4);
         }
     }]
 });
@@ -75,8 +78,8 @@ var toai_otro_tipo_nombre = {
     tabIndex: 1,
     id: "toai_otro_tipo_nombre",
     name: "toai_otro_tipo_nombre",
-    allowBlank: false,
     hideLabel: true,
+    allowBlank: false,
     fieldLabel: 'Otro tipo',
     listeners: {
         render: function(){
@@ -92,7 +95,8 @@ var toai_otro_tipo_nombre = {
 }
 
 var toai_otro_otro1_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -115,7 +119,8 @@ var toai_otro_otro1_longitud = {
 }
 
 var toai_otro_otro1_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -138,7 +143,11 @@ var toai_otro_otro1_diametro = {
 }
 
 var toai_otro_otro1_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -168,7 +177,6 @@ var toai_otro_otro1_nombre = {
     tabIndex: 1,
     id: "toai_otro_otro1_nombre",
     name: "toai_otro_otro1_nombre",
-    allowBlank: false,
     hideLabel: true,
     fieldLabel: 'Otro tipo',
     listeners: {
@@ -185,7 +193,8 @@ var toai_otro_otro1_nombre = {
 }
 
 var toai_otro_otro2_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -208,7 +217,8 @@ var toai_otro_otro2_longitud = {
 }
 
 var toai_otro_otro2_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -231,7 +241,11 @@ var toai_otro_otro2_diametro = {
 }
 
 var toai_otro_otro2_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -261,7 +275,6 @@ var toai_otro_otro2_nombre = {
     tabIndex: 1,
     id: "toai_otro_otro2_nombre",
     name: "toai_otro_otro2_nombre",
-    allowBlank: false,
     hideLabel: true,
     fieldLabel: 'Otro tipo',
     listeners: {
@@ -278,7 +291,8 @@ var toai_otro_otro2_nombre = {
 }
 
 var toai_otro_otro3_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -301,7 +315,8 @@ var toai_otro_otro3_longitud = {
 }
 
 var toai_otro_otro3_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -324,7 +339,11 @@ var toai_otro_otro3_diametro = {
 }
 
 var toai_otro_otro3_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -354,7 +373,6 @@ var toai_otro_otro3_nombre = {
     tabIndex: 1,
     id: "toai_otro_otro3_nombre",
     name: "toai_otro_otro3_nombre",
-    allowBlank: false,
     hideLabel: true,
     fieldLabel: 'Otro tipo',
     listeners: {

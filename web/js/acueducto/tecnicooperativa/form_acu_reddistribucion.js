@@ -6,21 +6,25 @@ var form_acu_reddistribucion = new Ext.form.FormPanel({
     buttons: [{
         text: 'Atrás',
         handler: function(){
-            form_acu_reddistribucion.getForm().submit({
+            submit({
+                form: form_acu_reddistribucion,
                 url: getAbsoluteUrl('acueducto_reddistribucion', 'subirDatos1'),
-                clientValidation: false
+                success: function(){
+                    tecnicooperativa_acueducto_tabpanel.setActiveTab(8);
+                }
             });
-            form_acu_reddistribucion.setActiveTab(8);
         }
     }, {
         text: 'Siguiente',
         handler: function(){
-            form_acu_reddistribucion.getForm().submit({
+            submit({
+                form: form_acu_reddistribucion,
                 url: getAbsoluteUrl('acueducto_reddistribucion', 'subirDatos1'),
-                clientValidation: false
+                success: function(){
+                    form_acu_reddistribucion2.show();
+                    form_acu_reddistribucion.hide();
+                }
             });
-            form_acu_reddistribucion2.show();
-            form_acu_reddistribucion.hide();
         }
     }]
 });
@@ -61,7 +65,8 @@ var tord_redes_primarias = {
 }
 
 var tord_redes_primarias_asbesto_cemento_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -84,7 +89,11 @@ var tord_redes_primarias_asbesto_cemento_diametro = {
 }
 
 var tord_redes_primarias_asbesto_cemento_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -107,7 +116,8 @@ var tord_redes_primarias_asbesto_cemento_edad = {
 }
 
 var tord_redes_primarias_hierro_ductil_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -130,7 +140,11 @@ var tord_redes_primarias_hierro_ductil_diametro = {
 }
 
 var tord_redes_primarias_hierro_ductil_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -153,7 +167,8 @@ var tord_redes_primarias_hierro_ductil_edad = {
 }
 
 var tord_redes_primarias_concreto_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -176,7 +191,11 @@ var tord_redes_primarias_concreto_diametro = {
 }
 
 var tord_redes_primarias_concreto_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -199,7 +218,8 @@ var tord_redes_primarias_concreto_edad = {
 }
 
 var tord_redes_primarias_pvc_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -222,7 +242,11 @@ var tord_redes_primarias_pvc_diametro = {
 }
 
 var tord_redes_primarias_pvc_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -280,7 +304,8 @@ var tord_redes_secundarias = {
 }
 
 var tord_redes_secundarias_asbesto_cemento_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -303,7 +328,11 @@ var tord_redes_secundarias_asbesto_cemento_diametro = {
 }
 
 var tord_redes_secundarias_asbesto_cemento_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -326,7 +355,8 @@ var tord_redes_secundarias_asbesto_cemento_edad = {
 }
 
 var tord_redes_secundarias_hierro_ductil_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -349,7 +379,11 @@ var tord_redes_secundarias_hierro_ductil_diametro = {
 }
 
 var tord_redes_secundarias_hierro_ductil_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -372,7 +406,8 @@ var tord_redes_secundarias_hierro_ductil_edad = {
 }
 
 var tord_redes_secundarias_concreto_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -395,7 +430,11 @@ var tord_redes_secundarias_concreto_diametro = {
 }
 
 var tord_redes_secundarias_concreto_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -418,7 +457,8 @@ var tord_redes_secundarias_concreto_edad = {
 }
 
 var tord_redes_secundarias_pvc_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -441,7 +481,11 @@ var tord_redes_secundarias_pvc_diametro = {
 }
 
 var tord_redes_secundarias_pvc_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,

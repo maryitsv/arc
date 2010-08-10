@@ -7,23 +7,26 @@ var form_acu_conduccionaguacruda2 = new Ext.form.FormPanel({
     buttons: [{
         text: 'Atrás',
         handler: function(){
-            form_acu_conduccionaguacruda2.getForm().submit({
+            submit({
+                form: form_acu_conduccionaguacruda2,
                 url: getAbsoluteUrl('acueducto_conduccionaguacruda', 'subirDatos2'),
-                clientValidation: false
+                success: function(){
+                    form_acu_conduccionaguacruda.show();
+                    form_acu_conduccionaguacruda2.hide();
+                }
             });
-            //            tecnicooperativa_acueducto_tabpanel.setActiveTab(3);
-            form_acu_conduccionaguacruda.show();
-            form_acu_conduccionaguacruda2.hide();
         }
     }, {
         text: 'Siguiente',
         handler: function(){
-            form_acu_conduccionaguacruda2.getForm().submit({
+            submit({
+                form: form_acu_conduccionaguacruda2,
                 url: getAbsoluteUrl('acueducto_conduccionaguacruda', 'subirDatos2'),
-                clientValidation: false
+                success: function(){
+                    form_acu_conduccionaguacruda3.show();
+                    form_acu_conduccionaguacruda2.hide();
+                }
             });
-            form_acu_conduccionaguacruda3.show();
-            form_acu_conduccionaguacruda2.hide();
         }
     }]
 });
@@ -68,7 +71,8 @@ var tolc_tuberia = {
 }
 
 var tolc_tuberia_asbesto_cemento_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -91,7 +95,8 @@ var tolc_tuberia_asbesto_cemento_longitud = {
 }
 
 var tolc_tuberia_asbesto_cemento_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -114,7 +119,11 @@ var tolc_tuberia_asbesto_cemento_diametro = {
 }
 
 var tolc_tuberia_asbesto_cemento_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -137,7 +146,8 @@ var tolc_tuberia_asbesto_cemento_edad = {
 }
 
 var tolc_tuberia_hierro_ductil_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -160,7 +170,8 @@ var tolc_tuberia_hierro_ductil_longitud = {
 }
 
 var tolc_tuberia_hierro_ductil_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -183,7 +194,11 @@ var tolc_tuberia_hierro_ductil_diametro = {
 }
 
 var tolc_tuberia_hierro_ductil_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -206,7 +221,8 @@ var tolc_tuberia_hierro_ductil_edad = {
 }
 
 var tolc_tuberia_concreto_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -229,7 +245,8 @@ var tolc_tuberia_concreto_longitud = {
 }
 
 var tolc_tuberia_concreto_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -252,7 +269,11 @@ var tolc_tuberia_concreto_diametro = {
 }
 
 var tolc_tuberia_concreto_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -275,7 +296,8 @@ var tolc_tuberia_concreto_edad = {
 }
 
 var tolc_tuberia_pvc_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -298,7 +320,8 @@ var tolc_tuberia_pvc_longitud = {
 }
 
 var tolc_tuberia_pvc_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -321,7 +344,11 @@ var tolc_tuberia_pvc_diametro = {
 }
 
 var tolc_tuberia_pvc_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -381,7 +408,8 @@ var tolc_manguera = {
 }
 
 var tolc_manguera_polietileno_hd_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -404,7 +432,8 @@ var tolc_manguera_polietileno_hd_longitud = {
 }
 
 var tolc_manguera_polietileno_hd_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -427,7 +456,11 @@ var tolc_manguera_polietileno_hd_diametro = {
 }
 
 var tolc_manguera_polietileno_hd_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -450,7 +483,8 @@ var tolc_manguera_polietileno_hd_edad = {
 }
 
 var tolc_manguera_polietileno_ld_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -473,7 +507,8 @@ var tolc_manguera_polietileno_ld_longitud = {
 }
 
 var tolc_manguera_polietileno_ld_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -496,7 +531,11 @@ var tolc_manguera_polietileno_ld_diametro = {
 }
 
 var tolc_manguera_polietileno_ld_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -526,7 +565,6 @@ var tolc_manguera_otro_nombre = {
     tabIndex: 1,
     id: "tolc_manguera_otro_nombre",
     name: "tolc_manguera_otro_nombre",
-    allowBlank: false,
     hideLabel: true,
     listeners: {
         render: function(){
@@ -542,7 +580,8 @@ var tolc_manguera_otro_nombre = {
 }
 
 var tolc_manguera_otro_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -565,7 +604,8 @@ var tolc_manguera_otro_longitud = {
 }
 
 var tolc_manguera_otro_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -588,7 +628,11 @@ var tolc_manguera_otro_diametro = {
 }
 
 var tolc_manguera_otro_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,

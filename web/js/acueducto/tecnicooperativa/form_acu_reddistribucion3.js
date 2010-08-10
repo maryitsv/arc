@@ -7,25 +7,16 @@ var form_acu_reddistribucion3 = new Ext.form.FormPanel({
     buttons: [{
         text: 'Atrás',
         handler: function(){
-            form_acu_reddistribucion3.getForm().submit({
+            submit({
+                form: form_acu_reddistribucion3,
                 url: getAbsoluteUrl('acueducto_reddistribucion', 'subirDatos3'),
-                clientValidation: false
+                success: function(){
+                    form_acu_reddistribucion2.show();
+                    form_acu_reddistribucion3.hide();
+                }
             });
-            //            tecnicooperativa_acueducto_tabpanel.setActiveTab(3);
-            form_acu_reddistribucion2.show();
-            form_acu_reddistribucion3.hide();
         }
-    } //    , {
-    //        text: 'Siguiente',
-    //        handler: function(){
-    //            form_acu_reddistribucion3.getForm().submit({
-    //                url: getAbsoluteUrl('acueducto_reddistribucion', 'subirDatos3'),
-    //                clientValidation: false
-    //            });
-    //            tecnicooperativa_acueducto_tabpanel.setActiveTab(9);
-    //        }
-    //    }
-    ]
+    }]
 });
 
 var tord_otro = {
@@ -90,7 +81,8 @@ var tord_otro_tipo_nombre = {
 }
 
 var tord_otro_otro1_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -113,7 +105,11 @@ var tord_otro_otro1_diametro = {
 }
 
 var tord_otro_otro1_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -143,7 +139,6 @@ var tord_otro_otro1_nombre = {
     tabIndex: 1,
     id: "tord_otro_otro1_nombre",
     name: "tord_otro_otro1_nombre",
-    allowBlank: false,
     hideLabel: true,
     fieldLabel: 'Otro tipo',
     listeners: {
@@ -160,7 +155,8 @@ var tord_otro_otro1_nombre = {
 }
 
 var tord_otro_otro2_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -183,7 +179,11 @@ var tord_otro_otro2_diametro = {
 }
 
 var tord_otro_otro2_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -213,7 +213,6 @@ var tord_otro_otro2_nombre = {
     tabIndex: 1,
     id: "tord_otro_otro2_nombre",
     name: "tord_otro_otro2_nombre",
-    allowBlank: false,
     hideLabel: true,
     fieldLabel: 'Otro tipo',
     listeners: {
@@ -230,7 +229,8 @@ var tord_otro_otro2_nombre = {
 }
 
 var tord_otro_otro3_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -253,7 +253,11 @@ var tord_otro_otro3_diametro = {
 }
 
 var tord_otro_otro3_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -283,7 +287,6 @@ var tord_otro_otro3_nombre = {
     tabIndex: 1,
     id: "tord_otro_otro3_nombre",
     name: "tord_otro_otro3_nombre",
-    allowBlank: false,
     hideLabel: true,
     fieldLabel: 'Otro tipo',
     listeners: {
@@ -305,7 +308,7 @@ var toa_planos_actualizados = {
     name: "toa_planos_actualizados",
     labelSeparator: '',
     fieldLabel: "¿Existen planos actualizados de la red de distribución?",
-    width: 100,
+    width: 50,
     items: [{
         name: 'toa_planos_actualizados',
         boxLabel: 'Si',
@@ -337,9 +340,13 @@ var toa_planos_actualizados = {
 }
 
 var toa_ano_actualizacion_planos = {
-    xtype: 'textfield',
+    xtype: "numberfield",
+    minLength: 4,
+    maxLength: 4,
+    allowDecimals: false,
+    allowNegative: false,
     width: 100,
-    emptyText: '2010',
+    emptyText: (new Date()).getFullYear(),
     disabled: true,
     tabIndex: 1,
     id: "toa_ano_actualizacion_planos",
