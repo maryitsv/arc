@@ -6,22 +6,25 @@ var form_acu_conduccionaguacruda = new Ext.form.FormPanel({
     buttons: [{
         text: 'Atrás',
         handler: function(){
-            form_acu_conduccionaguacruda.getForm().submit({
+            submit({
+                form: form_acu_conduccionaguacruda,
                 url: getAbsoluteUrl('acueducto_conduccionaguacruda', 'subirDatos1'),
-                clientValidation: false
+                success: function(){
+                    tecnicooperativa_acueducto_tabpanel.setActiveTab(7);
+                }
             });
-            tecnicooperativa_acueducto_tabpanel.setActiveTab(7);
         }
     }, {
         text: 'Siguiente',
         handler: function(){
-            form_acu_conduccionaguacruda.getForm().submit({
+            submit({
+                form: form_acu_conduccionaguacruda,
                 url: getAbsoluteUrl('acueducto_conduccionaguacruda', 'subirDatos1'),
-                clientValidation: false
+                success: function(){
+                    form_acu_conduccionaguacruda.hide();
+                    form_acu_conduccionaguacruda2.show();
+                }
             });
-            form_acu_conduccionaguacruda.hide();
-            form_acu_conduccionaguacruda2.show();
-            //            tecnicooperativa_acueducto_tabpanel.setActiveTab(4);
         }
     }]
 });
@@ -60,7 +63,8 @@ var tolc_canal_abierto = {
 }
 
 var tolc_canal_abierto_tierra_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -83,7 +87,11 @@ var tolc_canal_abierto_tierra_longitud = {
 }
 
 var tolc_canal_abierto_tierra_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -106,7 +114,8 @@ var tolc_canal_abierto_tierra_edad = {
 }
 
 var tolc_canal_abierto_concreto_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -129,7 +138,11 @@ var tolc_canal_abierto_concreto_longitud = {
 }
 
 var tolc_canal_abierto_concreto_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -152,7 +165,8 @@ var tolc_canal_abierto_concreto_edad = {
 }
 
 var tolc_canal_abierto_mamposteria_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -175,7 +189,11 @@ var tolc_canal_abierto_mamposteria_longitud = {
 }
 
 var tolc_canal_abierto_mamposteria_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -231,7 +249,8 @@ var tolc_canal_cubierto = {
 }
 
 var tolc_canal_cubierto_tierra_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -254,7 +273,11 @@ var tolc_canal_cubierto_tierra_longitud = {
 }
 
 var tolc_canal_cubierto_tierra_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -277,7 +300,8 @@ var tolc_canal_cubierto_tierra_edad = {
 }
 
 var tolc_canal_cubierto_concreto_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -300,7 +324,11 @@ var tolc_canal_cubierto_concreto_longitud = {
 }
 
 var tolc_canal_cubierto_concreto_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -323,7 +351,8 @@ var tolc_canal_cubierto_concreto_edad = {
 }
 
 var tolc_canal_cubierto_mamposteria_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -346,7 +375,11 @@ var tolc_canal_cubierto_mamposteria_longitud = {
 }
 
 var tolc_canal_cubierto_mamposteria_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,

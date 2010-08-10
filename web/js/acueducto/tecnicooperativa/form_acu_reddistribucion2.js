@@ -7,22 +7,26 @@ var form_acu_reddistribucion2 = new Ext.form.FormPanel({
     buttons: [{
         text: 'Atrás',
         handler: function(){
-            form_acu_reddistribucion2.getForm().submit({
+            submit({
+                form: form_acu_reddistribucion2,
                 url: getAbsoluteUrl('acueducto_reddistribucion', 'subirDatos2'),
-                clientValidation: false
+                success: function(){
+                    form_acu_reddistribucion.show();
+                    form_acu_reddistribucion2.hide();
+                }
             });
-            form_acu_reddistribucion.show();
-            form_acu_reddistribucion2.hide();
         }
     }, {
         text: 'Siguiente',
         handler: function(){
-            form_acu_reddistribucion2.getForm().submit({
+            submit({
+                form: form_acu_reddistribucion2,
                 url: getAbsoluteUrl('acueducto_reddistribucion', 'subirDatos2'),
-                clientValidation: false
+                success: function(){
+                    form_acu_reddistribucion3.show();
+                    form_acu_reddistribucion2.hide();
+                }
             });
-            form_acu_reddistribucion3.show();
-            form_acu_reddistribucion2.hide();
         }
     }]
 });
@@ -63,7 +67,8 @@ var tord_redes_terciarias = {
 }
 
 var tord_redes_terciarias_asbesto_cemento_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -86,7 +91,11 @@ var tord_redes_terciarias_asbesto_cemento_diametro = {
 }
 
 var tord_redes_terciarias_asbesto_cemento_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -109,7 +118,8 @@ var tord_redes_terciarias_asbesto_cemento_edad = {
 }
 
 var tord_redes_terciarias_hierro_ductil_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -132,7 +142,11 @@ var tord_redes_terciarias_hierro_ductil_diametro = {
 }
 
 var tord_redes_terciarias_hierro_ductil_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -155,7 +169,8 @@ var tord_redes_terciarias_hierro_ductil_edad = {
 }
 
 var tord_redes_terciarias_concreto_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -178,7 +193,11 @@ var tord_redes_terciarias_concreto_diametro = {
 }
 
 var tord_redes_terciarias_concreto_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -201,7 +220,8 @@ var tord_redes_terciarias_concreto_edad = {
 }
 
 var tord_redes_terciarias_pvc_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -224,7 +244,11 @@ var tord_redes_terciarias_pvc_diametro = {
 }
 
 var tord_redes_terciarias_pvc_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -281,7 +305,8 @@ var tord_manguera = {
 }
 
 var tord_manguera_polietileno_hd_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -304,7 +329,11 @@ var tord_manguera_polietileno_hd_diametro = {
 }
 
 var tord_manguera_polietileno_hd_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -327,7 +356,8 @@ var tord_manguera_polietileno_hd_edad = {
 }
 
 var tord_manguera_polietileno_ld_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -350,7 +380,11 @@ var tord_manguera_polietileno_ld_diametro = {
 }
 
 var tord_manguera_polietileno_ld_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -380,7 +414,6 @@ var tord_manguera_otro_nombre = {
     tabIndex: 1,
     id: "tord_manguera_otro_nombre",
     name: "tord_manguera_otro_nombre",
-    allowBlank: false,
     hideLabel: true,
     listeners: {
         render: function(){
@@ -396,7 +429,8 @@ var tord_manguera_otro_nombre = {
 }
 
 var tord_manguera_otro_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -419,7 +453,11 @@ var tord_manguera_otro_diametro = {
 }
 
 var tord_manguera_otro_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -441,7 +479,7 @@ var tord_manguera_otro_edad = {
     }
 }
 
-var acu_reddistribucion_datastore = new Ext.data.Store({
+var acu_reddistribucion2_datastore = new Ext.data.Store({
     id: 'acu_reddistribucion_datastore',
     proxy: new Ext.data.HttpProxy({
         url: getAbsoluteUrl('acueducto_reddistribucion', 'obtenerDatos'),
@@ -503,9 +541,9 @@ var acu_reddistribucion_datastore = new Ext.data.Store({
     }])
 });
 
-acu_reddistribucion_datastore.load({
+acu_reddistribucion2_datastore.load({
     callback: function(){
-        var registro = acu_reddistribucion_datastore.getAt(0);
+        var registro = acu_reddistribucion2_datastore.getAt(0);
         form_acu_reddistribucion2.getForm().loadRecord(registro);
     }
 });

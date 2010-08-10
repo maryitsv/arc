@@ -7,24 +7,26 @@ var form_acu_aduccionimpulsion2 = new Ext.form.FormPanel({
     buttons: [{
         text: 'Atrás',
         handler: function(){
-            form_acu_aduccionimpulsion2.getForm().submit({
+            submit({
+                form: form_acu_aduccionimpulsion2,
                 url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'subirDatos2'),
-                clientValidation: false
+                success: function(){
+                    form_acu_aduccionimpulsion.show();
+                    form_acu_aduccionimpulsion2.hide();
+                }
             });
-            //            tecnicooperativa_acueducto_tabpanel.setActiveTab(3);
-            form_acu_aduccionimpulsion.show();
-            form_acu_aduccionimpulsion2.hide();
         }
     }, {
         text: 'Siguiente',
         handler: function(){
-            form_acu_aduccionimpulsion2.getForm().submit({
+            submit({
+                form: form_acu_aduccionimpulsion2,
                 url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'subirDatos2'),
-                clientValidation: false
+                success: function(){
+                    form_acu_aduccionimpulsion3.show();
+                    form_acu_aduccionimpulsion2.hide();
+                }
             });
-            form_acu_aduccionimpulsion3.show();
-            form_acu_aduccionimpulsion2.hide();
-            //            tecnicooperativa_acueducto_tabpanel.setActiveTab(4);
         }
     }]
 });
@@ -69,7 +71,8 @@ var toai_tuberia = {
 }
 
 var toai_tuberia_asbesto_cemento_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -92,7 +95,8 @@ var toai_tuberia_asbesto_cemento_longitud = {
 }
 
 var toai_tuberia_asbesto_cemento_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -115,7 +119,11 @@ var toai_tuberia_asbesto_cemento_diametro = {
 }
 
 var toai_tuberia_asbesto_cemento_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -138,7 +146,8 @@ var toai_tuberia_asbesto_cemento_edad = {
 }
 
 var toai_tuberia_hierro_ductil_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -161,7 +170,8 @@ var toai_tuberia_hierro_ductil_longitud = {
 }
 
 var toai_tuberia_hierro_ductil_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -184,7 +194,11 @@ var toai_tuberia_hierro_ductil_diametro = {
 }
 
 var toai_tuberia_hierro_ductil_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -207,7 +221,8 @@ var toai_tuberia_hierro_ductil_edad = {
 }
 
 var toai_tuberia_concreto_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -230,7 +245,8 @@ var toai_tuberia_concreto_longitud = {
 }
 
 var toai_tuberia_concreto_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -253,7 +269,11 @@ var toai_tuberia_concreto_diametro = {
 }
 
 var toai_tuberia_concreto_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -276,7 +296,8 @@ var toai_tuberia_concreto_edad = {
 }
 
 var toai_tuberia_pvc_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -299,7 +320,8 @@ var toai_tuberia_pvc_longitud = {
 }
 
 var toai_tuberia_pvc_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -322,7 +344,11 @@ var toai_tuberia_pvc_diametro = {
 }
 
 var toai_tuberia_pvc_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -382,7 +408,8 @@ var toai_manguera = {
 }
 
 var toai_manguera_polietileno_hd_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -405,7 +432,8 @@ var toai_manguera_polietileno_hd_longitud = {
 }
 
 var toai_manguera_polietileno_hd_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -428,7 +456,11 @@ var toai_manguera_polietileno_hd_diametro = {
 }
 
 var toai_manguera_polietileno_hd_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -451,7 +483,8 @@ var toai_manguera_polietileno_hd_edad = {
 }
 
 var toai_manguera_polietileno_ld_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -474,7 +507,8 @@ var toai_manguera_polietileno_ld_longitud = {
 }
 
 var toai_manguera_polietileno_ld_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -497,7 +531,11 @@ var toai_manguera_polietileno_ld_diametro = {
 }
 
 var toai_manguera_polietileno_ld_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -527,7 +565,6 @@ var toai_manguera_otro_nombre = {
     tabIndex: 1,
     id: "toai_manguera_otro_nombre",
     name: "toai_manguera_otro_nombre",
-    allowBlank: false,
     hideLabel: true,
     listeners: {
         render: function(){
@@ -543,7 +580,8 @@ var toai_manguera_otro_nombre = {
 }
 
 var toai_manguera_otro_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -566,7 +604,8 @@ var toai_manguera_otro_longitud = {
 }
 
 var toai_manguera_otro_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -589,7 +628,11 @@ var toai_manguera_otro_diametro = {
 }
 
 var toai_manguera_otro_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,

@@ -99,7 +99,10 @@ var acu_tanque_almacenamiento_gridpanel = new Ext.grid.EditorGridPanel({
         header: "Volumen(M<sup>3</sup>)",
         width: 80,
         dataIndex: 'tan_volumen',
-        editor: new Ext.form.TextField({
+        editor: new Ext.form.NumberField({
+            minLength: 1,
+            maxLength: 17,
+            allowNegative: false,
             emptyText: false
         })
     }, {

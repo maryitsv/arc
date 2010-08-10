@@ -7,22 +7,25 @@ var form_acu_conduccionaguacruda3 = new Ext.form.FormPanel({
     buttons: [{
         text: 'Atrás',
         handler: function(){
-            form_acu_conduccionaguacruda3.getForm().submit({
+            submit({
+                form: form_acu_conduccionaguacruda3,
                 url: getAbsoluteUrl('acueducto_conduccionaguacruda', 'subirDatos3'),
-                clientValidation: false
+                success: function(){
+                    form_acu_conduccionaguacruda2.show();
+                    form_acu_conduccionaguacruda3.hide();
+                }
             });
-            //            tecnicooperativa_acueducto_tabpanel.setActiveTab(3);
-            form_acu_conduccionaguacruda2.show();
-            form_acu_conduccionaguacruda3.hide();
         }
     }, {
         text: 'Siguiente',
         handler: function(){
-            form_acu_conduccionaguacruda3.getForm().submit({
+            submit({
+                form: form_acu_conduccionaguacruda3,
                 url: getAbsoluteUrl('acueducto_conduccionaguacruda', 'subirDatos3'),
-                clientValidation: false
+                success: function(){
+                    tecnicooperativa_acueducto_tabpanel.setActiveTab(9);
+                }
             });
-            tecnicooperativa_acueducto_tabpanel.setActiveTab(9);
         }
     }]
 });
@@ -92,7 +95,8 @@ var tolc_otro_tipo_nombre = {
 }
 
 var tolc_otro_otro1_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -115,7 +119,8 @@ var tolc_otro_otro1_longitud = {
 }
 
 var tolc_otro_otro1_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -138,7 +143,11 @@ var tolc_otro_otro1_diametro = {
 }
 
 var tolc_otro_otro1_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -168,7 +177,6 @@ var tolc_otro_otro1_nombre = {
     tabIndex: 1,
     id: "tolc_otro_otro1_nombre",
     name: "tolc_otro_otro1_nombre",
-    allowBlank: false,
     hideLabel: true,
     fieldLabel: 'Otro tipo',
     listeners: {
@@ -185,7 +193,8 @@ var tolc_otro_otro1_nombre = {
 }
 
 var tolc_otro_otro2_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -208,7 +217,8 @@ var tolc_otro_otro2_longitud = {
 }
 
 var tolc_otro_otro2_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -231,7 +241,11 @@ var tolc_otro_otro2_diametro = {
 }
 
 var tolc_otro_otro2_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -261,7 +275,6 @@ var tolc_otro_otro2_nombre = {
     tabIndex: 1,
     id: "tolc_otro_otro2_nombre",
     name: "tolc_otro_otro2_nombre",
-    allowBlank: false,
     hideLabel: true,
     fieldLabel: 'Otro tipo',
     listeners: {
@@ -278,7 +291,8 @@ var tolc_otro_otro2_nombre = {
 }
 
 var tolc_otro_otro3_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -301,7 +315,8 @@ var tolc_otro_otro3_longitud = {
 }
 
 var tolc_otro_otro3_diametro = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -324,7 +339,11 @@ var tolc_otro_otro3_diametro = {
 }
 
 var tolc_otro_otro3_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -354,7 +373,6 @@ var tolc_otro_otro3_nombre = {
     tabIndex: 1,
     id: "tolc_otro_otro3_nombre",
     name: "tolc_otro_otro3_nombre",
-    allowBlank: false,
     hideLabel: true,
     fieldLabel: 'Otro tipo',
     listeners: {
@@ -370,7 +388,7 @@ var tolc_otro_otro3_nombre = {
     }
 }
 
-var acu_conduccionaguacruda2_datastore = new Ext.data.Store({
+var acu_conduccionaguacruda3_datastore = new Ext.data.Store({
     id: 'acu_conduccionaguacruda2_datastore',
     proxy: new Ext.data.HttpProxy({
         url: getAbsoluteUrl('acueducto_conduccionaguacruda', 'obtenerDatos'),
@@ -423,9 +441,9 @@ var acu_conduccionaguacruda2_datastore = new Ext.data.Store({
     }])
 });
 
-acu_conduccionaguacruda2_datastore.load({
+acu_conduccionaguacruda3_datastore.load({
     callback: function(){
-        var registro = acu_conduccionaguacruda2_datastore.getAt(0);
+        var registro = acu_conduccionaguacruda3_datastore.getAt(0);
         form_acu_conduccionaguacruda3.getForm().loadRecord(registro);
     }
 });

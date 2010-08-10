@@ -6,22 +6,25 @@ var form_acu_aduccionimpulsion = new Ext.form.FormPanel({
     buttons: [{
         text: 'Atrás',
         handler: function(){
-            form_acu_aduccionimpulsion.getForm().submit({
+            submit({
+                form: form_acu_aduccionimpulsion,
                 url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'subirDatos1'),
-                clientValidation: false
+                success: function(){
+                    tecnicooperativa_acueducto_tabpanel.setActiveTab(2);
+                }
             });
-            tecnicooperativa_acueducto_tabpanel.setActiveTab(2);
         }
     }, {
         text: 'Siguiente',
         handler: function(){
-            form_acu_aduccionimpulsion.getForm().submit({
+            submit({
+                form: form_acu_aduccionimpulsion,
                 url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'subirDatos1'),
-                clientValidation: false
+                success: function(){
+                    form_acu_aduccionimpulsion.hide();
+                    form_acu_aduccionimpulsion2.show();
+                }
             });
-            form_acu_aduccionimpulsion.hide();
-            form_acu_aduccionimpulsion2.show();
-            //            tecnicooperativa_acueducto_tabpanel.setActiveTab(4);
         }
     }]
 });
@@ -60,7 +63,9 @@ var toai_canal_abierto = {
 }
 
 var toai_canal_abierto_tierra_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -83,7 +88,11 @@ var toai_canal_abierto_tierra_longitud = {
 }
 
 var toai_canal_abierto_tierra_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -106,7 +115,8 @@ var toai_canal_abierto_tierra_edad = {
 }
 
 var toai_canal_abierto_concreto_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -129,7 +139,11 @@ var toai_canal_abierto_concreto_longitud = {
 }
 
 var toai_canal_abierto_concreto_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -152,7 +166,8 @@ var toai_canal_abierto_concreto_edad = {
 }
 
 var toai_canal_abierto_mamposteria_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -175,7 +190,11 @@ var toai_canal_abierto_mamposteria_longitud = {
 }
 
 var toai_canal_abierto_mamposteria_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -231,7 +250,8 @@ var toai_canal_cubierto = {
 }
 
 var toai_canal_cubierto_tierra_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -254,7 +274,11 @@ var toai_canal_cubierto_tierra_longitud = {
 }
 
 var toai_canal_cubierto_tierra_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -277,7 +301,8 @@ var toai_canal_cubierto_tierra_edad = {
 }
 
 var toai_canal_cubierto_concreto_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -300,7 +325,11 @@ var toai_canal_cubierto_concreto_longitud = {
 }
 
 var toai_canal_cubierto_concreto_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -323,7 +352,8 @@ var toai_canal_cubierto_concreto_edad = {
 }
 
 var toai_canal_cubierto_mamposteria_longitud = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    maxLength: 17,
     value: 0,
     disabled: true,
     tabIndex: 1,
@@ -346,7 +376,11 @@ var toai_canal_cubierto_mamposteria_longitud = {
 }
 
 var toai_canal_cubierto_mamposteria_edad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 1,

@@ -8,20 +8,34 @@ var tecnicooperativacomponentessistema_form = new Ext.form.FormPanel({
     buttons: [{
         text: 'Atrás',
         handler: function(){
-            tecnicooperativacomponentessistema_form.getForm().submit({
+            //            tecnicooperativacomponentessistema_form.getForm().submit({
+            //                url: getAbsoluteUrl('acueducto_componentessistema', 'subirDatos'),
+            //                clientValidation: false
+            //            });
+            submit({
+                form: tecnicooperativacomponentessistema_form,
                 url: getAbsoluteUrl('acueducto_componentessistema', 'subirDatos'),
-                clientValidation: false
+                success: function(){
+                    tecnicooperativa_acueducto_tabpanel.setActiveTab(0);
+                }
             });
-            tecnicooperativa_acueducto_tabpanel.setActiveTab(0);
+            //            tecnicooperativa_acueducto_tabpanel.setActiveTab(0);
         }
     }, {
         text: 'Siguiente',
         handler: function(){
-            tecnicooperativacomponentessistema_form.getForm().submit({
+            //            tecnicooperativacomponentessistema_form.getForm().submit({
+            //                url: getAbsoluteUrl('acueducto_componentessistema', 'subirDatos'),
+            //                clientValidation: false
+            //            });
+            submit({
+                form: tecnicooperativacomponentessistema_form,
                 url: getAbsoluteUrl('acueducto_componentessistema', 'subirDatos'),
-                clientValidation: false
+                success: function(){
+                    tecnicooperativa_acueducto_tabpanel.setActiveTab(2);
+                }
             });
-            tecnicooperativa_acueducto_tabpanel.setActiveTab(2);
+            //            tecnicooperativa_acueducto_tabpanel.setActiveTab(2);
         }
     }]
 });
@@ -57,7 +71,11 @@ var tocs_captacion = {
 }
 
 var tocs_captacion_cantidad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 3,
@@ -109,7 +127,11 @@ var tocs_aduccion = {
 }
 
 var tocs_aduccion_cantidad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 5,
@@ -161,7 +183,11 @@ var tocs_desarenador = {
 }
 
 var tocs_desarenador_cantidad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 7,
@@ -213,7 +239,11 @@ var tocs_conduccion_agua_cruda = {
 }
 
 var tocs_conduccion_agua_cruda_cantidad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 9,
@@ -265,7 +295,11 @@ var tocs_planta_tratamiento = {
 }
 
 var tocs_planta_tratamiento_cantidad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 11,
@@ -317,7 +351,11 @@ var tocs_desinfeccion = {
 }
 
 var tocs_desinfeccion_cantidad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 13,
@@ -369,7 +407,11 @@ var tocs_tanque_almacenamiento = {
 }
 
 var tocs_tanque_almacenamiento_cantidad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 15,
@@ -422,7 +464,11 @@ var tocs_conduccion_agua_tratada = {
 
 
 var tocs_conduccion_agua_tratada_cantidad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 17,
@@ -474,7 +520,11 @@ var tocs_red_distribucion = {
 }
 
 var tocs_red_distribucion_cantidad = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     value: 0,
     disabled: true,
     tabIndex: 19,

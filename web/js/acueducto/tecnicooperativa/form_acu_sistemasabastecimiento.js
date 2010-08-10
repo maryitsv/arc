@@ -10,11 +10,13 @@ var sistemasabastecimiento_form = new Ext.form.FormPanel({
     buttons: [{
         text: 'Siguiente',
         handler: function(){
-            sistemasabastecimiento_form.getForm().submit({
+            submit({
+                form: sistemasabastecimiento_form,
                 url: getAbsoluteUrl('acueducto_sistemasabastecimiento', 'subirDatos'),
-                clientValidation: false
+                success: function(){
+                    tecnicooperativa_acueducto_tabpanel.setActiveTab(1);
+                }
             });
-            tecnicooperativa_acueducto_tabpanel.setActiveTab(1);
         }
     }]
 });
@@ -184,7 +186,10 @@ var toa_gravedad_con_tratamiento_bombeo_sin_tratamiento = {
 }
 
 var toa_cantidad_agua_distribuida_por_ano = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 17,
+    allowNegative: false,
     tabIndex: 10,
     id: "toa_cantidad_agua_distribuida_por_ano",
     name: "toa_cantidad_agua_distribuida_por_ano",
@@ -230,7 +235,11 @@ var toa_solucion_acarreo = {
 }
 
 var toa_solucion_acarreo_viviendas = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     tabIndex: 13,
     id: "toa_solucion_acarreo_viviendas",
     name: "toa_solucion_acarreo_viviendas",
@@ -277,7 +286,11 @@ var toa_solucion_nacimiento = {
 }
 
 var toa_solucion_nacimiento_viviendas = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     tabIndex: 15,
     id: "toa_solucion_nacimiento_viviendas",
     name: "toa_solucion_nacimiento_viviendas",
@@ -324,7 +337,11 @@ var toa_solucion_aljibe = {
 }
 
 var toa_solucion_aljibe_viviendas = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     tabIndex: 17,
     id: "toa_solucion_aljibe_viviendas",
     name: "toa_solucion_aljibe_viviendas",
@@ -371,7 +388,11 @@ var toa_solucion_agua_lluvia = {
 }
 
 var toa_solucion_agua_lluvia_viviendas = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     tabIndex: 19,
     id: "toa_solucion_agua_lluvia_viviendas",
     name: "toa_solucion_agua_lluvia_viviendas",
@@ -421,6 +442,7 @@ var toa_solucion_otro = {
 
 var toa_solucion_otro_cual = {
     xtype: "textfield",
+    maxLength: 100,
     tabIndex: 21,
     id: "toa_solucion_otro_cual",
     name: "toa_solucion_otro_cual",
@@ -442,7 +464,11 @@ var toa_solucion_otro_cual = {
 }
 
 var toa_solucion_otro_viviendas = {
-    xtype: "textfield",
+    xtype: "numberfield",
+    minLength: 1,
+    maxLength: 3,
+    allowDecimals: false,
+    allowNegative: false,
     tabIndex: 22,
     id: "toa_solucion_otro_viviendas",
     name: "toa_solucion_otro_viviendas",
@@ -563,7 +589,7 @@ var acu_sistemasabastecimiento_datastore = new Ext.data.Store({
 
 acu_sistemasabastecimiento_datastore.load({
     callback: function(){
-//        alert(acu_sistemasabastecimiento_datastore.getCount());
+        //        alert(acu_sistemasabastecimiento_datastore.getCount());
         var registro = acu_sistemasabastecimiento_datastore.getAt(0);
         sistemasabastecimiento_form.getForm().loadRecord(registro);
     }

@@ -262,7 +262,9 @@ class acueducto_reddistribucionActions extends sfActions
 			$acueducto = TecnicooperativaacueductoPeer::consultarTecnicoOperativoAcueductoSiExiste($pps_anio, $pps_pre_id, $pps_ser_id);
 			if($acueducto) {
 				$campos['toa_planos_actualizados'] = $acueducto->getToaPlanosActualizados();
-				$campos['toa_ano_actualizacion_planos'] = $acueducto->getToaAnoActualizacionPlanos();
+				if($campos['toa_planos_actualizados']) {
+					$campos['toa_ano_actualizacion_planos'] = $acueducto->getToaAnoActualizacionPlanos();
+				}
 			}
 
 			$datos[] = $campos;
