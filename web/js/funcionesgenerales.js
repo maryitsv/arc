@@ -55,7 +55,9 @@ function subirDatos(panel, url_Action, extraParams, funcionSuccess, funcionFailu
         success: function(response, action){
             obj = Ext.util.JSON.decode(action.response.responseText);
             salida = true;
-            funcionSuccess();
+			if(funcionSuccess != null){
+				funcionSuccess();
+			}
             mostrarMensajeRapido('Aviso', obj.mensaje);
         },
         failure: function(form, action, response){
@@ -63,7 +65,9 @@ function subirDatos(panel, url_Action, extraParams, funcionSuccess, funcionFailu
                 obj = Ext.util.JSON.decode(action.response.responseText);
                 mostrarMensajeConfirmacion('Error', obj.errors.reason);
             }
-            funcionFailure();
+			if(funcionFailure != null){
+				funcionFailure();
+			}
         }
     });
 }

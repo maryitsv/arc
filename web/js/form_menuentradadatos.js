@@ -144,7 +144,7 @@ init: function () {
 									}]
 								},
 								{
-									expanded: false,
+									expanded: true,
 									border: false,
 									id: 'alcantarillado',
 									items: [{
@@ -198,7 +198,7 @@ init: function () {
 									}]
 								},
 								{
-									expanded: false,
+									expanded: true,
 									border: false,
 									id: 'aseo',
 									items: [{
@@ -251,7 +251,7 @@ init: function () {
 									}]
 								},
 								{
-									expanded: false,
+									expanded: true,
 									items: [
 										{
 											title: 'Salir',
