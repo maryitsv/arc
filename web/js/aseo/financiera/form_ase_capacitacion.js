@@ -418,7 +418,7 @@ var form_ase_capacitacion = new Ext.form.FormPanel({
 			bodyStyle: Ext.isIE ? 'padding:5 5 5px 15px;' : 'padding: 10px 10px;',
 			items: [
 				ase_cap_dada_prestador, 
-				ase_cap_actividad_capacitacion_uso_eficiente_agua,
+				//ase_cap_actividad_capacitacion_uso_eficiente_agua,
 				ase_cap_actividad_capacitacion_higiene_personal,
 				ase_cap_actividad_capacitacion_higiene_vivienda,
 				ase_cap_actividad_capacitacion_higiene_sitios_publicos,

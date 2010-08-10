@@ -24,11 +24,6 @@ var tabp_ase_administrativafinanciera = new Ext.TabPanel( {
 			},
 			{
 				frame: true,
-				title: 'Plan de Gesti&oacute;n y resultados.',
-				autoLoad: { url: url_arc+'aseo_gestionresultado', scripts: true, scope: this }
-			},
-			{
-				frame: true,
 				title: 'Trabajadores y su vinculaci&oacute;n.',
 				autoLoad: { url: url_arc+'aseo_trabajadoresyvinculacion', scripts: true, scope: this }
 			}

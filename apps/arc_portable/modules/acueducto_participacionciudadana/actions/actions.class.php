@@ -155,5 +155,4 @@ class acueducto_participacionciudadanaActions extends sfActions
 	}
 	return 	$this->renderText($salida);
   }
-  
 }

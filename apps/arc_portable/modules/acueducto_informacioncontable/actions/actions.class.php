@@ -231,5 +231,4 @@ class acueducto_informacioncontableActions extends sfActions
 	}
 	return 	$this->renderText($salida);
   }
-  
 }

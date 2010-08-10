@@ -75,9 +75,9 @@ class acueductoActions extends sfActions
 		{
 			$acueducto = new Periodoporprestadorservicio();
 			
-			$acueducto->setPpsPpsPreId($pps_pre_id);
-			$acueducto->setPpsPpsAnio($pps_anio);
-			$acueducto->setPpsPpsSerId($pps_ser_id);
+			$acueducto->setPpsPreId($pps_pre_id);
+			$acueducto->setPpsAnio($pps_anio);
+			$acueducto->setPpsSerId($pps_ser_id);
 			
 			$acueducto->setPpsNombreDiligenciador($this->getRequestParameter('acu_pps_nombre_diligenciador'));
 			$acueducto->setPpsApellidoDiligenciador($this->getRequestParameter('acu_pps_apellido_diligenciador'));

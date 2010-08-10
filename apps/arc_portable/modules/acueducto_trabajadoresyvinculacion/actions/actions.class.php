@@ -115,6 +115,44 @@ class acueducto_trabajadoresyvinculacionActions extends sfActions
 				
 				$acu_trabajadoresyvinculacion->save();
 				
+				$acu_poa_id = $this->getRequestParameter('acu_poa_id');
+				
+				if($acu_poa_id)
+				{
+					$personaloperativoadministrativo = PersonaloperativoadministrativoPeer::retrieveByPK($this->getRequestParameter('acu_poa_id'));
+					if($personaloperativoadministrativo)
+					{
+						$personaloperativoadministrativo->setPoaCedula($this->getRequestParameter('acu_poa_cedula'));
+						$personaloperativoadministrativo->setPoaNombre($this->getRequestParameter('acu_poa_nombre'));
+						$personaloperativoadministrativo->setPoaCargo($this->getRequestParameter('acu_poa_cargo'));
+						$personaloperativoadministrativo->setPoaTipoVinculacion($this->getRequestParameter('acu_poa_tipo_vinculacion'));
+						$personaloperativoadministrativo->setPoaRemuneracionMensual($this->getRequestParameter('acu_poa_remuneracion_mensual'));
+						$personaloperativoadministrativo->setPoaTipoTrabajador($this->getRequestParameter('acu_poa_tipo_trabajador'));
+						$personaloperativoadministrativo->save();
+					}
+					else
+					{
+						return $this->renderText("({success: false, errors: { reason: 'El empleado no existe en la base de datos'}})");
+					}
+				}
+				else
+				{
+					$acu_poa_cedula = $this->getRequestParameter('acu_poa_cedula');
+				
+					if($acu_poa_cedula)
+					{
+						$personaloperativoadministrativo = new Personaloperativoadministrativo();
+						$personaloperativoadministrativo->setPoaTraId($acu_trabajadoresyvinculacion->getTraId());
+						$personaloperativoadministrativo->setPoaCedula($this->getRequestParameter('acu_poa_cedula'));
+						$personaloperativoadministrativo->setPoaNombre($this->getRequestParameter('acu_poa_nombre'));
+						$personaloperativoadministrativo->setPoaCargo($this->getRequestParameter('acu_poa_cargo'));
+						$personaloperativoadministrativo->setPoaTipoVinculacion($this->getRequestParameter('acu_poa_tipo_vinculacion'));
+						$personaloperativoadministrativo->setPoaRemuneracionMensual($this->getRequestParameter('acu_poa_remuneracion_mensual'));
+						$personaloperativoadministrativo->setPoaTipoTrabajador($this->getRequestParameter('acu_poa_tipo_trabajador'));
+						$personaloperativoadministrativo->save();
+					}
+				}
+				
 				$salida = "({success: true, mensaje:'La informacion de trabajadores y vinculacion fue actualizada exitosamente'})";
 			}
 			catch(Exception $exception)

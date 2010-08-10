@@ -1,7 +1,7 @@
 var aseo_datastore = new Ext.data.Store({
 	id: 'aseo_datastore',
 	proxy: new Ext.data.HttpProxy({
-			url: 'aseo/obtenerDatosAseeducto', 
+			url: 'aseo/obtenerDatosAseo', 
 			method: 'POST'
 	}),
 	baseParams:{}, 
@@ -43,7 +43,8 @@ var ase_pps_estatutos = new Ext.form.RadioGroup( {
 			{
 				boxLabel: 'Si',
 			  	name: 'ase_pps_estatutos',
-			  	inputValue: 1
+			  	inputValue: 1,
+				checked: true
 		  },
 		  {
 			  	boxLabel: 'No',
@@ -220,7 +221,8 @@ var ase_pps_presupuesto_aprobado = new Ext.form.RadioGroup({
         items: [{
             boxLabel: 'Si',
             name: 'ase_pps_presupuesto_aprobado',
-            inputValue: 1
+            inputValue: 1,
+			checked: true
         }, {
             boxLabel: 'No',
             name: 'ase_pps_presupuesto_aprobado',
@@ -260,7 +262,7 @@ var form_aseo = new Ext.FormPanel({
     items: [
 		{
 			xtype: 'fieldset',
-			columnWidth: '.495',
+			columnWidth: '1',
 			title: 'Informaci&oacute;n del diligenciador',
 			defaultType: 'textfield',
 			height: 200,
@@ -275,24 +277,6 @@ var form_aseo = new Ext.FormPanel({
 						ase_pps_identificacion_diligenciador, 
 						ase_pps_tipo_identificacion_diligenciador, 
 						ase_pps_telefono_diligenciador
-					]
-		},
-		{xtype: 'panel', columnWidth: '.01' },
-		{
-			xtype: 'fieldset',
-			columnWidth: '.495',
-			title: 'Proceso de competencias',
-			defaultType: 'textfield',
-			height: 200,
-			labelWidth: 210,
-			defaults: {
-				labelStyle: 'font-size:1.0em;'
-			},
-			bodyStyle: Ext.isIE ? 'padding:5 5 5px 15px;' : 'padding: 10px 10px;',
-			items: [
-						ase_pps_numero_empleados_con_competencias, 
-						ase_pps_numero_empleados_sin_competencias, 
-						ase_pps_numero_empleados_proceso_competencias
 					]
 		},
 		{
@@ -344,7 +328,7 @@ var form_aseo = new Ext.FormPanel({
 function aseo_subirDatos(){
     subirDatos(
 		form_aseo, 
-		'aseo/actualizarAseeducto',
+		'aseo/actualizarAseo',
 		{},
 		function(){
 			Ext.getCmp('aseo').setActiveTab(1);
