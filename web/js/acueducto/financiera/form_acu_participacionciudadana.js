@@ -80,6 +80,7 @@ var acu_par_participacion_ciudadana_otra = new Ext.form.Checkbox({
 	boxLabel: 'Otra', 
 	name: 'acu_par_participacion_ciudadana_otra',
 	id: 'acu_par_participacion_ciudadana_otra',
+	value: 0,
 	inputValue: 1,
 	listeners:
 	{
@@ -100,6 +101,7 @@ var acu_par_participacion_ciudadana_otra = new Ext.form.Checkbox({
 var acu_par_participacion_ciudadana_otra_cual = new Ext.form.TextField({
     enableKeyEvents: true,
     width: 310,
+	disabled: true,
     labelStyle: 'width:310px; text-align:right;',
     name: 'acu_par_participacion_ciudadana_otra_cual',
     id: 'acu_par_participacion_ciudadana_otra_cual',

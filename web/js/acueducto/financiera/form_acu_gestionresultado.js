@@ -66,12 +66,14 @@ var acu_gre_actividad1_label = new Ext.form.Label ( {
 var acu_gre_micromedidores_funcionando = new Ext.form.NumberField ( {
 	enableKeyEvents: true,
 	anchor: '100%',
+	emptyText: '0',
+	value: 0,
 	labelStyle: 'width:340px;',
 	name: 'acu_gre_micromedidores_funcionando',
 	id: 'acu_gre_micromedidores_funcionando',
 	fieldLabel: '<html>N&uacute;mero de micromedidores instalados y funcionando</html>',
-	maxLength: 10000000,
-	minLength: 0,
+	maxValue: 10000000,
+	minValue: 1,
 	disabled : false,
 	//vtype: 'calcularValorPG1',
 	listeners:
@@ -88,12 +90,14 @@ var acu_gre_micromedidores_funcionando = new Ext.form.NumberField ( {
 var acu_gre_total_suscriptores_micromedicion = new Ext.form.NumberField ({
 	enableKeyEvents: true,
 	anchor: '100%',
+	emptyText: '0',
+	value: 0,
 	labelStyle: 'width:340px;',
 	name: 'acu_gre_total_suscriptores_micromedicion',
 	id: 'acu_gre_total_suscriptores_micromedicion',
 	fieldLabel: '<html>N&uacute;mero total de suscriptores</html>',
-	maxLength: 10000000,
-	minLength: 0,
+	maxValue: 10000000,
+	minValue: 1,
 	disabled : false,
 	//vtype: 'calcularValorPG1',
 	listeners:
@@ -110,9 +114,11 @@ var acu_gre_total_suscriptores_micromedicion = new Ext.form.NumberField ({
 var acu_gre_valor_micromedicion = new Ext.form.NumberField ( {
 	enableKeyEvents: true,
 	anchor: '100%',
+	emptyText: '0',
+	value: 0,
 	decimalPrecision: 6,
-	maxLength: 10000000,
-	minLength: 0,
+	maxValue: 10000000,
+	minValue: 1,
 	labelStyle: 'width:340px;',
 	name: 'acu_gre_valor_micromedicion',
 	id: 'acu_gre_valor_micromedicion',
@@ -129,12 +135,14 @@ var acu_gre_actividad2_label = new Ext.form.Label ( {
 var acu_gre_macromedidores_funcionando = new Ext.form.NumberField ( {
 	enableKeyEvents: true,
 	anchor: '100%',
+	emptyText: '0',
+	value: 0,
 	labelStyle: 'width:340px;',
 	name: 'acu_gre_macromedidores_funcionando',
 	id: 'acu_gre_macromedidores_funcionando',
 	fieldLabel: '<html>N&uacute;mero de macromedidores instalados y funcionando</html>',
-	maxLength: 10000000,
-	minLength: 0,
+	maxValue: 10000000,
+	minValue: 1,
 	disabled : false,
 	//vtype: 'calcularValorPG2',
 	listeners:
@@ -151,12 +159,14 @@ var acu_gre_macromedidores_funcionando = new Ext.form.NumberField ( {
 var acu_gre_macromedidores_proyectados = new Ext.form.NumberField ( {
 	enableKeyEvents: true,
 	anchor: '100%',
+	emptyText: '0',
+	value: 0,
 	labelStyle: 'width:340px;',
 	name: 'acu_gre_macromedidores_proyectados',
 	id: 'acu_gre_macromedidores_proyectados',
 	fieldLabel: '<html>N&uacute;mero de Macromedidores proyectados</html>',
-	maxLength: 10000000,
-	minLength: 0,
+	maxValue: 10000000,
+	minValue: 1,
 	disabled : false,
 	//vtype: 'calcularValorPG2',
 	listeners:
@@ -173,13 +183,15 @@ var acu_gre_macromedidores_proyectados = new Ext.form.NumberField ( {
 var acu_gre_valor_macromedicion = new Ext.form.NumberField ( { 
 	enableKeyEvents: true,
 	anchor: '100%',
+	emptyText: '0',
+	value: 0,
 	decimalPrecision: 6,
 	labelStyle: 'width:340px;',
 	name: 'acu_gre_valor_macromedicion',
 	id: 'acu_gre_valor_macromedicion',
 	fieldLabel: '<html><b>Valor</b></html>',
-	maxLength: 10000000,
-	minLength: 0,
+	maxValue: 10000000,
+	minValue: 1,
 	disabled : true              
 } );
 
@@ -192,12 +204,14 @@ var acu_gre_actividad3_label = new Ext.form.Label ( {
 var acu_gre_muestras_aptas = new Ext.form.NumberField ( {
 	enableKeyEvents: true,
 	anchor: '100%',
+	emptyText: '0',
+	value: 0,
 	labelStyle: 'width:340px;',
 	name: 'acu_gre_muestras_aptas',
 	id: 'acu_gre_muestras_aptas',
 	fieldLabel: '<html>N&uacute;mero de muestras aptas</html',
-	maxLength: 10000000,
-	minLength: 0,
+	maxValue: 10000000,
+	minValue: 1,
 	disabled : false,
 	//vtype: 'calcularValorPG3',
 	listeners:
@@ -214,12 +228,14 @@ var acu_gre_muestras_aptas = new Ext.form.NumberField ( {
 var acu_gre_muestras_tomadas = new Ext.form.NumberField ( { 
 	enableKeyEvents: true,
 	anchor: '100%',
+	emptyText: '0',
+	value: 0,
 	labelStyle: 'width:340px;',
 	name: 'acu_gre_muestras_tomadas',
 	id: 'acu_gre_muestras_tomadas',
 	fieldLabel: '<html>N&uacute;mero de muestras tomadas</html>',
-	maxLength: 10000000,
-	minLength: 0,
+	maxValue: 10000000,
+	minValue: 1,
 	disabled : false,
 	//vtype: 'calcularValorPG3',
 	listeners:
@@ -236,13 +252,15 @@ var acu_gre_muestras_tomadas = new Ext.form.NumberField ( {
 var acu_gre_valor_calidad_agua = new Ext.form.NumberField ( { 
 	enableKeyEvents: true,
 	anchor: '100%',
+	emptyText: '0',
+	value: 0,
 	decimalPrecision: 6,
 	labelStyle: 'width:340px;',
 	name: 'acu_gre_valor_calidad_agua',
 	id: 'acu_gre_valor_calidad_agua',
 	fieldLabel: '<html><b>Valor</b></html>',
-	maxLength: 10000000,
-	minLength: 0,
+	maxValue: 10000000,
+	minValue: 1,
 	disabled : true              
 } );
 
@@ -255,12 +273,14 @@ var acu_gre_actividad4_label = new Ext.form.Label ( {
 var acu_gre_total_suscriptores_facturacion = new Ext.form.NumberField ( {
 	enableKeyEvents: true,
 	anchor: '100%',
+	emptyText: '0',
+	value: 0,
 	labelStyle: 'width:340px;',
 	name: 'acu_gre_total_suscriptores_facturacion',
 	id: 'acu_gre_total_suscriptores_facturacion',
 	fieldLabel: '<html>N&uacute;mero total de suscriptores</html>',
-	maxLength: 10000000,
-	minLength: 0,
+	maxValue: 10000000,
+	minValue: 1,
 	//vtype: 'calcularValorPG4',
 	listeners:
 	{
@@ -276,12 +296,14 @@ var acu_gre_total_suscriptores_facturacion = new Ext.form.NumberField ( {
 var acu_gre_total_facturas_diciembre = new Ext.form.NumberField ( { 
 	enableKeyEvents: true,
 	anchor: '100%',
+	emptyText: '0',
+	value: 0,
 	labelStyle: 'width:340px;',
 	name: 'acu_gre_total_facturas_diciembre',
 	id: 'acu_gre_total_facturas_diciembre',
 	fieldLabel: '<html>N&uacute;mero total de facturas expedidas en Diciembre del a&ntilde;o anterior</html>',
-	maxLength: 10000000,
-	minLength: 0,
+	maxValue: 10000000,
+	minValue: 1,
 	disabled : false,
 	//vtype: 'calcularValorPG4',
 	listeners:
@@ -298,13 +320,15 @@ var acu_gre_total_facturas_diciembre = new Ext.form.NumberField ( {
 var acu_gre_valor_facturacion = new Ext.form.NumberField ( { 
 	enableKeyEvents: true,
 	anchor: '100%',
+	emptyText: '0',
+	value: 0,
 	labelStyle: 'width:340px;',
 	decimalPrecision: 6,
 	name: 'acu_gre_valor_facturacion',
 	id: 'acu_gre_valor_facturacion',
 	fieldLabel: '<html><b>Valor</b></html>',
-	maxLength: 10000000,
-	minLength: 0,
+	maxValue: 10000000,
+	minValue: 1,
 	disabled : true              
 }  );
 
@@ -499,9 +523,22 @@ function acu_gestionresultado_actividad34_subirdatos() {
 }
 
 function acu_gestionresultado_calcularmicromedidores(){
-	Ext.getCmp('acu_gre_valor_micromedicion').setValue(
-			Ext.getCmp('acu_gre_micromedidores_funcionando').getValue() / Ext.getCmp('acu_gre_total_suscriptores_micromedicion').getValue()
-	);
+	/*var valor = acu_gre_micromedidores_funcionando.getValue() / acu_gre_total_suscriptores_micromedicion.getValue();
+	if(valor){
+		acu_gre_valor_micromedicion.setValue(valor);
+	}
+	else{
+		acu_gre_valor_micromedicion.setValue(0);
+	}
+	*/
+	if(acu_gre_total_suscriptores_micromedicion.getValue() == 0){
+		acu_gre_valor_micromedicion.setValue(1);
+	}
+	else{
+		var valor = acu_gre_micromedidores_funcionando.getValue() / acu_gre_total_suscriptores_micromedicion.getValue();
+		acu_gre_valor_micromedicion.setValue(valor);
+		
+	}
 }
 
 function acu_gestionresultado_calcularmacromedidores(){

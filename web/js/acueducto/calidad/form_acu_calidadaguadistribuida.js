@@ -143,6 +143,7 @@ var acu_pfe_frecuencia_minima_datastore = new Ext.data.SimpleStore({
 var acu_pfe_frecuencia_minima_combobox = new Ext.form.ComboBox({
     store: acu_pfe_frecuencia_minima_datastore,
     displayField: 'acu_pfe_frecuencia_minima',
+	tabTip: ayuda_acu_pfe_frecuencia_minima, 
     typeAhead: true,
 	allowBlank: false,
 	forceSelection: true,
@@ -160,6 +161,7 @@ var acu_pfe_frecuencia_real_datastore = new Ext.data.SimpleStore({
 var acu_pfe_frecuencia_real_combobox = new Ext.form.ComboBox({
     store: acu_pfe_frecuencia_real_datastore,
     displayField: 'acu_pfe_frecuencia_real',
+	tabTip: ayuda_acu_pfe_frecuencia_real, 
     typeAhead: true,
 	allowBlank: false,
 	forceSelection: true,
@@ -194,7 +196,18 @@ var acu_calidad_calidadaguadistribuida_gridpanel = new Ext.grid.GridPanel({
 			header: "Par&aacute;metros", 
 			width: 200, 
 			dataIndex: 'acu_ppr_nombre_parametro',
-			editor: new Ext.form.TextField({ allowBlank: false, maxLength: 150, minLength: 0})
+			editor: new Ext.form.TextField({ 
+				allowBlank: false,
+				id: 'acu_ppr_nombre_parametro',
+				maxLength: 150, 
+				minLength: 0,
+				listeners:
+				{
+					'render': function(){ 
+						ayuda( 'acu_ppr_nombre_parametro', ayuda_acu_ppr_nombre_parametro );
+					}
+				}
+			})
 		},
 		{
 			header: "Frecuencia M&iacute;nima", 
@@ -212,19 +225,49 @@ var acu_calidad_calidadaguadistribuida_gridpanel = new Ext.grid.GridPanel({
 			header: "Punto 1:", 
 			width: 90, 
 			dataIndex: 'acu_rep_resultado_punto_1', 
-			editor: new Ext.form.NumberField({ allowBlank: false, maxValue: 100000})
+			editor: new Ext.form.NumberField({ 
+				allowBlank: false,
+				id: 'acu_rep_resultado_punto_1',
+				maxValue: 100000,
+				listeners:
+				{
+					'render': function(){ 
+						ayuda( 'acu_rep_resultado_punto_1', ayuda_acu_rep_resultado_punto_1 );
+					}
+				}
+			})
 		},
 		{
 			header: "Punto 2:", 
 			width: 90, 
 			dataIndex: 'acu_rep_resultado_punto_2', 
-			editor: new Ext.form.NumberField({ allowBlank: false, maxValue: 100000})
+			editor: new Ext.form.NumberField({ 
+				allowBlank: false,
+				id: 'acu_rep_resultado_punto_2',
+				maxValue: 100000,
+				listeners:
+				{
+					'render': function(){ 
+						ayuda( 'acu_rep_resultado_punto_2', ayuda_acu_rep_resultado_punto_2 );
+					}
+				}
+			})
 		},
 		{
 			header: "Punto 3:", 
 			width: 90, 
 			dataIndex: 'acu_rep_resultado_punto_3', 
-			editor: new Ext.form.NumberField({ allowBlank: false, maxValue: 100000})
+			editor: new Ext.form.NumberField({ 
+				allowBlank: false,
+				id: 'acu_rep_resultado_punto_3',
+				maxValue: 100000,
+				listeners:
+				{
+					'render': function(){ 
+						ayuda( 'acu_rep_resultado_punto_3', ayuda_acu_rep_resultado_punto_3 );
+					}
+				}
+			})
 		}
 		
 	],

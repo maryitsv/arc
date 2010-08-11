@@ -60,12 +60,18 @@ var acu_poa_tipo_vinculacion_combobox = new Ext.form.ComboBox({
     store: acu_poa_tipo_vinculacion_datastore,
     displayField: 'acu_poa_tipo_vinculacion',
     typeAhead: true,
+	id: 'acu_poa_tipo_vinculacion', 
 	allowBlank: false,
 	forceSelection: true,
     mode: 'local',
     triggerAction: 'all',
     emptyText: 'Selecciona...',
-    selectOnFocus: true
+    selectOnFocus: true,
+	listeners: {
+		'render': function(){ 
+					ayuda( 'acu_poa_tipo_vinculacion', ayuda_acu_poa_tipo_vinculacion );
+		}
+	}
 });
 
 var acu_poa_tipo_trabajador_data = [
@@ -81,13 +87,19 @@ var acu_poa_tipo_trabajador_datastore = new Ext.data.SimpleStore({
 var acu_poa_tipo_trabajador_combobox = new Ext.form.ComboBox({
     store: acu_poa_tipo_trabajador_datastore,
     displayField: 'acu_poa_tipo_trabajador',
+	id: 'acu_poa_tipo_trabajador', 
     typeAhead: true,
 	forceSelection: true,
     mode: 'local',
 	allowBlank: false,
     triggerAction: 'all',
     emptyText: 'Selecciona...',
-    selectOnFocus: true
+    selectOnFocus: true,
+	listeners: {
+		'render': function(){ 
+					ayuda( 'acu_poa_tipo_trabajador', ayuda_acu_poa_tipo_trabajador );
+		}
+	}
 });
 
 var acu_tra_trabajadores_roweditor = new Ext.ux.grid.RowEditor({
@@ -126,13 +138,33 @@ var acu_tra_trabajadores_gridpanel = new Ext.grid.GridPanel({
 			header: 'Cedula',
 			width: 170,
 			dataIndex: 'acu_poa_cedula',
-			editor: new Ext.form.TextField({ allowBlank: false, maxLength: 100, minLength: 0}) 
+			editor: new Ext.form.TextField({
+				id: 'acu_poa_cedula',
+				allowBlank: false, 
+				maxLength: 30, 
+				minLength: 0,
+				listeners: {
+					'render': function(){ 
+								ayuda( 'acu_poa_cedula', ayuda_acu_poa_cedula );
+					}
+				}
+			}) 
 		},
 		{
 			header: 'Nombre', 
 			width: 170,
 			dataIndex: 'acu_poa_nombre',
-			editor: new Ext.form.TextField({ allowBlank: false, maxLength: 250, minLength: 0}) 
+			editor: new Ext.form.TextField({
+				id: 'acu_poa_nombre',
+				allowBlank: false, 
+				maxLength: 250, 
+				minLength: 0,
+				listeners: {
+					'render': function(){ 
+								ayuda( 'acu_poa_nombre', ayuda_acu_poa_nombre );
+					}
+				}
+			}) 
 		},
 		{
 			header: "Cargo", 
@@ -141,7 +173,17 @@ var acu_tra_trabajadores_gridpanel = new Ext.grid.GridPanel({
 			maxLength: 100,
 			minLength: 0,
 			dataIndex: 'acu_poa_cargo',
-			editor: new Ext.form.TextField({ allowBlank: false, maxLength: 100, minLength: 0})
+			editor: new Ext.form.TextField({ 
+				allowBlank: false,
+				id: 'acu_poa_cargo',
+				maxLength: 100, 
+				minLength: 0,
+				listeners: {
+					'render': function(){ 
+								ayuda( 'acu_poa_cargo', ayuda_acu_poa_cargo );
+					}
+				}
+			})
 		},
 		{
 			header: 'Tipo de vinculaci&oacute;n', 
@@ -154,7 +196,18 @@ var acu_tra_trabajadores_gridpanel = new Ext.grid.GridPanel({
 			width: 130,
 			dataIndex: 'acu_poa_remuneracion_mensual', 
 			renderer: 'usMoney',
-			editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false, maxLength: 17, minLength: 0})
+			editor: new Ext.form.NumberField({ 
+				allowBlank: false,
+				id: 'acu_poa_remuneracion_mensual',
+				allowNegative: false, 
+				maxLength: 17, 
+				minLength: 0,
+				listeners: {
+					'render': function(){ 
+								ayuda( 'acu_poa_remuneracion_mensual', ayuda_acu_poa_remuneracion_mensual );
+					}
+				}
+			})
 		},
 		{
 			header: 'Tipo de Empleado', 

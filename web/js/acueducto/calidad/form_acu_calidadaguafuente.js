@@ -134,15 +134,35 @@ var acu_calidad_calidadaguafuente_gridpanel = new Ext.grid.GridPanel({
 			header: "Valores", 
 			width: 75, 
 			sortable: true, 
-			dataIndex: 'valores', 
-			editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false, maxValue: 100000})
+			dataIndex: 'valores',
+			editor: new Ext.form.NumberField({ 
+				allowBlank: false,
+				id: 'acu_cag_valores',
+				allowNegative: false, 
+				maxValue: 100000,
+				listeners: {
+					'render': function(){ 
+								ayuda( 'acu_cag_valores', ayuda_acu_cag_valores );
+					}
+				}
+			})
 		},
 		{
 			header: "Frecuencia", 
 			width: 75, 
 			sortable: true, 
 			dataIndex: 'frecuencia', 
-			editor: new Ext.form.NumberField({ allowBlank: false, allowNegative: false, maxValue: 100000})
+			editor: new Ext.form.NumberField({ 
+				allowBlank: false,
+				id: 'acu_cag_frecuencia',
+				allowNegative: false, 
+				maxValue: 100000,
+				listeners: {
+					'render': function(){ 
+								ayuda( 'acu_cag_frecuencia', ayuda_acu_cag_frecuencia );
+					}
+				}
+			})
 		}
 	]
 });

@@ -49,27 +49,21 @@ var alc_cap_dada_prestador = new Ext.form.RadioGroup( {
 		  id: 'alc_cap_dada_prestador_si',
           name: 'alc_cap_dada_prestador', 
           checked: true,
-		  inputValue: 1,
-          listeners:
-          {
-                'render': function(){
-					ayuda('alc_cap_dada_prestador_si', ayuda_alc_cap_dada_prestador);
-				}
-          }
+		  inputValue: 1
        },
        { 
     	  boxLabel: 'No',
 		  id: 'alc_cap_dada_prestador_no',
     	  name: 'alc_cap_dada_prestador',
-		  inputValue: 0,
-		  listeners:
-          {
-				'render': function(){
-					ayuda('alc_cap_dada_prestador_no', ayuda_alc_cap_dada_prestador);
-				}
-          }
+		  inputValue: 0
        }
-    ] 
+    ],
+	listeners:
+	{
+		'render': function(){
+			ayuda('alc_cap_dada_prestador', ayuda_alc_cap_dada_prestador);
+		}
+	}
 } );
 
 
@@ -225,27 +219,21 @@ var alc_cap_capacitacion_recibida_prestador = new Ext.form.RadioGroup( {
 		  id: 'alc_cap_capacitacion_recibida_prest_si',
           name: 'alc_cap_capacitacion_recibida_prestador', 
           checked: true,
-		  inputValue: 1,
-          listeners:
-          {
-                'render': function(){
-					ayuda('alc_cap_dada_prestador_si', ayuda_alc_cap_capacitacion_recibida_prestador);
-				}
-          }
+		  inputValue: 1
        },
        { 
     	  boxLabel: 'No',
 		  id: 'alc_cap_capacitacion_recibida_prest_no',
     	  name: 'alc_cap_capacitacion_recibida_prestador',
-		  inputValue: 1,
-		  listeners:
-          {
-				'render': function(){
-					ayuda('alc_cap_capacitacion_recibida_prest_no', ayuda_alc_cap_capacitacion_recibida_prestador);
-				}
-          }
+		  inputValue: 1
        }
-    ] 
+    ],
+	listeners:
+	{
+		'render': function(){
+			ayuda('alc_cap_capacitacion_recibida_prestador', ayuda_alc_cap_capacitacion_recibida_prestador);
+		}
+	}
 } );
 
 var alc_cap_temas_capacitacion_administrativos = new Ext.form.Checkbox({

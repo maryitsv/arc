@@ -2,8 +2,8 @@
 
 <?php echo javascript_include_tag( '../extjs/examples/ux/Spinner.js.js' ) ?>
 <?php echo javascript_include_tag( '../extjs/examples/ux/SpinnerField.js' ) ?>
-<?php echo javascript_include_tag( 'toolt_periodoprestadorservicio.js' ) ?>
-<?php echo javascript_include_tag( 'form_periodoprestadorservicio.js' ) ?>
+<?php echo javascript_include_tag( 'periodoprestadorservicio/toolt_periodoprestadorservicio.js' ) ?>
+<?php echo javascript_include_tag( 'periodoprestadorservicio/form_periodoprestadorservicio.js' ) ?>
 
 <style type="text/css"> 
 	body {

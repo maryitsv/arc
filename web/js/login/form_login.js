@@ -47,7 +47,10 @@ var login_panel = new Ext.form.FormPanel({
 						Ext.example.msg('Error', 'campos incompletos');
 					}
 				}
-			}
+			},
+			'render': function(){ 
+				ayuda( 'usu_login', ayuda_usu_login );
+			}   
 		}
 	  },
 	  {
@@ -70,7 +73,10 @@ var login_panel = new Ext.form.FormPanel({
 						Ext.example.msg('Error', 'campos incompletos');
 					}
 				}
-			}
+			},
+			'render': function(){ 
+				ayuda( 'usu_clave', ayuda_usu_clave );
+			}  
 		}
 	  }
 	],
