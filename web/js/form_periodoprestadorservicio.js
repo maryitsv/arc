@@ -7,40 +7,93 @@ var periodoprestadorservicio_titulo_panel = new Ext.Panel({
 	width: 600,
 });
 
+var pps_fecha = new Date();
+
+var pps_mes_data = [
+	[1, 'Enero'], [2, 'Febrero'], [3, 'Marzo'], [4, 'Abril'],
+	[5, 'Mayo'], [6, 'Junio'], [7, 'Julio'], [8, 'Agosto'],
+	[9, 'Noviembre'], [10, 'Octubre'], [11, 'Noviembre'], [12, 'Diciembre']
+];
+
+var pps_mes_store = new Ext.data.SimpleStore({
+    fields: ['id_mes', 'nombre_mes'],
+    data: pps_mes_data
+});
+
+var pps_mes_combobox = new Ext.form.ComboBox({
+	id: 'pps_mes_combobox',
+    store: pps_mes_store,
+    displayField: 'nombre_mes',
+	hiddenName: 'id_mes',
+	valueField: 'id_mes',
+	width: 100,
+	value: pps_fecha.getMonth()+1,
+    typeAhead: true,
+	allowBlank: false,
+	forceSelection: true,
+    mode: 'local',
+    triggerAction: 'all',
+    emptyText: 'Selecciona...',
+    selectOnFocus: true,
+	listeners:
+	{
+		'render': function(){ 
+			ayuda( 'pps_mes_combobox', ayuda_pps_mes );
+		}                 
+	}
+});
+
 var periodoprestadorservicio_panel = new Ext.form.FormPanel({
 	frame: false,
 	autoHeight: true,
 	padding: 10,
 	defaultType: 'textfield',
 	//border: false,
-	width : 350,
+	width : 500,
 	labelWidth: 130,
 	xtype: 'fieldset',
 	items: [
+		
+		{xtype: 'label', labelWidth: 180, html: 'Seleccione los servicios<br/><br/>'},
 		{
-			xtype: 'checkboxgroup',
-			fieldLabel: 'Selecciones los servicios',
-			labelStyle: 'width:150px; align:left;',
-			labelWidth: 130,
-			cls  : 'panelpps',
-			defaults:{width:'100'},
-			columns: 1,
-			items: [
+			xtype: 'compositefield',
+			fieldLabel: 'Acueducto',
+			items:
+			[
 				{
-				   boxLabel: 'Acueducto',
-				   name: 'pps_ser_acu',
-				   id: 'pps_ser_acu',
-				   cls: 'align:right;',
-				   inputValue: 1,
-				   listeners:
-				   {
+					xtype: 'checkbox',
+					boxLabel: 'numero de suscriptores',
+					name: 'pps_ser_acu',
+					id: 'pps_ser_acu',
+					inputValue: 1,
+					listeners:
+					{
 							'render': function(){ 
 								ayuda( 'pps_ser_acu', ayuda_pps_ser_acu );
 							}             
-				   }
+					}
 				},
 				{
-					boxLabel: 'Alcantarillado', 
+					xtype: 'numberfield',
+					id: 'pps_numero_suscriptores_acueducto',
+					name: 'pps_numero_suscriptores_acueducto',
+					listeners:
+					{
+							'render': function(){ 
+								ayuda( 'pps_numero_suscriptores_acueducto', ayuda_pps_numero_suscriptores_acueducto );
+							}             
+					}
+				}
+			]
+		},
+		{
+			xtype: 'compositefield',
+			fieldLabel: 'Alcantarillado',
+			items:
+			[
+				{
+					xtype: 'checkbox',
+					boxLabel: 'numero de suscriptores', 
 					name: 'pps_ser_alc',
 					id: 'pps_ser_alc',
 					inputValue: 1,
@@ -52,7 +105,26 @@ var periodoprestadorservicio_panel = new Ext.form.FormPanel({
 					}
 				},
 				{
-					boxLabel: 'Aseo', 
+					xtype: 'numberfield',
+					id: 'pps_numero_suscriptores_alcantarillado',
+					name: 'pps_numero_suscriptores_alcantarillado',
+					listeners:
+					{
+							'render': function(){ 
+								ayuda( 'pps_numero_suscriptores_alcantarillado', ayuda_pps_numero_suscriptores_alcantarillado );
+							}             
+					}
+				}
+			]
+		},
+		{
+			xtype: 'compositefield',
+			fieldLabel: 'Aseo', 
+			items:
+			[
+				{
+					xtype: 'checkbox',
+					boxLabel: 'numero de suscriptores', 
 					name: 'pps_ser_ase',
 					id: 'pps_ser_ase',
 					inputValue: 1,
@@ -62,43 +134,54 @@ var periodoprestadorservicio_panel = new Ext.form.FormPanel({
 								ayuda( 'pps_ser_ase', ayuda_pps_ser_ase );
 							}                 
 					}
+				},
+				{
+					xtype: 'numberfield',
+					id: 'pps_numero_suscriptores_aseo',
+					name: 'pps_numero_suscriptores_aseo',
+					listeners:
+					{
+							'render': function(){ 
+								ayuda( 'pps_numero_suscriptores_aseo', ayuda_pps_numero_suscriptores_aseo );
+							}             
+					}
 				}
 			]
 		},
 		{xtype: 'label', html: '<br/>'},
 		{
-			xtype: 'spinnerfield',
-			fieldLabel: 'Seleccione el A&ntilde;o',
-			id: 'pps_anio',
-			name: 'pps_anio',
-			labelWidth: 150,
-			minValue: 2009,
-			maxValue: 2050,
-			value: 2010,
-			labelStyle: 'width:120px;',
-			//width: 100,
-			accelerate: true,
-			listeners:
-			{
-					'render': function(){ 
-						ayuda( 'pps_anio', ayuda_pps_anio );
-					}                 
-			}
-        }
+			xtype: 'compositefield',
+			fieldLabel: 'seleccione el periodo',
+			items: [
+				{
+					xtype: 'spinnerfield',
+					fieldLabel: 'A&ntilde;o',
+					id: 'pps_anio',
+					name: 'pps_anio',
+					//labelWidth: 50,
+					minValue: pps_fecha.getFullYear()-3,
+					maxValue: pps_fecha.getFullYear(),
+					value: pps_fecha.getFullYear(),
+					labelStyle: 'width:120px;',
+					width: 80,
+					accelerate: true,
+					listeners:
+					{
+							'render': function(){ 
+								ayuda( 'pps_anio', ayuda_pps_anio );
+							}                 
+					}
+				},
+				pps_mes_combobox
+			]
+		}
 	],
 	buttons:[
-	  {
-		text: 'Aceptar', 
-		iconCls:'login',
-		handler: function(){
-			if( Ext.getCmp('pps_ser_ase').getValue() == 1 || Ext.getCmp('pps_ser_alc').getValue() == 1 || Ext.getCmp('pps_ser_acu').getValue() == 1 ){
-				periodoprestadorservicio_subirDatos();
-			}
-			else{
-				mostrarMensajeRapido('Alerta','Seleccione al menos un servicio');
-			}
+		{
+			text: 'Aceptar', 
+			iconCls:'login',
+			handler: periodoprestadorservicio_subirDatos	  
 		}
-	  }
 	]
 });
 
@@ -123,8 +206,11 @@ function periodoprestadorservicio_subirDatos(){
 		{
 			salida = true;
 			obj = Ext.util.JSON.decode(action.response.responseText);
+			id_rango_acueducto = obj.rango_acueducto;
+			id_rango_alcantarillado = obj.rango_alcantarillado;
+			id_rango_aseo = obj.rango_aseo;
+			//mostrarMensajeRapido('Aviso', 'id_rango_acueducto:'+id_rango_acueducto+', id_rango_alcantarillado:'+id_rango_alcantarillado+', id_rango_aseo:'+id_rango_aseo);
 			window.location = 'menuentradadatos';
-			mostrarMensajeRapido('Aviso',obj.mensaje);
 		},
 		failure: function(form, action, response)
 		{
@@ -136,3 +222,15 @@ function periodoprestadorservicio_subirDatos(){
 		}
 	});
 }
+/*
+function periodoprestadorservicio_subirDatos(){
+	subirDatos(
+		periodoprestadorservicio_panel, 
+		'periodoprestadorservicio/seleccionarPeriodoPrestadorServicio',
+		{},
+		function(){
+			//window.location = 'menuentradadatos';
+		}
+	);
+}
+*/

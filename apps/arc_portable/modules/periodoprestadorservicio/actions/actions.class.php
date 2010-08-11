@@ -37,6 +37,10 @@ class periodoprestadorservicioActions extends sfActions
 	$pps_ser_acu = $this->getRequestParameter('pps_ser_acu');
 	$pps_ser_alc = $this->getRequestParameter('pps_ser_alc');
 	$pps_ser_ase = $this->getRequestParameter('pps_ser_ase');
+
+	$pps_numero_suscriptores_acueducto = $this->getRequestParameter('pps_numero_suscriptores_acueducto');
+	$pps_numero_suscriptores_alcantarillado = $this->getRequestParameter('pps_numero_suscriptores_alcantarillado');
+	$pps_numero_suscriptores_aseo = $this->getRequestParameter('pps_numero_suscriptores_aseo');
 	
 	$pps_ser_id_acu = $this->obtenerServicioId('acueducto');
 	$pps_ser_id_alc = $this->obtenerServicioId('alcantarillado');
@@ -46,136 +50,107 @@ class periodoprestadorservicioActions extends sfActions
 	
 	if($pps_ser_acu == 1)
 	{
-		$conexion = new Criteria();
-		$conexion->add(PrestadorporservicioPeer::PPSG_PRE_ID, $pps_pre_id);
-		$conexion->add(PrestadorporservicioPeer::PPSG_SER_ID, $pps_ser_id_acu);
-		$prestadorservicio_acu = PrestadorporservicioPeer::doSelectOne($conexion);
-		
-		if($prestadorservicio_acu)
+		if($this->asignarPeriodoPrestadorServicio($pps_pre_id, $pps_ser_id_acu, $pps_anio))
 		{
-			$conexion = new Criteria();
-			$conexion->add(PeriodoporprestadorservicioPeer::PPS_SER_ID, $pps_ser_id_acu);
-			$conexion->add(PeriodoporprestadorservicioPeer::PPS_PRE_ID, $pps_pre_id);
-			$conexion->add(PeriodoporprestadorservicioPeer::PPS_ANIO, $pps_anio);
-			$periodoprestadorservicio_acu = PeriodoporprestadorservicioPeer::doSelectOne($conexion);
-			if($periodoprestadorservicio_acu)
-			{
-				$this->getUser()->setAttribute('pps_ser_id_acu', $pps_ser_id_acu);
-				$salida = "({success: true, mensaje:'success'})";
-			}
-			else
-			{
-				try
-				{
-					$periodoprestadorservicio_acu = new Periodoporprestadorservicio();
-					$periodoprestadorservicio_acu->setPpsPreId($pps_pre_id);
-					$periodoprestadorservicio_acu->setPpsSerId($pps_ser_id_acu);
-					$periodoprestadorservicio_acu->setPpsAnio($pps_anio);
-					$periodoprestadorservicio_acu->save();
-					$this->getUser()->setAttribute('pps_ser_id_acu', $pps_ser_id_acu);
-					$salida = "({success: true, mensaje:'success'})";
-				}
-				catch(Exception $exception)
-				{
-					return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en acueducto".$exception."'}})");
-				}
-			}
+			$this->getUser()->setAttribute('pps_ser_id_acu', $pps_ser_acu);
 		}
 		else
 		{
-			return $this->renderText("({success: false, errors: { reason: 'Usted no puede prestar el servicio de acueducto'}})");
+			return "({success: false, errors: { reason: 'no puede prestar el servicio de acueducto'}})";
 		}
 	}
 	
 	if($pps_ser_alc == 2)
 	{
-		$conexion = new Criteria();
-		$conexion->add(PrestadorporservicioPeer::PPSG_PRE_ID, $pps_pre_id);
-		$conexion->add(PrestadorporservicioPeer::PPSG_SER_ID, $pps_ser_id_alc);
-		$prestadorservicio_alc = PrestadorporservicioPeer::doSelectOne($conexion);
-		
-		if($prestadorservicio_alc)
+		if($this->asignarPeriodoPrestadorServicio($pps_pre_id, $pps_ser_id_alc, $pps_anio))
 		{
-			$conexion = new Criteria();
-			$conexion->add(PeriodoporprestadorservicioPeer::PPS_SER_ID, $pps_ser_id_alc);
-			$conexion->add(PeriodoporprestadorservicioPeer::PPS_PRE_ID, $pps_pre_id);
-			$conexion->add(PeriodoporprestadorservicioPeer::PPS_ANIO, $pps_anio);
-			$periodoprestadorservicio_alc = PeriodoporprestadorservicioPeer::doSelectOne($conexion);
-			if($periodoprestadorservicio_alc)
-			{
-				$this->getUser()->setAttribute('pps_ser_id_alc', $pps_ser_id_alc);
-				$salida = "({success: true, mensaje:'success'})";
-			}
-			else
-			{
-				try
-				{
-					$periodoprestadorservicio_alc = new Periodoporprestadorservicio();
-					$periodoprestadorservicio_alc->setPpsPreId($pps_pre_id);
-					$periodoprestadorservicio_alc->setPpsSerId($pps_ser_id_alc);
-					$periodoprestadorservicio_alc->setPpsAnio($pps_anio);
-					$periodoprestadorservicio_alc->save();
-					$this->getUser()->setAttribute('pps_ser_id_alc', $pps_ser_id_alc);
-					$salida = "({success: true, mensaje:'success'})";
-				}
-				catch(Exception $exception)
-				{
-					return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en alcantarillado'}})");
-				}
-			}
+			$this->getUser()->setAttribute('pps_ser_id_alc', $pps_ser_alc);
 		}
 		else
 		{
-			return $this->renderText("({success: false, errors: { reason: 'Usted no puede prestar el servicio de alcantarillado'}})");
+			
 		}
 	}
 	
 	if($pps_ser_ase == 3)
 	{
-		$conexion = new Criteria();
-		$conexion->add(PrestadorporservicioPeer::PPSG_PRE_ID, $pps_pre_id);
-		$conexion->add(PrestadorporservicioPeer::PPSG_SER_ID, $pps_ser_id_ase);
-		$prestadorservicio_ase = PrestadorporservicioPeer::doSelectOne($conexion);
-		
-		if($prestadorservicio_ase)
+		if($this->asignarPeriodoPrestadorServicio($pps_pre_id, $pps_ser_id_ase, $pps_anio))
 		{
-			$conexion = new Criteria();
-			$conexion->add(PeriodoporprestadorservicioPeer::PPS_SER_ID, $pps_ser_id_ase);
-			$conexion->add(PeriodoporprestadorservicioPeer::PPS_PRE_ID, $pps_pre_id);
-			$conexion->add(PeriodoporprestadorservicioPeer::PPS_ANIO, $pps_anio);
-			$periodoprestadorservicio_ase = PeriodoporprestadorservicioPeer::doSelectOne($conexion);
-			if($periodoprestadorservicio_ase)
-			{
-				$this->getUser()->setAttribute('usu_ser_id_ase', $pps_ser_id_ase);
-				$salida = "({success: true, mensaje:'success'})";
-			}
-			else
-			{
-				try
-				{
-					$periodoprestadorservicio_ase = new Periodoporprestadorservicio();
-					$periodoprestadorservicio_ase->setPpsPreId($pps_pre_id);
-					$periodoprestadorservicio_ase->setPpsSerId($pps_ser_id_ase);
-					$periodoprestadorservicio_ase->setPpsAnio($pps_anio);
-					$periodoprestadorservicio_ase->save();
-					$this->getUser()->setAttribute('usu_ser_id_ase', $pps_ser_id_ase);
-					$salida = "({success: true, mensaje:'success'})";
-				}
-				catch(Exception $exception)
-				{
-					return $this->renderText("({success: false, errors: { reason: 'Hubo un problema en aseo'}})");
-				}
-			}
+			$this->getUser()->setAttribute('pps_ser_id_ase', $pps_ser_ase);
 		}
 		else
 		{
-			return $this->renderText("({success: false, errors: { reason: 'Usted no puede prestar el servicio de aseo'}})");
+			return "({success: false, errors: { reason: 'no puede prestar el servicio de aseo'}})";
 		}
 	}
+	
+	$rango_acueducto = $this->calcularRango($pps_numero_suscriptores_acueducto);
+	$rango_alcantarillado = $this->calcularRango($pps_numero_suscriptores_alcantarillado);
+	$rango_aseo = $this->calcularRango($pps_numero_suscriptores_aseo);
+
+	$salida = "({success: true, rango_acueducto: ".$rango_acueducto.", rango_alcantarillado: ".$rango_alcantarillado.", rango_aseo: ".$rango_aseo." })";
 	
 	$this->getUser()->setAttribute('pps_anio', $pps_anio);
 	
 	return $this->renderText($salida);
   }
   
+  private function calcularRango($numerosuscriptores)
+  {
+	if($numerosuscriptores <= 100)
+	{
+		return 1;
+	}
+	else
+	{
+		if($numerosuscriptores > 100 && $numerosuscriptores <= 600)
+		{
+			return 2;
+		}
+		else
+		{
+			if($numerosuscriptores > 600)
+			{
+				return 3;
+			}
+		}
+	}
+  }
+  
+  private function asignarPeriodoPrestadorServicio($pps_pre_id, $pps_ser_id, $pps_anio)
+  {
+	$conexion = new Criteria();
+	$conexion->add(PrestadorporservicioPeer::PPSG_PRE_ID, $pps_pre_id);
+	$conexion->add(PrestadorporservicioPeer::PPSG_SER_ID, $pps_ser_id);
+	$prestadorservicio = PrestadorporservicioPeer::doSelectOne($conexion);
+	
+	if($prestadorservicio)
+	{
+		$conexion = new Criteria();
+		$conexion->add(PeriodoporprestadorservicioPeer::PPS_SER_ID, $pps_ser_id);
+		$conexion->add(PeriodoporprestadorservicioPeer::PPS_PRE_ID, $pps_pre_id);
+		$conexion->add(PeriodoporprestadorservicioPeer::PPS_ANIO, $pps_anio);
+		$periodoprestadorservicio_alc = PeriodoporprestadorservicioPeer::doSelectOne($conexion);
+		if(!$periodoprestadorservicio_alc)
+		{
+			try
+			{
+				$periodoprestadorservicio_alc = new Periodoporprestadorservicio();
+				$periodoprestadorservicio_alc->setPpsPreId($pps_pre_id);
+				$periodoprestadorservicio_alc->setPpsSerId($pps_ser_id);
+				$periodoprestadorservicio_alc->setPpsAnio($pps_anio);
+				$periodoprestadorservicio_alc->save();
+				return true;
+			}
+			catch(Exception $exception)
+			{
+				return false;
+			}
+		}
+	}
+	else
+	{
+		return false;
+	}
+  }
 }
