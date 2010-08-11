@@ -34,6 +34,7 @@ class periodoprestadorservicioActions extends sfActions
 	$salida = '';
 	
 	$pps_anio = $this->getRequestParameter('pps_anio');
+	$pps_mes = $this->getRequestParameter('pps_mes');
 	$pps_ser_acu = $this->getRequestParameter('pps_ser_acu');
 	$pps_ser_alc = $this->getRequestParameter('pps_ser_alc');
 	$pps_ser_ase = $this->getRequestParameter('pps_ser_ase');
@@ -47,6 +48,7 @@ class periodoprestadorservicioActions extends sfActions
 	$pps_ser_id_ase = $this->obtenerServicioId('aseo');
 	
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
+	//$pps_anio = $pps_anio.'-'.$pps_mes.'-'.'1';
 	
 	if($pps_ser_acu == 1)
 	{
@@ -56,7 +58,7 @@ class periodoprestadorservicioActions extends sfActions
 		}
 		else
 		{
-			return "({success: false, errors: { reason: 'no puede prestar el servicio de acueducto'}})";
+			return $this->renderText("({success: false, errors: { reason: 'no puede prestar el servicio de acueducto'}})");
 		}
 	}
 	
@@ -68,7 +70,7 @@ class periodoprestadorservicioActions extends sfActions
 		}
 		else
 		{
-			
+			return $this->renderText("({success: false, errors: { reason: 'no puede prestar el servicio de alcantarillado'}})");
 		}
 	}
 	
@@ -80,7 +82,7 @@ class periodoprestadorservicioActions extends sfActions
 		}
 		else
 		{
-			return "({success: false, errors: { reason: 'no puede prestar el servicio de aseo'}})";
+			return $this->renderText("({success: false, errors: { reason: 'no puede prestar el servicio de aseo'}})");
 		}
 	}
 	
@@ -90,8 +92,8 @@ class periodoprestadorservicioActions extends sfActions
 
 	$salida = "({success: true, rango_acueducto: ".$rango_acueducto.", rango_alcantarillado: ".$rango_alcantarillado.", rango_aseo: ".$rango_aseo." })";
 	
+	//$this->getUser()->setAttribute('pps_anio', $pps_anio.'-'.$pps_mes.'-'.'1');
 	$this->getUser()->setAttribute('pps_anio', $pps_anio);
-	
 	return $this->renderText($salida);
   }
   
@@ -131,6 +133,7 @@ class periodoprestadorservicioActions extends sfActions
 		$conexion->add(PeriodoporprestadorservicioPeer::PPS_PRE_ID, $pps_pre_id);
 		$conexion->add(PeriodoporprestadorservicioPeer::PPS_ANIO, $pps_anio);
 		$periodoprestadorservicio_alc = PeriodoporprestadorservicioPeer::doSelectOne($conexion);
+		
 		if(!$periodoprestadorservicio_alc)
 		{
 			try
@@ -146,6 +149,10 @@ class periodoprestadorservicioActions extends sfActions
 			{
 				return false;
 			}
+		}
+		else
+		{
+			return true;
 		}
 	}
 	else

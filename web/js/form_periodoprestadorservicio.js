@@ -16,7 +16,7 @@ var pps_mes_data = [
 ];
 
 var pps_mes_store = new Ext.data.SimpleStore({
-    fields: ['id_mes', 'nombre_mes'],
+    fields: ['pps_mes', 'nombre_mes'],
     data: pps_mes_data
 });
 
@@ -24,8 +24,8 @@ var pps_mes_combobox = new Ext.form.ComboBox({
 	id: 'pps_mes_combobox',
     store: pps_mes_store,
     displayField: 'nombre_mes',
-	hiddenName: 'id_mes',
-	valueField: 'id_mes',
+	hiddenName: 'pps_mes',
+	valueField: 'pps_mes',
 	width: 100,
 	value: pps_fecha.getMonth()+1,
     typeAhead: true,
