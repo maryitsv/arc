@@ -39,18 +39,7 @@ var todes_bypass = {
         boxLabel: 'No',
         inputValue: 0,
         checked: true
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('todes_bypass')).getEl(),
-                title: 'Ayuda rápida',
-                anchor: 'top',
-                html: '¿Presencia de Bypass para mantenimiento?',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var todes_valvula = {
@@ -68,18 +57,7 @@ var todes_valvula = {
         boxLabel: 'No',
         inputValue: 0,
         checked: true
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('todes_valvula')).getEl(),
-                title: 'Ayuda rápida',
-                anchor: 'top',
-                html: '¿Presencia de válvula y desagüe de salida de sólidos?',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var todes_aguas_erosion = {
@@ -97,18 +75,7 @@ var todes_aguas_erosion = {
         boxLabel: 'No',
         inputValue: 0,
         checked: true
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('todes_aguas_erosion')).getEl(),
-                title: 'Ayuda rápida',
-                anchor: 'top',
-                html: '¿Las aguas de rebose y desagüe causan erosión?',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var acu_desarenador_datastore = new Ext.data.Store({

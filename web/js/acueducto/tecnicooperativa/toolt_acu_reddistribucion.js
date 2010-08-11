@@ -1,0 +1,52 @@
+asignarTooltip('tord_redes_primarias', 'Tuberia');
+asignarTooltip('tord_redes_primarias_asbesto_cemento_diametro', 'En asbesto - cemento -> Diámetro');
+asignarTooltip('tord_redes_primarias_asbesto_cemento_edad', 'En asbesto - cemento -> Edad(años)');
+asignarTooltip('tord_redes_primarias_hierro_ductil_diametro', 'En hierro ductil -> Diámetro');
+asignarTooltip('tord_redes_primarias_hierro_ductil_edad', 'En hierro ductil -> Edad(años)');
+asignarTooltip('tord_redes_primarias_concreto_diametro', 'En concreto -> Diámetro');
+asignarTooltip('tord_redes_primarias_concreto_edad', 'En concreto -> Edad(años)');
+asignarTooltip('tord_redes_primarias_pvc_diametro', 'PVC -> Diámetro');
+asignarTooltip('tord_redes_primarias_pvc_edad', 'PVC -> Edad(años)');
+
+asignarTooltip('tord_redes_secundarias', 'Tuberia');
+asignarTooltip('tord_redes_secundarias_asbesto_cemento_diametro', 'En asbesto - cemento -> Diámetro');
+asignarTooltip('tord_redes_secundarias_asbesto_cemento_edad', 'En asbesto - cemento -> Edad(años)');
+asignarTooltip('tord_redes_secundarias_hierro_ductil_diametro', 'En hierro ductil -> Diámetro');
+asignarTooltip('tord_redes_secundarias_hierro_ductil_edad', 'En hierro ductil -> Edad(años)');
+asignarTooltip('tord_redes_secundarias_concreto_diametro', 'En concreto -> Diámetro');
+asignarTooltip('tord_redes_secundarias_concreto_edad', 'En concreto -> Edad(años)');
+asignarTooltip('tord_redes_secundarias_pvc_diametro', 'PVC -> Diámetro');
+asignarTooltip('tord_redes_secundarias_pvc_edad', 'PVC -> Edad(años)');
+
+asignarTooltip('tord_redes_terciarias', 'Tuberia');
+asignarTooltip('tord_redes_terciarias_asbesto_cemento_diametro', 'En asbesto - cemento -> Diámetro');
+asignarTooltip('tord_redes_terciarias_asbesto_cemento_edad', 'En asbesto - cemento -> Edad(años)');
+asignarTooltip('tord_redes_terciarias_hierro_ductil_diametro', 'En hierro ductil -> Diámetro');
+asignarTooltip('tord_redes_terciarias_hierro_ductil_edad', 'En hierro ductil -> Edad(años)');
+asignarTooltip('tord_redes_terciarias_concreto_diametro', 'En concreto -> Diámetro');
+asignarTooltip('tord_redes_terciarias_concreto_edad', 'En concreto -> Edad(años)');
+asignarTooltip('tord_redes_terciarias_pvc_diametro', 'PVC -> Diámetro');
+asignarTooltip('tord_redes_terciarias_pvc_edad', 'PVC -> Edad(años)');
+
+asignarTooltip('tord_manguera', 'Manguera');
+asignarTooltip('tord_manguera_polietileno_hd_diametro', 'Polietileno HD -> Diámetro');
+asignarTooltip('tord_manguera_polietileno_hd_edad', 'Polietileno HD -> Edad(años)');
+asignarTooltip('tord_manguera_polietileno_ld_diametro', 'Polietileno LD -> Diámetro');
+asignarTooltip('tord_manguera_polietileno_ld_edad', 'Polietileno LD -> Edad(años)');
+asignarTooltip('tord_manguera_otro_nombre', 'Nombre del otro material');
+asignarTooltip('tord_manguera_otro_diametro', 'Otro -> Diámetro');
+asignarTooltip('tord_manguera_otro_edad', 'Otro -> Edad(años)');
+
+asignarTooltip('tord_otro', 'Otro canal');
+asignarTooltip('tord_otro_tipo_nombre', 'Nombre del canal');
+asignarTooltip('tord_otro_otro1_diametro', 'Material 1 -> Diámetro');
+asignarTooltip('tord_otro_otro1_edad', 'Material 1 -> Edad(años)');
+asignarTooltip('tord_otro_otro1_nombre', 'Material 1 -> Nombre');
+asignarTooltip('tord_otro_otro2_diametro', 'Material 2 -> Diámetro');
+asignarTooltip('tord_otro_otro2_edad', 'Material 2 -> Edad(años)');
+asignarTooltip('tord_otro_otro2_nombre', 'Material 2 -> Nombre');
+asignarTooltip('tord_otro_otro3_diametro', 'Material 3 -> Diámetro');
+asignarTooltip('tord_otro_otro3_edad', 'Material 3 -> Edad(años)');
+asignarTooltip('tord_otro_otro3_nombre', 'Material 3 -> Nombre');
+asignarTooltip('toa_planos_actualizados', '¿Existen planos actualizados de la red de distribución?');
+asignarTooltip('toa_ano_actualizacion_planos', 'Último año de actualización');

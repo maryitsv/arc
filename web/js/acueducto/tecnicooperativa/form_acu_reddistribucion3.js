@@ -43,15 +43,6 @@ var tord_otro = {
             var textfield = Ext.getCmp('tord_otro_otro3_diametro').setDisabled(!checked);
             var textfield = Ext.getCmp('tord_otro_otro3_edad').setDisabled(!checked);
             var textfield = Ext.getCmp('tord_otro_otro3_nombre').setDisabled(!checked);
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_otro')).getEl(),
-                title: 'Titulo tord_otro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_otro',
-                trackMouse: true
-            });
         }
     }
 }
@@ -66,18 +57,7 @@ var tord_otro_tipo_nombre = {
     name: "tord_otro_tipo_nombre",
     allowBlank: false,
     hideLabel: true,
-    fieldLabel: 'Otro tipo',
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_otro_tipo_nombre')).getEl(),
-                title: 'Titulo tord_otro_tipo_nombre',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_otro_tipo_nombre',
-                trackMouse: true
-            });
-        }
-    }
+    fieldLabel: 'Otro tipo'
 }
 
 var tord_otro_otro1_diametro = {
@@ -90,18 +70,7 @@ var tord_otro_otro1_diametro = {
     name: "tord_otro_otro1_diametro",
     fieldLabel: "En otro1",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_otro_otro1_diametro')).getEl(),
-                title: 'Titulo tord_otro_otro1_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_otro_otro1_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_otro_otro1_edad = {
@@ -117,18 +86,7 @@ var tord_otro_otro1_edad = {
     name: "tord_otro_otro1_edad",
     fieldLabel: "En otro1",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_otro_otro1_edad')).getEl(),
-                title: 'Titulo tord_otro_otro1_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_otro_otro1_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_otro_otro1_nombre = {
@@ -140,18 +98,7 @@ var tord_otro_otro1_nombre = {
     id: "tord_otro_otro1_nombre",
     name: "tord_otro_otro1_nombre",
     hideLabel: true,
-    fieldLabel: 'Otro tipo',
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_otro_otro1_nombre')).getEl(),
-                title: 'Titulo tord_otro_otro1_nombre',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_otro_otro1_nombre',
-                trackMouse: true
-            });
-        }
-    }
+    fieldLabel: 'Otro tipo'
 }
 
 var tord_otro_otro2_diametro = {
@@ -164,18 +111,7 @@ var tord_otro_otro2_diametro = {
     name: "tord_otro_otro2_diametro",
     fieldLabel: "En otro2",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_otro_otro2_diametro')).getEl(),
-                title: 'Titulo tord_otro_otro2_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_otro_otro2_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_otro_otro2_edad = {
@@ -191,18 +127,7 @@ var tord_otro_otro2_edad = {
     name: "tord_otro_otro2_edad",
     fieldLabel: "En otro2",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_otro_otro2_edad')).getEl(),
-                title: 'Titulo tord_otro_otro2_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_otro_otro2_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_otro_otro2_nombre = {
@@ -214,18 +139,7 @@ var tord_otro_otro2_nombre = {
     id: "tord_otro_otro2_nombre",
     name: "tord_otro_otro2_nombre",
     hideLabel: true,
-    fieldLabel: 'Otro tipo',
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_otro_otro2_nombre')).getEl(),
-                title: 'Titulo tord_otro_otro2_nombre',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_otro_otro2_nombre',
-                trackMouse: true
-            });
-        }
-    }
+    fieldLabel: 'Otro tipo'
 }
 
 var tord_otro_otro3_diametro = {
@@ -238,18 +152,7 @@ var tord_otro_otro3_diametro = {
     name: "tord_otro_otro3_diametro",
     fieldLabel: "En otro3",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_otro_otro3_diametro')).getEl(),
-                title: 'Titulo tord_otro_otro3_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_otro_otro3_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_otro_otro3_edad = {
@@ -265,18 +168,7 @@ var tord_otro_otro3_edad = {
     name: "tord_otro_otro3_edad",
     fieldLabel: "En otro3",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_otro_otro3_edad')).getEl(),
-                title: 'Titulo tord_otro_otro3_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_otro_otro3_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_otro_otro3_nombre = {
@@ -288,18 +180,7 @@ var tord_otro_otro3_nombre = {
     id: "tord_otro_otro3_nombre",
     name: "tord_otro_otro3_nombre",
     hideLabel: true,
-    fieldLabel: 'Otro tipo',
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_otro_otro3_nombre')).getEl(),
-                title: 'Titulo tord_otro_otro3_nombre',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_otro_otro3_nombre',
-                trackMouse: true
-            });
-        }
-    }
+    fieldLabel: 'Otro tipo'
 }
 
 var toa_planos_actualizados = {
@@ -325,18 +206,7 @@ var toa_planos_actualizados = {
         boxLabel: 'No',
         inputValue: 0,
         checked: true
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toa_planos_actualizados')).getEl(),
-                title: 'Titulo toa_planos_actualizados',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toa_planos_actualizados',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var toa_ano_actualizacion_planos = {
@@ -352,18 +222,7 @@ var toa_ano_actualizacion_planos = {
     id: "toa_ano_actualizacion_planos",
     name: "toa_ano_actualizacion_planos",
     allowBlank: false,
-    fieldLabel: 'Año de actualización',
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toa_ano_actualizacion_planos')).getEl(),
-                title: 'Titulo toa_ano_actualizacion_planos',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toa_ano_actualizacion_planos',
-                trackMouse: true
-            });
-        }
-    }
+    fieldLabel: 'Año de actualización'
 }
 
 var acu_reddistribucion3_datastore = new Ext.data.Store({

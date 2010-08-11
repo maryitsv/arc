@@ -53,15 +53,6 @@ var tord_redes_terciarias = {
             var textfield = Ext.getCmp('tord_redes_terciarias_concreto_edad').setDisabled(!checked);
             var textfield = Ext.getCmp('tord_redes_terciarias_pvc_diametro').setDisabled(!checked);
             var textfield = Ext.getCmp('tord_redes_terciarias_pvc_edad').setDisabled(!checked);
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_terciarias')).getEl(),
-                title: 'Titulo tord_redes_terciarias',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_terciarias',
-                trackMouse: true
-            });
         }
     }
 }
@@ -76,18 +67,7 @@ var tord_redes_terciarias_asbesto_cemento_diametro = {
     name: "tord_redes_terciarias_asbesto_cemento_diametro",
     fieldLabel: "En asbesto_cemento",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_terciarias_asbesto_cemento_diametro')).getEl(),
-                title: 'Titulo tord_redes_terciarias_asbesto_cemento_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_terciarias_asbesto_cemento_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_redes_terciarias_asbesto_cemento_edad = {
@@ -103,18 +83,7 @@ var tord_redes_terciarias_asbesto_cemento_edad = {
     name: "tord_redes_terciarias_asbesto_cemento_edad",
     fieldLabel: "En asbesto_cemento",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_terciarias_asbesto_cemento_edad')).getEl(),
-                title: 'Titulo tord_redes_terciarias_asbesto_cemento_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_terciarias_asbesto_cemento_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_redes_terciarias_hierro_ductil_diametro = {
@@ -127,18 +96,7 @@ var tord_redes_terciarias_hierro_ductil_diametro = {
     name: "tord_redes_terciarias_hierro_ductil_diametro",
     fieldLabel: "En hierro_ductil",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_terciarias_hierro_ductil_diametro')).getEl(),
-                title: 'Titulo tord_redes_terciarias_hierro_ductil_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_terciarias_hierro_ductil_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_redes_terciarias_hierro_ductil_edad = {
@@ -154,18 +112,7 @@ var tord_redes_terciarias_hierro_ductil_edad = {
     name: "tord_redes_terciarias_hierro_ductil_edad",
     fieldLabel: "En hierro_ductil",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_terciarias_hierro_ductil_edad')).getEl(),
-                title: 'Titulo tord_redes_terciarias_hierro_ductil_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_terciarias_hierro_ductil_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_redes_terciarias_concreto_diametro = {
@@ -178,18 +125,7 @@ var tord_redes_terciarias_concreto_diametro = {
     name: "tord_redes_terciarias_concreto_diametro",
     fieldLabel: "En concreto",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_terciarias_concreto_diametro')).getEl(),
-                title: 'Titulo tord_redes_terciarias_concreto_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_terciarias_concreto_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_redes_terciarias_concreto_edad = {
@@ -205,18 +141,7 @@ var tord_redes_terciarias_concreto_edad = {
     name: "tord_redes_terciarias_concreto_edad",
     fieldLabel: "En concreto",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_terciarias_concreto_edad')).getEl(),
-                title: 'Titulo tord_redes_terciarias_concreto_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_terciarias_concreto_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_redes_terciarias_pvc_diametro = {
@@ -229,18 +154,7 @@ var tord_redes_terciarias_pvc_diametro = {
     name: "tord_redes_terciarias_pvc_diametro",
     fieldLabel: "En pvc",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_terciarias_pvc_diametro')).getEl(),
-                title: 'Titulo tord_redes_terciarias_pvc_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_terciarias_pvc_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_redes_terciarias_pvc_edad = {
@@ -256,18 +170,7 @@ var tord_redes_terciarias_pvc_edad = {
     name: "tord_redes_terciarias_pvc_edad",
     fieldLabel: "En pvc",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_terciarias_pvc_edad')).getEl(),
-                title: 'Titulo tord_redes_terciarias_pvc_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_terciarias_pvc_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_manguera = {
@@ -291,15 +194,6 @@ var tord_manguera = {
             var textfield = Ext.getCmp('tord_manguera_otro_nombre').setDisabled(!checked);
             var textfield = Ext.getCmp('tord_manguera_otro_diametro').setDisabled(!checked);
             var textfield = Ext.getCmp('tord_manguera_otro_edad').setDisabled(!checked);
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_manguera')).getEl(),
-                title: 'Titulo tord_manguera',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_manguera',
-                trackMouse: true
-            });
         }
     }
 }
@@ -314,18 +208,7 @@ var tord_manguera_polietileno_hd_diametro = {
     name: "tord_manguera_polietileno_hd_diametro",
     fieldLabel: "En polietileno_hd",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_manguera_polietileno_hd_diametro')).getEl(),
-                title: 'Titulo tord_manguera_polietileno_hd_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_manguera_polietileno_hd_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_manguera_polietileno_hd_edad = {
@@ -341,18 +224,7 @@ var tord_manguera_polietileno_hd_edad = {
     name: "tord_manguera_polietileno_hd_edad",
     fieldLabel: "En polietileno_hd",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_manguera_polietileno_hd_edad')).getEl(),
-                title: 'Titulo tord_manguera_polietileno_hd_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_manguera_polietileno_hd_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_manguera_polietileno_ld_diametro = {
@@ -365,18 +237,7 @@ var tord_manguera_polietileno_ld_diametro = {
     name: "tord_manguera_polietileno_ld_diametro",
     fieldLabel: "En polietileno_ld",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_manguera_polietileno_ld_diametro')).getEl(),
-                title: 'Titulo tord_manguera_polietileno_ld_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_manguera_polietileno_ld_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_manguera_polietileno_ld_edad = {
@@ -392,18 +253,7 @@ var tord_manguera_polietileno_ld_edad = {
     name: "tord_manguera_polietileno_ld_edad",
     fieldLabel: "En polietileno_ld",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_manguera_polietileno_ld_edad')).getEl(),
-                title: 'Titulo tord_manguera_polietileno_ld_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_manguera_polietileno_ld_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_manguera_otro_nombre = {
@@ -414,18 +264,7 @@ var tord_manguera_otro_nombre = {
     tabIndex: 1,
     id: "tord_manguera_otro_nombre",
     name: "tord_manguera_otro_nombre",
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_manguera_otro_nombre')).getEl(),
-                title: 'Titulo tord_manguera_otro_nombre',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_manguera_otro_nombre',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_manguera_otro_diametro = {
@@ -438,18 +277,7 @@ var tord_manguera_otro_diametro = {
     name: "tord_manguera_otro_diametro",
     fieldLabel: "En otro",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_manguera_otro_diametro')).getEl(),
-                title: 'Titulo tord_manguera_otro_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_manguera_otro_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_manguera_otro_edad = {
@@ -465,18 +293,7 @@ var tord_manguera_otro_edad = {
     name: "tord_manguera_otro_edad",
     fieldLabel: "En otro",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_manguera_otro_edad')).getEl(),
-                title: 'Titulo tord_manguera_otro_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_manguera_otro_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var acu_reddistribucion2_datastore = new Ext.data.Store({

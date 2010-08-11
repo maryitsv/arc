@@ -36,18 +36,7 @@ var topla_tecnologia_utilizada_ct = {
     items: [{
         name: 'topla_tecnologia_utilizada_ct',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_tecnologia_utilizada_ct')).getEl(),
-                title: 'Ayuda rápida',
-                anchor: 'top',
-                html: 'Combinación de tecnologías',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_planta_ttmto_funciona = {
@@ -66,18 +55,7 @@ var topla_planta_ttmto_funciona = {
         boxLabel: 'No',
         inputValue: 0,
         checked: true
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_planta_ttmto_funciona')).getEl(),
-                title: 'Ayuda rápida',
-                anchor: 'top',
-                html: '¿Está funcionando la planta de tratamiento?',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_estructuras_medicion_cau = {
@@ -96,18 +74,7 @@ var topla_estructuras_medicion_cau = {
         boxLabel: 'No',
         inputValue: 0,
         checked: true
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_estructuras_medicion_cau')).getEl(),
-                title: 'Ayuda rápida',
-                anchor: 'top',
-                html: '¿Hay estructuras de medición de caudal funcionando?',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_menor_caudal_operacion_diseno = {
@@ -126,18 +93,7 @@ var topla_menor_caudal_operacion_diseno = {
         boxLabel: 'No',
         inputValue: 0,
         checked: true
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_menor_caudal_operacion_diseno')).getEl(),
-                title: 'Ayuda rápida',
-                anchor: 'top',
-                html: '¿El caudal de operación es menor que el caudal de diseño?',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var acu_plantatratamiento_datastore3 = new Ext.data.Store({

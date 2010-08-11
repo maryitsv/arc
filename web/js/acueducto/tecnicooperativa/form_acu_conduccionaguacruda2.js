@@ -57,15 +57,6 @@ var tolc_tuberia = {
             var textfield = Ext.getCmp('tolc_tuberia_pvc_longitud').setDisabled(!checked);
             var textfield = Ext.getCmp('tolc_tuberia_pvc_diametro').setDisabled(!checked);
             var textfield = Ext.getCmp('tolc_tuberia_pvc_edad').setDisabled(!checked);
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_tuberia')).getEl(),
-                title: 'Titulo tolc_tuberia',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_tuberia',
-                trackMouse: true
-            });
         }
     }
 }
@@ -80,18 +71,7 @@ var tolc_tuberia_asbesto_cemento_longitud = {
     name: "tolc_tuberia_asbesto_cemento_longitud",
     fieldLabel: "En asbesto_cemento",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_tuberia_asbesto_cemento_longitud')).getEl(),
-                title: 'Titulo tolc_tuberia_asbesto_cemento_longitud',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_tuberia_asbesto_cemento_longitud',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_tuberia_asbesto_cemento_diametro = {
@@ -104,18 +84,7 @@ var tolc_tuberia_asbesto_cemento_diametro = {
     name: "tolc_tuberia_asbesto_cemento_diametro",
     fieldLabel: "En asbesto_cemento",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_tuberia_asbesto_cemento_diametro')).getEl(),
-                title: 'Titulo tolc_tuberia_asbesto_cemento_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_tuberia_asbesto_cemento_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_tuberia_asbesto_cemento_edad = {
@@ -131,18 +100,7 @@ var tolc_tuberia_asbesto_cemento_edad = {
     name: "tolc_tuberia_asbesto_cemento_edad",
     fieldLabel: "En asbesto_cemento",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_tuberia_asbesto_cemento_edad')).getEl(),
-                title: 'Titulo tolc_tuberia_asbesto_cemento_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_tuberia_asbesto_cemento_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_tuberia_hierro_ductil_longitud = {
@@ -155,18 +113,7 @@ var tolc_tuberia_hierro_ductil_longitud = {
     name: "tolc_tuberia_hierro_ductil_longitud",
     fieldLabel: "En hierro_ductil",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_tuberia_hierro_ductil_longitud')).getEl(),
-                title: 'Titulo tolc_tuberia_hierro_ductil_longitud',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_tuberia_hierro_ductil_longitud',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_tuberia_hierro_ductil_diametro = {
@@ -179,18 +126,7 @@ var tolc_tuberia_hierro_ductil_diametro = {
     name: "tolc_tuberia_hierro_ductil_diametro",
     fieldLabel: "En hierro_ductil",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_tuberia_hierro_ductil_diametro')).getEl(),
-                title: 'Titulo tolc_tuberia_hierro_ductil_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_tuberia_hierro_ductil_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_tuberia_hierro_ductil_edad = {
@@ -206,18 +142,7 @@ var tolc_tuberia_hierro_ductil_edad = {
     name: "tolc_tuberia_hierro_ductil_edad",
     fieldLabel: "En hierro_ductil",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_tuberia_hierro_ductil_edad')).getEl(),
-                title: 'Titulo tolc_tuberia_hierro_ductil_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_tuberia_hierro_ductil_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_tuberia_concreto_longitud = {
@@ -230,18 +155,7 @@ var tolc_tuberia_concreto_longitud = {
     name: "tolc_tuberia_concreto_longitud",
     fieldLabel: "En concreto",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_tuberia_concreto_longitud')).getEl(),
-                title: 'Titulo tolc_tuberia_concreto_longitud',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_tuberia_concreto_longitud',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_tuberia_concreto_diametro = {
@@ -254,18 +168,7 @@ var tolc_tuberia_concreto_diametro = {
     name: "tolc_tuberia_concreto_diametro",
     fieldLabel: "En concreto",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_tuberia_concreto_diametro')).getEl(),
-                title: 'Titulo tolc_tuberia_concreto_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_tuberia_concreto_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_tuberia_concreto_edad = {
@@ -281,18 +184,7 @@ var tolc_tuberia_concreto_edad = {
     name: "tolc_tuberia_concreto_edad",
     fieldLabel: "En concreto",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_tuberia_concreto_edad')).getEl(),
-                title: 'Titulo tolc_tuberia_concreto_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_tuberia_concreto_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_tuberia_pvc_longitud = {
@@ -305,18 +197,7 @@ var tolc_tuberia_pvc_longitud = {
     name: "tolc_tuberia_pvc_longitud",
     fieldLabel: "En pvc",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_tuberia_pvc_longitud')).getEl(),
-                title: 'Titulo tolc_tuberia_pvc_longitud',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_tuberia_pvc_longitud',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_tuberia_pvc_diametro = {
@@ -329,18 +210,7 @@ var tolc_tuberia_pvc_diametro = {
     name: "tolc_tuberia_pvc_diametro",
     fieldLabel: "En pvc",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_tuberia_pvc_diametro')).getEl(),
-                title: 'Titulo tolc_tuberia_pvc_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_tuberia_pvc_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_tuberia_pvc_edad = {
@@ -356,18 +226,7 @@ var tolc_tuberia_pvc_edad = {
     name: "tolc_tuberia_pvc_edad",
     fieldLabel: "En pvc",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_tuberia_pvc_edad')).getEl(),
-                title: 'Titulo tolc_tuberia_pvc_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_tuberia_pvc_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_manguera = {
@@ -394,15 +253,6 @@ var tolc_manguera = {
             var textfield = Ext.getCmp('tolc_manguera_otro_longitud').setDisabled(!checked);
             var textfield = Ext.getCmp('tolc_manguera_otro_diametro').setDisabled(!checked);
             var textfield = Ext.getCmp('tolc_manguera_otro_edad').setDisabled(!checked);
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_manguera')).getEl(),
-                title: 'Titulo tolc_manguera',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_manguera',
-                trackMouse: true
-            });
         }
     }
 }
@@ -417,18 +267,7 @@ var tolc_manguera_polietileno_hd_longitud = {
     name: "tolc_manguera_polietileno_hd_longitud",
     fieldLabel: "En polietileno_hd",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_manguera_polietileno_hd_longitud')).getEl(),
-                title: 'Titulo tolc_manguera_polietileno_hd_longitud',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_manguera_polietileno_hd_longitud',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_manguera_polietileno_hd_diametro = {
@@ -441,18 +280,7 @@ var tolc_manguera_polietileno_hd_diametro = {
     name: "tolc_manguera_polietileno_hd_diametro",
     fieldLabel: "En polietileno_hd",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_manguera_polietileno_hd_diametro')).getEl(),
-                title: 'Titulo tolc_manguera_polietileno_hd_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_manguera_polietileno_hd_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_manguera_polietileno_hd_edad = {
@@ -468,18 +296,7 @@ var tolc_manguera_polietileno_hd_edad = {
     name: "tolc_manguera_polietileno_hd_edad",
     fieldLabel: "En polietileno_hd",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_manguera_polietileno_hd_edad')).getEl(),
-                title: 'Titulo tolc_manguera_polietileno_hd_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_manguera_polietileno_hd_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_manguera_polietileno_ld_longitud = {
@@ -492,18 +309,7 @@ var tolc_manguera_polietileno_ld_longitud = {
     name: "tolc_manguera_polietileno_ld_longitud",
     fieldLabel: "En polietileno_ld",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_manguera_polietileno_ld_longitud')).getEl(),
-                title: 'Titulo tolc_manguera_polietileno_ld_longitud',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_manguera_polietileno_ld_longitud',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_manguera_polietileno_ld_diametro = {
@@ -516,18 +322,7 @@ var tolc_manguera_polietileno_ld_diametro = {
     name: "tolc_manguera_polietileno_ld_diametro",
     fieldLabel: "En polietileno_ld",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_manguera_polietileno_ld_diametro')).getEl(),
-                title: 'Titulo tolc_manguera_polietileno_ld_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_manguera_polietileno_ld_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_manguera_polietileno_ld_edad = {
@@ -543,18 +338,7 @@ var tolc_manguera_polietileno_ld_edad = {
     name: "tolc_manguera_polietileno_ld_edad",
     fieldLabel: "En polietileno_ld",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_manguera_polietileno_ld_edad')).getEl(),
-                title: 'Titulo tolc_manguera_polietileno_ld_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_manguera_polietileno_ld_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_manguera_otro_nombre = {
@@ -565,18 +349,7 @@ var tolc_manguera_otro_nombre = {
     tabIndex: 1,
     id: "tolc_manguera_otro_nombre",
     name: "tolc_manguera_otro_nombre",
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_manguera_otro_nombre')).getEl(),
-                title: 'Titulo tolc_manguera_otro_nombre',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_manguera_otro_nombre',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_manguera_otro_longitud = {
@@ -589,18 +362,7 @@ var tolc_manguera_otro_longitud = {
     name: "tolc_manguera_otro_longitud",
     fieldLabel: "En otro",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_manguera_otro_longitud')).getEl(),
-                title: 'Titulo tolc_manguera_otro_longitud',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_manguera_otro_longitud',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_manguera_otro_diametro = {
@@ -613,18 +375,7 @@ var tolc_manguera_otro_diametro = {
     name: "tolc_manguera_otro_diametro",
     fieldLabel: "En otro",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_manguera_otro_diametro')).getEl(),
-                title: 'Titulo tolc_manguera_otro_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_manguera_otro_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_manguera_otro_edad = {
@@ -640,18 +391,7 @@ var tolc_manguera_otro_edad = {
     name: "tolc_manguera_otro_edad",
     fieldLabel: "En otro",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_manguera_otro_edad')).getEl(),
-                title: 'Titulo tolc_manguera_otro_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_manguera_otro_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var acu_conduccionaguacruda2_datastore = new Ext.data.Store({

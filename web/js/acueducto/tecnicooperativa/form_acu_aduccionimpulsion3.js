@@ -57,15 +57,6 @@ var toai_otro = {
             var textfield = Ext.getCmp('toai_otro_otro3_diametro').setDisabled(!checked);
             var textfield = Ext.getCmp('toai_otro_otro3_edad').setDisabled(!checked);
             var textfield = Ext.getCmp('toai_otro_otro3_nombre').setDisabled(!checked);
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toai_otro')).getEl(),
-                title: 'Ayuda rápida',
-                anchor: 'top',
-                html: 'Otro canal',
-                trackMouse: true
-            });
         }
     }
 }
@@ -80,18 +71,7 @@ var toai_otro_tipo_nombre = {
     name: "toai_otro_tipo_nombre",
     hideLabel: true,
     allowBlank: false,
-    fieldLabel: 'Otro tipo',
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toai_otro_tipo_nombre')).getEl(),
-                title: 'Ayuda rápida',
-                anchor: 'top',
-                html: 'Nombre del canal',
-                trackMouse: true
-            });
-        }
-    }
+    fieldLabel: 'Otro tipo'
 }
 
 var toai_otro_otro1_longitud = {
@@ -104,18 +84,7 @@ var toai_otro_otro1_longitud = {
     name: "toai_otro_otro1_longitud",
     fieldLabel: "En otro1",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toai_otro_otro1_longitud')).getEl(),
-                title: 'Ayuda rápida',
-                anchor: 'top',
-                html: 'Material 1 -> Longitud(m)',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var toai_otro_otro1_diametro = {
@@ -128,18 +97,7 @@ var toai_otro_otro1_diametro = {
     name: "toai_otro_otro1_diametro",
     fieldLabel: "En otro1",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toai_otro_otro1_diametro')).getEl(),
-                title: 'Ayuda rápida',
-                anchor: 'top',
-                html: 'Material 1 -> Diámetro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var toai_otro_otro1_edad = {
@@ -155,18 +113,7 @@ var toai_otro_otro1_edad = {
     name: "toai_otro_otro1_edad",
     fieldLabel: "En otro1",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toai_otro_otro1_edad')).getEl(),
-                title: 'Ayuda rápida',
-                anchor: 'top',
-                html: 'Material 1 -> Edad(años)',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var toai_otro_otro1_nombre = {
@@ -178,18 +125,7 @@ var toai_otro_otro1_nombre = {
     id: "toai_otro_otro1_nombre",
     name: "toai_otro_otro1_nombre",
     hideLabel: true,
-    fieldLabel: 'Otro tipo',
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toai_otro_otro1_nombre')).getEl(),
-                title: 'Ayuda rápida',
-                anchor: 'top',
-                html: 'Material 1 -> Nombre',
-                trackMouse: true
-            });
-        }
-    }
+    fieldLabel: 'Otro tipo'
 }
 
 var toai_otro_otro2_longitud = {
@@ -202,18 +138,7 @@ var toai_otro_otro2_longitud = {
     name: "toai_otro_otro2_longitud",
     fieldLabel: "En otro2",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toai_otro_otro2_longitud')).getEl(),
-                title: 'Ayuda rápida',
-                anchor: 'top',
-                html: 'Material 2 -> Longitud(m)',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var toai_otro_otro2_diametro = {
@@ -226,18 +151,7 @@ var toai_otro_otro2_diametro = {
     name: "toai_otro_otro2_diametro",
     fieldLabel: "En otro2",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toai_otro_otro2_diametro')).getEl(),
-                title: 'Ayuda rápida',
-                anchor: 'top',
-                html: 'Material 2 -> Diámetro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var toai_otro_otro2_edad = {
@@ -253,18 +167,7 @@ var toai_otro_otro2_edad = {
     name: "toai_otro_otro2_edad",
     fieldLabel: "En otro2",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toai_otro_otro2_edad')).getEl(),
-                title: 'Ayuda rápida',
-                anchor: 'top',
-                html: 'Material 2 -> Edad(años)',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var toai_otro_otro2_nombre = {
@@ -276,18 +179,7 @@ var toai_otro_otro2_nombre = {
     id: "toai_otro_otro2_nombre",
     name: "toai_otro_otro2_nombre",
     hideLabel: true,
-    fieldLabel: 'Otro tipo',
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toai_otro_otro2_nombre')).getEl(),
-                title: 'Ayuda rápida',
-                anchor: 'top',
-                html: 'Material 2 -> Nombre',
-                trackMouse: true
-            });
-        }
-    }
+    fieldLabel: 'Otro tipo'
 }
 
 var toai_otro_otro3_longitud = {
@@ -300,18 +192,7 @@ var toai_otro_otro3_longitud = {
     name: "toai_otro_otro3_longitud",
     fieldLabel: "En otro3",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toai_otro_otro3_longitud')).getEl(),
-                title: 'Ayuda rápida',
-                anchor: 'top',
-                html: 'Material 3 -> Longitud(m)',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var toai_otro_otro3_diametro = {
@@ -324,18 +205,7 @@ var toai_otro_otro3_diametro = {
     name: "toai_otro_otro3_diametro",
     fieldLabel: "En otro3",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toai_otro_otro3_diametro')).getEl(),
-                title: 'Ayuda rápida',
-                anchor: 'top',
-                html: 'Material 3 -> Diámetro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var toai_otro_otro3_edad = {
@@ -351,18 +221,7 @@ var toai_otro_otro3_edad = {
     name: "toai_otro_otro3_edad",
     fieldLabel: "En otro3",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toai_otro_otro3_edad')).getEl(),
-                title: 'Ayuda rápida',
-                anchor: 'top',
-                html: 'Material 3 -> Edad(años)',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var toai_otro_otro3_nombre = {
@@ -374,18 +233,7 @@ var toai_otro_otro3_nombre = {
     id: "toai_otro_otro3_nombre",
     name: "toai_otro_otro3_nombre",
     hideLabel: true,
-    fieldLabel: 'Otro tipo',
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toai_otro_otro3_nombre')).getEl(),
-                title: 'Ayuda rápida',
-                anchor: 'top',
-                html: 'Material 3 -> Nombre',
-                trackMouse: true
-            });
-        }
-    }
+    fieldLabel: 'Otro tipo'
 }
 
 var acu_aduccionimpulsion2_datastore = new Ext.data.Store({
