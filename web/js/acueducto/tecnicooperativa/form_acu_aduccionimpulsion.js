@@ -53,9 +53,9 @@ var toai_canal_abierto = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_canal_abierto')).getEl(),
-                title: 'Titulo toai_canal_abierto',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_canal_abierto',
+                html: 'Canal abierto',
                 trackMouse: true
             });
         }
@@ -78,9 +78,9 @@ var toai_canal_abierto_tierra_longitud = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_canal_abierto_tierra_longitud')).getEl(),
-                title: 'Titulo toai_canal_abierto_tierra_longitud',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_canal_abierto_tierra_longitud',
+                html: 'En tierra -> Longitud(m)',
                 trackMouse: true
             });
         }
@@ -105,9 +105,9 @@ var toai_canal_abierto_tierra_edad = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_canal_abierto_tierra_edad')).getEl(),
-                title: 'Titulo toai_canal_abierto_tierra_edad',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_canal_abierto_tierra_edad',
+                html: 'En tierra -> Edad(años)',
                 trackMouse: true
             });
         }
@@ -129,9 +129,9 @@ var toai_canal_abierto_concreto_longitud = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_canal_abierto_concreto_longitud')).getEl(),
-                title: 'Titulo toai_canal_abierto_concreto_longitud',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_canal_abierto_concreto_longitud',
+                html: 'En concreto -> Longitud(m)',
                 trackMouse: true
             });
         }
@@ -156,9 +156,9 @@ var toai_canal_abierto_concreto_edad = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_canal_abierto_concreto_edad')).getEl(),
-                title: 'Titulo toai_canal_abierto_concreto_edad',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_canal_abierto_concreto_edad',
+                html: 'En concreto -> Edad(años)',
                 trackMouse: true
             });
         }
@@ -180,9 +180,9 @@ var toai_canal_abierto_mamposteria_longitud = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_canal_abierto_mamposteria_longitud')).getEl(),
-                title: 'Titulo toai_canal_abierto_mamposteria_longitud',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_canal_abierto_mamposteria_longitud',
+                html: 'En mamposteria -> Longitud(m)',
                 trackMouse: true
             });
         }
@@ -207,9 +207,9 @@ var toai_canal_abierto_mamposteria_edad = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_canal_abierto_mamposteria_edad')).getEl(),
-                title: 'Titulo toai_canal_abierto_mamposteria_edad',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_canal_abierto_mamposteria_edad',
+                html: 'En mamposteria -> Edad(años)',
                 trackMouse: true
             });
         }
@@ -240,9 +240,9 @@ var toai_canal_cubierto = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_canal_cubierto')).getEl(),
-                title: 'Titulo toai_canal_cubierto',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_canal_cubierto',
+                html: 'Canal cubierto',
                 trackMouse: true
             });
         }
@@ -264,9 +264,9 @@ var toai_canal_cubierto_tierra_longitud = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_canal_cubierto_tierra_longitud')).getEl(),
-                title: 'Titulo toai_canal_cubierto_tierra_longitud',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_canal_cubierto_tierra_longitud',
+                html: 'En tierra -> Longitud',
                 trackMouse: true
             });
         }
@@ -291,9 +291,9 @@ var toai_canal_cubierto_tierra_edad = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_canal_cubierto_tierra_edad')).getEl(),
-                title: 'Titulo toai_canal_cubierto_tierra_edad',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_canal_cubierto_tierra_edad',
+                html: 'En tierra -> Edad(años)',
                 trackMouse: true
             });
         }
@@ -315,9 +315,9 @@ var toai_canal_cubierto_concreto_longitud = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_canal_cubierto_concreto_longitud')).getEl(),
-                title: 'Titulo toai_canal_cubierto_concreto_longitud',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_canal_cubierto_concreto_longitud',
+                html: 'En concreto -> Longitud(m)',
                 trackMouse: true
             });
         }
@@ -342,9 +342,9 @@ var toai_canal_cubierto_concreto_edad = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_canal_cubierto_concreto_edad')).getEl(),
-                title: 'Titulo toai_canal_cubierto_concreto_edad',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_canal_cubierto_concreto_edad',
+                html: 'En concreto -> Edad(años)',
                 trackMouse: true
             });
         }
@@ -366,9 +366,9 @@ var toai_canal_cubierto_mamposteria_longitud = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_canal_cubierto_mamposteria_longitud')).getEl(),
-                title: 'Titulo toai_canal_cubierto_mamposteria_longitud',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_canal_cubierto_mamposteria_longitud',
+                html: 'En mamposteria -> Longitud(m)',
                 trackMouse: true
             });
         }
@@ -393,9 +393,9 @@ var toai_canal_cubierto_mamposteria_edad = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_canal_cubierto_mamposteria_edad')).getEl(),
-                title: 'Titulo toai_canal_cubierto_mamposteria_edad',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_canal_cubierto_mamposteria_edad',
+                html: 'En mamposteria -> Edad(años)',
                 trackMouse: true
             });
         }

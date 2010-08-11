@@ -61,9 +61,9 @@ var toai_otro = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_otro')).getEl(),
-                title: 'Titulo toai_otro',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_otro',
+                html: 'Otro canal',
                 trackMouse: true
             });
         }
@@ -85,9 +85,9 @@ var toai_otro_tipo_nombre = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_otro_tipo_nombre')).getEl(),
-                title: 'Titulo toai_otro_tipo_nombre',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_otro_tipo_nombre',
+                html: 'Nombre del canal',
                 trackMouse: true
             });
         }
@@ -109,9 +109,9 @@ var toai_otro_otro1_longitud = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_otro_otro1_longitud')).getEl(),
-                title: 'Titulo toai_otro_otro1_longitud',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_otro_otro1_longitud',
+                html: 'Material 1 -> Longitud(m)',
                 trackMouse: true
             });
         }
@@ -133,9 +133,9 @@ var toai_otro_otro1_diametro = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_otro_otro1_diametro')).getEl(),
-                title: 'Titulo toai_otro_otro1_diametro',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_otro_otro1_diametro',
+                html: 'Material 1 -> Diámetro',
                 trackMouse: true
             });
         }
@@ -160,9 +160,9 @@ var toai_otro_otro1_edad = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_otro_otro1_edad')).getEl(),
-                title: 'Titulo toai_otro_otro1_edad',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_otro_otro1_edad',
+                html: 'Material 1 -> Edad(años)',
                 trackMouse: true
             });
         }
@@ -183,9 +183,9 @@ var toai_otro_otro1_nombre = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_otro_otro1_nombre')).getEl(),
-                title: 'Titulo toai_otro_otro1_nombre',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_otro_otro1_nombre',
+                html: 'Material 1 -> Nombre',
                 trackMouse: true
             });
         }
@@ -207,9 +207,9 @@ var toai_otro_otro2_longitud = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_otro_otro2_longitud')).getEl(),
-                title: 'Titulo toai_otro_otro2_longitud',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_otro_otro2_longitud',
+                html: 'Material 2 -> Longitud(m)',
                 trackMouse: true
             });
         }
@@ -231,9 +231,9 @@ var toai_otro_otro2_diametro = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_otro_otro2_diametro')).getEl(),
-                title: 'Titulo toai_otro_otro2_diametro',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_otro_otro2_diametro',
+                html: 'Material 2 -> Diámetro',
                 trackMouse: true
             });
         }
@@ -258,9 +258,9 @@ var toai_otro_otro2_edad = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_otro_otro2_edad')).getEl(),
-                title: 'Titulo toai_otro_otro2_edad',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_otro_otro2_edad',
+                html: 'Material 2 -> Edad(años)',
                 trackMouse: true
             });
         }
@@ -281,9 +281,9 @@ var toai_otro_otro2_nombre = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_otro_otro2_nombre')).getEl(),
-                title: 'Titulo toai_otro_otro2_nombre',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_otro_otro2_nombre',
+                html: 'Material 2 -> Nombre',
                 trackMouse: true
             });
         }
@@ -305,9 +305,9 @@ var toai_otro_otro3_longitud = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_otro_otro3_longitud')).getEl(),
-                title: 'Titulo toai_otro_otro3_longitud',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_otro_otro3_longitud',
+                html: 'Material 3 -> Longitud(m)',
                 trackMouse: true
             });
         }
@@ -329,9 +329,9 @@ var toai_otro_otro3_diametro = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_otro_otro3_diametro')).getEl(),
-                title: 'Titulo toai_otro_otro3_diametro',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_otro_otro3_diametro',
+                html: 'Material 3 -> Diámetro',
                 trackMouse: true
             });
         }
@@ -356,9 +356,9 @@ var toai_otro_otro3_edad = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_otro_otro3_edad')).getEl(),
-                title: 'Titulo toai_otro_otro3_edad',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_otro_otro3_edad',
+                html: 'Material 3 -> Edad(años)',
                 trackMouse: true
             });
         }
@@ -379,9 +379,9 @@ var toai_otro_otro3_nombre = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_otro_otro3_nombre')).getEl(),
-                title: 'Titulo toai_otro_otro3_nombre',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_otro_otro3_nombre',
+                html: 'Material 3 -> Nombre',
                 trackMouse: true
             });
         }

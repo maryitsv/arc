@@ -41,9 +41,9 @@ var topla_tecnologia_utilizada_ct = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_tecnologia_utilizada_ct')).getEl(),
-                title: 'Titulo topla_tecnologia_utilizada_ct',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_tecnologia_utilizada_ct',
+                html: 'Combinación de tecnologías',
                 trackMouse: true
             });
         }
@@ -71,9 +71,9 @@ var topla_planta_ttmto_funciona = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_planta_ttmto_funciona')).getEl(),
-                title: 'Titulo topla_planta_ttmto_funciona',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_planta_ttmto_funciona',
+                html: '¿Está funcionando la planta de tratamiento?',
                 trackMouse: true
             });
         }
@@ -101,9 +101,9 @@ var topla_estructuras_medicion_cau = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_estructuras_medicion_cau')).getEl(),
-                title: 'Titulo topla_estructuras_medicion_cau',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_estructuras_medicion_cau',
+                html: '¿Hay estructuras de medición de caudal funcionando?',
                 trackMouse: true
             });
         }
@@ -131,9 +131,9 @@ var topla_menor_caudal_operacion_diseno = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_menor_caudal_operacion_diseno')).getEl(),
-                title: 'Titulo topla_menor_caudal_operacion_diseno',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_menor_caudal_operacion_diseno',
+                html: '¿El caudal de operación es menor que el caudal de diseño?',
                 trackMouse: true
             });
         }

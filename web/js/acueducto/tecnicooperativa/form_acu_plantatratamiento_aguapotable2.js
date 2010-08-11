@@ -50,9 +50,9 @@ var topla_tecnologia_utilizada_fime = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_tecnologia_utilizada_fime')).getEl(),
-                title: 'Titulo topla_tecnologia_utilizada_fime',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_tecnologia_utilizada_fime',
+                html: 'Filtración en múltiples etapas(FiME)',
                 trackMouse: true
             });
         }
@@ -74,9 +74,9 @@ var topla_fime_fgdi = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_fime_fgdi')).getEl(),
-                title: 'Titulo topla_fime_fgdi',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_fime_fgdi',
+                html: 'Filtro grueso dinámico(FGDi)',
                 trackMouse: true
             });
         }
@@ -98,9 +98,9 @@ var topla_fime_fgac = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_fime_fgac')).getEl(),
-                title: 'Titulo topla_fime_fgac',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_fime_fgac',
+                html: 'Filtro grueso ascendente en capas(FGAC)',
                 trackMouse: true
             });
         }
@@ -122,9 +122,9 @@ var topla_fime_fgas2 = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_fime_fgas2')).getEl(),
-                title: 'Titulo topla_fime_fgas2',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_fime_fgas2',
+                html: 'Filtro grueso ascendente en serie de 2 etapas(FGAS2)',
                 trackMouse: true
             });
         }
@@ -147,9 +147,9 @@ var topla_fime_fgas3 = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_fime_fgas3')).getEl(),
-                title: 'Titulo topla_fime_fgas3',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_fime_fgas3',
+                html: 'Filtro grueso ascendente en serie de 3 etapas(FGAS3)',
                 trackMouse: true
             });
         }
@@ -172,9 +172,9 @@ var topla_fime_fla = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_fime_fla')).getEl(),
-                title: 'Titulo topla_fime_fla',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_fime_fla',
+                html: 'Filtración lenta en arena(FLA)',
                 trackMouse: true
             });
         }
@@ -202,9 +202,9 @@ var topla_tecnologia_utilizada_rhm = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_tecnologia_utilizada_rhm')).getEl(),
-                title: 'Titulo topla_tecnologia_utilizada_rhm',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_tecnologia_utilizada_rhm',
+                html: 'Remoción de hierro y manganeso',
                 trackMouse: true
             });
         }
@@ -226,9 +226,9 @@ var topla_rhm_bandejas_cascadas = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_rhm_bandejas_cascadas')).getEl(),
-                title: 'Titulo topla_rhm_bandejas_cascadas',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_rhm_bandejas_cascadas',
+                html: 'Bandejas o cascadas',
                 trackMouse: true
             });
         }
@@ -250,9 +250,9 @@ var topla_rhm_aspersores = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_rhm_aspersores')).getEl(),
-                title: 'Titulo topla_rhm_aspersores',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_rhm_aspersores',
+                html: 'Aspersores',
                 trackMouse: true
             });
         }
@@ -274,9 +274,9 @@ var topla_rhm_sd = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_rhm_sd')).getEl(),
-                title: 'Titulo topla_rhm_sd',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_rhm_sd',
+                html: 'Sedimentación(SD)',
                 trackMouse: true
             });
         }
@@ -299,9 +299,9 @@ var topla_rhm_fr = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_rhm_fr')).getEl(),
-                title: 'Titulo topla_rhm_fr',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_rhm_fr',
+                html: 'Filtración rápida(FR)',
                 trackMouse: true
             });
         }
@@ -324,9 +324,9 @@ var topla_rhm_fime = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_rhm_fime')).getEl(),
-                title: 'Titulo topla_rhm_fime',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_rhm_fime',
+                html: 'Filtración en múltiples etapas(FIME)',
                 trackMouse: true
             });
         }

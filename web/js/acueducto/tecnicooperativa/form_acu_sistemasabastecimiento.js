@@ -32,9 +32,9 @@ var toa_gravedad_sin_tratamiento = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toa_gravedad_sin_tratamiento')).getEl(),
-                title: 'Titulo toa_gravedad_sin_tratamiento',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toa_gravedad_sin_tratamiento',
+                html: 'Gravedad sin tratamiento',
                 trackMouse: true
             });
         }
@@ -53,9 +53,9 @@ var toa_bombeo_sin_tratamiento = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toa_bombeo_sin_tratamiento')).getEl(),
-                title: 'Titulo toa_bombeo_sin_tratamiento',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toa_bombeo_sin_tratamiento',
+                html: 'Bombeo sin tratamiento',
                 trackMouse: true
             });
         }
@@ -74,9 +74,9 @@ var toa_gravedad_con_tratamiento = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toa_gravedad_con_tratamiento')).getEl(),
-                title: 'Titulo toa_gravedad_con_tratamiento',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toa_gravedad_con_tratamiento',
+                html: 'Gravedad con tratamiento',
                 trackMouse: true
             });
         }
@@ -95,9 +95,9 @@ var toa_bombeo_con_tratamiento = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toa_bombeo_con_tratamiento')).getEl(),
-                title: 'Titulo toa_bombeo_con_tratamiento',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toa_bombeo_con_tratamiento',
+                html: 'Bombeo con tratamiento',
                 trackMouse: true
             });
         }
@@ -116,9 +116,9 @@ var toa_gravedad_bombeo_sin_tratamiento = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toa_gravedad_bombeo_sin_tratamiento')).getEl(),
-                title: 'Titulo toa_gravedad_bombeo_sin_tratamiento',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toa_gravedad_bombeo_sin_tratamiento',
+                html: 'Gravedad y bombeo sin tratamiento',
                 trackMouse: true
             });
         }
@@ -136,9 +136,9 @@ var toa_gravedad_bombeo_con_tratamiento = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toa_gravedad_bombeo_con_tratamiento')).getEl(),
-                title: 'Titulo toa_gravedad_bombeo_con_tratamiento',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toa_gravedad_bombeo_con_tratamiento',
+                html: 'Gravedad y bombeo con tratamiento',
                 trackMouse: true
             });
         }
@@ -156,9 +156,9 @@ var toa_gravedad_sin_tratamiento_bombeo_con_tratamiento = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toa_gravedad_sin_tratamiento_bombeo_con_tratamiento')).getEl(),
-                title: 'Titulo toa_gravedad_sin_tratamiento_bombeo_con_tratamiento',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toa_gravedad_sin_tratamiento_bombeo_con_tratamiento',
+                html: 'Gravedad sin tratamiento y bombeo con tratamiento',
                 trackMouse: true
             });
         }
@@ -176,9 +176,9 @@ var toa_gravedad_con_tratamiento_bombeo_sin_tratamiento = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toa_gravedad_con_tratamiento_bombeo_sin_tratamiento')).getEl(),
-                title: 'Titulo toa_gravedad_con_tratamiento_bombeo_sin_tratamiento',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toa_gravedad_con_tratamiento_bombeo_sin_tratamiento',
+                html: 'Gravedad con tratamiento y bombeo sin tratamiento',
                 trackMouse: true
             });
         }
@@ -200,9 +200,9 @@ var toa_cantidad_agua_distribuida_por_ano = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toa_cantidad_agua_distribuida_por_ano')).getEl(),
-                title: 'Titulo toa_cantidad_agua_distribuida_por_ano',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toa_cantidad_agua_distribuida_por_ano',
+                html: 'Cantidad de agua distribuida por el sistema en el año en (M<sup>3</sup>)',
                 trackMouse: true
             });
         }
@@ -225,9 +225,9 @@ var toa_solucion_acarreo = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toa_solucion_acarreo')).getEl(),
-                title: 'Titulo toa_solucion_acarreo',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toa_solucion_acarreo',
+                html: 'Acarreo',
                 trackMouse: true
             });
         }
@@ -251,9 +251,9 @@ var toa_solucion_acarreo_viviendas = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toa_solucion_acarreo_viviendas')).getEl(),
-                title: 'Titulo toa_solucion_acarreo_viviendas',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toa_solucion_acarreo_viviendas',
+                html: 'Número de viviendas',
                 trackMouse: true
             });
         }
@@ -276,9 +276,9 @@ var toa_solucion_nacimiento = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toa_solucion_nacimiento')).getEl(),
-                title: 'Titulo toa_solucion_nacimiento',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toa_solucion_nacimiento',
+                html: 'Nacimiento',
                 trackMouse: true
             });
         }
@@ -302,9 +302,9 @@ var toa_solucion_nacimiento_viviendas = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toa_solucion_nacimiento_viviendas')).getEl(),
-                title: 'Titulo toa_solucion_nacimiento_viviendas',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toa_solucion_nacimiento_viviendas',
+                html: 'Número de viviendas',
                 trackMouse: true
             });
         }
@@ -327,9 +327,9 @@ var toa_solucion_aljibe = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toa_solucion_aljibe')).getEl(),
-                title: 'Titulo toa_solucion_aljibe',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toa_solucion_aljibe',
+                html: 'Aljibe',
                 trackMouse: true
             });
         }
@@ -353,9 +353,9 @@ var toa_solucion_aljibe_viviendas = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toa_solucion_aljibe_viviendas')).getEl(),
-                title: 'Titulo toa_solucion_aljibe_viviendas',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toa_solucion_aljibe_viviendas',
+                html: 'Número de viviendas',
                 trackMouse: true
             });
         }
@@ -378,9 +378,9 @@ var toa_solucion_agua_lluvia = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toa_solucion_agua_lluvia')).getEl(),
-                title: 'Titulo toa_solucion_agua_lluvia',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toa_solucion_agua_lluvia',
+                html: 'Agua lluvia',
                 trackMouse: true
             });
         }
@@ -404,9 +404,9 @@ var toa_solucion_agua_lluvia_viviendas = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toa_solucion_agua_lluvia_viviendas')).getEl(),
-                title: 'Titulo toa_solucion_agua_lluvia_viviendas',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toa_solucion_agua_lluvia_viviendas',
+                html: 'Número de viviendas',
                 trackMouse: true
             });
         }
@@ -431,9 +431,9 @@ var toa_solucion_otro = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toa_solucion_otro')).getEl(),
-                title: 'Titulo toa_solucion_otro',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toa_solucion_otro',
+                html: 'Otra',
                 trackMouse: true
             });
         }
@@ -454,9 +454,9 @@ var toa_solucion_otro_cual = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toa_solucion_otro_cual')).getEl(),
-                title: 'Titulo toa_solucion_otro_cual',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toa_solucion_otro_cual',
+                html: '¿Cual?',
                 trackMouse: true
             });
         }
@@ -480,9 +480,9 @@ var toa_solucion_otro_viviendas = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toa_solucion_otro_viviendas')).getEl(),
-                title: 'Titulo toa_solucion_otro_viviendas',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toa_solucion_otro_viviendas',
+                html: 'Número de viviendas',
                 trackMouse: true
             });
         }

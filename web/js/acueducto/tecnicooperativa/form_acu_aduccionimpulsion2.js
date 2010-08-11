@@ -61,9 +61,9 @@ var toai_tuberia = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_tuberia')).getEl(),
-                title: 'Titulo toai_tuberia',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_tuberia',
+                html: 'Tuberia',
                 trackMouse: true
             });
         }
@@ -85,9 +85,9 @@ var toai_tuberia_asbesto_cemento_longitud = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_tuberia_asbesto_cemento_longitud')).getEl(),
-                title: 'Titulo toai_tuberia_asbesto_cemento_longitud',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_tuberia_asbesto_cemento_longitud',
+                html: 'En asbesto - cemento -> Longitud(m)',
                 trackMouse: true
             });
         }
@@ -109,9 +109,9 @@ var toai_tuberia_asbesto_cemento_diametro = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_tuberia_asbesto_cemento_diametro')).getEl(),
-                title: 'Titulo toai_tuberia_asbesto_cemento_diametro',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_tuberia_asbesto_cemento_diametro',
+                html: 'En asbesto - cemento -> Diámetro',
                 trackMouse: true
             });
         }
@@ -136,9 +136,9 @@ var toai_tuberia_asbesto_cemento_edad = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_tuberia_asbesto_cemento_edad')).getEl(),
-                title: 'Titulo toai_tuberia_asbesto_cemento_edad',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_tuberia_asbesto_cemento_edad',
+                html: 'En asbesto - cemento -> Edad(años)',
                 trackMouse: true
             });
         }
@@ -160,9 +160,9 @@ var toai_tuberia_hierro_ductil_longitud = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_tuberia_hierro_ductil_longitud')).getEl(),
-                title: 'Titulo toai_tuberia_hierro_ductil_longitud',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_tuberia_hierro_ductil_longitud',
+                html: 'En hierro ductil -> Longitud(m)',
                 trackMouse: true
             });
         }
@@ -177,16 +177,16 @@ var toai_tuberia_hierro_ductil_diametro = {
     tabIndex: 1,
     id: "toai_tuberia_hierro_ductil_diametro",
     name: "toai_tuberia_hierro_ductil_diametro",
-    fieldLabel: "En hierro_ductil",
+    fieldLabel: "En hierro ductil",
     allowBlank: false,
     hideLabel: true,
     listeners: {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_tuberia_hierro_ductil_diametro')).getEl(),
-                title: 'Titulo toai_tuberia_hierro_ductil_diametro',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_tuberia_hierro_ductil_diametro',
+                html: 'En hierro ductil -> Diámetro',
                 trackMouse: true
             });
         }
@@ -211,9 +211,9 @@ var toai_tuberia_hierro_ductil_edad = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_tuberia_hierro_ductil_edad')).getEl(),
-                title: 'Titulo toai_tuberia_hierro_ductil_edad',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_tuberia_hierro_ductil_edad',
+                html: 'En hierro ductil -> Edad(años)',
                 trackMouse: true
             });
         }
@@ -235,9 +235,9 @@ var toai_tuberia_concreto_longitud = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_tuberia_concreto_longitud')).getEl(),
-                title: 'Titulo toai_tuberia_concreto_longitud',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_tuberia_concreto_longitud',
+                html: 'En concreto -> Longitud(m)',
                 trackMouse: true
             });
         }
@@ -259,9 +259,9 @@ var toai_tuberia_concreto_diametro = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_tuberia_concreto_diametro')).getEl(),
-                title: 'Titulo toai_tuberia_concreto_diametro',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_tuberia_concreto_diametro',
+                html: 'En concreto -> Diámetro',
                 trackMouse: true
             });
         }
@@ -286,9 +286,9 @@ var toai_tuberia_concreto_edad = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_tuberia_concreto_edad')).getEl(),
-                title: 'Titulo toai_tuberia_concreto_edad',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_tuberia_concreto_edad',
+                html: 'En concreto -> Edad(años)',
                 trackMouse: true
             });
         }
@@ -310,9 +310,9 @@ var toai_tuberia_pvc_longitud = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_tuberia_pvc_longitud')).getEl(),
-                title: 'Titulo toai_tuberia_pvc_longitud',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_tuberia_pvc_longitud',
+                html: 'PVC -> Longitud(m)',
                 trackMouse: true
             });
         }
@@ -334,9 +334,9 @@ var toai_tuberia_pvc_diametro = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_tuberia_pvc_diametro')).getEl(),
-                title: 'Titulo toai_tuberia_pvc_diametro',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_tuberia_pvc_diametro',
+                html: 'PVC -> Diámetro',
                 trackMouse: true
             });
         }
@@ -361,9 +361,9 @@ var toai_tuberia_pvc_edad = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_tuberia_pvc_edad')).getEl(),
-                title: 'Titulo toai_tuberia_pvc_edad',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_tuberia_pvc_edad',
+                html: 'PVC -> Edad(años)',
                 trackMouse: true
             });
         }
@@ -398,9 +398,9 @@ var toai_manguera = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_manguera')).getEl(),
-                title: 'Titulo toai_manguera',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_manguera',
+                html: 'Manguera',
                 trackMouse: true
             });
         }
@@ -422,9 +422,9 @@ var toai_manguera_polietileno_hd_longitud = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_manguera_polietileno_hd_longitud')).getEl(),
-                title: 'Titulo toai_manguera_polietileno_hd_longitud',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_manguera_polietileno_hd_longitud',
+                html: 'Polietileno HD -> Longitud(m)',
                 trackMouse: true
             });
         }
@@ -446,9 +446,9 @@ var toai_manguera_polietileno_hd_diametro = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_manguera_polietileno_hd_diametro')).getEl(),
-                title: 'Titulo toai_manguera_polietileno_hd_diametro',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_manguera_polietileno_hd_diametro',
+                html: 'Polietileno HD -> Diámetro',
                 trackMouse: true
             });
         }
@@ -473,9 +473,9 @@ var toai_manguera_polietileno_hd_edad = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_manguera_polietileno_hd_edad')).getEl(),
-                title: 'Titulo toai_manguera_polietileno_hd_edad',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_manguera_polietileno_hd_edad',
+                html: 'Polietileno HD -> Edad(años)',
                 trackMouse: true
             });
         }
@@ -497,9 +497,9 @@ var toai_manguera_polietileno_ld_longitud = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_manguera_polietileno_ld_longitud')).getEl(),
-                title: 'Titulo toai_manguera_polietileno_ld_longitud',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_manguera_polietileno_ld_longitud',
+                html: 'Polietileno LD -> Longitud(m)',
                 trackMouse: true
             });
         }
@@ -521,9 +521,9 @@ var toai_manguera_polietileno_ld_diametro = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_manguera_polietileno_ld_diametro')).getEl(),
-                title: 'Titulo toai_manguera_polietileno_ld_diametro',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_manguera_polietileno_ld_diametro',
+                html: 'Polietileno LD -> Diámetro',
                 trackMouse: true
             });
         }
@@ -548,9 +548,9 @@ var toai_manguera_polietileno_ld_edad = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_manguera_polietileno_ld_edad')).getEl(),
-                title: 'Titulo toai_manguera_polietileno_ld_edad',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_manguera_polietileno_ld_edad',
+                html: 'Polietileno LD -> Edad(años)',
                 trackMouse: true
             });
         }
@@ -570,9 +570,9 @@ var toai_manguera_otro_nombre = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_manguera_otro_nombre')).getEl(),
-                title: 'Titulo toai_manguera_otro_nombre',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_manguera_otro_nombre',
+                html: 'Nombre del otro material',
                 trackMouse: true
             });
         }
@@ -594,9 +594,9 @@ var toai_manguera_otro_longitud = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_manguera_otro_longitud')).getEl(),
-                title: 'Titulo toai_manguera_otro_longitud',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_manguera_otro_longitud',
+                html: 'Otro -> Longitud(m)',
                 trackMouse: true
             });
         }
@@ -618,9 +618,9 @@ var toai_manguera_otro_diametro = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_manguera_otro_diametro')).getEl(),
-                title: 'Titulo toai_manguera_otro_diametro',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_manguera_otro_diametro',
+                html: 'Otro -> Diámetro',
                 trackMouse: true
             });
         }
@@ -645,9 +645,9 @@ var toai_manguera_otro_edad = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('toai_manguera_otro_edad')).getEl(),
-                title: 'Titulo toai_manguera_otro_edad',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para toai_manguera_otro_edad',
+                html: 'Otro -> Edad(años)',
                 trackMouse: true
             });
         }

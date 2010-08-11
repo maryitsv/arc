@@ -44,9 +44,9 @@ var todes_bypass = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('todes_bypass')).getEl(),
-                title: 'Titulo todes_bypass',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para todes_bypass',
+                html: '¿Presencia de Bypass para mantenimiento?',
                 trackMouse: true
             });
         }
@@ -73,9 +73,9 @@ var todes_valvula = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('todes_valvula')).getEl(),
-                title: 'Titulo todes_valvula',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para todes_valvula',
+                html: '¿Presencia de válvula y desagüe de salida de sólidos?',
                 trackMouse: true
             });
         }
@@ -102,9 +102,9 @@ var todes_aguas_erosion = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('todes_aguas_erosion')).getEl(),
-                title: 'Titulo todes_aguas_erosion',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para todes_aguas_erosion',
+                html: '¿Las aguas de rebose y desagüe causan erosión?',
                 trackMouse: true
             });
         }

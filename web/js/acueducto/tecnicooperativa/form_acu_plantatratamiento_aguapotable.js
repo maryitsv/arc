@@ -46,9 +46,9 @@ var topla_tecnologia_utilizada_cc = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_tecnologia_utilizada_cc')).getEl(),
-                title: 'Titulo topla_tecnologia_utilizada_cc',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_tecnologia_utilizada_cc',
+                html: 'Ciclo completo',
                 trackMouse: true
             });
         }
@@ -70,9 +70,9 @@ var topla_ciclo_completo_mr = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_ciclo_completo_mr')).getEl(),
-                title: 'Titulo topla_ciclo_completo_mr',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_ciclo_completo_mr',
+                html: 'Coagulación y mezcla rápida(MR)',
                 trackMouse: true
             });
         }
@@ -94,9 +94,9 @@ var topla_ciclo_completo_flh = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_ciclo_completo_flh')).getEl(),
-                title: 'Titulo topla_ciclo_completo_flh',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_ciclo_completo_flh',
+                html: 'Floculación hidraúlica(FLH)',
                 trackMouse: true
             });
         }
@@ -118,9 +118,9 @@ var topla_ciclo_completo_flm = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_ciclo_completo_flm')).getEl(),
-                title: 'Titulo topla_ciclo_completo_flm',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_ciclo_completo_flm',
+                html: 'Floculación mecánica(FLM)',
                 trackMouse: true
             });
         }
@@ -143,9 +143,9 @@ var topla_ciclo_completo_sd = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_ciclo_completo_sd')).getEl(),
-                title: 'Titulo topla_ciclo_completo_sd',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_ciclo_completo_sd',
+                html: 'Sedimentación(SD)',
                 trackMouse: true
             });
         }
@@ -168,9 +168,9 @@ var topla_ciclo_completo_fr = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_ciclo_completo_fr')).getEl(),
-                title: 'Titulo topla_ciclo_completo_fr',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_ciclo_completo_fr',
+                html: 'Filtración rápida(FR)',
                 trackMouse: true
             });
         }
@@ -197,9 +197,9 @@ var topla_tecnologia_utilizada_fd = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_tecnologia_utilizada_fd')).getEl(),
-                title: 'Titulo topla_tecnologia_utilizada_fd',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_tecnologia_utilizada_fd',
+                html: 'Filtración directa',
                 trackMouse: true
             });
         }
@@ -221,9 +221,9 @@ var topla_filtracion_directa_mr = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_filtracion_directa_mr')).getEl(),
-                title: 'Titulo topla_filtracion_directa_mr',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_filtracion_directa_mr',
+                html: 'Coagulación y mezcla rápida(MR)',
                 trackMouse: true
             });
         }
@@ -245,9 +245,9 @@ var topla_filtracion_directa_flh = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_filtracion_directa_flh')).getEl(),
-                title: 'Titulo topla_filtracion_directa_flh',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_filtracion_directa_flh',
+                html: 'Floculación hidraúlica(FLH)',
                 trackMouse: true
             });
         }
@@ -269,9 +269,9 @@ var topla_filtracion_directa_flm = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_filtracion_directa_flm')).getEl(),
-                title: 'Titulo topla_filtracion_directa_flm',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_filtracion_directa_flm',
+                html: 'Floculación mecánica(FLM)',
                 trackMouse: true
             });
         }
@@ -294,9 +294,9 @@ var topla_filtracion_directa_fr = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_filtracion_directa_fr')).getEl(),
-                title: 'Titulo topla_filtracion_directa_fr',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_filtracion_directa_fr',
+                html: 'Filtración rápida(FR)',
                 trackMouse: true
             });
         }
@@ -317,9 +317,9 @@ var topla_tecnologia_utilizada_pc = {
         render: function(){
             new Ext.ToolTip({
                 target: (Ext.getCmp('topla_tecnologia_utilizada_pc')).getEl(),
-                title: 'Titulo topla_tecnologia_utilizada_pc',
+                title: 'Ayuda rápida',
                 anchor: 'top',
-                html: 'Mensaje de ayuda para topla_tecnologia_utilizada_pc',
+                html: 'Planta compacta',
                 trackMouse: true
             });
         }
