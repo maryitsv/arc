@@ -39,18 +39,7 @@ var todes_bypass = {
         boxLabel: 'No',
         inputValue: 0,
         checked: true
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('todes_bypass')).getEl(),
-                title: 'Titulo todes_bypass',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para todes_bypass',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var todes_valvula = {
@@ -68,18 +57,7 @@ var todes_valvula = {
         boxLabel: 'No',
         inputValue: 0,
         checked: true
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('todes_valvula')).getEl(),
-                title: 'Titulo todes_valvula',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para todes_valvula',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var todes_aguas_erosion = {
@@ -97,18 +75,7 @@ var todes_aguas_erosion = {
         boxLabel: 'No',
         inputValue: 0,
         checked: true
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('todes_aguas_erosion')).getEl(),
-                title: 'Titulo todes_aguas_erosion',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para todes_aguas_erosion',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var acu_desarenador_datastore = new Ext.data.Store({

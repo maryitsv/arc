@@ -42,15 +42,6 @@ var topla_tecnologia_utilizada_cc = {
             Ext.getCmp('topla_ciclo_completo_flm').setDisabled(!checked);
             Ext.getCmp('topla_ciclo_completo_sd').setDisabled(!checked);
             Ext.getCmp('topla_ciclo_completo_fr').setDisabled(!checked);
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_tecnologia_utilizada_cc')).getEl(),
-                title: 'Titulo topla_tecnologia_utilizada_cc',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_tecnologia_utilizada_cc',
-                trackMouse: true
-            });
         }
     }
 }
@@ -65,18 +56,7 @@ var topla_ciclo_completo_mr = {
     items: [{
         name: 'topla_ciclo_completo_mr',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_ciclo_completo_mr')).getEl(),
-                title: 'Titulo topla_ciclo_completo_mr',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_ciclo_completo_mr',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_ciclo_completo_flh = {
@@ -89,18 +69,7 @@ var topla_ciclo_completo_flh = {
     items: [{
         name: 'topla_ciclo_completo_flh',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_ciclo_completo_flh')).getEl(),
-                title: 'Titulo topla_ciclo_completo_flh',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_ciclo_completo_flh',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_ciclo_completo_flm = {
@@ -113,18 +82,7 @@ var topla_ciclo_completo_flm = {
     items: [{
         name: 'topla_ciclo_completo_flm',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_ciclo_completo_flm')).getEl(),
-                title: 'Titulo topla_ciclo_completo_flm',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_ciclo_completo_flm',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_ciclo_completo_sd = {
@@ -138,18 +96,7 @@ var topla_ciclo_completo_sd = {
     items: [{
         name: 'topla_ciclo_completo_sd',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_ciclo_completo_sd')).getEl(),
-                title: 'Titulo topla_ciclo_completo_sd',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_ciclo_completo_sd',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_ciclo_completo_fr = {
@@ -163,18 +110,7 @@ var topla_ciclo_completo_fr = {
         name: 'topla_ciclo_completo_fr',
         inputValue: 1,
         hiddenLabel: true
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_ciclo_completo_fr')).getEl(),
-                title: 'Titulo topla_ciclo_completo_fr',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_ciclo_completo_fr',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_tecnologia_utilizada_fd = {
@@ -193,15 +129,6 @@ var topla_tecnologia_utilizada_fd = {
             Ext.getCmp('topla_filtracion_directa_flh').setDisabled(!checked);
             Ext.getCmp('topla_filtracion_directa_flm').setDisabled(!checked);
             Ext.getCmp('topla_filtracion_directa_fr').setDisabled(!checked);
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_tecnologia_utilizada_fd')).getEl(),
-                title: 'Titulo topla_tecnologia_utilizada_fd',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_tecnologia_utilizada_fd',
-                trackMouse: true
-            });
         }
     }
 }
@@ -216,18 +143,7 @@ var topla_filtracion_directa_mr = {
     items: [{
         name: 'topla_filtracion_directa_mr',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_filtracion_directa_mr')).getEl(),
-                title: 'Titulo topla_filtracion_directa_mr',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_filtracion_directa_mr',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_filtracion_directa_flh = {
@@ -240,18 +156,7 @@ var topla_filtracion_directa_flh = {
     items: [{
         name: 'topla_filtracion_directa_flh',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_filtracion_directa_flh')).getEl(),
-                title: 'Titulo topla_filtracion_directa_flh',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_filtracion_directa_flh',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_filtracion_directa_flm = {
@@ -264,18 +169,7 @@ var topla_filtracion_directa_flm = {
     items: [{
         name: 'topla_filtracion_directa_flm',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_filtracion_directa_flm')).getEl(),
-                title: 'Titulo topla_filtracion_directa_flm',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_filtracion_directa_flm',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_filtracion_directa_fr = {
@@ -289,18 +183,7 @@ var topla_filtracion_directa_fr = {
         name: 'topla_filtracion_directa_fr',
         inputValue: 1,
         hiddenLabel: true
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_filtracion_directa_fr')).getEl(),
-                title: 'Titulo topla_filtracion_directa_fr',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_filtracion_directa_fr',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_tecnologia_utilizada_pc = {
@@ -312,18 +195,7 @@ var topla_tecnologia_utilizada_pc = {
     items: [{
         name: 'topla_tecnologia_utilizada_pc',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_tecnologia_utilizada_pc')).getEl(),
-                title: 'Titulo topla_tecnologia_utilizada_pc',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_tecnologia_utilizada_pc',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var acu_plantatratamiento_datastore = new Ext.data.Store({

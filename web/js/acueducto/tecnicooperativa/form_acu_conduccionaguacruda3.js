@@ -57,15 +57,6 @@ var tolc_otro = {
             var textfield = Ext.getCmp('tolc_otro_otro3_diametro').setDisabled(!checked);
             var textfield = Ext.getCmp('tolc_otro_otro3_edad').setDisabled(!checked);
             var textfield = Ext.getCmp('tolc_otro_otro3_nombre').setDisabled(!checked);
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_otro')).getEl(),
-                title: 'Titulo tolc_otro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_otro',
-                trackMouse: true
-            });
         }
     }
 }
@@ -80,18 +71,7 @@ var tolc_otro_tipo_nombre = {
     name: "tolc_otro_tipo_nombre",
     allowBlank: false,
     hideLabel: true,
-    fieldLabel: 'Otro tipo',
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_otro_tipo_nombre')).getEl(),
-                title: 'Titulo tolc_otro_tipo_nombre',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_otro_tipo_nombre',
-                trackMouse: true
-            });
-        }
-    }
+    fieldLabel: 'Otro tipo'
 }
 
 var tolc_otro_otro1_longitud = {
@@ -104,18 +84,7 @@ var tolc_otro_otro1_longitud = {
     name: "tolc_otro_otro1_longitud",
     fieldLabel: "En otro1",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_otro_otro1_longitud')).getEl(),
-                title: 'Titulo tolc_otro_otro1_longitud',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_otro_otro1_longitud',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_otro_otro1_diametro = {
@@ -128,18 +97,7 @@ var tolc_otro_otro1_diametro = {
     name: "tolc_otro_otro1_diametro",
     fieldLabel: "En otro1",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_otro_otro1_diametro')).getEl(),
-                title: 'Titulo tolc_otro_otro1_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_otro_otro1_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_otro_otro1_edad = {
@@ -155,18 +113,7 @@ var tolc_otro_otro1_edad = {
     name: "tolc_otro_otro1_edad",
     fieldLabel: "En otro1",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_otro_otro1_edad')).getEl(),
-                title: 'Titulo tolc_otro_otro1_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_otro_otro1_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_otro_otro1_nombre = {
@@ -178,18 +125,7 @@ var tolc_otro_otro1_nombre = {
     id: "tolc_otro_otro1_nombre",
     name: "tolc_otro_otro1_nombre",
     hideLabel: true,
-    fieldLabel: 'Otro tipo',
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_otro_otro1_nombre')).getEl(),
-                title: 'Titulo tolc_otro_otro1_nombre',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_otro_otro1_nombre',
-                trackMouse: true
-            });
-        }
-    }
+    fieldLabel: 'Otro tipo'
 }
 
 var tolc_otro_otro2_longitud = {
@@ -202,18 +138,7 @@ var tolc_otro_otro2_longitud = {
     name: "tolc_otro_otro2_longitud",
     fieldLabel: "En otro2",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_otro_otro2_longitud')).getEl(),
-                title: 'Titulo tolc_otro_otro2_longitud',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_otro_otro2_longitud',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_otro_otro2_diametro = {
@@ -226,18 +151,7 @@ var tolc_otro_otro2_diametro = {
     name: "tolc_otro_otro2_diametro",
     fieldLabel: "En otro2",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_otro_otro2_diametro')).getEl(),
-                title: 'Titulo tolc_otro_otro2_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_otro_otro2_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_otro_otro2_edad = {
@@ -253,18 +167,7 @@ var tolc_otro_otro2_edad = {
     name: "tolc_otro_otro2_edad",
     fieldLabel: "En otro2",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_otro_otro2_edad')).getEl(),
-                title: 'Titulo tolc_otro_otro2_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_otro_otro2_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_otro_otro2_nombre = {
@@ -276,18 +179,7 @@ var tolc_otro_otro2_nombre = {
     id: "tolc_otro_otro2_nombre",
     name: "tolc_otro_otro2_nombre",
     hideLabel: true,
-    fieldLabel: 'Otro tipo',
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_otro_otro2_nombre')).getEl(),
-                title: 'Titulo tolc_otro_otro2_nombre',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_otro_otro2_nombre',
-                trackMouse: true
-            });
-        }
-    }
+    fieldLabel: 'Otro tipo'
 }
 
 var tolc_otro_otro3_longitud = {
@@ -300,18 +192,7 @@ var tolc_otro_otro3_longitud = {
     name: "tolc_otro_otro3_longitud",
     fieldLabel: "En otro3",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_otro_otro3_longitud')).getEl(),
-                title: 'Titulo tolc_otro_otro3_longitud',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_otro_otro3_longitud',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_otro_otro3_diametro = {
@@ -324,18 +205,7 @@ var tolc_otro_otro3_diametro = {
     name: "tolc_otro_otro3_diametro",
     fieldLabel: "En otro3",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_otro_otro3_diametro')).getEl(),
-                title: 'Titulo tolc_otro_otro3_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_otro_otro3_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_otro_otro3_edad = {
@@ -351,18 +221,7 @@ var tolc_otro_otro3_edad = {
     name: "tolc_otro_otro3_edad",
     fieldLabel: "En otro3",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_otro_otro3_edad')).getEl(),
-                title: 'Titulo tolc_otro_otro3_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_otro_otro3_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tolc_otro_otro3_nombre = {
@@ -374,18 +233,7 @@ var tolc_otro_otro3_nombre = {
     id: "tolc_otro_otro3_nombre",
     name: "tolc_otro_otro3_nombre",
     hideLabel: true,
-    fieldLabel: 'Otro tipo',
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tolc_otro_otro3_nombre')).getEl(),
-                title: 'Titulo tolc_otro_otro3_nombre',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tolc_otro_otro3_nombre',
-                trackMouse: true
-            });
-        }
-    }
+    fieldLabel: 'Otro tipo'
 }
 
 var acu_conduccionaguacruda3_datastore = new Ext.data.Store({

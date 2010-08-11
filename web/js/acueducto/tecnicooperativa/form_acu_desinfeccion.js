@@ -42,15 +42,6 @@ var toda_desinfeccion = {
             Ext.getCmp('toda_desinfeccion_ozonacion').setDisabled(!checked);
             Ext.getCmp('toda_desinfeccion_rayos_ultravioleta').setDisabled(!checked);
             Ext.getCmp('toda_desinfeccion_dioxido_cloro').setDisabled(!checked);
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toda_desinfeccion')).getEl(),
-                title: 'Titulo toda_desinfeccion',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toda_desinfeccion',
-                trackMouse: true
-            });
         }
     }
 }
@@ -65,18 +56,7 @@ var toda_desinfeccion_cloro = {
     items: [{
         name: 'toda_desinfeccion_cloro',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toda_desinfeccion_cloro')).getEl(),
-                title: 'Titulo toda_desinfeccion_cloro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toda_desinfeccion_cloro',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 
@@ -90,18 +70,7 @@ var toda_desinfeccion_hipoclorito_sodio = {
     items: [{
         name: 'toda_desinfeccion_hipoclorito_sodio',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toda_desinfeccion_hipoclorito_sodio')).getEl(),
-                title: 'Titulo toda_desinfeccion_hipoclorito_sodio',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toda_desinfeccion_hipoclorito_sodio',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var toda_desinfeccion_hipoclorito_calcio = {
@@ -114,18 +83,7 @@ var toda_desinfeccion_hipoclorito_calcio = {
     items: [{
         name: 'toda_desinfeccion_hipoclorito_calcio',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toda_desinfeccion_hipoclorito_calcio')).getEl(),
-                title: 'Titulo toda_desinfeccion_hipoclorito_calcio',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toda_desinfeccion_hipoclorito_calcio',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var toda_desinfeccion_ozonacion = {
@@ -138,18 +96,7 @@ var toda_desinfeccion_ozonacion = {
     items: [{
         name: 'toda_desinfeccion_ozonacion',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toda_desinfeccion_ozonacion')).getEl(),
-                title: 'Titulo toda_desinfeccion_ozonacion',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toda_desinfeccion_ozonacion',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var toda_desinfeccion_rayos_ultravioleta = {
@@ -162,18 +109,7 @@ var toda_desinfeccion_rayos_ultravioleta = {
     items: [{
         name: 'toda_desinfeccion_rayos_ultravioleta',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toda_desinfeccion_rayos_ultravioleta')).getEl(),
-                title: 'Titulo toda_desinfeccion_rayos_ultravioleta',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toda_desinfeccion_rayos_ultravioleta',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var toda_desinfeccion_dioxido_cloro = {
@@ -186,18 +122,7 @@ var toda_desinfeccion_dioxido_cloro = {
     items: [{
         name: 'toda_desinfeccion_dioxido_cloro',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toda_desinfeccion_dioxido_cloro')).getEl(),
-                title: 'Titulo toda_desinfeccion_dioxido_cloro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toda_desinfeccion_dioxido_cloro',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var acu_desinfeccion_datastore = new Ext.data.Store({

@@ -27,18 +27,7 @@ var toa_gravedad_sin_tratamiento = {
     id: "toa_gravedad_sin_tratamiento",
     name: "toa_gravedad_sin_tratamiento",
     fieldLabel: "Gravedad sin tratamiento",
-    inputValue: 1,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toa_gravedad_sin_tratamiento')).getEl(),
-                title: 'Titulo toa_gravedad_sin_tratamiento',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toa_gravedad_sin_tratamiento',
-                trackMouse: true
-            });
-        }
-    }
+    inputValue: 1
 }
 
 
@@ -48,18 +37,7 @@ var toa_bombeo_sin_tratamiento = {
     id: "toa_bombeo_sin_tratamiento",
     name: "toa_bombeo_sin_tratamiento",
     fieldLabel: "Bombeo sin tratamiento",
-    inputValue: 1,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toa_bombeo_sin_tratamiento')).getEl(),
-                title: 'Titulo toa_bombeo_sin_tratamiento',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toa_bombeo_sin_tratamiento',
-                trackMouse: true
-            });
-        }
-    }
+    inputValue: 1
 }
 
 
@@ -69,18 +47,7 @@ var toa_gravedad_con_tratamiento = {
     id: "toa_gravedad_con_tratamiento",
     name: "toa_gravedad_con_tratamiento",
     fieldLabel: "Gravedad con tratamiento",
-    inputValue: 1,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toa_gravedad_con_tratamiento')).getEl(),
-                title: 'Titulo toa_gravedad_con_tratamiento',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toa_gravedad_con_tratamiento',
-                trackMouse: true
-            });
-        }
-    }
+    inputValue: 1
 }
 
 
@@ -90,18 +57,7 @@ var toa_bombeo_con_tratamiento = {
     id: "toa_bombeo_con_tratamiento",
     name: "toa_bombeo_con_tratamiento",
     fieldLabel: "Bombeo con tratamiento",
-    inputValue: 1,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toa_bombeo_con_tratamiento')).getEl(),
-                title: 'Titulo toa_bombeo_con_tratamiento',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toa_bombeo_con_tratamiento',
-                trackMouse: true
-            });
-        }
-    }
+    inputValue: 1
 }
 
 
@@ -111,18 +67,7 @@ var toa_gravedad_bombeo_sin_tratamiento = {
     id: "toa_gravedad_bombeo_sin_tratamiento",
     name: "toa_gravedad_bombeo_sin_tratamiento",
     fieldLabel: "Gravedad y bombeo sin tratamiento",
-    inputValue: 1,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toa_gravedad_bombeo_sin_tratamiento')).getEl(),
-                title: 'Titulo toa_gravedad_bombeo_sin_tratamiento',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toa_gravedad_bombeo_sin_tratamiento',
-                trackMouse: true
-            });
-        }
-    }
+    inputValue: 1
 }
 
 var toa_gravedad_bombeo_con_tratamiento = {
@@ -131,18 +76,7 @@ var toa_gravedad_bombeo_con_tratamiento = {
     id: "toa_gravedad_bombeo_con_tratamiento",
     name: "toa_gravedad_bombeo_con_tratamiento",
     fieldLabel: "Gravedad y bombeo con tratamiento",
-    inputValue: 1,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toa_gravedad_bombeo_con_tratamiento')).getEl(),
-                title: 'Titulo toa_gravedad_bombeo_con_tratamiento',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toa_gravedad_bombeo_con_tratamiento',
-                trackMouse: true
-            });
-        }
-    }
+    inputValue: 1
 }
 
 var toa_gravedad_sin_tratamiento_bombeo_con_tratamiento = {
@@ -151,18 +85,7 @@ var toa_gravedad_sin_tratamiento_bombeo_con_tratamiento = {
     id: "toa_gravedad_sin_tratamiento_bombeo_con_tratamiento",
     name: "toa_gravedad_sin_tratamiento_bombeo_con_tratamiento",
     fieldLabel: "Gravedad sin tratamiento y bombeo con tratamiento",
-    inputValue: 1,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toa_gravedad_sin_tratamiento_bombeo_con_tratamiento')).getEl(),
-                title: 'Titulo toa_gravedad_sin_tratamiento_bombeo_con_tratamiento',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toa_gravedad_sin_tratamiento_bombeo_con_tratamiento',
-                trackMouse: true
-            });
-        }
-    }
+    inputValue: 1
 }
 
 var toa_gravedad_con_tratamiento_bombeo_sin_tratamiento = {
@@ -171,18 +94,7 @@ var toa_gravedad_con_tratamiento_bombeo_sin_tratamiento = {
     id: "toa_gravedad_con_tratamiento_bombeo_sin_tratamiento",
     name: "toa_gravedad_con_tratamiento_bombeo_sin_tratamiento",
     fieldLabel: "Gravedad con tratamiento y bombeo sin tratamiento",
-    inputValue: 1,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toa_gravedad_con_tratamiento_bombeo_sin_tratamiento')).getEl(),
-                title: 'Titulo toa_gravedad_con_tratamiento_bombeo_sin_tratamiento',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toa_gravedad_con_tratamiento_bombeo_sin_tratamiento',
-                trackMouse: true
-            });
-        }
-    }
+    inputValue: 1
 }
 
 var toa_cantidad_agua_distribuida_por_ano = {
@@ -195,18 +107,7 @@ var toa_cantidad_agua_distribuida_por_ano = {
     name: "toa_cantidad_agua_distribuida_por_ano",
     fieldLabel: "Cantidad de agua distribuida por año(M<sup>3</sup>)",
     allowBlank: false,
-    value: 0,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toa_cantidad_agua_distribuida_por_ano')).getEl(),
-                title: 'Titulo toa_cantidad_agua_distribuida_por_ano',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toa_cantidad_agua_distribuida_por_ano',
-                trackMouse: true
-            });
-        }
-    }
+    value: 0
 }
 
 var toa_solucion_acarreo = {
@@ -221,15 +122,6 @@ var toa_solucion_acarreo = {
             var textfield = Ext.getCmp('toa_solucion_acarreo_viviendas');
             textfield.setDisabled(!checked);
             textfield.focus();
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toa_solucion_acarreo')).getEl(),
-                title: 'Titulo toa_solucion_acarreo',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toa_solucion_acarreo',
-                trackMouse: true
-            });
         }
     }
 }
@@ -246,18 +138,7 @@ var toa_solucion_acarreo_viviendas = {
     fieldLabel: "Número de viviendas",
     allowBlank: false,
     disabled: true,
-    value: 0,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toa_solucion_acarreo_viviendas')).getEl(),
-                title: 'Titulo toa_solucion_acarreo_viviendas',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toa_solucion_acarreo_viviendas',
-                trackMouse: true
-            });
-        }
-    }
+    value: 0
 }
 
 var toa_solucion_nacimiento = {
@@ -272,15 +153,6 @@ var toa_solucion_nacimiento = {
             var textfield = Ext.getCmp('toa_solucion_nacimiento_viviendas');
             textfield.setDisabled(!checked);
             textfield.focus();
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toa_solucion_nacimiento')).getEl(),
-                title: 'Titulo toa_solucion_nacimiento',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toa_solucion_nacimiento',
-                trackMouse: true
-            });
         }
     }
 }
@@ -297,18 +169,7 @@ var toa_solucion_nacimiento_viviendas = {
     fieldLabel: "Número de viviendas",
     allowBlank: false,
     disabled: true,
-    value: 0,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toa_solucion_nacimiento_viviendas')).getEl(),
-                title: 'Titulo toa_solucion_nacimiento_viviendas',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toa_solucion_nacimiento_viviendas',
-                trackMouse: true
-            });
-        }
-    }
+    value: 0
 }
 
 var toa_solucion_aljibe = {
@@ -323,15 +184,6 @@ var toa_solucion_aljibe = {
             var textfield = Ext.getCmp('toa_solucion_aljibe_viviendas');
             textfield.setDisabled(!checked);
             textfield.focus();
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toa_solucion_aljibe')).getEl(),
-                title: 'Titulo toa_solucion_aljibe',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toa_solucion_aljibe',
-                trackMouse: true
-            });
         }
     }
 }
@@ -348,18 +200,7 @@ var toa_solucion_aljibe_viviendas = {
     fieldLabel: "Número de viviendas",
     allowBlank: false,
     disabled: true,
-    value: 0,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toa_solucion_aljibe_viviendas')).getEl(),
-                title: 'Titulo toa_solucion_aljibe_viviendas',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toa_solucion_aljibe_viviendas',
-                trackMouse: true
-            });
-        }
-    }
+    value: 0
 }
 
 var toa_solucion_agua_lluvia = {
@@ -374,15 +215,6 @@ var toa_solucion_agua_lluvia = {
             var textfield = Ext.getCmp('toa_solucion_agua_lluvia_viviendas');
             textfield.setDisabled(!checked);
             textfield.focus();
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toa_solucion_agua_lluvia')).getEl(),
-                title: 'Titulo toa_solucion_agua_lluvia',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toa_solucion_agua_lluvia',
-                trackMouse: true
-            });
         }
     }
 }
@@ -399,18 +231,7 @@ var toa_solucion_agua_lluvia_viviendas = {
     fieldLabel: "Número de viviendas",
     allowBlank: false,
     disabled: true,
-    value: 0,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toa_solucion_agua_lluvia_viviendas')).getEl(),
-                title: 'Titulo toa_solucion_agua_lluvia_viviendas',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toa_solucion_agua_lluvia_viviendas',
-                trackMouse: true
-            });
-        }
-    }
+    value: 0
 }
 
 var toa_solucion_otro = {
@@ -427,15 +248,6 @@ var toa_solucion_otro = {
             textfield.focus();
             var textfield = Ext.getCmp('toa_solucion_otro_viviendas');
             textfield.setDisabled(!checked);
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toa_solucion_otro')).getEl(),
-                title: 'Titulo toa_solucion_otro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toa_solucion_otro',
-                trackMouse: true
-            });
         }
     }
 }
@@ -449,18 +261,7 @@ var toa_solucion_otro_cual = {
     fieldLabel: "¿Cual?",
     allowBlank: false,
     disabled: true,
-    value: 0,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toa_solucion_otro_cual')).getEl(),
-                title: 'Titulo toa_solucion_otro_cual',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toa_solucion_otro_cual',
-                trackMouse: true
-            });
-        }
-    }
+    value: 0
 }
 
 var toa_solucion_otro_viviendas = {
@@ -475,18 +276,7 @@ var toa_solucion_otro_viviendas = {
     fieldLabel: "Número de viviendas",
     allowBlank: false,
     disabled: true,
-    value: 0,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('toa_solucion_otro_viviendas')).getEl(),
-                title: 'Titulo toa_solucion_otro_viviendas',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para toa_solucion_otro_viviendas',
-                trackMouse: true
-            });
-        }
-    }
+    value: 0
 }
 
 sistemasabastecimiento_form.add({

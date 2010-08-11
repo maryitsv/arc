@@ -8,10 +8,6 @@ var tecnicooperativacomponentessistema_form = new Ext.form.FormPanel({
     buttons: [{
         text: 'Atrás',
         handler: function(){
-            //            tecnicooperativacomponentessistema_form.getForm().submit({
-            //                url: getAbsoluteUrl('acueducto_componentessistema', 'subirDatos'),
-            //                clientValidation: false
-            //            });
             submit({
                 form: tecnicooperativacomponentessistema_form,
                 url: getAbsoluteUrl('acueducto_componentessistema', 'subirDatos'),
@@ -19,15 +15,10 @@ var tecnicooperativacomponentessistema_form = new Ext.form.FormPanel({
                     tecnicooperativa_acueducto_tabpanel.setActiveTab(0);
                 }
             });
-            //            tecnicooperativa_acueducto_tabpanel.setActiveTab(0);
         }
     }, {
         text: 'Siguiente',
         handler: function(){
-            //            tecnicooperativacomponentessistema_form.getForm().submit({
-            //                url: getAbsoluteUrl('acueducto_componentessistema', 'subirDatos'),
-            //                clientValidation: false
-            //            });
             submit({
                 form: tecnicooperativacomponentessistema_form,
                 url: getAbsoluteUrl('acueducto_componentessistema', 'subirDatos'),
@@ -35,7 +26,6 @@ var tecnicooperativacomponentessistema_form = new Ext.form.FormPanel({
                     tecnicooperativa_acueducto_tabpanel.setActiveTab(2);
                 }
             });
-            //            tecnicooperativa_acueducto_tabpanel.setActiveTab(2);
         }
     }]
 });
@@ -57,15 +47,6 @@ var tocs_captacion = {
             var textfield = Ext.getCmp('tocs_captacion_cantidad');
             textfield.setDisabled(!checked);
             textfield.focus();
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tocs_captacion')).getEl(),
-                title: 'Titulo tocs_captacion',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tocs_captacion',
-                trackMouse: true
-            });
         }
     }
 }
@@ -82,18 +63,7 @@ var tocs_captacion_cantidad = {
     id: "tocs_captacion_cantidad",
     name: "tocs_captacion_cantidad",
     fieldLabel: "Cantidad",
-    allowBlank: false,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tocs_captacion_cantidad')).getEl(),
-                title: 'Titulo tocs_captacion_cantidad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tocs_captacion_cantidad',
-                trackMouse: true
-            });
-        }
-    }
+    allowBlank: false
 }
 
 var tocs_aduccion = {
@@ -113,15 +83,6 @@ var tocs_aduccion = {
             var textfield = Ext.getCmp('tocs_aduccion_cantidad');
             textfield.setDisabled(!checked);
             textfield.focus();
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tocs_aduccion')).getEl(),
-                title: 'Titulo tocs_aduccion',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tocs_aduccion',
-                trackMouse: true
-            });
         }
     }
 }
@@ -138,18 +99,7 @@ var tocs_aduccion_cantidad = {
     id: "tocs_aduccion_cantidad",
     name: "tocs_aduccion_cantidad",
     fieldLabel: "Cantidad",
-    allowBlank: false,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tocs_aduccion_cantidad')).getEl(),
-                title: 'Titulo tocs_aduccion_cantidad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tocs_aduccion_cantidad',
-                trackMouse: true
-            });
-        }
-    }
+    allowBlank: false
 }
 
 var tocs_desarenador = {
@@ -169,15 +119,6 @@ var tocs_desarenador = {
             var textfield = Ext.getCmp('tocs_desarenador_cantidad');
             textfield.setDisabled(!checked);
             textfield.focus();
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tocs_desarenador')).getEl(),
-                title: 'Titulo tocs_desarenador',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tocs_desarenador',
-                trackMouse: true
-            });
         }
     }
 }
@@ -194,18 +135,7 @@ var tocs_desarenador_cantidad = {
     id: "tocs_desarenador_cantidad",
     name: "tocs_desarenador_cantidad",
     fieldLabel: "Cantidad",
-    allowBlank: false,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tocs_desarenador_cantidad')).getEl(),
-                title: 'Titulo tocs_desarenador_cantidad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tocs_desarenador_cantidad',
-                trackMouse: true
-            });
-        }
-    }
+    allowBlank: false
 }
 
 var tocs_conduccion_agua_cruda = {
@@ -225,15 +155,6 @@ var tocs_conduccion_agua_cruda = {
             var textfield = Ext.getCmp('tocs_conduccion_agua_cruda_cantidad');
             textfield.setDisabled(!checked);
             textfield.focus();
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tocs_conduccion_agua_cruda')).getEl(),
-                title: 'Titulo tocs_conduccion_agua_cruda',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tocs_conduccion_agua_cruda',
-                trackMouse: true
-            });
         }
     }
 }
@@ -250,18 +171,7 @@ var tocs_conduccion_agua_cruda_cantidad = {
     id: "tocs_conduccion_agua_cruda_cantidad",
     name: "tocs_conduccion_agua_cruda_cantidad",
     fieldLabel: "Cantidad",
-    allowBlank: false,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tocs_conduccion_agua_cruda_cantidad')).getEl(),
-                title: 'Titulo tocs_conduccion_agua_cruda_cantidad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tocs_conduccion_agua_cruda_cantidad',
-                trackMouse: true
-            });
-        }
-    }
+    allowBlank: false
 }
 
 var tocs_planta_tratamiento = {
@@ -281,15 +191,6 @@ var tocs_planta_tratamiento = {
             var textfield = Ext.getCmp('tocs_planta_tratamiento_cantidad');
             textfield.setDisabled(!checked);
             textfield.focus();
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tocs_planta_tratamiento')).getEl(),
-                title: 'Titulo tocs_planta_tratamiento',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tocs_planta_tratamiento',
-                trackMouse: true
-            });
         }
     }
 }
@@ -306,18 +207,7 @@ var tocs_planta_tratamiento_cantidad = {
     id: "tocs_planta_tratamiento_cantidad",
     name: "tocs_planta_tratamiento_cantidad",
     fieldLabel: "Cantidad",
-    allowBlank: false,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tocs_planta_tratamiento_cantidad')).getEl(),
-                title: 'Titulo tocs_planta_tratamiento_cantidad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tocs_planta_tratamiento_cantidad',
-                trackMouse: true
-            });
-        }
-    }
+    allowBlank: false
 }
 
 var tocs_desinfeccion = {
@@ -337,15 +227,6 @@ var tocs_desinfeccion = {
             var textfield = Ext.getCmp('tocs_desinfeccion_cantidad');
             textfield.setDisabled(!checked);
             textfield.focus();
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tocs_desinfeccion')).getEl(),
-                title: 'Titulo tocs_desinfeccion',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tocs_desinfeccion',
-                trackMouse: true
-            });
         }
     }
 }
@@ -362,18 +243,7 @@ var tocs_desinfeccion_cantidad = {
     id: "tocs_desinfeccion_cantidad",
     name: "tocs_desinfeccion_cantidad",
     fieldLabel: "Cantidad",
-    allowBlank: false,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tocs_desinfeccion_cantidad')).getEl(),
-                title: 'Titulo tocs_desinfeccion_cantidad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tocs_desinfeccion_cantidad',
-                trackMouse: true
-            });
-        }
-    }
+    allowBlank: false
 }
 
 var tocs_tanque_almacenamiento = {
@@ -393,15 +263,6 @@ var tocs_tanque_almacenamiento = {
             var textfield = Ext.getCmp('tocs_tanque_almacenamiento_cantidad');
             textfield.setDisabled(!checked);
             textfield.focus();
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tocs_tanque_almacenamiento')).getEl(),
-                title: 'Titulo tocs_tanque_almacenamiento',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tocs_tanque_almacenamiento',
-                trackMouse: true
-            });
         }
     }
 }
@@ -418,18 +279,7 @@ var tocs_tanque_almacenamiento_cantidad = {
     id: "tocs_tanque_almacenamiento_cantidad",
     name: "tocs_tanque_almacenamiento_cantidad",
     fieldLabel: "Cantidad",
-    allowBlank: false,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tocs_tanque_almacenamiento_cantidad')).getEl(),
-                title: 'Titulo tocs_tanque_almacenamiento_cantidad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tocs_tanque_almacenamiento_cantidad',
-                trackMouse: true
-            });
-        }
-    }
+    allowBlank: false
 }
 
 var tocs_conduccion_agua_tratada = {
@@ -449,15 +299,6 @@ var tocs_conduccion_agua_tratada = {
             var textfield = Ext.getCmp('tocs_conduccion_agua_tratada_cantidad');
             textfield.setDisabled(!checked);
             textfield.focus();
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tocs_conduccion_agua_tratada')).getEl(),
-                title: 'Titulo tocs_conduccion_agua_tratada',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tocs_conduccion_agua_tratada',
-                trackMouse: true
-            });
         }
     }
 }
@@ -475,18 +316,7 @@ var tocs_conduccion_agua_tratada_cantidad = {
     id: "tocs_conduccion_agua_tratada_cantidad",
     name: "tocs_conduccion_agua_tratada_cantidad",
     fieldLabel: "Cantidad",
-    allowBlank: false,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tocs_conduccion_agua_tratada_cantidad')).getEl(),
-                title: 'Titulo tocs_conduccion_agua_tratada_cantidad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tocs_conduccion_agua_tratada_cantidad',
-                trackMouse: true
-            });
-        }
-    }
+    allowBlank: false
 }
 
 var tocs_red_distribucion = {
@@ -506,15 +336,6 @@ var tocs_red_distribucion = {
             var textfield = Ext.getCmp('tocs_red_distribucion_cantidad');
             textfield.setDisabled(!checked);
             textfield.focus();
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tocs_red_distribucion')).getEl(),
-                title: 'Titulo tocs_red_distribucion',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tocs_red_distribucion',
-                trackMouse: true
-            });
         }
     }
 }
@@ -531,18 +352,7 @@ var tocs_red_distribucion_cantidad = {
     id: "tocs_red_distribucion_cantidad",
     name: "tocs_red_distribucion_cantidad",
     fieldLabel: "Cantidad",
-    allowBlank: false,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tocs_red_distribucion_cantidad')).getEl(),
-                title: 'Titulo tocs_red_distribucion_cantidad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tocs_red_distribucion_cantidad',
-                trackMouse: true
-            });
-        }
-    }
+    allowBlank: false
 }
 
 var acu_componentessistema_datastore = new Ext.data.Store({

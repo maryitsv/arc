@@ -36,18 +36,7 @@ var topla_tecnologia_utilizada_ct = {
     items: [{
         name: 'topla_tecnologia_utilizada_ct',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_tecnologia_utilizada_ct')).getEl(),
-                title: 'Titulo topla_tecnologia_utilizada_ct',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_tecnologia_utilizada_ct',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_planta_ttmto_funciona = {
@@ -66,18 +55,7 @@ var topla_planta_ttmto_funciona = {
         boxLabel: 'No',
         inputValue: 0,
         checked: true
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_planta_ttmto_funciona')).getEl(),
-                title: 'Titulo topla_planta_ttmto_funciona',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_planta_ttmto_funciona',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_estructuras_medicion_cau = {
@@ -96,18 +74,7 @@ var topla_estructuras_medicion_cau = {
         boxLabel: 'No',
         inputValue: 0,
         checked: true
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_estructuras_medicion_cau')).getEl(),
-                title: 'Titulo topla_estructuras_medicion_cau',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_estructuras_medicion_cau',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_menor_caudal_operacion_diseno = {
@@ -126,18 +93,7 @@ var topla_menor_caudal_operacion_diseno = {
         boxLabel: 'No',
         inputValue: 0,
         checked: true
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_menor_caudal_operacion_diseno')).getEl(),
-                title: 'Titulo topla_menor_caudal_operacion_diseno',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_menor_caudal_operacion_diseno',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var acu_plantatratamiento_datastore3 = new Ext.data.Store({

@@ -1,0 +1,30 @@
+asignarTooltip('topla_tecnologia_utilizada_cc', 'Ciclo completo');
+asignarTooltip('topla_ciclo_completo_mr', 'Coagulación y mezcla rápida(MR)');
+asignarTooltip('topla_ciclo_completo_flh', 'Floculación hidraúlica(FLH)');
+asignarTooltip('topla_ciclo_completo_flm', 'Floculación mecánica(FLM)');
+asignarTooltip('topla_ciclo_completo_sd', 'Sedimentación(SD)');
+asignarTooltip('topla_ciclo_completo_fr', 'Filtración rápida(FR)');
+asignarTooltip('topla_tecnologia_utilizada_fd', 'Filtración directa');
+asignarTooltip('topla_filtracion_directa_mr', 'Coagulación y mezcla rápida(MR)');
+asignarTooltip('topla_filtracion_directa_flh', 'Floculación hidraúlica(FLH)');
+asignarTooltip('topla_filtracion_directa_flm', 'Floculación mecánica(FLM)');
+asignarTooltip('topla_filtracion_directa_fr', 'Filtración rápida(FR)');
+asignarTooltip('topla_tecnologia_utilizada_pc', 'Planta compacta');
+
+asignarTooltip('topla_tecnologia_utilizada_fime', 'Filtración en múltiples etapas(FiME)');
+asignarTooltip('topla_fime_fgdi', 'Filtro grueso dinámico(FGDi)');
+asignarTooltip('topla_fime_fgac', 'Filtro grueso ascendente en capas(FGAC)');
+asignarTooltip('topla_fime_fgas2', 'Filtro grueso ascendente en serie de 2 etapas(FGAS2)');
+asignarTooltip('topla_fime_fgas3', 'Filtro grueso ascendente en serie de 3 etapas(FGAS3)');
+asignarTooltip('topla_fime_fla', 'Filtración lenta en arena(FLA)');
+asignarTooltip('topla_tecnologia_utilizada_rhm', 'Remoción de hierro y manganeso');
+asignarTooltip('topla_rhm_bandejas_cascadas', 'Bandejas o cascadas');
+asignarTooltip('topla_rhm_aspersores', 'Aspersores');
+asignarTooltip('topla_rhm_sd', 'Sedimentación(SD)');
+asignarTooltip('topla_rhm_fr', 'Filtración rápida(FR)');
+asignarTooltip('topla_rhm_fime', 'Filtración en múltiples etapas(FIME)');
+
+asignarTooltip('topla_tecnologia_utilizada_ct', 'Combinación de tecnologías');
+asignarTooltip('topla_planta_ttmto_funciona', '¿Está funcionando la planta de tratamiento?');
+asignarTooltip('topla_estructuras_medicion_cau', '¿Hay estructuras de medición de caudal funcionando?');
+asignarTooltip('topla_menor_caudal_operacion_diseno', '¿El caudal de operación es menor que el caudal de diseño?');

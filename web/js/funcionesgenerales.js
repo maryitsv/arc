@@ -55,9 +55,9 @@ function subirDatos(panel, url_Action, extraParams, funcionSuccess, funcionFailu
         success: function(response, action){
             obj = Ext.util.JSON.decode(action.response.responseText);
             salida = true;
-			if(funcionSuccess != null){
-				funcionSuccess();
-			}
+            if (funcionSuccess != null) {
+                funcionSuccess();
+            }
             mostrarMensajeRapido('Aviso', obj.mensaje);
         },
         failure: function(form, action, response){
@@ -65,9 +65,9 @@ function subirDatos(panel, url_Action, extraParams, funcionSuccess, funcionFailu
                 obj = Ext.util.JSON.decode(action.response.responseText);
                 mostrarMensajeConfirmacion('Error', obj.errors.reason);
             }
-			if(funcionFailure != null){
-				funcionFailure();
-			}
+            if (funcionFailure != null) {
+                funcionFailure();
+            }
         }
     });
 }
@@ -148,5 +148,15 @@ function submit(params){
                 alert('Error en los datos digitados');
             }
         }
+    });
+}
+
+function asignarTooltip(id, mensaje){
+    new Ext.ToolTip({
+        target: (Ext.getCmp(id)).getEl(),
+        title: 'Ayuda rápida',
+        anchor: 'top',
+        html: mensaje,
+        trackMouse: true
     });
 }

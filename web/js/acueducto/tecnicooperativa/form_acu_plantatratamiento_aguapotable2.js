@@ -46,15 +46,6 @@ var topla_tecnologia_utilizada_fime = {
             Ext.getCmp('topla_fime_fgas2').setDisabled(!checked);
             Ext.getCmp('topla_fime_fgas3').setDisabled(!checked);
             Ext.getCmp('topla_fime_fla').setDisabled(!checked);
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_tecnologia_utilizada_fime')).getEl(),
-                title: 'Titulo topla_tecnologia_utilizada_fime',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_tecnologia_utilizada_fime',
-                trackMouse: true
-            });
         }
     }
 }
@@ -69,18 +60,7 @@ var topla_fime_fgdi = {
     items: [{
         name: 'topla_fime_fgdi',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_fime_fgdi')).getEl(),
-                title: 'Titulo topla_fime_fgdi',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_fime_fgdi',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_fime_fgac = {
@@ -93,18 +73,7 @@ var topla_fime_fgac = {
     items: [{
         name: 'topla_fime_fgac',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_fime_fgac')).getEl(),
-                title: 'Titulo topla_fime_fgac',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_fime_fgac',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_fime_fgas2 = {
@@ -117,18 +86,7 @@ var topla_fime_fgas2 = {
     items: [{
         name: 'topla_fime_fgas2',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_fime_fgas2')).getEl(),
-                title: 'Titulo topla_fime_fgas2',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_fime_fgas2',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_fime_fgas3 = {
@@ -142,18 +100,7 @@ var topla_fime_fgas3 = {
     items: [{
         name: 'topla_fime_fgas3',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_fime_fgas3')).getEl(),
-                title: 'Titulo topla_fime_fgas3',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_fime_fgas3',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_fime_fla = {
@@ -167,18 +114,7 @@ var topla_fime_fla = {
         name: 'topla_fime_fla',
         inputValue: 1,
         hiddenLabel: true
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_fime_fla')).getEl(),
-                title: 'Titulo topla_fime_fla',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_fime_fla',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_tecnologia_utilizada_rhm = {
@@ -198,15 +134,6 @@ var topla_tecnologia_utilizada_rhm = {
             Ext.getCmp('topla_rhm_sd').setDisabled(!checked);
             Ext.getCmp('topla_rhm_fr').setDisabled(!checked);
             Ext.getCmp('topla_rhm_fime').setDisabled(!checked);
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_tecnologia_utilizada_rhm')).getEl(),
-                title: 'Titulo topla_tecnologia_utilizada_rhm',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_tecnologia_utilizada_rhm',
-                trackMouse: true
-            });
         }
     }
 }
@@ -221,18 +148,7 @@ var topla_rhm_bandejas_cascadas = {
     items: [{
         name: 'topla_rhm_bandejas_cascadas',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_rhm_bandejas_cascadas')).getEl(),
-                title: 'Titulo topla_rhm_bandejas_cascadas',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_rhm_bandejas_cascadas',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_rhm_aspersores = {
@@ -245,18 +161,7 @@ var topla_rhm_aspersores = {
     items: [{
         name: 'topla_rhm_aspersores',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_rhm_aspersores')).getEl(),
-                title: 'Titulo topla_rhm_aspersores',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_rhm_aspersores',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_rhm_sd = {
@@ -269,18 +174,7 @@ var topla_rhm_sd = {
     items: [{
         name: 'topla_rhm_sd',
         inputValue: 1
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_rhm_sd')).getEl(),
-                title: 'Titulo topla_rhm_sd',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_rhm_sd',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_rhm_fr = {
@@ -294,18 +188,7 @@ var topla_rhm_fr = {
         name: 'topla_rhm_fr',
         inputValue: 1,
         hiddenLabel: true
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_rhm_fr')).getEl(),
-                title: 'Titulo topla_rhm_fr',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_rhm_fr',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var topla_rhm_fime = {
@@ -319,18 +202,7 @@ var topla_rhm_fime = {
         name: 'topla_rhm_fime',
         inputValue: 1,
         hiddenLabel: true
-    }],
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('topla_rhm_fime')).getEl(),
-                title: 'Titulo topla_rhm_fime',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para topla_rhm_fime',
-                trackMouse: true
-            });
-        }
-    }
+    }]
 }
 
 var acu_plantatratamiento_datastore2 = new Ext.data.Store({

@@ -51,15 +51,6 @@ var tord_redes_primarias = {
             var textfield = Ext.getCmp('tord_redes_primarias_concreto_edad').setDisabled(!checked);
             var textfield = Ext.getCmp('tord_redes_primarias_pvc_diametro').setDisabled(!checked);
             var textfield = Ext.getCmp('tord_redes_primarias_pvc_edad').setDisabled(!checked);
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_primarias')).getEl(),
-                title: 'Titulo tord_redes_primarias',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_primarias',
-                trackMouse: true
-            });
         }
     }
 }
@@ -74,18 +65,7 @@ var tord_redes_primarias_asbesto_cemento_diametro = {
     name: "tord_redes_primarias_asbesto_cemento_diametro",
     fieldLabel: "En asbesto_cemento",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_primarias_asbesto_cemento_diametro')).getEl(),
-                title: 'Titulo tord_redes_primarias_asbesto_cemento_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_primarias_asbesto_cemento_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_redes_primarias_asbesto_cemento_edad = {
@@ -101,18 +81,7 @@ var tord_redes_primarias_asbesto_cemento_edad = {
     name: "tord_redes_primarias_asbesto_cemento_edad",
     fieldLabel: "En asbesto_cemento",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_primarias_asbesto_cemento_edad')).getEl(),
-                title: 'Titulo tord_redes_primarias_asbesto_cemento_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_primarias_asbesto_cemento_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_redes_primarias_hierro_ductil_diametro = {
@@ -125,18 +94,7 @@ var tord_redes_primarias_hierro_ductil_diametro = {
     name: "tord_redes_primarias_hierro_ductil_diametro",
     fieldLabel: "En hierro_ductil",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_primarias_hierro_ductil_diametro')).getEl(),
-                title: 'Titulo tord_redes_primarias_hierro_ductil_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_primarias_hierro_ductil_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_redes_primarias_hierro_ductil_edad = {
@@ -152,18 +110,7 @@ var tord_redes_primarias_hierro_ductil_edad = {
     name: "tord_redes_primarias_hierro_ductil_edad",
     fieldLabel: "En hierro_ductil",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_primarias_hierro_ductil_edad')).getEl(),
-                title: 'Titulo tord_redes_primarias_hierro_ductil_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_primarias_hierro_ductil_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_redes_primarias_concreto_diametro = {
@@ -176,18 +123,7 @@ var tord_redes_primarias_concreto_diametro = {
     name: "tord_redes_primarias_concreto_diametro",
     fieldLabel: "En concreto",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_primarias_concreto_diametro')).getEl(),
-                title: 'Titulo tord_redes_primarias_concreto_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_primarias_concreto_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_redes_primarias_concreto_edad = {
@@ -203,18 +139,7 @@ var tord_redes_primarias_concreto_edad = {
     name: "tord_redes_primarias_concreto_edad",
     fieldLabel: "En concreto",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_primarias_concreto_edad')).getEl(),
-                title: 'Titulo tord_redes_primarias_concreto_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_primarias_concreto_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_redes_primarias_pvc_diametro = {
@@ -227,18 +152,7 @@ var tord_redes_primarias_pvc_diametro = {
     name: "tord_redes_primarias_pvc_diametro",
     fieldLabel: "En pvc",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_primarias_pvc_diametro')).getEl(),
-                title: 'Titulo tord_redes_primarias_pvc_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_primarias_pvc_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_redes_primarias_pvc_edad = {
@@ -254,18 +168,7 @@ var tord_redes_primarias_pvc_edad = {
     name: "tord_redes_primarias_pvc_edad",
     fieldLabel: "En pvc",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_primarias_pvc_edad')).getEl(),
-                title: 'Titulo tord_redes_primarias_pvc_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_primarias_pvc_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_redes_secundarias = {
@@ -290,15 +193,6 @@ var tord_redes_secundarias = {
             var textfield = Ext.getCmp('tord_redes_secundarias_concreto_edad').setDisabled(!checked);
             var textfield = Ext.getCmp('tord_redes_secundarias_pvc_diametro').setDisabled(!checked);
             var textfield = Ext.getCmp('tord_redes_secundarias_pvc_edad').setDisabled(!checked);
-        },
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_secundarias')).getEl(),
-                title: 'Titulo tord_redes_secundarias',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_secundarias',
-                trackMouse: true
-            });
         }
     }
 }
@@ -313,18 +207,7 @@ var tord_redes_secundarias_asbesto_cemento_diametro = {
     name: "tord_redes_secundarias_asbesto_cemento_diametro",
     fieldLabel: "En asbesto_cemento",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_secundarias_asbesto_cemento_diametro')).getEl(),
-                title: 'Titulo tord_redes_secundarias_asbesto_cemento_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_secundarias_asbesto_cemento_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_redes_secundarias_asbesto_cemento_edad = {
@@ -340,18 +223,7 @@ var tord_redes_secundarias_asbesto_cemento_edad = {
     name: "tord_redes_secundarias_asbesto_cemento_edad",
     fieldLabel: "En asbesto_cemento",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_secundarias_asbesto_cemento_edad')).getEl(),
-                title: 'Titulo tord_redes_secundarias_asbesto_cemento_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_secundarias_asbesto_cemento_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_redes_secundarias_hierro_ductil_diametro = {
@@ -364,18 +236,7 @@ var tord_redes_secundarias_hierro_ductil_diametro = {
     name: "tord_redes_secundarias_hierro_ductil_diametro",
     fieldLabel: "En hierro_ductil",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_secundarias_hierro_ductil_diametro')).getEl(),
-                title: 'Titulo tord_redes_secundarias_hierro_ductil_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_secundarias_hierro_ductil_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_redes_secundarias_hierro_ductil_edad = {
@@ -391,18 +252,7 @@ var tord_redes_secundarias_hierro_ductil_edad = {
     name: "tord_redes_secundarias_hierro_ductil_edad",
     fieldLabel: "En hierro_ductil",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_secundarias_hierro_ductil_edad')).getEl(),
-                title: 'Titulo tord_redes_secundarias_hierro_ductil_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_secundarias_hierro_ductil_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_redes_secundarias_concreto_diametro = {
@@ -415,18 +265,7 @@ var tord_redes_secundarias_concreto_diametro = {
     name: "tord_redes_secundarias_concreto_diametro",
     fieldLabel: "En concreto",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_secundarias_concreto_diametro')).getEl(),
-                title: 'Titulo tord_redes_secundarias_concreto_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_secundarias_concreto_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_redes_secundarias_concreto_edad = {
@@ -442,18 +281,7 @@ var tord_redes_secundarias_concreto_edad = {
     name: "tord_redes_secundarias_concreto_edad",
     fieldLabel: "En concreto",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_secundarias_concreto_edad')).getEl(),
-                title: 'Titulo tord_redes_secundarias_concreto_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_secundarias_concreto_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_redes_secundarias_pvc_diametro = {
@@ -466,18 +294,7 @@ var tord_redes_secundarias_pvc_diametro = {
     name: "tord_redes_secundarias_pvc_diametro",
     fieldLabel: "En pvc",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_secundarias_pvc_diametro')).getEl(),
-                title: 'Titulo tord_redes_secundarias_pvc_diametro',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_secundarias_pvc_diametro',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var tord_redes_secundarias_pvc_edad = {
@@ -493,18 +310,7 @@ var tord_redes_secundarias_pvc_edad = {
     name: "tord_redes_secundarias_pvc_edad",
     fieldLabel: "En pvc",
     allowBlank: false,
-    hideLabel: true,
-    listeners: {
-        render: function(){
-            new Ext.ToolTip({
-                target: (Ext.getCmp('tord_redes_secundarias_pvc_edad')).getEl(),
-                title: 'Titulo tord_redes_secundarias_pvc_edad',
-                anchor: 'top',
-                html: 'Mensaje de ayuda para tord_redes_secundarias_pvc_edad',
-                trackMouse: true
-            });
-        }
-    }
+    hideLabel: true
 }
 
 var acu_reddistribucion_datastore = new Ext.data.Store({
