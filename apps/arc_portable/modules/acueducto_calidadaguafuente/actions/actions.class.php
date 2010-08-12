@@ -31,13 +31,13 @@ class acueducto_calidadaguafuenteActions extends sfActions
   
   public function executeActualizarCalidadAguaFuente(sfWebRequest $request)
   {
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 	$pps_ser_id = $this->obtenerServicioId('acueducto');
 	
 	$conexion = new Criteria();
 	$conexion->add(CalidadPeer::CAL_PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(CalidadPeer::CAL_PPS_ANIO, $pps_anio);
+	$conexion->add(CalidadPeer::CAL_PPS_PERIODO, $pps_periodo);
 	$conexion->add(CalidadPeer::CAL_PPS_SER_ID, $pps_ser_id);
 	$acu_calidad = CalidadPeer::doSelectOne($conexion);
 
@@ -53,7 +53,7 @@ class acueducto_calidadaguafuenteActions extends sfActions
 		{
 			$acu_calidad = new Calidad();
 			$acu_calidad->setCalPpsPreId($pps_pre_id);
-			$acu_calidad->setCalPpsAnio($pps_anio);
+			$acu_calidad->setCalPpsPeriodo($pps_periodo);
 			$acu_calidad->setCalPpsSerId($pps_ser_id);
 			$acu_calidad->save();
 
@@ -157,13 +157,13 @@ class acueducto_calidadaguafuenteActions extends sfActions
   {
 	$salida = "";
 	
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 	$pps_ser_id = $this->obtenerServicioId('acueducto');
 	
 	$conexion = new Criteria();
 	$conexion->add(CalidadPeer::CAL_PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(CalidadPeer::CAL_PPS_ANIO, $pps_anio);
+	$conexion->add(CalidadPeer::CAL_PPS_PERIODO, $pps_periodo);
 	$conexion->add(CalidadPeer::CAL_PPS_SER_ID, $pps_ser_id);
 	$acu_calidad = CalidadPeer::doSelectOne($conexion);
 

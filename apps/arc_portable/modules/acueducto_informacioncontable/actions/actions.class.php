@@ -31,13 +31,13 @@ class acueducto_informacioncontableActions extends sfActions
   
   public function executeActualizarInformacionContable(sfWebRequest $request)
   {
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 	$pps_ser_id = $this->obtenerServicioId('acueducto');
 	
 	$conexion = new Criteria();
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_ANIO, $pps_anio);
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PERIODO, $pps_periodo);
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_SER_ID, $pps_ser_id);
 	$acu_administrativafinanciera = AdministrativafinancieraPeer::doSelectOne($conexion);
 
@@ -51,7 +51,7 @@ class acueducto_informacioncontableActions extends sfActions
 	{
 		$acu_administrativafinanciera = new Administrativafinanciera();
 		$acu_administrativafinanciera->setIafPpsPreId($pps_pre_id);
-		$acu_administrativafinanciera->setIafPpsAnio($pps_anio);
+		$acu_administrativafinanciera->setIafPpsPeriodo($pps_periodo);
 		$acu_administrativafinanciera->setIafPpsSerId($pps_ser_id);
 		$acu_administrativafinanciera->save();
 
@@ -69,7 +69,7 @@ class acueducto_informacioncontableActions extends sfActions
 			if($this->getRequestParameter('form') == 'activosPasivos')
 			{
 				//$acu_informacioncontable->setIcoBalanceGeneral($this->getRequestParameter('acu_ico_balance_general'));
-				$acu_informacioncontable->setIcoBalanceGeneral($pps_anio);
+				$acu_informacioncontable->setIcoBalanceGeneral($pps_periodo);
 				$acu_informacioncontable->setIcoActivos(str_replace(',', '', $this->getRequestParameter('acu_ico_activos')));
 				$acu_informacioncontable->setIcoActivosCorrientes(str_replace(',', '', $this->getRequestParameter('acu_ico_activos_corrientes')));
 				$acu_informacioncontable->setIcoEfectivo(str_replace(',', '', $this->getRequestParameter('acu_ico_efectivo')));
@@ -85,7 +85,7 @@ class acueducto_informacioncontableActions extends sfActions
 				$acu_informacioncontable->setIcoObligacionesLaborales(str_replace(',', '', $this->getRequestParameter('acu_ico_obligaciones_laborales')));
 				$acu_informacioncontable->setIcoOtrosPasivos(str_replace(',', '', $this->getRequestParameter('acu_ico_otros_pasivos')));
 				$acu_informacioncontable->setIcoPatrimonio(str_replace(',', '', $this->getRequestParameter('acu_ico_patrimonio')));
-				$acu_informacioncontable->setIcoEstadoDeResultados($pps_anio);
+				$acu_informacioncontable->setIcoEstadoDeResultados($pps_periodo);
 				//$acu_informacioncontable->setIcoEstadoDeResultados($this->getRequestParameter('acu_ico_estado_de_resultados'));
 			}
 			if($this->getRequestParameter('form') == 'totales')
@@ -119,7 +119,7 @@ class acueducto_informacioncontableActions extends sfActions
 			if($this->getRequestParameter('form') == 'activosPasivos')
 			{
 				//$acu_informacioncontable->setIcoBalanceGeneral($this->getRequestParameter('acu_ico_balance_general'));
-				$acu_informacioncontable->setIcoBalanceGeneral($pps_anio);
+				$acu_informacioncontable->setIcoBalanceGeneral($pps_periodo);
 				$acu_informacioncontable->setIcoActivos(str_replace(',', '', $this->getRequestParameter('acu_ico_activos')));
 				$acu_informacioncontable->setIcoActivosCorrientes(str_replace(',', '', $this->getRequestParameter('acu_ico_activos_corrientes')));
 				$acu_informacioncontable->setIcoEfectivo(str_replace(',', '', $this->getRequestParameter('acu_ico_efectivo')));
@@ -135,7 +135,7 @@ class acueducto_informacioncontableActions extends sfActions
 				$acu_informacioncontable->setIcoObligacionesLaborales(str_replace(',', '', $this->getRequestParameter('acu_ico_obligaciones_laborales')));
 				$acu_informacioncontable->setIcoOtrosPasivos(str_replace(',', '', $this->getRequestParameter('acu_ico_otros_pasivos')));
 				$acu_informacioncontable->setIcoPatrimonio(str_replace(',', '', $this->getRequestParameter('acu_ico_patrimonio')));
-				$acu_informacioncontable->setIcoEstadoDeResultados($pps_anio);
+				$acu_informacioncontable->setIcoEstadoDeResultados($pps_periodo);
 				//$acu_informacioncontable->setIcoEstadoDeResultados($this->getRequestParameter('acu_ico_estado_de_resultados'));
 			}
 			if($this->getRequestParameter('form') == 'totales')
@@ -167,13 +167,13 @@ class acueducto_informacioncontableActions extends sfActions
   {
 	$salida = "";
 	
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 	$pps_ser_id = $this->obtenerServicioId('acueducto');
 	
 	$conexion = new Criteria();
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_ANIO, $pps_anio);
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PERIODO, $pps_periodo);
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_SER_ID, $pps_ser_id);
 	$acu_administrativafinanciera = AdministrativafinancieraPeer::doSelectOne($conexion);
 
@@ -190,7 +190,7 @@ class acueducto_informacioncontableActions extends sfActions
 		if($acu_informacioncontable)
 		{
 			//$datos[$pos]['acu_ico_balance_general']=$acu_informacioncontable->getIcoBalanceGeneral();
-			$datos[$pos]['acu_ico_balance_general']=$pps_anio;
+			$datos[$pos]['acu_ico_balance_general']=$pps_periodo;
 			$datos[$pos]['acu_ico_activos']=$acu_informacioncontable->getIcoActivos();
 			$datos[$pos]['acu_ico_activos_corrientes']=$acu_informacioncontable->getIcoActivosCorrientes();
 			$datos[$pos]['acu_ico_efectivo']=$acu_informacioncontable->getIcoEfectivo();
@@ -207,7 +207,7 @@ class acueducto_informacioncontableActions extends sfActions
 			$datos[$pos]['acu_ico_otros_pasivos']=$acu_informacioncontable->getIcoOtrosPasivos();
 			$datos[$pos]['acu_ico_patrimonio']=$acu_informacioncontable->getIcoPatrimonio();
 			//$datos[$pos]['acu_ico_estado_de_resultados']=$acu_informacioncontable->getIcoEstadoDeResultados();
-			$datos[$pos]['acu_ico_estado_de_resultados']=$pps_anio;
+			$datos[$pos]['acu_ico_estado_de_resultados']=$pps_periodo;
 			
 			$datos[$pos]['acu_ico_total_ingresos']=$acu_informacioncontable->getIcoTotalIngresos();
 			$datos[$pos]['acu_ico_ingresos_operacionales']=$acu_informacioncontable->getIcoIngresosOperacionales();

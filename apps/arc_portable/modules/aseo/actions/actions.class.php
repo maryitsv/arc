@@ -31,13 +31,13 @@ class aseoActions extends sfActions
   
   public function executeActualizarAseo(sfWebRequest $request)
   {
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 	$pps_ser_id = $this->obtenerServicioId('aseo');
 	
 	$conexion = new Criteria();
 	$conexion->add(PeriodoporprestadorservicioPeer::PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(PeriodoporprestadorservicioPeer::PPS_ANIO, $pps_anio);
+	$conexion->add(PeriodoporprestadorservicioPeer::PPS_PERIODO, $pps_periodo);
 	$conexion->add(PeriodoporprestadorservicioPeer::PPS_SER_ID, $pps_ser_id);
 	$aseo = PeriodoporprestadorservicioPeer::doSelectOne($conexion);
 	
@@ -75,7 +75,7 @@ class aseoActions extends sfActions
 			$aseo = new Periodoporprestadorservicio();
 			
 			$aseo->setPpsPreId($pps_pre_id);
-			$aseo->setPpsAnio($pps_anio);
+			$aseo->setPpsPeriodo($pps_periodo);
 			$aseo->setPpsSerId($pps_ser_id);
 			
 			$aseo->setPpsNombreDiligenciador($this->getRequestParameter('ase_pps_nombre_diligenciador'));
@@ -108,13 +108,13 @@ class aseoActions extends sfActions
   {
 	$salida = "";
 	
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 	$pps_ser_id = $this->obtenerServicioId('aseo');
 	
 	$conexion = new Criteria();
 	$conexion->add(PeriodoporprestadorservicioPeer::PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(PeriodoporprestadorservicioPeer::PPS_ANIO, $pps_anio);
+	$conexion->add(PeriodoporprestadorservicioPeer::PPS_PERIODO, $pps_periodo);
 	$conexion->add(PeriodoporprestadorservicioPeer::PPS_SER_ID, $pps_ser_id);
 	$aseo = PeriodoporprestadorservicioPeer::doSelectOne($conexion);
 	
@@ -125,7 +125,7 @@ class aseoActions extends sfActions
 	{
 		$datos[$pos]['ase_pps_pre_id']=$aseo->getPpsPreId();
 		$datos[$pos]['ase_pps_ser_id']=$aseo->getPpsSerId();
-		$datos[$pos]['ase_pps_anio']=$aseo->getPpsAnio();
+		$datos[$pos]['ase_pps_periodo']=$aseo->getPpsPeriodo();
 		$datos[$pos]['ase_pps_presupuesto_aprobado']=$aseo->getPpsPresupuestoAprobado();
 		$datos[$pos]['ase_pps_suscriptores_pendientes_de_pago']=$aseo->getPpsSuscriptoresPendientesDePago();
 		$datos[$pos]['ase_pps_estatutos']=$aseo->getPpsEstatutos();

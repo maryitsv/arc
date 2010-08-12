@@ -27,13 +27,13 @@ class alcantarilladoActions extends sfActions
   
   public function executeActualizarAlcantarillado(sfWebRequest $request)
   {
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 	$pps_ser_id = $this->obtenerServicioId('alcantarillado');
 	
 	$conexion = new Criteria();
 	$conexion->add(PeriodoporprestadorservicioPeer::PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(PeriodoporprestadorservicioPeer::PPS_ANIO, $pps_anio);
+	$conexion->add(PeriodoporprestadorservicioPeer::PPS_PERIODO, $pps_periodo);
 	$conexion->add(PeriodoporprestadorservicioPeer::PPS_SER_ID, $pps_ser_id);
 	$alcantarillado = PeriodoporprestadorservicioPeer::doSelectOne($conexion);
 	
@@ -71,7 +71,7 @@ class alcantarilladoActions extends sfActions
 			$alcantarillado = new Periodoporprestadorservicio();
 			
 			$alcantarillado->setPpsPreId($pps_pre_id);
-			$alcantarillado->setPpsAnio($pps_anio);
+			$alcantarillado->setPpsPeriodo($pps_periodo);
 			$alcantarillado->setPpsSerId($pps_ser_id);
 			
 			$alcantarillado->setPpsNombreDiligenciador($this->getRequestParameter('alc_pps_nombre_diligenciador'));
@@ -104,13 +104,13 @@ class alcantarilladoActions extends sfActions
   {
 	$salida = "";
 	
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 	$pps_ser_id = $this->obtenerServicioId('alcantarillado');
 	
 	$conexion = new Criteria();
 	$conexion->add(PeriodoporprestadorservicioPeer::PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(PeriodoporprestadorservicioPeer::PPS_ANIO, $pps_anio);
+	$conexion->add(PeriodoporprestadorservicioPeer::PPS_PERIODO, $pps_periodo);
 	$conexion->add(PeriodoporprestadorservicioPeer::PPS_SER_ID, $pps_ser_id);
 	$alcantarillado = PeriodoporprestadorservicioPeer::doSelectOne($conexion);
 	
@@ -121,7 +121,7 @@ class alcantarilladoActions extends sfActions
 	{
 		$datos[$pos]['alc_pps_pre_id']=$alcantarillado->getPpsPreId();
 		$datos[$pos]['alc_pps_ser_id']=$alcantarillado->getPpsSerId();
-		$datos[$pos]['alc_pps_anio']=$alcantarillado->getPpsAnio();
+		$datos[$pos]['alc_pps_periodo']=$alcantarillado->getPpsPeriodo();
 		$datos[$pos]['alc_pps_presupuesto_aprobado']=$alcantarillado->getPpsPresupuestoAprobado();
 		$datos[$pos]['alc_pps_suscriptores_pendientes_de_pago']=$alcantarillado->getPpsSuscriptoresPendientesDePago();
 		$datos[$pos]['alc_pps_estatutos']=$alcantarillado->getPpsEstatutos();

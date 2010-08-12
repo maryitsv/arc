@@ -31,13 +31,13 @@ class aseo_participacionciudadanaActions extends sfActions
   
   public function executeActualizarParticipacionCiudadana(sfWebRequest $request)
   {
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 	$pps_ser_id = $this->obtenerServicioId('aseo');
 	
 	$conexion = new Criteria();
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_ANIO, $pps_anio);
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PERIODO, $pps_periodo);
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_SER_ID, $pps_ser_id);
 	$ase_administrativafinanciera = AdministrativafinancieraPeer::doSelectOne($conexion);
 
@@ -51,7 +51,7 @@ class aseo_participacionciudadanaActions extends sfActions
 	{
 		$ase_administrativafinanciera = new Administrativafinanciera();
 		$ase_administrativafinanciera->setIafPpsPreId($pps_pre_id);
-		$ase_administrativafinanciera->setIafPpsAnio($pps_anio);
+		$ase_administrativafinanciera->setIafPpsPeriodo($pps_periodo);
 		$ase_administrativafinanciera->setIafPpsSerId($pps_ser_id);
 		$ase_administrativafinanciera->save();
 
@@ -113,13 +113,13 @@ class aseo_participacionciudadanaActions extends sfActions
   {
 	$salida = "";
 	
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 	$pps_ser_id = $this->obtenerServicioId('aseo');
 	
 	$conexion = new Criteria();
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_ANIO, $pps_anio);
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PERIODO, $pps_periodo);
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_SER_ID, $pps_ser_id);
 	$ase_administrativafinanciera = AdministrativafinancieraPeer::doSelectOne($conexion);
 

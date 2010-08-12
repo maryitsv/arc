@@ -11,7 +11,7 @@ Ext.onReady(form_menuentradadatos.init, form_menuentradadatos);
 <div id="titulo" >
 	<font face="arial" size=6 color=#4E79B2>ARC Peque&ntilde;os Prestadores</font> 
 	<div style="float: right; width:300px;">
-		<font face="arial" size=6 color="#4E79B2"> Periodo: <?php echo($sf_user->getAttribute('pps_anio')); ?> </font>
+		<font face="arial" size=6 color="#4E79B2"> Periodo: <?php echo($sf_user->getAttribute('pps_periodo')); ?> </font>
 	</div>
 </div>
 

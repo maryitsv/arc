@@ -21,9 +21,9 @@ propel:
     _attributes: { phpName: Administrativafinanciera }
     iaf_id: { phpName: IafId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     iaf_pps_pre_id: { phpName: IafPpsPreId, type: INTEGER, required: true, foreignTable: periodoporprestadorservicio, foreignReference: pps_pre_id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    iaf_pps_anio: { phpName: IafPpsAnio, type: INTEGER, required: true }
+    iaf_pps_periodo: { phpName: IafPpsPeriodo, type: DATE, required: true }
     iaf_pps_ser_id: { phpName: IafPpsSerId, type: INTEGER, required: true }
-    _uniques: { administrativafinanciera_idx: [iaf_pps_pre_id, iaf_pps_anio, iaf_pps_ser_id] }
+    _uniques: { administrativafinanciera_idx: [iaf_pps_pre_id, iaf_pps_periodo, iaf_pps_ser_id] }
   analisiscobertura:
     _attributes: { phpName: Analisiscobertura }
     aco_id: { phpName: AcoId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -43,9 +43,9 @@ propel:
     _attributes: { phpName: Calidad }
     cal_id: { phpName: CalId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     cal_pps_pre_id: { phpName: CalPpsPreId, type: INTEGER, required: true, foreignTable: periodoporprestadorservicio, foreignReference: pps_pre_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    cal_pps_anio: { phpName: CalPpsAnio, type: INTEGER, required: true }
+    cal_pps_periodo: { phpName: CalPpsPeriodo, type: DATE, required: true }
     cal_pps_ser_id: { phpName: CalPpsSerId, type: INTEGER, required: true }
-    _uniques: { calidad_idx: [cal_pps_pre_id, cal_pps_anio, cal_pps_ser_id] }
+    _uniques: { calidad_idx: [cal_pps_pre_id, cal_pps_periodo, cal_pps_ser_id] }
   calidadagua:
     _attributes: { phpName: Calidadagua }
     cag_id: { phpName: CagId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -200,9 +200,9 @@ propel:
     _attributes: { phpName: Comercial }
     com_id: { phpName: ComId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     com_pps_pre_id: { phpName: ComPpsPreId, type: INTEGER, required: true, foreignTable: periodoporprestadorservicio, foreignReference: pps_pre_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    com_pps_anio: { phpName: ComPpsAnio, type: INTEGER, required: true }
+    com_pps_periodo: { phpName: ComPpsPeriodo, type: DATE, required: true }
     com_pps_ser_id: { phpName: ComPpsSerId, type: INTEGER, required: true }
-    _uniques: { comercial_idx: [com_pps_pre_id, com_pps_anio, com_pps_ser_id] }
+    _uniques: { comercial_idx: [com_pps_pre_id, com_pps_periodo, com_pps_ser_id] }
   comunidadserviciorecoleccion:
     _attributes: { phpName: Comunidadserviciorecoleccion }
     csr_id: { phpName: CsrId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -305,6 +305,18 @@ propel:
     fen_id: { phpName: FenId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     fen_nombre: { phpName: FenNombre, type: VARCHAR, size: '100', required: true }
     _uniques: { fuenteenergia_fen_nombre_key: [fen_nombre] }
+  fuentereceptoraalcantarillado:
+    _attributes: { phpName: Fuentereceptoraalcantarillado }
+    uafra_id: { phpName: UafraId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    uafra_todfa_id: { phpName: UafraTodfaId, type: INTEGER, required: true, foreignTable: tecnicooperativadisposicionfinalalcantarillado, foreignReference: todfa_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    uafra_uso_consumo_humano: { phpName: UafraUsoConsumoHumano, type: VARCHAR, required: false }
+    uafra_uso_preservacion_fauna_flora: { phpName: UafraUsoPreservacionFaunaFlora, type: VARCHAR, required: false }
+    uafra_uso_agricola: { phpName: UafraUsoAgricola, type: VARCHAR, required: false }
+    uafra_uso_pecuario: { phpName: UafraUsoPecuario, type: VARCHAR, required: false }
+    uafra_uso_recreativo: { phpName: UafraUsoRecreativo, type: VARCHAR, required: false }
+    uafra_uso_industrial: { phpName: UafraUsoIndustrial, type: VARCHAR, required: false }
+    uafra_uso_transporte: { phpName: UafraUsoTransporte, type: VARCHAR, required: false }
+    uafra_uso_desconocido: { phpName: UafraUsoDesconocido, type: VARCHAR, required: false }
   fuentes:
     _attributes: { phpName: Fuentes }
     fue_id: { phpName: FueId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -421,9 +433,9 @@ propel:
     _attributes: { phpName: Microcuencas }
     mic_id: { phpName: MicId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     mic_pps_pre_id: { phpName: MicPpsPreId, type: INTEGER, required: true, foreignTable: periodoporprestadorservicio, foreignReference: pps_pre_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    mic_pps_anio: { phpName: MicPpsAnio, type: INTEGER, required: true }
+    mic_pps_periodo: { phpName: MicPpsPeriodo, type: DATE, required: true }
     mic_pps_ser_id: { phpName: MicPpsSerId, type: INTEGER, required: true }
-    _uniques: { microcuencas_idx: [mic_pps_pre_id, mic_pps_anio, mic_pps_ser_id] }
+    _uniques: { microcuencas_idx: [mic_pps_pre_id, mic_pps_periodo, mic_pps_ser_id] }
   municipio:
     _attributes: { phpName: Municipio }
     mun_id: { phpName: MunId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -461,7 +473,7 @@ propel:
     _attributes: { phpName: Periodoporprestadorservicio }
     pps_pre_id: { phpName: PpsPreId, type: INTEGER, primaryKey: true, required: true, foreignTable: prestadorporservicio, foreignReference: ppsg_pre_id, onUpdate: CASCADE }
     pps_ser_id: { phpName: PpsSerId, type: INTEGER, primaryKey: true, required: true }
-    pps_anio: { phpName: PpsAnio, type: INTEGER, primaryKey: true, required: true }
+    pps_periodo: { phpName: PpsPeriodo, type: DATE, primaryKey: true, required: true }
     pps_numero_suscriptores: { phpName: PpsNumeroSuscriptores, type: INTEGER, required: false }
     pps_presupuesto_aprobado: { phpName: PpsPresupuestoAprobado, type: VARCHAR, required: false }
     pps_suscriptores_pendientes_de_pago: { phpName: PpsSuscriptoresPendientesDePago, type: INTEGER, required: false }
@@ -539,6 +551,15 @@ propel:
     pfu_cobertura_forestal_area_protectora_cauce: { phpName: PfuCoberturaForestalAreaProtectoraCauce, type: VARCHAR, required: false }
     pfu_area_microcuenca_propiedad_acueducto: { phpName: PfuAreaMicrocuencaPropiedadAcueducto, type: VARCHAR, required: false }
     pfu_cobertura_forestal_mas_usada: { phpName: PfuCoberturaForestalMasUsada, type: VARCHAR, size: '100', required: false }
+  puntoentregavertimientosintratamientoalcantarillado:
+    _attributes: { phpName: Puntoentregavertimientosintratamientoalcantarillado }
+    pevsa_id: { phpName: PevsaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    pevsa_todfa_id: { phpName: PevsaTodfaId, type: INTEGER, required: true, foreignTable: tecnicooperativadisposicionfinalalcantarillado, foreignReference: todfa_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    pevsa_nombre_primera_fuente_receptora: { phpName: PevsaNombrePrimeraFuenteReceptora, type: VARCHAR, size: '100', required: false }
+    pevsa_nombre_fuente_receptora_final: { phpName: PevsaNombreFuenteReceptoraFinal, type: VARCHAR, size: '100', required: false }
+    pevsa_permiso_vertimiento: { phpName: PevsaPermisoVertimiento, type: VARCHAR, required: false }
+    pevsa_fecha_expedicion: { phpName: PevsaFechaExpedicion, type: DATE, required: false }
+    pevsa_fecha_vencimiento: { phpName: PevsaFechaVencimiento, type: DATE, required: false }
   rango:
     _attributes: { phpName: Rango }
     ran_id: { phpName: RanId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -652,6 +673,66 @@ propel:
     toai_edad: { phpName: ToaiEdad, type: INTEGER, required: false }
     toai_nombre_canal: { phpName: ToaiNombreCanal, type: VARCHAR, size: '100', required: false }
     toai_nombre_material: { phpName: ToaiNombreMaterial, type: VARCHAR, size: '100', required: false }
+  tecnicooperativacombinadoalcantarillado:
+    _attributes: { phpName: Tecnicooperativacombinadoalcantarillado }
+    tocca_id: { phpName: ToccaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    tocca_top_id: { phpName: ToccaTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    tocca_caja_domiciliar: { phpName: ToccaCajaDomiciliar, type: VARCHAR, required: false }
+    tocca_colectores: { phpName: ToccaColectores, type: VARCHAR, required: false }
+    tocca_camara_inspeccion: { phpName: ToccaCamaraInspeccion, type: VARCHAR, required: false }
+    tocca_sumideros: { phpName: ToccaSumideros, type: VARCHAR, required: false }
+    tocca_estructura_separacion: { phpName: ToccaEstructuraSeparacion, type: VARCHAR, required: false }
+    tocca_estacion_bombeo: { phpName: ToccaEstacionBombeo, type: VARCHAR, required: false }
+    tocca_emisor_final: { phpName: ToccaEmisorFinal, type: VARCHAR, required: false }
+    tocca_estructura_descarga: { phpName: ToccaEstructuraDescarga, type: VARCHAR, required: false }
+    tocca_caja_domiciliar_funciona: { phpName: ToccaCajaDomiciliarFunciona, type: VARCHAR, required: false }
+    tocca_colectores_funciona: { phpName: ToccaColectoresFunciona, type: VARCHAR, required: false }
+    tocca_camara_inspeccion_funciona: { phpName: ToccaCamaraInspeccionFunciona, type: VARCHAR, required: false }
+    tocca_sumideros_funciona: { phpName: ToccaSumiderosFunciona, type: VARCHAR, required: false }
+    tocca_estructura_separacion_funciona: { phpName: ToccaEstructuraSeparacionFunciona, type: VARCHAR, required: false }
+    tocca_estacion_bombeo_funciona: { phpName: ToccaEstacionBombeoFunciona, type: VARCHAR, required: false }
+    tocca_emisor_final_funciona: { phpName: ToccaEmisorFinalFunciona, type: VARCHAR, required: false }
+    tocca_estructura_descarga_funciona: { phpName: ToccaEstructuraDescargaFunciona, type: VARCHAR, required: false }
+    tocca_caja_domiciliar_se_usa: { phpName: ToccaCajaDomiciliarSeUsa, type: VARCHAR, required: false }
+    tocca_colectores_se_usa: { phpName: ToccaColectoresSeUsa, type: VARCHAR, required: false }
+    tocca_camara_inspeccion_se_usa: { phpName: ToccaCamaraInspeccionSeUsa, type: VARCHAR, required: false }
+    tocca_sumideros_se_usa: { phpName: ToccaSumiderosSeUsa, type: VARCHAR, required: false }
+    tocca_estructura_separacion_se_usa: { phpName: ToccaEstructuraSeparacionSeUsa, type: VARCHAR, required: false }
+    tocca_estacion_bombeo_se_usa: { phpName: ToccaEstacionBombeoSeUsa, type: VARCHAR, required: false }
+    tocca_emisor_final_se_usa: { phpName: ToccaEmisorFinalSeUsa, type: VARCHAR, required: false }
+    tocca_estructura_descarga_se_usa: { phpName: ToccaEstructuraDescargaSeUsa, type: VARCHAR, required: false }
+    tocca_caja_domiciliar_problema_taponamiento: { phpName: ToccaCajaDomiciliarProblemaTaponamiento, type: VARCHAR, required: false }
+    tocca_colectores_problema_taponamiento: { phpName: ToccaColectoresProblemaTaponamiento, type: VARCHAR, required: false }
+    tocca_camara_inspeccion_problema_taponamiento: { phpName: ToccaCamaraInspeccionProblemaTaponamiento, type: VARCHAR, required: false }
+    tocca_sumideros_problema_taponamiento: { phpName: ToccaSumiderosProblemaTaponamiento, type: VARCHAR, required: false }
+    tocca_estructura_separacion_problema_taponamiento: { phpName: ToccaEstructuraSeparacionProblemaTaponamiento, type: VARCHAR, required: false }
+    tocca_estacion_bombeo_problema_taponamiento: { phpName: ToccaEstacionBombeoProblemaTaponamiento, type: VARCHAR, required: false }
+    tocca_emisor_final_problema_taponamiento: { phpName: ToccaEmisorFinalProblemaTaponamiento, type: VARCHAR, required: false }
+    tocca_estructura_descarga_problema_taponamiento: { phpName: ToccaEstructuraDescargaProblemaTaponamiento, type: VARCHAR, required: false }
+    tocca_caja_domiciliar_problema_rebose: { phpName: ToccaCajaDomiciliarProblemaRebose, type: VARCHAR, required: false }
+    tocca_colectores_problema_rebose: { phpName: ToccaColectoresProblemaRebose, type: VARCHAR, required: false }
+    tocca_camara_inspeccion_problema_rebose: { phpName: ToccaCamaraInspeccionProblemaRebose, type: VARCHAR, required: false }
+    tocca_sumideros_problema_rebose: { phpName: ToccaSumiderosProblemaRebose, type: VARCHAR, required: false }
+    tocca_estructura_separacion_problema_rebose: { phpName: ToccaEstructuraSeparacionProblemaRebose, type: VARCHAR, required: false }
+    tocca_estacion_bombeo_problema_rebose: { phpName: ToccaEstacionBombeoProblemaRebose, type: VARCHAR, required: false }
+    tocca_emisor_final_problema_rebose: { phpName: ToccaEmisorFinalProblemaRebose, type: VARCHAR, required: false }
+    tocca_estructura_descarga_problema_rebose: { phpName: ToccaEstructuraDescargaProblemaRebose, type: VARCHAR, required: false }
+    tocca_caja_domiciliar_problema_rotura: { phpName: ToccaCajaDomiciliarProblemaRotura, type: VARCHAR, required: false }
+    tocca_colectores_problema_rotura: { phpName: ToccaColectoresProblemaRotura, type: VARCHAR, required: false }
+    tocca_camara_inspeccion_problema_rotura: { phpName: ToccaCamaraInspeccionProblemaRotura, type: VARCHAR, required: false }
+    tocca_sumideros_problema_rotura: { phpName: ToccaSumiderosProblemaRotura, type: VARCHAR, required: false }
+    tocca_estructura_separacion_problema_rotura: { phpName: ToccaEstructuraSeparacionProblemaRotura, type: VARCHAR, required: false }
+    tocca_estacion_bombeo_problema_rotura: { phpName: ToccaEstacionBombeoProblemaRotura, type: VARCHAR, required: false }
+    tocca_emisor_final_problema_rotura: { phpName: ToccaEmisorFinalProblemaRotura, type: VARCHAR, required: false }
+    tocca_estructura_descarga_problema_rotura: { phpName: ToccaEstructuraDescargaProblemaRotura, type: VARCHAR, required: false }
+    tocca_caja_domiciliar_problema_olor: { phpName: ToccaCajaDomiciliarProblemaOlor, type: VARCHAR, required: false }
+    tocca_colectores_problema_olor: { phpName: ToccaColectoresProblemaOlor, type: VARCHAR, required: false }
+    tocca_camara_inspeccion_problema_olor: { phpName: ToccaCamaraInspeccionProblemaOlor, type: VARCHAR, required: false }
+    tocca_sumideros_problema_olor: { phpName: ToccaSumiderosProblemaOlor, type: VARCHAR, required: false }
+    tocca_estructura_separacion_problema_olor: { phpName: ToccaEstructuraSeparacionProblemaOlor, type: VARCHAR, required: false }
+    tocca_estacion_bombeo_problema_olor: { phpName: ToccaEstacionBombeoProblemaOlor, type: VARCHAR, required: false }
+    tocca_emisor_final_problema_olor: { phpName: ToccaEmisorFinalProblemaOlor, type: VARCHAR, required: false }
+    tocca_estructura_descarga_problema_olor: { phpName: ToccaEstructuraDescargaProblemaOlor, type: VARCHAR, required: false }
   tecnicooperativacomponentessistema:
     _attributes: { phpName: Tecnicooperativacomponentessistema }
     tocs_id: { phpName: TocsId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -692,6 +773,14 @@ propel:
     toda_desinfeccion_ozonacion: { phpName: TodaDesinfeccionOzonacion, type: VARCHAR, required: false }
     toda_desinfeccion_rayos_ultravioleta: { phpName: TodaDesinfeccionRayosUltravioleta, type: VARCHAR, required: false }
     toda_desinfeccion_dioxido_cloro: { phpName: TodaDesinfeccionDioxidoCloro, type: VARCHAR, required: false }
+  tecnicooperativadisposicionfinalalcantarillado:
+    _attributes: { phpName: Tecnicooperativadisposicionfinalalcantarillado }
+    todfa_id: { phpName: TodfaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    todfa_top_id: { phpName: TodfaTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    todfa_paga_tasa_retributiva: { phpName: TodfaPagaTasaRetributiva, type: VARCHAR, required: false }
+    todfa_planos_actualizado_red: { phpName: TodfaPlanosActualizadoRed, type: VARCHAR, required: false }
+    todfa_registro_numero_tipo_danios: { phpName: TodfaRegistroNumeroTipoDanios, type: VARCHAR, required: false }
+    todfa_catastro_red_actualizado: { phpName: TodfaCatastroRedActualizado, type: VARCHAR, required: false }
   tecnicooperativalineaconduccionaguacrudaacueducto:
     _attributes: { phpName: Tecnicooperativalineaconduccionaguacrudaacueducto }
     tolc_id: { phpName: TolcId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -746,6 +835,52 @@ propel:
     tord_material_edad: { phpName: TordMaterialEdad, type: INTEGER, required: false }
     tord_nombre_canal: { phpName: TordNombreCanal, type: VARCHAR, size: '100', required: false }
     tord_nombre_material: { phpName: TordNombreMaterial, type: VARCHAR, size: '100', required: false }
+  tecnicooperativasanitarioalcantarillado:
+    _attributes: { phpName: Tecnicooperativasanitarioalcantarillado }
+    tosa_id: { phpName: TosaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    tosa_top_id: { phpName: TosaTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    tosa_caja_domiciliar: { phpName: TosaCajaDomiciliar, type: VARCHAR, required: false }
+    tosa_colectores: { phpName: TosaColectores, type: VARCHAR, required: false }
+    tosa_camara_inspeccion: { phpName: TosaCamaraInspeccion, type: VARCHAR, required: false }
+    tosa_estacion_bombeo: { phpName: TosaEstacionBombeo, type: VARCHAR, required: false }
+    tosa_emisor_final: { phpName: TosaEmisorFinal, type: VARCHAR, required: false }
+    tosa_estructura_descarga: { phpName: TosaEstructuraDescarga, type: VARCHAR, required: false }
+    tosa_caja_domiciliar_funciona: { phpName: TosaCajaDomiciliarFunciona, type: VARCHAR, required: false }
+    tosa_colectores_funciona: { phpName: TosaColectoresFunciona, type: VARCHAR, required: false }
+    tosa_camara_inspeccion_funciona: { phpName: TosaCamaraInspeccionFunciona, type: VARCHAR, required: false }
+    tosa_estacion_bombeo_funciona: { phpName: TosaEstacionBombeoFunciona, type: VARCHAR, required: false }
+    tosa_emisor_final_funciona: { phpName: TosaEmisorFinalFunciona, type: VARCHAR, required: false }
+    tosa_estructura_descarga_funciona: { phpName: TosaEstructuraDescargaFunciona, type: VARCHAR, required: false }
+    tosa_caja_domiciliar_se_usa: { phpName: TosaCajaDomiciliarSeUsa, type: VARCHAR, required: false }
+    tosa_colectores_se_usa: { phpName: TosaColectoresSeUsa, type: VARCHAR, required: false }
+    tosa_camara_inspeccion_se_usa: { phpName: TosaCamaraInspeccionSeUsa, type: VARCHAR, required: false }
+    tosa_estacion_bombeo_se_usa: { phpName: TosaEstacionBombeoSeUsa, type: VARCHAR, required: false }
+    tosa_emisor_final_se_usa: { phpName: TosaEmisorFinalSeUsa, type: VARCHAR, required: false }
+    tosa_estructura_descarga_se_usa: { phpName: TosaEstructuraDescargaSeUsa, type: VARCHAR, required: false }
+    tosa_caja_domiciliar_problema_taponamiento: { phpName: TosaCajaDomiciliarProblemaTaponamiento, type: VARCHAR, required: false }
+    tosa_colectores_problema_taponamiento: { phpName: TosaColectoresProblemaTaponamiento, type: VARCHAR, required: false }
+    tosa_camara_inspeccion_problema_taponamiento: { phpName: TosaCamaraInspeccionProblemaTaponamiento, type: VARCHAR, required: false }
+    tosa_estacion_bombeo_problema_taponamiento: { phpName: TosaEstacionBombeoProblemaTaponamiento, type: VARCHAR, required: false }
+    tosa_emisor_final_problema_taponamiento: { phpName: TosaEmisorFinalProblemaTaponamiento, type: VARCHAR, required: false }
+    tosa_estructura_descarga_problema_taponamiento: { phpName: TosaEstructuraDescargaProblemaTaponamiento, type: VARCHAR, required: false }
+    tosa_caja_domiciliar_problema_rebose: { phpName: TosaCajaDomiciliarProblemaRebose, type: VARCHAR, required: false }
+    tosa_colectores_problema_rebose: { phpName: TosaColectoresProblemaRebose, type: VARCHAR, required: false }
+    tosa_camara_inspeccion_problema_rebose: { phpName: TosaCamaraInspeccionProblemaRebose, type: VARCHAR, required: false }
+    tosa_estacion_bombeo_problema_rebose: { phpName: TosaEstacionBombeoProblemaRebose, type: VARCHAR, required: false }
+    tosa_emisor_final_problema_rebose: { phpName: TosaEmisorFinalProblemaRebose, type: VARCHAR, required: false }
+    tosa_estructura_descarga_problema_rebose: { phpName: TosaEstructuraDescargaProblemaRebose, type: VARCHAR, required: false }
+    tosa_caja_domiciliar_problema_rotura: { phpName: TosaCajaDomiciliarProblemaRotura, type: VARCHAR, required: false }
+    tosa_colectores_problema_rotura: { phpName: TosaColectoresProblemaRotura, type: VARCHAR, required: false }
+    tosa_camara_inspeccion_problema_rotura: { phpName: TosaCamaraInspeccionProblemaRotura, type: VARCHAR, required: false }
+    tosa_estacion_bombeo_problema_rotura: { phpName: TosaEstacionBombeoProblemaRotura, type: VARCHAR, required: false }
+    tosa_emisor_final_problema_rotura: { phpName: TosaEmisorFinalProblemaRotura, type: VARCHAR, required: false }
+    tosa_estructura_descarga_problema_rotura: { phpName: TosaEstructuraDescargaProblemaRotura, type: VARCHAR, required: false }
+    tosa_caja_domiciliar_problema_olor: { phpName: TosaCajaDomiciliarProblemaOlor, type: VARCHAR, required: false }
+    tosa_colectores_problema_olor: { phpName: TosaColectoresProblemaOlor, type: VARCHAR, required: false }
+    tosa_camara_inspeccion_problema_olor: { phpName: TosaCamaraInspeccionProblemaOlor, type: VARCHAR, required: false }
+    tosa_estacion_bombeo_problema_olor: { phpName: TosaEstacionBombeoProblemaOlor, type: VARCHAR, required: false }
+    tosa_emisor_final_problema_olor: { phpName: TosaEmisorFinalProblemaOlor, type: VARCHAR, required: false }
+    tosa_estructura_descarga_problema_olor: { phpName: TosaEstructuraDescargaProblemaOlor, type: VARCHAR, required: false }
   tecnicooperativasolucioncolectivaalcantarillado:
     _attributes: { phpName: Tecnicooperativasolucioncolectivaalcantarillado }
     tosca_id: { phpName: ToscaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -802,9 +937,52 @@ propel:
     _attributes: { phpName: Tecnicooperativo }
     top_id: { phpName: TopId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     top_pps_pre_id: { phpName: TopPpsPreId, type: INTEGER, required: true, foreignTable: periodoporprestadorservicio, foreignReference: pps_pre_id, onDelete: RESTRICT, onUpdate: CASCADE }
-    top_pps_anio: { phpName: TopPpsAnio, type: INTEGER, required: true }
+    top_pps_periodo: { phpName: TopPpsPeriodo, type: DATE, required: true }
     top_pps_ser_id: { phpName: TopPpsSerId, type: INTEGER, required: true }
-    _uniques: { tecnicooperativo_idx: [top_pps_pre_id, top_pps_anio, top_pps_ser_id] }
+    _uniques: { tecnicooperativo_idx: [top_pps_pre_id, top_pps_periodo, top_pps_ser_id] }
+  tecnicooperativocaracterizacionaguasresidualesalcantarillado:
+    _attributes: { phpName: Tecnicooperativocaracterizacionaguasresidualesalcantarillado }
+    tocara_id: { phpName: TocaraId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    tocara_top_id: { phpName: TocaraTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    tocara_existe_caracterizacion: { phpName: TocaraExisteCaracterizacion, type: VARCHAR, required: false }
+    tocara_parametro_fecha: { phpName: TocaraParametroFecha, type: DATE, required: false }
+    tocara_parametro_caudal: { phpName: TocaraParametroCaudal, type: VARCHAR, size: '100', required: false }
+    tocara_parametro_temperatura: { phpName: TocaraParametroTemperatura, type: VARCHAR, size: '100', required: false }
+    tocara_parametro_ph: { phpName: TocaraParametroPh, type: VARCHAR, size: '100', required: false }
+    tocara_parametro_dbo: { phpName: TocaraParametroDbo, type: VARCHAR, size: '100', required: false }
+    tocara_parametro_dqo: { phpName: TocaraParametroDqo, type: VARCHAR, size: '100', required: false }
+    tocara_parametro_sst: { phpName: TocaraParametroSst, type: VARCHAR, size: '100', required: false }
+    tocara_parametro_fecha2: { phpName: TocaraParametroFecha2, type: DATE, required: false }
+    tocara_parametro_caudal2: { phpName: TocaraParametroCaudal2, type: VARCHAR, size: '100', required: false }
+    tocara_parametro_temperatura2: { phpName: TocaraParametroTemperatura2, type: VARCHAR, size: '100', required: false }
+    tocara_parametro_ph2: { phpName: TocaraParametroPh2, type: VARCHAR, size: '100', required: false }
+    tocara_parametro_dbo2: { phpName: TocaraParametroDbo2, type: VARCHAR, size: '100', required: false }
+    tocara_parametro_dqo2: { phpName: TocaraParametroDqo2, type: VARCHAR, size: '100', required: false }
+    tocara_parametro_sst2: { phpName: TocaraParametroSst2, type: VARCHAR, size: '100', required: false }
+  tecnicooperativotratamientoaguasresidualesalcantarillado:
+    _attributes: { phpName: Tecnicooperativotratamientoaguasresidualesalcantarillado }
+    totara_id: { phpName: TotaraId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    totara_top_id: { phpName: TotaraTopId, type: INTEGER, required: true, foreignTable: tecnicooperativo, foreignReference: top_id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    totara_exite_planta_tratamiento_agua_residual: { phpName: TotaraExitePlantaTratamientoAguaResidual, type: VARCHAR, required: false }
+    totara_cuantas_plantas_tratamiento: { phpName: TotaraCuantasPlantasTratamiento, type: INTEGER, required: false }
+    totara_localizacion_ptar1: { phpName: TotaraLocalizacionPtar1, type: VARCHAR, size: '100', required: false }
+    totara_componentes_ptar1: { phpName: TotaraComponentesPtar1, type: VARCHAR, size: '100', required: false }
+    totara_funcionamiento_ptar1: { phpName: TotaraFuncionamientoPtar1, type: VARCHAR, required: false }
+    totara_caudal_tratado_ptar1: { phpName: TotaraCaudalTratadoPtar1, type: VARCHAR, size: '100', required: false }
+    totara_caudal_disenio_ptar1: { phpName: TotaraCaudalDisenioPtar1, type: VARCHAR, size: '100', required: false }
+    totara_fuente_receptora_ptar1: { phpName: TotaraFuenteReceptoraPtar1, type: VARCHAR, size: '100', required: false }
+    totara_localizacion_ptar2: { phpName: TotaraLocalizacionPtar2, type: VARCHAR, size: '100', required: false }
+    totara_componentes_ptar2: { phpName: TotaraComponentesPtar2, type: VARCHAR, size: '100', required: false }
+    totara_funcionamiento_ptar2: { phpName: TotaraFuncionamientoPtar2, type: VARCHAR, required: false }
+    totara_caudal_tratado_ptar2: { phpName: TotaraCaudalTratadoPtar2, type: VARCHAR, size: '100', required: false }
+    totara_caudal_disenio_ptar2: { phpName: TotaraCaudalDisenioPtar2, type: VARCHAR, size: '100', required: false }
+    totara_fuente_receptora_ptar2: { phpName: TotaraFuenteReceptoraPtar2, type: VARCHAR, size: '100', required: false }
+    totara_localizacion_ptar3: { phpName: TotaraLocalizacionPtar3, type: VARCHAR, size: '100', required: false }
+    totara_componentes_ptar3: { phpName: TotaraComponentesPtar3, type: VARCHAR, size: '100', required: false }
+    totara_funcionamiento_ptar3: { phpName: TotaraFuncionamientoPtar3, type: VARCHAR, required: false }
+    totara_caudal_tratado_ptar3: { phpName: TotaraCaudalTratadoPtar3, type: VARCHAR, size: '100', required: false }
+    totara_caudal_disenio_ptar3: { phpName: TotaraCaudalDisenioPtar3, type: VARCHAR, size: '100', required: false }
+    totara_fuente_receptora_ptar3: { phpName: TotaraFuenteReceptoraPtar3, type: VARCHAR, size: '100', required: false }
   tipocanal:
     _attributes: { phpName: Tipocanal }
     tca_id: { phpName: TcaId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }

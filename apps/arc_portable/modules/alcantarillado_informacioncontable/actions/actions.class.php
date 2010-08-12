@@ -31,13 +31,13 @@ class alcantarillado_informacioncontableActions extends sfActions
   
   public function executeActualizarInformacionContable(sfWebRequest $request)
   {
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 	$pps_ser_id = $this->obtenerServicioId('alcantarillado');
 	
 	$conexion = new Criteria();
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_ANIO, $pps_anio);
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PERIODO, $pps_periodo);
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_SER_ID, $pps_ser_id);
 	$alc_administrativafinanciera = AdministrativafinancieraPeer::doSelectOne($conexion);
 
@@ -51,7 +51,7 @@ class alcantarillado_informacioncontableActions extends sfActions
 	{
 		$alc_administrativafinanciera = new Administrativafinanciera();
 		$alc_administrativafinanciera->setIafPpsPreId($pps_pre_id);
-		$alc_administrativafinanciera->setIafPpsAnio($pps_anio);
+		$alc_administrativafinanciera->setIafPpsPeriodo($pps_periodo);
 		$alc_administrativafinanciera->setIafPpsSerId($pps_ser_id);
 		$alc_administrativafinanciera->save();
 
@@ -69,7 +69,7 @@ class alcantarillado_informacioncontableActions extends sfActions
 			if($this->getRequestParameter('form') == 'activosPasivos')
 			{
 				//$alc_informacioncontable->setIcoBalanceGeneral($this->getRequestParameter('alc_ico_balance_general'));
-				$alc_informacioncontable->setIcoBalanceGeneral($pps_anio);
+				$alc_informacioncontable->setIcoBalanceGeneral($pps_periodo);
 				$alc_informacioncontable->setIcoActivos(str_replace(',', '', $this->getRequestParameter('alc_ico_activos')));
 				$alc_informacioncontable->setIcoActivosCorrientes(str_replace(',', '', $this->getRequestParameter('alc_ico_activos_corrientes')));
 				$alc_informacioncontable->setIcoEfectivo(str_replace(',', '', $this->getRequestParameter('alc_ico_efectivo')));
@@ -85,7 +85,7 @@ class alcantarillado_informacioncontableActions extends sfActions
 				$alc_informacioncontable->setIcoObligacionesLaborales(str_replace(',', '', $this->getRequestParameter('alc_ico_obligaciones_laborales')));
 				$alc_informacioncontable->setIcoOtrosPasivos(str_replace(',', '', $this->getRequestParameter('alc_ico_otros_pasivos')));
 				$alc_informacioncontable->setIcoPatrimonio(str_replace(',', '', $this->getRequestParameter('alc_ico_patrimonio')));
-				$alc_informacioncontable->setIcoEstadoDeResultados($pps_anio);
+				$alc_informacioncontable->setIcoEstadoDeResultados($pps_periodo);
 				//$alc_informacioncontable->setIcoEstadoDeResultados($this->getRequestParameter('alc_ico_estado_de_resultados'));
 			}
 			if($this->getRequestParameter('form') == 'totales')
@@ -119,7 +119,7 @@ class alcantarillado_informacioncontableActions extends sfActions
 			if($this->getRequestParameter('form') == 'activosPasivos')
 			{
 				//$alc_informacioncontable->setIcoBalanceGeneral($this->getRequestParameter('alc_ico_balance_general'));
-				$alc_informacioncontable->setIcoBalanceGeneral($pps_anio);
+				$alc_informacioncontable->setIcoBalanceGeneral($pps_periodo);
 				$alc_informacioncontable->setIcoActivos(str_replace(',', '', $this->getRequestParameter('alc_ico_activos')));
 				$alc_informacioncontable->setIcoActivosCorrientes(str_replace(',', '', $this->getRequestParameter('alc_ico_activos_corrientes')));
 				$alc_informacioncontable->setIcoEfectivo(str_replace(',', '', $this->getRequestParameter('alc_ico_efectivo')));
@@ -135,7 +135,7 @@ class alcantarillado_informacioncontableActions extends sfActions
 				$alc_informacioncontable->setIcoObligacionesLaborales(str_replace(',', '', $this->getRequestParameter('alc_ico_obligaciones_laborales')));
 				$alc_informacioncontable->setIcoOtrosPasivos(str_replace(',', '', $this->getRequestParameter('alc_ico_otros_pasivos')));
 				$alc_informacioncontable->setIcoPatrimonio(str_replace(',', '', $this->getRequestParameter('alc_ico_patrimonio')));
-				$alc_informacioncontable->setIcoEstadoDeResultados($pps_anio);
+				$alc_informacioncontable->setIcoEstadoDeResultados($pps_periodo);
 				//$alc_informacioncontable->setIcoEstadoDeResultados($this->getRequestParameter('alc_ico_estado_de_resultados'));
 			}
 			if($this->getRequestParameter('form') == 'totales')
@@ -167,13 +167,13 @@ class alcantarillado_informacioncontableActions extends sfActions
   {
 	$salida = "";
 	
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 	$pps_ser_id = $this->obtenerServicioId('alcantarillado');
 	
 	$conexion = new Criteria();
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_ANIO, $pps_anio);
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PERIODO, $pps_periodo);
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_SER_ID, $pps_ser_id);
 	$alc_administrativafinanciera = AdministrativafinancieraPeer::doSelectOne($conexion);
 
@@ -190,7 +190,7 @@ class alcantarillado_informacioncontableActions extends sfActions
 		if($alc_informacioncontable)
 		{
 			//$datos[$pos]['alc_ico_balance_general']=$alc_informacioncontable->getIcoBalanceGeneral();
-			$datos[$pos]['alc_ico_balance_general']=$pps_anio;
+			$datos[$pos]['alc_ico_balance_general']=$pps_periodo;
 			$datos[$pos]['alc_ico_activos']=$alc_informacioncontable->getIcoActivos();
 			$datos[$pos]['alc_ico_activos_corrientes']=$alc_informacioncontable->getIcoActivosCorrientes();
 			$datos[$pos]['alc_ico_efectivo']=$alc_informacioncontable->getIcoEfectivo();
@@ -207,7 +207,7 @@ class alcantarillado_informacioncontableActions extends sfActions
 			$datos[$pos]['alc_ico_otros_pasivos']=$alc_informacioncontable->getIcoOtrosPasivos();
 			$datos[$pos]['alc_ico_patrimonio']=$alc_informacioncontable->getIcoPatrimonio();
 			//$datos[$pos]['alc_ico_estado_de_resultados']=$alc_informacioncontable->getIcoEstadoDeResultados();
-			$datos[$pos]['alc_ico_estado_de_resultados']=$pps_anio;
+			$datos[$pos]['alc_ico_estado_de_resultados']=$pps_periodo;
 			
 			$datos[$pos]['alc_ico_total_ingresos']=$alc_informacioncontable->getIcoTotalIngresos();
 			$datos[$pos]['alc_ico_ingresos_operacionales']=$alc_informacioncontable->getIcoIngresosOperacionales();

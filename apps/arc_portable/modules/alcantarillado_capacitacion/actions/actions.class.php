@@ -31,13 +31,13 @@ class alcantarillado_capacitacionActions extends sfActions
   
   public function executeActualizarCapacitacion(sfWebRequest $request)
   {
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 	$pps_ser_id = $this->obtenerServicioId('alcantarillado');
 	
 	$conexion = new Criteria();
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_ANIO, $pps_anio);
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PERIODO, $pps_periodo);
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_SER_ID, $pps_ser_id);
 	$alc_administrativafinanciera = AdministrativafinancieraPeer::doSelectOne($conexion);
 
@@ -51,7 +51,7 @@ class alcantarillado_capacitacionActions extends sfActions
 	{
 		$alc_administrativafinanciera = new Administrativafinanciera();
 		$alc_administrativafinanciera->setIafPpsPreId($pps_pre_id);
-		$alc_administrativafinanciera->setIafPpsAnio($pps_anio);
+		$alc_administrativafinanciera->setIafPpsPeriodo($pps_periodo);
 		$alc_administrativafinanciera->setIafPpsSerId($pps_ser_id);
 		$alc_administrativafinanciera->save();
 
@@ -142,13 +142,13 @@ class alcantarillado_capacitacionActions extends sfActions
   {
 	$salida = "";
 	
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 	$pps_ser_id = $this->obtenerServicioId('alcantarillado');
 	
 	$conexion = new Criteria();
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_ANIO, $pps_anio);
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PERIODO, $pps_periodo);
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_SER_ID, $pps_ser_id);
 	$alc_administrativafinanciera = AdministrativafinancieraPeer::doSelectOne($conexion);
 

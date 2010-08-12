@@ -31,13 +31,13 @@ class aseo_informacioncontableActions extends sfActions
   
   public function executeActualizarInformacionContable(sfWebRequest $request)
   {
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 	$pps_ser_id = $this->obtenerServicioId('aseo');
 	
 	$conexion = new Criteria();
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_ANIO, $pps_anio);
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PERIODO, $pps_periodo);
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_SER_ID, $pps_ser_id);
 	$ase_administrativafinanciera = AdministrativafinancieraPeer::doSelectOne($conexion);
 
@@ -51,7 +51,7 @@ class aseo_informacioncontableActions extends sfActions
 	{
 		$ase_administrativafinanciera = new Administrativafinanciera();
 		$ase_administrativafinanciera->setIafPpsPreId($pps_pre_id);
-		$ase_administrativafinanciera->setIafPpsAnio($pps_anio);
+		$ase_administrativafinanciera->setIafPpsPeriodo($pps_periodo);
 		$ase_administrativafinanciera->setIafPpsSerId($pps_ser_id);
 		$ase_administrativafinanciera->save();
 
@@ -69,7 +69,7 @@ class aseo_informacioncontableActions extends sfActions
 			if($this->getRequestParameter('form') == 'activosPasivos')
 			{
 				//$ase_informacioncontable->setIcoBalanceGeneral($this->getRequestParameter('ase_ico_balance_general'));
-				$ase_informacioncontable->setIcoBalanceGeneral($pps_anio);
+				$ase_informacioncontable->setIcoBalanceGeneral($pps_periodo);
 				$ase_informacioncontable->setIcoActivos(str_replace(',', '', $this->getRequestParameter('ase_ico_activos')));
 				$ase_informacioncontable->setIcoActivosCorrientes(str_replace(',', '', $this->getRequestParameter('ase_ico_activos_corrientes')));
 				$ase_informacioncontable->setIcoEfectivo(str_replace(',', '', $this->getRequestParameter('ase_ico_efectivo')));
@@ -85,7 +85,7 @@ class aseo_informacioncontableActions extends sfActions
 				$ase_informacioncontable->setIcoObligacionesLaborales(str_replace(',', '', $this->getRequestParameter('ase_ico_obligaciones_laborales')));
 				$ase_informacioncontable->setIcoOtrosPasivos(str_replace(',', '', $this->getRequestParameter('ase_ico_otros_pasivos')));
 				$ase_informacioncontable->setIcoPatrimonio(str_replace(',', '', $this->getRequestParameter('ase_ico_patrimonio')));
-				$ase_informacioncontable->setIcoEstadoDeResultados($pps_anio);
+				$ase_informacioncontable->setIcoEstadoDeResultados($pps_periodo);
 				//$ase_informacioncontable->setIcoEstadoDeResultados($this->getRequestParameter('ase_ico_estado_de_resultados'));
 			}
 			if($this->getRequestParameter('form') == 'totales')
@@ -119,7 +119,7 @@ class aseo_informacioncontableActions extends sfActions
 			if($this->getRequestParameter('form') == 'activosPasivos')
 			{
 				//$ase_informacioncontable->setIcoBalanceGeneral($this->getRequestParameter('ase_ico_balance_general'));
-				$ase_informacioncontable->setIcoBalanceGeneral($pps_anio);
+				$ase_informacioncontable->setIcoBalanceGeneral($pps_periodo);
 				$ase_informacioncontable->setIcoActivos(str_replace(',', '', $this->getRequestParameter('ase_ico_activos')));
 				$ase_informacioncontable->setIcoActivosCorrientes(str_replace(',', '', $this->getRequestParameter('ase_ico_activos_corrientes')));
 				$ase_informacioncontable->setIcoEfectivo(str_replace(',', '', $this->getRequestParameter('ase_ico_efectivo')));
@@ -135,7 +135,7 @@ class aseo_informacioncontableActions extends sfActions
 				$ase_informacioncontable->setIcoObligacionesLaborales(str_replace(',', '', $this->getRequestParameter('ase_ico_obligaciones_laborales')));
 				$ase_informacioncontable->setIcoOtrosPasivos(str_replace(',', '', $this->getRequestParameter('ase_ico_otros_pasivos')));
 				$ase_informacioncontable->setIcoPatrimonio(str_replace(',', '', $this->getRequestParameter('ase_ico_patrimonio')));
-				$ase_informacioncontable->setIcoEstadoDeResultados($pps_anio);
+				$ase_informacioncontable->setIcoEstadoDeResultados($pps_periodo);
 				//$ase_informacioncontable->setIcoEstadoDeResultados($this->getRequestParameter('ase_ico_estado_de_resultados'));
 			}
 			if($this->getRequestParameter('form') == 'totales')
@@ -167,13 +167,13 @@ class aseo_informacioncontableActions extends sfActions
   {
 	$salida = "";
 	
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 	$pps_ser_id = $this->obtenerServicioId('aseo');
 	
 	$conexion = new Criteria();
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_ANIO, $pps_anio);
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PERIODO, $pps_periodo);
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_SER_ID, $pps_ser_id);
 	$ase_administrativafinanciera = AdministrativafinancieraPeer::doSelectOne($conexion);
 
@@ -190,7 +190,7 @@ class aseo_informacioncontableActions extends sfActions
 		if($ase_informacioncontable)
 		{
 			//$datos[$pos]['ase_ico_balance_general']=$ase_informacioncontable->getIcoBalanceGeneral();
-			$datos[$pos]['ase_ico_balance_general']=$pps_anio;
+			$datos[$pos]['ase_ico_balance_general']=$pps_periodo;
 			$datos[$pos]['ase_ico_activos']=$ase_informacioncontable->getIcoActivos();
 			$datos[$pos]['ase_ico_activos_corrientes']=$ase_informacioncontable->getIcoActivosCorrientes();
 			$datos[$pos]['ase_ico_efectivo']=$ase_informacioncontable->getIcoEfectivo();
@@ -207,7 +207,7 @@ class aseo_informacioncontableActions extends sfActions
 			$datos[$pos]['ase_ico_otros_pasivos']=$ase_informacioncontable->getIcoOtrosPasivos();
 			$datos[$pos]['ase_ico_patrimonio']=$ase_informacioncontable->getIcoPatrimonio();
 			//$datos[$pos]['ase_ico_estado_de_resultados']=$ase_informacioncontable->getIcoEstadoDeResultados();
-			$datos[$pos]['ase_ico_estado_de_resultados']=$pps_anio;
+			$datos[$pos]['ase_ico_estado_de_resultados']=$pps_periodo;
 			
 			$datos[$pos]['ase_ico_total_ingresos']=$ase_informacioncontable->getIcoTotalIngresos();
 			$datos[$pos]['ase_ico_ingresos_operacionales']=$ase_informacioncontable->getIcoIngresosOperacionales();

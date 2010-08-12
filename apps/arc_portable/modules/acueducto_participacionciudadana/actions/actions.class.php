@@ -31,13 +31,13 @@ class acueducto_participacionciudadanaActions extends sfActions
   
   public function executeActualizarParticipacionCiudadana(sfWebRequest $request)
   {
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 	$pps_ser_id = $this->obtenerServicioId('acueducto');
 	
 	$conexion = new Criteria();
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_ANIO, $pps_anio);
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PERIODO, $pps_periodo);
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_SER_ID, $pps_ser_id);
 	$acu_administrativafinanciera = AdministrativafinancieraPeer::doSelectOne($conexion);
 
@@ -51,7 +51,7 @@ class acueducto_participacionciudadanaActions extends sfActions
 	{
 		$acu_administrativafinanciera = new Administrativafinanciera();
 		$acu_administrativafinanciera->setIafPpsPreId($pps_pre_id);
-		$acu_administrativafinanciera->setIafPpsAnio($pps_anio);
+		$acu_administrativafinanciera->setIafPpsPeriodo($pps_periodo);
 		$acu_administrativafinanciera->setIafPpsSerId($pps_ser_id);
 		$acu_administrativafinanciera->save();
 
@@ -113,13 +113,13 @@ class acueducto_participacionciudadanaActions extends sfActions
   {
 	$salida = "";
 	
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 	$pps_ser_id = $this->obtenerServicioId('acueducto');
 	
 	$conexion = new Criteria();
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_ANIO, $pps_anio);
+	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_PERIODO, $pps_periodo);
 	$conexion->add(AdministrativafinancieraPeer::IAF_PPS_SER_ID, $pps_ser_id);
 	$acu_administrativafinanciera = AdministrativafinancieraPeer::doSelectOne($conexion);
 

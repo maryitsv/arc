@@ -48,11 +48,12 @@ class periodoprestadorservicioActions extends sfActions
 	$pps_ser_id_ase = $this->obtenerServicioId('aseo');
 	
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
-	//$pps_anio = $pps_anio.'-'.$pps_mes.'-'.'1';
+	$pps_periodo = $pps_anio.'-'.$pps_mes.'-'.'1';
+	$this->getUser()->setAttribute('pps_periodo', $pps_periodo);
 	
 	if($pps_ser_acu == 1)
 	{
-		if($this->asignarPeriodoPrestadorServicio($pps_pre_id, $pps_ser_id_acu, $pps_anio))
+		if($this->asignarPeriodoPrestadorServicio($pps_pre_id, $pps_ser_id_acu, $pps_periodo))
 		{
 			$this->getUser()->setAttribute('pps_ser_id_acu', $pps_ser_acu);
 		}
@@ -62,9 +63,9 @@ class periodoprestadorservicioActions extends sfActions
 		}
 	}
 	
-	if($pps_ser_alc == 2)
+	if($pps_ser_alc == 1)
 	{
-		if($this->asignarPeriodoPrestadorServicio($pps_pre_id, $pps_ser_id_alc, $pps_anio))
+		if($this->asignarPeriodoPrestadorServicio($pps_pre_id, $pps_ser_id_alc, $pps_periodo))
 		{
 			$this->getUser()->setAttribute('pps_ser_id_alc', $pps_ser_alc);
 		}
@@ -74,9 +75,9 @@ class periodoprestadorservicioActions extends sfActions
 		}
 	}
 	
-	if($pps_ser_ase == 3)
+	if($pps_ser_ase == 1)
 	{
-		if($this->asignarPeriodoPrestadorServicio($pps_pre_id, $pps_ser_id_ase, $pps_anio))
+		if($this->asignarPeriodoPrestadorServicio($pps_pre_id, $pps_ser_id_ase, $pps_periodo))
 		{
 			$this->getUser()->setAttribute('pps_ser_id_ase', $pps_ser_ase);
 		}
@@ -92,8 +93,6 @@ class periodoprestadorservicioActions extends sfActions
 
 	$salida = "({success: true, rango_acueducto: ".$rango_acueducto.", rango_alcantarillado: ".$rango_alcantarillado.", rango_aseo: ".$rango_aseo." })";
 	
-	//$this->getUser()->setAttribute('pps_anio', $pps_anio.'-'.$pps_mes.'-'.'1');
-	$this->getUser()->setAttribute('pps_anio', $pps_anio);
 	return $this->renderText($salida);
   }
   
@@ -119,7 +118,7 @@ class periodoprestadorservicioActions extends sfActions
 	}
   }
   
-  private function asignarPeriodoPrestadorServicio($pps_pre_id, $pps_ser_id, $pps_anio)
+  private function asignarPeriodoPrestadorServicio($pps_pre_id, $pps_ser_id, $pps_periodo)
   {
 	$conexion = new Criteria();
 	$conexion->add(PrestadorporservicioPeer::PPSG_PRE_ID, $pps_pre_id);
@@ -131,7 +130,7 @@ class periodoprestadorservicioActions extends sfActions
 		$conexion = new Criteria();
 		$conexion->add(PeriodoporprestadorservicioPeer::PPS_SER_ID, $pps_ser_id);
 		$conexion->add(PeriodoporprestadorservicioPeer::PPS_PRE_ID, $pps_pre_id);
-		$conexion->add(PeriodoporprestadorservicioPeer::PPS_ANIO, $pps_anio);
+		$conexion->add(PeriodoporprestadorservicioPeer::PPS_PERIODO, $pps_periodo);
 		$periodoprestadorservicio_alc = PeriodoporprestadorservicioPeer::doSelectOne($conexion);
 		
 		if(!$periodoprestadorservicio_alc)
@@ -141,7 +140,7 @@ class periodoprestadorservicioActions extends sfActions
 				$periodoprestadorservicio_alc = new Periodoporprestadorservicio();
 				$periodoprestadorservicio_alc->setPpsPreId($pps_pre_id);
 				$periodoprestadorservicio_alc->setPpsSerId($pps_ser_id);
-				$periodoprestadorservicio_alc->setPpsAnio($pps_anio);
+				$periodoprestadorservicio_alc->setPpsPeriodo($pps_periodo);
 				$periodoprestadorservicio_alc->save();
 				return true;
 			}

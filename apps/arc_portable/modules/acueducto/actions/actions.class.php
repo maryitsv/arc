@@ -32,13 +32,13 @@ class acueductoActions extends sfActions
   
   public function executeActualizarAcueducto(sfWebRequest $request)
   {
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 	$pps_ser_id = $this->obtenerServicioId('acueducto');
 	
 	$conexion = new Criteria();
 	$conexion->add(PeriodoporprestadorservicioPeer::PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(PeriodoporprestadorservicioPeer::PPS_ANIO, $pps_anio);
+	$conexion->add(PeriodoporprestadorservicioPeer::PPS_PERIODO, $pps_periodo);
 	$conexion->add(PeriodoporprestadorservicioPeer::PPS_SER_ID, $pps_ser_id);
 	$acueducto = PeriodoporprestadorservicioPeer::doSelectOne($conexion);
 	
@@ -76,7 +76,7 @@ class acueductoActions extends sfActions
 			$acueducto = new Periodoporprestadorservicio();
 			
 			$acueducto->setPpsPreId($pps_pre_id);
-			$acueducto->setPpsAnio($pps_anio);
+			$acueducto->setPpsPeriodo($pps_periodo);
 			$acueducto->setPpsSerId($pps_ser_id);
 			
 			$acueducto->setPpsNombreDiligenciador($this->getRequestParameter('acu_pps_nombre_diligenciador'));
@@ -109,13 +109,13 @@ class acueductoActions extends sfActions
   {
 	$salida = "";
 	
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 	$pps_ser_id = $this->obtenerServicioId('acueducto');
 	
 	$conexion = new Criteria();
 	$conexion->add(PeriodoporprestadorservicioPeer::PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(PeriodoporprestadorservicioPeer::PPS_ANIO, $pps_anio);
+	$conexion->add(PeriodoporprestadorservicioPeer::PPS_PERIODO, $pps_periodo);
 	$conexion->add(PeriodoporprestadorservicioPeer::PPS_SER_ID, $pps_ser_id);
 	$acueducto = PeriodoporprestadorservicioPeer::doSelectOne($conexion);
 	
@@ -126,7 +126,7 @@ class acueductoActions extends sfActions
 	{
 		$datos[$pos]['acu_pps_pre_id']=$acueducto->getPpsPreId();
 		$datos[$pos]['acu_pps_ser_id']=$acueducto->getPpsSerId();
-		$datos[$pos]['acu_pps_anio']=$acueducto->getPpsAnio();
+		$datos[$pos]['acu_pps_periodo']=$acueducto->getPpsPeriodo();
 		$datos[$pos]['acu_pps_presupuesto_aprobado']=$acueducto->getPpsPresupuestoAprobado();
 		$datos[$pos]['acu_pps_suscriptores_pendientes_de_pago']=$acueducto->getPpsSuscriptoresPendientesDePago();
 		$datos[$pos]['acu_pps_estatutos']=$acueducto->getPpsEstatutos();
