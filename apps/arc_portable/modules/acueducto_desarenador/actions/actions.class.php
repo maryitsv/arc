@@ -21,11 +21,11 @@ class acueducto_desarenadorActions extends sfActions
 	}
 
 	public function executeSubirDatos(sfWebRequest $request) {
-		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
-		$desarenador = TecnicooperativadesarenadoracueductoPeer::consultarDesarenador($pps_anio, $pps_pre_id, $pps_ser_id);
+		$desarenador = TecnicooperativadesarenadoracueductoPeer::consultarDesarenador($pps_periodo, $pps_pre_id, $pps_ser_id);
 
 		$desarenador->setTodesValvula($request->getParameter('todes_valvula', 0));
 		$desarenador->setTodesBypass($request->getParameter('todes_bypass', 0));
@@ -37,14 +37,14 @@ class acueducto_desarenadorActions extends sfActions
 	}
 
 	public function executeObtenerDatos() {
-		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
 		$result = array();
 		$datos = array();
 
-		$desarenador = TecnicooperativadesarenadoracueductoPeer::consultarDesarenadorSiExiste($pps_anio, $pps_pre_id, $pps_ser_id);
+		$desarenador = TecnicooperativadesarenadoracueductoPeer::consultarDesarenadorSiExiste($pps_periodo, $pps_pre_id, $pps_ser_id);
 
 		if($desarenador) {
 			$campos = array();

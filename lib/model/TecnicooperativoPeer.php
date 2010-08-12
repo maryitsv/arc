@@ -17,16 +17,18 @@
  * @package    lib.model
  */
 class TecnicooperativoPeer extends BaseTecnicooperativoPeer {
-	public static function consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id) {
+	public static function consultarTecnicoOperativo($pps_periodo, $pps_pre_id, $pps_ser_id) {
+		$periodoPorPrestadorServicio = PeriodoporprestadorservicioPeer::consultarPeriodoPorPrestadorServicio($pps_periodo, $pps_pre_id, $pps_ser_id);
+
 		$criteria = new Criteria();
-		$criteria->add(TecnicooperativoPeer::TOP_PPS_ANIO, $pps_anio);
+		$criteria->add(TecnicooperativoPeer::TOP_PPS_PERIODO, $pps_periodo);
 		$criteria->add(TecnicooperativoPeer::TOP_PPS_PRE_ID, $pps_pre_id);
 		$criteria->add(TecnicooperativoPeer::TOP_PPS_SER_ID, $pps_ser_id);
 		$tecnicoOperativo = TecnicooperativoPeer::doSelectOne($criteria);
 
 		if(!$tecnicoOperativo) {
 			$tecnicoOperativo = new Tecnicooperativo();
-			$tecnicoOperativo->setTopPpsAnio($pps_anio);
+			$tecnicoOperativo->setTopPpsPeriodo($pps_periodo);
 			$tecnicoOperativo->setTopPpsPreId($pps_pre_id);
 			$tecnicoOperativo->setTopPpsSerId($pps_ser_id);
 			$tecnicoOperativo->save();

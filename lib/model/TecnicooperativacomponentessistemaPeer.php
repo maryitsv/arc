@@ -17,8 +17,8 @@
  * @package    lib.model
  */
 class TecnicooperativacomponentessistemaPeer extends BaseTecnicooperativacomponentessistemaPeer {
-	public static function consultarComponentesSistema($pps_anio, $pps_pre_id, $pps_ser_id) {
-		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+	public static function consultarComponentesSistema($pps_periodo, $pps_pre_id, $pps_ser_id) {
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_periodo, $pps_pre_id, $pps_ser_id);
 		$componentesSistemas = $tecnicoOperativo->getTecnicooperativacomponentessistemas();
 		if(count($componentesSistemas)>0) {
 			$componentesSistema = $componentesSistemas[0];
@@ -31,8 +31,8 @@ class TecnicooperativacomponentessistemaPeer extends BaseTecnicooperativacompone
 		return $componentesSistema;
 	}
 
-	public static function consultarComponentesSistemaSiExiste($pps_anio, $pps_pre_id, $pps_ser_id) {
-		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+	public static function consultarComponentesSistemaSiExiste($pps_periodo, $pps_pre_id, $pps_ser_id) {
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_periodo, $pps_pre_id, $pps_ser_id);
 		$componentesSistemas = $tecnicoOperativo->getTecnicooperativacomponentessistemas();
 		$componentesSistema = null;
 		if(count($componentesSistemas)>0) {

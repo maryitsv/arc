@@ -17,8 +17,8 @@
  * @package    lib.model
  */
 class TecnicooperativadesinfeccionacueductoPeer extends BaseTecnicooperativadesinfeccionacueductoPeer {
-	public static function consultarDesinfeccion($pps_anio, $pps_pre_id, $pps_ser_id) {
-		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+	public static function consultarDesinfeccion($pps_periodo, $pps_pre_id, $pps_ser_id) {
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_periodo, $pps_pre_id, $pps_ser_id);
 		$desinfecciones = $tecnicoOperativo->getTecnicooperativadesinfeccionacueductos();
 		if(count($desinfecciones)>0) {
 			$desinfeccion = $desinfecciones[0];
@@ -31,8 +31,8 @@ class TecnicooperativadesinfeccionacueductoPeer extends BaseTecnicooperativadesi
 		return $desinfeccion;
 	}
 
-	public static function consultarDesinfeccionSiExiste($pps_anio, $pps_pre_id, $pps_ser_id) {
-		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+	public static function consultarDesinfeccionSiExiste($pps_periodo, $pps_pre_id, $pps_ser_id) {
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_periodo, $pps_pre_id, $pps_ser_id);
 		$desinfecciones = $tecnicoOperativo->getTecnicooperativadesinfeccionacueductos();
 		$desinfeccion = null;
 		if(count($desinfecciones)>0) {

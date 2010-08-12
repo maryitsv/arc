@@ -17,8 +17,8 @@
  * @package    lib.model
  */
 class TecnicooperativaacueductoPeer extends BaseTecnicooperativaacueductoPeer {
-	public static function consultarTecnicoOperativoAcueducto($pps_anio, $pps_pre_id, $pps_ser_id) {
-		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+	public static function consultarTecnicoOperativoAcueducto($pps_periodo, $pps_pre_id, $pps_ser_id) {
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_periodo, $pps_pre_id, $pps_ser_id);
 		$tecnicoOperativaAcueductos = $tecnicoOperativo->getTecnicooperativaacueductos();
 		if(count($tecnicoOperativaAcueductos)>0) {
 			$tecnicoOperativaAcueducto = $tecnicoOperativaAcueductos[0];
@@ -31,8 +31,8 @@ class TecnicooperativaacueductoPeer extends BaseTecnicooperativaacueductoPeer {
 		return $tecnicoOperativaAcueducto;
 	}
 
-	public static function consultarTecnicoOperativoAcueductoSiExiste($pps_anio, $pps_pre_id, $pps_ser_id) {
-		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+	public static function consultarTecnicoOperativoAcueductoSiExiste($pps_periodo, $pps_pre_id, $pps_ser_id) {
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_periodo, $pps_pre_id, $pps_ser_id);
 		$tecnicoOperativaAcueductos = $tecnicoOperativo->getTecnicooperativaacueductos();
 		$tecnicoOperativaAcueducto = null;
 		if(count($tecnicoOperativaAcueductos)>0) {

@@ -21,11 +21,11 @@ class acueducto_conduccionaguacrudaActions extends sfActions
 	}
 
 	public function executeSubirDatos1(sfWebRequest $request) {
-		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
-		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_periodo, $pps_pre_id, $pps_ser_id);
 
 		if($request->hasParameter('tolc_canal_abierto')) {
 			TecnicooperativalineaconduccionaguacrudaacueductoPeer::crearCanal($tecnicoOperativo->getTopId(), 1, 1, $request->getParameter('tolc_canal_abierto_tierra_longitud'), null, $request->getParameter('tolc_canal_abierto_tierra_edad'));
@@ -49,11 +49,11 @@ class acueducto_conduccionaguacrudaActions extends sfActions
 	}
 
 	public function executeSubirDatos2(sfWebRequest $request) {
-		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
-		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_periodo, $pps_pre_id, $pps_ser_id);
 
 		if($request->hasParameter('tolc_tuberia')) {
 			TecnicooperativalineaconduccionaguacrudaacueductoPeer::crearCanal($tecnicoOperativo->getTopId(), 3, 4, $request->getParameter('tolc_tuberia_asbesto_cemento_longitud'), $request->getParameter('tolc_tuberia_asbesto_cemento_diametro'), $request->getParameter('tolc_tuberia_asbesto_cemento_edad'));
@@ -78,11 +78,11 @@ class acueducto_conduccionaguacrudaActions extends sfActions
 	}
 
 	public function executeSubirDatos3(sfWebRequest $request) {
-		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
-		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_periodo, $pps_pre_id, $pps_ser_id);
 
 		if($request->hasParameter('tolc_otro')) {
 			TecnicooperativalineaconduccionaguacrudaacueductoPeer::crearCanalOtro($tecnicoOperativo->getTopId(), 5, 10, $request->getParameter('tolc_otro_otro1_longitud'), $request->getParameter('tolc_otro_otro1_diametro'), $request->getParameter('tolc_otro_otro1_edad'), $request->getParameter('tolc_otro_tipo_nombre'), $request->getParameter('tolc_otro_otro1_nombre'));
@@ -97,11 +97,11 @@ class acueducto_conduccionaguacrudaActions extends sfActions
 	}
 
 	public function executeObtenerDatos() {
-		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
-		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_periodo, $pps_pre_id, $pps_ser_id);
 
 		$datos = array();
 

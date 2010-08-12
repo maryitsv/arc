@@ -31,11 +31,11 @@ class acueducto_plantatratamiento_aguapotableActions extends sfActions
 	}
 
 	public function executeSubirDatos1(sfWebRequest $request) {
-		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
-		$plantaTratamiento = TecnicooperativaplantaaguapotableacueductoPeer::consultarPlantaTratamiento($pps_anio, $pps_pre_id, $pps_ser_id);
+		$plantaTratamiento = TecnicooperativaplantaaguapotableacueductoPeer::consultarPlantaTratamiento($pps_periodo, $pps_pre_id, $pps_ser_id);
 
 		$plantaTratamiento->setToplaTecnologiaUtilizadaCc($request->getParameter('topla_tecnologia_utilizada_cc', 0));
 		$plantaTratamiento->setToplaCicloCompletoMr($request->getParameter('topla_ciclo_completo_mr', 0));
@@ -58,11 +58,11 @@ class acueducto_plantatratamiento_aguapotableActions extends sfActions
 	}
 
 	public function executeSubirDatos2(sfWebRequest $request) {
-		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
-		$plantaTratamiento = TecnicooperativaplantaaguapotableacueductoPeer::consultarPlantaTratamiento($pps_anio, $pps_pre_id, $pps_ser_id);
+		$plantaTratamiento = TecnicooperativaplantaaguapotableacueductoPeer::consultarPlantaTratamiento($pps_periodo, $pps_pre_id, $pps_ser_id);
 
 		$plantaTratamiento->setToplaTecnologiaUtilizadaFime($request->getParameter('topla_tecnologia_utilizada_fime', 0));
 		$plantaTratamiento->setToplaFimeFgd($request->getParameter('topla_fime_fgdi', 0));
@@ -84,11 +84,11 @@ class acueducto_plantatratamiento_aguapotableActions extends sfActions
 	}
 
 	public function executeSubirDatos3(sfWebRequest $request) {
-		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
-		$plantaTratamiento = TecnicooperativaplantaaguapotableacueductoPeer::consultarPlantaTratamiento($pps_anio, $pps_pre_id, $pps_ser_id);
+		$plantaTratamiento = TecnicooperativaplantaaguapotableacueductoPeer::consultarPlantaTratamiento($pps_periodo, $pps_pre_id, $pps_ser_id);
 
 		$plantaTratamiento->setToplaTecnologiaUtilizadaCt($request->getParameter('topla_tecnologia_utilizada_ct', 0));
 		$plantaTratamiento->setToplaPlantaTtmtoFunciona($request->getParameter('topla_planta_ttmto_funciona', 0));
@@ -101,14 +101,14 @@ class acueducto_plantatratamiento_aguapotableActions extends sfActions
 	}
 
 	public function executeObtenerDatos() {
-		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
 		$result = array();
 		$datos = array();
 
-		$plantaTratamiento = TecnicooperativaplantaaguapotableacueductoPeer::consultarPlantaTratamientoSiExiste($pps_anio, $pps_pre_id, $pps_ser_id);
+		$plantaTratamiento = TecnicooperativaplantaaguapotableacueductoPeer::consultarPlantaTratamientoSiExiste($pps_periodo, $pps_pre_id, $pps_ser_id);
 
 		if($plantaTratamiento) {
 			$campos = array();

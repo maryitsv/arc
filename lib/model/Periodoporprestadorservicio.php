@@ -17,5 +17,5 @@
  * @package    lib.model
  */
 class Periodoporprestadorservicio extends BasePeriodoporprestadorservicio {
-
+	
 } // Periodoporprestadorservicio

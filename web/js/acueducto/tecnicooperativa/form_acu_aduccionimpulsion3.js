@@ -236,7 +236,7 @@ var toai_otro_otro3_nombre = {
     fieldLabel: 'Otro tipo'
 }
 
-var acu_aduccionimpulsion2_datastore = new Ext.data.Store({
+var acu_aduccionimpulsion3_datastore = new Ext.data.Store({
     id: 'acu_aduccionimpulsion2_datastore',
     proxy: new Ext.data.HttpProxy({
         url: getAbsoluteUrl('acueducto_aduccionimpulsion', 'obtenerDatos'),
@@ -289,9 +289,9 @@ var acu_aduccionimpulsion2_datastore = new Ext.data.Store({
     }])
 });
 
-acu_aduccionimpulsion2_datastore.load({
+acu_aduccionimpulsion3_datastore.load({
     callback: function(){
-        var registro = acu_aduccionimpulsion2_datastore.getAt(0);
+        var registro = acu_aduccionimpulsion3_datastore.getAt(0);
         form_acu_aduccionimpulsion3.getForm().loadRecord(registro);
     }
 });

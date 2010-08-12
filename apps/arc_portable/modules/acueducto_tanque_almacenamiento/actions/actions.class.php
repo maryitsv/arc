@@ -21,11 +21,11 @@ class acueducto_tanque_almacenamientoActions extends sfActions
 	}
 
 	public function executeObtenerDatos() {
-		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
-		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_periodo, $pps_pre_id, $pps_ser_id);
 
 		$data = array();
 
@@ -53,11 +53,11 @@ class acueducto_tanque_almacenamientoActions extends sfActions
 	}
 
 	public function executeAdicionarTanque() {
-		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
-		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_periodo, $pps_pre_id, $pps_ser_id);
 
 		$tanque = new Tanque();
 		$tanque->setTecnicooperativo($tecnicoOperativo);
