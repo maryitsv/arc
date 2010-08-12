@@ -9,7 +9,7 @@ var tecnicooperativa_aseo_tabpanel = new Ext.TabPanel({
     items: [{
         title: 'Actividades dentro del sistema de gesti&oacute;n de residuos sólidos',
         autoLoad: {
-            url: getAbsoluteUrl('', 'index'),
+            url: getAbsoluteUrl('aseo_actividadesresiduossolidosaseo', 'index'),
             scripts: true
         }
     }, {
