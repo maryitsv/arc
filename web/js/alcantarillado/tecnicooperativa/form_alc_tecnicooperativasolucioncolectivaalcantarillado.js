@@ -111,17 +111,17 @@
 				  Ext.getCmp('alc_tosca_sanitario_funciona').reset();
 				  Ext.getCmp('alc_tosca_sanitario_numero_suscriptores').reset();
 				  Ext.getCmp('alc_tosca_sanitario_se_usa').reset();
-				  Ext.getCmp('alc_tosca_sanitario_estado').reset();
+				  Ext.getCmp('alc_tosca_sanitario_estado_combo').reset();
 				  }
 				  Ext.getCmp('alc_tosca_sanitario_funciona').setDisabled(!checked);
 				  Ext.getCmp('alc_tosca_sanitario_numero_suscriptores').setDisabled(!checked);
 				  Ext.getCmp('alc_tosca_sanitario_se_usa').setDisabled(!checked);
-				  Ext.getCmp('alc_tosca_sanitario_estado').setDisabled(!checked);									
+				  Ext.getCmp('alc_tosca_sanitario_estado_combo').setDisabled(!checked);									
 			  }
 		  }
 	  });
 
-	var alc_tosca_sanitario_numero_suscriptores= new  Ext.form.TextField({	
+	var alc_tosca_sanitario_numero_suscriptores= new  Ext.form.NumberField({	
 		xtype: 'numberfield', 
 		id: 'alc_tosca_sanitario_numero_suscriptores',
 		name: 'alc_tosca_sanitario_numero_suscriptores',
@@ -197,45 +197,44 @@
 		}
 	});
 
-	var alc_tosca_sanitario_estado = new Ext.form.RadioGroup({
-		xtype: 'radiogroup',
-		layout: 'column',
-		columns:[ 60, 60, 60],
-		id: 'alc_tosca_sanitario_estado', 							
-		items: [{
-					width: 60,
-					items: [
-						{ xtype: 'label', html: 'Bueno', cls:'x-form-check-group-label'},
-						{ name: 'alc_tosca_sanitario_estado', 
-							id: 'alc_tosca_sanitario_estado_bueno', 
-							inputValue: 'bueno'
-						}
-						]
-				},{
-					width: 60,
-					items: [
-						{ xtype: 'label', html: 'Regular', cls:'x-form-check-group-label'},
-						{ name: 'alc_tosca_sanitario_estado',
-							id: 'alc_tosca_sanitario_estado_regular',
-							inputValue: 'regular',
-							}
-						]
-				},{
-					width: 60,
-					items: [
-						{ xtype: 'label', html: 'Malo', cls:'x-form-check-group-label'},
-						{ name: 'alc_tosca_sanitario_estado', 
-							id: 'alc_tosca_sanitario_estado_malo', 
-							inputValue: 'malo'}
-						]
-				}],
+
+	var  alc_tosca_estados_listado_datastore = new Ext.data.JsonStore({
+		id: ' alc_tosca_estados_listado_datastore',
+		url:'alcantarillado_tecnicooperativasolucioncolectivaalcantarillado/listarEstados',
+		root: 'results',
+		baseParams:{},
+		totalProperty: 'total',
+		fields:[
+			{name: 'esg_id', type: 'string'},
+			{name: 'esg_nombre', type: 'string'},
+		],
+		sortInfo:{field: 'esg_nombre', direction: 'ASC'}
+	});
+	alc_tosca_estados_listado_datastore.load();
+		
+
+	var alc_tosca_sanitario_estado = new Ext.form.ComboBox({
+		hideLabel:true,
+		xtype: 'combo',
+		store:  alc_tosca_estados_listado_datastore,
+		hiddenName :'alc_tosca_sanitario_estado',
+		name: 'alc_tosca_sanitario_estado',
+		id: 'alc_tosca_sanitario_estado_combo',
+		mode:'local', 
+		valueField:'esg_id',
+		forceSelection:true,
+		displayField: 'esg_nombre',
+		triggerAction: 'all',
+		emptyText: 'Selecione....',
+		selectOnFocus: true,
 		listeners:
 		{
-			'render':function(){
-				ayuda('alc_tosca_sanitario_estado',ayuda_alc_tosca_sanitario_estado);
+			render:function(){
+				ayuda('alc_tosca_sanitario_estado_combo',ayuda_alc_tosca_sanitario_estado);
 			}
 		}
 	});
+
 
 
 	//todo pluvial
@@ -255,18 +254,18 @@
 				Ext.getCmp('alc_tosca_pluvial_funciona').reset();
 				Ext.getCmp('alc_tosca_pluvial_numero_suscriptores').reset();
 				Ext.getCmp('alc_tosca_pluvial_se_usa').reset();
-				Ext.getCmp('alc_tosca_pluvial_estado').reset();
+				Ext.getCmp('alc_tosca_pluvial_estado_combo').reset();
 				}
 				Ext.getCmp('alc_tosca_pluvial_funciona').setDisabled(!checked);
 				Ext.getCmp('alc_tosca_pluvial_numero_suscriptores').setDisabled(!checked);
 				Ext.getCmp('alc_tosca_pluvial_se_usa').setDisabled(!checked);
-				Ext.getCmp('alc_tosca_pluvial_estado').setDisabled(!checked);									
+				Ext.getCmp('alc_tosca_pluvial_estado_combo').setDisabled(!checked);									
 					
 			}
 		}
 	});
 
-	var alc_tosca_pluvial_numero_suscriptores = new  Ext.form.TextField({	
+	var alc_tosca_pluvial_numero_suscriptores = new  Ext.form.NumberField({	
 		xtype: 'numberfield', 
 		id: 'alc_tosca_pluvial_numero_suscriptores',
 		name: 'alc_tosca_pluvial_numero_suscriptores',
@@ -324,31 +323,27 @@
 		}					
 	});
 
+	
+	
 
-	var alc_tosca_pluvial_estado = new Ext.form.RadioGroup({
-		xtype: 'radiogroup',
-		id: 'alc_tosca_pluvial_estado',
-		items: [
-			{ 	
-				name: 'alc_tosca_pluvial_estado',
-				id: 'alc_tosca_pluvial_estado_bueno',
-				inputValue: 'bueno'
-			},
-			{ 
-				name: 'alc_tosca_pluvial_estado',
-				id: 'alc_tosca_pluvial_estado_regular',
-				inputValue: 'regular'
-			},
-			{ 
-				name: 'alc_tosca_pluvial_estado',
-				id: 'alc_tosca_pluvial_estado_malo',
-				inputValue: 'malo'
-			}
-		],
+	var alc_tosca_pluvial_estado = new Ext.form.ComboBox({
+		hideLabel:true,
+		xtype: 'combo',
+		store:  alc_tosca_estados_listado_datastore,
+		hiddenName :'alc_tosca_pluvial_estado',
+		name: 'alc_tosca_pluvial_estado',
+		id: 'alc_tosca_pluvial_estado_combo',
+		mode:'local', 
+		valueField:'esg_id',
+		forceSelection:true,
+		displayField: 'esg_nombre',
+		triggerAction: 'all',
+		emptyText: 'Selecione....',
+		selectOnFocus: true,
 		listeners:
 		{
-			'render':function(){
-				ayuda('alc_tosca_pluvial_estado',ayuda_alc_tosca_pluvial_estado);
+			render:function(){
+				ayuda('alc_tosca_pluvial_estado_combo',ayuda_alc_tosca_pluvial_estado);
 			}
 		}
 	});
@@ -371,18 +366,18 @@
 				Ext.getCmp('alc_tosca_combi_convencional_funciona').reset();
 				Ext.getCmp('alc_tosca_combi_convencional_numero_suscriptores').reset();
 				Ext.getCmp('alc_tosca_combi_convencional_se_usa').reset();
-				Ext.getCmp('alc_tosca_combi_convencional_estado').reset();
+				Ext.getCmp('alc_tosca_combi_convencional_estado_combo').reset();
 				}
 				Ext.getCmp('alc_tosca_combi_convencional_funciona').setDisabled(!checked);
 				Ext.getCmp('alc_tosca_combi_convencional_numero_suscriptores').setDisabled(!checked);
 				Ext.getCmp('alc_tosca_combi_convencional_se_usa').setDisabled(!checked);
-				Ext.getCmp('alc_tosca_combi_convencional_estado').setDisabled(!checked);									
+				Ext.getCmp('alc_tosca_combi_convencional_estado_combo').setDisabled(!checked);									
 				
 			}
 		}
 	});
 
-	var alc_tosca_combi_convencional_numero_suscriptores = new  Ext.form.TextField({	
+	var alc_tosca_combi_convencional_numero_suscriptores = new  Ext.form.NumberField({	
 		xtype: 'numberfield', 
 		id: 'alc_tosca_combi_convencional_numero_suscriptores',
 		name: 'alc_tosca_combi_convencional_numero_suscriptores',
@@ -443,34 +438,28 @@
 		}
 	});
 
-	var alc_tosca_combi_convencional_estado = new Ext.form.RadioGroup({
-		xtype: 'radiogroup',
-		id: 'alc_tosca_combi_convencional_estado',
-		items: [
-			{ 	
-				name: 'alc_tosca_combi_convencional_estado',
-				id: 'alc_tosca_combi_convencional_estado_bueno',
-				inputValue: 'bueno'
-			},
-			{ 	
-				name: 'alc_tosca_combi_convencional_estado',
-				id: 'alc_tosca_combi_convencional_estado_regular',
-				inputValue: 'regular'
-			},
-			{ 	
-				name: 'alc_tosca_combi_convencional_estado',
-				id: 'alc_tosca_combi_convencional_estado_malo',
-				inputValue: 'malo'
-			}
-		],
+	var alc_tosca_combi_convencional_estado = new Ext.form.ComboBox({
+		hideLabel:true,
+		xtype: 'combo',
+		store:  alc_tosca_estados_listado_datastore,
+		hiddenName :'alc_tosca_combi_convencional_estado',
+		name: 'alc_tosca_combi_convencional_estado',
+		id: 'alc_tosca_combi_convencional_estado_combo',
+		mode:'local', 
+		valueField:'esg_id',
+		forceSelection:true,
+		displayField: 'esg_nombre',
+		triggerAction: 'all',
+		emptyText: 'Selecione....',
+		selectOnFocus: true,
 		listeners:
 		{
-			'render':function(){
-				ayuda('alc_tosca_combi_convencional_estado',ayuda_alc_tosca_combi_convencional_estado);
+			render:function(){
+				ayuda('alc_tosca_combi_convencional_estado_combo',ayuda_alc_tosca_combi_convencional_estado);
 			}
 		}
 	});
-
+	
 
 	//todo combi no convencional
 	var alc_tosca_combi_no_convencional = new Ext.form.Checkbox({	
@@ -489,18 +478,18 @@
 				Ext.getCmp('alc_tosca_combi_no_convencional_funciona').reset();
 				Ext.getCmp('alc_tosca_combi_no_convencional_numero_suscriptores').reset();
 				Ext.getCmp('alc_tosca_combi_no_convencional_se_usa').reset();
-				Ext.getCmp('alc_tosca_combi_no_convencional_estado').reset();
+				Ext.getCmp('alc_tosca_combi_no_convencional_estado_combo').reset();
 				}
 				Ext.getCmp('alc_tosca_combi_no_convencional_funciona').setDisabled(!checked);
 				Ext.getCmp('alc_tosca_combi_no_convencional_numero_suscriptores').setDisabled(!checked);
 				Ext.getCmp('alc_tosca_combi_no_convencional_se_usa').setDisabled(!checked);
-				Ext.getCmp('alc_tosca_combi_no_convencional_estado').setDisabled(!checked);									
+				Ext.getCmp('alc_tosca_combi_no_convencional_estado_combo').setDisabled(!checked);									
 				
 			}
 		}
 	});
 
-	var alc_tosca_combi_no_convencional_numero_suscriptores = new  Ext.form.TextField({	
+	var alc_tosca_combi_no_convencional_numero_suscriptores = new  Ext.form.NumberField({	
 		xtype: 'numberfield', 
 		id: 'alc_tosca_combi_no_convencional_numero_suscriptores',
 		name: 'alc_tosca_combi_no_convencional_numero_suscriptores',
@@ -559,6 +548,28 @@
 		}
 	});
 
+	var alc_tosca_combi_no_convencional_estado = new Ext.form.ComboBox({
+		hideLabel:true,
+		xtype: 'combo',
+		store:  alc_tosca_estados_listado_datastore,
+		hiddenName :'alc_tosca_combi_no_convencional_estado',
+		name: 'alc_tosca_combi_no_convencional_estado',
+		id: 'alc_tosca_combi_no_convencional_estado_combo',
+		mode:'local', 
+		valueField:'esg_id',
+		forceSelection:true,
+		displayField: 'esg_nombre',
+		triggerAction: 'all',
+		emptyText: 'Selecione....',
+		selectOnFocus: true,
+		listeners:
+		{
+			render:function(){
+				ayuda('alc_tosca_combi_no_convencional_estado_combo',ayuda_alc_tosca_combi_no_convencional_estado);
+			}
+		}
+	});
+/*
 	var alc_tosca_combi_no_convencional_estado = new Ext.form.RadioGroup({
 		xtype: 'radiogroup',
 		id: 'alc_tosca_combi_no_convencional_estado',
@@ -582,12 +593,12 @@
 		listeners:
 		{
 			'render':function(){
-				ayuda('alc_tosca_combi_no_convencional_estado',ayuda_alc_tosca_combi_no_convencional_estado);
+				ayuda('alc_tosca_combi_no_convencional_estado_combo',ayuda_alc_tosca_combi_no_convencional_estado);
 			}
 		}
 	});
 
-
+*/
 	//todo simplificado
 	var alc_tosca_simplificado= new Ext.form.Checkbox({	
 		xtype: 'checkbox', 
@@ -605,18 +616,18 @@
 				Ext.getCmp('alc_tosca_simplificado_funciona').reset();
 				Ext.getCmp('alc_tosca_simplificado_numero_suscriptores').reset();
 				Ext.getCmp('alc_tosca_simplificado_se_usa').reset();
-				Ext.getCmp('alc_tosca_simplificado_estado').reset();
+				Ext.getCmp('alc_tosca_simplificado_estado_combo').reset();
 				}
 				Ext.getCmp('alc_tosca_simplificado_funciona').setDisabled(!checked);
 				Ext.getCmp('alc_tosca_simplificado_numero_suscriptores').setDisabled(!checked);
 				Ext.getCmp('alc_tosca_simplificado_se_usa').setDisabled(!checked);
-				Ext.getCmp('alc_tosca_simplificado_estado').setDisabled(!checked);									
+				Ext.getCmp('alc_tosca_simplificado_estado_combo').setDisabled(!checked);									
 			
 			}
 		}
 	});
 
-	var alc_tosca_simplificado_numero_suscriptores = new  Ext.form.TextField({
+	var alc_tosca_simplificado_numero_suscriptores = new  Ext.form.NumberField({
 		xtype: 'numberfield', 
 		id: 'alc_tosca_simplificado_numero_suscriptores',
 		name: 'alc_tosca_simplificado_numero_suscriptores',
@@ -675,6 +686,29 @@
 		}
 	});
 
+
+	var alc_tosca_simplificado_estado = new Ext.form.ComboBox({
+		hideLabel:true,
+		xtype: 'combo',
+		store:  alc_tosca_estados_listado_datastore,
+		hiddenName :'alc_tosca_simplificado_estado',
+		name: 'alc_tosca_simplificado_estado',
+		id: 'alc_tosca_simplificado_estado_combo',
+		mode:'local', 
+		valueField:'esg_id',
+		forceSelection:true,
+		displayField: 'esg_nombre',
+		triggerAction: 'all',
+		emptyText: 'Selecione....',
+		selectOnFocus: true,
+		listeners:
+		{
+			render:function(){
+				ayuda('alc_tosca_simplificado_estado_combo',ayuda_alc_tosca_simplificado_estado);
+			}
+		}
+	});
+/*
 	var alc_tosca_simplificado_estado = new Ext.form.RadioGroup({
 		xtype: 'radiogroup',
 		id: 'alc_tosca_simplificado_estado',
@@ -698,10 +732,10 @@
 		listeners:
 		{
 			'render':function(){
-				ayuda('alc_tosca_simplificado_estado',ayuda_alc_tosca_simplificado_estado);
+				ayuda('alc_tosca_simplificado_estado_combo',ayuda_alc_tosca_simplificado_estado);
 			}
 		}
-	});
+	});*/
 
 	//todo sin arrastre
 	var alc_tosca_sin_arrastre_solidos = new Ext.form.Checkbox({	
@@ -720,18 +754,18 @@
 				Ext.getCmp('alc_tosca_sin_arrastre_solidos_funciona').reset();
 				Ext.getCmp('alc_tosca_sin_arrastre_solidos_numero_suscriptores').reset();
 				Ext.getCmp('alc_tosca_sin_arrastre_solidos_se_usa').reset();
-				Ext.getCmp('alc_tosca_sin_arrastre_solidos_estado').reset();
+				Ext.getCmp('alc_tosca_sin_arrastre_solidos_estado_combo').reset();
 				}
 				Ext.getCmp('alc_tosca_sin_arrastre_solidos_funciona').setDisabled(!checked);
 				Ext.getCmp('alc_tosca_sin_arrastre_solidos_numero_suscriptores').setDisabled(!checked);
 				Ext.getCmp('alc_tosca_sin_arrastre_solidos_se_usa').setDisabled(!checked);
-				Ext.getCmp('alc_tosca_sin_arrastre_solidos_estado').setDisabled(!checked);									
+				Ext.getCmp('alc_tosca_sin_arrastre_solidos_estado_combo').setDisabled(!checked);									
 			
 			}
 		}
 	});
 
-	var alc_tosca_sin_arrastre_solidos_numero_suscriptores = new  Ext.form.TextField({	
+	var alc_tosca_sin_arrastre_solidos_numero_suscriptores = new  Ext.form.NumberField({	
 		xtype: 'numberfield', 
 		id: 'alc_tosca_sin_arrastre_solidos_numero_suscriptores',
 		name: 'alc_tosca_sin_arrastre_solidos_numero_suscriptores',
@@ -789,6 +823,28 @@
 		}
 	});
 
+	var alc_tosca_sin_arrastre_solidos_estado = new Ext.form.ComboBox({
+		hideLabel:true,
+		xtype: 'combo',
+		store:  alc_tosca_estados_listado_datastore,
+		hiddenName :'alc_tosca_sin_arrastre_solidos_estado',
+		name: 'alc_tosca_sin_arrastre_solidos_estado',
+		id: 'alc_tosca_sin_arrastre_solidos_estado_combo',
+		mode:'local', 
+		valueField:'esg_id',
+		forceSelection:true,
+		displayField: 'esg_nombre',
+		triggerAction: 'all',
+		emptyText: 'Selecione....',
+		selectOnFocus: true,
+		listeners:
+		{
+			render:function(){
+				ayuda('alc_tosca_sin_arrastre_solidos_estado_combo',ayuda_alc_tosca_sin_arrastre_solidos_estado);
+			}
+		}
+	});
+/*
 	var alc_tosca_sin_arrastre_solidos_estado = new Ext.form.RadioGroup({
 		xtype: 'radiogroup',
 		id: 'alc_tosca_sin_arrastre_solidos_estado',
@@ -812,10 +868,10 @@
 		listeners:
 		{
 			'render':function(){
-				ayuda('alc_tosca_sin_arrastre_solidos_estado',ayuda_alc_tosca_sin_arrastre_solidos_estado);
+				ayuda('alc_tosca_sin_arrastre_solidos_estado_combo',ayuda_alc_tosca_sin_arrastre_solidos_estado);
 			}
 		}
-	});
+	});*/
 
 	//todo otro
 	var alc_tosca_otro= new Ext.form.Checkbox({	
@@ -834,17 +890,17 @@
 				Ext.getCmp('alc_tosca_otro_funciona').reset();
 				Ext.getCmp('alc_tosca_otro_numero_suscriptores').reset();
 				Ext.getCmp('alc_tosca_otro_se_usa').reset();
-				Ext.getCmp('alc_tosca_otro_estado').reset();
+				Ext.getCmp('alc_tosca_otro_estado_combo').reset();
 				}
 				Ext.getCmp('alc_tosca_otro_funciona').setDisabled(!checked);
 				Ext.getCmp('alc_tosca_otro_numero_suscriptores').setDisabled(!checked);
 				Ext.getCmp('alc_tosca_otro_se_usa').setDisabled(!checked);
-				Ext.getCmp('alc_tosca_otro_estado').setDisabled(!checked);									
+				Ext.getCmp('alc_tosca_otro_estado_combo').setDisabled(!checked);									
 			}
 		}
 	});
 
-	var alc_tosca_otro_numero_suscriptores = new  Ext.form.TextField({	
+	var alc_tosca_otro_numero_suscriptores = new  Ext.form.NumberField({	
 		xtype: 'numberfield', 
 		id: 'alc_tosca_otro_numero_suscriptores',
 		name: 'alc_tosca_otro_numero_suscriptores',
@@ -902,6 +958,28 @@
 		}
 	});
 
+	var alc_tosca_otro_estado = new Ext.form.ComboBox({
+		hideLabel:true,
+		xtype: 'combo',
+		store:  alc_tosca_estados_listado_datastore,
+		hiddenName :'alc_tosca_otro_estado',
+		name: 'alc_tosca_otro_estado',
+		id: 'alc_tosca_otro_estado_combo',
+		mode:'local', 
+		valueField:'esg_id',
+		forceSelection:true,
+		displayField: 'esg_nombre',
+		triggerAction: 'all',
+		emptyText: 'Selecione....',
+		selectOnFocus: true,
+		listeners:
+		{
+			render:function(){
+				ayuda('alc_tosca_otro_estado_combo',ayuda_alc_tosca_otro_estado);
+			}
+		}
+	});
+/*
 	var alc_tosca_otro_estado = new Ext.form.RadioGroup({
 		xtype: 'radiogroup',
 		id: 'alc_tosca_otro_estado',
@@ -925,10 +1003,10 @@
 		listeners:
 		{
 			'render':function(){
-				ayuda('alc_tosca_otro_estado',ayuda_alc_tosca_otro_estado);
+				ayuda('alc_tosca_otro_estado_combo',ayuda_alc_tosca_otro_estado);
 			}
 		}
-	});
+	});*/
 
 
 	var alc_tecnicooperativasolucioncolectivaalcantarillado_panel = new Ext.FormPanel({
@@ -1016,6 +1094,21 @@
 				},
 
 //estado
+				{ //numero de suscritores
+					bodyStyle: 'padding-top:23px;padding-right:5px;',
+					defaults:{hideLabel: true,disabled:true,width:100,maxLength : 9},
+					items:
+					[ 	
+						{ xtype: 'label', html: 'Estado', cls:'x-form-check-group-label',disabled:false},
+						alc_tosca_sanitario_estado,
+						alc_tosca_pluvial_estado,
+						alc_tosca_combi_convencional_estado,
+						alc_tosca_combi_no_convencional_estado,
+						alc_tosca_simplificado_estado,
+						alc_tosca_sin_arrastre_solidos_estado,
+						alc_tosca_otro_estado
+					]
+				}/*,
 
 				{
 					width: 180,
@@ -1031,7 +1124,7 @@
 						alc_tosca_sin_arrastre_solidos_estado,
 						alc_tosca_otro_estado
 					]
-				}
+				}*/
 				]
 			}
 		],

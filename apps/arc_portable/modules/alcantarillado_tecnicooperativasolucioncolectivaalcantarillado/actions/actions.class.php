@@ -43,12 +43,12 @@ class alcantarillado_tecnicooperativasolucioncolectivaalcantarilladoActions exte
     public function obtenerTopId()
   { 
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_ser_id = $this->obtenerServicioId('alcantarillado');
 	
 	$conexion = new Criteria();
 	$conexion->add(TecnicooperativoPeer::TOP_PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(TecnicooperativoPeer::TOP_PPS_ANIO, $pps_anio);
+	$conexion->add(TecnicooperativoPeer::TOP_PPS_PERIODO, $pps_periodo);
 	$conexion->add(TecnicooperativoPeer::TOP_PPS_SER_ID, $pps_ser_id);
 	
 	$tecnicooperativofila = TecnicooperativoPeer::doSelectOne($conexion);
@@ -56,7 +56,7 @@ class alcantarillado_tecnicooperativasolucioncolectivaalcantarilladoActions exte
 	if(!$tecnicooperativofila){
 	$tecnicooperativofila=new Tecnicooperativo();
 	$tecnicooperativofila->setTopPpsPreId($pps_pre_id);
-	$tecnicooperativofila->setTopPpsAnio($pps_anio);
+	$tecnicooperativofila->setTopPpsPeriodo($pps_periodo);
 	$tecnicooperativofila->setTopPpsSerId($pps_ser_id);
 	$tecnicooperativofila->save();
 	}
@@ -220,6 +220,45 @@ class alcantarillado_tecnicooperativasolucioncolectivaalcantarilladoActions exte
 		
 	return $this->renderText($salida);
   }
+
+
+ /**
+  *@author:maryit sanchez
+  *@date:12 de agosto de 2010
+  *Esta funcion devuelve un listado de estados generales
+  */
+ public function executeListarEstados(sfWebRequest $request)
+  {  
+	$salida='({"total":"0", "results":""})';
+	$fila=0;
+	$datos;
+		
+	
+		try{
+
+			$conexion = new Criteria();
+			$estadosgenerales = EstadogeneralPeer::doSelect($conexion);
+
+			foreach($estadosgenerales as $temporal)
+			{
+				$datos[$fila]['esg_id'] = $temporal->getEsgId();
+				$datos[$fila]['esg_nombre'] = $temporal->getEsgNombre();
+				
+				$fila++;
+			} 
+			if($fila>0){
+				$jsonresult = json_encode($datos);
+				$salida= '({"total":"'.$fila.'","results":'.$jsonresult.'})';
+			}		
+		}
+		catch (Exception $excepcion)
+		{
+			$salida = "({success: false, errors: { reason: 'Hubo una excepcion en solucion colectiva de alcantarillado ".$excepcion."'}})";
+		}
+		
+	return $this->renderText($salida);
+  }
+
 
 
 }
