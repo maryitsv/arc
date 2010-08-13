@@ -1,4 +1,24 @@
-
+var ase_actividadesresiduossolidosaseo_datastore = new Ext.data.Store({
+	id: 'ase_actividadesresiduossolidosaseo_datastore',
+	proxy: new Ext.data.HttpProxy({
+			url: 'aseo_actividadesresiduossolidosaseo/obtenerDatosAseActividadesresiduossolidosaseo', 
+			method: 'POST'
+	}),
+	baseParams:{}, 
+	reader: new Ext.data.JsonReader({
+			root: 'results',
+			totalProperty: 'total',
+			id: 'id'
+			},[
+				{name: 'ase_ars_recole_trans_residuos_no_peligrosos', type: 'int'},
+				{name: 'ase_ars_tratamiento_residuos_no_peligrosos', type: 'int'},
+				{name: 'ase_ars_aprovechamiento_residuos', type: 'int'},
+				{name: 'ase_ars_disposicion_final', type: 'int'},
+				{name: 'ase_ars_barrido_limpieza_area_publica', type: 'int'},
+				{name: 'ase_ars_recole_trasn_residuos_hospitalarios_no_peligrosos', type: 'int'},
+				{name: 'ase_ars_recole_trasn_residuos_hospitalarios_peligrosos', type: 'int'}
+	])
+});
 
 var ase_ars_recole_trans_residuos_no_peligrosos = new Ext.form.Checkbox({
 	id: 'ase_ars_recole_trans_residuos_no_peligrosos',
@@ -97,28 +117,14 @@ var ase_ars_recole_trasn_residuos_hospitalarios_peligrosos = new Ext.form.Checkb
      	}              
 	}
 });
-/*
-var ase_ars_actividades_checkboxgroup = new Ext.form.CheckboxGroup({
-	hideLabel: true,
-	//layout: 'column',
-	columns: 1,
-	style : 'font-size: 13px; font-family: Arial, Verdana, Helvetica, sans-serif;',
-	anchor: '100%',
-	items: [
-		
-	]
-});*/
 
 var form_ase_actividadesresiduossolidosaseo = new Ext.FormPanel({
-	//hidden: true,
 	autoWidth: true,
 	border: false,
-	//frame: true, 
 	layout: 'column',
 	height: largo_panel-15,
 	renderTo: 'div_form_ase_actividadesresiduossolidosaseo',
 	padding: 10,
-	//style: {"margin-right": Ext.isIE6 ? (Ext.isStrict ? "-10px" : "-13px") : "0" },
 	items: [
 	   {
 			xtype: 'fieldset',
@@ -128,7 +134,9 @@ var form_ase_actividadesresiduossolidosaseo = new Ext.FormPanel({
 			labelWidth: 310,
 			defaults: {labelStyle: 'font-size:1.0em;', hideLabel: true},
 			bodyStyle: Ext.isIE ? 'padding:5 5 5px 15px;' : 'padding: 10px 10px;',
-			items: [ase_ars_recole_trans_residuos_no_peligrosos, 
+			items: [
+					{xtype: 'label', html: 'Actividades<br/><br/>'},
+					ase_ars_recole_trans_residuos_no_peligrosos, 
 					ase_ars_tratamiento_residuos_no_peligrosos, 
 					ase_ars_aprovechamiento_residuos,
 					ase_ars_disposicion_final, 
@@ -156,6 +164,23 @@ var form_ase_actividadesresiduossolidosaseo = new Ext.FormPanel({
 	]
 });
 
+ase_actividadesresiduossolidosaseo_datastore.load({
+  callback: function() {
+	var record = ase_actividadesresiduossolidosaseo_datastore.getAt(0);
+	form_ase_actividadesresiduossolidosaseo.getForm().loadRecord(record);
+  }
+});
 
+function ase_actividadesresiduossolidosaseo_subirdatos() {
+	subirDatos(
+		form_ase_actividadesresiduossolidosaseo, 
+		'aseo_actividadesresiduossolidosaseo/actualizarActividadesresiduossolidosaseo',
+		{},
+		function(){
+			
+		}
+	);
+	
+}
   
 	
