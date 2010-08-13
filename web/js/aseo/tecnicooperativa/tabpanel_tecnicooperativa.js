@@ -20,6 +20,13 @@ var tecnicooperativa_aseo_tabpanel = new Ext.TabPanel({
             scripts: true
         }
     }, {
+        title: 'Recolecci&oacute;n y Transporte',
+        frame: true,
+        autoLoad: {
+            url: getAbsoluteUrl('aseo_vehiculorecoleccion', 'index'),
+            scripts: true
+        }
+    },{
         title: 'Tratamiento y aprovechamiento',
         autoLoad: {
             url: getAbsoluteUrl('aseo_tratamientoaprovechamiento', 'index'),
