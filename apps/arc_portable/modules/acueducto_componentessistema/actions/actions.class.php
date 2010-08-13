@@ -21,11 +21,11 @@ class acueducto_componentessistemaActions extends sfActions
 	}
 
 	public function executeSubirDatos(sfWebRequest $request) {
-		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
-		$tecnicoOperativaComponentesSistema = TecnicooperativacomponentessistemaPeer::consultarComponentesSistema($pps_anio, $pps_pre_id, $pps_ser_id);
+		$tecnicoOperativaComponentesSistema = TecnicooperativacomponentessistemaPeer::consultarComponentesSistema($pps_periodo, $pps_pre_id, $pps_ser_id);
 
 		$tecnicoOperativaComponentesSistema->setTocsCaptacion($request->getParameter('tocs_captacion', 0));
 		$tecnicoOperativaComponentesSistema->setTocsCaptacionCantidad($request->getParameter('tocs_captacion_cantidad', 0));
@@ -51,14 +51,14 @@ class acueducto_componentessistemaActions extends sfActions
 	}
 
 	public function executeObtenerDatos() {
-		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
 		$result = array();
 		$datos = array();
 
-		$tecnicoOperativaComponentesSistema = TecnicooperativacomponentessistemaPeer::consultarComponentesSistemaSiExiste($pps_anio, $pps_pre_id, $pps_ser_id);
+		$tecnicoOperativaComponentesSistema = TecnicooperativacomponentessistemaPeer::consultarComponentesSistemaSiExiste($pps_periodo, $pps_pre_id, $pps_ser_id);
 			
 		if($tecnicoOperativaComponentesSistema) {
 			$campos = array();

@@ -21,11 +21,11 @@ class acueducto_sistemasabastecimientoActions extends sfActions
 	}
 
 	public function executeSubirDatos(sfWebRequest $request) {
-		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
-		$tecnicoOperativaAcueducto = TecnicooperativaacueductoPeer::consultarTecnicoOperativoAcueducto($pps_anio, $pps_pre_id, $pps_ser_id);
+		$tecnicoOperativaAcueducto = TecnicooperativaacueductoPeer::consultarTecnicoOperativoAcueducto($pps_periodo, $pps_pre_id, $pps_ser_id);
 
 		$tecnicoOperativaAcueducto->setToaGravedadSinTratamiento($request->getParameter('toa_gravedad_sin_tratamiento', 0));
 		$tecnicoOperativaAcueducto->setToaBombeoSinTratamiento($request->getParameter('toa_bombeo_sin_tratamiento', 0));
@@ -54,14 +54,14 @@ class acueducto_sistemasabastecimientoActions extends sfActions
 	}
 
 	public function executeObtenerDatos() {
-		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
 		$result = array();
 		$datos = array();
 
-		$tecnicoOperativaAcueducto = TecnicooperativaacueductoPeer::consultarTecnicoOperativoAcueductoSiExiste($pps_anio, $pps_pre_id, $pps_ser_id);
+		$tecnicoOperativaAcueducto = TecnicooperativaacueductoPeer::consultarTecnicoOperativoAcueductoSiExiste($pps_periodo, $pps_pre_id, $pps_ser_id);
 
 		if($tecnicoOperativaAcueducto) {
 

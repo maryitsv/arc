@@ -17,8 +17,8 @@
  * @package    lib.model
  */
 class TecnicooperativadesarenadoracueductoPeer extends BaseTecnicooperativadesarenadoracueductoPeer {
-	public static function consultarDesarenador($pps_anio, $pps_pre_id, $pps_ser_id) {
-		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+	public static function consultarDesarenador($pps_periodo, $pps_pre_id, $pps_ser_id) {
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_periodo, $pps_pre_id, $pps_ser_id);
 		$desarenadores = $tecnicoOperativo->getTecnicooperativadesarenadoracueductos();
 		if(count($desarenadores)>0) {
 			$desarenador = $desarenadores[0];
@@ -31,8 +31,8 @@ class TecnicooperativadesarenadoracueductoPeer extends BaseTecnicooperativadesar
 		return $desarenador;
 	}
 
-	public static function consultarDesarenadorSiExiste($pps_anio, $pps_pre_id, $pps_ser_id) {
-		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+	public static function consultarDesarenadorSiExiste($pps_periodo, $pps_pre_id, $pps_ser_id) {
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_periodo, $pps_pre_id, $pps_ser_id);
 		$desarenadores = $tecnicoOperativo->getTecnicooperativadesarenadoracueductos();
 		$desarenador = null;
 		if(count($desarenadores)>0) {

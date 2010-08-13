@@ -21,11 +21,11 @@ class acueducto_reddistribucionActions extends sfActions
 	}
 
 	public function executeSubirDatos1(sfWebRequest $request) {
-		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
-		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_periodo, $pps_pre_id, $pps_ser_id);
 
 		if($request->hasParameter('tord_redes_primarias')) {
 			TecnicooperativareddistribucionacueductoPeer::crearRed($tecnicoOperativo->getTopId(), 1, 1, $request->getParameter('tord_redes_primarias_asbesto_cemento_diametro'), $request->getParameter('tord_redes_primarias_asbesto_cemento_edad'));
@@ -51,11 +51,11 @@ class acueducto_reddistribucionActions extends sfActions
 	}
 
 	public function executeSubirDatos2(sfWebRequest $request) {
-		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
-		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_periodo, $pps_pre_id, $pps_ser_id);
 
 		if($request->hasParameter('tord_redes_terciarias')) {
 			TecnicooperativareddistribucionacueductoPeer::crearRed($tecnicoOperativo->getTopId(), 3, 1, $request->getParameter('tord_redes_terciarias_asbesto_cemento_diametro'), $request->getParameter('tord_redes_terciarias_asbesto_cemento_edad'));
@@ -80,11 +80,11 @@ class acueducto_reddistribucionActions extends sfActions
 	}
 
 	public function executeSubirDatos3(sfWebRequest $request) {
-		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
-		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_periodo, $pps_pre_id, $pps_ser_id);
 
 		if($request->hasParameter('tord_otro')) {
 			TecnicooperativareddistribucionacueductoPeer::crearRedOtra($tecnicoOperativo->getTopId(), 5, 8, $request->getParameter('tord_otro_otro1_diametro'), $request->getParameter('tord_otro_otro1_edad'),  $request->getParameter('tord_otro_tipo_nombre'), $request->getParameter('tord_otro_otro1_nombre'));
@@ -96,7 +96,7 @@ class acueducto_reddistribucionActions extends sfActions
 		}
 
 		if($request->hasParameter('toa_planos_actualizados')) {
-			$acueducto = TecnicooperativaacueductoPeer::consultarTecnicoOperativoAcueducto($pps_anio, $pps_pre_id, $pps_ser_id);
+			$acueducto = TecnicooperativaacueductoPeer::consultarTecnicoOperativoAcueducto($pps_periodo, $pps_pre_id, $pps_ser_id);
 			$acueducto->setToaPlanosActualizados($request->getParameter('toa_planos_actualizados'));
 			$acueducto->setToaAnoActualizacionPlanos($request->getParameter('toa_ano_actualizacion_planos'));
 			$acueducto->save();
@@ -106,11 +106,11 @@ class acueducto_reddistribucionActions extends sfActions
 	}
 
 	public function executeObtenerDatos() {
-		$pps_anio = $this->getUser()->getAttribute('pps_anio');
+		$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 		$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
 		$pps_ser_id = 1;
 
-		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_anio, $pps_pre_id, $pps_ser_id);
+		$tecnicoOperativo = TecnicooperativoPeer::consultarTecnicoOperativo($pps_periodo, $pps_pre_id, $pps_ser_id);
 
 		$datos = array();
 
@@ -259,7 +259,7 @@ class acueducto_reddistribucionActions extends sfActions
 				}
 			}
 
-			$acueducto = TecnicooperativaacueductoPeer::consultarTecnicoOperativoAcueductoSiExiste($pps_anio, $pps_pre_id, $pps_ser_id);
+			$acueducto = TecnicooperativaacueductoPeer::consultarTecnicoOperativoAcueductoSiExiste($pps_periodo, $pps_pre_id, $pps_ser_id);
 			if($acueducto) {
 				$campos['toa_planos_actualizados'] = $acueducto->getToaPlanosActualizados();
 				if($campos['toa_planos_actualizados']) {

@@ -41,12 +41,12 @@ class acueducto_proteccionfuentessuperficialesaguaActions extends sfActions
     public function obtenerMicId()
   { 
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_ser_id = $this->obtenerServicioId('acueducto');
 	
 	$conexion = new Criteria();
 	$conexion->add(MicrocuencasPeer::MIC_PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(MicrocuencasPeer::MIC_PPS_ANIO, $pps_anio);
+	$conexion->add(MicrocuencasPeer::MIC_PPS_PERIODO, $pps_periodo);
 	$conexion->add(MicrocuencasPeer::MIC_PPS_SER_ID, $pps_ser_id);
 	
 	$microcuencafila = MicrocuencasPeer::doSelectOne($conexion);
@@ -54,7 +54,7 @@ class acueducto_proteccionfuentessuperficialesaguaActions extends sfActions
 	if(!$microcuencafila){
 	$microcuencafila=new Microcuencas();
 	$microcuencafila->setMicPpsPreId($pps_pre_id);
-	$microcuencafila->setMicPpsAnio($pps_anio);
+	$microcuencafila->setMicPpsPeriodo($pps_periodo);
 	$microcuencafila->setMicPpsSerId($pps_ser_id);
 	$microcuencafila->save();
 	}

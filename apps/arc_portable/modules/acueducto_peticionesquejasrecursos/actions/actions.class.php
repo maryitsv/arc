@@ -40,12 +40,12 @@ class acueducto_peticionesquejasrecursosActions extends sfActions
     public function obtenerComId()
   { 
 	$pps_pre_id = $this->getUser()->getAttribute('pps_pre_id');
-	$pps_anio = $this->getUser()->getAttribute('pps_anio');
+	$pps_periodo = $this->getUser()->getAttribute('pps_periodo');
 	$pps_ser_id = $this->obtenerServicioId('acueducto');
 	
 	$conexion = new Criteria();
 	$conexion->add(ComercialPeer::COM_PPS_PRE_ID, $pps_pre_id);
-	$conexion->add(ComercialPeer::COM_PPS_ANIO, $pps_anio);
+	$conexion->add(ComercialPeer::COM_PPS_PERIODO, $pps_periodo);
 	$conexion->add(ComercialPeer::COM_PPS_SER_ID, $pps_ser_id);
 	
 	$comercialfila = ComercialPeer::doSelectOne($conexion);
@@ -54,7 +54,7 @@ class acueducto_peticionesquejasrecursosActions extends sfActions
 	$comercialfila = new Comercial();
 	$comercialfila->setComPpsPreId($pps_pre_id);
 	$comercialfila->setComPpsSerId($pps_ser_id);
-	$comercialfila->setComPpsAnio($pps_anio);
+	$comercialfila->setComPpsPeriodo($pps_periodo);
 	$comercialfila->save();
 	}			
 	return $comercialfila->getComId();
