@@ -1076,7 +1076,8 @@ propel:
     ver_tipo_vehiculo: { phpName: VerTipoVehiculo, type: VARCHAR, size: '50', required: false }
     ver_tipo_traccion: { phpName: VerTipoTraccion, type: VARCHAR, size: '50', required: false }
     ver_capacidad: { phpName: VerCapacidad, type: VARCHAR, size: '50', required: false }
-    ver_esado_vehiculo: { phpName: VerEsadoVehiculo, type: VARCHAR, size: '50', required: false }
+    ver_estado_vehiculo: { phpName: VerEstadoVehiculo, type: VARCHAR, size: '50', required: false }
+    ver_tipo_combustible: { phpName: VerTipoCombustible, type: VARCHAR, size: '50', required: false }
   vinculacionalservicio:
     _attributes: { phpName: Vinculacionalservicio }
     vas_id: { phpName: VasId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }

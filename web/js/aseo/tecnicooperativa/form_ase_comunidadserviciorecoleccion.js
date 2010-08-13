@@ -2,7 +2,7 @@
 var ase_comunidadserviciorecoleccion_datastore = new Ext.data.Store({
 	id: 'ase_comunidadserviciorecoleccion_datastore',
 	proxy: new Ext.data.HttpProxy({
-			url: 'acueducto_comunidadserviciorecoleccion/obtenerDatosAseComunidadServicioRecoleccion', 
+			url: 'aseo_comunidadserviciorecoleccion/obtenerDatosAseComunidadServicioRecoleccion', 
 			method: 'POST'
 	}),
 	baseParams:{}, 
@@ -22,14 +22,6 @@ var ase_comunidadserviciorecoleccion_datastore = new Ext.data.Store({
 
 ase_comunidadserviciorecoleccion_datastore.load();
 //ase_tra_trabajadores_datastore.loadData(ase_tra_trabajadores_data);
-
-var ase_comunidadserviciorecoleccion_data = [
-   ['Contrato a t&eacute;rmino indefinido'],
-   ['Contrato a t&eacute;rmino fijo'],
-   ['Oden de prestaci&oacute;n de servicios'],
-   ['Sin contrato, con bonificaci&oacute;n']
-];
-
 
 var ase_comunidadserviciorecoleccion_roweditor = new Ext.ux.grid.RowEditor({
 	id: 'ase_comunidadserviciorecoleccion_roweditor',
@@ -185,7 +177,7 @@ var ase_comunidadserviciorecoleccion_gridpanel = new Ext.grid.GridPanel({
 var ase_total_toneladas = new Ext.form.NumberField({
 	id: 'ase_total_toneladas',
 	name: 'ase_total_toneladas',
-	labelStyle: 'width:250px;',
+	//labelStyle: 'width:250px;',
 	fieldLabel: 'Total toneladas a&ntilde;o',
 	allowBlank: false, 
 	maxLength: 7, 
@@ -204,7 +196,7 @@ var form_ase_comunidadserviciorecoleccion = new Ext.FormPanel({
 	layout: 'column',
 	renderTo: 'div_form_ase_comunidadserviciorecoleccion',
 	height: largo_panel-15,
-	padding: 10,
+	padding: 5,
 	style: {"margin-right": Ext.isIE6 ? (Ext.isStrict ? "-10px" : "-13px") : "0" },
 	items: [
 		ase_comunidadserviciorecoleccion_gridpanel,
