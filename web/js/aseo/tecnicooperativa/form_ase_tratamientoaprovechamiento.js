@@ -23,7 +23,9 @@ var tratamientoaprovechamiento_form = new Ext.form.FormPanel({
                 form: tratamientoaprovechamiento_form,
                 url: getAbsoluteUrl('aseo_tratamientoaprovechamiento', 'subirDatos'),
                 success: function(){
-                    tecnicooperativa_aseo_tabpanel.setActiveTab(2);
+                    //                    tecnicooperativa_aseo_tabpanel.setActiveTab(2);
+                    tratamientoaprovechamiento2_form.show();
+                    tratamientoaprovechamiento_form.hide();
                 }
             });
         }
@@ -284,7 +286,7 @@ ase_tratamientoaprovechamiento_datastore.load({
 
 tratamientoaprovechamiento_form.add({
     xtype: 'fieldset',
-    title: 'Caracterización de los residuos sólidos recolectados:',
+    title: 'Caracterización de los residuos sólidos recolectados',
     height: 320,
     layout: 'column',
     items: [{
@@ -346,4 +348,4 @@ tratamientoaprovechamiento_form.add({
     }]
 });
 
-tratamientoaprovechamiento_form.render('div_form_ase_tratamientoaprovechamiento');
+//tratamientoaprovechamiento_form.render('div_form_ase_tratamientoaprovechamiento');

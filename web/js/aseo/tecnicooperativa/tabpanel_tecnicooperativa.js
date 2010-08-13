@@ -21,7 +21,6 @@ var tecnicooperativa_aseo_tabpanel = new Ext.TabPanel({
         }
     }, {
         title: 'Tratamiento y aprovechamiento',
-        frame: true,
         autoLoad: {
             url: getAbsoluteUrl('aseo_tratamientoaprovechamiento', 'index'),
             scripts: true
