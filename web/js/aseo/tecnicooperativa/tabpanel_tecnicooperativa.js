@@ -6,17 +6,17 @@ var tecnicooperativa_aseo_tabpanel = new Ext.TabPanel({
     frame: true,
     renderTo: 'div_tecnicooperativaaseo',
     items: [{
-        title: 'Actividades dentro del sistema de gesti&oacute;n de residuos sólidos',
+        title: 'ASGRS',
         frame: true,
         autoLoad: {
             url: getAbsoluteUrl('aseo_actividadesresiduossolidosaseo', 'index'),
             scripts: true
         }
     }, {
-        title: '',
+        title: 'Servicio de recolecci&oacute;n',
         frame: true,
         autoLoad: {
-            url: getAbsoluteUrl('', 'index'),
+            url: getAbsoluteUrl('aseo_comunidadserviciorecoleccion', 'index'),
             scripts: true
         }
     }, {
